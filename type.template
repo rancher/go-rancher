@@ -1,0 +1,63 @@
+package client
+
+const (
+	CONTAINER_TYPE = "{{.schema.Id}}"
+)
+
+type {{.typeCapitalized}} struct {
+	Resource
+    {{range $key, $value := .structFields}}
+    {{$key}} {{$value}} `json:"{{$key}},omitempty"`
+    {{end}}
+}
+
+type {{.typeCapitalized}}Collection struct {
+	Collection
+	Data []{{.typeCapitalized}} `json:"data,omitempty"`
+}
+
+type {{.typeCapitalized}}Client struct {
+	rancherClient *RancherClient
+}
+
+type {{.typeCapitalized}}Operations interface {
+	List(opts *ListOpts) (*{{.typeCapitalized}}Collection, error)
+	Create(opts *{{.typeCapitalized}}) (*{{.typeCapitalized}}, error)
+	Update(existing *{{.typeCapitalized}}, updates interface{}) (*{{.typeCapitalized}}, error)
+	ById(id string) (*{{.typeCapitalized}}, error)
+	Delete(container *{{.typeCapitalized}}) error
+}
+
+func new{{.typeCapitalized}}Client(rancherClient *RancherClient) *{{.typeCapitalized}}Client {
+	return &{{.typeCapitalized}}Client{
+		rancherClient: rancherClient,
+	}
+}
+
+func (self *{{.typeCapitalized}}Client) Create(container *{{.typeCapitalized}}) (*{{.typeCapitalized}}, error) {
+	resp := &{{.typeCapitalized}}{}
+	err := self.rancherClient.doCreate(CONTAINER_TYPE, container, resp)
+	return resp, err
+}
+
+func (self *{{.typeCapitalized}}Client) Update(existing *{{.typeCapitalized}}, updates interface{}) (*{{.typeCapitalized}}, error) {
+	resp := &{{.typeCapitalized}}{}
+	err := self.rancherClient.doUpdate(CONTAINER_TYPE, &existing.Resource, updates, resp)
+	return resp, err
+}
+
+func (self *{{.typeCapitalized}}Client) List(opts *ListOpts) (*{{.typeCapitalized}}Collection, error) {
+	resp := &{{.typeCapitalized}}Collection{}
+	err := self.rancherClient.doList(CONTAINER_TYPE, opts, resp)
+	return resp, err
+}
+
+func (self *{{.typeCapitalized}}Client) ById(id string) (*{{.typeCapitalized}}, error) {
+	resp := &{{.typeCapitalized}}{}
+	err := self.rancherClient.doById(CONTAINER_TYPE, id, resp)
+	return resp, err
+}
+
+func (self *{{.typeCapitalized}}Client) Delete(container *{{.typeCapitalized}}) error {
+	return self.rancherClient.doResourceDelete(CONTAINER_TYPE, &container.Resource)
+}
