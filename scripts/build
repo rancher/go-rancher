@@ -1,0 +1,21 @@
+#!/bin/bash -e
+
+cd $(dirname $0)/..
+
+export GOPATH=$(pwd)/Godeps/_workspace:$(pwd)/gopath
+
+PACKAGE=./gopath/src/$(<.package)
+
+if [ -L ${PACKAGE} ]; then
+    rm ${PACKAGE}
+fi
+
+if [ ! -e ${PACKAGE} ]; then
+    mkdir -p $(dirname $PACKAGE)
+    ln -s $(pwd) $PACKAGE
+fi
+
+echo export GOPATH=$GOPATH
+
+mkdir -p bin
+go build -o bin/go-rancher
