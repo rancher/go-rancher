@@ -18,7 +18,7 @@ func main() {
 	}()
 
 	DEFAULT_RANCHER_URL := os.Getenv("RANCHER_URL")
-	DEFAULT_ACCESS_KEY := os.Getenv("DEFAULT_ACCESS_KEY")
+	DEFAULT_ACCESS_KEY := os.Getenv("RANCHER_ACCESS_KEY")
 
 	rancherUrl := flag.String("url", DEFAULT_RANCHER_URL, "the url of the rancher server")
 	accessKey := flag.String("access-key", DEFAULT_ACCESS_KEY, "the access key for the rancher server")
