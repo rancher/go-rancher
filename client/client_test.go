@@ -1,8 +1,6 @@
 package client
 
-import (
-	"testing"
-)
+import "testing"
 
 const (
 	URL        = "http://localhost:8080/v1"
@@ -119,7 +117,7 @@ func TestContainerUpdate(t *testing.T) {
 		t.Fatal("Field name is wrong [" + container.Name + "]")
 	}
 
-	by_id_container, err := client.Container.ById(container.Id)
+	by_id_container, err := client.Container.ById(string(container.Id))
 	if err != nil {
 		t.Fatal(err)
 	}

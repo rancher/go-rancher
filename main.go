@@ -4,6 +4,6 @@ import (
 	"github.com/rancherio/go-rancher/client"
 )
 
-func main() {
+func testmain() {
 	client.NewRancherClient(nil)
 }
