@@ -76,13 +76,12 @@ func main() {
 		flagSetForId := flag.NewFlagSet(id, flag.ExitOnError)
 		for _, method := range dataUnit.CollectionMethods {
 			switch method {
-			case PUT_METHOD:
-				idCreatable = true
 			case POST_METHOD:
+				idCreatable = true
+			case PUT_METHOD:
 				idUpdatable = true
 			case DELETE_METHOD:
 				idDeletable = true
-			default:
 			}
 		}
 		ResourceFieldInfos := make(map[string]ResourceFieldInfo)
@@ -113,29 +112,36 @@ func main() {
 
 	for index, arg := range args[1:] {
 		if info, ok := SchemaInfos[arg]; ok {
-			//pivoted onto an id
+			//pivoted onto a schema type
 			rInfo := info.resourceFieldInfos
-			fmt.Println(args[index+2:])
 			switch args[index+2] {
 			case "create":
 				if info.creatable {
-					// do something
-					info.flagSet.Parse(args[index+2:])
+					info.flagSet.Parse(args[index+3:])
 					fl := info.flagSet
+					reqObj := make(map[string]interface{})
 					fl.Visit(func(fx *flag.Flag) {
 						if rInfo[fx.Name].creatable {
-							fmt.Println(fx.Value)
+							reqObj[fx.Name] = fx.Value
 						} else {
 							fl.PrintDefaults()
+							panic(fx.Name + " not marked as creatable")
 						}
 					})
+					respObj := make(map[string]interface{})
+					err := rancherClient.Create(arg, reqObj, respObj)
+					if err != nil {
+						panic(err.Error())
+					}
+					fmt.Print("SUCCESS: ")
+					fmt.Println(respObj)
 				} else {
 					info.flagSet.PrintDefaults()
-					break
+					panic(arg + " not marked as creatable")
 				}
 			default:
 				info.flagSet.PrintDefaults()
-				break
+				panic("unknown subcommand " + args[index+2])
 			}
 			break
 		}
