@@ -1,13 +1,28 @@
 package main
 
 import (
-	"encoding/json"
 	"flag"
 	"fmt"
 	"os"
 
 	"github.com/rancherio/go-rancher/client"
 )
+
+const (
+	POST_METHOD   string = "POST"
+	GET_METHOD    string = "GET"
+	DELETE_METHOD string = "DELETE"
+	PUT_METHOD    string = "PUT"
+)
+
+type schemaInfo struct {
+	creatable bool
+	updatable bool
+	deletable bool
+	listable  bool
+}
+
+var schemaInfos map[string]schemaInfo
 
 func main() {
 	defer func() {
@@ -22,9 +37,10 @@ func main() {
 
 	rancherUrl := flag.String("url", DEFAULT_RANCHER_URL, "the url of the rancher server")
 	accessKey := flag.String("access-key", DEFAULT_ACCESS_KEY, "the access key for the rancher server")
+
 	flag.Parse()
 
-	if !(rancherUrl != nil && len(*rancherUrl) > 0) {
+	if len(*rancherUrl) == 0 {
 		panic("RANCHER_URL cannot be empty, please set environment variable RANCHER_URL or use opt --url")
 	}
 
@@ -37,9 +53,34 @@ func main() {
 	if err != nil {
 		panic(err.Error())
 	}
-	schema, err := json.MarshalIndent(rancherClient.Schemas, "  ", "    ")
-	if err != nil {
-		panic(err.Error())
+
+	//args := os.Args
+
+	schemaInfos = make(map[string]schemaInfo)
+
+	for _, dataUnit := range rancherClient.Schemas.Data {
+		if dataUnit.Resource.Type != "schema" {
+			continue
+		}
+		id := dataUnit.Resource.Id
+		var typeInfoObj schemaInfo = schemaInfo{false, false, false, false}
+		for _, method := range dataUnit.CollectionMethods {
+			switch method {
+			case GET_METHOD:
+				typeInfoObj.listable = true
+				break
+			case PUT_METHOD:
+				typeInfoObj.updatable = true
+				break
+			case POST_METHOD:
+				typeInfoObj.creatable = true
+				break
+			case DELETE_METHOD:
+				typeInfoObj.deletable = true
+				break
+			}
+			schemaInfos[id] = typeInfoObj
+		}
 	}
-	fmt.Println(string(schema))
+	fmt.Println(schemaInfos["container"].listable)
 }
