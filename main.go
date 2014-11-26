@@ -24,6 +24,9 @@ type ResourceFieldInfo struct {
 type SchemaInfo struct {
 	flagSet            *flag.FlagSet
 	resourceFieldInfos map[string]ResourceFieldInfo
+	creatable          bool
+	updatable          bool
+	deletable          bool
 }
 
 var SchemaInfos map[string]SchemaInfo
@@ -40,22 +43,19 @@ func main() {
 	DEFAULT_RANCHER_URL := os.Getenv("RANCHER_URL")
 	DEFAULT_ACCESS_KEY := os.Getenv("RANCHER_ACCESS_KEY")
 
-	//rancherUrl := flag.String("url", DEFAULT_RANCHER_URL, "the url of the rancher server")
-	//accessKey := flag.String("access-key", DEFAULT_ACCESS_KEY, "the access key for the rancher server")
+	rancherUrl := flag.String("url", DEFAULT_RANCHER_URL, "the url of the rancher server")
+	accessKey := flag.String("access-key", DEFAULT_ACCESS_KEY, "the access key for the rancher server")
 
-	rancherUrl := DEFAULT_RANCHER_URL
-	accessKey := DEFAULT_ACCESS_KEY
+	flag.Parse()
 
-	//flag.Parse()
-
-	if len(rancherUrl) == 0 {
+	if len(*rancherUrl) == 0 {
 		panic("RANCHER_URL cannot be empty, please set environment variable RANCHER_URL or use opt --url")
 	}
 
 	opts := new(client.ClientOpts)
-	opts.Url = rancherUrl
-	if len(accessKey) > 0 {
-		opts.AccessKey = accessKey
+	opts.Url = *rancherUrl
+	if len(*accessKey) > 0 {
+		opts.AccessKey = *accessKey
 	}
 	rancherClient, err := client.NewRancherClient(opts)
 	if err != nil {
@@ -70,56 +70,74 @@ func main() {
 			continue
 		}
 		id := dataUnit.Resource.Id
+		idCreatable := false
+		idUpdatable := false
+		idDeletable := false
 		flagSetForId := flag.NewFlagSet(id, flag.ExitOnError)
 		for _, method := range dataUnit.CollectionMethods {
 			switch method {
-			case GET_METHOD:
-				break
 			case PUT_METHOD:
-				flagSetForId.Bool("update", false, "update a "+id)
-				break
+				idCreatable = true
 			case POST_METHOD:
-				flagSetForId.Bool("create", false, "create a "+id)
-				break
+				idUpdatable = true
 			case DELETE_METHOD:
-				flagSetForId.Bool("delete", false, "delete a "+id)
+				idDeletable = true
+			default:
+			}
+		}
+		ResourceFieldInfos := make(map[string]ResourceFieldInfo)
+		for resourceFieldKey := range dataUnit.ResourceFields {
+			resourceFieldValue, ok := dataUnit.ResourceFields[resourceFieldKey]
+			if !ok {
+				continue
+			}
+			ResourceFieldInfos[resourceFieldKey] = ResourceFieldInfo{resourceFieldValue.Create, resourceFieldValue.Update}
+			switch resourceFieldValue.Type {
+			case "string", "date", "blob", "password":
+				flagSetForId.String(resourceFieldKey, "", "set the string value for "+resourceFieldKey)
+			case "int":
+				flagSetForId.Int(resourceFieldKey, 0, "set the int value for "+resourceFieldKey)
+			case "float":
+				flagSetForId.Float64(resourceFieldKey, 0.0, "set the flaot value for "+resourceFieldKey)
+			case "boolean":
+				flagSetForId.Bool(resourceFieldKey, false, "set the bool value for "+resourceFieldKey)
+			default:
+				if strings.HasPrefix(resourceFieldValue.Type, "reference[") {
+					flagSetForId.String(resourceFieldKey, "", "set the string value for "+resourceFieldKey)
+				}
+				//flagSetForId.Var(resourceFieldValue.Default, resourceFieldKey, "set the "+resourceFieldKey)
+			}
+		}
+		SchemaInfos[id] = SchemaInfo{flagSetForId, ResourceFieldInfos, idCreatable, idUpdatable, idDeletable}
+	}
+
+	for index, arg := range args[1:] {
+		if info, ok := SchemaInfos[arg]; ok {
+			//pivoted onto an id
+			rInfo := info.resourceFieldInfos
+			fmt.Println(args[index+2:])
+			switch args[index+2] {
+			case "create":
+				if info.creatable {
+					// do something
+					info.flagSet.Parse(args[index+2:])
+					fl := info.flagSet
+					fl.Visit(func(fx *flag.Flag) {
+						if rInfo[fx.Name].creatable {
+							fmt.Println(fx.Value)
+						} else {
+							fl.PrintDefaults()
+						}
+					})
+				} else {
+					info.flagSet.PrintDefaults()
+					break
+				}
+			default:
+				info.flagSet.PrintDefaults()
 				break
 			}
-			ResourceFieldInfos := make(map[string]ResourceFieldInfo)
-			for resourceFieldKey := range dataUnit.ResourceFields {
-				resourceFieldValue, ok := dataUnit.ResourceFields[resourceFieldKey]
-				if !ok {
-					continue
-				}
-				ResourceFieldInfos[resourceFieldKey] = ResourceFieldInfo{resourceFieldValue.Create, resourceFieldValue.Update}
-				if id == "agentInstanceProvider" {
-					fmt.Println(resourceFieldKey + ":" + resourceFieldValue.Type)
-				}
-				switch resourceFieldValue.Type {
-				case "string", "date", "blob", "password":
-					flagSetForId.String(resourceFieldKey, "", "set the "+resourceFieldKey)
-					break
-				case "int":
-					flagSetForId.Int(resourceFieldKey, 0, "set the "+resourceFieldKey)
-					break
-				case "float":
-					flagSetForId.Float64(resourceFieldKey, 0.0, "set the "+resourceFieldKey)
-					break
-				case "boolean":
-					flagSetForId.Bool(resourceFieldKey, false, "set the "+resourceFieldKey)
-					break
-				default:
-					if strings.HasPrefix(resourceFieldValue.Type, "reference[") {
-						flagSetForId.String(resourceFieldKey, "", "set the "+resourceFieldKey)
-					}
-					//flagSetForId.Var(resourceFieldValue.Default, resourceFieldKey, "set the "+resourceFieldKey)
-				}
-			}
-			SchemaInfos[id] = SchemaInfo{flagSetForId, ResourceFieldInfos}
+			break
 		}
 	}
-	// program doesn't reach this block
-	SchemaInfos["agentInstanceProvider"].flagSet.Parse(args[1:])
-	fl := SchemaInfos["agentInstanceProvider"].flagSet.Lookup("accountId")
-	fmt.Println(fl.Value.String())
 }
