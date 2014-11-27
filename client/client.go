@@ -28,8 +28,8 @@ func constructClient() *RancherClient {
 	return client
 }
 
-func (rancherClient *RancherClient) Delete(url string) error {
-	return rancherClient.doDelete(url)
+func (rancherClient *RancherClient) Delete(schemaType string, existing *Resource) error {
+	return rancherClient.doResourceDelete(schemaType, existing)
 }
 
 func (rancherClient *RancherClient) Create(schemaType string, createObj interface{}, respObject interface{}) error {
