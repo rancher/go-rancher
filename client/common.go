@@ -48,8 +48,6 @@ func appendFilters(urlString string, filters map[string]interface{}) (string, er
 
 	u.RawQuery = q.Encode()
 
-	fmt.Println(u.String())
-
 	return u.String(), nil
 }
 
