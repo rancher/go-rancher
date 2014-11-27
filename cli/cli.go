@@ -130,8 +130,6 @@ func ParseCli(DEFAULT_RANCHER_URL string, DEFAULT_ACCESS_KEY string) {
 
 	parsedFlag := false
 
-	fmt.Println(flag.Args())
-
 	args := flag.Args()
 
 	for index, arg := range args {
@@ -209,6 +207,7 @@ func ParseCli(DEFAULT_RANCHER_URL string, DEFAULT_ACCESS_KEY string) {
 					resource := rancherClient.Types[arg].Resource
 					reqObj := make(map[string]interface{})
 					fl := info.flagSet
+					fl.Parse(args[index+2:])
 					fl.Visit(func(fx *flag.Flag) {
 						reqObj[fx.Name] = fx.Value
 					})
