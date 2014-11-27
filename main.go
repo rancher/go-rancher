@@ -25,6 +25,7 @@ type ResourceFieldInfo struct {
 type SchemaInfo struct {
 	flagSet            *flag.FlagSet
 	resourceFieldInfos map[string]ResourceFieldInfo
+	listable           bool
 	creatable          bool
 	updatable          bool
 	deletable          bool
@@ -71,18 +72,26 @@ func main() {
 			continue
 		}
 		id := dataUnit.Resource.Id
+		idListable := false
 		idCreatable := false
 		idUpdatable := false
 		idDeletable := false
 		flagSetForId := flag.NewFlagSet(id, flag.ExitOnError)
 		for _, method := range dataUnit.ResourceMethods {
 			switch method {
-			case POST_METHOD:
-				idCreatable = true
 			case PUT_METHOD:
 				idUpdatable = true
 			case DELETE_METHOD:
 				idDeletable = true
+			}
+		}
+
+		for _, method := range dataUnit.CollectionMethods {
+			switch method {
+			case GET_METHOD:
+				idListable = true
+			case POST_METHOD:
+				idCreatable = true
 			}
 		}
 		ResourceFieldInfos := make(map[string]ResourceFieldInfo)
@@ -109,7 +118,7 @@ func main() {
 				flagSetForId.String(resourceFieldKey, "", "set the string value for "+resourceFieldKey+requiredString)
 			}
 		}
-		SchemaInfos[id] = SchemaInfo{flagSetForId, ResourceFieldInfos, idCreatable, idUpdatable, idDeletable}
+		SchemaInfos[id] = SchemaInfo{flagSetForId, ResourceFieldInfos, idListable, idCreatable, idUpdatable, idDeletable}
 	}
 
 	if len(args) < 2 {
@@ -153,25 +162,30 @@ func main() {
 					panic(arg + " not marked as creatable")
 				}
 			case "list":
-				info.flagSet.Parse(args[index+3:])
-				fl := info.flagSet
-				reqObj := make(map[string]interface{})
-				fl.Visit(func(fx *flag.Flag) {
-					reqObj[fx.Name] = fx.Value
-				})
-				respObj := make(map[string]interface{})
-				listOpts := client.NewListOpts()
-				listOpts.Filters = reqObj
-				err := rancherClient.List(arg, listOpts, &respObj)
-				if err != nil {
-					fl.PrintDefaults()
-					panic(err.Error())
+				if info.listable {
+					info.flagSet.Parse(args[index+3:])
+					fl := info.flagSet
+					reqObj := make(map[string]interface{})
+					fl.Visit(func(fx *flag.Flag) {
+						reqObj[fx.Name] = fx.Value
+					})
+					respObj := make(map[string]interface{})
+					listOpts := client.NewListOpts()
+					listOpts.Filters = reqObj
+					err := rancherClient.List(arg, listOpts, &respObj)
+					if err != nil {
+						fl.PrintDefaults()
+						panic(err.Error())
+					}
+					resp, jsonErr := json.MarshalIndent(respObj, "  ", "    ")
+					if jsonErr != nil {
+						panic(jsonErr.Error())
+					}
+					fmt.Println(string(resp))
+				} else {
+					info.flagSet.PrintDefaults()
+					panic(arg + "not marked as listable")
 				}
-				resp, jsonErr := json.MarshalIndent(respObj, "  ", "    ")
-				if jsonErr != nil {
-					panic(jsonErr.Error())
-				}
-				fmt.Println(string(resp))
 			case "delete":
 				if info.deletable {
 					resource := rancherClient.Types[arg].Resource
