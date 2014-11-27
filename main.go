@@ -75,7 +75,7 @@ func main() {
 		idUpdatable := false
 		idDeletable := false
 		flagSetForId := flag.NewFlagSet(id, flag.ExitOnError)
-		for _, method := range dataUnit.CollectionMethods {
+		for _, method := range dataUnit.ResourceMethods {
 			switch method {
 			case POST_METHOD:
 				idCreatable = true
@@ -116,6 +116,8 @@ func main() {
 		flag.PrintDefaults()
 		panic("no operation specified [create, update, delete, list]")
 	}
+
+	parsedFlag := false
 
 	for index, arg := range args[1:] {
 		if info, ok := SchemaInfos[arg]; ok {
@@ -170,11 +172,27 @@ func main() {
 					panic(jsonErr.Error())
 				}
 				fmt.Println(string(resp))
+			case "delete":
+				if info.deletable {
+					resource := rancherClient.Types[arg].Resource
+					err := rancherClient.Delete(arg, &resource)
+					if err != nil {
+						info.flagSet.PrintDefaults()
+						panic(err.Error())
+					}
+				} else {
+					info.flagSet.PrintDefaults()
+					panic(arg + " not marked as deletable")
+				}
 			default:
 				info.flagSet.PrintDefaults()
 				panic("unknown subcommand " + args[index+2])
 			}
+			parsedFlag = true
 			break
 		}
+	}
+	if !parsedFlag {
+		fmt.Println("unknown type")
 	}
 }
