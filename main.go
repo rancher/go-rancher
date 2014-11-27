@@ -184,6 +184,24 @@ func main() {
 					info.flagSet.PrintDefaults()
 					panic(arg + " not marked as deletable")
 				}
+			case "update":
+				if info.updatable {
+					resource := rancherClient.Types[arg].Resource
+					reqObj := make(map[string]interface{})
+					fl := info.flagSet
+					fl.Visit(func(fx *flag.Flag) {
+						reqObj[fx.Name] = fx.Value
+					})
+					respObj := make(map[string]interface{})
+					err := rancherClient.Update(arg, &resource, reqObj, respObj)
+					if err != nil {
+						info.flagSet.PrintDefaults()
+						panic(err.Error())
+					}
+				} else {
+					info.flagSet.PrintDefaults()
+					panic(arg + " not marked as updatable")
+				}
 			default:
 				info.flagSet.PrintDefaults()
 				panic("unknown subcommand " + args[index+2])
