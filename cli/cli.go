@@ -98,7 +98,7 @@ func setResourceControls(resourceMethods []string, collectionMethods []string) (
 	return idListable, idCreatable, idUpdatable, idDeletable
 }
 
-func ParseCli(args []string, DEFAULT_RANCHER_URL string, DEFAULT_ACCESS_KEY string) {
+func ParseCli(DEFAULT_RANCHER_URL string, DEFAULT_ACCESS_KEY string) {
 	defer func() {
 		str := recover()
 		if str != nil {
@@ -128,25 +128,24 @@ func ParseCli(args []string, DEFAULT_RANCHER_URL string, DEFAULT_ACCESS_KEY stri
 
 	SchemaInfos := processSchemaInfos(&rancherClient.Schemas.Data)
 
-	if len(args) < 2 {
-		flag.PrintDefaults()
-		panic("no operation specified [create, update, delete, list]")
-	}
-
 	parsedFlag := false
 
-	for index, arg := range args[1:] {
+	fmt.Println(flag.Args())
+
+	args := flag.Args()
+
+	for index, arg := range args {
 		if info, ok := SchemaInfos[arg]; ok {
 			//pivoted onto a schema type
 			rInfo := info.resourceFieldInfos
-			if index+2 >= len(args) {
+			if index+1 >= len(args) {
 				info.flagSet.PrintDefaults()
 				panic("no valid operation specified [create, update, delete, list]")
 			}
-			switch args[index+2] {
+			switch args[index+1] {
 			case "create":
 				if info.creatable {
-					info.flagSet.Parse(args[index+3:])
+					info.flagSet.Parse(args[index+2:])
 					fl := info.flagSet
 					reqObj := make(map[string]interface{})
 					fl.Visit(func(fx *flag.Flag) {
@@ -170,7 +169,7 @@ func ParseCli(args []string, DEFAULT_RANCHER_URL string, DEFAULT_ACCESS_KEY stri
 				}
 			case "list":
 				if info.listable {
-					info.flagSet.Parse(args[index+3:])
+					info.flagSet.Parse(args[index+2:])
 					fl := info.flagSet
 					reqObj := make(map[string]interface{})
 					fl.Visit(func(fx *flag.Flag) {

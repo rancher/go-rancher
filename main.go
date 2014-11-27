@@ -7,5 +7,5 @@ func main() {
 	rancherUrl := os.Getenv("RANCHER_URL")
 	accessKey := os.Getenv("RANCHER_ACCESS_KEY")
 
-	cli.ParseCli(os.Args, rancherUrl, accessKey)
+	cli.ParseCli(rancherUrl, accessKey)
 }
