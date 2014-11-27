@@ -34,11 +34,11 @@ var SchemaInfos map[string]SchemaInfo
 
 func main() {
 	defer func() {
-		//str := recover()
-		//if str != nil {
-		//	fmt.Print("ERROR: ")
-		//	fmt.Println(str)
-		//}
+		str := recover()
+		if str != nil {
+			fmt.Print("ERROR: ")
+			fmt.Println(str)
+		}
 	}()
 
 	DEFAULT_RANCHER_URL := os.Getenv("RANCHER_URL")
@@ -155,12 +155,7 @@ func main() {
 				fl := info.flagSet
 				reqObj := make(map[string]interface{})
 				fl.Visit(func(fx *flag.Flag) {
-					if rInfo[fx.Name].creatable {
-						reqObj[fx.Name] = fx.Value
-					} else {
-						fl.PrintDefaults()
-						panic(fx.Name + " not marked as creatable")
-					}
+					reqObj[fx.Name] = fx.Value
 				})
 				respObj := make(map[string]interface{})
 				listOpts := client.NewListOpts()
