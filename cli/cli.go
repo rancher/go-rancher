@@ -5,6 +5,7 @@ import (
 	"errors"
 	"flag"
 	"fmt"
+	"os"
 	"strings"
 
 	"github.com/rancherio/go-rancher/client"
@@ -31,6 +32,8 @@ type SchemaInfo struct {
 	updatable          bool
 	deletable          bool
 }
+
+var helpMessage string
 
 var SchemaInfos map[string]SchemaInfo
 
@@ -60,6 +63,16 @@ func (i *flagMap) Set(value string) error {
 	return json.Unmarshal([]byte(value), i)
 }
 
+func printTypeLevelHelpMessageAndExit(rancherUrl string, accesKey string) {
+	filename := os.Args[0]
+	fmt.Println("usage of " + filename + ":")
+	helpMessage = "[create delete update list] for the following types; \nuse [TYPE] --h to view settable fields" + helpMessage
+	helpMessage = "--accessKey=" + accesKey + "\"the accesKey required to talk to the rancher server\" \n" + helpMessage
+	helpMessage = "--url=" + rancherUrl + "\"the url of the rancher server\" \n" + helpMessage
+	fmt.Println(helpMessage)
+	os.Exit(2)
+}
+
 func processSchemaInfos(data *[]client.Schema) map[string]SchemaInfo {
 	SchemaInfos := make(map[string]SchemaInfo)
 	for _, dataUnit := range *data {
@@ -69,14 +82,17 @@ func processSchemaInfos(data *[]client.Schema) map[string]SchemaInfo {
 		id := dataUnit.Resource.Id
 
 		idListable, idCreatable, idUpdatable, idDeletable := setResourceControls(dataUnit.ResourceMethods, dataUnit.CollectionMethods)
-
-		flagSetForId := flag.NewFlagSet(id, flag.ExitOnError)
+		helpMessage = helpMessage + "-" + id + "\n"
+		flagSetForIdCreate := flag.NewFlagSet(id+" create", flag.ExitOnError)
+		flagSetForIdUpdate := flag.NewFlagSet(id+" update", flag.ExitOnError)
+		flagSetForIdDelete := flag.NewFlagSet(id+" delete", flag.ExitOnError)
+		flagSetForIdList := flag.NewFlagSet(id+" list", flag.ExitOnError)
 		ResourceFieldInfos := make(map[string]ResourceFieldInfo)
 
 		for resourceFieldKey := range dataUnit.ResourceFields {
 			resourceFieldValue, ok := dataUnit.ResourceFields[resourceFieldKey]
 			//if field cannot be updated or created, dont bother adding it to the flagset
-			if !ok || !(resourceFieldValue.Create || resourceFieldValue.Update) {
+			if !ok || !(resourceFieldValue.Create || resourceFieldValue.Update || resourceFieldValue.Nullable) {
 				continue
 			}
 			ResourceFieldInfos[resourceFieldKey] = ResourceFieldInfo{resourceFieldValue.Create, resourceFieldValue.Update, resourceFieldValue.Required}
@@ -84,32 +100,52 @@ func processSchemaInfos(data *[]client.Schema) map[string]SchemaInfo {
 			if resourceFieldValue.Required {
 				requiredString = "(required)"
 			}
-			switch resourceFieldValue.Type {
-			case "int":
-				flagSetForId.Int(resourceFieldKey, 0, "set the int value for "+resourceFieldKey+requiredString)
-			case "float":
-				flagSetForId.Float64(resourceFieldKey, 0.0, "set the flaot value for "+resourceFieldKey+requiredString)
-			case "boolean":
-				flagSetForId.Bool(resourceFieldKey, false, "set the bool value for "+resourceFieldKey+requiredString)
-			case "string", "date", "blob", "password":
-				//default to string
-				flagSetForId.String(resourceFieldKey, "", "set the string value for "+resourceFieldKey+requiredString)
-			default:
-				if strings.HasPrefix(resourceFieldValue.Type, "reference[") {
-					flagSetForId.String(resourceFieldKey, "", "set the string value for "+resourceFieldKey+requiredString)
-				} else if strings.HasPrefix(resourceFieldValue.Type, "array[") {
-					var flagListVar flagList
-					flagSetForId.Var(&flagListVar, resourceFieldKey, "set the list (comma seperated) value for "+resourceFieldKey+requiredString)
-				} else if strings.HasPrefix(resourceFieldValue.Type, "map[") {
-					var flagMapVar flagMap
-					flagSetForId.Var(&flagMapVar, resourceFieldKey, "set the map value for "+resourceFieldKey+requiredString)
-				} else {
+			//use closure to get valid flagsets for field
+			validFlagSets := func() []*flag.FlagSet {
+				returnFlagSets := make([]*flag.FlagSet, 0, 4)
+				if resourceFieldValue.Create {
+					returnFlagSets = append(returnFlagSets, flagSetForIdCreate)
+				}
+				if resourceFieldValue.Update {
+					returnFlagSets = append(returnFlagSets, flagSetForIdUpdate)
+				}
+				if resourceFieldValue.Nullable {
+					returnFlagSets = append(returnFlagSets, flagSetForIdDelete)
+				}
+				return append(returnFlagSets, flagSetForIdList)
+			}()
+
+			for _, flagSetForId := range validFlagSets {
+				switch resourceFieldValue.Type {
+				case "int":
+					flagSetForId.Int(resourceFieldKey, 0, "set the int value for "+resourceFieldKey+requiredString)
+				case "float":
+					flagSetForId.Float64(resourceFieldKey, 0.0, "set the flaot value for "+resourceFieldKey+requiredString)
+				case "boolean":
+					flagSetForId.Bool(resourceFieldKey, false, "set the bool value for "+resourceFieldKey+requiredString)
+				case "string", "date", "blob", "password":
 					//default to string
 					flagSetForId.String(resourceFieldKey, "", "set the string value for "+resourceFieldKey+requiredString)
+				default:
+					if strings.HasPrefix(resourceFieldValue.Type, "reference[") {
+						flagSetForId.String(resourceFieldKey, "", "set the string value for "+resourceFieldKey+requiredString)
+					} else if strings.HasPrefix(resourceFieldValue.Type, "array[") {
+						var flagListVar flagList
+						flagSetForId.Var(&flagListVar, resourceFieldKey, "set the list (comma seperated) value for "+resourceFieldKey+requiredString)
+					} else if strings.HasPrefix(resourceFieldValue.Type, "map[") {
+						var flagMapVar flagMap
+						flagSetForId.Var(&flagMapVar, resourceFieldKey, "set the map value for "+resourceFieldKey+requiredString)
+					} else {
+						//default to string
+						flagSetForId.String(resourceFieldKey, "", "set the string value for "+resourceFieldKey+requiredString)
+					}
 				}
 			}
 		}
-		SchemaInfos[id] = SchemaInfo{flagSetForId, ResourceFieldInfos, idListable, idCreatable, idUpdatable, idDeletable}
+		SchemaInfos[id] = SchemaInfo{flagSetForIdList, ResourceFieldInfos, idListable, idCreatable, idUpdatable, idDeletable}
+		SchemaInfos[id+"-create"] = SchemaInfo{flagSetForIdCreate, ResourceFieldInfos, idListable, idCreatable, idUpdatable, idDeletable}
+		SchemaInfos[id+"-update"] = SchemaInfo{flagSetForIdUpdate, ResourceFieldInfos, idListable, idCreatable, idUpdatable, idDeletable}
+		SchemaInfos[id+"-delete"] = SchemaInfo{flagSetForIdDelete, ResourceFieldInfos, idListable, idCreatable, idUpdatable, idDeletable}
 	}
 	return SchemaInfos
 }
@@ -151,7 +187,16 @@ func ParseCli(DEFAULT_RANCHER_URL string, DEFAULT_ACCESS_KEY string) {
 	rancherUrl := flag.String("url", DEFAULT_RANCHER_URL, "the url of the rancher server")
 	accessKey := flag.String("access-key", DEFAULT_ACCESS_KEY, "the access key for the rancher server")
 
-	flag.Parse()
+	helpFlag := false
+
+	for _, arg := range os.Args {
+		if arg == "-h" || arg == "--h" || arg == "--help" || arg == "-help" || arg == "?" {
+			helpFlag = true
+		}
+	}
+	if !helpFlag {
+		flag.Parse()
+	}
 
 	if len(*rancherUrl) == 0 {
 		panic("RANCHER_URL cannot be empty, please set environment variable RANCHER_URL or use opt --url")
@@ -175,7 +220,7 @@ func ParseCli(DEFAULT_RANCHER_URL string, DEFAULT_ACCESS_KEY string) {
 
 	for index, arg := range args {
 		if info, ok := SchemaInfos[arg]; ok {
-			//pivoted onto a schema type
+			//pivoted onto a valid schema type
 			rInfo := info.resourceFieldInfos
 			if index+1 >= len(args) {
 				info.flagSet.PrintDefaults()
@@ -183,6 +228,8 @@ func ParseCli(DEFAULT_RANCHER_URL string, DEFAULT_ACCESS_KEY string) {
 			}
 			switch args[index+1] {
 			case "create":
+				info = SchemaInfos[arg+"-create"]
+				rInfo = info.resourceFieldInfos
 				if info.creatable {
 					info.flagSet.Parse(args[index+2:])
 					fl := info.flagSet
@@ -191,6 +238,7 @@ func ParseCli(DEFAULT_RANCHER_URL string, DEFAULT_ACCESS_KEY string) {
 						if rInfo[fx.Name].creatable {
 							reqObj[fx.Name] = fx.Value
 						} else {
+							fmt.Println("Usage for " + arg + " create:")
 							fl.PrintDefaults()
 							panic(fx.Name + " not marked as creatable")
 						}
@@ -198,12 +246,10 @@ func ParseCli(DEFAULT_RANCHER_URL string, DEFAULT_ACCESS_KEY string) {
 					respObj := make(map[string]interface{})
 					err := rancherClient.Create(arg, reqObj, &respObj)
 					if err != nil {
-						fl.PrintDefaults()
 						panic(err.Error())
 					}
 					fmt.Println(respObj)
 				} else {
-					info.flagSet.PrintDefaults()
 					panic(arg + " not marked as creatable")
 				}
 			case "list":
@@ -219,7 +265,6 @@ func ParseCli(DEFAULT_RANCHER_URL string, DEFAULT_ACCESS_KEY string) {
 					listOpts.Filters = reqObj
 					err := rancherClient.List(arg, listOpts, &respObj)
 					if err != nil {
-						fl.PrintDefaults()
 						panic(err.Error())
 					}
 					resp, jsonErr := json.MarshalIndent(respObj, "  ", "    ")
@@ -228,38 +273,43 @@ func ParseCli(DEFAULT_RANCHER_URL string, DEFAULT_ACCESS_KEY string) {
 					}
 					fmt.Println(string(resp))
 				} else {
-					info.flagSet.PrintDefaults()
 					panic(arg + "not marked as listable")
 				}
 			case "delete":
+				info = SchemaInfos[arg+"-delete"]
+				rInfo = info.resourceFieldInfos
 				if info.deletable {
 					resource := rancherClient.Types[arg].Resource
 					err := rancherClient.Delete(arg, &resource)
 					if err != nil {
-						info.flagSet.PrintDefaults()
 						panic(err.Error())
 					}
 				} else {
-					info.flagSet.PrintDefaults()
 					panic(arg + " not marked as deletable")
 				}
 			case "update":
+				info = SchemaInfos[arg+"-update"]
+				rInfo = info.resourceFieldInfos
 				if info.updatable {
 					resource := rancherClient.Types[arg].Resource
 					reqObj := make(map[string]interface{})
 					fl := info.flagSet
 					fl.Parse(args[index+2:])
 					fl.Visit(func(fx *flag.Flag) {
-						reqObj[fx.Name] = fx.Value
+						if rInfo[fx.Name].updatable {
+							reqObj[fx.Name] = fx.Value
+						} else {
+							fmt.Println("Usage for " + arg + " update:")
+							fl.PrintDefaults()
+							panic(fx.Name + " not marked as updatable")
+						}
 					})
 					respObj := make(map[string]interface{})
 					err := rancherClient.Update(arg, &resource, reqObj, respObj)
 					if err != nil {
-						info.flagSet.PrintDefaults()
 						panic(err.Error())
 					}
 				} else {
-					info.flagSet.PrintDefaults()
 					panic(arg + " not marked as updatable")
 				}
 			default:
@@ -271,6 +321,6 @@ func ParseCli(DEFAULT_RANCHER_URL string, DEFAULT_ACCESS_KEY string) {
 		}
 	}
 	if !parsedFlag {
-		fmt.Println("unknown type")
+		printTypeLevelHelpMessageAndExit(DEFAULT_RANCHER_URL, DEFAULT_ACCESS_KEY)
 	}
 }
