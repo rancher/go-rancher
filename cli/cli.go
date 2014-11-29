@@ -55,7 +55,7 @@ func (i *flagMap) String() string {
 
 func (i *flagMap) Set(value string) error {
 	if len(*i) > 0 {
-		return errors.New("interval flag already set")
+		return errors.New("map already set")
 	}
 	return json.Unmarshal([]byte(value), i)
 }
@@ -97,12 +97,12 @@ func processSchemaInfos(data *[]client.Schema) map[string]SchemaInfo {
 			default:
 				if strings.HasPrefix(resourceFieldValue.Type, "reference[") {
 					flagSetForId.String(resourceFieldKey, "", "set the string value for "+resourceFieldKey+requiredString)
-				} else if strings.HasPrefix(resourceFieldKey, "array[") {
+				} else if strings.HasPrefix(resourceFieldValue.Type, "array[") {
 					var flagListVar flagList
 					flagSetForId.Var(&flagListVar, resourceFieldKey, "set the list (comma seperated) value for "+resourceFieldKey+requiredString)
-				} else if strings.HasPrefix(resourceFieldKey, "map[") {
+				} else if strings.HasPrefix(resourceFieldValue.Type, "map[") {
 					var flagMapVar flagMap
-					flagSetForId.Var(&flagMapVar, resourceFieldKey, "set the string value for "+resourceFieldKey+requiredString)
+					flagSetForId.Var(&flagMapVar, resourceFieldKey, "set the map value for "+resourceFieldKey+requiredString)
 				} else {
 					//default to string
 					flagSetForId.String(resourceFieldKey, "", "set the string value for "+resourceFieldKey+requiredString)
@@ -212,7 +212,7 @@ func ParseCli(DEFAULT_RANCHER_URL string, DEFAULT_ACCESS_KEY string) {
 					fl := info.flagSet
 					reqObj := make(map[string]interface{})
 					fl.Visit(func(fx *flag.Flag) {
-						reqObj[fx.Name] = fx.Value
+						fmt.Println(fx.Name, fx.Value)
 					})
 					respObj := make(map[string]interface{})
 					listOpts := client.NewListOpts()
