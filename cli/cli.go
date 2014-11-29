@@ -66,7 +66,7 @@ func (i *flagMap) Set(value string) error {
 func printTypeLevelHelpMessageAndExit(rancherUrl string, accesKey string) {
 	filename := os.Args[0]
 	fmt.Println("usage of " + filename + ":")
-	helpMessage = "[create delete update list] for the following types; \nuse [TYPE] --h to view settable fields" + helpMessage
+	helpMessage = "[create delete update list] for the following types; \nuse [TYPE] [action] -h to view settable fields" + helpMessage
 	helpMessage = "--accessKey=" + accesKey + "\"the accesKey required to talk to the rancher server\" \n" + helpMessage
 	helpMessage = "--url=" + rancherUrl + "\"the url of the rancher server\" \n" + helpMessage
 	fmt.Println(helpMessage)
@@ -190,6 +190,14 @@ func ParseCli(DEFAULT_RANCHER_URL string, DEFAULT_ACCESS_KEY string) {
 	helpFlag := false
 
 	for index, arg := range os.Args {
+		if strings.Contains(arg, "url=") {
+			*rancherUrl = strings.Split(arg, "=")[1]
+			continue
+		}
+		if strings.Contains(arg, "accessKey=") {
+			*accessKey = strings.Split(arg, "=")[1]
+			continue
+		}
 		//break if we start parsing a schemaType
 		if arg == "-h" || arg == "--h" || arg == "--help" || arg == "-help" || arg == "?" {
 			//use heuristics to determine if help is being requested for main command or subcommand
