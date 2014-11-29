@@ -189,9 +189,14 @@ func ParseCli(DEFAULT_RANCHER_URL string, DEFAULT_ACCESS_KEY string) {
 
 	helpFlag := false
 
-	for _, arg := range os.Args {
+	for index, arg := range os.Args {
+		//break if we start parsing a schemaType
 		if arg == "-h" || arg == "--h" || arg == "--help" || arg == "-help" || arg == "?" {
-			helpFlag = true
+			//use heuristics to determine if help is being requested for main command or subcommand
+			prev := os.Args[index-1]
+			if !(prev == "create" || prev == "delete" || prev == "list" || prev == "update") {
+				helpFlag = true
+			}
 		}
 	}
 	if !helpFlag {
