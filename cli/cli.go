@@ -263,7 +263,7 @@ func ParseCli(DEFAULT_RANCHER_URL string, DEFAULT_ACCESS_KEY string) {
 					fl := info.flagSet
 					reqObj := make(map[string]interface{})
 					fl.Visit(func(fx *flag.Flag) {
-						fmt.Println(fx.Name, fx.Value)
+						reqObj[fx.Name] = fx.Value
 					})
 					respObj := make(map[string]interface{})
 					listOpts := client.NewListOpts()
