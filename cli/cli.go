@@ -2,8 +2,10 @@ package cli
 
 import (
 	"encoding/json"
+	"errors"
 	"flag"
 	"fmt"
+	"strings"
 
 	"github.com/rancherio/go-rancher/client"
 )
@@ -31,6 +33,32 @@ type SchemaInfo struct {
 }
 
 var SchemaInfos map[string]SchemaInfo
+
+type flagList []string
+
+func (i *flagList) String() string {
+	return fmt.Sprint(*i)
+}
+
+func (i *flagList) Set(value string) error {
+	for _, arg := range strings.Split(value, ",") {
+		*i = append(*i, arg)
+	}
+	return nil
+}
+
+type flagMap map[string]interface{}
+
+func (i *flagMap) String() string {
+	return fmt.Sprint(*i)
+}
+
+func (i *flagMap) Set(value string) error {
+	if len(*i) > 0 {
+		return errors.New("interval flag already set")
+	}
+	return json.Unmarshal([]byte(value), i)
+}
 
 func processSchemaInfos(data *[]client.Schema) map[string]SchemaInfo {
 	SchemaInfos := make(map[string]SchemaInfo)
@@ -63,9 +91,22 @@ func processSchemaInfos(data *[]client.Schema) map[string]SchemaInfo {
 				flagSetForId.Float64(resourceFieldKey, 0.0, "set the flaot value for "+resourceFieldKey+requiredString)
 			case "boolean":
 				flagSetForId.Bool(resourceFieldKey, false, "set the bool value for "+resourceFieldKey+requiredString)
-			default:
+			case "string", "date", "blob", "password":
 				//default to string
 				flagSetForId.String(resourceFieldKey, "", "set the string value for "+resourceFieldKey+requiredString)
+			default:
+				if strings.HasPrefix(resourceFieldValue.Type, "reference[") {
+					flagSetForId.String(resourceFieldKey, "", "set the string value for "+resourceFieldKey+requiredString)
+				} else if strings.HasPrefix(resourceFieldKey, "array[") {
+					var flagListVar flagList
+					flagSetForId.Var(&flagListVar, resourceFieldKey, "set the list (comma seperated) value for "+resourceFieldKey+requiredString)
+				} else if strings.HasPrefix(resourceFieldKey, "map[") {
+					var flagMapVar flagMap
+					flagSetForId.Var(&flagMapVar, resourceFieldKey, "set the string value for "+resourceFieldKey+requiredString)
+				} else {
+					//default to string
+					flagSetForId.String(resourceFieldKey, "", "set the string value for "+resourceFieldKey+requiredString)
+				}
 			}
 		}
 		SchemaInfos[id] = SchemaInfo{flagSetForId, ResourceFieldInfos, idListable, idCreatable, idUpdatable, idDeletable}
