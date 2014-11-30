@@ -1,17 +1,10 @@
 package util
 
-import (
-	"errors"
-)
-
-func Contains(slice []string, obj string) (bool, error) {
-	if slice == nil {
-		return false, errors.New("nil input slice")
-	}
+func Contains(slice []string, obj string) bool {
 	for _, element := range slice {
 		if obj == element {
-			return true, nil
+			return true
 		}
 	}
-	return false, nil
+	return false
 }
