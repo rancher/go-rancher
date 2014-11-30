@@ -5,6 +5,7 @@ import (
 	"errors"
 	"flag"
 	"fmt"
+	"github.com/rancherio/go-rancher/util"
 	"os"
 	"strings"
 
@@ -16,6 +17,7 @@ const (
 	GET_METHOD    string = "GET"
 	DELETE_METHOD string = "DELETE"
 	PUT_METHOD    string = "PUT"
+	containerId   string = "imageId"
 )
 
 type ResourceFieldInfo struct {
@@ -31,6 +33,7 @@ type SchemaInfo struct {
 	creatable          bool
 	updatable          bool
 	deletable          bool
+	allowedActions     []string
 }
 
 var helpMessage string
@@ -89,6 +92,14 @@ func processSchemaInfos(data *[]client.Schema) map[string]SchemaInfo {
 		flagSetForIdList := flag.NewFlagSet(id+" list", flag.ExitOnError)
 		ResourceFieldInfos := make(map[string]ResourceFieldInfo)
 
+		actions := make([]string, 0)
+
+		for key, _ := range dataUnit.Resource.Actions {
+			actions = append(actions, key)
+			var flagMapVar flagMap
+			flagSetForIdList.Var(&flagMapVar, key, "perform the "+key+" action")
+		}
+
 		for resourceFieldKey := range dataUnit.ResourceFields {
 			resourceFieldValue, ok := dataUnit.ResourceFields[resourceFieldKey]
 			//if field cannot be updated or created, dont bother adding it to the flagset
@@ -142,10 +153,10 @@ func processSchemaInfos(data *[]client.Schema) map[string]SchemaInfo {
 				}
 			}
 		}
-		SchemaInfos[id] = SchemaInfo{flagSetForIdList, ResourceFieldInfos, idListable, idCreatable, idUpdatable, idDeletable}
-		SchemaInfos[id+"-create"] = SchemaInfo{flagSetForIdCreate, ResourceFieldInfos, idListable, idCreatable, idUpdatable, idDeletable}
-		SchemaInfos[id+"-update"] = SchemaInfo{flagSetForIdUpdate, ResourceFieldInfos, idListable, idCreatable, idUpdatable, idDeletable}
-		SchemaInfos[id+"-delete"] = SchemaInfo{flagSetForIdDelete, ResourceFieldInfos, idListable, idCreatable, idUpdatable, idDeletable}
+		SchemaInfos[id] = SchemaInfo{flagSetForIdList, ResourceFieldInfos, idListable, idCreatable, idUpdatable, idDeletable, actions}
+		SchemaInfos[id+"-create"] = SchemaInfo{flagSetForIdCreate, ResourceFieldInfos, idListable, idCreatable, idUpdatable, idDeletable, actions}
+		SchemaInfos[id+"-update"] = SchemaInfo{flagSetForIdUpdate, ResourceFieldInfos, idListable, idCreatable, idUpdatable, idDeletable, actions}
+		SchemaInfos[id+"-delete"] = SchemaInfo{flagSetForIdDelete, ResourceFieldInfos, idListable, idCreatable, idUpdatable, idDeletable, actions}
 	}
 	return SchemaInfos
 }
@@ -256,6 +267,10 @@ func ParseCli(DEFAULT_RANCHER_URL string, DEFAULT_ACCESS_KEY string) {
 							panic(fx.Name + " not marked as creatable")
 						}
 					})
+					//container id has not been parsed out yet
+					if len(fl.Args()) > 0 {
+						reqObj[containerId] = fl.Args()[0]
+					}
 					respObj := make(map[string]interface{})
 					err := rancherClient.Create(arg, reqObj, &respObj)
 					if err != nil {
@@ -273,6 +288,9 @@ func ParseCli(DEFAULT_RANCHER_URL string, DEFAULT_ACCESS_KEY string) {
 					fl.Visit(func(fx *flag.Flag) {
 						reqObj[fx.Name] = fx.Value
 					})
+					if len(fl.Args()) > 0 {
+						reqObj[containerId] = fl.Args()[0]
+					}
 					respObj := make(map[string]interface{})
 					listOpts := client.NewListOpts()
 					listOpts.Filters = reqObj
@@ -317,6 +335,9 @@ func ParseCli(DEFAULT_RANCHER_URL string, DEFAULT_ACCESS_KEY string) {
 							panic(fx.Name + " not marked as updatable")
 						}
 					})
+					if len(fl.Args()) > 0 {
+						reqObj[containerId] = fl.Args()[0]
+					}
 					respObj := make(map[string]interface{})
 					err := rancherClient.Update(arg, &resource, reqObj, respObj)
 					if err != nil {
@@ -326,6 +347,27 @@ func ParseCli(DEFAULT_RANCHER_URL string, DEFAULT_ACCESS_KEY string) {
 					panic(arg + " not marked as updatable")
 				}
 			default:
+				//check if it is an action
+				if util.Contains(SchemaInfos[arg].allowedActions, args[index+1]) {
+					info := SchemaInfos[arg]
+					var reqObj map[string]interface{}
+					fl := info.flagSet
+					fl.Parse(args[index+2:])
+					fl.Visit(func(fx *flag.Flag) {
+						if fx.Name == "argMap" {
+							reqObj = map[string]interface{}(*fx.Value.(*flagMap))
+						}
+					})
+					if len(fl.Args()) > 0 {
+						reqObj[containerId] = fl.Args()[0]
+					}
+					respObj := make(map[string]interface{})
+					err := rancherClient.Action(arg, args[index+1], reqObj, respObj)
+					if err != nil {
+						panic(err.Error())
+					}
+					break
+				}
 				info.flagSet.PrintDefaults()
 				panic("unknown subcommand " + args[index+2])
 			}
