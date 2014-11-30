@@ -43,3 +43,7 @@ func (rancherClient *RancherClient) Update(schemaType string, existing *Resource
 func (rancherClient *RancherClient) List(schemaType string, opts *ListOpts, respObject interface{}) error {
 	return rancherClient.doList(schemaType, opts, respObject)
 }
+
+func (rancherClient *RancherClient) Action(schemaType string, action string, reqObj interface{}, respObj interface{}) error {
+	return rancherClient.doAction(schemaType, action, reqObj, respObj)
+}

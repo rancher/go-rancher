@@ -8,6 +8,8 @@ import (
 	"io/ioutil"
 	"net/http"
 	"net/url"
+
+	"github.com/rancherio/go-rancher/util"
 )
 
 const (
@@ -19,16 +21,6 @@ type ClientOpts struct {
 	Url       string
 	AccessKey string
 	SecretKey string
-}
-
-func contains(array []string, item string) bool {
-	for _, check := range array {
-		if check == item {
-			return true
-		}
-	}
-
-	return false
 }
 
 func appendFilters(urlString string, filters map[string]interface{}) (string, error) {
@@ -196,7 +188,7 @@ func (rancherClient *RancherClient) doList(schemaType string, opts *ListOpts, re
 		return errors.New("Unknown schema type [" + schemaType + "]")
 	}
 
-	if !contains(schema.CollectionMethods, "GET") {
+	if !util.Contains(schema.CollectionMethods, "GET") {
 		return errors.New("Resource type [" + schemaType + "] is not listable")
 	}
 
@@ -253,7 +245,7 @@ func (rancherClient *RancherClient) doCreate(schemaType string, createObj interf
 		return errors.New("Unknown schema type [" + schemaType + "]")
 	}
 
-	if !contains(schema.CollectionMethods, "POST") {
+	if !util.Contains(schema.CollectionMethods, "POST") {
 		return errors.New("Resource type [" + schemaType + "] is not creatable")
 	}
 
@@ -284,7 +276,7 @@ func (rancherClient *RancherClient) doUpdate(schemaType string, existing *Resour
 		return errors.New("Unknown schema type [" + schemaType + "]")
 	}
 
-	if !contains(schema.ResourceMethods, "PUT") {
+	if !util.Contains(schema.ResourceMethods, "PUT") {
 		return errors.New("Resource type [" + schemaType + "] is not updatable")
 	}
 
@@ -297,7 +289,7 @@ func (rancherClient *RancherClient) doById(schemaType string, id string, respObj
 		return errors.New("Unknown schema type [" + schemaType + "]")
 	}
 
-	if !contains(schema.ResourceMethods, "GET") {
+	if !util.Contains(schema.ResourceMethods, "GET") {
 		return errors.New("Resource type [" + schemaType + "] can not be looked up by ID")
 	}
 
@@ -317,7 +309,7 @@ func (rancherClient *RancherClient) doResourceDelete(schemaType string, existing
 		return errors.New("Unknown schema type [" + schemaType + "]")
 	}
 
-	if !contains(schema.ResourceMethods, "DELETE") {
+	if !util.Contains(schema.ResourceMethods, "DELETE") {
 		return errors.New("Resource type [" + schemaType + "] can not be deleted")
 	}
 
@@ -327,4 +319,18 @@ func (rancherClient *RancherClient) doResourceDelete(schemaType string, existing
 	}
 
 	return rancherClient.doDelete(selfUrl)
+}
+
+func (rancherClient *RancherClient) doAction(schemaType string, action string, input interface{}, output interface{}) error {
+	schema, ok := rancherClient.Types[schemaType]
+	if !ok {
+		return errors.New("Unknown schema type [" + schemaType + "]")
+	}
+
+	actionUrl, ok := schema.Resource.Links[action]
+	if !ok {
+		return errors.New("Unknown action " + action + " for schemaType + [" + action + "]")
+	}
+
+	return rancherClient.doModify("POST", actionUrl, input, output)
 }
