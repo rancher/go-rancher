@@ -5,7 +5,6 @@ import (
 	"errors"
 	"flag"
 	"fmt"
-	"github.com/rancherio/go-rancher/util"
 	"os"
 	"strings"
 
@@ -357,28 +356,33 @@ func ParseCli(DEFAULT_RANCHER_URL string, DEFAULT_ACCESS_KEY string) {
 					panic(arg + " not marked as updatable")
 				}
 			default:
-				//check if it is an action
-				if inputSchema, ok := SchemaInfos[arg].allowedActions[args[index+1]]; ok {
-					var reqObj map[string]interface{}
-					reqObj := make(map[string]interface{})
-					if inputSchema != nil && inputSchema != "null" {
-						info := SchemaInfos[inputSchema]
-						fl := info.flagSet
-						fl.Parse(args[index+2:])
-						fl.Visit(func(fx *flag.Flag) {
-							reqObj[fx.Name] = fx.Value
-						})
+				if len(args) > index+2 {
+					//check if it is an action
+					if inputSchema, ok := SchemaInfos[arg].allowedActions[args[index+1]]; ok {
+						var reqObj map[string]interface{}
+						reqObj = make(map[string]interface{})
+						if inputSchema != "null" {
+							info := SchemaInfos[inputSchema]
+							fl := info.flagSet
+							fl.Parse(args[index+2:])
+							fl.Visit(func(fx *flag.Flag) {
+								reqObj[fx.Name] = fx.Value
+							})
+							if len(fl.Args()) > 0 {
+								reqObj[containerId] = fl.Args()[0]
+							}
+						}
+						if len(args) > index+3 {
+							reqObj[containerId] = args[index+2]
+						}
+						respObj := make(map[string]interface{})
+						err := rancherClient.Action(arg, args[index+1], reqObj, respObj)
+						if err != nil {
+							panic(err.Error())
+						}
+						printFormat(*format, respObj)
+						break
 					}
-					if len(fl.Args()) > 0 {
-						reqObj[containerId] = fl.Args()[0]
-					}
-					respObj := make(map[string]interface{})
-					err := rancherClient.Action(arg, args[index+1], reqObj, respObj)
-					if err != nil {
-						panic(err.Error())
-					}
-					printFormat(*format, respObj)
-					break
 				}
 				info.flagSet.PrintDefaults()
 				panic("unknown subcommand " + args[index+2])
