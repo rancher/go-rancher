@@ -66,6 +66,20 @@ func (i *flagMap) Set(value string) error {
 	return json.Unmarshal([]byte(value), i)
 }
 
+func printFormat(format string, obj interface{}) {
+	if format == "json" {
+		resp, jsonErr := json.MarshalIndent(obj, "  ", "    ")
+		if jsonErr != nil {
+			panic(jsonErr.Error())
+		}
+		fmt.Println(string(resp))
+	} else if format == "tabular" {
+		PrintTabular(obj)
+	} else {
+		panic("unknown format " + format)
+	}
+}
+
 func printTypeLevelHelpMessageAndExit(rancherUrl string, accesKey string) {
 	filename := os.Args[0]
 	fmt.Println("usage of " + filename + ":")
@@ -188,15 +202,16 @@ func setResourceControls(resourceMethods []string, collectionMethods []string) (
 
 func ParseCli(DEFAULT_RANCHER_URL string, DEFAULT_ACCESS_KEY string) {
 	defer func() {
-		str := recover()
-		if str != nil {
-			fmt.Print("ERROR: ")
-			fmt.Println(str)
-		}
+		//str := recover()
+		//if str != nil {
+		//	fmt.Print("ERROR: ")
+		//	fmt.Println(str)
+		//}
 	}()
 
 	rancherUrl := flag.String("url", DEFAULT_RANCHER_URL, "the url of the rancher server")
 	accessKey := flag.String("access-key", DEFAULT_ACCESS_KEY, "the access key for the rancher server")
+	format := flag.String("format", "tabular", "the format in which the output should be printed")
 
 	helpFlag := false
 
@@ -276,7 +291,7 @@ func ParseCli(DEFAULT_RANCHER_URL string, DEFAULT_ACCESS_KEY string) {
 					if err != nil {
 						panic(err.Error())
 					}
-					fmt.Println(respObj)
+					printFormat(*format, respObj)
 				} else {
 					panic(arg + " not marked as creatable")
 				}
@@ -298,11 +313,7 @@ func ParseCli(DEFAULT_RANCHER_URL string, DEFAULT_ACCESS_KEY string) {
 					if err != nil {
 						panic(err.Error())
 					}
-					resp, jsonErr := json.MarshalIndent(respObj, "  ", "    ")
-					if jsonErr != nil {
-						panic(jsonErr.Error())
-					}
-					fmt.Println(string(resp))
+					printFormat(*format, respObj)
 				} else {
 					panic(arg + "not marked as listable")
 				}
@@ -343,6 +354,7 @@ func ParseCli(DEFAULT_RANCHER_URL string, DEFAULT_ACCESS_KEY string) {
 					if err != nil {
 						panic(err.Error())
 					}
+					printFormat(*format, respObj)
 				} else {
 					panic(arg + " not marked as updatable")
 				}
@@ -366,6 +378,7 @@ func ParseCli(DEFAULT_RANCHER_URL string, DEFAULT_ACCESS_KEY string) {
 					if err != nil {
 						panic(err.Error())
 					}
+					printFormat(*format, respObj)
 					break
 				}
 				info.flagSet.PrintDefaults()
