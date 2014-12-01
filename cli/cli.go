@@ -33,7 +33,7 @@ type SchemaInfo struct {
 	creatable          bool
 	updatable          bool
 	deletable          bool
-	allowedActions     []string
+	allowedActions     map[string]string
 }
 
 var helpMessage string
@@ -106,12 +106,10 @@ func processSchemaInfos(data *[]client.Schema) map[string]SchemaInfo {
 		flagSetForIdList := flag.NewFlagSet(id+" list", flag.ExitOnError)
 		ResourceFieldInfos := make(map[string]ResourceFieldInfo)
 
-		actions := make([]string, 0)
+		actions := make(map[string]string)
 
-		for key, _ := range dataUnit.Resource.Actions {
-			actions = append(actions, key)
-			var flagMapVar flagMap
-			flagSetForIdList.Var(&flagMapVar, key, "perform the "+key+" action")
+		for key, val := range dataUnit.ResourceActions {
+			actions[key] = val.Input
 		}
 
 		for resourceFieldKey := range dataUnit.ResourceFields {
@@ -360,16 +358,17 @@ func ParseCli(DEFAULT_RANCHER_URL string, DEFAULT_ACCESS_KEY string) {
 				}
 			default:
 				//check if it is an action
-				if util.Contains(SchemaInfos[arg].allowedActions, args[index+1]) {
-					info := SchemaInfos[arg]
+				if inputSchema, ok := SchemaInfos[arg].allowedActions[args[index+1]]; ok {
 					var reqObj map[string]interface{}
-					fl := info.flagSet
-					fl.Parse(args[index+2:])
-					fl.Visit(func(fx *flag.Flag) {
-						if fx.Name == "argMap" {
-							reqObj = map[string]interface{}(*fx.Value.(*flagMap))
-						}
-					})
+					reqObj := make(map[string]interface{})
+					if inputSchema != nil && inputSchema != "null" {
+						info := SchemaInfos[inputSchema]
+						fl := info.flagSet
+						fl.Parse(args[index+2:])
+						fl.Visit(func(fx *flag.Flag) {
+							reqObj[fx.Name] = fx.Value
+						})
+					}
 					if len(fl.Args()) > 0 {
 						reqObj[containerId] = fl.Args()[0]
 					}
