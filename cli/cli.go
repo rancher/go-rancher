@@ -154,7 +154,7 @@ func processSchemaInfos(data *[]client.Schema) map[string]SchemaInfo {
 				}()
 
 				for _, flagSetForId := range validFlagSets {
-					if resourceFieldKeyWithModifier[-5:] == "-null" || resourceFieldKeyWithModifier[-9:] == "-notnull" {
+					if strings.HasSuffix(resourceFieldKeyWithModifier, "-null") || strings.HasSuffix(resourceFieldKeyWithModifier, "-notnull") {
 						flagSetForId.Bool(resourceFieldKeyWithModifier, false, "set the bool value for "+resourceFieldKeyWithModifier+requiredString)
 						continue
 					}
