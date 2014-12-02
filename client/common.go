@@ -327,10 +327,29 @@ func (rancherClient *RancherClient) doAction(schemaType string, action string, i
 		return errors.New("Unknown schema type [" + schemaType + "]")
 	}
 
-	actionUrl, ok := schema.Resource.Links[action]
-	if !ok {
-		return errors.New("Unknown action " + action + " for schemaType + [" + action + "]")
+	collectionUrl := schema.Resource.Links["collection"]
+
+	listOptsVar := NewListOpts()
+	inputMap := input.(map[string]interface{})
+
+	if containerId, ok := inputMap["imageId"]; ok {
+		listOptsVar.Filters["imageId"] = containerId
+	} else {
+		panic("imageId not specified for action")
 	}
 
+	var resourceSchema Schemas
+	rancherClient.doGet(collectionUrl, listOptsVar, &resourceSchema)
+
+	var validActions string
+
+	for key, _ := range resourceSchema.Data[0].Resource.Actions {
+		validActions = validActions + "\n" + key
+	}
+
+	actionUrl, ok := resourceSchema.Data[0].Resource.Actions[action]
+	if !ok {
+		return errors.New("Unknown action " + action + " for schemaType [" + schemaType + "]\n please use one of the following actions " + validActions)
+	}
 	return rancherClient.doModify("POST", actionUrl, input, output)
 }
