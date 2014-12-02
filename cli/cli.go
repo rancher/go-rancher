@@ -111,55 +111,76 @@ func processSchemaInfos(data *[]client.Schema) map[string]SchemaInfo {
 			actions[key] = val.Input
 		}
 
+		filtersMap := dataUnit.CollectionFilters
+
 		for resourceFieldKey := range dataUnit.ResourceFields {
 			resourceFieldValue, ok := dataUnit.ResourceFields[resourceFieldKey]
 			//if field cannot be updated or created, dont bother adding it to the flagset
 			if !ok || !(resourceFieldValue.Create || resourceFieldValue.Update || resourceFieldValue.Nullable) {
 				continue
 			}
-			ResourceFieldInfos[resourceFieldKey] = ResourceFieldInfo{resourceFieldValue.Create, resourceFieldValue.Update, resourceFieldValue.Required}
-			requiredString := ""
-			if resourceFieldValue.Required {
-				requiredString = "(required)"
+			modifiersMap, ok := filtersMap[resourceFieldKey]
+			modifiers := []string{}
+			if ok {
+				modifiers = modifiersMap.Modifiers
 			}
-			//use closure to get valid flagsets for field
-			validFlagSets := func() []*flag.FlagSet {
-				returnFlagSets := make([]*flag.FlagSet, 0, 4)
-				if resourceFieldValue.Create {
-					returnFlagSets = append(returnFlagSets, flagSetForIdCreate)
+			resourceFieldKeysWithModifiers := []string{}
+			for _, modifier := range modifiers {
+				if modifier == "eq" {
+					resourceFieldKeysWithModifiers = append(resourceFieldKeysWithModifiers, resourceFieldKey)
+					continue
 				}
-				if resourceFieldValue.Update {
-					returnFlagSets = append(returnFlagSets, flagSetForIdUpdate)
+				resourceFieldKeysWithModifiers = append(resourceFieldKeysWithModifiers, resourceFieldKey+"-"+modifier)
+			}
+			for _, resourceFieldKeyWithModifier := range resourceFieldKeysWithModifiers {
+				ResourceFieldInfos[resourceFieldKeyWithModifier] = ResourceFieldInfo{resourceFieldValue.Create, resourceFieldValue.Update, resourceFieldValue.Required}
+				requiredString := ""
+				if resourceFieldValue.Required {
+					requiredString = "(required)"
 				}
-				if resourceFieldValue.Nullable {
-					returnFlagSets = append(returnFlagSets, flagSetForIdDelete)
-				}
-				return append(returnFlagSets, flagSetForIdList)
-			}()
+				//use closure to get valid flagsets for field
+				validFlagSets := func() []*flag.FlagSet {
+					returnFlagSets := make([]*flag.FlagSet, 0, 4)
+					if resourceFieldValue.Create {
+						returnFlagSets = append(returnFlagSets, flagSetForIdCreate)
+					}
+					if resourceFieldValue.Update {
+						returnFlagSets = append(returnFlagSets, flagSetForIdUpdate)
+					}
+					if resourceFieldValue.Nullable {
+						returnFlagSets = append(returnFlagSets, flagSetForIdDelete)
+					}
+					return append(returnFlagSets, flagSetForIdList)
+				}()
 
-			for _, flagSetForId := range validFlagSets {
-				switch resourceFieldValue.Type {
-				case "int":
-					flagSetForId.Int(resourceFieldKey, 0, "set the int value for "+resourceFieldKey+requiredString)
-				case "float":
-					flagSetForId.Float64(resourceFieldKey, 0.0, "set the flaot value for "+resourceFieldKey+requiredString)
-				case "boolean":
-					flagSetForId.Bool(resourceFieldKey, false, "set the bool value for "+resourceFieldKey+requiredString)
-				case "string", "date", "blob", "password":
-					//default to string
-					flagSetForId.String(resourceFieldKey, "", "set the string value for "+resourceFieldKey+requiredString)
-				default:
-					if strings.HasPrefix(resourceFieldValue.Type, "reference[") {
-						flagSetForId.String(resourceFieldKey, "", "set the string value for "+resourceFieldKey+requiredString)
-					} else if strings.HasPrefix(resourceFieldValue.Type, "array[") {
-						var flagListVar flagList
-						flagSetForId.Var(&flagListVar, resourceFieldKey, "set the list (comma seperated) value for "+resourceFieldKey+requiredString)
-					} else if strings.HasPrefix(resourceFieldValue.Type, "map[") {
-						var flagMapVar flagMap
-						flagSetForId.Var(&flagMapVar, resourceFieldKey, "set the map value for "+resourceFieldKey+requiredString)
-					} else {
+				for _, flagSetForId := range validFlagSets {
+					if resourceFieldKeyWithModifier[-5:] == "-null" || resourceFieldKeyWithModifier[-9:] == "-notnull" {
+						flagSetForId.Bool(resourceFieldKeyWithModifier, false, "set the bool value for "+resourceFieldKeyWithModifier+requiredString)
+						continue
+					}
+					switch resourceFieldValue.Type {
+					case "int":
+						flagSetForId.Int(resourceFieldKeyWithModifier, 0, "set the int value for "+resourceFieldKeyWithModifier+requiredString)
+					case "float":
+						flagSetForId.Float64(resourceFieldKeyWithModifier, 0.0, "set the flaot value for "+resourceFieldKeyWithModifier+requiredString)
+					case "boolean":
+						flagSetForId.Bool(resourceFieldKeyWithModifier, false, "set the bool value for "+resourceFieldKeyWithModifier+requiredString)
+					case "string", "date", "blob", "password":
 						//default to string
-						flagSetForId.String(resourceFieldKey, "", "set the string value for "+resourceFieldKey+requiredString)
+						flagSetForId.String(resourceFieldKeyWithModifier, "", "set the string value for "+resourceFieldKeyWithModifier+requiredString)
+					default:
+						if strings.HasPrefix(resourceFieldValue.Type, "reference[") {
+							flagSetForId.String(resourceFieldKeyWithModifier, "", "set the string value for "+resourceFieldKeyWithModifier+requiredString)
+						} else if strings.HasPrefix(resourceFieldValue.Type, "array[") {
+							var flagListVar flagList
+							flagSetForId.Var(&flagListVar, resourceFieldKeyWithModifier, "set the list (comma seperated) value for "+resourceFieldKeyWithModifier+requiredString)
+						} else if strings.HasPrefix(resourceFieldValue.Type, "map[") {
+							var flagMapVar flagMap
+							flagSetForId.Var(&flagMapVar, resourceFieldKeyWithModifier, "set the map value for "+resourceFieldKeyWithModifier+requiredString)
+						} else {
+							//default to string
+							flagSetForId.String(resourceFieldKeyWithModifier, "", "set the string value for "+resourceFieldKeyWithModifier+requiredString)
+						}
 					}
 				}
 			}
@@ -272,7 +293,8 @@ func ParseCli(DEFAULT_RANCHER_URL string, DEFAULT_ACCESS_KEY string) {
 					reqObj := make(map[string]interface{})
 					fl.Visit(func(fx *flag.Flag) {
 						if rInfo[fx.Name].creatable {
-							reqObj[fx.Name] = fx.Value
+							name := strings.Replace(fx.Name, "-", "_", -1)
+							reqObj[name] = fx.Value
 						} else {
 							fmt.Println("Usage for " + arg + " create:")
 							fl.PrintDefaults()
@@ -298,7 +320,8 @@ func ParseCli(DEFAULT_RANCHER_URL string, DEFAULT_ACCESS_KEY string) {
 					fl := info.flagSet
 					reqObj := make(map[string]interface{})
 					fl.Visit(func(fx *flag.Flag) {
-						reqObj[fx.Name] = fx.Value
+						name := strings.Replace(fx.Name, "-", "_", -1)
+						reqObj[name] = fx.Value
 					})
 					if len(fl.Args()) > 0 {
 						reqObj[containerId] = fl.Args()[0]
@@ -336,7 +359,8 @@ func ParseCli(DEFAULT_RANCHER_URL string, DEFAULT_ACCESS_KEY string) {
 					fl.Parse(args[index+2:])
 					fl.Visit(func(fx *flag.Flag) {
 						if rInfo[fx.Name].updatable {
-							reqObj[fx.Name] = fx.Value
+							name := strings.Replace(fx.Name, "-", "_", -1)
+							reqObj[name] = fx.Value
 						} else {
 							fmt.Println("Usage for " + arg + " update:")
 							fl.PrintDefaults()
@@ -365,7 +389,8 @@ func ParseCli(DEFAULT_RANCHER_URL string, DEFAULT_ACCESS_KEY string) {
 						fl := info.flagSet
 						fl.Parse(args[index+2:])
 						fl.Visit(func(fx *flag.Flag) {
-							reqObj[fx.Name] = fx.Value
+							name := strings.Replace(fx.Name, "-", "_", -1)
+							reqObj[name] = fx.Value
 						})
 						if len(fl.Args()) > 0 {
 							reqObj[containerId] = fl.Args()[0]
