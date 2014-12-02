@@ -6,6 +6,8 @@ export GOPATH=$(pwd)/Godeps/_workspace:$(pwd)/gopath
 
 PACKAGE=./gopath/src/$(<.package)
 
+echo $PACKAGE
+
 if [ -L ${PACKAGE} ]; then
     rm ${PACKAGE}
 fi
@@ -19,3 +21,5 @@ echo export GOPATH=$GOPATH
 
 mkdir -p bin
 go build -o bin/go-rancher
+
+go get  github.com/olekukonko/tablewriter

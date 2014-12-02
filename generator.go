@@ -79,7 +79,7 @@ func generateFiles() error {
 	return nil
 }
 
-func main() {
+func generate() {
 	err := generateFiles()
 	if err != nil {
 		log.Fatal(err)
