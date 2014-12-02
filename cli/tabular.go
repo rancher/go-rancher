@@ -8,7 +8,19 @@ import (
 
 func PrintTabular(obj interface{}) {
 	listObj := obj.(map[string]interface{})
-	listMapObj := listObj["data"].([]interface{})
+	listMapObj := make([]interface{}, 0)
+	parseMap := false
+	if _, ok := listObj["data"]; ok {
+		switch listObj["data"].(type) {
+		case []interface{}:
+			listMapObj = listObj["data"].([]interface{})
+		case map[string]interface{}:
+			parseMap = true
+		}
+	}
+	if parseMap {
+		listMapObj = append(listMapObj, listObj)
+	}
 	for _, dataUnit := range listMapObj {
 		tableData := make([][]string, 1)
 		table := tablewriter.NewWriter(os.Stdout)

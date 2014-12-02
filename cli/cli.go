@@ -199,11 +199,11 @@ func setResourceControls(resourceMethods []string, collectionMethods []string) (
 
 func ParseCli(DEFAULT_RANCHER_URL string, DEFAULT_ACCESS_KEY string) {
 	defer func() {
-		//str := recover()
-		//if str != nil {
-		//	fmt.Print("ERROR: ")
-		//	fmt.Println(str)
-		//}
+		str := recover()
+		if str != nil {
+			fmt.Print("ERROR: ")
+			fmt.Println(str)
+		}
 	}()
 
 	rancherUrl := flag.String("url", DEFAULT_RANCHER_URL, "the url of the rancher server")
