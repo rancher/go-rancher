@@ -407,10 +407,10 @@ func ParseCli(DEFAULT_RANCHER_URL string, DEFAULT_ACCESS_KEY string) {
 					panic(err.Error())
 				}
 				printFormat(*format, respObj)
-				break
+			} else {
+				info.flagSet.PrintDefaults()
+				panic("unknown subcommand " + args[index+1])
 			}
-			info.flagSet.PrintDefaults()
-			panic("unknown subcommand " + args[index+1])
 		}
 	}
 	if !parsedFlag {
