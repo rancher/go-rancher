@@ -275,50 +275,121 @@ func ParseCli(DEFAULT_RANCHER_URL string, DEFAULT_ACCESS_KEY string) {
 
 	args := flag.Args()
 
-	for index, arg := range args {
-		if info, ok := SchemaInfos[arg]; ok {
-			//pivoted onto a valid schema type
-			rInfo := info.resourceFieldInfos
-			if index+1 >= len(args) {
-				info.flagSet.PrintDefaults()
-				panic("no valid operation specified [create, update, delete, list]")
-			}
-			switch args[index+1] {
-			case "create":
-				info = SchemaInfos[arg+"-create"]
-				rInfo = info.resourceFieldInfos
-				if info.creatable {
-					info.flagSet.Parse(args[index+2:])
-					fl := info.flagSet
-					reqObj := make(map[string]interface{})
-					fl.Visit(func(fx *flag.Flag) {
-						if rInfo[fx.Name].creatable {
-							name := strings.Replace(fx.Name, "-", "_", -1)
-							reqObj[name] = fx.Value
-						} else {
-							fmt.Println("Usage for " + arg + " create:")
-							fl.PrintDefaults()
-							panic(fx.Name + " not marked as creatable")
-						}
-					})
-					//container id has not been parsed out yet
-					if len(fl.Args()) > 0 {
-						reqObj[containerId] = fl.Args()[0]
+	index := 0
+	if info, ok := SchemaInfos[args[index]]; ok {
+		//pivoted onto a valid schema type
+		arg := args[index]
+		rInfo := info.resourceFieldInfos
+		if index+1 >= len(args) {
+			info.flagSet.PrintDefaults()
+			panic("no valid operation specified [create, update, delete, list]")
+		}
+		parsedFlag = true
+		switch args[index+1] {
+		case "create":
+			info = SchemaInfos[arg+"-create"]
+			rInfo = info.resourceFieldInfos
+			if info.creatable {
+				info.flagSet.Parse(args[index+2:])
+				fl := info.flagSet
+				reqObj := make(map[string]interface{})
+				fl.Visit(func(fx *flag.Flag) {
+					if rInfo[fx.Name].creatable {
+						name := strings.Replace(fx.Name, "-", "_", -1)
+						reqObj[name] = fx.Value
+					} else {
+						fmt.Println("Usage for " + arg + " create:")
+						fl.PrintDefaults()
+						panic(fx.Name + " not marked as creatable")
 					}
-					respObj := make(map[string]interface{})
-					err := rancherClient.Create(arg, reqObj, &respObj)
-					if err != nil {
-						panic(err.Error())
-					}
-					printFormat(*format, respObj)
-				} else {
-					panic(arg + " not marked as creatable")
+				})
+				//container id has not been parsed out yet
+				if len(fl.Args()) > 0 {
+					reqObj[containerId] = fl.Args()[0]
 				}
-			case "list":
-				if info.listable {
-					info.flagSet.Parse(args[index+2:])
+				respObj := make(map[string]interface{})
+				err := rancherClient.Create(arg, reqObj, &respObj)
+				if err != nil {
+					panic(err.Error())
+				}
+				printFormat(*format, respObj)
+			} else {
+				panic(arg + " not marked as creatable")
+			}
+		case "list":
+			if info.listable {
+				info.flagSet.Parse(args[index+2:])
+				fl := info.flagSet
+				reqObj := make(map[string]interface{})
+				fl.Visit(func(fx *flag.Flag) {
+					name := strings.Replace(fx.Name, "-", "_", -1)
+					reqObj[name] = fx.Value
+				})
+				if len(fl.Args()) > 0 {
+					reqObj[containerId] = fl.Args()[0]
+				}
+				respObj := make(map[string]interface{})
+				listOpts := client.NewListOpts()
+				listOpts.Filters = reqObj
+				err := rancherClient.List(arg, listOpts, &respObj)
+				if err != nil {
+					panic(err.Error())
+				}
+				printFormat(*format, respObj)
+			} else {
+				panic(arg + "not marked as listable")
+			}
+		case "delete":
+			info = SchemaInfos[arg+"-delete"]
+			rInfo = info.resourceFieldInfos
+			if info.deletable {
+				resource := rancherClient.Types[arg].Resource
+				err := rancherClient.Delete(arg, &resource)
+				if err != nil {
+					panic(err.Error())
+				}
+			} else {
+				panic(arg + " not marked as deletable")
+			}
+		case "update":
+			info = SchemaInfos[arg+"-update"]
+			rInfo = info.resourceFieldInfos
+			if info.updatable {
+				resource := rancherClient.Types[arg].Resource
+				reqObj := make(map[string]interface{})
+				fl := info.flagSet
+				fl.Parse(args[index+2:])
+				fl.Visit(func(fx *flag.Flag) {
+					if rInfo[fx.Name].updatable {
+						name := strings.Replace(fx.Name, "-", "_", -1)
+						reqObj[name] = fx.Value
+					} else {
+						fmt.Println("Usage for " + arg + " update:")
+						fl.PrintDefaults()
+						panic(fx.Name + " not marked as updatable")
+					}
+				})
+				if len(fl.Args()) > 0 {
+					reqObj[containerId] = fl.Args()[0]
+				}
+				respObj := make(map[string]interface{})
+				err := rancherClient.Update(arg, &resource, reqObj, respObj)
+				if err != nil {
+					panic(err.Error())
+				}
+				printFormat(*format, respObj)
+			} else {
+				panic(arg + " not marked as updatable")
+			}
+		default:
+			//check if it is an action
+			if inputSchema, ok := SchemaInfos[arg].allowedActions[args[index+1]]; ok {
+				var reqObj map[string]interface{}
+				reqObj = make(map[string]interface{})
+				if inputSchema != "" {
+					info := SchemaInfos[inputSchema]
 					fl := info.flagSet
-					reqObj := make(map[string]interface{})
+					fl.Parse(args[index+2:])
 					fl.Visit(func(fx *flag.Flag) {
 						name := strings.Replace(fx.Name, "-", "_", -1)
 						reqObj[name] = fx.Value
@@ -326,92 +397,20 @@ func ParseCli(DEFAULT_RANCHER_URL string, DEFAULT_ACCESS_KEY string) {
 					if len(fl.Args()) > 0 {
 						reqObj[containerId] = fl.Args()[0]
 					}
-					respObj := make(map[string]interface{})
-					listOpts := client.NewListOpts()
-					listOpts.Filters = reqObj
-					err := rancherClient.List(arg, listOpts, &respObj)
-					if err != nil {
-						panic(err.Error())
-					}
-					printFormat(*format, respObj)
-				} else {
-					panic(arg + "not marked as listable")
 				}
-			case "delete":
-				info = SchemaInfos[arg+"-delete"]
-				rInfo = info.resourceFieldInfos
-				if info.deletable {
-					resource := rancherClient.Types[arg].Resource
-					err := rancherClient.Delete(arg, &resource)
-					if err != nil {
-						panic(err.Error())
-					}
-				} else {
-					panic(arg + " not marked as deletable")
+				if len(args) > index+2 {
+					reqObj[containerId] = args[index+2]
 				}
-			case "update":
-				info = SchemaInfos[arg+"-update"]
-				rInfo = info.resourceFieldInfos
-				if info.updatable {
-					resource := rancherClient.Types[arg].Resource
-					reqObj := make(map[string]interface{})
-					fl := info.flagSet
-					fl.Parse(args[index+2:])
-					fl.Visit(func(fx *flag.Flag) {
-						if rInfo[fx.Name].updatable {
-							name := strings.Replace(fx.Name, "-", "_", -1)
-							reqObj[name] = fx.Value
-						} else {
-							fmt.Println("Usage for " + arg + " update:")
-							fl.PrintDefaults()
-							panic(fx.Name + " not marked as updatable")
-						}
-					})
-					if len(fl.Args()) > 0 {
-						reqObj[containerId] = fl.Args()[0]
-					}
-					respObj := make(map[string]interface{})
-					err := rancherClient.Update(arg, &resource, reqObj, respObj)
-					if err != nil {
-						panic(err.Error())
-					}
-					printFormat(*format, respObj)
-				} else {
-					panic(arg + " not marked as updatable")
+				var respObj interface{}
+				err := rancherClient.Action(arg, args[index+1], reqObj, &respObj)
+				if err != nil {
+					panic(err.Error())
 				}
-			default:
-				//check if it is an action
-				if inputSchema, ok := SchemaInfos[arg].allowedActions[args[index+1]]; ok {
-					var reqObj map[string]interface{}
-					reqObj = make(map[string]interface{})
-					if inputSchema != "" {
-						info := SchemaInfos[inputSchema]
-						fl := info.flagSet
-						fl.Parse(args[index+2:])
-						fl.Visit(func(fx *flag.Flag) {
-							name := strings.Replace(fx.Name, "-", "_", -1)
-							reqObj[name] = fx.Value
-						})
-						if len(fl.Args()) > 0 {
-							reqObj[containerId] = fl.Args()[0]
-						}
-					}
-					if len(args) > index+2 {
-						reqObj[containerId] = args[index+2]
-					}
-					var respObj interface{}
-					err := rancherClient.Action(arg, args[index+1], reqObj, &respObj)
-					if err != nil {
-						panic(err.Error())
-					}
-					printFormat(*format, respObj)
-					break
-				}
-				info.flagSet.PrintDefaults()
-				panic("unknown subcommand " + args[index+1])
+				printFormat(*format, respObj)
+				break
 			}
-			parsedFlag = true
-			break
+			info.flagSet.PrintDefaults()
+			panic("unknown subcommand " + args[index+1])
 		}
 	}
 	if !parsedFlag {
