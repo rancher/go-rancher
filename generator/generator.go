@@ -5,11 +5,29 @@ import (
 	"io/ioutil"
 	"log"
 	"os"
+	"path"
+	"regexp"
 	"strings"
 	"text/template"
 
 	"github.com/rancherio/go-rancher/client"
 )
+
+const (
+	CLIENT_OUTPUT_DIR = "../client"
+)
+
+var (
+	blackListTypes   map[string]bool
+	underscoreRegexp *regexp.Regexp = regexp.MustCompile(`([a-z])([A-Z])`)
+)
+
+func init() {
+	blackListTypes = make(map[string]bool)
+	blackListTypes["schema"] = true
+	blackListTypes["resource"] = true
+	blackListTypes["collection"] = true
+}
 
 func capitalize(s string) string {
 	if len(s) <= 1 {
@@ -22,6 +40,9 @@ func capitalize(s string) string {
 func getTypeMap(schema client.Schema) map[string]string {
 	result := map[string]string{}
 	for name, field := range schema.ResourceFields {
+		if name == "id" {
+			continue
+		}
 
 		fieldName := capitalize(name)
 
@@ -49,8 +70,8 @@ func getTypeMap(schema client.Schema) map[string]string {
 	return result
 }
 
-func generateSchema(schema client.Schema) error {
-	output, err := os.Create("client/" + schema.Id + ".go")
+func generateType(schema client.Schema) error {
+	output, err := os.Create(path.Join(CLIENT_OUTPUT_DIR, strings.ToLower("generated_"+addUnderscore(schema.Id))+".go"))
 
 	if err != nil {
 		return err
@@ -60,32 +81,31 @@ func generateSchema(schema client.Schema) error {
 
 	data := map[string]interface{}{
 		"schema":          schema,
-		"typeCapitalized": strings.ToUpper(schema.Id[:1]) + schema.Id[1:],
+		"typeCapitalized": capitalize(schema.Id),
+		"typeUpper":       strings.ToUpper(addUnderscore(schema.Id)),
 		"structFields":    getTypeMap(schema),
-		"resourceActions": schema.ResourceActions,
 	}
 
 	funcMap := template.FuncMap{
 		"toLowerCamelCase": ToLowerCamelCase,
-		"toUpperCamelCase": ToUpperCamelCase,
+		"capitalize":       capitalize,
+		"upper":            strings.ToUpper,
 	}
 
-	templ := template.New("type.template")
-
+	typeTemplate, err := template.New("type.template").Funcs(funcMap).ParseFiles("type.template")
 	if err != nil {
 		return err
 	}
 
-	return template.Must(templ.Funcs(funcMap).ParseFiles("type.template")).Execute(output, data)
-
+	return typeTemplate.Execute(output, data)
 }
 
 func ToLowerCamelCase(input string) string {
 	return (strings.ToLower(input[:1]) + input[1:])
 }
 
-func ToUpperCamelCase(input string) string {
-	return (strings.ToUpper(input[:1]) + input[1:])
+func addUnderscore(input string) string {
+	return underscoreRegexp.ReplaceAllString(input, `${1}_${2}`)
 }
 
 func generateClient(schema []client.Schema) error {
@@ -94,7 +114,7 @@ func generateClient(schema []client.Schema) error {
 		return err
 	}
 
-	output, err := os.Create("client/clientgenerator.go")
+	output, err := os.Create(path.Join(CLIENT_OUTPUT_DIR, "generated_client.go"))
 	if err != nil {
 		return err
 	}
@@ -119,7 +139,24 @@ func generateClient(schema []client.Schema) error {
 	return err
 }
 
+func setupDirectory(dir string) error {
+	if _, err := os.Stat(dir); os.IsNotExist(err) {
+		return os.Mkdir(dir, 0755)
+	}
+
+	return nil
+}
+
 func generateFiles() error {
+	err := setupDirectory(CLIENT_OUTPUT_DIR)
+	if err != nil {
+		return err
+	}
+
+	if err != nil {
+		return err
+	}
+
 	schemaBytes, err := ioutil.ReadFile("schemas.json")
 	if err != nil {
 		return err
@@ -133,22 +170,20 @@ func generateFiles() error {
 	}
 
 	for _, schema := range schemas.Data {
-		if schema.Id == "collection" || schema.Id == "resource" || schema.Id == "schema" {
+		if _, ok := blackListTypes[schema.Id]; ok {
 			continue
 		}
 
-		err = generateSchema(schema)
+		err = generateType(schema)
 		if err != nil {
 			return err
 		}
 	}
-	err = generateClient(schemas.Data)
 
-	return nil
+	return generateClient(schemas.Data)
 }
 
 func main() {
-
 	err := generateFiles()
 	if err != nil {
 		log.Fatal(err)
