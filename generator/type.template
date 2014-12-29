@@ -1,0 +1,63 @@
+package client
+
+const (
+	{{.typeUpper}}_TYPE = "{{.schema.Id}}"
+)
+
+type {{.typeCapitalized}} struct {
+	Resource
+    {{range $key, $value := .structFields}}
+    {{$key}} {{$value}} `json:"{{$key | toLowerCamelCase }},omitempty"`
+    {{end}}
+}
+
+type {{.typeCapitalized}}Collection struct {
+	Collection
+	Data []{{.typeCapitalized}} `json:"data,omitempty"`
+}
+
+type {{.typeCapitalized}}Client struct {
+	rancherClient *RancherClient
+}
+
+type {{.typeCapitalized}}Operations interface {
+	List(opts *ListOpts) (*{{.typeCapitalized}}Collection, error)
+	Create(opts *{{.typeCapitalized}}) (*{{.typeCapitalized}}, error)
+	Update(existing *{{.typeCapitalized}}, updates interface{}) (*{{.typeCapitalized}}, error)
+	ById(id string) (*{{.typeCapitalized}}, error)
+	Delete(container *{{.typeCapitalized}}) error
+}
+
+func new{{.typeCapitalized}}Client(rancherClient *RancherClient) *{{.typeCapitalized}}Client {
+	return &{{.typeCapitalized}}Client{
+		rancherClient: rancherClient,
+	}
+}
+
+func (c *{{.typeCapitalized}}Client) Create(container *{{.typeCapitalized}}) (*{{.typeCapitalized}}, error) {
+	resp := &{{.typeCapitalized}}{}
+	err := c.rancherClient.doCreate({{.typeUpper}}_TYPE, container, resp)
+	return resp, err
+}
+
+func (c *{{.typeCapitalized}}Client) Update(existing *{{.typeCapitalized}}, updates interface{}) (*{{.typeCapitalized}}, error) {
+	resp := &{{.typeCapitalized}}{}
+	err := c.rancherClient.doUpdate({{.typeUpper}}_TYPE, &existing.Resource, updates, resp)
+	return resp, err
+}
+
+func (c *{{.typeCapitalized}}Client) List(opts *ListOpts) (*{{.typeCapitalized}}Collection, error) {
+	resp := &{{.typeCapitalized}}Collection{}
+	err := c.rancherClient.doList({{.typeUpper}}_TYPE, opts, resp)
+	return resp, err
+}
+
+func (c *{{.typeCapitalized}}Client) ById(id string) (*{{.typeCapitalized}}, error) {
+	resp := &{{.typeCapitalized}}{}
+	err := c.rancherClient.doById({{.typeUpper}}_TYPE, id, resp)
+	return resp, err
+}
+
+func (c *{{.typeCapitalized}}Client) Delete(container *{{.typeCapitalized}}) error {
+	return c.rancherClient.doResourceDelete({{.typeUpper}}_TYPE, &container.Resource)
+}

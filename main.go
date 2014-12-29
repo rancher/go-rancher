@@ -1,9 +1,10 @@
 package main
 
 import (
-	"github.com/rancherio/go-rancher/client"
+	"fmt"
+	_ "github.com/rancherio/go-rancher/client"
 )
 
-func testmain() {
-	client.NewRancherClient(nil)
+func main() {
+	fmt.Println("I have nothing to do...")
 }
