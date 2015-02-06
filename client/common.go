@@ -21,6 +21,27 @@ type ClientOpts struct {
 	SecretKey string
 }
 
+type ApiError struct {
+	Url        string
+	Msg        string
+	StatusCode int
+	Status     string
+}
+
+func (e *ApiError) Error() string {
+	return e.Msg
+}
+
+func newApiError(statusCode int, status string, url string) *ApiError {
+	formattedMsg := fmt.Sprintf("Bad response from [%s], statusCode [%d]", url, statusCode)
+	return &ApiError{
+		Url:        url,
+		Msg:        formattedMsg,
+		StatusCode: statusCode,
+		Status:     status,
+	}
+}
+
 func contains(array []string, item string) bool {
 	for _, check := range array {
 		if check == item {
@@ -66,7 +87,7 @@ func setupRancherBaseClient(rancherClient *RancherBaseClient, opts *ClientOpts) 
 	defer resp.Body.Close()
 
 	if resp.StatusCode != 200 {
-		return errors.New(fmt.Sprintf("Bad response from [%s], go [%d]", opts.Url, resp.StatusCode))
+		return newApiError(resp.StatusCode, resp.Status, opts.Url)
 	}
 
 	schemasUrls := resp.Header.Get("X-API-Schemas")
@@ -88,7 +109,7 @@ func setupRancherBaseClient(rancherClient *RancherBaseClient, opts *ClientOpts) 
 		defer resp.Body.Close()
 
 		if resp.StatusCode != 200 {
-			return errors.New(fmt.Sprintf("Bad response from [%s], go [%d]", opts.Url, resp.StatusCode))
+			return newApiError(resp.StatusCode, resp.Status, opts.Url)
 		}
 	}
 
@@ -144,7 +165,7 @@ func (rancherClient *RancherBaseClient) doDelete(url string) error {
 	defer resp.Body.Close()
 
 	if resp.StatusCode >= 300 {
-		return errors.New(fmt.Sprintf("Bad response from [%s], go [%d]", url, resp.StatusCode))
+		return newApiError(resp.StatusCode, resp.Status, url)
 	}
 
 	return nil
@@ -176,7 +197,7 @@ func (rancherClient *RancherBaseClient) doGet(url string, opts *ListOpts, respOb
 	defer resp.Body.Close()
 
 	if resp.StatusCode != 200 {
-		return errors.New(fmt.Sprintf("Bad response from [%s], go [%d]", url, resp.StatusCode))
+		return newApiError(resp.StatusCode, resp.Status, url)
 	}
 
 	byteContent, err := ioutil.ReadAll(resp.Body)
@@ -229,7 +250,7 @@ func (rancherClient *RancherBaseClient) doModify(method string, url string, crea
 	defer resp.Body.Close()
 
 	if resp.StatusCode >= 300 {
-		return errors.New(fmt.Sprintf("Bad response from [%s], go [%d]", url, resp.StatusCode))
+		return newApiError(resp.StatusCode, resp.Status, url)
 	}
 
 	byteContent, err := ioutil.ReadAll(resp.Body)
