@@ -9,19 +9,11 @@ type Volume struct {
     
     AccountId string `json:"accountId,omitempty"`
     
-    AllocationState string `json:"allocationState,omitempty"`
-    
-    AttachedState string `json:"attachedState,omitempty"`
-    
     Created string `json:"created,omitempty"`
     
     Data map[string]interface{} `json:"data,omitempty"`
     
     Description string `json:"description,omitempty"`
-    
-    DeviceNumber int `json:"deviceNumber,omitempty"`
-    
-    Format string `json:"format,omitempty"`
     
     ImageId string `json:"imageId,omitempty"`
     
@@ -48,10 +40,6 @@ type Volume struct {
     Uri string `json:"uri,omitempty"`
     
     Uuid string `json:"uuid,omitempty"`
-    
-    VirtualSizeMb int `json:"virtualSizeMb,omitempty"`
-    
-    ZoneId string `json:"zoneId,omitempty"`
     
 }
 

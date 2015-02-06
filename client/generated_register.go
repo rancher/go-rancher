@@ -11,8 +11,6 @@ type Register struct {
     
     AccountId string `json:"accountId,omitempty"`
     
-    AuthToken string `json:"authToken,omitempty"`
-    
     Created string `json:"created,omitempty"`
     
     Data map[string]interface{} `json:"data,omitempty"`

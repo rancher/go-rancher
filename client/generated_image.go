@@ -9,25 +9,15 @@ type Image struct {
     
     AccountId string `json:"accountId,omitempty"`
     
-    Checksum string `json:"checksum,omitempty"`
-    
     Created string `json:"created,omitempty"`
     
     Data map[string]interface{} `json:"data,omitempty"`
     
     Description string `json:"description,omitempty"`
     
-    Format string `json:"format,omitempty"`
-    
-    InstanceKind string `json:"instanceKind,omitempty"`
-    
-    IsPublic bool `json:"isPublic,omitempty"`
-    
     Kind string `json:"kind,omitempty"`
     
     Name string `json:"name,omitempty"`
-    
-    PhysicalSizeMb int `json:"physicalSizeMb,omitempty"`
     
     RemoveTime string `json:"removeTime,omitempty"`
     
@@ -41,11 +31,7 @@ type Image struct {
     
     TransitioningProgress int `json:"transitioningProgress,omitempty"`
     
-    Url string `json:"url,omitempty"`
-    
     Uuid string `json:"uuid,omitempty"`
-    
-    VirtualSizeMb int `json:"virtualSizeMb,omitempty"`
     
 }
 

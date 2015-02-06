@@ -17,12 +17,6 @@ type IpAddress struct {
     
     Description string `json:"description,omitempty"`
     
-    Hostname string `json:"hostname,omitempty"`
-    
-    IpPoolId string `json:"ipPoolId,omitempty"`
-    
-    IsPublic bool `json:"isPublic,omitempty"`
-    
     Kind string `json:"kind,omitempty"`
     
     Name string `json:"name,omitempty"`
@@ -33,11 +27,7 @@ type IpAddress struct {
     
     Removed string `json:"removed,omitempty"`
     
-    Role string `json:"role,omitempty"`
-    
     State string `json:"state,omitempty"`
-    
-    SubnetId string `json:"subnetId,omitempty"`
     
     Transitioning string `json:"transitioning,omitempty"`
     

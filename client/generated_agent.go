@@ -9,8 +9,6 @@ type Agent struct {
     
     AccountId string `json:"accountId,omitempty"`
     
-    AgentGroupId string `json:"agentGroupId,omitempty"`
-    
     Created string `json:"created,omitempty"`
     
     Data map[string]interface{} `json:"data,omitempty"`
@@ -37,11 +35,7 @@ type Agent struct {
     
     Uri string `json:"uri,omitempty"`
     
-    User string `json:"user,omitempty"`
-    
     Uuid string `json:"uuid,omitempty"`
-    
-    ZoneId string `json:"zoneId,omitempty"`
     
 }
 

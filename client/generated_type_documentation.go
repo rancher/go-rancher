@@ -9,8 +9,6 @@ type TypeDocumentation struct {
     
     Description string `json:"description,omitempty"`
     
-    ResourceFields map[string]interface{} `json:"resourceFields,omitempty"`
-    
 }
 
 type TypeDocumentationCollection struct {

@@ -9,8 +9,6 @@ type PhysicalHost struct {
     
     AccountId string `json:"accountId,omitempty"`
     
-    AgentId string `json:"agentId,omitempty"`
-    
     Created string `json:"created,omitempty"`
     
     Data map[string]interface{} `json:"data,omitempty"`

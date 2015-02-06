@@ -15,13 +15,7 @@ type Network struct {
     
     Description string `json:"description,omitempty"`
     
-    Domain string `json:"domain,omitempty"`
-    
-    IsPublic bool `json:"isPublic,omitempty"`
-    
     Kind string `json:"kind,omitempty"`
-    
-    MacPrefix string `json:"macPrefix,omitempty"`
     
     Name string `json:"name,omitempty"`
     

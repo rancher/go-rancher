@@ -3,79 +3,56 @@ package client
 type RancherClient struct {
     RancherBaseClient
 	
-    ApiVersion *ApiVersionClient
-    Error *ErrorClient
-    AgentInstanceProvider *AgentInstanceProviderClient
-    DnsService *DnsServiceClient
-    DhcpService *DhcpServiceClient
-    IpsecTunnelService *IpsecTunnelServiceClient
-    LinkService *LinkServiceClient
-    PortService *PortServiceClient
-    MetadataService *MetadataServiceClient
-    GatewayService *GatewayServiceClient
-    HostNatGatewayService *HostNatGatewayServiceClient
     Subscribe *SubscribeClient
     Publish *PublishClient
-    ConfigContent *ConfigContentClient
-    VirtualMachine *VirtualMachineClient
+    RestartPolicy *RestartPolicyClient
+    LoadBalancerHealthCheck *LoadBalancerHealthCheckClient
+    LoadBalancerPolicy *LoadBalancerPolicyClient
+    GlobalLoadBalancerPolicy *GlobalLoadBalancerPolicyClient
+    GlobalLoadBalancerHealthCheck *GlobalLoadBalancerHealthCheckClient
     Container *ContainerClient
     ApiKey *ApiKeyClient
-    SshKey *SshKeyClient
     InstanceStop *InstanceStopClient
     InstanceConsole *InstanceConsoleClient
     InstanceConsoleInput *InstanceConsoleInputClient
     IpAddressAssociateInput *IpAddressAssociateInputClient
-    SubnetIpPool *SubnetIpPoolClient
+    Project *ProjectClient
+    AddRemoveLoadBalancerListenerInput *AddRemoveLoadBalancerListenerInputClient
+    AddRemoveLoadBalancerTargetInput *AddRemoveLoadBalancerTargetInputClient
+    AddLoadBalancerInput *AddLoadBalancerInputClient
+    RemoveLoadBalancerInput *RemoveLoadBalancerInputClient
+    AddRemoveLoadBalancerHostInput *AddRemoveLoadBalancerHostInputClient
     Account *AccountClient
     Agent *AgentClient
-    AgentGroup *AgentGroupClient
     ConfigItem *ConfigItemClient
     ConfigItemStatus *ConfigItemStatusClient
     Credential *CredentialClient
-    CredentialInstanceMap *CredentialInstanceMapClient
-    Data *DataClient
     Databasechangelog *DatabasechangelogClient
     Databasechangeloglock *DatabasechangeloglockClient
     ExternalHandler *ExternalHandlerClient
     ExternalHandlerExternalHandlerProcessMap *ExternalHandlerExternalHandlerProcessMapClient
     ExternalHandlerProcess *ExternalHandlerProcessClient
-    GenericObject *GenericObjectClient
+    GlobalLoadBalancer *GlobalLoadBalancerClient
     Host *HostClient
-    HostIpAddressMap *HostIpAddressMapClient
-    HostVnetMap *HostVnetMapClient
     Image *ImageClient
-    ImageStoragePoolMap *ImageStoragePoolMapClient
     Instance *InstanceClient
-    InstanceHostMap *InstanceHostMapClient
     InstanceLink *InstanceLinkClient
     IpAddress *IpAddressClient
-    IpAddressNicMap *IpAddressNicMapClient
-    IpAssociation *IpAssociationClient
-    IpPool *IpPoolClient
+    LoadBalancer *LoadBalancerClient
+    LoadBalancerConfig *LoadBalancerConfigClient
+    LoadBalancerListener *LoadBalancerListenerClient
+    LoadBalancerTarget *LoadBalancerTargetClient
     Mount *MountClient
     Network *NetworkClient
-    NetworkService *NetworkServiceClient
-    NetworkServiceProvider *NetworkServiceProviderClient
-    NetworkServiceProviderInstanceMap *NetworkServiceProviderInstanceMapClient
-    Nic *NicClient
     PhysicalHost *PhysicalHostClient
     Port *PortClient
     ProcessExecution *ProcessExecutionClient
     ProcessInstance *ProcessInstanceClient
-    ResourcePool *ResourcePoolClient
     Setting *SettingClient
-    StoragePool *StoragePoolClient
-    StoragePoolHostMap *StoragePoolHostMapClient
-    Subnet *SubnetClient
-    SubnetVnetMap *SubnetVnetMapClient
     Task *TaskClient
     TaskInstance *TaskInstanceClient
-    Vnet *VnetClient
     Volume *VolumeClient
-    VolumeStoragePoolMap *VolumeStoragePoolMapClient
-    Zone *ZoneClient
     TypeDocumentation *TypeDocumentationClient
-    FieldDocumentation *FieldDocumentationClient
     ContainerExec *ContainerExecClient
     ContainerExecOutput *ContainerExecOutputClient
     ActiveSetting *ActiveSettingClient
@@ -83,12 +60,13 @@ type RancherClient struct {
     ExtensionPoint *ExtensionPointClient
     ProcessDefinition *ProcessDefinitionClient
     ResourceDefinition *ResourceDefinitionClient
-    StateTransition *StateTransitionClient
+    Githubconfig *GithubconfigClient
     StatsAccess *StatsAccessClient
-    HostOnlyNetwork *HostOnlyNetworkClient
+    VirtualboxConfig *VirtualboxConfigClient
+    DigitaloceanConfig *DigitaloceanConfigClient
+    MachineHost *MachineHostClient
     Register *RegisterClient
     RegistrationToken *RegistrationTokenClient
-    Authorized *AuthorizedClient
 }
 
 func constructClient() *RancherClient {
@@ -99,79 +77,56 @@ func constructClient() *RancherClient {
 	}
 
     
-    client.ApiVersion = newApiVersionClient(client)
-    client.Error = newErrorClient(client)
-    client.AgentInstanceProvider = newAgentInstanceProviderClient(client)
-    client.DnsService = newDnsServiceClient(client)
-    client.DhcpService = newDhcpServiceClient(client)
-    client.IpsecTunnelService = newIpsecTunnelServiceClient(client)
-    client.LinkService = newLinkServiceClient(client)
-    client.PortService = newPortServiceClient(client)
-    client.MetadataService = newMetadataServiceClient(client)
-    client.GatewayService = newGatewayServiceClient(client)
-    client.HostNatGatewayService = newHostNatGatewayServiceClient(client)
     client.Subscribe = newSubscribeClient(client)
     client.Publish = newPublishClient(client)
-    client.ConfigContent = newConfigContentClient(client)
-    client.VirtualMachine = newVirtualMachineClient(client)
+    client.RestartPolicy = newRestartPolicyClient(client)
+    client.LoadBalancerHealthCheck = newLoadBalancerHealthCheckClient(client)
+    client.LoadBalancerPolicy = newLoadBalancerPolicyClient(client)
+    client.GlobalLoadBalancerPolicy = newGlobalLoadBalancerPolicyClient(client)
+    client.GlobalLoadBalancerHealthCheck = newGlobalLoadBalancerHealthCheckClient(client)
     client.Container = newContainerClient(client)
     client.ApiKey = newApiKeyClient(client)
-    client.SshKey = newSshKeyClient(client)
     client.InstanceStop = newInstanceStopClient(client)
     client.InstanceConsole = newInstanceConsoleClient(client)
     client.InstanceConsoleInput = newInstanceConsoleInputClient(client)
     client.IpAddressAssociateInput = newIpAddressAssociateInputClient(client)
-    client.SubnetIpPool = newSubnetIpPoolClient(client)
+    client.Project = newProjectClient(client)
+    client.AddRemoveLoadBalancerListenerInput = newAddRemoveLoadBalancerListenerInputClient(client)
+    client.AddRemoveLoadBalancerTargetInput = newAddRemoveLoadBalancerTargetInputClient(client)
+    client.AddLoadBalancerInput = newAddLoadBalancerInputClient(client)
+    client.RemoveLoadBalancerInput = newRemoveLoadBalancerInputClient(client)
+    client.AddRemoveLoadBalancerHostInput = newAddRemoveLoadBalancerHostInputClient(client)
     client.Account = newAccountClient(client)
     client.Agent = newAgentClient(client)
-    client.AgentGroup = newAgentGroupClient(client)
     client.ConfigItem = newConfigItemClient(client)
     client.ConfigItemStatus = newConfigItemStatusClient(client)
     client.Credential = newCredentialClient(client)
-    client.CredentialInstanceMap = newCredentialInstanceMapClient(client)
-    client.Data = newDataClient(client)
     client.Databasechangelog = newDatabasechangelogClient(client)
     client.Databasechangeloglock = newDatabasechangeloglockClient(client)
     client.ExternalHandler = newExternalHandlerClient(client)
     client.ExternalHandlerExternalHandlerProcessMap = newExternalHandlerExternalHandlerProcessMapClient(client)
     client.ExternalHandlerProcess = newExternalHandlerProcessClient(client)
-    client.GenericObject = newGenericObjectClient(client)
+    client.GlobalLoadBalancer = newGlobalLoadBalancerClient(client)
     client.Host = newHostClient(client)
-    client.HostIpAddressMap = newHostIpAddressMapClient(client)
-    client.HostVnetMap = newHostVnetMapClient(client)
     client.Image = newImageClient(client)
-    client.ImageStoragePoolMap = newImageStoragePoolMapClient(client)
     client.Instance = newInstanceClient(client)
-    client.InstanceHostMap = newInstanceHostMapClient(client)
     client.InstanceLink = newInstanceLinkClient(client)
     client.IpAddress = newIpAddressClient(client)
-    client.IpAddressNicMap = newIpAddressNicMapClient(client)
-    client.IpAssociation = newIpAssociationClient(client)
-    client.IpPool = newIpPoolClient(client)
+    client.LoadBalancer = newLoadBalancerClient(client)
+    client.LoadBalancerConfig = newLoadBalancerConfigClient(client)
+    client.LoadBalancerListener = newLoadBalancerListenerClient(client)
+    client.LoadBalancerTarget = newLoadBalancerTargetClient(client)
     client.Mount = newMountClient(client)
     client.Network = newNetworkClient(client)
-    client.NetworkService = newNetworkServiceClient(client)
-    client.NetworkServiceProvider = newNetworkServiceProviderClient(client)
-    client.NetworkServiceProviderInstanceMap = newNetworkServiceProviderInstanceMapClient(client)
-    client.Nic = newNicClient(client)
     client.PhysicalHost = newPhysicalHostClient(client)
     client.Port = newPortClient(client)
     client.ProcessExecution = newProcessExecutionClient(client)
     client.ProcessInstance = newProcessInstanceClient(client)
-    client.ResourcePool = newResourcePoolClient(client)
     client.Setting = newSettingClient(client)
-    client.StoragePool = newStoragePoolClient(client)
-    client.StoragePoolHostMap = newStoragePoolHostMapClient(client)
-    client.Subnet = newSubnetClient(client)
-    client.SubnetVnetMap = newSubnetVnetMapClient(client)
     client.Task = newTaskClient(client)
     client.TaskInstance = newTaskInstanceClient(client)
-    client.Vnet = newVnetClient(client)
     client.Volume = newVolumeClient(client)
-    client.VolumeStoragePoolMap = newVolumeStoragePoolMapClient(client)
-    client.Zone = newZoneClient(client)
     client.TypeDocumentation = newTypeDocumentationClient(client)
-    client.FieldDocumentation = newFieldDocumentationClient(client)
     client.ContainerExec = newContainerExecClient(client)
     client.ContainerExecOutput = newContainerExecOutputClient(client)
     client.ActiveSetting = newActiveSettingClient(client)
@@ -179,12 +134,13 @@ func constructClient() *RancherClient {
     client.ExtensionPoint = newExtensionPointClient(client)
     client.ProcessDefinition = newProcessDefinitionClient(client)
     client.ResourceDefinition = newResourceDefinitionClient(client)
-    client.StateTransition = newStateTransitionClient(client)
+    client.Githubconfig = newGithubconfigClient(client)
     client.StatsAccess = newStatsAccessClient(client)
-    client.HostOnlyNetwork = newHostOnlyNetworkClient(client)
+    client.VirtualboxConfig = newVirtualboxConfigClient(client)
+    client.DigitaloceanConfig = newDigitaloceanConfigClient(client)
+    client.MachineHost = newMachineHostClient(client)
     client.Register = newRegisterClient(client)
-    client.RegistrationToken = newRegistrationTokenClient(client)
-    client.Authorized = newAuthorizedClient(client) 
+    client.RegistrationToken = newRegistrationTokenClient(client) 
 
 
 	return client

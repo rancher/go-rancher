@@ -11,8 +11,6 @@ type Host struct {
     
     AgentId string `json:"agentId,omitempty"`
     
-    ComputeFree int `json:"computeFree,omitempty"`
-    
     ComputeTotal int `json:"computeTotal,omitempty"`
     
     Created string `json:"created,omitempty"`
@@ -21,13 +19,9 @@ type Host struct {
     
     Description string `json:"description,omitempty"`
     
-    IsPublic bool `json:"isPublic,omitempty"`
-    
     Kind string `json:"kind,omitempty"`
     
     Name string `json:"name,omitempty"`
-    
-    PhysicalHostId string `json:"physicalHostId,omitempty"`
     
     RemoveTime string `json:"removeTime,omitempty"`
     
@@ -41,11 +35,7 @@ type Host struct {
     
     TransitioningProgress int `json:"transitioningProgress,omitempty"`
     
-    Uri string `json:"uri,omitempty"`
-    
     Uuid string `json:"uuid,omitempty"`
-    
-    ZoneId string `json:"zoneId,omitempty"`
     
 }
 

@@ -11,10 +11,6 @@ type Account struct {
     
     Data map[string]interface{} `json:"data,omitempty"`
     
-    DefaultCredentialIds []string `json:"defaultCredentialIds,omitempty"`
-    
-    DefaultNetworkIds []string `json:"defaultNetworkIds,omitempty"`
-    
     Description string `json:"description,omitempty"`
     
     ExternalId string `json:"externalId,omitempty"`

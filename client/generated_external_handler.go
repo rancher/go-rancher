@@ -19,8 +19,6 @@ type ExternalHandler struct {
     
     Priority int `json:"priority,omitempty"`
     
-    PriorityName string `json:"priorityName,omitempty"`
-    
     RemoveTime string `json:"removeTime,omitempty"`
     
     Removed string `json:"removed,omitempty"`
