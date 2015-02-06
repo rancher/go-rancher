@@ -1,6 +1,8 @@
 package client
 
-import "testing"
+import (
+	"testing"
+)
 
 const (
 	URL        = "http://localhost:8080/v1"
@@ -86,10 +88,6 @@ func TestContainerCreate(t *testing.T) {
 	if container.ImageUuid != "docker:nginx" {
 		t.Fatal("Field imageUuid is wrong [" + container.ImageUuid + "]")
 	}
-
-	if len(container.ImageId) == 0 {
-		t.Fatal("Field imageId is wrong [" + container.ImageId + "]")
-	}
 }
 
 func TestContainerUpdate(t *testing.T) {
@@ -145,5 +143,21 @@ func TestContainerDelete(t *testing.T) {
 	err = client.Container.Delete(container)
 	if err != nil {
 		t.Fatal("Failed to delete", err)
+	}
+}
+
+func TestContainerNotExists(t *testing.T) {
+	client := newClient(t)
+	_, err := client.Container.ById("badId1")
+	if err == nil {
+		t.Fatal("Should have received an error getting non-existent container.")
+	}
+
+	apiError, ok := err.(*ApiError)
+	if !ok {
+		t.Fatal("Should have received an ApiError.")
+	}
+	if apiError.StatusCode != 404 {
+		t.Fatal("Should have received a 404 and reported it on the ApiError.")
 	}
 }

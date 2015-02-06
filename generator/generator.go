@@ -18,8 +18,9 @@ const (
 )
 
 var (
-	blackListTypes   map[string]bool
-	underscoreRegexp *regexp.Regexp = regexp.MustCompile(`([a-z])([A-Z])`)
+	blackListTypes    map[string]bool
+	noConversionTypes map[string]bool
+	underscoreRegexp  *regexp.Regexp = regexp.MustCompile(`([a-z])([A-Z])`)
 )
 
 func init() {
@@ -27,6 +28,10 @@ func init() {
 	blackListTypes["schema"] = true
 	blackListTypes["resource"] = true
 	blackListTypes["collection"] = true
+
+	noConversionTypes = make(map[string]bool)
+	noConversionTypes["string"] = true
+	noConversionTypes["int"] = true
 }
 
 func capitalize(s string) string {
@@ -62,8 +67,12 @@ func getTypeMap(schema client.Schema) map[string]string {
 			result[fieldName] = "bool"
 		} else if strings.HasPrefix(field.Type, "extensionPoint") {
 			result[fieldName] = "interface{}"
-		} else {
+		} else if strings.HasPrefix(field.Type, "float") {
+			result[fieldName] = "float64"
+		} else if _, noConvert := noConversionTypes[field.Type]; noConvert {
 			result[fieldName] = field.Type
+		} else {
+			result[fieldName] = capitalize(field.Type)
 		}
 	}
 
@@ -120,7 +129,7 @@ func generateClient(schema []client.Schema) error {
 	}
 
 	defer output.Close()
-	buffer := make([]client.Schema, len(schema)-3)
+	buffer := make([]client.Schema, len(schema)-1)
 	i := 0
 	for _, val := range schema {
 
