@@ -3,7 +3,7 @@ package client
 type RancherClient struct {
     RancherBaseClient
 	{{range .schemas}}
-    {{.Id}} *{{.Id}}Client{{end}}
+    {{.Id}} {{.Id}}Operations{{end}}
 }
 
 func constructClient() *RancherClient {
