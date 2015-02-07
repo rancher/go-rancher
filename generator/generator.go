@@ -54,11 +54,19 @@ func getTypeMap(schema client.Schema) map[string]string {
 		if strings.HasPrefix(field.Type, "reference") || strings.HasPrefix(field.Type, "date") || strings.HasPrefix(field.Type, "enum") {
 			result[fieldName] = "string"
 		} else if strings.HasPrefix(field.Type, "array") {
-			if strings.Contains(field.Type, "reference") {
+			if strings.Contains(field.Type, "reference") || strings.Contains(field.Type, "date") ||
+				strings.Contains(field.Type, "enum") || strings.Contains(field.Type, "string") {
 				result[fieldName] = "[]string"
 			} else if strings.Contains(field.Type, "resource") {
 				result[fieldName] = "[]interface{}"
+			} else if strings.Contains(field.Type, "int") {
+				result[fieldName] = "[]int"
+			} else if strings.Contains(field.Type, "float") {
+				result[fieldName] = "[]float64"
+			} else {
+				result[fieldName] = "[]interface{}"
 			}
+
 		} else if strings.HasPrefix(field.Type, "map") {
 			result[fieldName] = "map[string]interface{}"
 		} else if strings.HasPrefix(field.Type, "json") {

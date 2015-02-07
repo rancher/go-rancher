@@ -22,23 +22,33 @@ type ClientOpts struct {
 }
 
 type ApiError struct {
+	StatusCode int
 	Url        string
 	Msg        string
-	StatusCode int
 	Status     string
+	Body       string
 }
 
 func (e *ApiError) Error() string {
 	return e.Msg
 }
 
-func newApiError(statusCode int, status string, url string) *ApiError {
-	formattedMsg := fmt.Sprintf("Bad response from [%s], statusCode [%d]", url, statusCode)
+func newApiError(resp *http.Response, url string) *ApiError {
+	contents, err := ioutil.ReadAll(resp.Body)
+	var body string
+	if err != nil {
+		body = "Unreadable body."
+	} else {
+		body = string(contents)
+	}
+	formattedMsg := fmt.Sprintf("Bad response from [%s], statusCode [%d]. Status [%s]. Body: [%s]",
+		url, resp.StatusCode, resp.Status, body)
 	return &ApiError{
 		Url:        url,
 		Msg:        formattedMsg,
-		StatusCode: statusCode,
-		Status:     status,
+		StatusCode: resp.StatusCode,
+		Status:     resp.Status,
+		Body:       body,
 	}
 }
 
@@ -87,7 +97,7 @@ func setupRancherBaseClient(rancherClient *RancherBaseClient, opts *ClientOpts) 
 	defer resp.Body.Close()
 
 	if resp.StatusCode != 200 {
-		return newApiError(resp.StatusCode, resp.Status, opts.Url)
+		return newApiError(resp, opts.Url)
 	}
 
 	schemasUrls := resp.Header.Get("X-API-Schemas")
@@ -109,7 +119,7 @@ func setupRancherBaseClient(rancherClient *RancherBaseClient, opts *ClientOpts) 
 		defer resp.Body.Close()
 
 		if resp.StatusCode != 200 {
-			return newApiError(resp.StatusCode, resp.Status, opts.Url)
+			return newApiError(resp, opts.Url)
 		}
 	}
 
@@ -165,7 +175,7 @@ func (rancherClient *RancherBaseClient) doDelete(url string) error {
 	defer resp.Body.Close()
 
 	if resp.StatusCode >= 300 {
-		return newApiError(resp.StatusCode, resp.Status, url)
+		return newApiError(resp, url)
 	}
 
 	return nil
@@ -175,7 +185,6 @@ func (rancherClient *RancherBaseClient) doGet(url string, opts *ListOpts, respOb
 	if opts == nil {
 		opts = NewListOpts()
 	}
-
 	url, err := appendFilters(url, opts.Filters)
 	if err != nil {
 		return err
@@ -197,7 +206,7 @@ func (rancherClient *RancherBaseClient) doGet(url string, opts *ListOpts, respOb
 	defer resp.Body.Close()
 
 	if resp.StatusCode != 200 {
-		return newApiError(resp.StatusCode, resp.Status, url)
+		return newApiError(resp, url)
 	}
 
 	byteContent, err := ioutil.ReadAll(resp.Body)
@@ -250,7 +259,7 @@ func (rancherClient *RancherBaseClient) doModify(method string, url string, crea
 	defer resp.Body.Close()
 
 	if resp.StatusCode >= 300 {
-		return newApiError(resp.StatusCode, resp.Status, url)
+		return newApiError(resp, url)
 	}
 
 	byteContent, err := ioutil.ReadAll(resp.Body)
@@ -265,7 +274,6 @@ func (rancherClient *RancherBaseClient) doCreate(schemaType string, createObj in
 	if createObj == nil {
 		createObj = map[string]string{}
 	}
-
 	schema, ok := rancherClient.Types[schemaType]
 	if !ok {
 		return errors.New("Unknown schema type [" + schemaType + "]")
