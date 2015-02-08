@@ -2,12 +2,14 @@ package client
 
 import (
 	"testing"
+	"time"
 )
 
 const (
 	URL        = "http://localhost:8080/v1"
 	ACCESS_KEY = "admin"
 	SECRET_KEY = "adminpass"
+	MAX_WAIT   = time.Duration(time.Second * 10)
 )
 
 func newClient(t *testing.T) *RancherClient {
@@ -160,4 +162,52 @@ func TestContainerNotExists(t *testing.T) {
 	if apiError.StatusCode != 404 {
 		t.Fatal("Should have received a 404 and reported it on the ApiError.")
 	}
+}
+
+func TestAccountAction(t *testing.T) {
+	client := newClient(t)
+	account, err := client.Account.Create(&Account{
+		Name: "a name",
+	})
+
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	defer client.Account.Delete(account)
+
+	account = waitAccountTransition(account, client, t)
+	if account.State == "inactive" {
+		t.Fatal("Account shouldnt be inactive.")
+	}
+
+	account, err = client.Account.ActionDeactivate(account)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	account = waitAccountTransition(account, client, t)
+	if account.State != "inactive" {
+		t.Fatal("Account didnt deactivate")
+	}
+}
+
+func waitAccountTransition(account *Account, client *RancherClient, t *testing.T) *Account {
+	timeoutAt := time.Now().Add(MAX_WAIT)
+	ticker := time.NewTicker(time.Millisecond * 250)
+	defer ticker.Stop()
+	for tick := range ticker.C {
+		account, err := client.Account.ById(account.Id)
+		if err != nil {
+			t.Fatal("Couldn't get account")
+		}
+		if account.Transitioning != "yes" {
+			return account
+		}
+		if tick.After(timeoutAt) {
+			t.Fatal("Timed out waiting for account to activate.")
+		}
+	}
+	t.Fatal("Timed out waiting for account to activate.")
+	return nil
 }

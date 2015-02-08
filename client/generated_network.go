@@ -50,6 +50,13 @@ type NetworkOperations interface {
 	Update(existing *Network, updates interface{}) (*Network, error)
 	ById(id string) (*Network, error)
 	Delete(container *Network) error
+    ActionActivate (*Network) (*Network, error)
+    ActionCreate (*Network) (*Network, error)
+    ActionDeactivate (*Network) (*Network, error)
+    ActionPurge (*Network) (*Network, error)
+    ActionRemove (*Network) (*Network, error)
+    ActionRestore (*Network) (*Network, error)
+    ActionUpdate (*Network) (*Network, error)
 }
 
 func newNetworkClient(rancherClient *RancherClient) *NetworkClient {
@@ -84,4 +91,46 @@ func (c *NetworkClient) ById(id string) (*Network, error) {
 
 func (c *NetworkClient) Delete(container *Network) error {
 	return c.rancherClient.doResourceDelete(NETWORK_TYPE, &container.Resource)
+}
+
+func (c *NetworkClient) ActionActivate(resource *Network) (*Network, error) {
+	resp := &Network{}
+	err := c.rancherClient.doEmptyAction(NETWORK_TYPE, "activate", &resource.Resource, resp)
+	return resp, err
+}
+
+func (c *NetworkClient) ActionCreate(resource *Network) (*Network, error) {
+	resp := &Network{}
+	err := c.rancherClient.doEmptyAction(NETWORK_TYPE, "create", &resource.Resource, resp)
+	return resp, err
+}
+
+func (c *NetworkClient) ActionDeactivate(resource *Network) (*Network, error) {
+	resp := &Network{}
+	err := c.rancherClient.doEmptyAction(NETWORK_TYPE, "deactivate", &resource.Resource, resp)
+	return resp, err
+}
+
+func (c *NetworkClient) ActionPurge(resource *Network) (*Network, error) {
+	resp := &Network{}
+	err := c.rancherClient.doEmptyAction(NETWORK_TYPE, "purge", &resource.Resource, resp)
+	return resp, err
+}
+
+func (c *NetworkClient) ActionRemove(resource *Network) (*Network, error) {
+	resp := &Network{}
+	err := c.rancherClient.doEmptyAction(NETWORK_TYPE, "remove", &resource.Resource, resp)
+	return resp, err
+}
+
+func (c *NetworkClient) ActionRestore(resource *Network) (*Network, error) {
+	resp := &Network{}
+	err := c.rancherClient.doEmptyAction(NETWORK_TYPE, "restore", &resource.Resource, resp)
+	return resp, err
+}
+
+func (c *NetworkClient) ActionUpdate(resource *Network) (*Network, error) {
+	resp := &Network{}
+	err := c.rancherClient.doEmptyAction(NETWORK_TYPE, "update", &resource.Resource, resp)
+	return resp, err
 }

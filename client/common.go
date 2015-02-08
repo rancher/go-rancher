@@ -354,3 +354,55 @@ func (rancherClient *RancherBaseClient) doResourceDelete(schemaType string, exis
 
 	return rancherClient.doDelete(selfUrl)
 }
+
+func (rancherClient *RancherBaseClient) doEmptyAction(schemaType string, action string,
+	existing *Resource, respObject interface{}) error {
+	// TODO Actions with inputs currently not supported.
+
+	if existing == nil {
+		return errors.New("Existing object is nil")
+	}
+
+	actionUrl, ok := existing.Actions[action]
+	if !ok {
+		return errors.New(fmt.Sprintf("Action [%v] not available on [%v]", action, existing))
+	}
+
+	schema, ok := rancherClient.Types[schemaType]
+	if !ok {
+		return errors.New("Unknown schema type [" + schemaType + "]")
+	}
+
+	if schema.ResourceActions[action].Input != "" {
+		return fmt.Errorf("Actions with inputs or outputs not yet support. Input: [%v] Output: [%v].",
+			schema.ResourceActions[action].Input)
+	}
+
+	client := rancherClient.newHttpClient()
+	req, err := http.NewRequest("POST", actionUrl, nil)
+	if err != nil {
+		return err
+	}
+
+	rancherClient.setupRequest(req)
+	req.Header.Set("Content-Type", "application/json")
+	req.Header.Set("Content-Length", "0")
+
+	resp, err := client.Do(req)
+	if err != nil {
+		return err
+	}
+
+	defer resp.Body.Close()
+
+	if resp.StatusCode >= 300 {
+		return newApiError(resp, actionUrl)
+	}
+
+	byteContent, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		return err
+	}
+
+	return json.Unmarshal(byteContent, respObject)
+}

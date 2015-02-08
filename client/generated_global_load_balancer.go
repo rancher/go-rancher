@@ -54,6 +54,8 @@ type GlobalLoadBalancerOperations interface {
 	Update(existing *GlobalLoadBalancer, updates interface{}) (*GlobalLoadBalancer, error)
 	ById(id string) (*GlobalLoadBalancer, error)
 	Delete(container *GlobalLoadBalancer) error
+    ActionCreate (*GlobalLoadBalancer) (*GlobalLoadBalancer, error)
+    ActionRemove (*GlobalLoadBalancer) (*GlobalLoadBalancer, error)
 }
 
 func newGlobalLoadBalancerClient(rancherClient *RancherClient) *GlobalLoadBalancerClient {
@@ -88,4 +90,16 @@ func (c *GlobalLoadBalancerClient) ById(id string) (*GlobalLoadBalancer, error) 
 
 func (c *GlobalLoadBalancerClient) Delete(container *GlobalLoadBalancer) error {
 	return c.rancherClient.doResourceDelete(GLOBAL_LOAD_BALANCER_TYPE, &container.Resource)
+}
+
+func (c *GlobalLoadBalancerClient) ActionCreate(resource *GlobalLoadBalancer) (*GlobalLoadBalancer, error) {
+	resp := &GlobalLoadBalancer{}
+	err := c.rancherClient.doEmptyAction(GLOBAL_LOAD_BALANCER_TYPE, "create", &resource.Resource, resp)
+	return resp, err
+}
+
+func (c *GlobalLoadBalancerClient) ActionRemove(resource *GlobalLoadBalancer) (*GlobalLoadBalancer, error) {
+	resp := &GlobalLoadBalancer{}
+	err := c.rancherClient.doEmptyAction(GLOBAL_LOAD_BALANCER_TYPE, "remove", &resource.Resource, resp)
+	return resp, err
 }

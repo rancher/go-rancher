@@ -58,6 +58,13 @@ type InstanceLinkOperations interface {
 	Update(existing *InstanceLink, updates interface{}) (*InstanceLink, error)
 	ById(id string) (*InstanceLink, error)
 	Delete(container *InstanceLink) error
+    ActionActivate (*InstanceLink) (*InstanceLink, error)
+    ActionCreate (*InstanceLink) (*InstanceLink, error)
+    ActionDeactivate (*InstanceLink) (*InstanceLink, error)
+    ActionPurge (*InstanceLink) (*InstanceLink, error)
+    ActionRemove (*InstanceLink) (*InstanceLink, error)
+    ActionRestore (*InstanceLink) (*InstanceLink, error)
+    ActionUpdate (*InstanceLink) (*InstanceLink, error)
 }
 
 func newInstanceLinkClient(rancherClient *RancherClient) *InstanceLinkClient {
@@ -92,4 +99,46 @@ func (c *InstanceLinkClient) ById(id string) (*InstanceLink, error) {
 
 func (c *InstanceLinkClient) Delete(container *InstanceLink) error {
 	return c.rancherClient.doResourceDelete(INSTANCE_LINK_TYPE, &container.Resource)
+}
+
+func (c *InstanceLinkClient) ActionActivate(resource *InstanceLink) (*InstanceLink, error) {
+	resp := &InstanceLink{}
+	err := c.rancherClient.doEmptyAction(INSTANCE_LINK_TYPE, "activate", &resource.Resource, resp)
+	return resp, err
+}
+
+func (c *InstanceLinkClient) ActionCreate(resource *InstanceLink) (*InstanceLink, error) {
+	resp := &InstanceLink{}
+	err := c.rancherClient.doEmptyAction(INSTANCE_LINK_TYPE, "create", &resource.Resource, resp)
+	return resp, err
+}
+
+func (c *InstanceLinkClient) ActionDeactivate(resource *InstanceLink) (*InstanceLink, error) {
+	resp := &InstanceLink{}
+	err := c.rancherClient.doEmptyAction(INSTANCE_LINK_TYPE, "deactivate", &resource.Resource, resp)
+	return resp, err
+}
+
+func (c *InstanceLinkClient) ActionPurge(resource *InstanceLink) (*InstanceLink, error) {
+	resp := &InstanceLink{}
+	err := c.rancherClient.doEmptyAction(INSTANCE_LINK_TYPE, "purge", &resource.Resource, resp)
+	return resp, err
+}
+
+func (c *InstanceLinkClient) ActionRemove(resource *InstanceLink) (*InstanceLink, error) {
+	resp := &InstanceLink{}
+	err := c.rancherClient.doEmptyAction(INSTANCE_LINK_TYPE, "remove", &resource.Resource, resp)
+	return resp, err
+}
+
+func (c *InstanceLinkClient) ActionRestore(resource *InstanceLink) (*InstanceLink, error) {
+	resp := &InstanceLink{}
+	err := c.rancherClient.doEmptyAction(INSTANCE_LINK_TYPE, "restore", &resource.Resource, resp)
+	return resp, err
+}
+
+func (c *InstanceLinkClient) ActionUpdate(resource *InstanceLink) (*InstanceLink, error) {
+	resp := &InstanceLink{}
+	err := c.rancherClient.doEmptyAction(INSTANCE_LINK_TYPE, "update", &resource.Resource, resp)
+	return resp, err
 }

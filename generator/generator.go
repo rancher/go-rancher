@@ -21,6 +21,7 @@ var (
 	blackListTypes    map[string]bool
 	noConversionTypes map[string]bool
 	underscoreRegexp  *regexp.Regexp = regexp.MustCompile(`([a-z])([A-Z])`)
+	schemaExists      map[string]bool
 )
 
 func init() {
@@ -32,6 +33,8 @@ func init() {
 	noConversionTypes = make(map[string]bool)
 	noConversionTypes["string"] = true
 	noConversionTypes["int"] = true
+
+	schemaExists = make(map[string]bool)
 }
 
 func capitalize(s string) string {
@@ -87,6 +90,16 @@ func getTypeMap(schema client.Schema) map[string]string {
 	return result
 }
 
+func getResourceActions(schema client.Schema) map[string]client.Action {
+	result := map[string]client.Action{}
+	for name, action := range schema.ResourceActions {
+		if _, ok := schemaExists[action.Output]; action.Input == "" && ok {
+			result[name] = action
+		}
+	}
+	return result
+}
+
 func generateType(schema client.Schema) error {
 	output, err := os.Create(path.Join(CLIENT_OUTPUT_DIR, strings.ToLower("generated_"+addUnderscore(schema.Id))+".go"))
 
@@ -101,6 +114,7 @@ func generateType(schema client.Schema) error {
 		"typeCapitalized": capitalize(schema.Id),
 		"typeUpper":       strings.ToUpper(addUnderscore(schema.Id)),
 		"structFields":    getTypeMap(schema),
+		"resourceActions": getResourceActions(schema),
 	}
 
 	funcMap := template.FuncMap{
@@ -191,6 +205,7 @@ func generateFiles() error {
 			continue
 		}
 
+		schemaExists[schema.Id] = true
 		err = generateType(schema)
 		if err != nil {
 			return err

@@ -58,6 +58,15 @@ type VolumeOperations interface {
 	Update(existing *Volume, updates interface{}) (*Volume, error)
 	ById(id string) (*Volume, error)
 	Delete(container *Volume) error
+    ActionActivate (*Volume) (*Volume, error)
+    ActionAllocate (*Volume) (*Volume, error)
+    ActionCreate (*Volume) (*Volume, error)
+    ActionDeactivate (*Volume) (*Volume, error)
+    ActionDeallocate (*Volume) (*Volume, error)
+    ActionPurge (*Volume) (*Volume, error)
+    ActionRemove (*Volume) (*Volume, error)
+    ActionRestore (*Volume) (*Volume, error)
+    ActionUpdate (*Volume) (*Volume, error)
 }
 
 func newVolumeClient(rancherClient *RancherClient) *VolumeClient {
@@ -92,4 +101,58 @@ func (c *VolumeClient) ById(id string) (*Volume, error) {
 
 func (c *VolumeClient) Delete(container *Volume) error {
 	return c.rancherClient.doResourceDelete(VOLUME_TYPE, &container.Resource)
+}
+
+func (c *VolumeClient) ActionActivate(resource *Volume) (*Volume, error) {
+	resp := &Volume{}
+	err := c.rancherClient.doEmptyAction(VOLUME_TYPE, "activate", &resource.Resource, resp)
+	return resp, err
+}
+
+func (c *VolumeClient) ActionAllocate(resource *Volume) (*Volume, error) {
+	resp := &Volume{}
+	err := c.rancherClient.doEmptyAction(VOLUME_TYPE, "allocate", &resource.Resource, resp)
+	return resp, err
+}
+
+func (c *VolumeClient) ActionCreate(resource *Volume) (*Volume, error) {
+	resp := &Volume{}
+	err := c.rancherClient.doEmptyAction(VOLUME_TYPE, "create", &resource.Resource, resp)
+	return resp, err
+}
+
+func (c *VolumeClient) ActionDeactivate(resource *Volume) (*Volume, error) {
+	resp := &Volume{}
+	err := c.rancherClient.doEmptyAction(VOLUME_TYPE, "deactivate", &resource.Resource, resp)
+	return resp, err
+}
+
+func (c *VolumeClient) ActionDeallocate(resource *Volume) (*Volume, error) {
+	resp := &Volume{}
+	err := c.rancherClient.doEmptyAction(VOLUME_TYPE, "deallocate", &resource.Resource, resp)
+	return resp, err
+}
+
+func (c *VolumeClient) ActionPurge(resource *Volume) (*Volume, error) {
+	resp := &Volume{}
+	err := c.rancherClient.doEmptyAction(VOLUME_TYPE, "purge", &resource.Resource, resp)
+	return resp, err
+}
+
+func (c *VolumeClient) ActionRemove(resource *Volume) (*Volume, error) {
+	resp := &Volume{}
+	err := c.rancherClient.doEmptyAction(VOLUME_TYPE, "remove", &resource.Resource, resp)
+	return resp, err
+}
+
+func (c *VolumeClient) ActionRestore(resource *Volume) (*Volume, error) {
+	resp := &Volume{}
+	err := c.rancherClient.doEmptyAction(VOLUME_TYPE, "restore", &resource.Resource, resp)
+	return resp, err
+}
+
+func (c *VolumeClient) ActionUpdate(resource *Volume) (*Volume, error) {
+	resp := &Volume{}
+	err := c.rancherClient.doEmptyAction(VOLUME_TYPE, "update", &resource.Resource, resp)
+	return resp, err
 }

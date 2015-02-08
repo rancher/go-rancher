@@ -56,6 +56,8 @@ type LoadBalancerOperations interface {
 	Update(existing *LoadBalancer, updates interface{}) (*LoadBalancer, error)
 	ById(id string) (*LoadBalancer, error)
 	Delete(container *LoadBalancer) error
+    ActionCreate (*LoadBalancer) (*LoadBalancer, error)
+    ActionRemove (*LoadBalancer) (*LoadBalancer, error)
 }
 
 func newLoadBalancerClient(rancherClient *RancherClient) *LoadBalancerClient {
@@ -90,4 +92,16 @@ func (c *LoadBalancerClient) ById(id string) (*LoadBalancer, error) {
 
 func (c *LoadBalancerClient) Delete(container *LoadBalancer) error {
 	return c.rancherClient.doResourceDelete(LOAD_BALANCER_TYPE, &container.Resource)
+}
+
+func (c *LoadBalancerClient) ActionCreate(resource *LoadBalancer) (*LoadBalancer, error) {
+	resp := &LoadBalancer{}
+	err := c.rancherClient.doEmptyAction(LOAD_BALANCER_TYPE, "create", &resource.Resource, resp)
+	return resp, err
+}
+
+func (c *LoadBalancerClient) ActionRemove(resource *LoadBalancer) (*LoadBalancer, error) {
+	resp := &LoadBalancer{}
+	err := c.rancherClient.doEmptyAction(LOAD_BALANCER_TYPE, "remove", &resource.Resource, resp)
+	return resp, err
 }

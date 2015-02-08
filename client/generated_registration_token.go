@@ -50,6 +50,13 @@ type RegistrationTokenOperations interface {
 	Update(existing *RegistrationToken, updates interface{}) (*RegistrationToken, error)
 	ById(id string) (*RegistrationToken, error)
 	Delete(container *RegistrationToken) error
+    ActionActivate (*RegistrationToken) (*Credential, error)
+    ActionCreate (*RegistrationToken) (*Credential, error)
+    ActionDeactivate (*RegistrationToken) (*Credential, error)
+    ActionPurge (*RegistrationToken) (*Credential, error)
+    ActionRemove (*RegistrationToken) (*Credential, error)
+    ActionRestore (*RegistrationToken) (*Credential, error)
+    ActionUpdate (*RegistrationToken) (*Credential, error)
 }
 
 func newRegistrationTokenClient(rancherClient *RancherClient) *RegistrationTokenClient {
@@ -84,4 +91,46 @@ func (c *RegistrationTokenClient) ById(id string) (*RegistrationToken, error) {
 
 func (c *RegistrationTokenClient) Delete(container *RegistrationToken) error {
 	return c.rancherClient.doResourceDelete(REGISTRATION_TOKEN_TYPE, &container.Resource)
+}
+
+func (c *RegistrationTokenClient) ActionActivate(resource *RegistrationToken) (*Credential, error) {
+	resp := &Credential{}
+	err := c.rancherClient.doEmptyAction(REGISTRATION_TOKEN_TYPE, "activate", &resource.Resource, resp)
+	return resp, err
+}
+
+func (c *RegistrationTokenClient) ActionCreate(resource *RegistrationToken) (*Credential, error) {
+	resp := &Credential{}
+	err := c.rancherClient.doEmptyAction(REGISTRATION_TOKEN_TYPE, "create", &resource.Resource, resp)
+	return resp, err
+}
+
+func (c *RegistrationTokenClient) ActionDeactivate(resource *RegistrationToken) (*Credential, error) {
+	resp := &Credential{}
+	err := c.rancherClient.doEmptyAction(REGISTRATION_TOKEN_TYPE, "deactivate", &resource.Resource, resp)
+	return resp, err
+}
+
+func (c *RegistrationTokenClient) ActionPurge(resource *RegistrationToken) (*Credential, error) {
+	resp := &Credential{}
+	err := c.rancherClient.doEmptyAction(REGISTRATION_TOKEN_TYPE, "purge", &resource.Resource, resp)
+	return resp, err
+}
+
+func (c *RegistrationTokenClient) ActionRemove(resource *RegistrationToken) (*Credential, error) {
+	resp := &Credential{}
+	err := c.rancherClient.doEmptyAction(REGISTRATION_TOKEN_TYPE, "remove", &resource.Resource, resp)
+	return resp, err
+}
+
+func (c *RegistrationTokenClient) ActionRestore(resource *RegistrationToken) (*Credential, error) {
+	resp := &Credential{}
+	err := c.rancherClient.doEmptyAction(REGISTRATION_TOKEN_TYPE, "restore", &resource.Resource, resp)
+	return resp, err
+}
+
+func (c *RegistrationTokenClient) ActionUpdate(resource *RegistrationToken) (*Credential, error) {
+	resp := &Credential{}
+	err := c.rancherClient.doEmptyAction(REGISTRATION_TOKEN_TYPE, "update", &resource.Resource, resp)
+	return resp, err
 }

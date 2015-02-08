@@ -58,6 +58,8 @@ type LoadBalancerListenerOperations interface {
 	Update(existing *LoadBalancerListener, updates interface{}) (*LoadBalancerListener, error)
 	ById(id string) (*LoadBalancerListener, error)
 	Delete(container *LoadBalancerListener) error
+    ActionCreate (*LoadBalancerListener) (*LoadBalancerListener, error)
+    ActionRemove (*LoadBalancerListener) (*LoadBalancerListener, error)
 }
 
 func newLoadBalancerListenerClient(rancherClient *RancherClient) *LoadBalancerListenerClient {
@@ -92,4 +94,16 @@ func (c *LoadBalancerListenerClient) ById(id string) (*LoadBalancerListener, err
 
 func (c *LoadBalancerListenerClient) Delete(container *LoadBalancerListener) error {
 	return c.rancherClient.doResourceDelete(LOAD_BALANCER_LISTENER_TYPE, &container.Resource)
+}
+
+func (c *LoadBalancerListenerClient) ActionCreate(resource *LoadBalancerListener) (*LoadBalancerListener, error) {
+	resp := &LoadBalancerListener{}
+	err := c.rancherClient.doEmptyAction(LOAD_BALANCER_LISTENER_TYPE, "create", &resource.Resource, resp)
+	return resp, err
+}
+
+func (c *LoadBalancerListenerClient) ActionRemove(resource *LoadBalancerListener) (*LoadBalancerListener, error) {
+	resp := &LoadBalancerListener{}
+	err := c.rancherClient.doEmptyAction(LOAD_BALANCER_LISTENER_TYPE, "remove", &resource.Resource, resp)
+	return resp, err
 }

@@ -54,6 +54,13 @@ type CredentialOperations interface {
 	Update(existing *Credential, updates interface{}) (*Credential, error)
 	ById(id string) (*Credential, error)
 	Delete(container *Credential) error
+    ActionActivate (*Credential) (*Credential, error)
+    ActionCreate (*Credential) (*Credential, error)
+    ActionDeactivate (*Credential) (*Credential, error)
+    ActionPurge (*Credential) (*Credential, error)
+    ActionRemove (*Credential) (*Credential, error)
+    ActionRestore (*Credential) (*Credential, error)
+    ActionUpdate (*Credential) (*Credential, error)
 }
 
 func newCredentialClient(rancherClient *RancherClient) *CredentialClient {
@@ -88,4 +95,46 @@ func (c *CredentialClient) ById(id string) (*Credential, error) {
 
 func (c *CredentialClient) Delete(container *Credential) error {
 	return c.rancherClient.doResourceDelete(CREDENTIAL_TYPE, &container.Resource)
+}
+
+func (c *CredentialClient) ActionActivate(resource *Credential) (*Credential, error) {
+	resp := &Credential{}
+	err := c.rancherClient.doEmptyAction(CREDENTIAL_TYPE, "activate", &resource.Resource, resp)
+	return resp, err
+}
+
+func (c *CredentialClient) ActionCreate(resource *Credential) (*Credential, error) {
+	resp := &Credential{}
+	err := c.rancherClient.doEmptyAction(CREDENTIAL_TYPE, "create", &resource.Resource, resp)
+	return resp, err
+}
+
+func (c *CredentialClient) ActionDeactivate(resource *Credential) (*Credential, error) {
+	resp := &Credential{}
+	err := c.rancherClient.doEmptyAction(CREDENTIAL_TYPE, "deactivate", &resource.Resource, resp)
+	return resp, err
+}
+
+func (c *CredentialClient) ActionPurge(resource *Credential) (*Credential, error) {
+	resp := &Credential{}
+	err := c.rancherClient.doEmptyAction(CREDENTIAL_TYPE, "purge", &resource.Resource, resp)
+	return resp, err
+}
+
+func (c *CredentialClient) ActionRemove(resource *Credential) (*Credential, error) {
+	resp := &Credential{}
+	err := c.rancherClient.doEmptyAction(CREDENTIAL_TYPE, "remove", &resource.Resource, resp)
+	return resp, err
+}
+
+func (c *CredentialClient) ActionRestore(resource *Credential) (*Credential, error) {
+	resp := &Credential{}
+	err := c.rancherClient.doEmptyAction(CREDENTIAL_TYPE, "restore", &resource.Resource, resp)
+	return resp, err
+}
+
+func (c *CredentialClient) ActionUpdate(resource *Credential) (*Credential, error) {
+	resp := &Credential{}
+	err := c.rancherClient.doEmptyAction(CREDENTIAL_TYPE, "update", &resource.Resource, resp)
+	return resp, err
 }

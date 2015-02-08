@@ -52,6 +52,13 @@ type ExternalHandlerExternalHandlerProcessMapOperations interface {
 	Update(existing *ExternalHandlerExternalHandlerProcessMap, updates interface{}) (*ExternalHandlerExternalHandlerProcessMap, error)
 	ById(id string) (*ExternalHandlerExternalHandlerProcessMap, error)
 	Delete(container *ExternalHandlerExternalHandlerProcessMap) error
+    ActionActivate (*ExternalHandlerExternalHandlerProcessMap) (*ExternalHandlerExternalHandlerProcessMap, error)
+    ActionCreate (*ExternalHandlerExternalHandlerProcessMap) (*ExternalHandlerExternalHandlerProcessMap, error)
+    ActionDeactivate (*ExternalHandlerExternalHandlerProcessMap) (*ExternalHandlerExternalHandlerProcessMap, error)
+    ActionPurge (*ExternalHandlerExternalHandlerProcessMap) (*ExternalHandlerExternalHandlerProcessMap, error)
+    ActionRemove (*ExternalHandlerExternalHandlerProcessMap) (*ExternalHandlerExternalHandlerProcessMap, error)
+    ActionRestore (*ExternalHandlerExternalHandlerProcessMap) (*ExternalHandlerExternalHandlerProcessMap, error)
+    ActionUpdate (*ExternalHandlerExternalHandlerProcessMap) (*ExternalHandlerExternalHandlerProcessMap, error)
 }
 
 func newExternalHandlerExternalHandlerProcessMapClient(rancherClient *RancherClient) *ExternalHandlerExternalHandlerProcessMapClient {
@@ -86,4 +93,46 @@ func (c *ExternalHandlerExternalHandlerProcessMapClient) ById(id string) (*Exter
 
 func (c *ExternalHandlerExternalHandlerProcessMapClient) Delete(container *ExternalHandlerExternalHandlerProcessMap) error {
 	return c.rancherClient.doResourceDelete(EXTERNAL_HANDLER_EXTERNAL_HANDLER_PROCESS_MAP_TYPE, &container.Resource)
+}
+
+func (c *ExternalHandlerExternalHandlerProcessMapClient) ActionActivate(resource *ExternalHandlerExternalHandlerProcessMap) (*ExternalHandlerExternalHandlerProcessMap, error) {
+	resp := &ExternalHandlerExternalHandlerProcessMap{}
+	err := c.rancherClient.doEmptyAction(EXTERNAL_HANDLER_EXTERNAL_HANDLER_PROCESS_MAP_TYPE, "activate", &resource.Resource, resp)
+	return resp, err
+}
+
+func (c *ExternalHandlerExternalHandlerProcessMapClient) ActionCreate(resource *ExternalHandlerExternalHandlerProcessMap) (*ExternalHandlerExternalHandlerProcessMap, error) {
+	resp := &ExternalHandlerExternalHandlerProcessMap{}
+	err := c.rancherClient.doEmptyAction(EXTERNAL_HANDLER_EXTERNAL_HANDLER_PROCESS_MAP_TYPE, "create", &resource.Resource, resp)
+	return resp, err
+}
+
+func (c *ExternalHandlerExternalHandlerProcessMapClient) ActionDeactivate(resource *ExternalHandlerExternalHandlerProcessMap) (*ExternalHandlerExternalHandlerProcessMap, error) {
+	resp := &ExternalHandlerExternalHandlerProcessMap{}
+	err := c.rancherClient.doEmptyAction(EXTERNAL_HANDLER_EXTERNAL_HANDLER_PROCESS_MAP_TYPE, "deactivate", &resource.Resource, resp)
+	return resp, err
+}
+
+func (c *ExternalHandlerExternalHandlerProcessMapClient) ActionPurge(resource *ExternalHandlerExternalHandlerProcessMap) (*ExternalHandlerExternalHandlerProcessMap, error) {
+	resp := &ExternalHandlerExternalHandlerProcessMap{}
+	err := c.rancherClient.doEmptyAction(EXTERNAL_HANDLER_EXTERNAL_HANDLER_PROCESS_MAP_TYPE, "purge", &resource.Resource, resp)
+	return resp, err
+}
+
+func (c *ExternalHandlerExternalHandlerProcessMapClient) ActionRemove(resource *ExternalHandlerExternalHandlerProcessMap) (*ExternalHandlerExternalHandlerProcessMap, error) {
+	resp := &ExternalHandlerExternalHandlerProcessMap{}
+	err := c.rancherClient.doEmptyAction(EXTERNAL_HANDLER_EXTERNAL_HANDLER_PROCESS_MAP_TYPE, "remove", &resource.Resource, resp)
+	return resp, err
+}
+
+func (c *ExternalHandlerExternalHandlerProcessMapClient) ActionRestore(resource *ExternalHandlerExternalHandlerProcessMap) (*ExternalHandlerExternalHandlerProcessMap, error) {
+	resp := &ExternalHandlerExternalHandlerProcessMap{}
+	err := c.rancherClient.doEmptyAction(EXTERNAL_HANDLER_EXTERNAL_HANDLER_PROCESS_MAP_TYPE, "restore", &resource.Resource, resp)
+	return resp, err
+}
+
+func (c *ExternalHandlerExternalHandlerProcessMapClient) ActionUpdate(resource *ExternalHandlerExternalHandlerProcessMap) (*ExternalHandlerExternalHandlerProcessMap, error) {
+	resp := &ExternalHandlerExternalHandlerProcessMap{}
+	err := c.rancherClient.doEmptyAction(EXTERNAL_HANDLER_EXTERNAL_HANDLER_PROCESS_MAP_TYPE, "update", &resource.Resource, resp)
+	return resp, err
 }

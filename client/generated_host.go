@@ -54,6 +54,13 @@ type HostOperations interface {
 	Update(existing *Host, updates interface{}) (*Host, error)
 	ById(id string) (*Host, error)
 	Delete(container *Host) error
+    ActionActivate (*Host) (*Host, error)
+    ActionCreate (*Host) (*Host, error)
+    ActionDeactivate (*Host) (*Host, error)
+    ActionPurge (*Host) (*Host, error)
+    ActionRemove (*Host) (*Host, error)
+    ActionRestore (*Host) (*Host, error)
+    ActionUpdate (*Host) (*Host, error)
 }
 
 func newHostClient(rancherClient *RancherClient) *HostClient {
@@ -88,4 +95,46 @@ func (c *HostClient) ById(id string) (*Host, error) {
 
 func (c *HostClient) Delete(container *Host) error {
 	return c.rancherClient.doResourceDelete(HOST_TYPE, &container.Resource)
+}
+
+func (c *HostClient) ActionActivate(resource *Host) (*Host, error) {
+	resp := &Host{}
+	err := c.rancherClient.doEmptyAction(HOST_TYPE, "activate", &resource.Resource, resp)
+	return resp, err
+}
+
+func (c *HostClient) ActionCreate(resource *Host) (*Host, error) {
+	resp := &Host{}
+	err := c.rancherClient.doEmptyAction(HOST_TYPE, "create", &resource.Resource, resp)
+	return resp, err
+}
+
+func (c *HostClient) ActionDeactivate(resource *Host) (*Host, error) {
+	resp := &Host{}
+	err := c.rancherClient.doEmptyAction(HOST_TYPE, "deactivate", &resource.Resource, resp)
+	return resp, err
+}
+
+func (c *HostClient) ActionPurge(resource *Host) (*Host, error) {
+	resp := &Host{}
+	err := c.rancherClient.doEmptyAction(HOST_TYPE, "purge", &resource.Resource, resp)
+	return resp, err
+}
+
+func (c *HostClient) ActionRemove(resource *Host) (*Host, error) {
+	resp := &Host{}
+	err := c.rancherClient.doEmptyAction(HOST_TYPE, "remove", &resource.Resource, resp)
+	return resp, err
+}
+
+func (c *HostClient) ActionRestore(resource *Host) (*Host, error) {
+	resp := &Host{}
+	err := c.rancherClient.doEmptyAction(HOST_TYPE, "restore", &resource.Resource, resp)
+	return resp, err
+}
+
+func (c *HostClient) ActionUpdate(resource *Host) (*Host, error) {
+	resp := &Host{}
+	err := c.rancherClient.doEmptyAction(HOST_TYPE, "update", &resource.Resource, resp)
+	return resp, err
 }

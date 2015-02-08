@@ -64,6 +64,10 @@ type MachineHostOperations interface {
 	Update(existing *MachineHost, updates interface{}) (*MachineHost, error)
 	ById(id string) (*MachineHost, error)
 	Delete(container *MachineHost) error
+    ActionBootstrap (*MachineHost) (*PhysicalHost, error)
+    ActionCreate (*MachineHost) (*PhysicalHost, error)
+    ActionRemove (*MachineHost) (*PhysicalHost, error)
+    ActionUpdate (*MachineHost) (*PhysicalHost, error)
 }
 
 func newMachineHostClient(rancherClient *RancherClient) *MachineHostClient {
@@ -98,4 +102,28 @@ func (c *MachineHostClient) ById(id string) (*MachineHost, error) {
 
 func (c *MachineHostClient) Delete(container *MachineHost) error {
 	return c.rancherClient.doResourceDelete(MACHINE_HOST_TYPE, &container.Resource)
+}
+
+func (c *MachineHostClient) ActionBootstrap(resource *MachineHost) (*PhysicalHost, error) {
+	resp := &PhysicalHost{}
+	err := c.rancherClient.doEmptyAction(MACHINE_HOST_TYPE, "bootstrap", &resource.Resource, resp)
+	return resp, err
+}
+
+func (c *MachineHostClient) ActionCreate(resource *MachineHost) (*PhysicalHost, error) {
+	resp := &PhysicalHost{}
+	err := c.rancherClient.doEmptyAction(MACHINE_HOST_TYPE, "create", &resource.Resource, resp)
+	return resp, err
+}
+
+func (c *MachineHostClient) ActionRemove(resource *MachineHost) (*PhysicalHost, error) {
+	resp := &PhysicalHost{}
+	err := c.rancherClient.doEmptyAction(MACHINE_HOST_TYPE, "remove", &resource.Resource, resp)
+	return resp, err
+}
+
+func (c *MachineHostClient) ActionUpdate(resource *MachineHost) (*PhysicalHost, error) {
+	resp := &PhysicalHost{}
+	err := c.rancherClient.doEmptyAction(MACHINE_HOST_TYPE, "update", &resource.Resource, resp)
+	return resp, err
 }
