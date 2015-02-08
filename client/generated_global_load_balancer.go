@@ -15,6 +15,10 @@ type GlobalLoadBalancer struct {
     
     Description string `json:"description,omitempty"`
     
+    GlobalLoadBalancerHealthCheck []interface{} `json:"globalLoadBalancerHealthCheck,omitempty"`
+    
+    GlobalLoadBalancerPolicy []interface{} `json:"globalLoadBalancerPolicy,omitempty"`
+    
     Kind string `json:"kind,omitempty"`
     
     Name string `json:"name,omitempty"`

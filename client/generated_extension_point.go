@@ -9,6 +9,8 @@ type ExtensionPoint struct {
     
     ExcludeSetting string `json:"excludeSetting,omitempty"`
     
+    Implementations []interface{} `json:"implementations,omitempty"`
+    
     IncludeSetting string `json:"includeSetting,omitempty"`
     
     ListSetting string `json:"listSetting,omitempty"`

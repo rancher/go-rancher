@@ -19,6 +19,8 @@ type ExternalHandler struct {
     
     Priority int `json:"priority,omitempty"`
     
+    ProcessNames []string `json:"processNames,omitempty"`
+    
     RemoveTime string `json:"removeTime,omitempty"`
     
     Removed string `json:"removed,omitempty"`

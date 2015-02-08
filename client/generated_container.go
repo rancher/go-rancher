@@ -13,7 +13,13 @@ type Container struct {
     
     AllocationState string `json:"allocationState,omitempty"`
     
+    CapAdd []string `json:"capAdd,omitempty"`
+    
+    CapDrop []string `json:"capDrop,omitempty"`
+    
     Command string `json:"command,omitempty"`
+    
+    CommandArgs []string `json:"commandArgs,omitempty"`
     
     Count int `json:"count,omitempty"`
     
@@ -25,13 +31,23 @@ type Container struct {
     
     Data map[string]interface{} `json:"data,omitempty"`
     
+    DataVolumes []string `json:"dataVolumes,omitempty"`
+    
     DataVolumesFrom []string `json:"dataVolumesFrom,omitempty"`
     
     Description string `json:"description,omitempty"`
     
+    Devices []string `json:"devices,omitempty"`
+    
     Directory string `json:"directory,omitempty"`
     
+    Dns []string `json:"dns,omitempty"`
+    
+    DnsSearch []string `json:"dnsSearch,omitempty"`
+    
     DomainName string `json:"domainName,omitempty"`
+    
+    EntryPoint []string `json:"entryPoint,omitempty"`
     
     Environment map[string]interface{} `json:"environment,omitempty"`
     
@@ -54,6 +70,8 @@ type Container struct {
     Name string `json:"name,omitempty"`
     
     NetworkIds []string `json:"networkIds,omitempty"`
+    
+    Ports []string `json:"ports,omitempty"`
     
     PrimaryIpAddress string `json:"primaryIpAddress,omitempty"`
     

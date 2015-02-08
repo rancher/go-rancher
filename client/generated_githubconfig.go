@@ -7,6 +7,10 @@ const (
 type Githubconfig struct {
 	Resource
     
+    AllowedOrganizations []string `json:"allowedOrganizations,omitempty"`
+    
+    AllowedUsers []string `json:"allowedUsers,omitempty"`
+    
     ClientId string `json:"clientId,omitempty"`
     
     ClientSecret string `json:"clientSecret,omitempty"`

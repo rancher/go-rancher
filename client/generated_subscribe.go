@@ -9,6 +9,8 @@ type Subscribe struct {
     
     AgentId string `json:"agentId,omitempty"`
     
+    EventNames []string `json:"eventNames,omitempty"`
+    
 }
 
 type SubscribeCollection struct {

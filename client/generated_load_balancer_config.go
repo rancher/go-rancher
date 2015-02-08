@@ -17,6 +17,10 @@ type LoadBalancerConfig struct {
     
     Kind string `json:"kind,omitempty"`
     
+    LoadBalancerHealthCheck []interface{} `json:"loadBalancerHealthCheck,omitempty"`
+    
+    LoadBalancerPolicy []interface{} `json:"loadBalancerPolicy,omitempty"`
+    
     Name string `json:"name,omitempty"`
     
     RemoveTime string `json:"removeTime,omitempty"`

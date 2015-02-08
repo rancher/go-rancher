@@ -11,6 +11,8 @@ type Publish struct {
     
     Name string `json:"name,omitempty"`
     
+    PreviousIds []string `json:"previousIds,omitempty"`
+    
     Publisher string `json:"publisher,omitempty"`
     
     ResourceId string `json:"resourceId,omitempty"`

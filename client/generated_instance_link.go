@@ -23,6 +23,8 @@ type InstanceLink struct {
     
     Name string `json:"name,omitempty"`
     
+    Ports []interface{} `json:"ports,omitempty"`
+    
     RemoveTime string `json:"removeTime,omitempty"`
     
     Removed string `json:"removed,omitempty"`

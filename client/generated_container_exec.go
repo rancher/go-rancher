@@ -11,6 +11,8 @@ type ContainerExec struct {
     
     AttachStdout bool `json:"attachStdout,omitempty"`
     
+    Command []string `json:"command,omitempty"`
+    
     Tty bool `json:"tty,omitempty"`
     
 }
