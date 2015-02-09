@@ -192,6 +192,17 @@ func TestAccountAction(t *testing.T) {
 	}
 }
 
+func TestPublishCreate(t *testing.T) {
+	client := newClient(t)
+	_, err := client.Publish.Create(&Publish{
+		Name: "foo",
+	})
+
+	if err != nil {
+		t.Fatal(err)
+	}
+}
+
 func waitAccountTransition(account *Account, client *RancherClient, t *testing.T) *Account {
 	timeoutAt := time.Now().Add(MAX_WAIT)
 	ticker := time.NewTicker(time.Millisecond * 250)

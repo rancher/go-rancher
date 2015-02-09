@@ -8,6 +8,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"net/url"
+	"regexp"
 )
 
 const (
@@ -267,7 +268,10 @@ func (rancherClient *RancherBaseClient) doModify(method string, url string, crea
 		return err
 	}
 
-	return json.Unmarshal(byteContent, respObject)
+	if len(byteContent) > 0 {
+		return json.Unmarshal(byteContent, respObject)
+	}
+	return nil
 }
 
 func (rancherClient *RancherBaseClient) doCreate(schemaType string, createObj interface{}, respObject interface{}) error {
@@ -283,9 +287,13 @@ func (rancherClient *RancherBaseClient) doCreate(schemaType string, createObj in
 		return errors.New("Resource type [" + schemaType + "] is not creatable")
 	}
 
-	collectionUrl, ok := schema.Links[COLLECTION]
+	var collectionUrl string
+	collectionUrl, ok = schema.Links[COLLECTION]
 	if !ok {
-		return errors.New("Failed to find collection URL for [" + schemaType + "]")
+		// return errors.New("Failed to find collection URL for [" + schemaType + "]")
+		// This is a hack to address https://github.com/rancherio/cattle/issues/254
+		re := regexp.MustCompile("schemas.*")
+		collectionUrl = re.ReplaceAllString(schema.Links[SELF], schema.PluralName)
 	}
 
 	return rancherClient.doModify("POST", collectionUrl, createObj, respObject)
