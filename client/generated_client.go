@@ -65,7 +65,7 @@ type RancherClient struct {
     StatsAccess StatsAccessOperations
     VirtualboxConfig VirtualboxConfigOperations
     DigitaloceanConfig DigitaloceanConfigOperations
-    MachineHost MachineHostOperations
+    Machine MachineOperations
     Register RegisterOperations
     RegistrationToken RegistrationTokenOperations
 }
@@ -140,7 +140,7 @@ func constructClient() *RancherClient {
     client.StatsAccess = newStatsAccessClient(client)
     client.VirtualboxConfig = newVirtualboxConfigClient(client)
     client.DigitaloceanConfig = newDigitaloceanConfigClient(client)
-    client.MachineHost = newMachineHostClient(client)
+    client.Machine = newMachineClient(client)
     client.Register = newRegisterClient(client)
     client.RegistrationToken = newRegistrationTokenClient(client) 
 
