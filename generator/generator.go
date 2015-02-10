@@ -18,8 +18,10 @@ const (
 )
 
 var (
-	blackListTypes   map[string]bool
-	underscoreRegexp *regexp.Regexp = regexp.MustCompile(`([a-z])([A-Z])`)
+	blackListTypes    map[string]bool
+	noConversionTypes map[string]bool
+	underscoreRegexp  *regexp.Regexp = regexp.MustCompile(`([a-z])([A-Z])`)
+	schemaExists      map[string]bool
 )
 
 func init() {
@@ -27,6 +29,12 @@ func init() {
 	blackListTypes["schema"] = true
 	blackListTypes["resource"] = true
 	blackListTypes["collection"] = true
+
+	noConversionTypes = make(map[string]bool)
+	noConversionTypes["string"] = true
+	noConversionTypes["int"] = true
+
+	schemaExists = make(map[string]bool)
 }
 
 func capitalize(s string) string {
@@ -49,11 +57,19 @@ func getTypeMap(schema client.Schema) map[string]string {
 		if strings.HasPrefix(field.Type, "reference") || strings.HasPrefix(field.Type, "date") || strings.HasPrefix(field.Type, "enum") {
 			result[fieldName] = "string"
 		} else if strings.HasPrefix(field.Type, "array") {
-			if strings.Contains(field.Type, "reference") {
+			if strings.Contains(field.Type, "reference") || strings.Contains(field.Type, "date") ||
+				strings.Contains(field.Type, "enum") || strings.Contains(field.Type, "string") {
 				result[fieldName] = "[]string"
 			} else if strings.Contains(field.Type, "resource") {
 				result[fieldName] = "[]interface{}"
+			} else if strings.Contains(field.Type, "int") {
+				result[fieldName] = "[]int"
+			} else if strings.Contains(field.Type, "float") {
+				result[fieldName] = "[]float64"
+			} else {
+				result[fieldName] = "[]interface{}"
 			}
+
 		} else if strings.HasPrefix(field.Type, "map") {
 			result[fieldName] = "map[string]interface{}"
 		} else if strings.HasPrefix(field.Type, "json") {
@@ -62,11 +78,25 @@ func getTypeMap(schema client.Schema) map[string]string {
 			result[fieldName] = "bool"
 		} else if strings.HasPrefix(field.Type, "extensionPoint") {
 			result[fieldName] = "interface{}"
-		} else {
+		} else if strings.HasPrefix(field.Type, "float") {
+			result[fieldName] = "float64"
+		} else if _, noConvert := noConversionTypes[field.Type]; noConvert {
 			result[fieldName] = field.Type
+		} else {
+			result[fieldName] = capitalize(field.Type)
 		}
 	}
 
+	return result
+}
+
+func getResourceActions(schema client.Schema) map[string]client.Action {
+	result := map[string]client.Action{}
+	for name, action := range schema.ResourceActions {
+		if _, ok := schemaExists[action.Output]; action.Input == "" && ok {
+			result[name] = action
+		}
+	}
 	return result
 }
 
@@ -84,6 +114,7 @@ func generateType(schema client.Schema) error {
 		"typeCapitalized": capitalize(schema.Id),
 		"typeUpper":       strings.ToUpper(addUnderscore(schema.Id)),
 		"structFields":    getTypeMap(schema),
+		"resourceActions": getResourceActions(schema),
 	}
 
 	funcMap := template.FuncMap{
@@ -120,7 +151,7 @@ func generateClient(schema []client.Schema) error {
 	}
 
 	defer output.Close()
-	buffer := make([]client.Schema, len(schema)-3)
+	buffer := make([]client.Schema, len(schema)-1)
 	i := 0
 	for _, val := range schema {
 
@@ -174,6 +205,7 @@ func generateFiles() error {
 			continue
 		}
 
+		schemaExists[schema.Id] = true
 		err = generateType(schema)
 		if err != nil {
 			return err

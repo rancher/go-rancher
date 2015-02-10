@@ -25,7 +25,8 @@ type {{.typeCapitalized}}Operations interface {
 	Create(opts *{{.typeCapitalized}}) (*{{.typeCapitalized}}, error)
 	Update(existing *{{.typeCapitalized}}, updates interface{}) (*{{.typeCapitalized}}, error)
 	ById(id string) (*{{.typeCapitalized}}, error)
-	Delete(container *{{.typeCapitalized}}) error
+	Delete(container *{{.typeCapitalized}}) error{{range $key, $value := .resourceActions}}
+    Action{{$key | capitalize}} (*{{$.typeCapitalized}}) (*{{.Output | capitalize}}, error){{end}}
 }
 
 func new{{.typeCapitalized}}Client(rancherClient *RancherClient) *{{.typeCapitalized}}Client {
@@ -60,4 +61,10 @@ func (c *{{.typeCapitalized}}Client) ById(id string) (*{{.typeCapitalized}}, err
 
 func (c *{{.typeCapitalized}}Client) Delete(container *{{.typeCapitalized}}) error {
 	return c.rancherClient.doResourceDelete({{.typeUpper}}_TYPE, &container.Resource)
-}
+}{{range $key, $value := .resourceActions}}
+
+func (c *{{$.typeCapitalized}}Client) Action{{$key | capitalize}}(resource *{{$.typeCapitalized}}) (*{{.Output | capitalize}}, error) {
+	resp := &{{.Output | capitalize}}{}
+	err := c.rancherClient.doEmptyAction({{$.typeUpper}}_TYPE, "{{$key}}", &resource.Resource, resp)
+	return resp, err
+}{{end}}
