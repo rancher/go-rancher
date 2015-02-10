@@ -68,6 +68,18 @@ func TestContainerList(t *testing.T) {
 	if len(containers.Data[0].Id) == 0 {
 		t.Fatal("Container ID is not set")
 	}
+
+	listOpts := NewListOpts()
+	listOpts.Filters["id"] = "comeBackEmpty"
+	containers, err = client.Container.List(listOpts)
+
+	if err != nil {
+		t.Fatal("Failed to list containers", err)
+	}
+
+	if len(containers.Data) != 0 {
+		t.Fatal("Filter should have found no contianers.")
+	}
 }
 
 func TestContainerCreate(t *testing.T) {
