@@ -54,7 +54,8 @@ type RancherClient struct {
     Volume VolumeOperations
     TypeDocumentation TypeDocumentationOperations
     ContainerExec ContainerExecOperations
-    ContainerExecOutput ContainerExecOutputOperations
+    ContainerLogs ContainerLogsOperations
+    HostAccess HostAccessOperations
     ActiveSetting ActiveSettingOperations
     ExtensionImplementation ExtensionImplementationOperations
     ExtensionPoint ExtensionPointOperations
@@ -128,7 +129,8 @@ func constructClient() *RancherClient {
     client.Volume = newVolumeClient(client)
     client.TypeDocumentation = newTypeDocumentationClient(client)
     client.ContainerExec = newContainerExecClient(client)
-    client.ContainerExecOutput = newContainerExecOutputClient(client)
+    client.ContainerLogs = newContainerLogsClient(client)
+    client.HostAccess = newHostAccessClient(client)
     client.ActiveSetting = newActiveSettingClient(client)
     client.ExtensionImplementation = newExtensionImplementationClient(client)
     client.ExtensionPoint = newExtensionPointClient(client)

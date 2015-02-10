@@ -108,6 +108,7 @@ func setupRancherBaseClient(rancherClient *RancherBaseClient, opts *ClientOpts) 
 
 	if schemasUrls != opts.Url {
 		req, err = http.NewRequest("GET", schemasUrls, nil)
+		req.SetBasicAuth(opts.AccessKey, opts.SecretKey)
 		if err != nil {
 			return err
 		}
