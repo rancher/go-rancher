@@ -9,17 +9,19 @@ type LoadBalancerConfig struct {
     
     AccountId string `json:"accountId,omitempty"`
     
+    AppCookieStickinessPolicy LoadBalancerAppCookieStickinessPolicy `json:"appCookieStickinessPolicy,omitempty"`
+    
     Created string `json:"created,omitempty"`
     
     Data map[string]interface{} `json:"data,omitempty"`
     
     Description string `json:"description,omitempty"`
     
+    HealthCheck LoadBalancerHealthCheck `json:"healthCheck,omitempty"`
+    
     Kind string `json:"kind,omitempty"`
     
-    LoadBalancerHealthCheck []interface{} `json:"loadBalancerHealthCheck,omitempty"`
-    
-    LoadBalancerPolicy []interface{} `json:"loadBalancerPolicy,omitempty"`
+    LbCookieStickinessPolicy LoadBalancerCookieStickinessPolicy `json:"lbCookieStickinessPolicy,omitempty"`
     
     Name string `json:"name,omitempty"`
     
@@ -56,6 +58,7 @@ type LoadBalancerConfigOperations interface {
 	Delete(container *LoadBalancerConfig) error
     ActionCreate (*LoadBalancerConfig) (*LoadBalancerConfig, error)
     ActionRemove (*LoadBalancerConfig) (*LoadBalancerConfig, error)
+    ActionUpdate (*LoadBalancerConfig) (*LoadBalancerConfig, error)
 }
 
 func newLoadBalancerConfigClient(rancherClient *RancherClient) *LoadBalancerConfigClient {
@@ -101,5 +104,11 @@ func (c *LoadBalancerConfigClient) ActionCreate(resource *LoadBalancerConfig) (*
 func (c *LoadBalancerConfigClient) ActionRemove(resource *LoadBalancerConfig) (*LoadBalancerConfig, error) {
 	resp := &LoadBalancerConfig{}
 	err := c.rancherClient.doEmptyAction(LOAD_BALANCER_CONFIG_TYPE, "remove", &resource.Resource, resp)
+	return resp, err
+}
+
+func (c *LoadBalancerConfigClient) ActionUpdate(resource *LoadBalancerConfig) (*LoadBalancerConfig, error) {
+	resp := &LoadBalancerConfig{}
+	err := c.rancherClient.doEmptyAction(LOAD_BALANCER_CONFIG_TYPE, "update", &resource.Resource, resp)
 	return resp, err
 }

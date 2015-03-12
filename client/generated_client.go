@@ -7,7 +7,8 @@ type RancherClient struct {
     Publish PublishOperations
     RestartPolicy RestartPolicyOperations
     LoadBalancerHealthCheck LoadBalancerHealthCheckOperations
-    LoadBalancerPolicy LoadBalancerPolicyOperations
+    LoadBalancerCookieStickinessPolicy LoadBalancerCookieStickinessPolicyOperations
+    LoadBalancerAppCookieStickinessPolicy LoadBalancerAppCookieStickinessPolicyOperations
     GlobalLoadBalancerPolicy GlobalLoadBalancerPolicyOperations
     GlobalLoadBalancerHealthCheck GlobalLoadBalancerHealthCheckOperations
     Container ContainerOperations
@@ -22,10 +23,19 @@ type RancherClient struct {
     AddLoadBalancerInput AddLoadBalancerInputOperations
     RemoveLoadBalancerInput RemoveLoadBalancerInputOperations
     AddRemoveLoadBalancerHostInput AddRemoveLoadBalancerHostInputOperations
+    SetLoadBalancerListenersInput SetLoadBalancerListenersInputOperations
+    SetLoadBalancerTargetsInput SetLoadBalancerTargetsInputOperations
+    SetLoadBalancerHostsInput SetLoadBalancerHostsInputOperations
+    Cluster ClusterOperations
+    AddRemoveClusterHostInput AddRemoveClusterHostInputOperations
+    RegistryCredential RegistryCredentialOperations
+    Registry RegistryOperations
     Account AccountOperations
     Agent AgentOperations
+    Certificate CertificateOperations
     ConfigItem ConfigItemOperations
     ConfigItemStatus ConfigItemStatusOperations
+    ContainerEvent ContainerEventOperations
     Credential CredentialOperations
     Databasechangelog DatabasechangelogOperations
     Databasechangeloglock DatabasechangeloglockOperations
@@ -49,6 +59,7 @@ type RancherClient struct {
     ProcessExecution ProcessExecutionOperations
     ProcessInstance ProcessInstanceOperations
     Setting SettingOperations
+    StoragePool StoragePoolOperations
     Task TaskOperations
     TaskInstance TaskInstanceOperations
     Volume VolumeOperations
@@ -82,7 +93,8 @@ func constructClient() *RancherClient {
     client.Publish = newPublishClient(client)
     client.RestartPolicy = newRestartPolicyClient(client)
     client.LoadBalancerHealthCheck = newLoadBalancerHealthCheckClient(client)
-    client.LoadBalancerPolicy = newLoadBalancerPolicyClient(client)
+    client.LoadBalancerCookieStickinessPolicy = newLoadBalancerCookieStickinessPolicyClient(client)
+    client.LoadBalancerAppCookieStickinessPolicy = newLoadBalancerAppCookieStickinessPolicyClient(client)
     client.GlobalLoadBalancerPolicy = newGlobalLoadBalancerPolicyClient(client)
     client.GlobalLoadBalancerHealthCheck = newGlobalLoadBalancerHealthCheckClient(client)
     client.Container = newContainerClient(client)
@@ -97,10 +109,19 @@ func constructClient() *RancherClient {
     client.AddLoadBalancerInput = newAddLoadBalancerInputClient(client)
     client.RemoveLoadBalancerInput = newRemoveLoadBalancerInputClient(client)
     client.AddRemoveLoadBalancerHostInput = newAddRemoveLoadBalancerHostInputClient(client)
+    client.SetLoadBalancerListenersInput = newSetLoadBalancerListenersInputClient(client)
+    client.SetLoadBalancerTargetsInput = newSetLoadBalancerTargetsInputClient(client)
+    client.SetLoadBalancerHostsInput = newSetLoadBalancerHostsInputClient(client)
+    client.Cluster = newClusterClient(client)
+    client.AddRemoveClusterHostInput = newAddRemoveClusterHostInputClient(client)
+    client.RegistryCredential = newRegistryCredentialClient(client)
+    client.Registry = newRegistryClient(client)
     client.Account = newAccountClient(client)
     client.Agent = newAgentClient(client)
+    client.Certificate = newCertificateClient(client)
     client.ConfigItem = newConfigItemClient(client)
     client.ConfigItemStatus = newConfigItemStatusClient(client)
+    client.ContainerEvent = newContainerEventClient(client)
     client.Credential = newCredentialClient(client)
     client.Databasechangelog = newDatabasechangelogClient(client)
     client.Databasechangeloglock = newDatabasechangeloglockClient(client)
@@ -124,6 +145,7 @@ func constructClient() *RancherClient {
     client.ProcessExecution = newProcessExecutionClient(client)
     client.ProcessInstance = newProcessInstanceClient(client)
     client.Setting = newSettingClient(client)
+    client.StoragePool = newStoragePoolClient(client)
     client.Task = newTaskClient(client)
     client.TaskInstance = newTaskInstanceClient(client)
     client.Volume = newVolumeClient(client)

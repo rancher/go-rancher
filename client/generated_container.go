@@ -79,6 +79,8 @@ type Container struct {
     
     PublishAllPorts bool `json:"publishAllPorts,omitempty"`
     
+    RegistryCredentialId string `json:"registryCredentialId,omitempty"`
+    
     RemoveTime string `json:"removeTime,omitempty"`
     
     Removed string `json:"removed,omitempty"`
@@ -92,6 +94,8 @@ type Container struct {
     State string `json:"state,omitempty"`
     
     StdinOpen bool `json:"stdinOpen,omitempty"`
+    
+    SystemContainer string `json:"systemContainer,omitempty"`
     
     Token string `json:"token,omitempty"`
     
