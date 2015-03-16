@@ -11,6 +11,8 @@ type Host struct {
     
     AgentId string `json:"agentId,omitempty"`
     
+    ApiProxy string `json:"apiProxy,omitempty"`
+    
     ComputeTotal int `json:"computeTotal,omitempty"`
     
     Created string `json:"created,omitempty"`
@@ -19,9 +21,13 @@ type Host struct {
     
     Description string `json:"description,omitempty"`
     
+    Info interface{} `json:"info,omitempty"`
+    
     Kind string `json:"kind,omitempty"`
     
     Name string `json:"name,omitempty"`
+    
+    PhysicalHostId string `json:"physicalHostId,omitempty"`
     
     RemoveTime string `json:"removeTime,omitempty"`
     

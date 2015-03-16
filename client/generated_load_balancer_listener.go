@@ -9,6 +9,8 @@ type LoadBalancerListener struct {
     
     AccountId string `json:"accountId,omitempty"`
     
+    Algorithm string `json:"algorithm,omitempty"`
+    
     Created string `json:"created,omitempty"`
     
     Data map[string]interface{} `json:"data,omitempty"`

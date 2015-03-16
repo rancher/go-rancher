@@ -11,6 +11,8 @@ type InstanceStop struct {
     
     Remove bool `json:"remove,omitempty"`
     
+    Timeout int `json:"timeout,omitempty"`
+    
 }
 
 type InstanceStopCollection struct {
