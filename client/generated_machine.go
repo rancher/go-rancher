@@ -66,6 +66,7 @@ type MachineOperations interface {
 	Delete(container *Machine) error
     ActionBootstrap (*Machine) (*PhysicalHost, error)
     ActionCreate (*Machine) (*PhysicalHost, error)
+    ActionError (*Machine) (*PhysicalHost, error)
     ActionRemove (*Machine) (*PhysicalHost, error)
     ActionUpdate (*Machine) (*PhysicalHost, error)
 }
@@ -113,6 +114,12 @@ func (c *MachineClient) ActionBootstrap(resource *Machine) (*PhysicalHost, error
 func (c *MachineClient) ActionCreate(resource *Machine) (*PhysicalHost, error) {
 	resp := &PhysicalHost{}
 	err := c.rancherClient.doEmptyAction(MACHINE_TYPE, "create", &resource.Resource, resp)
+	return resp, err
+}
+
+func (c *MachineClient) ActionError(resource *Machine) (*PhysicalHost, error) {
+	resp := &PhysicalHost{}
+	err := c.rancherClient.doEmptyAction(MACHINE_TYPE, "error", &resource.Resource, resp)
 	return resp, err
 }
 
