@@ -13,6 +13,12 @@ go build
 cd client
 go test
 ```
+# Contact
+For bugs, questions, comments, corrections, suggestions, etc., open an issue in
+ [rancherio/rancher](//github.com/rancherio/rancher/issues) with a title starting with `[go-rancher] `.
+
+Or just [click here](//github.com/rancherio/rancher/issues/new?title=%5Bgo-rancher%5D%20) to create a new issue.
+
 
 # License
 Copyright (c) 2014-2015 [Rancher Labs, Inc.](http://rancher.com)
