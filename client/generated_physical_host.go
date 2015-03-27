@@ -52,6 +52,7 @@ type PhysicalHostOperations interface {
 	Delete(container *PhysicalHost) error
     ActionBootstrap (*PhysicalHost) (*PhysicalHost, error)
     ActionCreate (*PhysicalHost) (*PhysicalHost, error)
+    ActionError (*PhysicalHost) (*PhysicalHost, error)
     ActionRemove (*PhysicalHost) (*PhysicalHost, error)
     ActionUpdate (*PhysicalHost) (*PhysicalHost, error)
 }
@@ -99,6 +100,12 @@ func (c *PhysicalHostClient) ActionBootstrap(resource *PhysicalHost) (*PhysicalH
 func (c *PhysicalHostClient) ActionCreate(resource *PhysicalHost) (*PhysicalHost, error) {
 	resp := &PhysicalHost{}
 	err := c.rancherClient.doEmptyAction(PHYSICAL_HOST_TYPE, "create", &resource.Resource, resp)
+	return resp, err
+}
+
+func (c *PhysicalHostClient) ActionError(resource *PhysicalHost) (*PhysicalHost, error) {
+	resp := &PhysicalHost{}
+	err := c.rancherClient.doEmptyAction(PHYSICAL_HOST_TYPE, "error", &resource.Resource, resp)
 	return resp, err
 }
 

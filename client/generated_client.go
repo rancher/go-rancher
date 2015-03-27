@@ -11,6 +11,7 @@ type RancherClient struct {
     LoadBalancerAppCookieStickinessPolicy LoadBalancerAppCookieStickinessPolicyOperations
     GlobalLoadBalancerPolicy GlobalLoadBalancerPolicyOperations
     GlobalLoadBalancerHealthCheck GlobalLoadBalancerHealthCheckOperations
+    ExternalHandlerProcessConfig ExternalHandlerProcessConfigOperations
     Container ContainerOperations
     ApiKey ApiKeyOperations
     InstanceStop InstanceStopOperations
@@ -35,7 +36,6 @@ type RancherClient struct {
     Certificate CertificateOperations
     ConfigItem ConfigItemOperations
     ConfigItemStatus ConfigItemStatusOperations
-    ContainerEvent ContainerEventOperations
     Credential CredentialOperations
     Databasechangelog DatabasechangelogOperations
     Databasechangeloglock DatabasechangeloglockOperations
@@ -97,6 +97,7 @@ func constructClient() *RancherClient {
     client.LoadBalancerAppCookieStickinessPolicy = newLoadBalancerAppCookieStickinessPolicyClient(client)
     client.GlobalLoadBalancerPolicy = newGlobalLoadBalancerPolicyClient(client)
     client.GlobalLoadBalancerHealthCheck = newGlobalLoadBalancerHealthCheckClient(client)
+    client.ExternalHandlerProcessConfig = newExternalHandlerProcessConfigClient(client)
     client.Container = newContainerClient(client)
     client.ApiKey = newApiKeyClient(client)
     client.InstanceStop = newInstanceStopClient(client)
@@ -121,7 +122,6 @@ func constructClient() *RancherClient {
     client.Certificate = newCertificateClient(client)
     client.ConfigItem = newConfigItemClient(client)
     client.ConfigItemStatus = newConfigItemStatusClient(client)
-    client.ContainerEvent = newContainerEventClient(client)
     client.Credential = newCredentialClient(client)
     client.Databasechangelog = newDatabasechangelogClient(client)
     client.Databasechangeloglock = newDatabasechangeloglockClient(client)

@@ -23,6 +23,8 @@ type RegistryCredential struct {
     
     PublicValue string `json:"publicValue,omitempty"`
     
+    RegistryId string `json:"registryId,omitempty"`
+    
     RemoveTime string `json:"removeTime,omitempty"`
     
     Removed string `json:"removed,omitempty"`
@@ -30,8 +32,6 @@ type RegistryCredential struct {
     SecretValue string `json:"secretValue,omitempty"`
     
     State string `json:"state,omitempty"`
-    
-    StoragePoolId string `json:"storagePoolId,omitempty"`
     
     Transitioning string `json:"transitioning,omitempty"`
     
