@@ -9,6 +9,8 @@ type Machine struct {
     
     AccountId string `json:"accountId,omitempty"`
     
+    Amazonec2Config Amazonec2Config `json:"amazonec2Config,omitempty"`
+    
     AuthCertificateAuthority string `json:"authCertificateAuthority,omitempty"`
     
     AuthKey string `json:"authKey,omitempty"`
