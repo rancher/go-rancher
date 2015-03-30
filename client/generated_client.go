@@ -76,6 +76,7 @@ type RancherClient struct {
     StatsAccess StatsAccessOperations
     VirtualboxConfig VirtualboxConfigOperations
     DigitaloceanConfig DigitaloceanConfigOperations
+    Amazonec2Config Amazonec2ConfigOperations
     Machine MachineOperations
     Register RegisterOperations
     RegistrationToken RegistrationTokenOperations
@@ -162,6 +163,7 @@ func constructClient() *RancherClient {
     client.StatsAccess = newStatsAccessClient(client)
     client.VirtualboxConfig = newVirtualboxConfigClient(client)
     client.DigitaloceanConfig = newDigitaloceanConfigClient(client)
+    client.Amazonec2Config = newAmazonec2ConfigClient(client)
     client.Machine = newMachineClient(client)
     client.Register = newRegisterClient(client)
     client.RegistrationToken = newRegistrationTokenClient(client) 
