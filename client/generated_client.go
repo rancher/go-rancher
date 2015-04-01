@@ -12,6 +12,7 @@ type RancherClient struct {
     GlobalLoadBalancerPolicy GlobalLoadBalancerPolicyOperations
     GlobalLoadBalancerHealthCheck GlobalLoadBalancerHealthCheckOperations
     ExternalHandlerProcessConfig ExternalHandlerProcessConfigOperations
+    ComposeConfig ComposeConfigOperations
     Container ContainerOperations
     ApiKey ApiKeyOperations
     InstanceStop InstanceStopOperations
@@ -25,12 +26,13 @@ type RancherClient struct {
     RemoveLoadBalancerInput RemoveLoadBalancerInputOperations
     AddRemoveLoadBalancerHostInput AddRemoveLoadBalancerHostInputOperations
     SetLoadBalancerListenersInput SetLoadBalancerListenersInputOperations
-    SetLoadBalancerTargetsInput SetLoadBalancerTargetsInputOperations
-    SetLoadBalancerHostsInput SetLoadBalancerHostsInputOperations
+    LoadBalancerUpdateAllInput LoadBalancerUpdateAllInputOperations
     Cluster ClusterOperations
     AddRemoveClusterHostInput AddRemoveClusterHostInputOperations
     RegistryCredential RegistryCredentialOperations
     Registry RegistryOperations
+    AddRemoveServiceLinkInput AddRemoveServiceLinkInputOperations
+    ComposeConfigInput ComposeConfigInputOperations
     Account AccountOperations
     Agent AgentOperations
     Certificate CertificateOperations
@@ -39,6 +41,7 @@ type RancherClient struct {
     Credential CredentialOperations
     Databasechangelog DatabasechangelogOperations
     Databasechangeloglock DatabasechangeloglockOperations
+    Environment EnvironmentOperations
     ExternalHandler ExternalHandlerOperations
     ExternalHandlerExternalHandlerProcessMap ExternalHandlerExternalHandlerProcessMapOperations
     ExternalHandlerProcess ExternalHandlerProcessOperations
@@ -58,6 +61,7 @@ type RancherClient struct {
     Port PortOperations
     ProcessExecution ProcessExecutionOperations
     ProcessInstance ProcessInstanceOperations
+    Service ServiceOperations
     Setting SettingOperations
     StoragePool StoragePoolOperations
     Task TaskOperations
@@ -99,6 +103,7 @@ func constructClient() *RancherClient {
     client.GlobalLoadBalancerPolicy = newGlobalLoadBalancerPolicyClient(client)
     client.GlobalLoadBalancerHealthCheck = newGlobalLoadBalancerHealthCheckClient(client)
     client.ExternalHandlerProcessConfig = newExternalHandlerProcessConfigClient(client)
+    client.ComposeConfig = newComposeConfigClient(client)
     client.Container = newContainerClient(client)
     client.ApiKey = newApiKeyClient(client)
     client.InstanceStop = newInstanceStopClient(client)
@@ -112,12 +117,13 @@ func constructClient() *RancherClient {
     client.RemoveLoadBalancerInput = newRemoveLoadBalancerInputClient(client)
     client.AddRemoveLoadBalancerHostInput = newAddRemoveLoadBalancerHostInputClient(client)
     client.SetLoadBalancerListenersInput = newSetLoadBalancerListenersInputClient(client)
-    client.SetLoadBalancerTargetsInput = newSetLoadBalancerTargetsInputClient(client)
-    client.SetLoadBalancerHostsInput = newSetLoadBalancerHostsInputClient(client)
+    client.LoadBalancerUpdateAllInput = newLoadBalancerUpdateAllInputClient(client)
     client.Cluster = newClusterClient(client)
     client.AddRemoveClusterHostInput = newAddRemoveClusterHostInputClient(client)
     client.RegistryCredential = newRegistryCredentialClient(client)
     client.Registry = newRegistryClient(client)
+    client.AddRemoveServiceLinkInput = newAddRemoveServiceLinkInputClient(client)
+    client.ComposeConfigInput = newComposeConfigInputClient(client)
     client.Account = newAccountClient(client)
     client.Agent = newAgentClient(client)
     client.Certificate = newCertificateClient(client)
@@ -126,6 +132,7 @@ func constructClient() *RancherClient {
     client.Credential = newCredentialClient(client)
     client.Databasechangelog = newDatabasechangelogClient(client)
     client.Databasechangeloglock = newDatabasechangeloglockClient(client)
+    client.Environment = newEnvironmentClient(client)
     client.ExternalHandler = newExternalHandlerClient(client)
     client.ExternalHandlerExternalHandlerProcessMap = newExternalHandlerExternalHandlerProcessMapClient(client)
     client.ExternalHandlerProcess = newExternalHandlerProcessClient(client)
@@ -145,6 +152,7 @@ func constructClient() *RancherClient {
     client.Port = newPortClient(client)
     client.ProcessExecution = newProcessExecutionClient(client)
     client.ProcessInstance = newProcessInstanceClient(client)
+    client.Service = newServiceClient(client)
     client.Setting = newSettingClient(client)
     client.StoragePool = newStoragePoolClient(client)
     client.Task = newTaskClient(client)
