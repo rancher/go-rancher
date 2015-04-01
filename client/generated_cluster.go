@@ -13,8 +13,6 @@ type Cluster struct {
     
     ApiProxy string `json:"apiProxy,omitempty"`
     
-    CertificateId string `json:"certificateId,omitempty"`
-    
     ComputeTotal int `json:"computeTotal,omitempty"`
     
     Created string `json:"created,omitempty"`
