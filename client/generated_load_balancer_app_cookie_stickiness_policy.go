@@ -9,7 +9,7 @@ type LoadBalancerAppCookieStickinessPolicy struct {
     
     Cookie string `json:"cookie,omitempty"`
     
-    Length int `json:"length,omitempty"`
+    MaxLength int `json:"maxLength,omitempty"`
     
     Mode string `json:"mode,omitempty"`
     

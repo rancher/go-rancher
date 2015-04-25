@@ -21,6 +21,8 @@ type Account struct {
     
     Name string `json:"name,omitempty"`
     
+    ProjectId string `json:"projectId,omitempty"`
+    
     RemoveTime string `json:"removeTime,omitempty"`
     
     Removed string `json:"removed,omitempty"`

@@ -13,11 +13,11 @@ type LoadBalancerHealthCheck struct {
     
     Name string `json:"name,omitempty"`
     
+    RequestLine string `json:"requestLine,omitempty"`
+    
     ResponseTimeout int `json:"responseTimeout,omitempty"`
     
     UnhealthyThreshold int `json:"unhealthyThreshold,omitempty"`
-    
-    Uri string `json:"uri,omitempty"`
     
 }
 

@@ -15,6 +15,8 @@ type Instance struct {
     
     Description string `json:"description,omitempty"`
     
+    ExternalId string `json:"externalId,omitempty"`
+    
     Kind string `json:"kind,omitempty"`
     
     Name string `json:"name,omitempty"`

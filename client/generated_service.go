@@ -62,6 +62,7 @@ type ServiceOperations interface {
     ActionCreate (*Service) (*Service, error)
     ActionDeactivate (*Service) (*Service, error)
     ActionRemove (*Service) (*Service, error)
+    ActionUpdate (*Service) (*Service, error)
 }
 
 func newServiceClient(rancherClient *RancherClient) *ServiceClient {
@@ -119,5 +120,11 @@ func (c *ServiceClient) ActionDeactivate(resource *Service) (*Service, error) {
 func (c *ServiceClient) ActionRemove(resource *Service) (*Service, error) {
 	resp := &Service{}
 	err := c.rancherClient.doEmptyAction(SERVICE_TYPE, "remove", &resource.Resource, resp)
+	return resp, err
+}
+
+func (c *ServiceClient) ActionUpdate(resource *Service) (*Service, error) {
+	resp := &Service{}
+	err := c.rancherClient.doEmptyAction(SERVICE_TYPE, "update", &resource.Resource, resp)
 	return resp, err
 }

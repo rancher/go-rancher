@@ -13,31 +13,36 @@ type RancherClient struct {
     GlobalLoadBalancerHealthCheck GlobalLoadBalancerHealthCheckOperations
     ExternalHandlerProcessConfig ExternalHandlerProcessConfigOperations
     ComposeConfig ComposeConfigOperations
-    Container ContainerOperations
-    ApiKey ApiKeyOperations
-    InstanceStop InstanceStopOperations
-    InstanceConsole InstanceConsoleOperations
-    InstanceConsoleInput InstanceConsoleInputOperations
-    IpAddressAssociateInput IpAddressAssociateInputOperations
-    Project ProjectOperations
+    AddLoadBalancerInput AddLoadBalancerInputOperations
+    AddRemoveClusterHostInput AddRemoveClusterHostInputOperations
+    AddRemoveLoadBalancerHostInput AddRemoveLoadBalancerHostInputOperations
     AddRemoveLoadBalancerListenerInput AddRemoveLoadBalancerListenerInputOperations
     AddRemoveLoadBalancerTargetInput AddRemoveLoadBalancerTargetInputOperations
-    AddLoadBalancerInput AddLoadBalancerInputOperations
-    RemoveLoadBalancerInput RemoveLoadBalancerInputOperations
-    AddRemoveLoadBalancerHostInput AddRemoveLoadBalancerHostInputOperations
-    SetLoadBalancerListenersInput SetLoadBalancerListenersInputOperations
-    LoadBalancerUpdateAllInput LoadBalancerUpdateAllInputOperations
-    Cluster ClusterOperations
-    AddRemoveClusterHostInput AddRemoveClusterHostInputOperations
-    RegistryCredential RegistryCredentialOperations
-    Registry RegistryOperations
     AddRemoveServiceLinkInput AddRemoveServiceLinkInputOperations
+    ApiKey ApiKeyOperations
+    Cluster ClusterOperations
     ComposeConfigInput ComposeConfigInputOperations
+    Container ContainerOperations
+    InstanceConsole InstanceConsoleOperations
+    InstanceConsoleInput InstanceConsoleInputOperations
+    InstanceStop InstanceStopOperations
+    IpAddressAssociateInput IpAddressAssociateInputOperations
+    Project ProjectOperations
+    Registry RegistryOperations
+    RegistryCredential RegistryCredentialOperations
+    RemoveLoadBalancerInput RemoveLoadBalancerInputOperations
+    SetLoadBalancerHostsInput SetLoadBalancerHostsInputOperations
+    SetLoadBalancerListenersInput SetLoadBalancerListenersInputOperations
+    SetLoadBalancerTargetsInput SetLoadBalancerTargetsInputOperations
+    SetProjectMembersInput SetProjectMembersInputOperations
+    SetServiceLinksInput SetServiceLinksInputOperations
+    LoadBalancerService LoadBalancerServiceOperations
     Account AccountOperations
     Agent AgentOperations
     Certificate CertificateOperations
     ConfigItem ConfigItemOperations
     ConfigItemStatus ConfigItemStatusOperations
+    ContainerEvent ContainerEventOperations
     Credential CredentialOperations
     Databasechangelog DatabasechangelogOperations
     Databasechangeloglock DatabasechangeloglockOperations
@@ -53,6 +58,8 @@ type RancherClient struct {
     IpAddress IpAddressOperations
     LoadBalancer LoadBalancerOperations
     LoadBalancerConfig LoadBalancerConfigOperations
+    LoadBalancerConfigListenerMap LoadBalancerConfigListenerMapOperations
+    LoadBalancerHostMap LoadBalancerHostMapOperations
     LoadBalancerListener LoadBalancerListenerOperations
     LoadBalancerTarget LoadBalancerTargetOperations
     Mount MountOperations
@@ -61,6 +68,7 @@ type RancherClient struct {
     Port PortOperations
     ProcessExecution ProcessExecutionOperations
     ProcessInstance ProcessInstanceOperations
+    ProjectMember ProjectMemberOperations
     Service ServiceOperations
     Setting SettingOperations
     StoragePool StoragePoolOperations
@@ -76,11 +84,13 @@ type RancherClient struct {
     ExtensionPoint ExtensionPointOperations
     ProcessDefinition ProcessDefinitionOperations
     ResourceDefinition ResourceDefinitionOperations
+    StateTransition StateTransitionOperations
     Githubconfig GithubconfigOperations
     StatsAccess StatsAccessOperations
     VirtualboxConfig VirtualboxConfigOperations
     DigitaloceanConfig DigitaloceanConfigOperations
     Amazonec2Config Amazonec2ConfigOperations
+    PacketConfig PacketConfigOperations
     Machine MachineOperations
     Register RegisterOperations
     RegistrationToken RegistrationTokenOperations
@@ -104,31 +114,36 @@ func constructClient() *RancherClient {
     client.GlobalLoadBalancerHealthCheck = newGlobalLoadBalancerHealthCheckClient(client)
     client.ExternalHandlerProcessConfig = newExternalHandlerProcessConfigClient(client)
     client.ComposeConfig = newComposeConfigClient(client)
-    client.Container = newContainerClient(client)
-    client.ApiKey = newApiKeyClient(client)
-    client.InstanceStop = newInstanceStopClient(client)
-    client.InstanceConsole = newInstanceConsoleClient(client)
-    client.InstanceConsoleInput = newInstanceConsoleInputClient(client)
-    client.IpAddressAssociateInput = newIpAddressAssociateInputClient(client)
-    client.Project = newProjectClient(client)
+    client.AddLoadBalancerInput = newAddLoadBalancerInputClient(client)
+    client.AddRemoveClusterHostInput = newAddRemoveClusterHostInputClient(client)
+    client.AddRemoveLoadBalancerHostInput = newAddRemoveLoadBalancerHostInputClient(client)
     client.AddRemoveLoadBalancerListenerInput = newAddRemoveLoadBalancerListenerInputClient(client)
     client.AddRemoveLoadBalancerTargetInput = newAddRemoveLoadBalancerTargetInputClient(client)
-    client.AddLoadBalancerInput = newAddLoadBalancerInputClient(client)
-    client.RemoveLoadBalancerInput = newRemoveLoadBalancerInputClient(client)
-    client.AddRemoveLoadBalancerHostInput = newAddRemoveLoadBalancerHostInputClient(client)
-    client.SetLoadBalancerListenersInput = newSetLoadBalancerListenersInputClient(client)
-    client.LoadBalancerUpdateAllInput = newLoadBalancerUpdateAllInputClient(client)
-    client.Cluster = newClusterClient(client)
-    client.AddRemoveClusterHostInput = newAddRemoveClusterHostInputClient(client)
-    client.RegistryCredential = newRegistryCredentialClient(client)
-    client.Registry = newRegistryClient(client)
     client.AddRemoveServiceLinkInput = newAddRemoveServiceLinkInputClient(client)
+    client.ApiKey = newApiKeyClient(client)
+    client.Cluster = newClusterClient(client)
     client.ComposeConfigInput = newComposeConfigInputClient(client)
+    client.Container = newContainerClient(client)
+    client.InstanceConsole = newInstanceConsoleClient(client)
+    client.InstanceConsoleInput = newInstanceConsoleInputClient(client)
+    client.InstanceStop = newInstanceStopClient(client)
+    client.IpAddressAssociateInput = newIpAddressAssociateInputClient(client)
+    client.Project = newProjectClient(client)
+    client.Registry = newRegistryClient(client)
+    client.RegistryCredential = newRegistryCredentialClient(client)
+    client.RemoveLoadBalancerInput = newRemoveLoadBalancerInputClient(client)
+    client.SetLoadBalancerHostsInput = newSetLoadBalancerHostsInputClient(client)
+    client.SetLoadBalancerListenersInput = newSetLoadBalancerListenersInputClient(client)
+    client.SetLoadBalancerTargetsInput = newSetLoadBalancerTargetsInputClient(client)
+    client.SetProjectMembersInput = newSetProjectMembersInputClient(client)
+    client.SetServiceLinksInput = newSetServiceLinksInputClient(client)
+    client.LoadBalancerService = newLoadBalancerServiceClient(client)
     client.Account = newAccountClient(client)
     client.Agent = newAgentClient(client)
     client.Certificate = newCertificateClient(client)
     client.ConfigItem = newConfigItemClient(client)
     client.ConfigItemStatus = newConfigItemStatusClient(client)
+    client.ContainerEvent = newContainerEventClient(client)
     client.Credential = newCredentialClient(client)
     client.Databasechangelog = newDatabasechangelogClient(client)
     client.Databasechangeloglock = newDatabasechangeloglockClient(client)
@@ -144,6 +159,8 @@ func constructClient() *RancherClient {
     client.IpAddress = newIpAddressClient(client)
     client.LoadBalancer = newLoadBalancerClient(client)
     client.LoadBalancerConfig = newLoadBalancerConfigClient(client)
+    client.LoadBalancerConfigListenerMap = newLoadBalancerConfigListenerMapClient(client)
+    client.LoadBalancerHostMap = newLoadBalancerHostMapClient(client)
     client.LoadBalancerListener = newLoadBalancerListenerClient(client)
     client.LoadBalancerTarget = newLoadBalancerTargetClient(client)
     client.Mount = newMountClient(client)
@@ -152,6 +169,7 @@ func constructClient() *RancherClient {
     client.Port = newPortClient(client)
     client.ProcessExecution = newProcessExecutionClient(client)
     client.ProcessInstance = newProcessInstanceClient(client)
+    client.ProjectMember = newProjectMemberClient(client)
     client.Service = newServiceClient(client)
     client.Setting = newSettingClient(client)
     client.StoragePool = newStoragePoolClient(client)
@@ -167,11 +185,13 @@ func constructClient() *RancherClient {
     client.ExtensionPoint = newExtensionPointClient(client)
     client.ProcessDefinition = newProcessDefinitionClient(client)
     client.ResourceDefinition = newResourceDefinitionClient(client)
+    client.StateTransition = newStateTransitionClient(client)
     client.Githubconfig = newGithubconfigClient(client)
     client.StatsAccess = newStatsAccessClient(client)
     client.VirtualboxConfig = newVirtualboxConfigClient(client)
     client.DigitaloceanConfig = newDigitaloceanConfigClient(client)
     client.Amazonec2Config = newAmazonec2ConfigClient(client)
+    client.PacketConfig = newPacketConfigClient(client)
     client.Machine = newMachineClient(client)
     client.Register = newRegisterClient(client)
     client.RegistrationToken = newRegistrationTokenClient(client) 

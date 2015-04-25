@@ -7,6 +7,8 @@ const (
 type LoadBalancerTarget struct {
 	Resource
     
+    AccountId string `json:"accountId,omitempty"`
+    
     Created string `json:"created,omitempty"`
     
     Data map[string]interface{} `json:"data,omitempty"`

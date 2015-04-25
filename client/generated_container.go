@@ -51,6 +51,8 @@ type Container struct {
     
     Environment map[string]interface{} `json:"environment,omitempty"`
     
+    ExternalId string `json:"externalId,omitempty"`
+    
     FirstRunning string `json:"firstRunning,omitempty"`
     
     Hostname string `json:"hostname,omitempty"`
@@ -68,6 +70,8 @@ type Container struct {
     MemorySwap int `json:"memorySwap,omitempty"`
     
     Name string `json:"name,omitempty"`
+    
+    NativeContainer bool `json:"nativeContainer,omitempty"`
     
     NetworkIds []string `json:"networkIds,omitempty"`
     
