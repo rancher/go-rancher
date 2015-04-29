@@ -7,6 +7,8 @@ const (
 type Githubconfig struct {
 	Resource
     
+    AccessMode string `json:"accessMode,omitempty"`
+    
     AllowedOrganizations []string `json:"allowedOrganizations,omitempty"`
     
     AllowedUsers []string `json:"allowedUsers,omitempty"`

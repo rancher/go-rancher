@@ -25,6 +25,8 @@ type LoadBalancerListener struct {
     
     Removed string `json:"removed,omitempty"`
     
+    ServiceId string `json:"serviceId,omitempty"`
+    
     SourcePort int `json:"sourcePort,omitempty"`
     
     SourceProtocol string `json:"sourceProtocol,omitempty"`

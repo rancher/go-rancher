@@ -13,13 +13,13 @@ type Project struct {
     
     Description string `json:"description,omitempty"`
     
-    ExternalId string `json:"externalId,omitempty"`
-    
-    ExternalIdType string `json:"externalIdType,omitempty"`
-    
     Kind string `json:"kind,omitempty"`
     
+    Members []interface{} `json:"members,omitempty"`
+    
     Name string `json:"name,omitempty"`
+    
+    ProjectId string `json:"projectId,omitempty"`
     
     RemoveTime string `json:"removeTime,omitempty"`
     

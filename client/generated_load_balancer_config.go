@@ -29,6 +29,8 @@ type LoadBalancerConfig struct {
     
     Removed string `json:"removed,omitempty"`
     
+    ServiceId string `json:"serviceId,omitempty"`
+    
     State string `json:"state,omitempty"`
     
     Transitioning string `json:"transitioning,omitempty"`

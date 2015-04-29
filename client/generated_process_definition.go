@@ -19,6 +19,8 @@ type ProcessDefinition struct {
     
     ResourceType string `json:"resourceType,omitempty"`
     
+    StateTransitions []interface{} `json:"stateTransitions,omitempty"`
+    
 }
 
 type ProcessDefinitionCollection struct {

@@ -33,6 +33,8 @@ type Machine struct {
     
     Name string `json:"name,omitempty"`
     
+    PacketConfig PacketConfig `json:"packetConfig,omitempty"`
+    
     RemoveTime string `json:"removeTime,omitempty"`
     
     Removed string `json:"removed,omitempty"`

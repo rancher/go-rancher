@@ -27,6 +27,8 @@ type LoadBalancer struct {
     
     Removed string `json:"removed,omitempty"`
     
+    ServiceId string `json:"serviceId,omitempty"`
+    
     State string `json:"state,omitempty"`
     
     Transitioning string `json:"transitioning,omitempty"`
@@ -58,6 +60,7 @@ type LoadBalancerOperations interface {
 	Delete(container *LoadBalancer) error
     ActionCreate (*LoadBalancer) (*LoadBalancer, error)
     ActionRemove (*LoadBalancer) (*LoadBalancer, error)
+    ActionUpdate (*LoadBalancer) (*LoadBalancer, error)
 }
 
 func newLoadBalancerClient(rancherClient *RancherClient) *LoadBalancerClient {
@@ -103,5 +106,11 @@ func (c *LoadBalancerClient) ActionCreate(resource *LoadBalancer) (*LoadBalancer
 func (c *LoadBalancerClient) ActionRemove(resource *LoadBalancer) (*LoadBalancer, error) {
 	resp := &LoadBalancer{}
 	err := c.rancherClient.doEmptyAction(LOAD_BALANCER_TYPE, "remove", &resource.Resource, resp)
+	return resp, err
+}
+
+func (c *LoadBalancerClient) ActionUpdate(resource *LoadBalancer) (*LoadBalancer, error) {
+	resp := &LoadBalancer{}
+	err := c.rancherClient.doEmptyAction(LOAD_BALANCER_TYPE, "update", &resource.Resource, resp)
 	return resp, err
 }
