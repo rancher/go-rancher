@@ -71,6 +71,7 @@ type RancherClient struct {
     ProjectMember ProjectMemberOperations
     Service ServiceOperations
     Setting SettingOperations
+    Snapshot SnapshotOperations
     StoragePool StoragePoolOperations
     Task TaskOperations
     TaskInstance TaskInstanceOperations
@@ -172,6 +173,7 @@ func constructClient() *RancherClient {
     client.ProjectMember = newProjectMemberClient(client)
     client.Service = newServiceClient(client)
     client.Setting = newSettingClient(client)
+    client.Snapshot = newSnapshotClient(client)
     client.StoragePool = newStoragePoolClient(client)
     client.Task = newTaskClient(client)
     client.TaskInstance = newTaskInstanceClient(client)

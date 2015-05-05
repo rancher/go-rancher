@@ -17,9 +17,7 @@ type Container struct {
     
     CapDrop []string `json:"capDrop,omitempty"`
     
-    Command string `json:"command,omitempty"`
-    
-    CommandArgs []string `json:"commandArgs,omitempty"`
+    Command []string `json:"command,omitempty"`
     
     Count int `json:"count,omitempty"`
     
