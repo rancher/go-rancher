@@ -634,7 +634,7 @@
           "update": true,
           "nullable": false,
           "unique": false,
-          "required": false,
+          "required": true,
           "min": null,
           "max": null,
           "minLength": null,
@@ -650,7 +650,7 @@
           "update": true,
           "nullable": true,
           "unique": false,
-          "required": false,
+          "required": true,
           "min": null,
           "max": null,
           "minLength": null,
@@ -733,7 +733,7 @@
           "update": true,
           "nullable": true,
           "unique": false,
-          "required": false,
+          "required": true,
           "min": null,
           "max": null,
           "minLength": null,
@@ -2834,22 +2834,6 @@
           "default": null
         },
         "command": {
-          "type": "string",
-          "validChars": null,
-          "invalidChars": null,
-          "create": true,
-          "update": false,
-          "nullable": true,
-          "unique": false,
-          "required": false,
-          "min": null,
-          "max": null,
-          "minLength": 1,
-          "maxLength": null,
-          "options": null,
-          "default": null
-        },
-        "commandArgs": {
           "type": "array[string]",
           "validChars": null,
           "invalidChars": null,
@@ -4285,6 +4269,7 @@
         "hosts",
         "images",
         "credentials",
+        "snapshots",
         "certificates"
       ],
       "resourceActions": {
@@ -4769,7 +4754,8 @@
         "images",
         "account",
         "credentials",
-        "volumes"
+        "volumes",
+        "snapshots"
       ],
       "resourceActions": {
         "update": {
@@ -5718,10 +5704,10 @@
         },
         "name": {
           "type": "string",
-          "validChars": "[a-zA-Z0-9]",
+          "validChars": "[a-zA-Z0-9]-",
           "invalidChars": null,
           "create": true,
-          "update": false,
+          "update": true,
           "nullable": true,
           "unique": false,
           "required": true,
@@ -5770,7 +5756,7 @@
           "invalidChars": null,
           "create": true,
           "update": true,
-          "nullable": true,
+          "nullable": false,
           "unique": false,
           "required": false,
           "min": null,
@@ -5881,7 +5867,7 @@
           "invalidChars": null,
           "create": true,
           "update": false,
-          "nullable": false,
+          "nullable": true,
           "unique": false,
           "required": false,
           "min": null,
@@ -6510,6 +6496,7 @@
         "hosts",
         "images",
         "credentials",
+        "snapshots",
         "certificates"
       ],
       "resourceActions": {
@@ -9235,7 +9222,7 @@
         },
         "name": {
           "type": "string",
-          "validChars": "[a-zA-Z0-9]",
+          "validChars": "[a-zA-Z0-9-]",
           "invalidChars": null,
           "create": true,
           "update": true,
@@ -9299,7 +9286,8 @@
             "active",
             "removed",
             "removing",
-            "requested"
+            "requested",
+            "updating-active"
           ],
           "default": null
         },
@@ -9487,6 +9475,10 @@
         "account"
       ],
       "resourceActions": {
+        "update": {
+          "input": null,
+          "output": "environment"
+        },
         "remove": {
           "input": null,
           "output": "environment"
@@ -19733,10 +19725,10 @@
         },
         "name": {
           "type": "string",
-          "validChars": "[a-zA-Z0-9]",
+          "validChars": "[a-zA-Z0-9]-",
           "invalidChars": null,
           "create": true,
-          "update": false,
+          "update": true,
           "nullable": true,
           "unique": false,
           "required": true,
@@ -19880,7 +19872,7 @@
           "invalidChars": null,
           "create": true,
           "update": true,
-          "nullable": true,
+          "nullable": false,
           "unique": false,
           "required": false,
           "min": null,
@@ -20200,6 +20192,448 @@
         "GET",
         "PUT",
         "DELETE"
+      ],
+      "collectionMethods": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "id": "snapshot",
+      "type": "schema",
+      "links": {
+        "self": "http://localhost:8080/v1/schemas/snapshot",
+        "collection": "http://localhost:8080/v1/snapshots"
+      },
+      "actions": {},
+      "pluralName": "snapshots",
+      "resourceFields": {
+        "accountId": {
+          "type": "reference[account]",
+          "validChars": null,
+          "invalidChars": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": 255,
+          "options": null,
+          "default": null
+        },
+        "created": {
+          "type": "date",
+          "validChars": null,
+          "invalidChars": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": 255,
+          "options": null,
+          "default": null
+        },
+        "data": {
+          "type": "map[json]",
+          "validChars": null,
+          "invalidChars": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": 65535,
+          "options": null,
+          "default": null
+        },
+        "description": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": 1024,
+          "options": null,
+          "default": null
+        },
+        "id": {
+          "type": "int",
+          "validChars": null,
+          "invalidChars": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "kind": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": 255,
+          "options": null,
+          "default": null
+        },
+        "name": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": 255,
+          "options": null,
+          "default": null
+        },
+        "removeTime": {
+          "type": "date",
+          "validChars": null,
+          "invalidChars": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": 255,
+          "options": null,
+          "default": null
+        },
+        "removed": {
+          "type": "date",
+          "validChars": null,
+          "invalidChars": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": 255,
+          "options": null,
+          "default": null
+        },
+        "state": {
+          "type": "enum",
+          "validChars": null,
+          "invalidChars": null,
+          "create": false,
+          "update": false,
+          "nullable": false,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": 128,
+          "options": [
+            "backed-up",
+            "backing-up",
+            "created",
+            "creating",
+            "removed",
+            "removing",
+            "requested"
+          ],
+          "default": null
+        },
+        "uuid": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": 128,
+          "options": null,
+          "default": null
+        },
+        "volumeId": {
+          "type": "reference[volume]",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": false,
+          "unique": false,
+          "required": true,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": 255,
+          "options": null,
+          "default": null
+        },
+        "transitioning": {
+          "type": "enum",
+          "validChars": null,
+          "invalidChars": null,
+          "create": false,
+          "update": false,
+          "nullable": false,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": [
+            "yes",
+            "no",
+            "error"
+          ],
+          "default": null
+        },
+        "transitioningMessage": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "transitioningProgress": {
+          "type": "int",
+          "validChars": null,
+          "invalidChars": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "managedSnapshotUUID": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "managedVolumeUUID": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        }
+      },
+      "collectionFilters": {
+        "accountId": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "null",
+            "notnull"
+          ]
+        },
+        "created": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "lt",
+            "lte",
+            "gt",
+            "gte",
+            "null",
+            "notnull"
+          ]
+        },
+        "description": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "prefix",
+            "like",
+            "notlike",
+            "null",
+            "notnull"
+          ]
+        },
+        "id": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "lt",
+            "lte",
+            "gt",
+            "gte",
+            "null",
+            "notnull"
+          ]
+        },
+        "kind": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "prefix",
+            "like",
+            "notlike",
+            "null",
+            "notnull"
+          ]
+        },
+        "name": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "prefix",
+            "like",
+            "notlike",
+            "null",
+            "notnull"
+          ]
+        },
+        "removeTime": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "lt",
+            "lte",
+            "gt",
+            "gte",
+            "null",
+            "notnull"
+          ]
+        },
+        "removed": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "lt",
+            "lte",
+            "gt",
+            "gte",
+            "null",
+            "notnull"
+          ]
+        },
+        "state": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "null",
+            "notnull"
+          ]
+        },
+        "uuid": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "prefix",
+            "like",
+            "notlike",
+            "null",
+            "notnull"
+          ]
+        },
+        "volumeId": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "null",
+            "notnull"
+          ]
+        }
+      },
+      "includeableLinks": [
+        "storagepools",
+        "volume",
+        "account"
+      ],
+      "resourceActions": {
+        "remove": {
+          "input": null,
+          "output": "snapshot"
+        },
+        "create": {
+          "input": null,
+          "output": "snapshot"
+        },
+        "backup": {
+          "input": null,
+          "output": "snapshot"
+        }
+      },
+      "collectionActions": {},
+      "collectionFields": {},
+      "resourceMethods": [
+        "GET"
       ],
       "collectionMethods": [
         "GET",
@@ -20622,7 +21056,8 @@
         "images",
         "account",
         "credentials",
-        "volumes"
+        "volumes",
+        "snapshots"
       ],
       "resourceActions": {
         "update": {
@@ -21508,6 +21943,7 @@
         "storagepools",
         "image",
         "account",
+        "snapshots",
         "instance"
       ],
       "resourceActions": {
@@ -23085,8 +23521,8 @@
           "type": "map[json]",
           "validChars": null,
           "invalidChars": null,
-          "create": true,
-          "update": true,
+          "create": false,
+          "update": false,
           "nullable": true,
           "unique": false,
           "required": false,
@@ -23352,22 +23788,6 @@
           "options": null,
           "default": null
         },
-        "extractedConfig": {
-          "type": "string",
-          "validChars": null,
-          "invalidChars": null,
-          "create": false,
-          "update": true,
-          "nullable": true,
-          "unique": false,
-          "required": false,
-          "min": null,
-          "max": null,
-          "minLength": null,
-          "maxLength": null,
-          "options": null,
-          "default": null
-        },
         "virtualboxConfig": {
           "type": "virtualboxConfig",
           "validChars": null,
@@ -23592,7 +24012,6 @@
       "collectionFields": {},
       "resourceMethods": [
         "GET",
-        "PUT",
         "DELETE"
       ],
       "collectionMethods": [
@@ -24088,7 +24507,7 @@
           "type": "reference[account]",
           "validChars": null,
           "invalidChars": null,
-          "create": true,
+          "create": false,
           "update": false,
           "nullable": true,
           "unique": false,

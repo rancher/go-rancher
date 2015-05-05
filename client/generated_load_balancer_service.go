@@ -23,7 +23,7 @@ type LoadBalancerService struct {
     
     LaunchConfig Container `json:"launchConfig,omitempty"`
     
-    LoadBalancerConfig LoadBalancerConfig `json:"loadBalancerConfig,omitempty"`
+    LoadBalancerConfig *LoadBalancerConfig `json:"loadBalancerConfig,omitempty"`
     
     Name string `json:"name,omitempty"`
     

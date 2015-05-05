@@ -59,6 +59,9 @@ type EnvironmentOperations interface {
     
     ActionRemove (*Environment) (*Environment, error)
     
+    
+    ActionUpdate (*Environment) (*Environment, error)
+    
 }
 
 func newEnvironmentClient(rancherClient *RancherClient) *EnvironmentClient {
@@ -118,6 +121,15 @@ func (c *EnvironmentClient) ActionRemove (resource *Environment) (*Environment, 
 	resp := &Environment{}
     
 	err := c.rancherClient.doAction(ENVIRONMENT_TYPE, "remove", &resource.Resource, nil, resp)
+    
+	return resp, err
+}
+    
+func (c *EnvironmentClient) ActionUpdate (resource *Environment) (*Environment, error) {
+    
+	resp := &Environment{}
+    
+	err := c.rancherClient.doAction(ENVIRONMENT_TYPE, "update", &resource.Resource, nil, resp)
     
 	return resp, err
 }

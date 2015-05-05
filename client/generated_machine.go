@@ -27,8 +27,6 @@ type Machine struct {
     
     ExternalId string `json:"externalId,omitempty"`
     
-    ExtractedConfig string `json:"extractedConfig,omitempty"`
-    
     Kind string `json:"kind,omitempty"`
     
     Name string `json:"name,omitempty"`

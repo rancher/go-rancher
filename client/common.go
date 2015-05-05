@@ -9,12 +9,17 @@ import (
 	"io/ioutil"
 	"net/http"
 	"net/url"
+	"os"
 	"regexp"
 )
 
 const (
 	SELF       = "self"
 	COLLECTION = "collection"
+)
+
+var (
+	debug = false
 )
 
 type ClientOpts struct {
@@ -194,6 +199,10 @@ func (rancherClient *RancherBaseClient) doGet(url string, opts *ListOpts, respOb
 		return err
 	}
 
+	if debug {
+		fmt.Println("GET " + url)
+	}
+
 	client := rancherClient.newHttpClient()
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
@@ -216,6 +225,10 @@ func (rancherClient *RancherBaseClient) doGet(url string, opts *ListOpts, respOb
 	byteContent, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
 		return err
+	}
+
+	if debug {
+		fmt.Println("Response <= " + string(byteContent))
 	}
 
 	return json.Unmarshal(byteContent, respObject)
@@ -249,6 +262,11 @@ func (rancherClient *RancherBaseClient) doModify(method string, url string, crea
 		return err
 	}
 
+	if debug {
+		fmt.Println(method + " " + url)
+		fmt.Println("Request => " + string(bodyContent))
+	}
+
 	client := rancherClient.newHttpClient()
 	req, err := http.NewRequest(method, url, bytes.NewBuffer(bodyContent))
 	if err != nil {
@@ -276,8 +294,12 @@ func (rancherClient *RancherBaseClient) doModify(method string, url string, crea
 	}
 
 	if len(byteContent) > 0 {
+		if debug {
+			fmt.Println("Response <= " + string(byteContent))
+		}
 		return json.Unmarshal(byteContent, respObject)
 	}
+
 	return nil
 }
 
@@ -403,6 +425,9 @@ func (rancherClient *RancherBaseClient) doAction(schemaType string, action strin
 		if err != nil {
 			return err
 		}
+		if debug {
+			fmt.Println("Request => " + string(bodyContent))
+		}
 		input = bytes.NewBuffer(bodyContent)
 	}
 
@@ -432,5 +457,16 @@ func (rancherClient *RancherBaseClient) doAction(schemaType string, action strin
 		return err
 	}
 
+	if debug {
+		fmt.Println("Response <= " + string(byteContent))
+	}
+
 	return json.Unmarshal(byteContent, respObject)
+}
+
+func init() {
+	debug = os.Getenv("RANCHER_CLIENT_DEBUG") == "true"
+	if debug {
+		fmt.Println("Rancher client debug on")
+	}
 }
