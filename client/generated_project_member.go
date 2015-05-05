@@ -56,13 +56,27 @@ type ProjectMemberOperations interface {
 	Update(existing *ProjectMember, updates interface{}) (*ProjectMember, error)
 	ById(id string) (*ProjectMember, error)
 	Delete(container *ProjectMember) error
+    
     ActionActivate (*ProjectMember) (*ProjectMember, error)
+    
+    
     ActionCreate (*ProjectMember) (*ProjectMember, error)
+    
+    
     ActionDeactivate (*ProjectMember) (*ProjectMember, error)
+    
+    
     ActionPurge (*ProjectMember) (*ProjectMember, error)
+    
+    
     ActionRemove (*ProjectMember) (*ProjectMember, error)
+    
+    
     ActionRestore (*ProjectMember) (*ProjectMember, error)
+    
+    
     ActionUpdate (*ProjectMember) (*ProjectMember, error)
+    
 }
 
 func newProjectMemberClient(rancherClient *RancherClient) *ProjectMemberClient {
@@ -98,45 +112,66 @@ func (c *ProjectMemberClient) ById(id string) (*ProjectMember, error) {
 func (c *ProjectMemberClient) Delete(container *ProjectMember) error {
 	return c.rancherClient.doResourceDelete(PROJECT_MEMBER_TYPE, &container.Resource)
 }
-
-func (c *ProjectMemberClient) ActionActivate(resource *ProjectMember) (*ProjectMember, error) {
+    
+func (c *ProjectMemberClient) ActionActivate (resource *ProjectMember) (*ProjectMember, error) {
+    
 	resp := &ProjectMember{}
-	err := c.rancherClient.doEmptyAction(PROJECT_MEMBER_TYPE, "activate", &resource.Resource, resp)
+    
+	err := c.rancherClient.doAction(PROJECT_MEMBER_TYPE, "activate", &resource.Resource, nil, resp)
+    
 	return resp, err
 }
-
-func (c *ProjectMemberClient) ActionCreate(resource *ProjectMember) (*ProjectMember, error) {
+    
+func (c *ProjectMemberClient) ActionCreate (resource *ProjectMember) (*ProjectMember, error) {
+    
 	resp := &ProjectMember{}
-	err := c.rancherClient.doEmptyAction(PROJECT_MEMBER_TYPE, "create", &resource.Resource, resp)
+    
+	err := c.rancherClient.doAction(PROJECT_MEMBER_TYPE, "create", &resource.Resource, nil, resp)
+    
 	return resp, err
 }
-
-func (c *ProjectMemberClient) ActionDeactivate(resource *ProjectMember) (*ProjectMember, error) {
+    
+func (c *ProjectMemberClient) ActionDeactivate (resource *ProjectMember) (*ProjectMember, error) {
+    
 	resp := &ProjectMember{}
-	err := c.rancherClient.doEmptyAction(PROJECT_MEMBER_TYPE, "deactivate", &resource.Resource, resp)
+    
+	err := c.rancherClient.doAction(PROJECT_MEMBER_TYPE, "deactivate", &resource.Resource, nil, resp)
+    
 	return resp, err
 }
-
-func (c *ProjectMemberClient) ActionPurge(resource *ProjectMember) (*ProjectMember, error) {
+    
+func (c *ProjectMemberClient) ActionPurge (resource *ProjectMember) (*ProjectMember, error) {
+    
 	resp := &ProjectMember{}
-	err := c.rancherClient.doEmptyAction(PROJECT_MEMBER_TYPE, "purge", &resource.Resource, resp)
+    
+	err := c.rancherClient.doAction(PROJECT_MEMBER_TYPE, "purge", &resource.Resource, nil, resp)
+    
 	return resp, err
 }
-
-func (c *ProjectMemberClient) ActionRemove(resource *ProjectMember) (*ProjectMember, error) {
+    
+func (c *ProjectMemberClient) ActionRemove (resource *ProjectMember) (*ProjectMember, error) {
+    
 	resp := &ProjectMember{}
-	err := c.rancherClient.doEmptyAction(PROJECT_MEMBER_TYPE, "remove", &resource.Resource, resp)
+    
+	err := c.rancherClient.doAction(PROJECT_MEMBER_TYPE, "remove", &resource.Resource, nil, resp)
+    
 	return resp, err
 }
-
-func (c *ProjectMemberClient) ActionRestore(resource *ProjectMember) (*ProjectMember, error) {
+    
+func (c *ProjectMemberClient) ActionRestore (resource *ProjectMember) (*ProjectMember, error) {
+    
 	resp := &ProjectMember{}
-	err := c.rancherClient.doEmptyAction(PROJECT_MEMBER_TYPE, "restore", &resource.Resource, resp)
+    
+	err := c.rancherClient.doAction(PROJECT_MEMBER_TYPE, "restore", &resource.Resource, nil, resp)
+    
 	return resp, err
 }
-
-func (c *ProjectMemberClient) ActionUpdate(resource *ProjectMember) (*ProjectMember, error) {
+    
+func (c *ProjectMemberClient) ActionUpdate (resource *ProjectMember) (*ProjectMember, error) {
+    
 	resp := &ProjectMember{}
-	err := c.rancherClient.doEmptyAction(PROJECT_MEMBER_TYPE, "update", &resource.Resource, resp)
+    
+	err := c.rancherClient.doAction(PROJECT_MEMBER_TYPE, "update", &resource.Resource, nil, resp)
+    
 	return resp, err
 }

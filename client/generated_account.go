@@ -54,13 +54,27 @@ type AccountOperations interface {
 	Update(existing *Account, updates interface{}) (*Account, error)
 	ById(id string) (*Account, error)
 	Delete(container *Account) error
+    
     ActionActivate (*Account) (*Account, error)
+    
+    
     ActionCreate (*Account) (*Account, error)
+    
+    
     ActionDeactivate (*Account) (*Account, error)
+    
+    
     ActionPurge (*Account) (*Account, error)
+    
+    
     ActionRemove (*Account) (*Account, error)
+    
+    
     ActionRestore (*Account) (*Account, error)
+    
+    
     ActionUpdate (*Account) (*Account, error)
+    
 }
 
 func newAccountClient(rancherClient *RancherClient) *AccountClient {
@@ -96,45 +110,66 @@ func (c *AccountClient) ById(id string) (*Account, error) {
 func (c *AccountClient) Delete(container *Account) error {
 	return c.rancherClient.doResourceDelete(ACCOUNT_TYPE, &container.Resource)
 }
-
-func (c *AccountClient) ActionActivate(resource *Account) (*Account, error) {
+    
+func (c *AccountClient) ActionActivate (resource *Account) (*Account, error) {
+    
 	resp := &Account{}
-	err := c.rancherClient.doEmptyAction(ACCOUNT_TYPE, "activate", &resource.Resource, resp)
+    
+	err := c.rancherClient.doAction(ACCOUNT_TYPE, "activate", &resource.Resource, nil, resp)
+    
 	return resp, err
 }
-
-func (c *AccountClient) ActionCreate(resource *Account) (*Account, error) {
+    
+func (c *AccountClient) ActionCreate (resource *Account) (*Account, error) {
+    
 	resp := &Account{}
-	err := c.rancherClient.doEmptyAction(ACCOUNT_TYPE, "create", &resource.Resource, resp)
+    
+	err := c.rancherClient.doAction(ACCOUNT_TYPE, "create", &resource.Resource, nil, resp)
+    
 	return resp, err
 }
-
-func (c *AccountClient) ActionDeactivate(resource *Account) (*Account, error) {
+    
+func (c *AccountClient) ActionDeactivate (resource *Account) (*Account, error) {
+    
 	resp := &Account{}
-	err := c.rancherClient.doEmptyAction(ACCOUNT_TYPE, "deactivate", &resource.Resource, resp)
+    
+	err := c.rancherClient.doAction(ACCOUNT_TYPE, "deactivate", &resource.Resource, nil, resp)
+    
 	return resp, err
 }
-
-func (c *AccountClient) ActionPurge(resource *Account) (*Account, error) {
+    
+func (c *AccountClient) ActionPurge (resource *Account) (*Account, error) {
+    
 	resp := &Account{}
-	err := c.rancherClient.doEmptyAction(ACCOUNT_TYPE, "purge", &resource.Resource, resp)
+    
+	err := c.rancherClient.doAction(ACCOUNT_TYPE, "purge", &resource.Resource, nil, resp)
+    
 	return resp, err
 }
-
-func (c *AccountClient) ActionRemove(resource *Account) (*Account, error) {
+    
+func (c *AccountClient) ActionRemove (resource *Account) (*Account, error) {
+    
 	resp := &Account{}
-	err := c.rancherClient.doEmptyAction(ACCOUNT_TYPE, "remove", &resource.Resource, resp)
+    
+	err := c.rancherClient.doAction(ACCOUNT_TYPE, "remove", &resource.Resource, nil, resp)
+    
 	return resp, err
 }
-
-func (c *AccountClient) ActionRestore(resource *Account) (*Account, error) {
+    
+func (c *AccountClient) ActionRestore (resource *Account) (*Account, error) {
+    
 	resp := &Account{}
-	err := c.rancherClient.doEmptyAction(ACCOUNT_TYPE, "restore", &resource.Resource, resp)
+    
+	err := c.rancherClient.doAction(ACCOUNT_TYPE, "restore", &resource.Resource, nil, resp)
+    
 	return resp, err
 }
-
-func (c *AccountClient) ActionUpdate(resource *Account) (*Account, error) {
+    
+func (c *AccountClient) ActionUpdate (resource *Account) (*Account, error) {
+    
 	resp := &Account{}
-	err := c.rancherClient.doEmptyAction(ACCOUNT_TYPE, "update", &resource.Resource, resp)
+    
+	err := c.rancherClient.doAction(ACCOUNT_TYPE, "update", &resource.Resource, nil, resp)
+    
 	return resp, err
 }

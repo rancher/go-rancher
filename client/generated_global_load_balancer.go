@@ -54,8 +54,18 @@ type GlobalLoadBalancerOperations interface {
 	Update(existing *GlobalLoadBalancer, updates interface{}) (*GlobalLoadBalancer, error)
 	ById(id string) (*GlobalLoadBalancer, error)
 	Delete(container *GlobalLoadBalancer) error
+    
+    ActionAddloadbalancer (*GlobalLoadBalancer, *AddLoadBalancerInput) (*GlobalLoadBalancer, error)
+    
+    
     ActionCreate (*GlobalLoadBalancer) (*GlobalLoadBalancer, error)
+    
+    
     ActionRemove (*GlobalLoadBalancer) (*GlobalLoadBalancer, error)
+    
+    
+    ActionRemoveloadbalancer (*GlobalLoadBalancer, *RemoveLoadBalancerInput) (*GlobalLoadBalancer, error)
+    
 }
 
 func newGlobalLoadBalancerClient(rancherClient *RancherClient) *GlobalLoadBalancerClient {
@@ -91,15 +101,39 @@ func (c *GlobalLoadBalancerClient) ById(id string) (*GlobalLoadBalancer, error) 
 func (c *GlobalLoadBalancerClient) Delete(container *GlobalLoadBalancer) error {
 	return c.rancherClient.doResourceDelete(GLOBAL_LOAD_BALANCER_TYPE, &container.Resource)
 }
-
-func (c *GlobalLoadBalancerClient) ActionCreate(resource *GlobalLoadBalancer) (*GlobalLoadBalancer, error) {
+    
+func (c *GlobalLoadBalancerClient) ActionAddloadbalancer (resource *GlobalLoadBalancer, input *AddLoadBalancerInput) (*GlobalLoadBalancer, error) {
+    
 	resp := &GlobalLoadBalancer{}
-	err := c.rancherClient.doEmptyAction(GLOBAL_LOAD_BALANCER_TYPE, "create", &resource.Resource, resp)
+    
+	err := c.rancherClient.doAction(GLOBAL_LOAD_BALANCER_TYPE, "addloadbalancer", &resource.Resource, input, resp)
+    
 	return resp, err
 }
-
-func (c *GlobalLoadBalancerClient) ActionRemove(resource *GlobalLoadBalancer) (*GlobalLoadBalancer, error) {
+    
+func (c *GlobalLoadBalancerClient) ActionCreate (resource *GlobalLoadBalancer) (*GlobalLoadBalancer, error) {
+    
 	resp := &GlobalLoadBalancer{}
-	err := c.rancherClient.doEmptyAction(GLOBAL_LOAD_BALANCER_TYPE, "remove", &resource.Resource, resp)
+    
+	err := c.rancherClient.doAction(GLOBAL_LOAD_BALANCER_TYPE, "create", &resource.Resource, nil, resp)
+    
+	return resp, err
+}
+    
+func (c *GlobalLoadBalancerClient) ActionRemove (resource *GlobalLoadBalancer) (*GlobalLoadBalancer, error) {
+    
+	resp := &GlobalLoadBalancer{}
+    
+	err := c.rancherClient.doAction(GLOBAL_LOAD_BALANCER_TYPE, "remove", &resource.Resource, nil, resp)
+    
+	return resp, err
+}
+    
+func (c *GlobalLoadBalancerClient) ActionRemoveloadbalancer (resource *GlobalLoadBalancer, input *RemoveLoadBalancerInput) (*GlobalLoadBalancer, error) {
+    
+	resp := &GlobalLoadBalancer{}
+    
+	err := c.rancherClient.doAction(GLOBAL_LOAD_BALANCER_TYPE, "removeloadbalancer", &resource.Resource, input, resp)
+    
 	return resp, err
 }

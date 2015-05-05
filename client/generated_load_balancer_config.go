@@ -9,7 +9,7 @@ type LoadBalancerConfig struct {
     
     AccountId string `json:"accountId,omitempty"`
     
-    AppCookieStickinessPolicy LoadBalancerAppCookieStickinessPolicy `json:"appCookieStickinessPolicy,omitempty"`
+    AppCookieStickinessPolicy *LoadBalancerAppCookieStickinessPolicy `json:"appCookieStickinessPolicy,omitempty"`
     
     Created string `json:"created,omitempty"`
     
@@ -17,11 +17,11 @@ type LoadBalancerConfig struct {
     
     Description string `json:"description,omitempty"`
     
-    HealthCheck LoadBalancerHealthCheck `json:"healthCheck,omitempty"`
+    HealthCheck *LoadBalancerHealthCheck `json:"healthCheck,omitempty"`
     
     Kind string `json:"kind,omitempty"`
     
-    LbCookieStickinessPolicy LoadBalancerCookieStickinessPolicy `json:"lbCookieStickinessPolicy,omitempty"`
+    LbCookieStickinessPolicy *LoadBalancerCookieStickinessPolicy `json:"lbCookieStickinessPolicy,omitempty"`
     
     Name string `json:"name,omitempty"`
     
@@ -58,9 +58,24 @@ type LoadBalancerConfigOperations interface {
 	Update(existing *LoadBalancerConfig, updates interface{}) (*LoadBalancerConfig, error)
 	ById(id string) (*LoadBalancerConfig, error)
 	Delete(container *LoadBalancerConfig) error
+    
+    ActionAddlistener (*LoadBalancerConfig, *AddRemoveLoadBalancerListenerInput) (*LoadBalancerConfig, error)
+    
+    
     ActionCreate (*LoadBalancerConfig) (*LoadBalancerConfig, error)
+    
+    
     ActionRemove (*LoadBalancerConfig) (*LoadBalancerConfig, error)
+    
+    
+    ActionRemovelistener (*LoadBalancerConfig, *AddRemoveLoadBalancerListenerInput) (*LoadBalancerConfig, error)
+    
+    
+    ActionSetlisteners (*LoadBalancerConfig, *SetLoadBalancerListenersInput) (*LoadBalancerConfig, error)
+    
+    
     ActionUpdate (*LoadBalancerConfig) (*LoadBalancerConfig, error)
+    
 }
 
 func newLoadBalancerConfigClient(rancherClient *RancherClient) *LoadBalancerConfigClient {
@@ -96,21 +111,57 @@ func (c *LoadBalancerConfigClient) ById(id string) (*LoadBalancerConfig, error) 
 func (c *LoadBalancerConfigClient) Delete(container *LoadBalancerConfig) error {
 	return c.rancherClient.doResourceDelete(LOAD_BALANCER_CONFIG_TYPE, &container.Resource)
 }
-
-func (c *LoadBalancerConfigClient) ActionCreate(resource *LoadBalancerConfig) (*LoadBalancerConfig, error) {
+    
+func (c *LoadBalancerConfigClient) ActionAddlistener (resource *LoadBalancerConfig, input *AddRemoveLoadBalancerListenerInput) (*LoadBalancerConfig, error) {
+    
 	resp := &LoadBalancerConfig{}
-	err := c.rancherClient.doEmptyAction(LOAD_BALANCER_CONFIG_TYPE, "create", &resource.Resource, resp)
+    
+	err := c.rancherClient.doAction(LOAD_BALANCER_CONFIG_TYPE, "addlistener", &resource.Resource, input, resp)
+    
 	return resp, err
 }
-
-func (c *LoadBalancerConfigClient) ActionRemove(resource *LoadBalancerConfig) (*LoadBalancerConfig, error) {
+    
+func (c *LoadBalancerConfigClient) ActionCreate (resource *LoadBalancerConfig) (*LoadBalancerConfig, error) {
+    
 	resp := &LoadBalancerConfig{}
-	err := c.rancherClient.doEmptyAction(LOAD_BALANCER_CONFIG_TYPE, "remove", &resource.Resource, resp)
+    
+	err := c.rancherClient.doAction(LOAD_BALANCER_CONFIG_TYPE, "create", &resource.Resource, nil, resp)
+    
 	return resp, err
 }
-
-func (c *LoadBalancerConfigClient) ActionUpdate(resource *LoadBalancerConfig) (*LoadBalancerConfig, error) {
+    
+func (c *LoadBalancerConfigClient) ActionRemove (resource *LoadBalancerConfig) (*LoadBalancerConfig, error) {
+    
 	resp := &LoadBalancerConfig{}
-	err := c.rancherClient.doEmptyAction(LOAD_BALANCER_CONFIG_TYPE, "update", &resource.Resource, resp)
+    
+	err := c.rancherClient.doAction(LOAD_BALANCER_CONFIG_TYPE, "remove", &resource.Resource, nil, resp)
+    
+	return resp, err
+}
+    
+func (c *LoadBalancerConfigClient) ActionRemovelistener (resource *LoadBalancerConfig, input *AddRemoveLoadBalancerListenerInput) (*LoadBalancerConfig, error) {
+    
+	resp := &LoadBalancerConfig{}
+    
+	err := c.rancherClient.doAction(LOAD_BALANCER_CONFIG_TYPE, "removelistener", &resource.Resource, input, resp)
+    
+	return resp, err
+}
+    
+func (c *LoadBalancerConfigClient) ActionSetlisteners (resource *LoadBalancerConfig, input *SetLoadBalancerListenersInput) (*LoadBalancerConfig, error) {
+    
+	resp := &LoadBalancerConfig{}
+    
+	err := c.rancherClient.doAction(LOAD_BALANCER_CONFIG_TYPE, "setlisteners", &resource.Resource, input, resp)
+    
+	return resp, err
+}
+    
+func (c *LoadBalancerConfigClient) ActionUpdate (resource *LoadBalancerConfig) (*LoadBalancerConfig, error) {
+    
+	resp := &LoadBalancerConfig{}
+    
+	err := c.rancherClient.doAction(LOAD_BALANCER_CONFIG_TYPE, "update", &resource.Resource, nil, resp)
+    
 	return resp, err
 }

@@ -54,14 +54,30 @@ type IpAddressOperations interface {
 	Update(existing *IpAddress, updates interface{}) (*IpAddress, error)
 	ById(id string) (*IpAddress, error)
 	Delete(container *IpAddress) error
+    
     ActionActivate (*IpAddress) (*IpAddress, error)
+    
+    
     ActionCreate (*IpAddress) (*IpAddress, error)
+    
+    
     ActionDeactivate (*IpAddress) (*IpAddress, error)
+    
+    
     ActionDisassociate (*IpAddress) (*IpAddress, error)
+    
+    
     ActionPurge (*IpAddress) (*IpAddress, error)
+    
+    
     ActionRemove (*IpAddress) (*IpAddress, error)
+    
+    
     ActionRestore (*IpAddress) (*IpAddress, error)
+    
+    
     ActionUpdate (*IpAddress) (*IpAddress, error)
+    
 }
 
 func newIpAddressClient(rancherClient *RancherClient) *IpAddressClient {
@@ -97,51 +113,75 @@ func (c *IpAddressClient) ById(id string) (*IpAddress, error) {
 func (c *IpAddressClient) Delete(container *IpAddress) error {
 	return c.rancherClient.doResourceDelete(IP_ADDRESS_TYPE, &container.Resource)
 }
-
-func (c *IpAddressClient) ActionActivate(resource *IpAddress) (*IpAddress, error) {
+    
+func (c *IpAddressClient) ActionActivate (resource *IpAddress) (*IpAddress, error) {
+    
 	resp := &IpAddress{}
-	err := c.rancherClient.doEmptyAction(IP_ADDRESS_TYPE, "activate", &resource.Resource, resp)
+    
+	err := c.rancherClient.doAction(IP_ADDRESS_TYPE, "activate", &resource.Resource, nil, resp)
+    
 	return resp, err
 }
-
-func (c *IpAddressClient) ActionCreate(resource *IpAddress) (*IpAddress, error) {
+    
+func (c *IpAddressClient) ActionCreate (resource *IpAddress) (*IpAddress, error) {
+    
 	resp := &IpAddress{}
-	err := c.rancherClient.doEmptyAction(IP_ADDRESS_TYPE, "create", &resource.Resource, resp)
+    
+	err := c.rancherClient.doAction(IP_ADDRESS_TYPE, "create", &resource.Resource, nil, resp)
+    
 	return resp, err
 }
-
-func (c *IpAddressClient) ActionDeactivate(resource *IpAddress) (*IpAddress, error) {
+    
+func (c *IpAddressClient) ActionDeactivate (resource *IpAddress) (*IpAddress, error) {
+    
 	resp := &IpAddress{}
-	err := c.rancherClient.doEmptyAction(IP_ADDRESS_TYPE, "deactivate", &resource.Resource, resp)
+    
+	err := c.rancherClient.doAction(IP_ADDRESS_TYPE, "deactivate", &resource.Resource, nil, resp)
+    
 	return resp, err
 }
-
-func (c *IpAddressClient) ActionDisassociate(resource *IpAddress) (*IpAddress, error) {
+    
+func (c *IpAddressClient) ActionDisassociate (resource *IpAddress) (*IpAddress, error) {
+    
 	resp := &IpAddress{}
-	err := c.rancherClient.doEmptyAction(IP_ADDRESS_TYPE, "disassociate", &resource.Resource, resp)
+    
+	err := c.rancherClient.doAction(IP_ADDRESS_TYPE, "disassociate", &resource.Resource, nil, resp)
+    
 	return resp, err
 }
-
-func (c *IpAddressClient) ActionPurge(resource *IpAddress) (*IpAddress, error) {
+    
+func (c *IpAddressClient) ActionPurge (resource *IpAddress) (*IpAddress, error) {
+    
 	resp := &IpAddress{}
-	err := c.rancherClient.doEmptyAction(IP_ADDRESS_TYPE, "purge", &resource.Resource, resp)
+    
+	err := c.rancherClient.doAction(IP_ADDRESS_TYPE, "purge", &resource.Resource, nil, resp)
+    
 	return resp, err
 }
-
-func (c *IpAddressClient) ActionRemove(resource *IpAddress) (*IpAddress, error) {
+    
+func (c *IpAddressClient) ActionRemove (resource *IpAddress) (*IpAddress, error) {
+    
 	resp := &IpAddress{}
-	err := c.rancherClient.doEmptyAction(IP_ADDRESS_TYPE, "remove", &resource.Resource, resp)
+    
+	err := c.rancherClient.doAction(IP_ADDRESS_TYPE, "remove", &resource.Resource, nil, resp)
+    
 	return resp, err
 }
-
-func (c *IpAddressClient) ActionRestore(resource *IpAddress) (*IpAddress, error) {
+    
+func (c *IpAddressClient) ActionRestore (resource *IpAddress) (*IpAddress, error) {
+    
 	resp := &IpAddress{}
-	err := c.rancherClient.doEmptyAction(IP_ADDRESS_TYPE, "restore", &resource.Resource, resp)
+    
+	err := c.rancherClient.doAction(IP_ADDRESS_TYPE, "restore", &resource.Resource, nil, resp)
+    
 	return resp, err
 }
-
-func (c *IpAddressClient) ActionUpdate(resource *IpAddress) (*IpAddress, error) {
+    
+func (c *IpAddressClient) ActionUpdate (resource *IpAddress) (*IpAddress, error) {
+    
 	resp := &IpAddress{}
-	err := c.rancherClient.doEmptyAction(IP_ADDRESS_TYPE, "update", &resource.Resource, resp)
+    
+	err := c.rancherClient.doAction(IP_ADDRESS_TYPE, "update", &resource.Resource, nil, resp)
+    
 	return resp, err
 }

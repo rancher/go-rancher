@@ -50,11 +50,21 @@ type PhysicalHostOperations interface {
 	Update(existing *PhysicalHost, updates interface{}) (*PhysicalHost, error)
 	ById(id string) (*PhysicalHost, error)
 	Delete(container *PhysicalHost) error
+    
     ActionBootstrap (*PhysicalHost) (*PhysicalHost, error)
+    
+    
     ActionCreate (*PhysicalHost) (*PhysicalHost, error)
+    
+    
     ActionError (*PhysicalHost) (*PhysicalHost, error)
+    
+    
     ActionRemove (*PhysicalHost) (*PhysicalHost, error)
+    
+    
     ActionUpdate (*PhysicalHost) (*PhysicalHost, error)
+    
 }
 
 func newPhysicalHostClient(rancherClient *RancherClient) *PhysicalHostClient {
@@ -90,33 +100,48 @@ func (c *PhysicalHostClient) ById(id string) (*PhysicalHost, error) {
 func (c *PhysicalHostClient) Delete(container *PhysicalHost) error {
 	return c.rancherClient.doResourceDelete(PHYSICAL_HOST_TYPE, &container.Resource)
 }
-
-func (c *PhysicalHostClient) ActionBootstrap(resource *PhysicalHost) (*PhysicalHost, error) {
+    
+func (c *PhysicalHostClient) ActionBootstrap (resource *PhysicalHost) (*PhysicalHost, error) {
+    
 	resp := &PhysicalHost{}
-	err := c.rancherClient.doEmptyAction(PHYSICAL_HOST_TYPE, "bootstrap", &resource.Resource, resp)
+    
+	err := c.rancherClient.doAction(PHYSICAL_HOST_TYPE, "bootstrap", &resource.Resource, nil, resp)
+    
 	return resp, err
 }
-
-func (c *PhysicalHostClient) ActionCreate(resource *PhysicalHost) (*PhysicalHost, error) {
+    
+func (c *PhysicalHostClient) ActionCreate (resource *PhysicalHost) (*PhysicalHost, error) {
+    
 	resp := &PhysicalHost{}
-	err := c.rancherClient.doEmptyAction(PHYSICAL_HOST_TYPE, "create", &resource.Resource, resp)
+    
+	err := c.rancherClient.doAction(PHYSICAL_HOST_TYPE, "create", &resource.Resource, nil, resp)
+    
 	return resp, err
 }
-
-func (c *PhysicalHostClient) ActionError(resource *PhysicalHost) (*PhysicalHost, error) {
+    
+func (c *PhysicalHostClient) ActionError (resource *PhysicalHost) (*PhysicalHost, error) {
+    
 	resp := &PhysicalHost{}
-	err := c.rancherClient.doEmptyAction(PHYSICAL_HOST_TYPE, "error", &resource.Resource, resp)
+    
+	err := c.rancherClient.doAction(PHYSICAL_HOST_TYPE, "error", &resource.Resource, nil, resp)
+    
 	return resp, err
 }
-
-func (c *PhysicalHostClient) ActionRemove(resource *PhysicalHost) (*PhysicalHost, error) {
+    
+func (c *PhysicalHostClient) ActionRemove (resource *PhysicalHost) (*PhysicalHost, error) {
+    
 	resp := &PhysicalHost{}
-	err := c.rancherClient.doEmptyAction(PHYSICAL_HOST_TYPE, "remove", &resource.Resource, resp)
+    
+	err := c.rancherClient.doAction(PHYSICAL_HOST_TYPE, "remove", &resource.Resource, nil, resp)
+    
 	return resp, err
 }
-
-func (c *PhysicalHostClient) ActionUpdate(resource *PhysicalHost) (*PhysicalHost, error) {
+    
+func (c *PhysicalHostClient) ActionUpdate (resource *PhysicalHost) (*PhysicalHost, error) {
+    
 	resp := &PhysicalHost{}
-	err := c.rancherClient.doEmptyAction(PHYSICAL_HOST_TYPE, "update", &resource.Resource, resp)
+    
+	err := c.rancherClient.doAction(PHYSICAL_HOST_TYPE, "update", &resource.Resource, nil, resp)
+    
 	return resp, err
 }

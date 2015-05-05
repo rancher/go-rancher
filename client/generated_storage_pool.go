@@ -50,13 +50,27 @@ type StoragePoolOperations interface {
 	Update(existing *StoragePool, updates interface{}) (*StoragePool, error)
 	ById(id string) (*StoragePool, error)
 	Delete(container *StoragePool) error
+    
     ActionActivate (*StoragePool) (*StoragePool, error)
+    
+    
     ActionCreate (*StoragePool) (*StoragePool, error)
+    
+    
     ActionDeactivate (*StoragePool) (*StoragePool, error)
+    
+    
     ActionPurge (*StoragePool) (*StoragePool, error)
+    
+    
     ActionRemove (*StoragePool) (*StoragePool, error)
+    
+    
     ActionRestore (*StoragePool) (*StoragePool, error)
+    
+    
     ActionUpdate (*StoragePool) (*StoragePool, error)
+    
 }
 
 func newStoragePoolClient(rancherClient *RancherClient) *StoragePoolClient {
@@ -92,45 +106,66 @@ func (c *StoragePoolClient) ById(id string) (*StoragePool, error) {
 func (c *StoragePoolClient) Delete(container *StoragePool) error {
 	return c.rancherClient.doResourceDelete(STORAGE_POOL_TYPE, &container.Resource)
 }
-
-func (c *StoragePoolClient) ActionActivate(resource *StoragePool) (*StoragePool, error) {
+    
+func (c *StoragePoolClient) ActionActivate (resource *StoragePool) (*StoragePool, error) {
+    
 	resp := &StoragePool{}
-	err := c.rancherClient.doEmptyAction(STORAGE_POOL_TYPE, "activate", &resource.Resource, resp)
+    
+	err := c.rancherClient.doAction(STORAGE_POOL_TYPE, "activate", &resource.Resource, nil, resp)
+    
 	return resp, err
 }
-
-func (c *StoragePoolClient) ActionCreate(resource *StoragePool) (*StoragePool, error) {
+    
+func (c *StoragePoolClient) ActionCreate (resource *StoragePool) (*StoragePool, error) {
+    
 	resp := &StoragePool{}
-	err := c.rancherClient.doEmptyAction(STORAGE_POOL_TYPE, "create", &resource.Resource, resp)
+    
+	err := c.rancherClient.doAction(STORAGE_POOL_TYPE, "create", &resource.Resource, nil, resp)
+    
 	return resp, err
 }
-
-func (c *StoragePoolClient) ActionDeactivate(resource *StoragePool) (*StoragePool, error) {
+    
+func (c *StoragePoolClient) ActionDeactivate (resource *StoragePool) (*StoragePool, error) {
+    
 	resp := &StoragePool{}
-	err := c.rancherClient.doEmptyAction(STORAGE_POOL_TYPE, "deactivate", &resource.Resource, resp)
+    
+	err := c.rancherClient.doAction(STORAGE_POOL_TYPE, "deactivate", &resource.Resource, nil, resp)
+    
 	return resp, err
 }
-
-func (c *StoragePoolClient) ActionPurge(resource *StoragePool) (*StoragePool, error) {
+    
+func (c *StoragePoolClient) ActionPurge (resource *StoragePool) (*StoragePool, error) {
+    
 	resp := &StoragePool{}
-	err := c.rancherClient.doEmptyAction(STORAGE_POOL_TYPE, "purge", &resource.Resource, resp)
+    
+	err := c.rancherClient.doAction(STORAGE_POOL_TYPE, "purge", &resource.Resource, nil, resp)
+    
 	return resp, err
 }
-
-func (c *StoragePoolClient) ActionRemove(resource *StoragePool) (*StoragePool, error) {
+    
+func (c *StoragePoolClient) ActionRemove (resource *StoragePool) (*StoragePool, error) {
+    
 	resp := &StoragePool{}
-	err := c.rancherClient.doEmptyAction(STORAGE_POOL_TYPE, "remove", &resource.Resource, resp)
+    
+	err := c.rancherClient.doAction(STORAGE_POOL_TYPE, "remove", &resource.Resource, nil, resp)
+    
 	return resp, err
 }
-
-func (c *StoragePoolClient) ActionRestore(resource *StoragePool) (*StoragePool, error) {
+    
+func (c *StoragePoolClient) ActionRestore (resource *StoragePool) (*StoragePool, error) {
+    
 	resp := &StoragePool{}
-	err := c.rancherClient.doEmptyAction(STORAGE_POOL_TYPE, "restore", &resource.Resource, resp)
+    
+	err := c.rancherClient.doAction(STORAGE_POOL_TYPE, "restore", &resource.Resource, nil, resp)
+    
 	return resp, err
 }
-
-func (c *StoragePoolClient) ActionUpdate(resource *StoragePool) (*StoragePool, error) {
+    
+func (c *StoragePoolClient) ActionUpdate (resource *StoragePool) (*StoragePool, error) {
+    
 	resp := &StoragePool{}
-	err := c.rancherClient.doEmptyAction(STORAGE_POOL_TYPE, "update", &resource.Resource, resp)
+    
+	err := c.rancherClient.doAction(STORAGE_POOL_TYPE, "update", &resource.Resource, nil, resp)
+    
 	return resp, err
 }

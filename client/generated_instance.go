@@ -52,16 +52,42 @@ type InstanceOperations interface {
 	Update(existing *Instance, updates interface{}) (*Instance, error)
 	ById(id string) (*Instance, error)
 	Delete(container *Instance) error
+    
     ActionAllocate (*Instance) (*Instance, error)
+    
+    
+    ActionConsole (*Instance, *InstanceConsoleInput) (*InstanceConsole, error)
+    
+    
     ActionCreate (*Instance) (*Instance, error)
+    
+    
     ActionDeallocate (*Instance) (*Instance, error)
+    
+    
     ActionMigrate (*Instance) (*Instance, error)
+    
+    
     ActionPurge (*Instance) (*Instance, error)
+    
+    
     ActionRemove (*Instance) (*Instance, error)
+    
+    
     ActionRestart (*Instance) (*Instance, error)
+    
+    
     ActionRestore (*Instance) (*Instance, error)
+    
+    
     ActionStart (*Instance) (*Instance, error)
+    
+    
+    ActionStop (*Instance, *InstanceStop) (*Instance, error)
+    
+    
     ActionUpdate (*Instance) (*Instance, error)
+    
 }
 
 func newInstanceClient(rancherClient *RancherClient) *InstanceClient {
@@ -97,63 +123,111 @@ func (c *InstanceClient) ById(id string) (*Instance, error) {
 func (c *InstanceClient) Delete(container *Instance) error {
 	return c.rancherClient.doResourceDelete(INSTANCE_TYPE, &container.Resource)
 }
-
-func (c *InstanceClient) ActionAllocate(resource *Instance) (*Instance, error) {
+    
+func (c *InstanceClient) ActionAllocate (resource *Instance) (*Instance, error) {
+    
 	resp := &Instance{}
-	err := c.rancherClient.doEmptyAction(INSTANCE_TYPE, "allocate", &resource.Resource, resp)
+    
+	err := c.rancherClient.doAction(INSTANCE_TYPE, "allocate", &resource.Resource, nil, resp)
+    
 	return resp, err
 }
-
-func (c *InstanceClient) ActionCreate(resource *Instance) (*Instance, error) {
-	resp := &Instance{}
-	err := c.rancherClient.doEmptyAction(INSTANCE_TYPE, "create", &resource.Resource, resp)
+    
+func (c *InstanceClient) ActionConsole (resource *Instance, input *InstanceConsoleInput) (*InstanceConsole, error) {
+    
+	resp := &InstanceConsole{}
+    
+	err := c.rancherClient.doAction(INSTANCE_TYPE, "console", &resource.Resource, input, resp)
+    
 	return resp, err
 }
-
-func (c *InstanceClient) ActionDeallocate(resource *Instance) (*Instance, error) {
+    
+func (c *InstanceClient) ActionCreate (resource *Instance) (*Instance, error) {
+    
 	resp := &Instance{}
-	err := c.rancherClient.doEmptyAction(INSTANCE_TYPE, "deallocate", &resource.Resource, resp)
+    
+	err := c.rancherClient.doAction(INSTANCE_TYPE, "create", &resource.Resource, nil, resp)
+    
 	return resp, err
 }
-
-func (c *InstanceClient) ActionMigrate(resource *Instance) (*Instance, error) {
+    
+func (c *InstanceClient) ActionDeallocate (resource *Instance) (*Instance, error) {
+    
 	resp := &Instance{}
-	err := c.rancherClient.doEmptyAction(INSTANCE_TYPE, "migrate", &resource.Resource, resp)
+    
+	err := c.rancherClient.doAction(INSTANCE_TYPE, "deallocate", &resource.Resource, nil, resp)
+    
 	return resp, err
 }
-
-func (c *InstanceClient) ActionPurge(resource *Instance) (*Instance, error) {
+    
+func (c *InstanceClient) ActionMigrate (resource *Instance) (*Instance, error) {
+    
 	resp := &Instance{}
-	err := c.rancherClient.doEmptyAction(INSTANCE_TYPE, "purge", &resource.Resource, resp)
+    
+	err := c.rancherClient.doAction(INSTANCE_TYPE, "migrate", &resource.Resource, nil, resp)
+    
 	return resp, err
 }
-
-func (c *InstanceClient) ActionRemove(resource *Instance) (*Instance, error) {
+    
+func (c *InstanceClient) ActionPurge (resource *Instance) (*Instance, error) {
+    
 	resp := &Instance{}
-	err := c.rancherClient.doEmptyAction(INSTANCE_TYPE, "remove", &resource.Resource, resp)
+    
+	err := c.rancherClient.doAction(INSTANCE_TYPE, "purge", &resource.Resource, nil, resp)
+    
 	return resp, err
 }
-
-func (c *InstanceClient) ActionRestart(resource *Instance) (*Instance, error) {
+    
+func (c *InstanceClient) ActionRemove (resource *Instance) (*Instance, error) {
+    
 	resp := &Instance{}
-	err := c.rancherClient.doEmptyAction(INSTANCE_TYPE, "restart", &resource.Resource, resp)
+    
+	err := c.rancherClient.doAction(INSTANCE_TYPE, "remove", &resource.Resource, nil, resp)
+    
 	return resp, err
 }
-
-func (c *InstanceClient) ActionRestore(resource *Instance) (*Instance, error) {
+    
+func (c *InstanceClient) ActionRestart (resource *Instance) (*Instance, error) {
+    
 	resp := &Instance{}
-	err := c.rancherClient.doEmptyAction(INSTANCE_TYPE, "restore", &resource.Resource, resp)
+    
+	err := c.rancherClient.doAction(INSTANCE_TYPE, "restart", &resource.Resource, nil, resp)
+    
 	return resp, err
 }
-
-func (c *InstanceClient) ActionStart(resource *Instance) (*Instance, error) {
+    
+func (c *InstanceClient) ActionRestore (resource *Instance) (*Instance, error) {
+    
 	resp := &Instance{}
-	err := c.rancherClient.doEmptyAction(INSTANCE_TYPE, "start", &resource.Resource, resp)
+    
+	err := c.rancherClient.doAction(INSTANCE_TYPE, "restore", &resource.Resource, nil, resp)
+    
 	return resp, err
 }
-
-func (c *InstanceClient) ActionUpdate(resource *Instance) (*Instance, error) {
+    
+func (c *InstanceClient) ActionStart (resource *Instance) (*Instance, error) {
+    
 	resp := &Instance{}
-	err := c.rancherClient.doEmptyAction(INSTANCE_TYPE, "update", &resource.Resource, resp)
+    
+	err := c.rancherClient.doAction(INSTANCE_TYPE, "start", &resource.Resource, nil, resp)
+    
+	return resp, err
+}
+    
+func (c *InstanceClient) ActionStop (resource *Instance, input *InstanceStop) (*Instance, error) {
+    
+	resp := &Instance{}
+    
+	err := c.rancherClient.doAction(INSTANCE_TYPE, "stop", &resource.Resource, input, resp)
+    
+	return resp, err
+}
+    
+func (c *InstanceClient) ActionUpdate (resource *Instance) (*Instance, error) {
+    
+	resp := &Instance{}
+    
+	err := c.rancherClient.doAction(INSTANCE_TYPE, "update", &resource.Resource, nil, resp)
+    
 	return resp, err
 }
