@@ -82,6 +82,8 @@ func getTypeMap(schema client.Schema) map[string]string {
 			result[fieldName] = "float64"
 		} else if _, noConvert := noConversionTypes[field.Type]; noConvert {
 			result[fieldName] = field.Type
+		} else if field.Nullable {
+			result[fieldName] = "*" + capitalize(field.Type)
 		} else {
 			result[fieldName] = capitalize(field.Type)
 		}
@@ -93,7 +95,7 @@ func getTypeMap(schema client.Schema) map[string]string {
 func getResourceActions(schema client.Schema) map[string]client.Action {
 	result := map[string]client.Action{}
 	for name, action := range schema.ResourceActions {
-		if _, ok := schemaExists[action.Output]; action.Input == "" && ok {
+		if _, ok := schemaExists[action.Output]; ok {
 			result[name] = action
 		}
 	}

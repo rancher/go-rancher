@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"io"
 	"io/ioutil"
 	"net/http"
 	"net/url"
@@ -238,6 +239,10 @@ func (rancherClient *RancherBaseClient) doList(schemaType string, opts *ListOpts
 	return rancherClient.doGet(collectionUrl, opts, respObject)
 }
 
+func (rancherClient *RancherBaseClient) Post(url string, createObj interface{}, respObject interface{}) error {
+	return rancherClient.doModify("POST", url, createObj, respObject)
+}
+
 func (rancherClient *RancherBaseClient) doModify(method string, url string, createObj interface{}, respObject interface{}) error {
 	bodyContent, err := json.Marshal(createObj)
 	if err != nil {
@@ -365,9 +370,17 @@ func (rancherClient *RancherBaseClient) doResourceDelete(schemaType string, exis
 	return rancherClient.doDelete(selfUrl)
 }
 
-func (rancherClient *RancherBaseClient) doEmptyAction(schemaType string, action string,
-	existing *Resource, respObject interface{}) error {
-	// TODO Actions with inputs currently not supported.
+func (rancherClient *RancherBaseClient) Reload(existing *Resource, output interface{}) error {
+	selfUrl, ok := existing.Links[SELF]
+	if !ok {
+		return errors.New(fmt.Sprintf("Failed to find self URL of [%v]", existing))
+	}
+
+	return rancherClient.doGet(selfUrl, NewListOpts(), output)
+}
+
+func (rancherClient *RancherBaseClient) doAction(schemaType string, action string,
+	existing *Resource, inputObject, respObject interface{}) error {
 
 	if existing == nil {
 		return errors.New("Existing object is nil")
@@ -378,18 +391,23 @@ func (rancherClient *RancherBaseClient) doEmptyAction(schemaType string, action 
 		return errors.New(fmt.Sprintf("Action [%v] not available on [%v]", action, existing))
 	}
 
-	schema, ok := rancherClient.Types[schemaType]
+	_, ok = rancherClient.Types[schemaType]
 	if !ok {
 		return errors.New("Unknown schema type [" + schemaType + "]")
 	}
 
-	if schema.ResourceActions[action].Input != "" {
-		return fmt.Errorf("Actions with inputs or outputs not yet support. Input: [%v] Output: [%v].",
-			schema.ResourceActions[action].Input)
+	var input io.Reader
+
+	if inputObject != nil {
+		bodyContent, err := json.Marshal(inputObject)
+		if err != nil {
+			return err
+		}
+		input = bytes.NewBuffer(bodyContent)
 	}
 
 	client := rancherClient.newHttpClient()
-	req, err := http.NewRequest("POST", actionUrl, nil)
+	req, err := http.NewRequest("POST", actionUrl, input)
 	if err != nil {
 		return err
 	}

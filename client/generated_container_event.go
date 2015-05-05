@@ -54,8 +54,12 @@ type ContainerEventOperations interface {
 	Update(existing *ContainerEvent, updates interface{}) (*ContainerEvent, error)
 	ById(id string) (*ContainerEvent, error)
 	Delete(container *ContainerEvent) error
+    
     ActionCreate (*ContainerEvent) (*ContainerEvent, error)
+    
+    
     ActionRemove (*ContainerEvent) (*ContainerEvent, error)
+    
 }
 
 func newContainerEventClient(rancherClient *RancherClient) *ContainerEventClient {
@@ -91,15 +95,21 @@ func (c *ContainerEventClient) ById(id string) (*ContainerEvent, error) {
 func (c *ContainerEventClient) Delete(container *ContainerEvent) error {
 	return c.rancherClient.doResourceDelete(CONTAINER_EVENT_TYPE, &container.Resource)
 }
-
-func (c *ContainerEventClient) ActionCreate(resource *ContainerEvent) (*ContainerEvent, error) {
+    
+func (c *ContainerEventClient) ActionCreate (resource *ContainerEvent) (*ContainerEvent, error) {
+    
 	resp := &ContainerEvent{}
-	err := c.rancherClient.doEmptyAction(CONTAINER_EVENT_TYPE, "create", &resource.Resource, resp)
+    
+	err := c.rancherClient.doAction(CONTAINER_EVENT_TYPE, "create", &resource.Resource, nil, resp)
+    
 	return resp, err
 }
-
-func (c *ContainerEventClient) ActionRemove(resource *ContainerEvent) (*ContainerEvent, error) {
+    
+func (c *ContainerEventClient) ActionRemove (resource *ContainerEvent) (*ContainerEvent, error) {
+    
 	resp := &ContainerEvent{}
-	err := c.rancherClient.doEmptyAction(CONTAINER_EVENT_TYPE, "remove", &resource.Resource, resp)
+    
+	err := c.rancherClient.doAction(CONTAINER_EVENT_TYPE, "remove", &resource.Resource, nil, resp)
+    
 	return resp, err
 }

@@ -9,7 +9,7 @@ type Machine struct {
     
     AccountId string `json:"accountId,omitempty"`
     
-    Amazonec2Config Amazonec2Config `json:"amazonec2Config,omitempty"`
+    Amazonec2Config *Amazonec2Config `json:"amazonec2Config,omitempty"`
     
     AuthCertificateAuthority string `json:"authCertificateAuthority,omitempty"`
     
@@ -21,7 +21,7 @@ type Machine struct {
     
     Description string `json:"description,omitempty"`
     
-    DigitaloceanConfig DigitaloceanConfig `json:"digitaloceanConfig,omitempty"`
+    DigitaloceanConfig *DigitaloceanConfig `json:"digitaloceanConfig,omitempty"`
     
     Driver string `json:"driver,omitempty"`
     
@@ -33,7 +33,7 @@ type Machine struct {
     
     Name string `json:"name,omitempty"`
     
-    PacketConfig PacketConfig `json:"packetConfig,omitempty"`
+    PacketConfig *PacketConfig `json:"packetConfig,omitempty"`
     
     RemoveTime string `json:"removeTime,omitempty"`
     
@@ -49,7 +49,7 @@ type Machine struct {
     
     Uuid string `json:"uuid,omitempty"`
     
-    VirtualboxConfig VirtualboxConfig `json:"virtualboxConfig,omitempty"`
+    VirtualboxConfig *VirtualboxConfig `json:"virtualboxConfig,omitempty"`
     
 }
 
@@ -68,11 +68,21 @@ type MachineOperations interface {
 	Update(existing *Machine, updates interface{}) (*Machine, error)
 	ById(id string) (*Machine, error)
 	Delete(container *Machine) error
+    
     ActionBootstrap (*Machine) (*PhysicalHost, error)
+    
+    
     ActionCreate (*Machine) (*PhysicalHost, error)
+    
+    
     ActionError (*Machine) (*PhysicalHost, error)
+    
+    
     ActionRemove (*Machine) (*PhysicalHost, error)
+    
+    
     ActionUpdate (*Machine) (*PhysicalHost, error)
+    
 }
 
 func newMachineClient(rancherClient *RancherClient) *MachineClient {
@@ -108,33 +118,48 @@ func (c *MachineClient) ById(id string) (*Machine, error) {
 func (c *MachineClient) Delete(container *Machine) error {
 	return c.rancherClient.doResourceDelete(MACHINE_TYPE, &container.Resource)
 }
-
-func (c *MachineClient) ActionBootstrap(resource *Machine) (*PhysicalHost, error) {
+    
+func (c *MachineClient) ActionBootstrap (resource *Machine) (*PhysicalHost, error) {
+    
 	resp := &PhysicalHost{}
-	err := c.rancherClient.doEmptyAction(MACHINE_TYPE, "bootstrap", &resource.Resource, resp)
+    
+	err := c.rancherClient.doAction(MACHINE_TYPE, "bootstrap", &resource.Resource, nil, resp)
+    
 	return resp, err
 }
-
-func (c *MachineClient) ActionCreate(resource *Machine) (*PhysicalHost, error) {
+    
+func (c *MachineClient) ActionCreate (resource *Machine) (*PhysicalHost, error) {
+    
 	resp := &PhysicalHost{}
-	err := c.rancherClient.doEmptyAction(MACHINE_TYPE, "create", &resource.Resource, resp)
+    
+	err := c.rancherClient.doAction(MACHINE_TYPE, "create", &resource.Resource, nil, resp)
+    
 	return resp, err
 }
-
-func (c *MachineClient) ActionError(resource *Machine) (*PhysicalHost, error) {
+    
+func (c *MachineClient) ActionError (resource *Machine) (*PhysicalHost, error) {
+    
 	resp := &PhysicalHost{}
-	err := c.rancherClient.doEmptyAction(MACHINE_TYPE, "error", &resource.Resource, resp)
+    
+	err := c.rancherClient.doAction(MACHINE_TYPE, "error", &resource.Resource, nil, resp)
+    
 	return resp, err
 }
-
-func (c *MachineClient) ActionRemove(resource *Machine) (*PhysicalHost, error) {
+    
+func (c *MachineClient) ActionRemove (resource *Machine) (*PhysicalHost, error) {
+    
 	resp := &PhysicalHost{}
-	err := c.rancherClient.doEmptyAction(MACHINE_TYPE, "remove", &resource.Resource, resp)
+    
+	err := c.rancherClient.doAction(MACHINE_TYPE, "remove", &resource.Resource, nil, resp)
+    
 	return resp, err
 }
-
-func (c *MachineClient) ActionUpdate(resource *Machine) (*PhysicalHost, error) {
+    
+func (c *MachineClient) ActionUpdate (resource *Machine) (*PhysicalHost, error) {
+    
 	resp := &PhysicalHost{}
-	err := c.rancherClient.doEmptyAction(MACHINE_TYPE, "update", &resource.Resource, resp)
+    
+	err := c.rancherClient.doAction(MACHINE_TYPE, "update", &resource.Resource, nil, resp)
+    
 	return resp, err
 }

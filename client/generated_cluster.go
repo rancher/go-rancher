@@ -64,6 +64,12 @@ type ClusterOperations interface {
 	Update(existing *Cluster, updates interface{}) (*Cluster, error)
 	ById(id string) (*Cluster, error)
 	Delete(container *Cluster) error
+    
+    ActionAddhost (*Cluster, *AddRemoveClusterHostInput) (*Cluster, error)
+    
+    
+    ActionRemovehost (*Cluster, *AddRemoveClusterHostInput) (*Cluster, error)
+    
 }
 
 func newClusterClient(rancherClient *RancherClient) *ClusterClient {
@@ -98,4 +104,22 @@ func (c *ClusterClient) ById(id string) (*Cluster, error) {
 
 func (c *ClusterClient) Delete(container *Cluster) error {
 	return c.rancherClient.doResourceDelete(CLUSTER_TYPE, &container.Resource)
+}
+    
+func (c *ClusterClient) ActionAddhost (resource *Cluster, input *AddRemoveClusterHostInput) (*Cluster, error) {
+    
+	resp := &Cluster{}
+    
+	err := c.rancherClient.doAction(CLUSTER_TYPE, "addhost", &resource.Resource, input, resp)
+    
+	return resp, err
+}
+    
+func (c *ClusterClient) ActionRemovehost (resource *Cluster, input *AddRemoveClusterHostInput) (*Cluster, error) {
+    
+	resp := &Cluster{}
+    
+	err := c.rancherClient.doAction(CLUSTER_TYPE, "removehost", &resource.Resource, input, resp)
+    
+	return resp, err
 }

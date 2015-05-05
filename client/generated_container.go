@@ -91,7 +91,7 @@ type Container struct {
     
     RequestedHostId string `json:"requestedHostId,omitempty"`
     
-    RestartPolicy RestartPolicy `json:"restartPolicy,omitempty"`
+    RestartPolicy *RestartPolicy `json:"restartPolicy,omitempty"`
     
     StartOnCreate bool `json:"startOnCreate,omitempty"`
     

@@ -56,6 +56,9 @@ type RegisterOperations interface {
 	Update(existing *Register, updates interface{}) (*Register, error)
 	ById(id string) (*Register, error)
 	Delete(container *Register) error
+    
+    ActionStop (*Register, *InstanceStop) (*Instance, error)
+    
 }
 
 func newRegisterClient(rancherClient *RancherClient) *RegisterClient {
@@ -90,4 +93,13 @@ func (c *RegisterClient) ById(id string) (*Register, error) {
 
 func (c *RegisterClient) Delete(container *Register) error {
 	return c.rancherClient.doResourceDelete(REGISTER_TYPE, &container.Resource)
+}
+    
+func (c *RegisterClient) ActionStop (resource *Register, input *InstanceStop) (*Instance, error) {
+    
+	resp := &Instance{}
+    
+	err := c.rancherClient.doAction(REGISTER_TYPE, "stop", &resource.Resource, input, resp)
+    
+	return resp, err
 }

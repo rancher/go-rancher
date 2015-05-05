@@ -50,8 +50,15 @@ type EnvironmentOperations interface {
 	Update(existing *Environment, updates interface{}) (*Environment, error)
 	ById(id string) (*Environment, error)
 	Delete(container *Environment) error
+    
     ActionCreate (*Environment) (*Environment, error)
+    
+    
+    ActionExportconfig (*Environment, *ComposeConfigInput) (*ComposeConfig, error)
+    
+    
     ActionRemove (*Environment) (*Environment, error)
+    
 }
 
 func newEnvironmentClient(rancherClient *RancherClient) *EnvironmentClient {
@@ -87,15 +94,30 @@ func (c *EnvironmentClient) ById(id string) (*Environment, error) {
 func (c *EnvironmentClient) Delete(container *Environment) error {
 	return c.rancherClient.doResourceDelete(ENVIRONMENT_TYPE, &container.Resource)
 }
-
-func (c *EnvironmentClient) ActionCreate(resource *Environment) (*Environment, error) {
+    
+func (c *EnvironmentClient) ActionCreate (resource *Environment) (*Environment, error) {
+    
 	resp := &Environment{}
-	err := c.rancherClient.doEmptyAction(ENVIRONMENT_TYPE, "create", &resource.Resource, resp)
+    
+	err := c.rancherClient.doAction(ENVIRONMENT_TYPE, "create", &resource.Resource, nil, resp)
+    
 	return resp, err
 }
-
-func (c *EnvironmentClient) ActionRemove(resource *Environment) (*Environment, error) {
+    
+func (c *EnvironmentClient) ActionExportconfig (resource *Environment, input *ComposeConfigInput) (*ComposeConfig, error) {
+    
+	resp := &ComposeConfig{}
+    
+	err := c.rancherClient.doAction(ENVIRONMENT_TYPE, "exportconfig", &resource.Resource, input, resp)
+    
+	return resp, err
+}
+    
+func (c *EnvironmentClient) ActionRemove (resource *Environment) (*Environment, error) {
+    
 	resp := &Environment{}
-	err := c.rancherClient.doEmptyAction(ENVIRONMENT_TYPE, "remove", &resource.Resource, resp)
+    
+	err := c.rancherClient.doAction(ENVIRONMENT_TYPE, "remove", &resource.Resource, nil, resp)
+    
 	return resp, err
 }

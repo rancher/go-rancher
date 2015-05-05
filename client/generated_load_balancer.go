@@ -58,9 +58,33 @@ type LoadBalancerOperations interface {
 	Update(existing *LoadBalancer, updates interface{}) (*LoadBalancer, error)
 	ById(id string) (*LoadBalancer, error)
 	Delete(container *LoadBalancer) error
+    
+    ActionAddhost (*LoadBalancer, *AddRemoveLoadBalancerHostInput) (*LoadBalancer, error)
+    
+    
+    ActionAddtarget (*LoadBalancer, *AddRemoveLoadBalancerTargetInput) (*LoadBalancer, error)
+    
+    
     ActionCreate (*LoadBalancer) (*LoadBalancer, error)
+    
+    
     ActionRemove (*LoadBalancer) (*LoadBalancer, error)
+    
+    
+    ActionRemovehost (*LoadBalancer, *AddRemoveLoadBalancerHostInput) (*LoadBalancer, error)
+    
+    
+    ActionRemovetarget (*LoadBalancer, *AddRemoveLoadBalancerTargetInput) (*LoadBalancer, error)
+    
+    
+    ActionSethosts (*LoadBalancer, *SetLoadBalancerHostsInput) (*LoadBalancer, error)
+    
+    
+    ActionSettargets (*LoadBalancer, *SetLoadBalancerTargetsInput) (*LoadBalancer, error)
+    
+    
     ActionUpdate (*LoadBalancer) (*LoadBalancer, error)
+    
 }
 
 func newLoadBalancerClient(rancherClient *RancherClient) *LoadBalancerClient {
@@ -96,21 +120,84 @@ func (c *LoadBalancerClient) ById(id string) (*LoadBalancer, error) {
 func (c *LoadBalancerClient) Delete(container *LoadBalancer) error {
 	return c.rancherClient.doResourceDelete(LOAD_BALANCER_TYPE, &container.Resource)
 }
-
-func (c *LoadBalancerClient) ActionCreate(resource *LoadBalancer) (*LoadBalancer, error) {
+    
+func (c *LoadBalancerClient) ActionAddhost (resource *LoadBalancer, input *AddRemoveLoadBalancerHostInput) (*LoadBalancer, error) {
+    
 	resp := &LoadBalancer{}
-	err := c.rancherClient.doEmptyAction(LOAD_BALANCER_TYPE, "create", &resource.Resource, resp)
+    
+	err := c.rancherClient.doAction(LOAD_BALANCER_TYPE, "addhost", &resource.Resource, input, resp)
+    
 	return resp, err
 }
-
-func (c *LoadBalancerClient) ActionRemove(resource *LoadBalancer) (*LoadBalancer, error) {
+    
+func (c *LoadBalancerClient) ActionAddtarget (resource *LoadBalancer, input *AddRemoveLoadBalancerTargetInput) (*LoadBalancer, error) {
+    
 	resp := &LoadBalancer{}
-	err := c.rancherClient.doEmptyAction(LOAD_BALANCER_TYPE, "remove", &resource.Resource, resp)
+    
+	err := c.rancherClient.doAction(LOAD_BALANCER_TYPE, "addtarget", &resource.Resource, input, resp)
+    
 	return resp, err
 }
-
-func (c *LoadBalancerClient) ActionUpdate(resource *LoadBalancer) (*LoadBalancer, error) {
+    
+func (c *LoadBalancerClient) ActionCreate (resource *LoadBalancer) (*LoadBalancer, error) {
+    
 	resp := &LoadBalancer{}
-	err := c.rancherClient.doEmptyAction(LOAD_BALANCER_TYPE, "update", &resource.Resource, resp)
+    
+	err := c.rancherClient.doAction(LOAD_BALANCER_TYPE, "create", &resource.Resource, nil, resp)
+    
+	return resp, err
+}
+    
+func (c *LoadBalancerClient) ActionRemove (resource *LoadBalancer) (*LoadBalancer, error) {
+    
+	resp := &LoadBalancer{}
+    
+	err := c.rancherClient.doAction(LOAD_BALANCER_TYPE, "remove", &resource.Resource, nil, resp)
+    
+	return resp, err
+}
+    
+func (c *LoadBalancerClient) ActionRemovehost (resource *LoadBalancer, input *AddRemoveLoadBalancerHostInput) (*LoadBalancer, error) {
+    
+	resp := &LoadBalancer{}
+    
+	err := c.rancherClient.doAction(LOAD_BALANCER_TYPE, "removehost", &resource.Resource, input, resp)
+    
+	return resp, err
+}
+    
+func (c *LoadBalancerClient) ActionRemovetarget (resource *LoadBalancer, input *AddRemoveLoadBalancerTargetInput) (*LoadBalancer, error) {
+    
+	resp := &LoadBalancer{}
+    
+	err := c.rancherClient.doAction(LOAD_BALANCER_TYPE, "removetarget", &resource.Resource, input, resp)
+    
+	return resp, err
+}
+    
+func (c *LoadBalancerClient) ActionSethosts (resource *LoadBalancer, input *SetLoadBalancerHostsInput) (*LoadBalancer, error) {
+    
+	resp := &LoadBalancer{}
+    
+	err := c.rancherClient.doAction(LOAD_BALANCER_TYPE, "sethosts", &resource.Resource, input, resp)
+    
+	return resp, err
+}
+    
+func (c *LoadBalancerClient) ActionSettargets (resource *LoadBalancer, input *SetLoadBalancerTargetsInput) (*LoadBalancer, error) {
+    
+	resp := &LoadBalancer{}
+    
+	err := c.rancherClient.doAction(LOAD_BALANCER_TYPE, "settargets", &resource.Resource, input, resp)
+    
+	return resp, err
+}
+    
+func (c *LoadBalancerClient) ActionUpdate (resource *LoadBalancer) (*LoadBalancer, error) {
+    
+	resp := &LoadBalancer{}
+    
+	err := c.rancherClient.doAction(LOAD_BALANCER_TYPE, "update", &resource.Resource, nil, resp)
+    
 	return resp, err
 }
