@@ -61,6 +61,8 @@ type Container struct {
     
     Kind string `json:"kind,omitempty"`
     
+    Labels map[string]interface{} `json:"labels,omitempty"`
+    
     LxcConf map[string]interface{} `json:"lxcConf,omitempty"`
     
     Memory int `json:"memory,omitempty"`
@@ -130,6 +132,12 @@ type ContainerOperations interface {
 	Update(existing *Container, updates interface{}) (*Container, error)
 	ById(id string) (*Container, error)
 	Delete(container *Container) error
+    
+    ActionAddlabel (*Container, *AddLabelInput) (*Container, error)
+    
+    
+    ActionRemovelabel (*Container, *RemoveLabelInput) (*Container, error)
+    
 }
 
 func newContainerClient(rancherClient *RancherClient) *ContainerClient {
@@ -164,4 +172,22 @@ func (c *ContainerClient) ById(id string) (*Container, error) {
 
 func (c *ContainerClient) Delete(container *Container) error {
 	return c.rancherClient.doResourceDelete(CONTAINER_TYPE, &container.Resource)
+}
+    
+func (c *ContainerClient) ActionAddlabel (resource *Container, input *AddLabelInput) (*Container, error) {
+    
+	resp := &Container{}
+    
+	err := c.rancherClient.doAction(CONTAINER_TYPE, "addlabel", &resource.Resource, input, resp)
+    
+	return resp, err
+}
+    
+func (c *ContainerClient) ActionRemovelabel (resource *Container, input *RemoveLabelInput) (*Container, error) {
+    
+	resp := &Container{}
+    
+	err := c.rancherClient.doAction(CONTAINER_TYPE, "removelabel", &resource.Resource, input, resp)
+    
+	return resp, err
 }

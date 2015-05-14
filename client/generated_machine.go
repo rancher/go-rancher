@@ -27,11 +27,15 @@ type Machine struct {
     
     ExternalId string `json:"externalId,omitempty"`
     
+    ExtractedConfig string `json:"extractedConfig,omitempty"`
+    
     Kind string `json:"kind,omitempty"`
     
     Name string `json:"name,omitempty"`
     
     PacketConfig *PacketConfig `json:"packetConfig,omitempty"`
+    
+    RackspaceConfig *RackspaceConfig `json:"rackspaceConfig,omitempty"`
     
     RemoveTime string `json:"removeTime,omitempty"`
     

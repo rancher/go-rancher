@@ -9,21 +9,29 @@ type RegistrationToken struct {
     
     AccountId string `json:"accountId,omitempty"`
     
+    Command string `json:"command,omitempty"`
+    
     Created string `json:"created,omitempty"`
     
     Data map[string]interface{} `json:"data,omitempty"`
     
     Description string `json:"description,omitempty"`
     
+    Image string `json:"image,omitempty"`
+    
     Kind string `json:"kind,omitempty"`
     
     Name string `json:"name,omitempty"`
+    
+    RegistrationUrl string `json:"registrationUrl,omitempty"`
     
     RemoveTime string `json:"removeTime,omitempty"`
     
     Removed string `json:"removed,omitempty"`
     
     State string `json:"state,omitempty"`
+    
+    Token string `json:"token,omitempty"`
     
     Transitioning string `json:"transitioning,omitempty"`
     
