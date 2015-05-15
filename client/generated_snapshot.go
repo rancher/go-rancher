@@ -17,8 +17,6 @@ type Snapshot struct {
     
     Kind string `json:"kind,omitempty"`
     
-    ManagedSnapshotUUID string `json:"managedSnapshotUUID,omitempty"`
-    
     ManagedVolumeUUID string `json:"managedVolumeUUID,omitempty"`
     
     Name string `json:"name,omitempty"`

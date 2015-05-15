@@ -64,6 +64,9 @@ type HostOperations interface {
     ActionActivate (*Host) (*Host, error)
     
     
+    ActionAddlabel (*Host, *AddLabelInput) (*Host, error)
+    
+    
     ActionCreate (*Host) (*Host, error)
     
     
@@ -74,6 +77,9 @@ type HostOperations interface {
     
     
     ActionRemove (*Host) (*Host, error)
+    
+    
+    ActionRemovelabel (*Host, *RemoveLabelInput) (*Host, error)
     
     
     ActionRestore (*Host) (*Host, error)
@@ -126,6 +132,15 @@ func (c *HostClient) ActionActivate (resource *Host) (*Host, error) {
 	return resp, err
 }
     
+func (c *HostClient) ActionAddlabel (resource *Host, input *AddLabelInput) (*Host, error) {
+    
+	resp := &Host{}
+    
+	err := c.rancherClient.doAction(HOST_TYPE, "addlabel", &resource.Resource, input, resp)
+    
+	return resp, err
+}
+    
 func (c *HostClient) ActionCreate (resource *Host) (*Host, error) {
     
 	resp := &Host{}
@@ -158,6 +173,15 @@ func (c *HostClient) ActionRemove (resource *Host) (*Host, error) {
 	resp := &Host{}
     
 	err := c.rancherClient.doAction(HOST_TYPE, "remove", &resource.Resource, nil, resp)
+    
+	return resp, err
+}
+    
+func (c *HostClient) ActionRemovelabel (resource *Host, input *RemoveLabelInput) (*Host, error) {
+    
+	resp := &Host{}
+    
+	err := c.rancherClient.doAction(HOST_TYPE, "removelabel", &resource.Resource, input, resp)
     
 	return resp, err
 }
