@@ -25,6 +25,8 @@ type Machine struct {
     
     Driver string `json:"driver,omitempty"`
     
+    ExoscaleConfig *ExoscaleConfig `json:"exoscaleConfig,omitempty"`
+    
     ExternalId string `json:"externalId,omitempty"`
     
     ExtractedConfig string `json:"extractedConfig,omitempty"`
@@ -33,6 +35,8 @@ type Machine struct {
     
     Name string `json:"name,omitempty"`
     
+    OpenstackConfig *OpenstackConfig `json:"openstackConfig,omitempty"`
+    
     PacketConfig *PacketConfig `json:"packetConfig,omitempty"`
     
     RackspaceConfig *RackspaceConfig `json:"rackspaceConfig,omitempty"`
@@ -40,6 +44,8 @@ type Machine struct {
     RemoveTime string `json:"removeTime,omitempty"`
     
     Removed string `json:"removed,omitempty"`
+    
+    SoftlayerConfig *SoftlayerConfig `json:"softlayerConfig,omitempty"`
     
     State string `json:"state,omitempty"`
     
@@ -52,6 +58,10 @@ type Machine struct {
     Uuid string `json:"uuid,omitempty"`
     
     VirtualboxConfig *VirtualboxConfig `json:"virtualboxConfig,omitempty"`
+    
+    VmwarevcloudairConfig *VmwarevcloudairConfig `json:"vmwarevcloudairConfig,omitempty"`
+    
+    VmwarevsphereConfig *VmwarevsphereConfig `json:"vmwarevsphereConfig,omitempty"`
     
 }
 

@@ -15,7 +15,13 @@ type Amazonec2Config struct {
     
     InstanceType string `json:"instanceType,omitempty"`
     
+    Monitoring bool `json:"monitoring,omitempty"`
+    
+    PrivateAddressOnly bool `json:"privateAddressOnly,omitempty"`
+    
     Region string `json:"region,omitempty"`
+    
+    RequestSpotInstance bool `json:"requestSpotInstance,omitempty"`
     
     RootSize string `json:"rootSize,omitempty"`
     
@@ -24,6 +30,10 @@ type Amazonec2Config struct {
     SecurityGroup string `json:"securityGroup,omitempty"`
     
     SessionToken string `json:"sessionToken,omitempty"`
+    
+    SpotPrice string `json:"spotPrice,omitempty"`
+    
+    SshUser string `json:"sshUser,omitempty"`
     
     SubnetId string `json:"subnetId,omitempty"`
     

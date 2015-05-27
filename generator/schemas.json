@@ -561,6 +561,22 @@
           "options": null,
           "default": null
         },
+        "port": {
+          "type": "int",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
         "requestLine": {
           "type": "string",
           "validChars": null,
@@ -1083,6 +1099,140 @@
       "collectionMethods": []
     },
     {
+      "id": "instanceHealthCheck",
+      "type": "schema",
+      "links": {
+        "self": "http://localhost:8080/v1/schemas/instancehealthcheck"
+      },
+      "actions": {},
+      "pluralName": "instanceHealthChecks",
+      "resourceFields": {
+        "healthyThreshold": {
+          "type": "int",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "interval": {
+          "type": "int",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "name": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": true,
+          "nullable": false,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "port": {
+          "type": "int",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": true,
+          "min": 1,
+          "max": 65535,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "requestLine": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": false,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "responseTimeout": {
+          "type": "int",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "unhealthyThreshold": {
+          "type": "int",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        }
+      },
+      "collectionFilters": {},
+      "includeableLinks": [],
+      "resourceActions": {},
+      "collectionActions": {},
+      "collectionFields": {},
+      "resourceMethods": [
+        "GET"
+      ],
+      "collectionMethods": [
+        "POST"
+      ]
+    },
+    {
       "id": "addLoadBalancerInput",
       "type": "schema",
       "links": {
@@ -1407,6 +1557,44 @@
       "resourceFields": {
         "label": {
           "type": "reference[label]",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": false,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        }
+      },
+      "collectionFilters": {},
+      "includeableLinks": [],
+      "resourceActions": {},
+      "collectionActions": {},
+      "collectionFields": {},
+      "resourceMethods": [
+        "GET"
+      ],
+      "collectionMethods": [
+        "POST"
+      ]
+    },
+    {
+      "id": "setLabelsInput",
+      "type": "schema",
+      "links": {
+        "self": "http://localhost:8080/v1/schemas/setlabelsinput"
+      },
+      "actions": {},
+      "pluralName": "setLabelsInputs",
+      "resourceFields": {
+        "labels": {
+          "type": "json",
           "validChars": null,
           "invalidChars": null,
           "create": true,
@@ -1861,11 +2049,11 @@
       },
       "includeableLinks": [
         "images",
-        "account",
-        "instances"
+        "instances",
+        "account"
       ],
       "resourceActions": {
-        "update": {
+        "restore": {
           "input": null,
           "output": "credential"
         },
@@ -1873,23 +2061,23 @@
           "input": null,
           "output": "credential"
         },
-        "remove": {
-          "input": null,
-          "output": "credential"
-        },
-        "restore": {
-          "input": null,
-          "output": "credential"
-        },
-        "deactivate": {
-          "input": null,
-          "output": "credential"
-        },
         "create": {
           "input": null,
           "output": "credential"
         },
+        "update": {
+          "input": null,
+          "output": "credential"
+        },
         "purge": {
+          "input": null,
+          "output": "credential"
+        },
+        "remove": {
+          "input": null,
+          "output": "credential"
+        },
+        "deactivate": {
           "input": null,
           "output": "credential"
         }
@@ -2441,45 +2629,34 @@
         }
       },
       "includeableLinks": [
+        "agent",
+        "instances",
+        "hosts",
+        "loadbalancerhostmaps",
+        "serviceexposemaps",
+        "labels",
         "ipaddresses",
         "storagepools",
-        "clusters",
+        "loadbalancers",
         "physicalhost",
-        "labels",
-        "hosts",
-        "containerevents",
         "account",
-        "loadbalancerhostmaps",
-        "instances",
-        "agent",
-        "loadbalancers"
+        "clusters",
+        "containerevents"
       ],
       "resourceActions": {
-        "update": {
-          "input": null,
-          "output": "host"
-        },
-        "activate": {
-          "input": null,
-          "output": "host"
-        },
-        "remove": {
-          "input": null,
-          "output": "host"
-        },
         "restore": {
           "input": null,
-          "output": "host"
-        },
-        "removelabel": {
-          "input": "removeLabelInput",
           "output": "host"
         },
         "addlabel": {
           "input": "addLabelInput",
           "output": "host"
         },
-        "deactivate": {
+        "setlabels": {
+          "input": "setLabelsInput",
+          "output": "host"
+        },
+        "activate": {
           "input": null,
           "output": "host"
         },
@@ -2487,8 +2664,24 @@
           "input": null,
           "output": "host"
         },
+        "update": {
+          "input": null,
+          "output": "host"
+        },
         "purge": {
           "input": null,
+          "output": "host"
+        },
+        "remove": {
+          "input": null,
+          "output": "host"
+        },
+        "deactivate": {
+          "input": null,
+          "output": "host"
+        },
+        "removelabel": {
+          "input": "removeLabelInput",
           "output": "host"
         },
         "addhost": {
@@ -2791,6 +2984,22 @@
           "create": false,
           "update": false,
           "nullable": false,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": 255,
+          "options": null,
+          "default": null
+        },
+        "networkContainerId": {
+          "type": "reference[container]",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
           "unique": false,
           "required": false,
           "min": null,
@@ -3509,6 +3718,28 @@
           "options": null,
           "default": null
         },
+        "networkMode": {
+          "type": "enum",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": [
+            "none",
+            "bridge",
+            "host",
+            "managed",
+            "container"
+          ],
+          "default": "managed"
+        },
         "dataVolumes": {
           "type": "array[string]",
           "validChars": null,
@@ -3723,6 +3954,14 @@
             "notnull"
           ]
         },
+        "networkContainerId": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "null",
+            "notnull"
+          ]
+        },
         "offeringId": {
           "modifiers": [
             "eq",
@@ -3825,42 +4064,29 @@
         }
       },
       "includeableLinks": [
-        "services",
-        "instancelinks",
-        "loadbalancertargets",
-        "volumes",
-        "targetinstancelinks",
         "agent",
-        "registrycredential",
-        "instancelabels",
-        "ports",
-        "mounts",
+        "networkcontainer",
+        "credentials",
+        "instances",
         "hosts",
+        "volumes",
+        "mounts",
+        "serviceexposemaps",
+        "services",
+        "ports",
+        "instancelinks",
+        "registrycredential",
+        "targetinstancelinks",
+        "instancelabels",
         "account",
-        "credentials"
+        "loadbalancertargets"
       ],
       "resourceActions": {
-        "update": {
-          "input": null,
-          "output": "instance"
-        },
-        "stop": {
-          "input": "instanceStop",
-          "output": "instance"
-        },
         "console": {
           "input": "instanceConsoleInput",
           "output": "instanceConsole"
         },
-        "restart": {
-          "input": null,
-          "output": "instance"
-        },
-        "remove": {
-          "input": null,
-          "output": "instance"
-        },
-        "start": {
+        "allocate": {
           "input": null,
           "output": "instance"
         },
@@ -3868,7 +4094,11 @@
           "input": null,
           "output": "instance"
         },
-        "migrate": {
+        "stop": {
+          "input": "instanceStop",
+          "output": "instance"
+        },
+        "restart": {
           "input": null,
           "output": "instance"
         },
@@ -3876,7 +4106,7 @@
           "input": null,
           "output": "instance"
         },
-        "allocate": {
+        "start": {
           "input": null,
           "output": "instance"
         },
@@ -3884,7 +4114,19 @@
           "input": null,
           "output": "instance"
         },
+        "update": {
+          "input": null,
+          "output": "instance"
+        },
         "purge": {
+          "input": null,
+          "output": "instance"
+        },
+        "remove": {
+          "input": null,
+          "output": "instance"
+        },
+        "migrate": {
           "input": null,
           "output": "instance"
         },
@@ -3898,6 +4140,10 @@
         },
         "removelabel": {
           "input": "removeLabelInput",
+          "output": "container"
+        },
+        "setlabels": {
+          "input": "setLabelsInput",
           "output": "container"
         },
         "execute": {
@@ -4200,7 +4446,7 @@
           "minLength": null,
           "maxLength": 255,
           "options": null,
-          "default": null
+          "default": "user"
         },
         "name": {
           "type": "string",
@@ -4490,36 +4736,37 @@
         }
       },
       "includeableLinks": [
-        "networks",
-        "services",
-        "storagepools",
-        "agents",
-        "globalloadbalancers",
-        "labels",
-        "loadbalancertargets",
+        "projectmembers",
+        "credentials",
         "environments",
+        "instances",
+        "serviceexposemaps",
+        "networks",
+        "ports",
         "instancelinks",
-        "containerevents",
+        "loadbalancerconfigs",
+        "ipaddresses",
+        "storagepools",
+        "loadbalancerconfiglistenermaps",
+        "loadbalancertargets",
+        "images",
+        "hosts",
         "loadbalancerhostmaps",
         "volumes",
-        "instances",
-        "loadbalancers",
-        "loadbalancerconfiglistenermaps",
-        "ports",
-        "ipaddresses",
         "mounts",
+        "services",
+        "globalloadbalancers",
         "loadbalancerlisteners",
-        "loadbalancerconfigs",
-        "projectmembers",
-        "physicalhosts",
-        "hosts",
-        "images",
-        "credentials",
+        "agents",
+        "labels",
         "snapshots",
-        "certificates"
+        "certificates",
+        "loadbalancers",
+        "physicalhosts",
+        "containerevents"
       ],
       "resourceActions": {
-        "update": {
+        "restore": {
           "input": null,
           "output": "account"
         },
@@ -4527,23 +4774,23 @@
           "input": null,
           "output": "account"
         },
-        "remove": {
-          "input": null,
-          "output": "account"
-        },
-        "restore": {
-          "input": null,
-          "output": "account"
-        },
-        "deactivate": {
-          "input": null,
-          "output": "account"
-        },
         "create": {
           "input": null,
           "output": "account"
         },
+        "update": {
+          "input": null,
+          "output": "account"
+        },
         "purge": {
+          "input": null,
+          "output": "account"
+        },
+        "remove": {
+          "input": null,
+          "output": "account"
+        },
+        "deactivate": {
           "input": null,
           "output": "account"
         },
@@ -4993,15 +5240,15 @@
         }
       },
       "includeableLinks": [
-        "hosts",
+        "snapshots",
         "images",
-        "account",
         "credentials",
+        "hosts",
         "volumes",
-        "snapshots"
+        "account"
       ],
       "resourceActions": {
-        "update": {
+        "restore": {
           "input": null,
           "output": "storagePool"
         },
@@ -5009,23 +5256,23 @@
           "input": null,
           "output": "storagePool"
         },
-        "remove": {
-          "input": null,
-          "output": "storagePool"
-        },
-        "restore": {
-          "input": null,
-          "output": "storagePool"
-        },
-        "deactivate": {
-          "input": null,
-          "output": "storagePool"
-        },
         "create": {
           "input": null,
           "output": "storagePool"
         },
+        "update": {
+          "input": null,
+          "output": "storagePool"
+        },
         "purge": {
+          "input": null,
+          "output": "storagePool"
+        },
+        "remove": {
+          "input": null,
+          "output": "storagePool"
+        },
+        "deactivate": {
           "input": null,
           "output": "storagePool"
         }
@@ -5500,13 +5747,13 @@
         }
       },
       "includeableLinks": [
-        "images",
-        "account",
         "registry",
-        "instances"
+        "images",
+        "instances",
+        "account"
       ],
       "resourceActions": {
-        "update": {
+        "restore": {
           "input": null,
           "output": "credential"
         },
@@ -5514,23 +5761,23 @@
           "input": null,
           "output": "credential"
         },
-        "remove": {
-          "input": null,
-          "output": "credential"
-        },
-        "restore": {
-          "input": null,
-          "output": "credential"
-        },
-        "deactivate": {
-          "input": null,
-          "output": "credential"
-        },
         "create": {
           "input": null,
           "output": "credential"
         },
+        "update": {
+          "input": null,
+          "output": "credential"
+        },
         "purge": {
+          "input": null,
+          "output": "credential"
+        },
+        "remove": {
+          "input": null,
+          "output": "credential"
+        },
+        "deactivate": {
           "input": null,
           "output": "credential"
         }
@@ -5897,6 +6144,22 @@
           "options": null,
           "default": null
         },
+        "healthCheck": {
+          "type": "instanceHealthCheck",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
         "id": {
           "type": "int",
           "validChars": null,
@@ -5947,7 +6210,7 @@
         },
         "name": {
           "type": "string",
-          "validChars": "[a-zA-Z0-9]-",
+          "validChars": "a-zA-Z0-9-",
           "invalidChars": null,
           "create": true,
           "update": true,
@@ -6240,21 +6503,34 @@
         }
       },
       "includeableLinks": [
-        "loadbalancerlisteners",
-        "environment",
-        "loadbalancerconfigs",
-        "consumedservices",
-        "account",
-        "instances",
         "consumedbyservices",
-        "loadbalancers"
+        "environment",
+        "instances",
+        "consumedservices",
+        "loadbalancers",
+        "serviceexposemaps",
+        "loadbalancerlisteners",
+        "account",
+        "loadbalancerconfigs"
       ],
       "resourceActions": {
-        "update": {
-          "input": null,
+        "removeservicelink": {
+          "input": "addRemoveServiceLinkInput",
           "output": "service"
         },
         "activate": {
+          "input": null,
+          "output": "service"
+        },
+        "addservicelink": {
+          "input": "addRemoveServiceLinkInput",
+          "output": "service"
+        },
+        "create": {
+          "input": null,
+          "output": "service"
+        },
+        "update": {
           "input": null,
           "output": "service"
         },
@@ -6266,19 +6542,7 @@
           "input": "setServiceLinksInput",
           "output": "service"
         },
-        "removeservicelink": {
-          "input": "addRemoveServiceLinkInput",
-          "output": "service"
-        },
-        "addservicelink": {
-          "input": "addRemoveServiceLinkInput",
-          "output": "service"
-        },
         "deactivate": {
-          "input": null,
-          "output": "service"
-        },
-        "create": {
           "input": null,
           "output": "service"
         }
@@ -6415,7 +6679,7 @@
           "minLength": null,
           "maxLength": 255,
           "options": null,
-          "default": null
+          "default": "user"
         },
         "name": {
           "type": "string",
@@ -6689,36 +6953,37 @@
         }
       },
       "includeableLinks": [
-        "networks",
-        "services",
-        "storagepools",
-        "agents",
-        "globalloadbalancers",
-        "labels",
-        "loadbalancertargets",
+        "projectmembers",
+        "credentials",
         "environments",
+        "instances",
+        "serviceexposemaps",
+        "networks",
+        "ports",
         "instancelinks",
-        "containerevents",
+        "loadbalancerconfigs",
+        "ipaddresses",
+        "storagepools",
+        "loadbalancerconfiglistenermaps",
+        "loadbalancertargets",
+        "images",
+        "hosts",
         "loadbalancerhostmaps",
         "volumes",
-        "instances",
-        "loadbalancers",
-        "loadbalancerconfiglistenermaps",
-        "ports",
-        "ipaddresses",
         "mounts",
+        "services",
+        "globalloadbalancers",
         "loadbalancerlisteners",
-        "loadbalancerconfigs",
-        "projectmembers",
-        "physicalhosts",
-        "hosts",
-        "images",
-        "credentials",
+        "agents",
+        "labels",
         "snapshots",
-        "certificates"
+        "certificates",
+        "loadbalancers",
+        "physicalhosts",
+        "containerevents"
       ],
       "resourceActions": {
-        "update": {
+        "restore": {
           "input": null,
           "output": "account"
         },
@@ -6726,23 +6991,23 @@
           "input": null,
           "output": "account"
         },
-        "remove": {
-          "input": null,
-          "output": "account"
-        },
-        "restore": {
-          "input": null,
-          "output": "account"
-        },
-        "deactivate": {
-          "input": null,
-          "output": "account"
-        },
         "create": {
           "input": null,
           "output": "account"
         },
+        "update": {
+          "input": null,
+          "output": "account"
+        },
         "purge": {
+          "input": null,
+          "output": "account"
+        },
+        "remove": {
+          "input": null,
+          "output": "account"
+        },
+        "deactivate": {
           "input": null,
           "output": "account"
         }
@@ -7191,26 +7456,14 @@
         }
       },
       "includeableLinks": [
+        "instances",
+        "hosts",
         "storagepools",
         "configitemstatuses",
         "physicalhosts",
-        "hosts",
-        "account",
-        "instances"
+        "account"
       ],
       "resourceActions": {
-        "update": {
-          "input": null,
-          "output": "agent"
-        },
-        "activate": {
-          "input": null,
-          "output": "agent"
-        },
-        "remove": {
-          "input": null,
-          "output": "agent"
-        },
         "reconnect": {
           "input": null,
           "output": "agent"
@@ -7219,7 +7472,7 @@
           "input": null,
           "output": "agent"
         },
-        "deactivate": {
+        "activate": {
           "input": null,
           "output": "agent"
         },
@@ -7227,7 +7480,19 @@
           "input": null,
           "output": "agent"
         },
+        "update": {
+          "input": null,
+          "output": "agent"
+        },
         "purge": {
+          "input": null,
+          "output": "agent"
+        },
+        "remove": {
+          "input": null,
+          "output": "agent"
+        },
+        "deactivate": {
           "input": null,
           "output": "agent"
         }
@@ -8388,11 +8653,11 @@
         "account"
       ],
       "resourceActions": {
-        "remove": {
+        "create": {
           "input": null,
           "output": "containerEvent"
         },
-        "create": {
+        "remove": {
           "input": null,
           "output": "containerEvent"
         }
@@ -8833,11 +9098,11 @@
       },
       "includeableLinks": [
         "images",
-        "account",
-        "instances"
+        "instances",
+        "account"
       ],
       "resourceActions": {
-        "update": {
+        "restore": {
           "input": null,
           "output": "credential"
         },
@@ -8845,23 +9110,23 @@
           "input": null,
           "output": "credential"
         },
-        "remove": {
-          "input": null,
-          "output": "credential"
-        },
-        "restore": {
-          "input": null,
-          "output": "credential"
-        },
-        "deactivate": {
-          "input": null,
-          "output": "credential"
-        },
         "create": {
           "input": null,
           "output": "credential"
         },
+        "update": {
+          "input": null,
+          "output": "credential"
+        },
         "purge": {
+          "input": null,
+          "output": "credential"
+        },
+        "remove": {
+          "input": null,
+          "output": "credential"
+        },
+        "deactivate": {
           "input": null,
           "output": "credential"
         }
@@ -9440,7 +9705,7 @@
         },
         "name": {
           "type": "string",
-          "validChars": "[a-zA-Z0-9-]",
+          "validChars": "a-zA-Z0-9-",
           "invalidChars": null,
           "create": true,
           "update": true,
@@ -9693,19 +9958,11 @@
         "account"
       ],
       "resourceActions": {
-        "update": {
-          "input": null,
-          "output": "environment"
-        },
-        "remove": {
-          "input": null,
-          "output": "environment"
-        },
-        "activateservices": {
+        "deactivateservices": {
           "input": null,
           "output": null
         },
-        "deactivateservices": {
+        "activateservices": {
           "input": null,
           "output": null
         },
@@ -9713,9 +9970,17 @@
           "input": null,
           "output": "environment"
         },
+        "update": {
+          "input": null,
+          "output": "environment"
+        },
         "exportconfig": {
           "input": "composeConfigInput",
           "output": "composeConfig"
+        },
+        "remove": {
+          "input": null,
+          "output": "environment"
         }
       },
       "collectionActions": {},
@@ -10146,11 +10411,11 @@
         }
       },
       "includeableLinks": [
-        "externalhandlerexternalhandlerprocessmaps",
-        "externalhandlerprocesses"
+        "externalhandlerprocesses",
+        "externalhandlerexternalhandlerprocessmaps"
       ],
       "resourceActions": {
-        "update": {
+        "restore": {
           "input": null,
           "output": "externalHandler"
         },
@@ -10158,23 +10423,23 @@
           "input": null,
           "output": "externalHandler"
         },
-        "remove": {
-          "input": null,
-          "output": "externalHandler"
-        },
-        "restore": {
-          "input": null,
-          "output": "externalHandler"
-        },
-        "deactivate": {
-          "input": null,
-          "output": "externalHandler"
-        },
         "create": {
           "input": null,
           "output": "externalHandler"
         },
+        "update": {
+          "input": null,
+          "output": "externalHandler"
+        },
         "purge": {
+          "input": null,
+          "output": "externalHandler"
+        },
+        "remove": {
+          "input": null,
+          "output": "externalHandler"
+        },
+        "deactivate": {
           "input": null,
           "output": "externalHandler"
         }
@@ -10609,7 +10874,7 @@
         "externalhandlerprocess"
       ],
       "resourceActions": {
-        "update": {
+        "restore": {
           "input": null,
           "output": "externalHandlerExternalHandlerProcessMap"
         },
@@ -10617,23 +10882,23 @@
           "input": null,
           "output": "externalHandlerExternalHandlerProcessMap"
         },
-        "remove": {
-          "input": null,
-          "output": "externalHandlerExternalHandlerProcessMap"
-        },
-        "restore": {
-          "input": null,
-          "output": "externalHandlerExternalHandlerProcessMap"
-        },
-        "deactivate": {
-          "input": null,
-          "output": "externalHandlerExternalHandlerProcessMap"
-        },
         "create": {
           "input": null,
           "output": "externalHandlerExternalHandlerProcessMap"
         },
+        "update": {
+          "input": null,
+          "output": "externalHandlerExternalHandlerProcessMap"
+        },
         "purge": {
+          "input": null,
+          "output": "externalHandlerExternalHandlerProcessMap"
+        },
+        "remove": {
+          "input": null,
+          "output": "externalHandlerExternalHandlerProcessMap"
+        },
+        "deactivate": {
           "input": null,
           "output": "externalHandlerExternalHandlerProcessMap"
         }
@@ -10991,7 +11256,7 @@
         "externalhandlers"
       ],
       "resourceActions": {
-        "update": {
+        "restore": {
           "input": null,
           "output": "externalHandlerProcess"
         },
@@ -10999,23 +11264,23 @@
           "input": null,
           "output": "externalHandlerProcess"
         },
-        "remove": {
-          "input": null,
-          "output": "externalHandlerProcess"
-        },
-        "restore": {
-          "input": null,
-          "output": "externalHandlerProcess"
-        },
-        "deactivate": {
-          "input": null,
-          "output": "externalHandlerProcess"
-        },
         "create": {
           "input": null,
           "output": "externalHandlerProcess"
         },
+        "update": {
+          "input": null,
+          "output": "externalHandlerProcess"
+        },
         "purge": {
+          "input": null,
+          "output": "externalHandlerProcess"
+        },
+        "remove": {
+          "input": null,
+          "output": "externalHandlerProcess"
+        },
+        "deactivate": {
           "input": null,
           "output": "externalHandlerProcess"
         }
@@ -11418,23 +11683,23 @@
         }
       },
       "includeableLinks": [
-        "account",
-        "loadbalancers"
+        "loadbalancers",
+        "account"
       ],
       "resourceActions": {
-        "remove": {
-          "input": null,
+        "removeloadbalancer": {
+          "input": "removeLoadBalancerInput",
           "output": "globalLoadBalancer"
         },
         "addloadbalancer": {
           "input": "addLoadBalancerInput",
           "output": "globalLoadBalancer"
         },
-        "removeloadbalancer": {
-          "input": "removeLoadBalancerInput",
+        "create": {
+          "input": null,
           "output": "globalLoadBalancer"
         },
-        "create": {
+        "remove": {
           "input": null,
           "output": "globalLoadBalancer"
         }
@@ -11954,45 +12219,34 @@
         }
       },
       "includeableLinks": [
+        "agent",
+        "instances",
+        "hosts",
+        "loadbalancerhostmaps",
+        "serviceexposemaps",
+        "labels",
         "ipaddresses",
         "storagepools",
-        "clusters",
+        "loadbalancers",
         "physicalhost",
-        "labels",
-        "hosts",
-        "containerevents",
         "account",
-        "loadbalancerhostmaps",
-        "instances",
-        "agent",
-        "loadbalancers"
+        "clusters",
+        "containerevents"
       ],
       "resourceActions": {
-        "update": {
-          "input": null,
-          "output": "host"
-        },
-        "activate": {
-          "input": null,
-          "output": "host"
-        },
-        "remove": {
-          "input": null,
-          "output": "host"
-        },
         "restore": {
           "input": null,
-          "output": "host"
-        },
-        "removelabel": {
-          "input": "removeLabelInput",
           "output": "host"
         },
         "addlabel": {
           "input": "addLabelInput",
           "output": "host"
         },
-        "deactivate": {
+        "setlabels": {
+          "input": "setLabelsInput",
+          "output": "host"
+        },
+        "activate": {
           "input": null,
           "output": "host"
         },
@@ -12000,8 +12254,24 @@
           "input": null,
           "output": "host"
         },
+        "update": {
+          "input": null,
+          "output": "host"
+        },
         "purge": {
           "input": null,
+          "output": "host"
+        },
+        "remove": {
+          "input": null,
+          "output": "host"
+        },
+        "deactivate": {
+          "input": null,
+          "output": "host"
+        },
+        "removelabel": {
+          "input": "removeLabelInput",
           "output": "host"
         }
       },
@@ -12464,13 +12734,13 @@
         }
       },
       "includeableLinks": [
+        "instances",
         "storagepools",
-        "account",
         "volumes",
-        "instances"
+        "account"
       ],
       "resourceActions": {
-        "update": {
+        "restore": {
           "input": null,
           "output": "image"
         },
@@ -12478,23 +12748,23 @@
           "input": null,
           "output": "image"
         },
-        "remove": {
-          "input": null,
-          "output": "image"
-        },
-        "restore": {
-          "input": null,
-          "output": "image"
-        },
-        "deactivate": {
-          "input": null,
-          "output": "image"
-        },
         "create": {
           "input": null,
           "output": "image"
         },
+        "update": {
+          "input": null,
+          "output": "image"
+        },
         "purge": {
+          "input": null,
+          "output": "image"
+        },
+        "remove": {
+          "input": null,
+          "output": "image"
+        },
+        "deactivate": {
           "input": null,
           "output": "image"
         }
@@ -12960,6 +13230,14 @@
             "notnull"
           ]
         },
+        "networkContainerId": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "null",
+            "notnull"
+          ]
+        },
         "offeringId": {
           "modifiers": [
             "eq",
@@ -13062,40 +13340,26 @@
         }
       },
       "includeableLinks": [
-        "instancelabels",
+        "credentials",
+        "instances",
+        "hosts",
+        "volumes",
+        "mounts",
+        "serviceexposemaps",
         "services",
         "ports",
-        "mounts",
-        "loadbalancertargets",
         "instancelinks",
-        "hosts",
+        "targetinstancelinks",
+        "instancelabels",
         "account",
-        "credentials",
-        "volumes",
-        "targetinstancelinks"
+        "loadbalancertargets"
       ],
       "resourceActions": {
-        "update": {
-          "input": null,
-          "output": "instance"
-        },
-        "stop": {
-          "input": "instanceStop",
-          "output": "instance"
-        },
         "console": {
           "input": "instanceConsoleInput",
           "output": "instanceConsole"
         },
-        "restart": {
-          "input": null,
-          "output": "instance"
-        },
-        "remove": {
-          "input": null,
-          "output": "instance"
-        },
-        "start": {
+        "allocate": {
           "input": null,
           "output": "instance"
         },
@@ -13103,7 +13367,11 @@
           "input": null,
           "output": "instance"
         },
-        "migrate": {
+        "stop": {
+          "input": "instanceStop",
+          "output": "instance"
+        },
+        "restart": {
           "input": null,
           "output": "instance"
         },
@@ -13111,7 +13379,7 @@
           "input": null,
           "output": "instance"
         },
-        "allocate": {
+        "start": {
           "input": null,
           "output": "instance"
         },
@@ -13119,7 +13387,19 @@
           "input": null,
           "output": "instance"
         },
+        "update": {
+          "input": null,
+          "output": "instance"
+        },
         "purge": {
+          "input": null,
+          "output": "instance"
+        },
+        "remove": {
+          "input": null,
+          "output": "instance"
+        },
+        "migrate": {
           "input": null,
           "output": "instance"
         }
@@ -13589,11 +13869,11 @@
       },
       "includeableLinks": [
         "targetinstance",
-        "account",
-        "instance"
+        "instance",
+        "account"
       ],
       "resourceActions": {
-        "update": {
+        "restore": {
           "input": null,
           "output": "instanceLink"
         },
@@ -13601,23 +13881,23 @@
           "input": null,
           "output": "instanceLink"
         },
-        "remove": {
-          "input": null,
-          "output": "instanceLink"
-        },
-        "restore": {
-          "input": null,
-          "output": "instanceLink"
-        },
-        "deactivate": {
-          "input": null,
-          "output": "instanceLink"
-        },
         "create": {
           "input": null,
           "output": "instanceLink"
         },
+        "update": {
+          "input": null,
+          "output": "instanceLink"
+        },
         "purge": {
+          "input": null,
+          "output": "instanceLink"
+        },
+        "remove": {
+          "input": null,
+          "output": "instanceLink"
+        },
+        "deactivate": {
           "input": null,
           "output": "instanceLink"
         }
@@ -14096,14 +14376,14 @@
         }
       },
       "includeableLinks": [
-        "privateports",
         "publicports",
         "hosts",
+        "privateports",
         "account",
         "network"
       ],
       "resourceActions": {
-        "update": {
+        "restore": {
           "input": null,
           "output": "ipAddress"
         },
@@ -14111,23 +14391,11 @@
           "input": null,
           "output": "ipAddress"
         },
-        "remove": {
-          "input": null,
-          "output": "ipAddress"
-        },
-        "disassociate": {
-          "input": null,
-          "output": "ipAddress"
-        },
-        "restore": {
-          "input": null,
-          "output": "ipAddress"
-        },
-        "deactivate": {
-          "input": null,
-          "output": "ipAddress"
-        },
         "create": {
+          "input": null,
+          "output": "ipAddress"
+        },
+        "update": {
           "input": null,
           "output": "ipAddress"
         },
@@ -14138,6 +14406,18 @@
         "associate": {
           "input": "ipAddressAssociateInput",
           "output": "ipPool"
+        },
+        "remove": {
+          "input": null,
+          "output": "ipAddress"
+        },
+        "deactivate": {
+          "input": null,
+          "output": "ipAddress"
+        },
+        "disassociate": {
+          "input": null,
+          "output": "ipAddress"
         }
       },
       "collectionActions": {},
@@ -14243,8 +14523,8 @@
           "type": "string",
           "validChars": null,
           "invalidChars": null,
-          "create": true,
-          "update": true,
+          "create": false,
+          "update": false,
           "nullable": true,
           "unique": false,
           "required": false,
@@ -14361,8 +14641,8 @@
           "type": "string",
           "validChars": null,
           "invalidChars": null,
-          "create": true,
-          "update": true,
+          "create": false,
+          "update": false,
           "nullable": true,
           "unique": false,
           "required": false,
@@ -14570,16 +14850,16 @@
         }
       },
       "includeableLinks": [
+        "instances",
         "hosts",
-        "account",
-        "instances"
+        "account"
       ],
       "resourceActions": {
-        "remove": {
+        "create": {
           "input": null,
           "output": "label"
         },
-        "create": {
+        "remove": {
           "input": null,
           "output": "label"
         }
@@ -14587,13 +14867,10 @@
       "collectionActions": {},
       "collectionFields": {},
       "resourceMethods": [
-        "GET",
-        "PUT",
-        "DELETE"
+        "GET"
       ],
       "collectionMethods": [
-        "GET",
-        "POST"
+        "GET"
       ]
     },
     {
@@ -15053,36 +15330,32 @@
         }
       },
       "includeableLinks": [
-        "loadbalancerconfig",
-        "service",
-        "loadbalancertargets",
-        "hosts",
         "globalloadbalancer",
+        "hosts",
+        "service",
+        "loadbalancerhostmaps",
+        "loadbalancerconfig",
         "account",
-        "loadbalancerhostmaps"
+        "loadbalancertargets"
       ],
       "resourceActions": {
-        "update": {
-          "input": null,
-          "output": "loadBalancer"
-        },
-        "sethosts": {
-          "input": "setLoadBalancerHostsInput",
+        "removetarget": {
+          "input": "addRemoveLoadBalancerTargetInput",
           "output": "loadBalancer"
         },
         "addtarget": {
           "input": "addRemoveLoadBalancerTargetInput",
           "output": "loadBalancer"
         },
+        "settargets": {
+          "input": "setLoadBalancerTargetsInput",
+          "output": "loadBalancer"
+        },
+        "sethosts": {
+          "input": "setLoadBalancerHostsInput",
+          "output": "loadBalancer"
+        },
         "removehost": {
-          "input": "addRemoveLoadBalancerHostInput",
-          "output": "loadBalancer"
-        },
-        "remove": {
-          "input": null,
-          "output": "loadBalancer"
-        },
-        "addhost": {
           "input": "addRemoveLoadBalancerHostInput",
           "output": "loadBalancer"
         },
@@ -15090,12 +15363,16 @@
           "input": null,
           "output": "loadBalancer"
         },
-        "removetarget": {
-          "input": "addRemoveLoadBalancerTargetInput",
+        "update": {
+          "input": null,
           "output": "loadBalancer"
         },
-        "settargets": {
-          "input": "setLoadBalancerTargetsInput",
+        "addhost": {
+          "input": "addRemoveLoadBalancerHostInput",
+          "output": "loadBalancer"
+        },
+        "remove": {
+          "input": null,
           "output": "loadBalancer"
         }
       },
@@ -15540,15 +15817,27 @@
         }
       },
       "includeableLinks": [
-        "loadbalancerconfiglistenermaps",
-        "loadbalancerlisteners",
         "service",
-        "account",
-        "loadbalancers"
+        "loadbalancers",
+        "loadbalancerlisteners",
+        "loadbalancerconfiglistenermaps",
+        "account"
       ],
       "resourceActions": {
         "removelistener": {
           "input": "addRemoveLoadBalancerListenerInput",
+          "output": "loadBalancerConfig"
+        },
+        "addlistener": {
+          "input": "addRemoveLoadBalancerListenerInput",
+          "output": "loadBalancerConfig"
+        },
+        "setlisteners": {
+          "input": "setLoadBalancerListenersInput",
+          "output": "loadBalancerConfig"
+        },
+        "create": {
+          "input": null,
           "output": "loadBalancerConfig"
         },
         "update": {
@@ -15556,18 +15845,6 @@
           "output": "loadBalancerConfig"
         },
         "remove": {
-          "input": null,
-          "output": "loadBalancerConfig"
-        },
-        "setlisteners": {
-          "input": "setLoadBalancerListenersInput",
-          "output": "loadBalancerConfig"
-        },
-        "addlistener": {
-          "input": "addRemoveLoadBalancerListenerInput",
-          "output": "loadBalancerConfig"
-        },
-        "create": {
           "input": null,
           "output": "loadBalancerConfig"
         }
@@ -15988,16 +16265,16 @@
         }
       },
       "includeableLinks": [
-        "loadbalancerlistener",
         "loadbalancerconfig",
-        "account"
+        "account",
+        "loadbalancerlistener"
       ],
       "resourceActions": {
-        "remove": {
+        "create": {
           "input": null,
           "output": "loadBalancerConfigListenerMap"
         },
-        "create": {
+        "remove": {
           "input": null,
           "output": "loadBalancerConfigListenerMap"
         }
@@ -16360,8 +16637,8 @@
         }
       },
       "includeableLinks": [
-        "host",
         "loadbalancer",
+        "host",
         "account"
       ],
       "resourceActions": {},
@@ -16890,17 +17167,17 @@
         }
       },
       "includeableLinks": [
-        "loadbalancerconfiglistenermaps",
-        "loadbalancerconfigs",
         "service",
-        "account"
+        "loadbalancerconfiglistenermaps",
+        "account",
+        "loadbalancerconfigs"
       ],
       "resourceActions": {
-        "remove": {
+        "create": {
           "input": null,
           "output": "loadBalancerListener"
         },
-        "create": {
+        "remove": {
           "input": null,
           "output": "loadBalancerListener"
         }
@@ -17348,16 +17625,16 @@
         }
       },
       "includeableLinks": [
+        "instance",
         "loadbalancer",
-        "account",
-        "instance"
+        "account"
       ],
       "resourceActions": {
-        "remove": {
+        "create": {
           "input": null,
           "output": "loadBalancerTarget"
         },
-        "create": {
+        "remove": {
           "input": null,
           "output": "loadBalancerTarget"
         }
@@ -17838,11 +18115,11 @@
       },
       "includeableLinks": [
         "volume",
-        "account",
-        "instance"
+        "instance",
+        "account"
       ],
       "resourceActions": {
-        "update": {
+        "restore": {
           "input": null,
           "output": "mount"
         },
@@ -17850,23 +18127,23 @@
           "input": null,
           "output": "mount"
         },
-        "remove": {
-          "input": null,
-          "output": "mount"
-        },
-        "restore": {
-          "input": null,
-          "output": "mount"
-        },
-        "deactivate": {
-          "input": null,
-          "output": "mount"
-        },
         "create": {
           "input": null,
           "output": "mount"
         },
+        "update": {
+          "input": null,
+          "output": "mount"
+        },
         "purge": {
+          "input": null,
+          "output": "mount"
+        },
+        "remove": {
+          "input": null,
+          "output": "mount"
+        },
+        "deactivate": {
           "input": null,
           "output": "mount"
         }
@@ -18267,7 +18544,7 @@
         "account"
       ],
       "resourceActions": {
-        "update": {
+        "restore": {
           "input": null,
           "output": "network"
         },
@@ -18275,23 +18552,23 @@
           "input": null,
           "output": "network"
         },
-        "remove": {
-          "input": null,
-          "output": "network"
-        },
-        "restore": {
-          "input": null,
-          "output": "network"
-        },
-        "deactivate": {
-          "input": null,
-          "output": "network"
-        },
         "create": {
           "input": null,
           "output": "network"
         },
+        "update": {
+          "input": null,
+          "output": "network"
+        },
         "purge": {
+          "input": null,
+          "output": "network"
+        },
+        "remove": {
+          "input": null,
+          "output": "network"
+        },
+        "deactivate": {
           "input": null,
           "output": "network"
         }
@@ -18689,6 +18966,10 @@
         "account"
       ],
       "resourceActions": {
+        "create": {
+          "input": null,
+          "output": "physicalHost"
+        },
         "update": {
           "input": null,
           "output": "physicalHost"
@@ -18697,15 +18978,11 @@
           "input": null,
           "output": "physicalHost"
         },
-        "remove": {
-          "input": null,
-          "output": "physicalHost"
-        },
         "error": {
           "input": null,
           "output": "physicalHost"
         },
-        "create": {
+        "remove": {
           "input": null,
           "output": "physicalHost"
         }
@@ -19240,11 +19517,11 @@
       "includeableLinks": [
         "privateipaddress",
         "publicipaddress",
-        "account",
-        "instance"
+        "instance",
+        "account"
       ],
       "resourceActions": {
-        "update": {
+        "restore": {
           "input": null,
           "output": "port"
         },
@@ -19252,23 +19529,23 @@
           "input": null,
           "output": "port"
         },
-        "remove": {
-          "input": null,
-          "output": "port"
-        },
-        "restore": {
-          "input": null,
-          "output": "port"
-        },
-        "deactivate": {
-          "input": null,
-          "output": "port"
-        },
         "create": {
           "input": null,
           "output": "port"
         },
+        "update": {
+          "input": null,
+          "output": "port"
+        },
         "purge": {
+          "input": null,
+          "output": "port"
+        },
+        "remove": {
+          "input": null,
+          "output": "port"
+        },
+        "deactivate": {
           "input": null,
           "output": "port"
         }
@@ -20238,7 +20515,7 @@
         "project"
       ],
       "resourceActions": {
-        "update": {
+        "restore": {
           "input": null,
           "output": "projectMember"
         },
@@ -20246,23 +20523,23 @@
           "input": null,
           "output": "projectMember"
         },
-        "remove": {
-          "input": null,
-          "output": "projectMember"
-        },
-        "restore": {
-          "input": null,
-          "output": "projectMember"
-        },
-        "deactivate": {
-          "input": null,
-          "output": "projectMember"
-        },
         "create": {
           "input": null,
           "output": "projectMember"
         },
+        "update": {
+          "input": null,
+          "output": "projectMember"
+        },
         "purge": {
+          "input": null,
+          "output": "projectMember"
+        },
+        "remove": {
+          "input": null,
+          "output": "projectMember"
+        },
+        "deactivate": {
           "input": null,
           "output": "projectMember"
         }
@@ -20400,7 +20677,7 @@
         },
         "name": {
           "type": "string",
-          "validChars": "[a-zA-Z0-9]-",
+          "validChars": "a-zA-Z0-9-",
           "invalidChars": null,
           "create": true,
           "update": true,
@@ -20588,6 +20865,22 @@
           "maxLength": null,
           "options": null,
           "default": null
+        },
+        "healthCheck": {
+          "type": "instanceHealthCheck",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
         }
       },
       "collectionFilters": {
@@ -20709,21 +21002,34 @@
         }
       },
       "includeableLinks": [
-        "loadbalancerlisteners",
-        "environment",
-        "loadbalancerconfigs",
-        "consumedservices",
-        "account",
-        "instances",
         "consumedbyservices",
-        "loadbalancers"
+        "environment",
+        "instances",
+        "consumedservices",
+        "loadbalancers",
+        "serviceexposemaps",
+        "loadbalancerlisteners",
+        "account",
+        "loadbalancerconfigs"
       ],
       "resourceActions": {
-        "update": {
-          "input": null,
+        "removeservicelink": {
+          "input": "addRemoveServiceLinkInput",
           "output": "service"
         },
         "activate": {
+          "input": null,
+          "output": "service"
+        },
+        "addservicelink": {
+          "input": "addRemoveServiceLinkInput",
+          "output": "service"
+        },
+        "create": {
+          "input": null,
+          "output": "service"
+        },
+        "update": {
           "input": null,
           "output": "service"
         },
@@ -20735,19 +21041,7 @@
           "input": "setServiceLinksInput",
           "output": "service"
         },
-        "removeservicelink": {
-          "input": "addRemoveServiceLinkInput",
-          "output": "service"
-        },
-        "addservicelink": {
-          "input": "addRemoveServiceLinkInput",
-          "output": "service"
-        },
         "deactivate": {
-          "input": null,
-          "output": "service"
-        },
-        "create": {
           "input": null,
           "output": "service"
         }
@@ -20762,6 +21056,453 @@
       "collectionMethods": [
         "GET",
         "POST"
+      ]
+    },
+    {
+      "id": "serviceExposeMap",
+      "type": "schema",
+      "links": {
+        "self": "http://localhost:8080/v1/schemas/serviceexposemap",
+        "collection": "http://localhost:8080/v1/serviceexposemaps"
+      },
+      "actions": {},
+      "pluralName": "serviceExposeMaps",
+      "resourceFields": {
+        "accountId": {
+          "type": "reference[account]",
+          "validChars": null,
+          "invalidChars": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": 255,
+          "options": null,
+          "default": null
+        },
+        "created": {
+          "type": "date",
+          "validChars": null,
+          "invalidChars": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": 255,
+          "options": null,
+          "default": null
+        },
+        "data": {
+          "type": "map[json]",
+          "validChars": null,
+          "invalidChars": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": 65535,
+          "options": null,
+          "default": null
+        },
+        "description": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": 1024,
+          "options": null,
+          "default": null
+        },
+        "id": {
+          "type": "int",
+          "validChars": null,
+          "invalidChars": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "instanceId": {
+          "type": "reference[instance]",
+          "validChars": null,
+          "invalidChars": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": 255,
+          "options": null,
+          "default": null
+        },
+        "kind": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": 255,
+          "options": null,
+          "default": null
+        },
+        "name": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": 255,
+          "options": null,
+          "default": null
+        },
+        "removeTime": {
+          "type": "date",
+          "validChars": null,
+          "invalidChars": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": 255,
+          "options": null,
+          "default": null
+        },
+        "removed": {
+          "type": "date",
+          "validChars": null,
+          "invalidChars": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": 255,
+          "options": null,
+          "default": null
+        },
+        "serviceId": {
+          "type": "reference[service]",
+          "validChars": null,
+          "invalidChars": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": 255,
+          "options": null,
+          "default": null
+        },
+        "state": {
+          "type": "enum",
+          "validChars": null,
+          "invalidChars": null,
+          "create": false,
+          "update": false,
+          "nullable": false,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": 128,
+          "options": [
+            "activating",
+            "active",
+            "removed",
+            "removing",
+            "requested"
+          ],
+          "default": null
+        },
+        "uuid": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": 128,
+          "options": null,
+          "default": null
+        },
+        "transitioning": {
+          "type": "enum",
+          "validChars": null,
+          "invalidChars": null,
+          "create": false,
+          "update": false,
+          "nullable": false,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": [
+            "yes",
+            "no",
+            "error"
+          ],
+          "default": null
+        },
+        "transitioningMessage": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "transitioningProgress": {
+          "type": "int",
+          "validChars": null,
+          "invalidChars": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        }
+      },
+      "collectionFilters": {
+        "accountId": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "null",
+            "notnull"
+          ]
+        },
+        "created": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "lt",
+            "lte",
+            "gt",
+            "gte",
+            "null",
+            "notnull"
+          ]
+        },
+        "description": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "prefix",
+            "like",
+            "notlike",
+            "null",
+            "notnull"
+          ]
+        },
+        "healthState": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "prefix",
+            "like",
+            "notlike",
+            "null",
+            "notnull"
+          ]
+        },
+        "id": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "lt",
+            "lte",
+            "gt",
+            "gte",
+            "null",
+            "notnull"
+          ]
+        },
+        "instanceId": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "null",
+            "notnull"
+          ]
+        },
+        "kind": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "prefix",
+            "like",
+            "notlike",
+            "null",
+            "notnull"
+          ]
+        },
+        "name": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "prefix",
+            "like",
+            "notlike",
+            "null",
+            "notnull"
+          ]
+        },
+        "removeTime": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "lt",
+            "lte",
+            "gt",
+            "gte",
+            "null",
+            "notnull"
+          ]
+        },
+        "removed": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "lt",
+            "lte",
+            "gt",
+            "gte",
+            "null",
+            "notnull"
+          ]
+        },
+        "serviceId": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "null",
+            "notnull"
+          ]
+        },
+        "state": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "null",
+            "notnull"
+          ]
+        },
+        "uuid": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "prefix",
+            "like",
+            "notlike",
+            "null",
+            "notnull"
+          ]
+        }
+      },
+      "includeableLinks": [
+        "instance",
+        "hosts",
+        "service",
+        "account"
+      ],
+      "resourceActions": {
+        "updateunhealthy": {
+          "input": null,
+          "output": "serviceExposeMap"
+        },
+        "create": {
+          "input": null,
+          "output": "serviceExposeMap"
+        },
+        "updatehealthy": {
+          "input": null,
+          "output": "serviceExposeMap"
+        },
+        "remove": {
+          "input": null,
+          "output": "serviceExposeMap"
+        }
+      },
+      "collectionActions": {},
+      "collectionFields": {},
+      "resourceMethods": [
+        "GET"
+      ],
+      "collectionMethods": [
+        "GET"
       ]
     },
     {
@@ -21271,12 +22012,12 @@
         }
       },
       "includeableLinks": [
-        "storagepools",
         "volume",
+        "storagepools",
         "account"
       ],
       "resourceActions": {
-        "remove": {
+        "backup": {
           "input": null,
           "output": "snapshot"
         },
@@ -21284,7 +22025,7 @@
           "input": null,
           "output": "snapshot"
         },
-        "backup": {
+        "remove": {
           "input": null,
           "output": "snapshot"
         }
@@ -21711,15 +22452,15 @@
         }
       },
       "includeableLinks": [
-        "hosts",
+        "snapshots",
         "images",
-        "account",
         "credentials",
+        "hosts",
         "volumes",
-        "snapshots"
+        "account"
       ],
       "resourceActions": {
-        "update": {
+        "restore": {
           "input": null,
           "output": "storagePool"
         },
@@ -21727,23 +22468,23 @@
           "input": null,
           "output": "storagePool"
         },
-        "remove": {
-          "input": null,
-          "output": "storagePool"
-        },
-        "restore": {
-          "input": null,
-          "output": "storagePool"
-        },
-        "deactivate": {
-          "input": null,
-          "output": "storagePool"
-        },
         "create": {
           "input": null,
           "output": "storagePool"
         },
+        "update": {
+          "input": null,
+          "output": "storagePool"
+        },
         "purge": {
+          "input": null,
+          "output": "storagePool"
+        },
+        "remove": {
+          "input": null,
+          "output": "storagePool"
+        },
+        "deactivate": {
           "input": null,
           "output": "storagePool"
         }
@@ -22598,23 +23339,15 @@
         }
       },
       "includeableLinks": [
-        "mounts",
-        "storagepools",
-        "image",
-        "account",
         "snapshots",
-        "instance"
+        "image",
+        "instance",
+        "storagepools",
+        "mounts",
+        "account"
       ],
       "resourceActions": {
-        "update": {
-          "input": null,
-          "output": "volume"
-        },
-        "activate": {
-          "input": null,
-          "output": "volume"
-        },
-        "remove": {
+        "allocate": {
           "input": null,
           "output": "volume"
         },
@@ -22626,11 +23359,7 @@
           "input": null,
           "output": "volume"
         },
-        "allocate": {
-          "input": null,
-          "output": "volume"
-        },
-        "deactivate": {
+        "activate": {
           "input": null,
           "output": "volume"
         },
@@ -22638,7 +23367,19 @@
           "input": null,
           "output": "volume"
         },
+        "update": {
+          "input": null,
+          "output": "volume"
+        },
         "purge": {
+          "input": null,
+          "output": "volume"
+        },
+        "remove": {
+          "input": null,
+          "output": "volume"
+        },
+        "deactivate": {
           "input": null,
           "output": "volume"
         }
@@ -23527,6 +24268,22 @@
           "maxLength": null,
           "options": null,
           "default": null
+        },
+        "hostname": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
         }
       },
       "collectionFilters": {},
@@ -23599,15 +24356,31 @@
       ]
     },
     {
-      "id": "virtualboxConfig",
+      "id": "amazonec2Config",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/virtualboxconfig"
+        "self": "http://localhost:8080/v1/schemas/amazonec2config"
       },
       "actions": {},
-      "pluralName": "virtualboxConfigs",
+      "pluralName": "amazonec2Configs",
       "resourceFields": {
-        "memory": {
+        "accessKey": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": true,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "ami": {
           "type": "string",
           "validChars": null,
           "invalidChars": null,
@@ -23623,7 +24396,7 @@
           "options": null,
           "default": null
         },
-        "diskSize": {
+        "iamInstanceProfile": {
           "type": "string",
           "validChars": null,
           "invalidChars": null,
@@ -23639,7 +24412,215 @@
           "options": null,
           "default": null
         },
-        "boot2dockerUrl": {
+        "instanceType": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "monitoring": {
+          "type": "boolean",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "privateAddressOnly": {
+          "type": "boolean",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "region": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "requestSpotInstance": {
+          "type": "boolean",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "rootSize": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "secretKey": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": true,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "securityGroup": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "sessionToken": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "spotPrice": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "sshUser": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "subnetId": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "vpcId": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "zone": {
           "type": "string",
           "validChars": null,
           "invalidChars": null,
@@ -23677,8 +24658,72 @@
       "actions": {},
       "pluralName": "digitaloceanConfigs",
       "resourceFields": {
+        "accessToken": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": true,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "backups": {
+          "type": "boolean",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
         "image": {
           "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "ipv6": {
+          "type": "boolean",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "privateNetworking": {
+          "type": "boolean",
           "validChars": null,
           "invalidChars": null,
           "create": true,
@@ -23724,70 +24769,6 @@
           "maxLength": null,
           "options": null,
           "default": null
-        },
-        "accessToken": {
-          "type": "string",
-          "validChars": null,
-          "invalidChars": null,
-          "create": true,
-          "update": false,
-          "nullable": false,
-          "unique": false,
-          "required": true,
-          "min": null,
-          "max": null,
-          "minLength": null,
-          "maxLength": null,
-          "options": null,
-          "default": null
-        },
-        "ipv6": {
-          "type": "boolean",
-          "validChars": null,
-          "invalidChars": null,
-          "create": true,
-          "update": false,
-          "nullable": true,
-          "unique": false,
-          "required": false,
-          "min": null,
-          "max": null,
-          "minLength": null,
-          "maxLength": null,
-          "options": null,
-          "default": null
-        },
-        "privateNetworking": {
-          "type": "boolean",
-          "validChars": null,
-          "invalidChars": null,
-          "create": true,
-          "update": false,
-          "nullable": true,
-          "unique": false,
-          "required": false,
-          "min": null,
-          "max": null,
-          "minLength": null,
-          "maxLength": null,
-          "options": null,
-          "default": null
-        },
-        "backups": {
-          "type": "boolean",
-          "validChars": null,
-          "invalidChars": null,
-          "create": true,
-          "update": false,
-          "nullable": true,
-          "unique": false,
-          "required": false,
-          "min": null,
-          "max": null,
-          "minLength": null,
-          "maxLength": null,
-          "options": null,
-          "default": null
         }
       },
       "collectionFilters": {},
@@ -23803,47 +24784,15 @@
       ]
     },
     {
-      "id": "amazonec2Config",
+      "id": "exoscaleConfig",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/amazonec2config"
+        "self": "http://localhost:8080/v1/schemas/exoscaleconfig"
       },
       "actions": {},
-      "pluralName": "amazonec2Configs",
+      "pluralName": "exoscaleConfigs",
       "resourceFields": {
-        "accessKey": {
-          "type": "string",
-          "validChars": null,
-          "invalidChars": null,
-          "create": true,
-          "update": false,
-          "nullable": false,
-          "unique": false,
-          "required": true,
-          "min": null,
-          "max": null,
-          "minLength": null,
-          "maxLength": null,
-          "options": null,
-          "default": null
-        },
-        "secretKey": {
-          "type": "string",
-          "validChars": null,
-          "invalidChars": null,
-          "create": true,
-          "update": false,
-          "nullable": false,
-          "unique": false,
-          "required": true,
-          "min": null,
-          "max": null,
-          "minLength": null,
-          "maxLength": null,
-          "options": null,
-          "default": null
-        },
-        "vpcId": {
+        "apiKey": {
           "type": "string",
           "validChars": null,
           "invalidChars": null,
@@ -23859,7 +24808,7 @@
           "options": null,
           "default": null
         },
-        "sessionToken": {
+        "apiSecretKey": {
           "type": "string",
           "validChars": null,
           "invalidChars": null,
@@ -23875,7 +24824,7 @@
           "options": null,
           "default": null
         },
-        "ami": {
+        "availabilityZone": {
           "type": "string",
           "validChars": null,
           "invalidChars": null,
@@ -23891,7 +24840,7 @@
           "options": null,
           "default": null
         },
-        "region": {
+        "diskSize": {
           "type": "string",
           "validChars": null,
           "invalidChars": null,
@@ -23907,7 +24856,7 @@
           "options": null,
           "default": null
         },
-        "zone": {
+        "image": {
           "type": "string",
           "validChars": null,
           "invalidChars": null,
@@ -23923,7 +24872,7 @@
           "options": null,
           "default": null
         },
-        "subnetId": {
+        "instanceProfile": {
           "type": "string",
           "validChars": null,
           "invalidChars": null,
@@ -23955,39 +24904,7 @@
           "options": null,
           "default": null
         },
-        "instanceType": {
-          "type": "string",
-          "validChars": null,
-          "invalidChars": null,
-          "create": true,
-          "update": false,
-          "nullable": true,
-          "unique": false,
-          "required": false,
-          "min": null,
-          "max": null,
-          "minLength": null,
-          "maxLength": null,
-          "options": null,
-          "default": null
-        },
-        "rootSize": {
-          "type": "string",
-          "validChars": null,
-          "invalidChars": null,
-          "create": true,
-          "update": false,
-          "nullable": true,
-          "unique": false,
-          "required": false,
-          "min": null,
-          "max": null,
-          "minLength": null,
-          "maxLength": null,
-          "options": null,
-          "default": null
-        },
-        "iamInstanceProfile": {
+        "url": {
           "type": "string",
           "validChars": null,
           "invalidChars": null,
@@ -24017,23 +24934,23 @@
       ]
     },
     {
-      "id": "rackspaceConfig",
+      "id": "openstackConfig",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/rackspaceconfig"
+        "self": "http://localhost:8080/v1/schemas/openstackconfig"
       },
       "actions": {},
-      "pluralName": "rackspaceConfigs",
+      "pluralName": "openstackConfigs",
       "resourceFields": {
-        "username": {
+        "authUrl": {
           "type": "string",
           "validChars": null,
           "invalidChars": null,
           "create": true,
           "update": false,
-          "nullable": false,
+          "nullable": true,
           "unique": false,
-          "required": true,
+          "required": false,
           "min": null,
           "max": null,
           "minLength": null,
@@ -24041,15 +24958,15 @@
           "options": null,
           "default": null
         },
-        "apiKey": {
+        "domainId": {
           "type": "string",
           "validChars": null,
           "invalidChars": null,
           "create": true,
           "update": false,
-          "nullable": false,
+          "nullable": true,
           "unique": false,
-          "required": true,
+          "required": false,
           "min": null,
           "max": null,
           "minLength": null,
@@ -24057,7 +24974,7 @@
           "options": null,
           "default": null
         },
-        "region": {
+        "domainName": {
           "type": "string",
           "validChars": null,
           "invalidChars": null,
@@ -24089,22 +25006,6 @@
           "options": null,
           "default": null
         },
-        "imageId": {
-          "type": "string",
-          "validChars": null,
-          "invalidChars": null,
-          "create": true,
-          "update": false,
-          "nullable": true,
-          "unique": false,
-          "required": false,
-          "min": null,
-          "max": null,
-          "minLength": null,
-          "maxLength": null,
-          "options": null,
-          "default": null
-        },
         "flavorId": {
           "type": "string",
           "validChars": null,
@@ -24121,7 +25022,151 @@
           "options": null,
           "default": null
         },
-        "sshUser": {
+        "flavorName": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "floatingipPool": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "imageId": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "imageName": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "insecure": {
+          "type": "boolean",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "netId": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "netName": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "password": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "region": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "secGroups": {
           "type": "string",
           "validChars": null,
           "invalidChars": null,
@@ -24153,7 +25198,55 @@
           "options": null,
           "default": null
         },
-        "dockerInstall": {
+        "sshUser": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "tenantId": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "tenantName": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "username": {
           "type": "string",
           "validChars": null,
           "invalidChars": null,
@@ -24197,7 +25290,7 @@
           "invalidChars": null,
           "create": true,
           "update": false,
-          "nullable": false,
+          "nullable": true,
           "unique": false,
           "required": true,
           "min": null,
@@ -24207,23 +25300,7 @@
           "options": null,
           "default": null
         },
-        "projectId": {
-          "type": "string",
-          "validChars": null,
-          "invalidChars": null,
-          "create": true,
-          "update": false,
-          "nullable": false,
-          "unique": false,
-          "required": true,
-          "min": null,
-          "max": null,
-          "minLength": null,
-          "maxLength": null,
-          "options": null,
-          "default": null
-        },
-        "os": {
+        "billingCycle": {
           "type": "string",
           "validChars": null,
           "invalidChars": null,
@@ -24255,6 +25332,22 @@
           "options": null,
           "default": null
         },
+        "os": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
         "plan": {
           "type": "string",
           "validChars": null,
@@ -24271,7 +25364,997 @@
           "options": null,
           "default": null
         },
-        "billingCycle": {
+        "projectId": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": true,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        }
+      },
+      "collectionFilters": {},
+      "includeableLinks": [],
+      "resourceActions": {},
+      "collectionActions": {},
+      "collectionFields": {},
+      "resourceMethods": [
+        "GET"
+      ],
+      "collectionMethods": [
+        "POST"
+      ]
+    },
+    {
+      "id": "rackspaceConfig",
+      "type": "schema",
+      "links": {
+        "self": "http://localhost:8080/v1/schemas/rackspaceconfig"
+      },
+      "actions": {},
+      "pluralName": "rackspaceConfigs",
+      "resourceFields": {
+        "apiKey": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": true,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "dockerInstall": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "endpointType": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "flavorId": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "imageId": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "region": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "sshPort": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "sshUser": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "username": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": true,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        }
+      },
+      "collectionFilters": {},
+      "includeableLinks": [],
+      "resourceActions": {},
+      "collectionActions": {},
+      "collectionFields": {},
+      "resourceMethods": [
+        "GET"
+      ],
+      "collectionMethods": [
+        "POST"
+      ]
+    },
+    {
+      "id": "softlayerConfig",
+      "type": "schema",
+      "links": {
+        "self": "http://localhost:8080/v1/schemas/softlayerconfig"
+      },
+      "actions": {},
+      "pluralName": "softlayerConfigs",
+      "resourceFields": {
+        "apiEndpoint": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "apiKey": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "cpu": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "diskSize": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "domain": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "hostname": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "hourlyBilling": {
+          "type": "boolean",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "image": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "localDisk": {
+          "type": "boolean",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "memory": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "privateNetOnly": {
+          "type": "boolean",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "privateVlanId": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "publicVlanId": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "region": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "user": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        }
+      },
+      "collectionFilters": {},
+      "includeableLinks": [],
+      "resourceActions": {},
+      "collectionActions": {},
+      "collectionFields": {},
+      "resourceMethods": [
+        "GET"
+      ],
+      "collectionMethods": [
+        "POST"
+      ]
+    },
+    {
+      "id": "virtualboxConfig",
+      "type": "schema",
+      "links": {
+        "self": "http://localhost:8080/v1/schemas/virtualboxconfig"
+      },
+      "actions": {},
+      "pluralName": "virtualboxConfigs",
+      "resourceFields": {
+        "boot2dockerUrl": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "cpuCount": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "diskSize": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "importBoot2dockerVm": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "memory": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        }
+      },
+      "collectionFilters": {},
+      "includeableLinks": [],
+      "resourceActions": {},
+      "collectionActions": {},
+      "collectionFields": {},
+      "resourceMethods": [
+        "GET"
+      ],
+      "collectionMethods": [
+        "POST"
+      ]
+    },
+    {
+      "id": "vmwarevcloudairConfig",
+      "type": "schema",
+      "links": {
+        "self": "http://localhost:8080/v1/schemas/vmwarevcloudairconfig"
+      },
+      "actions": {},
+      "pluralName": "vmwarevcloudairConfigs",
+      "resourceFields": {
+        "catalog": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "catalogitem": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "computeid": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "cpuCount": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "dockerPort": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "edgegateway": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "memorySize": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "orgvdcnetwork": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "password": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "provision": {
+          "type": "boolean",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "publicip": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "sshPort": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "username": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "vdcid": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        }
+      },
+      "collectionFilters": {},
+      "includeableLinks": [],
+      "resourceActions": {},
+      "collectionActions": {},
+      "collectionFields": {},
+      "resourceMethods": [
+        "GET"
+      ],
+      "collectionMethods": [
+        "POST"
+      ]
+    },
+    {
+      "id": "vmwarevsphereConfig",
+      "type": "schema",
+      "links": {
+        "self": "http://localhost:8080/v1/schemas/vmwarevsphereconfig"
+      },
+      "actions": {},
+      "pluralName": "vmwarevsphereConfigs",
+      "resourceFields": {
+        "boot2dockerUrl": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "computeIp": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "cpuCount": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "datacenter": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "datastore": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "diskSize": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "memorySize": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "network": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "password": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "pool": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "username": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "vcenter": {
           "type": "string",
           "validChars": null,
           "invalidChars": null,
@@ -24565,6 +26648,166 @@
           "options": null,
           "default": null
         },
+        "amazonec2Config": {
+          "type": "amazonec2Config",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "digitaloceanConfig": {
+          "type": "digitaloceanConfig",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "exoscaleConfig": {
+          "type": "exoscaleConfig",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "openstackConfig": {
+          "type": "openstackConfig",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "packetConfig": {
+          "type": "packetConfig",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "rackspaceConfig": {
+          "type": "rackspaceConfig",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "softlayerConfig": {
+          "type": "softlayerConfig",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "virtualboxConfig": {
+          "type": "virtualboxConfig",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "vmwarevcloudairConfig": {
+          "type": "vmwarevcloudairConfig",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "vmwarevsphereConfig": {
+          "type": "vmwarevsphereConfig",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
         "authCertificateAuthority": {
           "type": "string",
           "validChars": null,
@@ -24619,86 +26862,6 @@
           "invalidChars": null,
           "create": false,
           "update": true,
-          "nullable": true,
-          "unique": false,
-          "required": false,
-          "min": null,
-          "max": null,
-          "minLength": null,
-          "maxLength": null,
-          "options": null,
-          "default": null
-        },
-        "virtualboxConfig": {
-          "type": "virtualboxConfig",
-          "validChars": null,
-          "invalidChars": null,
-          "create": true,
-          "update": false,
-          "nullable": true,
-          "unique": false,
-          "required": false,
-          "min": null,
-          "max": null,
-          "minLength": null,
-          "maxLength": null,
-          "options": null,
-          "default": null
-        },
-        "digitaloceanConfig": {
-          "type": "digitaloceanConfig",
-          "validChars": null,
-          "invalidChars": null,
-          "create": true,
-          "update": false,
-          "nullable": true,
-          "unique": false,
-          "required": false,
-          "min": null,
-          "max": null,
-          "minLength": null,
-          "maxLength": null,
-          "options": null,
-          "default": null
-        },
-        "amazonec2Config": {
-          "type": "amazonec2Config",
-          "validChars": null,
-          "invalidChars": null,
-          "create": true,
-          "update": false,
-          "nullable": true,
-          "unique": false,
-          "required": false,
-          "min": null,
-          "max": null,
-          "minLength": null,
-          "maxLength": null,
-          "options": null,
-          "default": null
-        },
-        "rackspaceConfig": {
-          "type": "rackspaceConfig",
-          "validChars": null,
-          "invalidChars": null,
-          "create": true,
-          "update": false,
-          "nullable": true,
-          "unique": false,
-          "required": false,
-          "min": null,
-          "max": null,
-          "minLength": null,
-          "maxLength": null,
-          "options": null,
-          "default": null
-        },
-        "packetConfig": {
-          "type": "packetConfig",
-          "validChars": null,
-          "invalidChars": null,
-          "create": true,
-          "update": false,
           "nullable": true,
           "unique": false,
           "required": false,
@@ -24844,6 +27007,10 @@
         "account"
       ],
       "resourceActions": {
+        "create": {
+          "input": null,
+          "output": "physicalHost"
+        },
         "update": {
           "input": null,
           "output": "physicalHost"
@@ -24852,15 +27019,11 @@
           "input": null,
           "output": "physicalHost"
         },
-        "remove": {
-          "input": null,
-          "output": "physicalHost"
-        },
         "error": {
           "input": null,
           "output": "physicalHost"
         },
-        "create": {
+        "remove": {
           "input": null,
           "output": "physicalHost"
         }
@@ -25308,7 +27471,7 @@
         "account"
       ],
       "resourceActions": {
-        "update": {
+        "restore": {
           "input": null,
           "output": "genericObject"
         },
@@ -25316,23 +27479,23 @@
           "input": null,
           "output": "genericObject"
         },
-        "remove": {
-          "input": null,
-          "output": "genericObject"
-        },
-        "restore": {
-          "input": null,
-          "output": "genericObject"
-        },
-        "deactivate": {
-          "input": null,
-          "output": "genericObject"
-        },
         "create": {
           "input": null,
           "output": "genericObject"
         },
+        "update": {
+          "input": null,
+          "output": "genericObject"
+        },
         "purge": {
+          "input": null,
+          "output": "genericObject"
+        },
+        "remove": {
+          "input": null,
+          "output": "genericObject"
+        },
+        "deactivate": {
           "input": null,
           "output": "genericObject"
         },
@@ -25810,11 +27973,11 @@
       },
       "includeableLinks": [
         "images",
-        "account",
-        "instances"
+        "instances",
+        "account"
       ],
       "resourceActions": {
-        "update": {
+        "restore": {
           "input": null,
           "output": "credential"
         },
@@ -25822,23 +27985,23 @@
           "input": null,
           "output": "credential"
         },
-        "remove": {
-          "input": null,
-          "output": "credential"
-        },
-        "restore": {
-          "input": null,
-          "output": "credential"
-        },
-        "deactivate": {
-          "input": null,
-          "output": "credential"
-        },
         "create": {
           "input": null,
           "output": "credential"
         },
+        "update": {
+          "input": null,
+          "output": "credential"
+        },
         "purge": {
+          "input": null,
+          "output": "credential"
+        },
+        "remove": {
+          "input": null,
+          "output": "credential"
+        },
+        "deactivate": {
           "input": null,
           "output": "credential"
         }
