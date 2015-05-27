@@ -13,6 +13,7 @@ type RancherClient struct {
     GlobalLoadBalancerHealthCheck GlobalLoadBalancerHealthCheckOperations
     ExternalHandlerProcessConfig ExternalHandlerProcessConfigOperations
     ComposeConfig ComposeConfigOperations
+    InstanceHealthCheck InstanceHealthCheckOperations
     AddLoadBalancerInput AddLoadBalancerInputOperations
     AddRemoveClusterHostInput AddRemoveClusterHostInputOperations
     AddRemoveLoadBalancerHostInput AddRemoveLoadBalancerHostInputOperations
@@ -21,6 +22,7 @@ type RancherClient struct {
     AddRemoveServiceLinkInput AddRemoveServiceLinkInputOperations
     AddLabelInput AddLabelInputOperations
     RemoveLabelInput RemoveLabelInputOperations
+    SetLabelsInput SetLabelsInputOperations
     ApiKey ApiKeyOperations
     Cluster ClusterOperations
     ComposeConfigInput ComposeConfigInputOperations
@@ -73,6 +75,7 @@ type RancherClient struct {
     ProcessInstance ProcessInstanceOperations
     ProjectMember ProjectMemberOperations
     Service ServiceOperations
+    ServiceExposeMap ServiceExposeMapOperations
     Setting SettingOperations
     Snapshot SnapshotOperations
     StoragePool StoragePoolOperations
@@ -91,11 +94,16 @@ type RancherClient struct {
     StateTransition StateTransitionOperations
     Githubconfig GithubconfigOperations
     StatsAccess StatsAccessOperations
-    VirtualboxConfig VirtualboxConfigOperations
-    DigitaloceanConfig DigitaloceanConfigOperations
     Amazonec2Config Amazonec2ConfigOperations
-    RackspaceConfig RackspaceConfigOperations
+    DigitaloceanConfig DigitaloceanConfigOperations
+    ExoscaleConfig ExoscaleConfigOperations
+    OpenstackConfig OpenstackConfigOperations
     PacketConfig PacketConfigOperations
+    RackspaceConfig RackspaceConfigOperations
+    SoftlayerConfig SoftlayerConfigOperations
+    VirtualboxConfig VirtualboxConfigOperations
+    VmwarevcloudairConfig VmwarevcloudairConfigOperations
+    VmwarevsphereConfig VmwarevsphereConfigOperations
     Machine MachineOperations
     Register RegisterOperations
     RegistrationToken RegistrationTokenOperations
@@ -119,6 +127,7 @@ func constructClient() *RancherClient {
     client.GlobalLoadBalancerHealthCheck = newGlobalLoadBalancerHealthCheckClient(client)
     client.ExternalHandlerProcessConfig = newExternalHandlerProcessConfigClient(client)
     client.ComposeConfig = newComposeConfigClient(client)
+    client.InstanceHealthCheck = newInstanceHealthCheckClient(client)
     client.AddLoadBalancerInput = newAddLoadBalancerInputClient(client)
     client.AddRemoveClusterHostInput = newAddRemoveClusterHostInputClient(client)
     client.AddRemoveLoadBalancerHostInput = newAddRemoveLoadBalancerHostInputClient(client)
@@ -127,6 +136,7 @@ func constructClient() *RancherClient {
     client.AddRemoveServiceLinkInput = newAddRemoveServiceLinkInputClient(client)
     client.AddLabelInput = newAddLabelInputClient(client)
     client.RemoveLabelInput = newRemoveLabelInputClient(client)
+    client.SetLabelsInput = newSetLabelsInputClient(client)
     client.ApiKey = newApiKeyClient(client)
     client.Cluster = newClusterClient(client)
     client.ComposeConfigInput = newComposeConfigInputClient(client)
@@ -179,6 +189,7 @@ func constructClient() *RancherClient {
     client.ProcessInstance = newProcessInstanceClient(client)
     client.ProjectMember = newProjectMemberClient(client)
     client.Service = newServiceClient(client)
+    client.ServiceExposeMap = newServiceExposeMapClient(client)
     client.Setting = newSettingClient(client)
     client.Snapshot = newSnapshotClient(client)
     client.StoragePool = newStoragePoolClient(client)
@@ -197,11 +208,16 @@ func constructClient() *RancherClient {
     client.StateTransition = newStateTransitionClient(client)
     client.Githubconfig = newGithubconfigClient(client)
     client.StatsAccess = newStatsAccessClient(client)
-    client.VirtualboxConfig = newVirtualboxConfigClient(client)
-    client.DigitaloceanConfig = newDigitaloceanConfigClient(client)
     client.Amazonec2Config = newAmazonec2ConfigClient(client)
-    client.RackspaceConfig = newRackspaceConfigClient(client)
+    client.DigitaloceanConfig = newDigitaloceanConfigClient(client)
+    client.ExoscaleConfig = newExoscaleConfigClient(client)
+    client.OpenstackConfig = newOpenstackConfigClient(client)
     client.PacketConfig = newPacketConfigClient(client)
+    client.RackspaceConfig = newRackspaceConfigClient(client)
+    client.SoftlayerConfig = newSoftlayerConfigClient(client)
+    client.VirtualboxConfig = newVirtualboxConfigClient(client)
+    client.VmwarevcloudairConfig = newVmwarevcloudairConfigClient(client)
+    client.VmwarevsphereConfig = newVmwarevsphereConfigClient(client)
     client.Machine = newMachineClient(client)
     client.Register = newRegisterClient(client)
     client.RegistrationToken = newRegistrationTokenClient(client) 

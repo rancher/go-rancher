@@ -73,7 +73,11 @@ type Container struct {
     
     NativeContainer bool `json:"nativeContainer,omitempty"`
     
+    NetworkContainerId string `json:"networkContainerId,omitempty"`
+    
     NetworkIds []string `json:"networkIds,omitempty"`
+    
+    NetworkMode string `json:"networkMode,omitempty"`
     
     Ports []string `json:"ports,omitempty"`
     
@@ -138,6 +142,9 @@ type ContainerOperations interface {
     
     ActionRemovelabel (*Container, *RemoveLabelInput) (*Container, error)
     
+    
+    ActionSetlabels (*Container, *SetLabelsInput) (*Container, error)
+    
 }
 
 func newContainerClient(rancherClient *RancherClient) *ContainerClient {
@@ -188,6 +195,15 @@ func (c *ContainerClient) ActionRemovelabel (resource *Container, input *RemoveL
 	resp := &Container{}
     
 	err := c.rancherClient.doAction(CONTAINER_TYPE, "removelabel", &resource.Resource, input, resp)
+    
+	return resp, err
+}
+    
+func (c *ContainerClient) ActionSetlabels (resource *Container, input *SetLabelsInput) (*Container, error) {
+    
+	resp := &Container{}
+    
+	err := c.rancherClient.doAction(CONTAINER_TYPE, "setlabels", &resource.Resource, input, resp)
     
 	return resp, err
 }

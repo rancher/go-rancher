@@ -19,6 +19,8 @@ type Githubconfig struct {
     
     Enabled bool `json:"enabled,omitempty"`
     
+    Hostname string `json:"hostname,omitempty"`
+    
 }
 
 type GithubconfigCollection struct {

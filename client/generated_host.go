@@ -85,6 +85,9 @@ type HostOperations interface {
     ActionRestore (*Host) (*Host, error)
     
     
+    ActionSetlabels (*Host, *SetLabelsInput) (*Host, error)
+    
+    
     ActionUpdate (*Host) (*Host, error)
     
 }
@@ -191,6 +194,15 @@ func (c *HostClient) ActionRestore (resource *Host) (*Host, error) {
 	resp := &Host{}
     
 	err := c.rancherClient.doAction(HOST_TYPE, "restore", &resource.Resource, nil, resp)
+    
+	return resp, err
+}
+    
+func (c *HostClient) ActionSetlabels (resource *Host, input *SetLabelsInput) (*Host, error) {
+    
+	resp := &Host{}
+    
+	err := c.rancherClient.doAction(HOST_TYPE, "setlabels", &resource.Resource, input, resp)
     
 	return resp, err
 }
