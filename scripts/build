@@ -2,9 +2,13 @@
 
 cd $(dirname $0)/..
 
-export GOPATH=$(pwd)/Godeps/_workspace:$(pwd)/gopath
+if [ -f ./build/bootstrap.envs ];then
+    . ./build/bootstrap.envs
+fi
 
-PACKAGE=./gopath/src/$(<.package)
+. ./scripts/common_functions
+
+set_project_vars
 
 if [ -L ${PACKAGE} ]; then
     rm ${PACKAGE}
@@ -17,5 +21,4 @@ fi
 
 echo export GOPATH=$GOPATH
 
-mkdir -p bin
-go build -o bin/go-rancher
+go build -o bin/${PROJECT}
