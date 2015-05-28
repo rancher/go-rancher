@@ -120,9 +120,10 @@ func generateType(schema client.Schema) error {
 	}
 
 	funcMap := template.FuncMap{
-		"toLowerCamelCase": ToLowerCamelCase,
-		"capitalize":       capitalize,
-		"upper":            strings.ToUpper,
+		"toLowerCamelCase":  ToLowerCamelCase,
+		"toLowerUnderscore": addUnderscore,
+		"capitalize":        capitalize,
+		"upper":             strings.ToUpper,
 	}
 
 	typeTemplate, err := template.New("type.template").Funcs(funcMap).ParseFiles("type.template")
@@ -138,7 +139,7 @@ func ToLowerCamelCase(input string) string {
 }
 
 func addUnderscore(input string) string {
-	return underscoreRegexp.ReplaceAllString(input, `${1}_${2}`)
+	return strings.ToLower(underscoreRegexp.ReplaceAllString(input, `${1}_${2}`))
 }
 
 func generateClient(schema []client.Schema) error {
@@ -153,14 +154,11 @@ func generateClient(schema []client.Schema) error {
 	}
 
 	defer output.Close()
-	buffer := make([]client.Schema, len(schema)-1)
-	i := 0
+	buffer := make([]client.Schema, 0, len(schema))
 	for _, val := range schema {
-
 		if !(val.Id == "collection" || val.Id == "resource" || val.Id == "schema") {
 			val.Id = strings.ToUpper(val.Id[:1]) + val.Id[1:]
-			buffer[i] = val
-			i++
+			buffer = append(buffer, val)
 		}
 	}
 
@@ -208,6 +206,13 @@ func generateFiles() error {
 		}
 
 		schemaExists[schema.Id] = true
+	}
+
+	for _, schema := range schemas.Data {
+		if _, ok := blackListTypes[schema.Id]; ok {
+			continue
+		}
+
 		err = generateType(schema)
 		if err != nil {
 			return err
