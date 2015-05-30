@@ -19,8 +19,6 @@ type Service struct {
     
     EnvironmentId string `json:"environmentId,omitempty"`
     
-    HealthCheck *InstanceHealthCheck `json:"healthCheck,omitempty"`
-    
     Kind string `json:"kind,omitempty"`
     
     LaunchConfig Container `json:"launchConfig,omitempty"`

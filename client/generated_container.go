@@ -53,6 +53,10 @@ type Container struct {
     
     FirstRunning string `json:"firstRunning,omitempty"`
     
+    HealthCheck *InstanceHealthCheck `json:"healthCheck,omitempty"`
+    
+    HealthState string `json:"healthState,omitempty"`
+    
     Hostname string `json:"hostname,omitempty"`
     
     ImageUuid string `json:"imageUuid,omitempty"`
@@ -137,12 +141,6 @@ type ContainerOperations interface {
 	ById(id string) (*Container, error)
 	Delete(container *Container) error
     
-    ActionAddlabel (*Container, *AddLabelInput) (*Container, error)
-    
-    
-    ActionRemovelabel (*Container, *RemoveLabelInput) (*Container, error)
-    
-    
     ActionSetlabels (*Container, *SetLabelsInput) (*Container, error)
     
 }
@@ -179,24 +177,6 @@ func (c *ContainerClient) ById(id string) (*Container, error) {
 
 func (c *ContainerClient) Delete(container *Container) error {
 	return c.rancherClient.doResourceDelete(CONTAINER_TYPE, &container.Resource)
-}
-    
-func (c *ContainerClient) ActionAddlabel (resource *Container, input *AddLabelInput) (*Container, error) {
-    
-	resp := &Container{}
-    
-	err := c.rancherClient.doAction(CONTAINER_TYPE, "addlabel", &resource.Resource, input, resp)
-    
-	return resp, err
-}
-    
-func (c *ContainerClient) ActionRemovelabel (resource *Container, input *RemoveLabelInput) (*Container, error) {
-    
-	resp := &Container{}
-    
-	err := c.rancherClient.doAction(CONTAINER_TYPE, "removelabel", &resource.Resource, input, resp)
-    
-	return resp, err
 }
     
 func (c *ContainerClient) ActionSetlabels (resource *Container, input *SetLabelsInput) (*Container, error) {

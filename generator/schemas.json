@@ -1493,98 +1493,6 @@
       ]
     },
     {
-      "id": "addLabelInput",
-      "type": "schema",
-      "links": {
-        "self": "http://localhost:8080/v1/schemas/addlabelinput"
-      },
-      "actions": {},
-      "pluralName": "addLabelInputs",
-      "resourceFields": {
-        "key": {
-          "type": "string",
-          "validChars": null,
-          "invalidChars": null,
-          "create": true,
-          "update": false,
-          "nullable": false,
-          "unique": false,
-          "required": false,
-          "min": null,
-          "max": null,
-          "minLength": null,
-          "maxLength": null,
-          "options": null,
-          "default": null
-        },
-        "value": {
-          "type": "string",
-          "validChars": null,
-          "invalidChars": null,
-          "create": true,
-          "update": false,
-          "nullable": false,
-          "unique": false,
-          "required": false,
-          "min": null,
-          "max": null,
-          "minLength": null,
-          "maxLength": null,
-          "options": null,
-          "default": null
-        }
-      },
-      "collectionFilters": {},
-      "includeableLinks": [],
-      "resourceActions": {},
-      "collectionActions": {},
-      "collectionFields": {},
-      "resourceMethods": [
-        "GET"
-      ],
-      "collectionMethods": [
-        "POST"
-      ]
-    },
-    {
-      "id": "removeLabelInput",
-      "type": "schema",
-      "links": {
-        "self": "http://localhost:8080/v1/schemas/removelabelinput"
-      },
-      "actions": {},
-      "pluralName": "removeLabelInputs",
-      "resourceFields": {
-        "label": {
-          "type": "reference[label]",
-          "validChars": null,
-          "invalidChars": null,
-          "create": true,
-          "update": false,
-          "nullable": false,
-          "unique": false,
-          "required": false,
-          "min": null,
-          "max": null,
-          "minLength": null,
-          "maxLength": null,
-          "options": null,
-          "default": null
-        }
-      },
-      "collectionFilters": {},
-      "includeableLinks": [],
-      "resourceActions": {},
-      "collectionActions": {},
-      "collectionFields": {},
-      "resourceMethods": [
-        "GET"
-      ],
-      "collectionMethods": [
-        "POST"
-      ]
-    },
-    {
       "id": "setLabelsInput",
       "type": "schema",
       "links": {
@@ -2264,6 +2172,22 @@
           "options": null,
           "default": null
         },
+        "labels": {
+          "type": "map[string]",
+          "validChars": null,
+          "invalidChars": null,
+          "create": false,
+          "update": true,
+          "nullable": false,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
         "name": {
           "type": "string",
           "validChars": null,
@@ -2630,14 +2554,13 @@
       },
       "includeableLinks": [
         "agent",
+        "ipaddresses",
         "instances",
         "hosts",
-        "loadbalancerhostmaps",
-        "serviceexposemaps",
-        "labels",
-        "ipaddresses",
         "storagepools",
+        "loadbalancerhostmaps",
         "loadbalancers",
+        "hostlabels",
         "physicalhost",
         "account",
         "clusters",
@@ -2646,14 +2569,6 @@
       "resourceActions": {
         "restore": {
           "input": null,
-          "output": "host"
-        },
-        "addlabel": {
-          "input": "addLabelInput",
-          "output": "host"
-        },
-        "setlabels": {
-          "input": "setLabelsInput",
           "output": "host"
         },
         "activate": {
@@ -2678,10 +2593,6 @@
         },
         "deactivate": {
           "input": null,
-          "output": "host"
-        },
-        "removelabel": {
-          "input": "removeLabelInput",
           "output": "host"
         },
         "addhost": {
@@ -2895,6 +2806,27 @@
           "minLength": null,
           "maxLength": 255,
           "options": null,
+          "default": null
+        },
+        "healthState": {
+          "type": "enum",
+          "validChars": null,
+          "invalidChars": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": 128,
+          "options": [
+            "healthy",
+            "unhealthy",
+            "updating-healthy",
+            "updating-unhealthy"
+          ],
           "default": null
         },
         "hostname": {
@@ -3718,6 +3650,22 @@
           "options": null,
           "default": null
         },
+        "healthCheck": {
+          "type": "instanceHealthCheck",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
         "networkMode": {
           "type": "enum",
           "validChars": null,
@@ -3866,6 +3814,17 @@
             "lte",
             "gt",
             "gte",
+            "null",
+            "notnull"
+          ]
+        },
+        "healthState": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "prefix",
+            "like",
+            "notlike",
             "null",
             "notnull"
           ]
@@ -4082,20 +4041,16 @@
         "loadbalancertargets"
       ],
       "resourceActions": {
+        "updateunhealthy": {
+          "input": null,
+          "output": "instance"
+        },
         "console": {
           "input": "instanceConsoleInput",
           "output": "instanceConsole"
         },
-        "allocate": {
-          "input": null,
-          "output": "instance"
-        },
         "restore": {
           "input": null,
-          "output": "instance"
-        },
-        "stop": {
-          "input": "instanceStop",
           "output": "instance"
         },
         "restart": {
@@ -4107,10 +4062,6 @@
           "output": "instance"
         },
         "start": {
-          "input": null,
-          "output": "instance"
-        },
-        "create": {
           "input": null,
           "output": "instance"
         },
@@ -4126,6 +4077,22 @@
           "input": null,
           "output": "instance"
         },
+        "allocate": {
+          "input": null,
+          "output": "instance"
+        },
+        "stop": {
+          "input": "instanceStop",
+          "output": "instance"
+        },
+        "create": {
+          "input": null,
+          "output": "instance"
+        },
+        "updatehealthy": {
+          "input": null,
+          "output": "instance"
+        },
         "migrate": {
           "input": null,
           "output": "instance"
@@ -4133,14 +4100,6 @@
         "logs": {
           "input": "containerLogs",
           "output": "hostAccess"
-        },
-        "addlabel": {
-          "input": "addLabelInput",
-          "output": "container"
-        },
-        "removelabel": {
-          "input": "removeLabelInput",
-          "output": "container"
         },
         "setlabels": {
           "input": "setLabelsInput",
@@ -6144,22 +6103,6 @@
           "options": null,
           "default": null
         },
-        "healthCheck": {
-          "type": "instanceHealthCheck",
-          "validChars": null,
-          "invalidChars": null,
-          "create": true,
-          "update": false,
-          "nullable": true,
-          "unique": false,
-          "required": false,
-          "min": null,
-          "max": null,
-          "minLength": null,
-          "maxLength": null,
-          "options": null,
-          "default": null
-        },
         "id": {
           "type": "int",
           "validChars": null,
@@ -6380,6 +6323,904 @@
           "max": null,
           "minLength": null,
           "maxLength": null,
+          "options": null,
+          "default": null
+        }
+      },
+      "collectionFilters": {
+        "accountId": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "null",
+            "notnull"
+          ]
+        },
+        "created": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "lt",
+            "lte",
+            "gt",
+            "gte",
+            "null",
+            "notnull"
+          ]
+        },
+        "description": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "prefix",
+            "like",
+            "notlike",
+            "null",
+            "notnull"
+          ]
+        },
+        "environmentId": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "null",
+            "notnull"
+          ]
+        },
+        "id": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "lt",
+            "lte",
+            "gt",
+            "gte",
+            "null",
+            "notnull"
+          ]
+        },
+        "kind": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "prefix",
+            "like",
+            "notlike",
+            "null",
+            "notnull"
+          ]
+        },
+        "name": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "prefix",
+            "like",
+            "notlike",
+            "null",
+            "notnull"
+          ]
+        },
+        "removeTime": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "lt",
+            "lte",
+            "gt",
+            "gte",
+            "null",
+            "notnull"
+          ]
+        },
+        "removed": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "lt",
+            "lte",
+            "gt",
+            "gte",
+            "null",
+            "notnull"
+          ]
+        },
+        "state": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "null",
+            "notnull"
+          ]
+        },
+        "uuid": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "prefix",
+            "like",
+            "notlike",
+            "null",
+            "notnull"
+          ]
+        }
+      },
+      "includeableLinks": [
+        "consumedbyservices",
+        "environment",
+        "instances",
+        "consumedservices",
+        "loadbalancers",
+        "serviceexposemaps",
+        "loadbalancerlisteners",
+        "account",
+        "loadbalancerconfigs"
+      ],
+      "resourceActions": {
+        "removeservicelink": {
+          "input": "addRemoveServiceLinkInput",
+          "output": "service"
+        },
+        "activate": {
+          "input": null,
+          "output": "service"
+        },
+        "addservicelink": {
+          "input": "addRemoveServiceLinkInput",
+          "output": "service"
+        },
+        "create": {
+          "input": null,
+          "output": "service"
+        },
+        "update": {
+          "input": null,
+          "output": "service"
+        },
+        "remove": {
+          "input": null,
+          "output": "service"
+        },
+        "setservicelinks": {
+          "input": "setServiceLinksInput",
+          "output": "service"
+        },
+        "deactivate": {
+          "input": null,
+          "output": "service"
+        }
+      },
+      "collectionActions": {},
+      "collectionFields": {},
+      "resourceMethods": [
+        "GET",
+        "PUT",
+        "DELETE"
+      ],
+      "collectionMethods": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "id": "externalService",
+      "type": "schema",
+      "links": {
+        "self": "http://localhost:8080/v1/schemas/externalservice",
+        "collection": "http://localhost:8080/v1/externalservices"
+      },
+      "actions": {},
+      "pluralName": "externalServices",
+      "resourceFields": {
+        "accountId": {
+          "type": "reference[account]",
+          "validChars": null,
+          "invalidChars": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": 255,
+          "options": null,
+          "default": null
+        },
+        "created": {
+          "type": "date",
+          "validChars": null,
+          "invalidChars": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": 255,
+          "options": null,
+          "default": null
+        },
+        "data": {
+          "type": "map[json]",
+          "validChars": null,
+          "invalidChars": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": 65535,
+          "options": null,
+          "default": null
+        },
+        "description": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": 1024,
+          "options": null,
+          "default": null
+        },
+        "environmentId": {
+          "type": "reference[environment]",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": false,
+          "unique": false,
+          "required": true,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": 255,
+          "options": null,
+          "default": null
+        },
+        "id": {
+          "type": "int",
+          "validChars": null,
+          "invalidChars": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "kind": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": 255,
+          "options": null,
+          "default": null
+        },
+        "name": {
+          "type": "string",
+          "validChars": "a-zA-Z0-9-",
+          "invalidChars": null,
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "unique": false,
+          "required": true,
+          "min": null,
+          "max": null,
+          "minLength": 1,
+          "maxLength": 255,
+          "options": null,
+          "default": null
+        },
+        "removeTime": {
+          "type": "date",
+          "validChars": null,
+          "invalidChars": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": 255,
+          "options": null,
+          "default": null
+        },
+        "removed": {
+          "type": "date",
+          "validChars": null,
+          "invalidChars": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": 255,
+          "options": null,
+          "default": null
+        },
+        "state": {
+          "type": "enum",
+          "validChars": null,
+          "invalidChars": null,
+          "create": false,
+          "update": false,
+          "nullable": false,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": 128,
+          "options": [
+            "activating",
+            "active",
+            "deactivating",
+            "inactive",
+            "registering",
+            "removed",
+            "removing",
+            "requested",
+            "updating-active",
+            "updating-inactive"
+          ],
+          "default": null
+        },
+        "transitioning": {
+          "type": "enum",
+          "validChars": null,
+          "invalidChars": null,
+          "create": false,
+          "update": false,
+          "nullable": false,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": [
+            "yes",
+            "no",
+            "error"
+          ],
+          "default": null
+        },
+        "transitioningMessage": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "transitioningProgress": {
+          "type": "int",
+          "validChars": null,
+          "invalidChars": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "uuid": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": 128,
+          "options": null,
+          "default": null
+        },
+        "externalIpAddresses": {
+          "type": "array[string]",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": false,
+          "unique": false,
+          "required": true,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        }
+      },
+      "collectionFilters": {
+        "accountId": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "null",
+            "notnull"
+          ]
+        },
+        "created": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "lt",
+            "lte",
+            "gt",
+            "gte",
+            "null",
+            "notnull"
+          ]
+        },
+        "description": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "prefix",
+            "like",
+            "notlike",
+            "null",
+            "notnull"
+          ]
+        },
+        "environmentId": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "null",
+            "notnull"
+          ]
+        },
+        "id": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "lt",
+            "lte",
+            "gt",
+            "gte",
+            "null",
+            "notnull"
+          ]
+        },
+        "kind": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "prefix",
+            "like",
+            "notlike",
+            "null",
+            "notnull"
+          ]
+        },
+        "name": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "prefix",
+            "like",
+            "notlike",
+            "null",
+            "notnull"
+          ]
+        },
+        "removeTime": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "lt",
+            "lte",
+            "gt",
+            "gte",
+            "null",
+            "notnull"
+          ]
+        },
+        "removed": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "lt",
+            "lte",
+            "gt",
+            "gte",
+            "null",
+            "notnull"
+          ]
+        },
+        "state": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "null",
+            "notnull"
+          ]
+        },
+        "uuid": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "prefix",
+            "like",
+            "notlike",
+            "null",
+            "notnull"
+          ]
+        }
+      },
+      "includeableLinks": [
+        "consumedbyservices",
+        "environment",
+        "instances",
+        "consumedservices",
+        "loadbalancers",
+        "serviceexposemaps",
+        "loadbalancerlisteners",
+        "account",
+        "loadbalancerconfigs"
+      ],
+      "resourceActions": {
+        "removeservicelink": {
+          "input": "addRemoveServiceLinkInput",
+          "output": "service"
+        },
+        "activate": {
+          "input": null,
+          "output": "service"
+        },
+        "addservicelink": {
+          "input": "addRemoveServiceLinkInput",
+          "output": "service"
+        },
+        "create": {
+          "input": null,
+          "output": "service"
+        },
+        "update": {
+          "input": null,
+          "output": "service"
+        },
+        "remove": {
+          "input": null,
+          "output": "service"
+        },
+        "setservicelinks": {
+          "input": "setServiceLinksInput",
+          "output": "service"
+        },
+        "deactivate": {
+          "input": null,
+          "output": "service"
+        }
+      },
+      "collectionActions": {},
+      "collectionFields": {},
+      "resourceMethods": [
+        "GET",
+        "PUT",
+        "DELETE"
+      ],
+      "collectionMethods": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "id": "dnsService",
+      "type": "schema",
+      "links": {
+        "self": "http://localhost:8080/v1/schemas/dnsservice",
+        "collection": "http://localhost:8080/v1/dnsservices"
+      },
+      "actions": {},
+      "pluralName": "dnsServices",
+      "resourceFields": {
+        "accountId": {
+          "type": "reference[account]",
+          "validChars": null,
+          "invalidChars": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": 255,
+          "options": null,
+          "default": null
+        },
+        "created": {
+          "type": "date",
+          "validChars": null,
+          "invalidChars": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": 255,
+          "options": null,
+          "default": null
+        },
+        "data": {
+          "type": "map[json]",
+          "validChars": null,
+          "invalidChars": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": 65535,
+          "options": null,
+          "default": null
+        },
+        "description": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": 1024,
+          "options": null,
+          "default": null
+        },
+        "environmentId": {
+          "type": "reference[environment]",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": false,
+          "unique": false,
+          "required": true,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": 255,
+          "options": null,
+          "default": null
+        },
+        "id": {
+          "type": "int",
+          "validChars": null,
+          "invalidChars": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "kind": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": 255,
+          "options": null,
+          "default": null
+        },
+        "name": {
+          "type": "string",
+          "validChars": "a-zA-Z0-9-",
+          "invalidChars": null,
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "unique": false,
+          "required": true,
+          "min": null,
+          "max": null,
+          "minLength": 1,
+          "maxLength": 255,
+          "options": null,
+          "default": null
+        },
+        "removeTime": {
+          "type": "date",
+          "validChars": null,
+          "invalidChars": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": 255,
+          "options": null,
+          "default": null
+        },
+        "removed": {
+          "type": "date",
+          "validChars": null,
+          "invalidChars": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": 255,
+          "options": null,
+          "default": null
+        },
+        "state": {
+          "type": "enum",
+          "validChars": null,
+          "invalidChars": null,
+          "create": false,
+          "update": false,
+          "nullable": false,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": 128,
+          "options": [
+            "activating",
+            "active",
+            "deactivating",
+            "inactive",
+            "registering",
+            "removed",
+            "removing",
+            "requested",
+            "updating-active",
+            "updating-inactive"
+          ],
+          "default": null
+        },
+        "transitioning": {
+          "type": "enum",
+          "validChars": null,
+          "invalidChars": null,
+          "create": false,
+          "update": false,
+          "nullable": false,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": [
+            "yes",
+            "no",
+            "error"
+          ],
+          "default": null
+        },
+        "transitioningMessage": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "transitioningProgress": {
+          "type": "int",
+          "validChars": null,
+          "invalidChars": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "uuid": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": 128,
           "options": null,
           "default": null
         }
@@ -12047,6 +12888,22 @@
           "maxLength": null,
           "options": null,
           "default": null
+        },
+        "labels": {
+          "type": "map[string]",
+          "validChars": null,
+          "invalidChars": null,
+          "create": false,
+          "update": true,
+          "nullable": false,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
         }
       },
       "collectionFilters": {
@@ -12220,14 +13077,13 @@
       },
       "includeableLinks": [
         "agent",
+        "ipaddresses",
         "instances",
         "hosts",
-        "loadbalancerhostmaps",
-        "serviceexposemaps",
-        "labels",
-        "ipaddresses",
         "storagepools",
+        "loadbalancerhostmaps",
         "loadbalancers",
+        "hostlabels",
         "physicalhost",
         "account",
         "clusters",
@@ -12236,14 +13092,6 @@
       "resourceActions": {
         "restore": {
           "input": null,
-          "output": "host"
-        },
-        "addlabel": {
-          "input": "addLabelInput",
-          "output": "host"
-        },
-        "setlabels": {
-          "input": "setLabelsInput",
           "output": "host"
         },
         "activate": {
@@ -12268,10 +13116,6 @@
         },
         "deactivate": {
           "input": null,
-          "output": "host"
-        },
-        "removelabel": {
-          "input": "removeLabelInput",
           "output": "host"
         }
       },
@@ -13146,6 +13990,17 @@
             "notnull"
           ]
         },
+        "healthState": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "prefix",
+            "like",
+            "notlike",
+            "null",
+            "notnull"
+          ]
+        },
         "hostname": {
           "modifiers": [
             "eq",
@@ -13355,20 +14210,16 @@
         "loadbalancertargets"
       ],
       "resourceActions": {
+        "updateunhealthy": {
+          "input": null,
+          "output": "instance"
+        },
         "console": {
           "input": "instanceConsoleInput",
           "output": "instanceConsole"
         },
-        "allocate": {
-          "input": null,
-          "output": "instance"
-        },
         "restore": {
           "input": null,
-          "output": "instance"
-        },
-        "stop": {
-          "input": "instanceStop",
           "output": "instance"
         },
         "restart": {
@@ -13383,10 +14234,6 @@
           "input": null,
           "output": "instance"
         },
-        "create": {
-          "input": null,
-          "output": "instance"
-        },
         "update": {
           "input": null,
           "output": "instance"
@@ -13396,6 +14243,22 @@
           "output": "instance"
         },
         "remove": {
+          "input": null,
+          "output": "instance"
+        },
+        "allocate": {
+          "input": null,
+          "output": "instance"
+        },
+        "stop": {
+          "input": "instanceStop",
+          "output": "instance"
+        },
+        "create": {
+          "input": null,
+          "output": "instance"
+        },
+        "updatehealthy": {
           "input": null,
           "output": "instance"
         },
@@ -20865,22 +21728,6 @@
           "maxLength": null,
           "options": null,
           "default": null
-        },
-        "healthCheck": {
-          "type": "instanceHealthCheck",
-          "validChars": null,
-          "invalidChars": null,
-          "create": true,
-          "update": false,
-          "nullable": true,
-          "unique": false,
-          "required": false,
-          "min": null,
-          "max": null,
-          "minLength": null,
-          "maxLength": null,
-          "options": null,
-          "default": null
         }
       },
       "collectionFilters": {
@@ -21164,6 +22011,22 @@
           "options": null,
           "default": null
         },
+        "ipAddress": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": 255,
+          "options": null,
+          "default": null
+        },
         "kind": {
           "type": "string",
           "validChars": null,
@@ -21367,17 +22230,6 @@
             "notnull"
           ]
         },
-        "healthState": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "prefix",
-            "like",
-            "notlike",
-            "null",
-            "notnull"
-          ]
-        },
         "id": {
           "modifiers": [
             "eq",
@@ -21394,6 +22246,17 @@
           "modifiers": [
             "eq",
             "ne",
+            "null",
+            "notnull"
+          ]
+        },
+        "ipAddress": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "prefix",
+            "like",
+            "notlike",
             "null",
             "notnull"
           ]
@@ -21474,20 +22337,11 @@
       },
       "includeableLinks": [
         "instance",
-        "hosts",
         "service",
         "account"
       ],
       "resourceActions": {
-        "updateunhealthy": {
-          "input": null,
-          "output": "serviceExposeMap"
-        },
         "create": {
-          "input": null,
-          "output": "serviceExposeMap"
-        },
-        "updatehealthy": {
           "input": null,
           "output": "serviceExposeMap"
         },
@@ -26862,6 +27716,22 @@
           "invalidChars": null,
           "create": false,
           "update": true,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "labels": {
+          "type": "map[string]",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
           "nullable": true,
           "unique": false,
           "required": false,

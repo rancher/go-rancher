@@ -27,6 +27,8 @@ type Cluster struct {
     
     Kind string `json:"kind,omitempty"`
     
+    Labels map[string]interface{} `json:"labels,omitempty"`
+    
     Name string `json:"name,omitempty"`
     
     PhysicalHostId string `json:"physicalHostId,omitempty"`
