@@ -25,6 +25,8 @@ type Host struct {
     
     Kind string `json:"kind,omitempty"`
     
+    Labels map[string]interface{} `json:"labels,omitempty"`
+    
     Name string `json:"name,omitempty"`
     
     PhysicalHostId string `json:"physicalHostId,omitempty"`
@@ -64,9 +66,6 @@ type HostOperations interface {
     ActionActivate (*Host) (*Host, error)
     
     
-    ActionAddlabel (*Host, *AddLabelInput) (*Host, error)
-    
-    
     ActionCreate (*Host) (*Host, error)
     
     
@@ -79,13 +78,7 @@ type HostOperations interface {
     ActionRemove (*Host) (*Host, error)
     
     
-    ActionRemovelabel (*Host, *RemoveLabelInput) (*Host, error)
-    
-    
     ActionRestore (*Host) (*Host, error)
-    
-    
-    ActionSetlabels (*Host, *SetLabelsInput) (*Host, error)
     
     
     ActionUpdate (*Host) (*Host, error)
@@ -135,15 +128,6 @@ func (c *HostClient) ActionActivate (resource *Host) (*Host, error) {
 	return resp, err
 }
     
-func (c *HostClient) ActionAddlabel (resource *Host, input *AddLabelInput) (*Host, error) {
-    
-	resp := &Host{}
-    
-	err := c.rancherClient.doAction(HOST_TYPE, "addlabel", &resource.Resource, input, resp)
-    
-	return resp, err
-}
-    
 func (c *HostClient) ActionCreate (resource *Host) (*Host, error) {
     
 	resp := &Host{}
@@ -180,29 +164,11 @@ func (c *HostClient) ActionRemove (resource *Host) (*Host, error) {
 	return resp, err
 }
     
-func (c *HostClient) ActionRemovelabel (resource *Host, input *RemoveLabelInput) (*Host, error) {
-    
-	resp := &Host{}
-    
-	err := c.rancherClient.doAction(HOST_TYPE, "removelabel", &resource.Resource, input, resp)
-    
-	return resp, err
-}
-    
 func (c *HostClient) ActionRestore (resource *Host) (*Host, error) {
     
 	resp := &Host{}
     
 	err := c.rancherClient.doAction(HOST_TYPE, "restore", &resource.Resource, nil, resp)
-    
-	return resp, err
-}
-    
-func (c *HostClient) ActionSetlabels (resource *Host, input *SetLabelsInput) (*Host, error) {
-    
-	resp := &Host{}
-    
-	err := c.rancherClient.doAction(HOST_TYPE, "setlabels", &resource.Resource, input, resp)
     
 	return resp, err
 }

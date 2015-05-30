@@ -88,6 +88,12 @@ type InstanceOperations interface {
     
     ActionUpdate (*Instance) (*Instance, error)
     
+    
+    ActionUpdatehealthy (*Instance) (*Instance, error)
+    
+    
+    ActionUpdateunhealthy (*Instance) (*Instance, error)
+    
 }
 
 func newInstanceClient(rancherClient *RancherClient) *InstanceClient {
@@ -228,6 +234,24 @@ func (c *InstanceClient) ActionUpdate (resource *Instance) (*Instance, error) {
 	resp := &Instance{}
     
 	err := c.rancherClient.doAction(INSTANCE_TYPE, "update", &resource.Resource, nil, resp)
+    
+	return resp, err
+}
+    
+func (c *InstanceClient) ActionUpdatehealthy (resource *Instance) (*Instance, error) {
+    
+	resp := &Instance{}
+    
+	err := c.rancherClient.doAction(INSTANCE_TYPE, "updatehealthy", &resource.Resource, nil, resp)
+    
+	return resp, err
+}
+    
+func (c *InstanceClient) ActionUpdateunhealthy (resource *Instance) (*Instance, error) {
+    
+	resp := &Instance{}
+    
+	err := c.rancherClient.doAction(INSTANCE_TYPE, "updateunhealthy", &resource.Resource, nil, resp)
     
 	return resp, err
 }

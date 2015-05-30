@@ -20,8 +20,6 @@ type RancherClient struct {
     AddRemoveLoadBalancerListenerInput AddRemoveLoadBalancerListenerInputOperations
     AddRemoveLoadBalancerTargetInput AddRemoveLoadBalancerTargetInputOperations
     AddRemoveServiceLinkInput AddRemoveServiceLinkInputOperations
-    AddLabelInput AddLabelInputOperations
-    RemoveLabelInput RemoveLabelInputOperations
     SetLabelsInput SetLabelsInputOperations
     ApiKey ApiKeyOperations
     Cluster ClusterOperations
@@ -41,6 +39,8 @@ type RancherClient struct {
     SetProjectMembersInput SetProjectMembersInputOperations
     SetServiceLinksInput SetServiceLinksInputOperations
     LoadBalancerService LoadBalancerServiceOperations
+    ExternalService ExternalServiceOperations
+    DnsService DnsServiceOperations
     Account AccountOperations
     Agent AgentOperations
     Certificate CertificateOperations
@@ -134,8 +134,6 @@ func constructClient() *RancherClient {
     client.AddRemoveLoadBalancerListenerInput = newAddRemoveLoadBalancerListenerInputClient(client)
     client.AddRemoveLoadBalancerTargetInput = newAddRemoveLoadBalancerTargetInputClient(client)
     client.AddRemoveServiceLinkInput = newAddRemoveServiceLinkInputClient(client)
-    client.AddLabelInput = newAddLabelInputClient(client)
-    client.RemoveLabelInput = newRemoveLabelInputClient(client)
     client.SetLabelsInput = newSetLabelsInputClient(client)
     client.ApiKey = newApiKeyClient(client)
     client.Cluster = newClusterClient(client)
@@ -155,6 +153,8 @@ func constructClient() *RancherClient {
     client.SetProjectMembersInput = newSetProjectMembersInputClient(client)
     client.SetServiceLinksInput = newSetServiceLinksInputClient(client)
     client.LoadBalancerService = newLoadBalancerServiceClient(client)
+    client.ExternalService = newExternalServiceClient(client)
+    client.DnsService = newDnsServiceClient(client)
     client.Account = newAccountClient(client)
     client.Agent = newAgentClient(client)
     client.Certificate = newCertificateClient(client)

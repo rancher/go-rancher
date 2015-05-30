@@ -17,6 +17,8 @@ type ServiceExposeMap struct {
     
     InstanceId string `json:"instanceId,omitempty"`
     
+    IpAddress string `json:"ipAddress,omitempty"`
+    
     Kind string `json:"kind,omitempty"`
     
     Name string `json:"name,omitempty"`
@@ -59,12 +61,6 @@ type ServiceExposeMapOperations interface {
     
     
     ActionRemove (*ServiceExposeMap) (*ServiceExposeMap, error)
-    
-    
-    ActionUpdatehealthy (*ServiceExposeMap) (*ServiceExposeMap, error)
-    
-    
-    ActionUpdateunhealthy (*ServiceExposeMap) (*ServiceExposeMap, error)
     
 }
 
@@ -116,24 +112,6 @@ func (c *ServiceExposeMapClient) ActionRemove (resource *ServiceExposeMap) (*Ser
 	resp := &ServiceExposeMap{}
     
 	err := c.rancherClient.doAction(SERVICE_EXPOSE_MAP_TYPE, "remove", &resource.Resource, nil, resp)
-    
-	return resp, err
-}
-    
-func (c *ServiceExposeMapClient) ActionUpdatehealthy (resource *ServiceExposeMap) (*ServiceExposeMap, error) {
-    
-	resp := &ServiceExposeMap{}
-    
-	err := c.rancherClient.doAction(SERVICE_EXPOSE_MAP_TYPE, "updatehealthy", &resource.Resource, nil, resp)
-    
-	return resp, err
-}
-    
-func (c *ServiceExposeMapClient) ActionUpdateunhealthy (resource *ServiceExposeMap) (*ServiceExposeMap, error) {
-    
-	resp := &ServiceExposeMap{}
-    
-	err := c.rancherClient.doAction(SERVICE_EXPOSE_MAP_TYPE, "updateunhealthy", &resource.Resource, nil, resp)
     
 	return resp, err
 }
