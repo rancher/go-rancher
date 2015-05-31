@@ -6,33 +6,32 @@ const (
 
 type Certificate struct {
 	Resource
-    
-    AccountId string `json:"accountId,omitempty"`
-    
-    Cert string `json:"cert,omitempty"`
-    
-    CertChain string `json:"certChain,omitempty"`
-    
-    Created string `json:"created,omitempty"`
-    
-    Data map[string]interface{} `json:"data,omitempty"`
-    
-    Description string `json:"description,omitempty"`
-    
-    Key string `json:"key,omitempty"`
-    
-    Kind string `json:"kind,omitempty"`
-    
-    Name string `json:"name,omitempty"`
-    
-    RemoveTime string `json:"removeTime,omitempty"`
-    
-    Removed string `json:"removed,omitempty"`
-    
-    State string `json:"state,omitempty"`
-    
-    Uuid string `json:"uuid,omitempty"`
-    
+
+	AccountId string `json:"accountId,omitempty"`
+
+	Cert string `json:"cert,omitempty"`
+
+	CertChain string `json:"certChain,omitempty"`
+
+	Created string `json:"created,omitempty"`
+
+	Data map[string]interface{} `json:"data,omitempty"`
+
+	Description string `json:"description,omitempty"`
+
+	Key string `json:"key,omitempty"`
+
+	Kind string `json:"kind,omitempty"`
+
+	Name string `json:"name,omitempty"`
+
+	RemoveTime string `json:"removeTime,omitempty"`
+
+	Removed string `json:"removed,omitempty"`
+
+	State string `json:"state,omitempty"`
+
+	Uuid string `json:"uuid,omitempty"`
 }
 
 type CertificateCollection struct {

@@ -6,9 +6,8 @@ const (
 
 type GlobalLoadBalancerPolicy struct {
 	Resource
-    
-    Name string `json:"name,omitempty"`
-    
+
+	Name string `json:"name,omitempty"`
 }
 
 type GlobalLoadBalancerPolicyCollection struct {

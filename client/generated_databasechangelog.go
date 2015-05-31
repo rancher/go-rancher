@@ -6,27 +6,26 @@ const (
 
 type Databasechangelog struct {
 	Resource
-    
-    Author string `json:"author,omitempty"`
-    
-    Comments string `json:"comments,omitempty"`
-    
-    Dateexecuted string `json:"dateexecuted,omitempty"`
-    
-    Description string `json:"description,omitempty"`
-    
-    Exectype string `json:"exectype,omitempty"`
-    
-    Filename string `json:"filename,omitempty"`
-    
-    Liquibase string `json:"liquibase,omitempty"`
-    
-    Md5sum string `json:"md5sum,omitempty"`
-    
-    Orderexecuted int `json:"orderexecuted,omitempty"`
-    
-    Tag string `json:"tag,omitempty"`
-    
+
+	Author string `json:"author,omitempty"`
+
+	Comments string `json:"comments,omitempty"`
+
+	Dateexecuted string `json:"dateexecuted,omitempty"`
+
+	Description string `json:"description,omitempty"`
+
+	Exectype string `json:"exectype,omitempty"`
+
+	Filename string `json:"filename,omitempty"`
+
+	Liquibase string `json:"liquibase,omitempty"`
+
+	Md5sum string `json:"md5sum,omitempty"`
+
+	Orderexecuted int `json:"orderexecuted,omitempty"`
+
+	Tag string `json:"tag,omitempty"`
 }
 
 type DatabasechangelogCollection struct {

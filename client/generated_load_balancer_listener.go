@@ -6,45 +6,44 @@ const (
 
 type LoadBalancerListener struct {
 	Resource
-    
-    AccountId string `json:"accountId,omitempty"`
-    
-    Algorithm string `json:"algorithm,omitempty"`
-    
-    Created string `json:"created,omitempty"`
-    
-    Data map[string]interface{} `json:"data,omitempty"`
-    
-    Description string `json:"description,omitempty"`
-    
-    Kind string `json:"kind,omitempty"`
-    
-    Name string `json:"name,omitempty"`
-    
-    RemoveTime string `json:"removeTime,omitempty"`
-    
-    Removed string `json:"removed,omitempty"`
-    
-    ServiceId string `json:"serviceId,omitempty"`
-    
-    SourcePort int `json:"sourcePort,omitempty"`
-    
-    SourceProtocol string `json:"sourceProtocol,omitempty"`
-    
-    State string `json:"state,omitempty"`
-    
-    TargetPort int `json:"targetPort,omitempty"`
-    
-    TargetProtocol string `json:"targetProtocol,omitempty"`
-    
-    Transitioning string `json:"transitioning,omitempty"`
-    
-    TransitioningMessage string `json:"transitioningMessage,omitempty"`
-    
-    TransitioningProgress int `json:"transitioningProgress,omitempty"`
-    
-    Uuid string `json:"uuid,omitempty"`
-    
+
+	AccountId string `json:"accountId,omitempty"`
+
+	Algorithm string `json:"algorithm,omitempty"`
+
+	Created string `json:"created,omitempty"`
+
+	Data map[string]interface{} `json:"data,omitempty"`
+
+	Description string `json:"description,omitempty"`
+
+	Kind string `json:"kind,omitempty"`
+
+	Name string `json:"name,omitempty"`
+
+	RemoveTime string `json:"removeTime,omitempty"`
+
+	Removed string `json:"removed,omitempty"`
+
+	ServiceId string `json:"serviceId,omitempty"`
+
+	SourcePort int `json:"sourcePort,omitempty"`
+
+	SourceProtocol string `json:"sourceProtocol,omitempty"`
+
+	State string `json:"state,omitempty"`
+
+	TargetPort int `json:"targetPort,omitempty"`
+
+	TargetProtocol string `json:"targetProtocol,omitempty"`
+
+	Transitioning string `json:"transitioning,omitempty"`
+
+	TransitioningMessage string `json:"transitioningMessage,omitempty"`
+
+	TransitioningProgress int `json:"transitioningProgress,omitempty"`
+
+	Uuid string `json:"uuid,omitempty"`
 }
 
 type LoadBalancerListenerCollection struct {
@@ -62,12 +61,10 @@ type LoadBalancerListenerOperations interface {
 	Update(existing *LoadBalancerListener, updates interface{}) (*LoadBalancerListener, error)
 	ById(id string) (*LoadBalancerListener, error)
 	Delete(container *LoadBalancerListener) error
-    
-    ActionCreate (*LoadBalancerListener) (*LoadBalancerListener, error)
-    
-    
-    ActionRemove (*LoadBalancerListener) (*LoadBalancerListener, error)
-    
+
+	ActionCreate(*LoadBalancerListener) (*LoadBalancerListener, error)
+
+	ActionRemove(*LoadBalancerListener) (*LoadBalancerListener, error)
 }
 
 func newLoadBalancerListenerClient(rancherClient *RancherClient) *LoadBalancerListenerClient {
@@ -103,21 +100,21 @@ func (c *LoadBalancerListenerClient) ById(id string) (*LoadBalancerListener, err
 func (c *LoadBalancerListenerClient) Delete(container *LoadBalancerListener) error {
 	return c.rancherClient.doResourceDelete(LOAD_BALANCER_LISTENER_TYPE, &container.Resource)
 }
-    
-func (c *LoadBalancerListenerClient) ActionCreate (resource *LoadBalancerListener) (*LoadBalancerListener, error) {
-    
+
+func (c *LoadBalancerListenerClient) ActionCreate(resource *LoadBalancerListener) (*LoadBalancerListener, error) {
+
 	resp := &LoadBalancerListener{}
-    
+
 	err := c.rancherClient.doAction(LOAD_BALANCER_LISTENER_TYPE, "create", &resource.Resource, nil, resp)
-    
+
 	return resp, err
 }
-    
-func (c *LoadBalancerListenerClient) ActionRemove (resource *LoadBalancerListener) (*LoadBalancerListener, error) {
-    
+
+func (c *LoadBalancerListenerClient) ActionRemove(resource *LoadBalancerListener) (*LoadBalancerListener, error) {
+
 	resp := &LoadBalancerListener{}
-    
+
 	err := c.rancherClient.doAction(LOAD_BALANCER_LISTENER_TYPE, "remove", &resource.Resource, nil, resp)
-    
+
 	return resp, err
 }

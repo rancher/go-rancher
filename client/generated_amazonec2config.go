@@ -6,41 +6,40 @@ const (
 
 type Amazonec2Config struct {
 	Resource
-    
-    AccessKey string `json:"accessKey,omitempty"`
-    
-    Ami string `json:"ami,omitempty"`
-    
-    IamInstanceProfile string `json:"iamInstanceProfile,omitempty"`
-    
-    InstanceType string `json:"instanceType,omitempty"`
-    
-    Monitoring bool `json:"monitoring,omitempty"`
-    
-    PrivateAddressOnly bool `json:"privateAddressOnly,omitempty"`
-    
-    Region string `json:"region,omitempty"`
-    
-    RequestSpotInstance bool `json:"requestSpotInstance,omitempty"`
-    
-    RootSize string `json:"rootSize,omitempty"`
-    
-    SecretKey string `json:"secretKey,omitempty"`
-    
-    SecurityGroup string `json:"securityGroup,omitempty"`
-    
-    SessionToken string `json:"sessionToken,omitempty"`
-    
-    SpotPrice string `json:"spotPrice,omitempty"`
-    
-    SshUser string `json:"sshUser,omitempty"`
-    
-    SubnetId string `json:"subnetId,omitempty"`
-    
-    VpcId string `json:"vpcId,omitempty"`
-    
-    Zone string `json:"zone,omitempty"`
-    
+
+	AccessKey string `json:"accessKey,omitempty"`
+
+	Ami string `json:"ami,omitempty"`
+
+	IamInstanceProfile string `json:"iamInstanceProfile,omitempty"`
+
+	InstanceType string `json:"instanceType,omitempty"`
+
+	Monitoring bool `json:"monitoring,omitempty"`
+
+	PrivateAddressOnly bool `json:"privateAddressOnly,omitempty"`
+
+	Region string `json:"region,omitempty"`
+
+	RequestSpotInstance bool `json:"requestSpotInstance,omitempty"`
+
+	RootSize string `json:"rootSize,omitempty"`
+
+	SecretKey string `json:"secretKey,omitempty"`
+
+	SecurityGroup string `json:"securityGroup,omitempty"`
+
+	SessionToken string `json:"sessionToken,omitempty"`
+
+	SpotPrice string `json:"spotPrice,omitempty"`
+
+	SshUser string `json:"sshUser,omitempty"`
+
+	SubnetId string `json:"subnetId,omitempty"`
+
+	VpcId string `json:"vpcId,omitempty"`
+
+	Zone string `json:"zone,omitempty"`
 }
 
 type Amazonec2ConfigCollection struct {

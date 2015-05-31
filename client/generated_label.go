@@ -6,37 +6,36 @@ const (
 
 type Label struct {
 	Resource
-    
-    AccountId string `json:"accountId,omitempty"`
-    
-    Created string `json:"created,omitempty"`
-    
-    Data map[string]interface{} `json:"data,omitempty"`
-    
-    Description string `json:"description,omitempty"`
-    
-    Key string `json:"key,omitempty"`
-    
-    Kind string `json:"kind,omitempty"`
-    
-    Name string `json:"name,omitempty"`
-    
-    RemoveTime string `json:"removeTime,omitempty"`
-    
-    Removed string `json:"removed,omitempty"`
-    
-    State string `json:"state,omitempty"`
-    
-    Transitioning string `json:"transitioning,omitempty"`
-    
-    TransitioningMessage string `json:"transitioningMessage,omitempty"`
-    
-    TransitioningProgress int `json:"transitioningProgress,omitempty"`
-    
-    Uuid string `json:"uuid,omitempty"`
-    
-    Value string `json:"value,omitempty"`
-    
+
+	AccountId string `json:"accountId,omitempty"`
+
+	Created string `json:"created,omitempty"`
+
+	Data map[string]interface{} `json:"data,omitempty"`
+
+	Description string `json:"description,omitempty"`
+
+	Key string `json:"key,omitempty"`
+
+	Kind string `json:"kind,omitempty"`
+
+	Name string `json:"name,omitempty"`
+
+	RemoveTime string `json:"removeTime,omitempty"`
+
+	Removed string `json:"removed,omitempty"`
+
+	State string `json:"state,omitempty"`
+
+	Transitioning string `json:"transitioning,omitempty"`
+
+	TransitioningMessage string `json:"transitioningMessage,omitempty"`
+
+	TransitioningProgress int `json:"transitioningProgress,omitempty"`
+
+	Uuid string `json:"uuid,omitempty"`
+
+	Value string `json:"value,omitempty"`
 }
 
 type LabelCollection struct {
@@ -54,12 +53,10 @@ type LabelOperations interface {
 	Update(existing *Label, updates interface{}) (*Label, error)
 	ById(id string) (*Label, error)
 	Delete(container *Label) error
-    
-    ActionCreate (*Label) (*Label, error)
-    
-    
-    ActionRemove (*Label) (*Label, error)
-    
+
+	ActionCreate(*Label) (*Label, error)
+
+	ActionRemove(*Label) (*Label, error)
 }
 
 func newLabelClient(rancherClient *RancherClient) *LabelClient {
@@ -95,21 +92,21 @@ func (c *LabelClient) ById(id string) (*Label, error) {
 func (c *LabelClient) Delete(container *Label) error {
 	return c.rancherClient.doResourceDelete(LABEL_TYPE, &container.Resource)
 }
-    
-func (c *LabelClient) ActionCreate (resource *Label) (*Label, error) {
-    
+
+func (c *LabelClient) ActionCreate(resource *Label) (*Label, error) {
+
 	resp := &Label{}
-    
+
 	err := c.rancherClient.doAction(LABEL_TYPE, "create", &resource.Resource, nil, resp)
-    
+
 	return resp, err
 }
-    
-func (c *LabelClient) ActionRemove (resource *Label) (*Label, error) {
-    
+
+func (c *LabelClient) ActionRemove(resource *Label) (*Label, error) {
+
 	resp := &Label{}
-    
+
 	err := c.rancherClient.doAction(LABEL_TYPE, "remove", &resource.Resource, nil, resp)
-    
+
 	return resp, err
 }

@@ -6,11 +6,10 @@ const (
 
 type ContainerLogs struct {
 	Resource
-    
-    Follow bool `json:"follow,omitempty"`
-    
-    Lines int `json:"lines,omitempty"`
-    
+
+	Follow bool `json:"follow,omitempty"`
+
+	Lines int `json:"lines,omitempty"`
 }
 
 type ContainerLogsCollection struct {

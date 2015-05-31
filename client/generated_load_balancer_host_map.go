@@ -6,31 +6,30 @@ const (
 
 type LoadBalancerHostMap struct {
 	Resource
-    
-    AccountId string `json:"accountId,omitempty"`
-    
-    Created string `json:"created,omitempty"`
-    
-    Data map[string]interface{} `json:"data,omitempty"`
-    
-    Description string `json:"description,omitempty"`
-    
-    HostId string `json:"hostId,omitempty"`
-    
-    Kind string `json:"kind,omitempty"`
-    
-    LoadBalancerId string `json:"loadBalancerId,omitempty"`
-    
-    Name string `json:"name,omitempty"`
-    
-    RemoveTime string `json:"removeTime,omitempty"`
-    
-    Removed string `json:"removed,omitempty"`
-    
-    State string `json:"state,omitempty"`
-    
-    Uuid string `json:"uuid,omitempty"`
-    
+
+	AccountId string `json:"accountId,omitempty"`
+
+	Created string `json:"created,omitempty"`
+
+	Data map[string]interface{} `json:"data,omitempty"`
+
+	Description string `json:"description,omitempty"`
+
+	HostId string `json:"hostId,omitempty"`
+
+	Kind string `json:"kind,omitempty"`
+
+	LoadBalancerId string `json:"loadBalancerId,omitempty"`
+
+	Name string `json:"name,omitempty"`
+
+	RemoveTime string `json:"removeTime,omitempty"`
+
+	Removed string `json:"removed,omitempty"`
+
+	State string `json:"state,omitempty"`
+
+	Uuid string `json:"uuid,omitempty"`
 }
 
 type LoadBalancerHostMapCollection struct {

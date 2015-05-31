@@ -6,13 +6,12 @@ const (
 
 type ExtensionImplementation struct {
 	Resource
-    
-    ClassName string `json:"className,omitempty"`
-    
-    Name string `json:"name,omitempty"`
-    
-    Properties map[string]interface{} `json:"properties,omitempty"`
-    
+
+	ClassName string `json:"className,omitempty"`
+
+	Name string `json:"name,omitempty"`
+
+	Properties map[string]interface{} `json:"properties,omitempty"`
 }
 
 type ExtensionImplementationCollection struct {

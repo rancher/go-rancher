@@ -6,21 +6,20 @@ const (
 
 type Githubconfig struct {
 	Resource
-    
-    AccessMode string `json:"accessMode,omitempty"`
-    
-    AllowedOrganizations []string `json:"allowedOrganizations,omitempty"`
-    
-    AllowedUsers []string `json:"allowedUsers,omitempty"`
-    
-    ClientId string `json:"clientId,omitempty"`
-    
-    ClientSecret string `json:"clientSecret,omitempty"`
-    
-    Enabled bool `json:"enabled,omitempty"`
-    
-    Hostname string `json:"hostname,omitempty"`
-    
+
+	AccessMode string `json:"accessMode,omitempty"`
+
+	AllowedOrganizations []string `json:"allowedOrganizations,omitempty"`
+
+	AllowedUsers []string `json:"allowedUsers,omitempty"`
+
+	ClientId string `json:"clientId,omitempty"`
+
+	ClientSecret string `json:"clientSecret,omitempty"`
+
+	Enabled bool `json:"enabled,omitempty"`
+
+	Hostname string `json:"hostname,omitempty"`
 }
 
 type GithubconfigCollection struct {

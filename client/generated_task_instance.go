@@ -6,19 +6,18 @@ const (
 
 type TaskInstance struct {
 	Resource
-    
-    EndTime string `json:"endTime,omitempty"`
-    
-    Exception string `json:"exception,omitempty"`
-    
-    Name string `json:"name,omitempty"`
-    
-    ServerId string `json:"serverId,omitempty"`
-    
-    StartTime string `json:"startTime,omitempty"`
-    
-    TaskId string `json:"taskId,omitempty"`
-    
+
+	EndTime string `json:"endTime,omitempty"`
+
+	Exception string `json:"exception,omitempty"`
+
+	Name string `json:"name,omitempty"`
+
+	ServerId string `json:"serverId,omitempty"`
+
+	StartTime string `json:"startTime,omitempty"`
+
+	TaskId string `json:"taskId,omitempty"`
 }
 
 type TaskInstanceCollection struct {

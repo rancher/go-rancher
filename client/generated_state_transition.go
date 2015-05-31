@@ -6,7 +6,6 @@ const (
 
 type StateTransition struct {
 	Resource
-    
 }
 
 type StateTransitionCollection struct {

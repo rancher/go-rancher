@@ -6,9 +6,8 @@ const (
 
 type RemoveLabelInput struct {
 	Resource
-    
-    Label string `json:"label,omitempty"`
-    
+
+	Label string `json:"label,omitempty"`
 }
 
 type RemoveLabelInputCollection struct {

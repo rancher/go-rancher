@@ -6,9 +6,8 @@ const (
 
 type AddRemoveLoadBalancerHostInput struct {
 	Resource
-    
-    HostId string `json:"hostId,omitempty"`
-    
+
+	HostId string `json:"hostId,omitempty"`
 }
 
 type AddRemoveLoadBalancerHostInputCollection struct {

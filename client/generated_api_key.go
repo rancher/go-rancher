@@ -6,37 +6,36 @@ const (
 
 type ApiKey struct {
 	Resource
-    
-    AccountId string `json:"accountId,omitempty"`
-    
-    Created string `json:"created,omitempty"`
-    
-    Data map[string]interface{} `json:"data,omitempty"`
-    
-    Description string `json:"description,omitempty"`
-    
-    Kind string `json:"kind,omitempty"`
-    
-    Name string `json:"name,omitempty"`
-    
-    PublicValue string `json:"publicValue,omitempty"`
-    
-    RemoveTime string `json:"removeTime,omitempty"`
-    
-    Removed string `json:"removed,omitempty"`
-    
-    SecretValue string `json:"secretValue,omitempty"`
-    
-    State string `json:"state,omitempty"`
-    
-    Transitioning string `json:"transitioning,omitempty"`
-    
-    TransitioningMessage string `json:"transitioningMessage,omitempty"`
-    
-    TransitioningProgress int `json:"transitioningProgress,omitempty"`
-    
-    Uuid string `json:"uuid,omitempty"`
-    
+
+	AccountId string `json:"accountId,omitempty"`
+
+	Created string `json:"created,omitempty"`
+
+	Data map[string]interface{} `json:"data,omitempty"`
+
+	Description string `json:"description,omitempty"`
+
+	Kind string `json:"kind,omitempty"`
+
+	Name string `json:"name,omitempty"`
+
+	PublicValue string `json:"publicValue,omitempty"`
+
+	RemoveTime string `json:"removeTime,omitempty"`
+
+	Removed string `json:"removed,omitempty"`
+
+	SecretValue string `json:"secretValue,omitempty"`
+
+	State string `json:"state,omitempty"`
+
+	Transitioning string `json:"transitioning,omitempty"`
+
+	TransitioningMessage string `json:"transitioningMessage,omitempty"`
+
+	TransitioningProgress int `json:"transitioningProgress,omitempty"`
+
+	Uuid string `json:"uuid,omitempty"`
 }
 
 type ApiKeyCollection struct {

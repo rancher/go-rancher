@@ -6,37 +6,36 @@ const (
 
 type ContainerEvent struct {
 	Resource
-    
-    AccountId string `json:"accountId,omitempty"`
-    
-    Created string `json:"created,omitempty"`
-    
-    Data map[string]interface{} `json:"data,omitempty"`
-    
-    DockerInspect interface{} `json:"dockerInspect,omitempty"`
-    
-    ExternalFrom string `json:"externalFrom,omitempty"`
-    
-    ExternalId string `json:"externalId,omitempty"`
-    
-    ExternalStatus string `json:"externalStatus,omitempty"`
-    
-    ExternalTimestamp int `json:"externalTimestamp,omitempty"`
-    
-    HostId string `json:"hostId,omitempty"`
-    
-    Kind string `json:"kind,omitempty"`
-    
-    ReportedHostUuid string `json:"reportedHostUuid,omitempty"`
-    
-    State string `json:"state,omitempty"`
-    
-    Transitioning string `json:"transitioning,omitempty"`
-    
-    TransitioningMessage string `json:"transitioningMessage,omitempty"`
-    
-    TransitioningProgress int `json:"transitioningProgress,omitempty"`
-    
+
+	AccountId string `json:"accountId,omitempty"`
+
+	Created string `json:"created,omitempty"`
+
+	Data map[string]interface{} `json:"data,omitempty"`
+
+	DockerInspect interface{} `json:"dockerInspect,omitempty"`
+
+	ExternalFrom string `json:"externalFrom,omitempty"`
+
+	ExternalId string `json:"externalId,omitempty"`
+
+	ExternalStatus string `json:"externalStatus,omitempty"`
+
+	ExternalTimestamp int `json:"externalTimestamp,omitempty"`
+
+	HostId string `json:"hostId,omitempty"`
+
+	Kind string `json:"kind,omitempty"`
+
+	ReportedHostUuid string `json:"reportedHostUuid,omitempty"`
+
+	State string `json:"state,omitempty"`
+
+	Transitioning string `json:"transitioning,omitempty"`
+
+	TransitioningMessage string `json:"transitioningMessage,omitempty"`
+
+	TransitioningProgress int `json:"transitioningProgress,omitempty"`
 }
 
 type ContainerEventCollection struct {
@@ -54,12 +53,10 @@ type ContainerEventOperations interface {
 	Update(existing *ContainerEvent, updates interface{}) (*ContainerEvent, error)
 	ById(id string) (*ContainerEvent, error)
 	Delete(container *ContainerEvent) error
-    
-    ActionCreate (*ContainerEvent) (*ContainerEvent, error)
-    
-    
-    ActionRemove (*ContainerEvent) (*ContainerEvent, error)
-    
+
+	ActionCreate(*ContainerEvent) (*ContainerEvent, error)
+
+	ActionRemove(*ContainerEvent) (*ContainerEvent, error)
 }
 
 func newContainerEventClient(rancherClient *RancherClient) *ContainerEventClient {
@@ -95,21 +92,21 @@ func (c *ContainerEventClient) ById(id string) (*ContainerEvent, error) {
 func (c *ContainerEventClient) Delete(container *ContainerEvent) error {
 	return c.rancherClient.doResourceDelete(CONTAINER_EVENT_TYPE, &container.Resource)
 }
-    
-func (c *ContainerEventClient) ActionCreate (resource *ContainerEvent) (*ContainerEvent, error) {
-    
+
+func (c *ContainerEventClient) ActionCreate(resource *ContainerEvent) (*ContainerEvent, error) {
+
 	resp := &ContainerEvent{}
-    
+
 	err := c.rancherClient.doAction(CONTAINER_EVENT_TYPE, "create", &resource.Resource, nil, resp)
-    
+
 	return resp, err
 }
-    
-func (c *ContainerEventClient) ActionRemove (resource *ContainerEvent) (*ContainerEvent, error) {
-    
+
+func (c *ContainerEventClient) ActionRemove(resource *ContainerEvent) (*ContainerEvent, error) {
+
 	resp := &ContainerEvent{}
-    
+
 	err := c.rancherClient.doAction(CONTAINER_EVENT_TYPE, "remove", &resource.Resource, nil, resp)
-    
+
 	return resp, err
 }

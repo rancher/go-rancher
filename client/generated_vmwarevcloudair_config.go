@@ -6,35 +6,34 @@ const (
 
 type VmwarevcloudairConfig struct {
 	Resource
-    
-    Catalog string `json:"catalog,omitempty"`
-    
-    Catalogitem string `json:"catalogitem,omitempty"`
-    
-    Computeid string `json:"computeid,omitempty"`
-    
-    CpuCount string `json:"cpuCount,omitempty"`
-    
-    DockerPort string `json:"dockerPort,omitempty"`
-    
-    Edgegateway string `json:"edgegateway,omitempty"`
-    
-    MemorySize string `json:"memorySize,omitempty"`
-    
-    Orgvdcnetwork string `json:"orgvdcnetwork,omitempty"`
-    
-    Password string `json:"password,omitempty"`
-    
-    Provision bool `json:"provision,omitempty"`
-    
-    Publicip string `json:"publicip,omitempty"`
-    
-    SshPort string `json:"sshPort,omitempty"`
-    
-    Username string `json:"username,omitempty"`
-    
-    Vdcid string `json:"vdcid,omitempty"`
-    
+
+	Catalog string `json:"catalog,omitempty"`
+
+	Catalogitem string `json:"catalogitem,omitempty"`
+
+	Computeid string `json:"computeid,omitempty"`
+
+	CpuCount string `json:"cpuCount,omitempty"`
+
+	DockerPort string `json:"dockerPort,omitempty"`
+
+	Edgegateway string `json:"edgegateway,omitempty"`
+
+	MemorySize string `json:"memorySize,omitempty"`
+
+	Orgvdcnetwork string `json:"orgvdcnetwork,omitempty"`
+
+	Password string `json:"password,omitempty"`
+
+	Provision bool `json:"provision,omitempty"`
+
+	Publicip string `json:"publicip,omitempty"`
+
+	SshPort string `json:"sshPort,omitempty"`
+
+	Username string `json:"username,omitempty"`
+
+	Vdcid string `json:"vdcid,omitempty"`
 }
 
 type VmwarevcloudairConfigCollection struct {

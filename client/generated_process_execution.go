@@ -6,13 +6,12 @@ const (
 
 type ProcessExecution struct {
 	Resource
-    
-    Log map[string]interface{} `json:"log,omitempty"`
-    
-    ProcessInstanceId string `json:"processInstanceId,omitempty"`
-    
-    Uuid string `json:"uuid,omitempty"`
-    
+
+	Log map[string]interface{} `json:"log,omitempty"`
+
+	ProcessInstanceId string `json:"processInstanceId,omitempty"`
+
+	Uuid string `json:"uuid,omitempty"`
 }
 
 type ProcessExecutionCollection struct {

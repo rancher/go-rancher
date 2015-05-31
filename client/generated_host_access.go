@@ -6,11 +6,10 @@ const (
 
 type HostAccess struct {
 	Resource
-    
-    Token string `json:"token,omitempty"`
-    
-    Url string `json:"url,omitempty"`
-    
+
+	Token string `json:"token,omitempty"`
+
+	Url string `json:"url,omitempty"`
 }
 
 type HostAccessCollection struct {

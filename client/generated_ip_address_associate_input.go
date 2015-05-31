@@ -6,9 +6,8 @@ const (
 
 type IpAddressAssociateInput struct {
 	Resource
-    
-    IpAddressId string `json:"ipAddressId,omitempty"`
-    
+
+	IpAddressId string `json:"ipAddressId,omitempty"`
 }
 
 type IpAddressAssociateInputCollection struct {

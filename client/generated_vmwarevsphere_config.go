@@ -6,31 +6,30 @@ const (
 
 type VmwarevsphereConfig struct {
 	Resource
-    
-    Boot2dockerUrl string `json:"boot2dockerUrl,omitempty"`
-    
-    ComputeIp string `json:"computeIp,omitempty"`
-    
-    CpuCount string `json:"cpuCount,omitempty"`
-    
-    Datacenter string `json:"datacenter,omitempty"`
-    
-    Datastore string `json:"datastore,omitempty"`
-    
-    DiskSize string `json:"diskSize,omitempty"`
-    
-    MemorySize string `json:"memorySize,omitempty"`
-    
-    Network string `json:"network,omitempty"`
-    
-    Password string `json:"password,omitempty"`
-    
-    Pool string `json:"pool,omitempty"`
-    
-    Username string `json:"username,omitempty"`
-    
-    Vcenter string `json:"vcenter,omitempty"`
-    
+
+	Boot2dockerUrl string `json:"boot2dockerUrl,omitempty"`
+
+	ComputeIp string `json:"computeIp,omitempty"`
+
+	CpuCount string `json:"cpuCount,omitempty"`
+
+	Datacenter string `json:"datacenter,omitempty"`
+
+	Datastore string `json:"datastore,omitempty"`
+
+	DiskSize string `json:"diskSize,omitempty"`
+
+	MemorySize string `json:"memorySize,omitempty"`
+
+	Network string `json:"network,omitempty"`
+
+	Password string `json:"password,omitempty"`
+
+	Pool string `json:"pool,omitempty"`
+
+	Username string `json:"username,omitempty"`
+
+	Vcenter string `json:"vcenter,omitempty"`
 }
 
 type VmwarevsphereConfigCollection struct {

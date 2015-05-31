@@ -6,9 +6,8 @@ const (
 
 type AddRemoveServiceLinkInput struct {
 	Resource
-    
-    ServiceId string `json:"serviceId,omitempty"`
-    
+
+	ServiceId string `json:"serviceId,omitempty"`
 }
 
 type AddRemoveServiceLinkInputCollection struct {

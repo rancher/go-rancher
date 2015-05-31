@@ -6,39 +6,38 @@ const (
 
 type ExternalHandler struct {
 	Resource
-    
-    Created string `json:"created,omitempty"`
-    
-    Data map[string]interface{} `json:"data,omitempty"`
-    
-    Description string `json:"description,omitempty"`
-    
-    Kind string `json:"kind,omitempty"`
-    
-    Name string `json:"name,omitempty"`
-    
-    Priority int `json:"priority,omitempty"`
-    
-    ProcessConfigs []interface{} `json:"processConfigs,omitempty"`
-    
-    RemoveTime string `json:"removeTime,omitempty"`
-    
-    Removed string `json:"removed,omitempty"`
-    
-    Retries int `json:"retries,omitempty"`
-    
-    State string `json:"state,omitempty"`
-    
-    TimeoutMillis int `json:"timeoutMillis,omitempty"`
-    
-    Transitioning string `json:"transitioning,omitempty"`
-    
-    TransitioningMessage string `json:"transitioningMessage,omitempty"`
-    
-    TransitioningProgress int `json:"transitioningProgress,omitempty"`
-    
-    Uuid string `json:"uuid,omitempty"`
-    
+
+	Created string `json:"created,omitempty"`
+
+	Data map[string]interface{} `json:"data,omitempty"`
+
+	Description string `json:"description,omitempty"`
+
+	Kind string `json:"kind,omitempty"`
+
+	Name string `json:"name,omitempty"`
+
+	Priority int `json:"priority,omitempty"`
+
+	ProcessConfigs []interface{} `json:"processConfigs,omitempty"`
+
+	RemoveTime string `json:"removeTime,omitempty"`
+
+	Removed string `json:"removed,omitempty"`
+
+	Retries int `json:"retries,omitempty"`
+
+	State string `json:"state,omitempty"`
+
+	TimeoutMillis int `json:"timeoutMillis,omitempty"`
+
+	Transitioning string `json:"transitioning,omitempty"`
+
+	TransitioningMessage string `json:"transitioningMessage,omitempty"`
+
+	TransitioningProgress int `json:"transitioningProgress,omitempty"`
+
+	Uuid string `json:"uuid,omitempty"`
 }
 
 type ExternalHandlerCollection struct {
@@ -56,27 +55,20 @@ type ExternalHandlerOperations interface {
 	Update(existing *ExternalHandler, updates interface{}) (*ExternalHandler, error)
 	ById(id string) (*ExternalHandler, error)
 	Delete(container *ExternalHandler) error
-    
-    ActionActivate (*ExternalHandler) (*ExternalHandler, error)
-    
-    
-    ActionCreate (*ExternalHandler) (*ExternalHandler, error)
-    
-    
-    ActionDeactivate (*ExternalHandler) (*ExternalHandler, error)
-    
-    
-    ActionPurge (*ExternalHandler) (*ExternalHandler, error)
-    
-    
-    ActionRemove (*ExternalHandler) (*ExternalHandler, error)
-    
-    
-    ActionRestore (*ExternalHandler) (*ExternalHandler, error)
-    
-    
-    ActionUpdate (*ExternalHandler) (*ExternalHandler, error)
-    
+
+	ActionActivate(*ExternalHandler) (*ExternalHandler, error)
+
+	ActionCreate(*ExternalHandler) (*ExternalHandler, error)
+
+	ActionDeactivate(*ExternalHandler) (*ExternalHandler, error)
+
+	ActionPurge(*ExternalHandler) (*ExternalHandler, error)
+
+	ActionRemove(*ExternalHandler) (*ExternalHandler, error)
+
+	ActionRestore(*ExternalHandler) (*ExternalHandler, error)
+
+	ActionUpdate(*ExternalHandler) (*ExternalHandler, error)
 }
 
 func newExternalHandlerClient(rancherClient *RancherClient) *ExternalHandlerClient {
@@ -112,66 +104,66 @@ func (c *ExternalHandlerClient) ById(id string) (*ExternalHandler, error) {
 func (c *ExternalHandlerClient) Delete(container *ExternalHandler) error {
 	return c.rancherClient.doResourceDelete(EXTERNAL_HANDLER_TYPE, &container.Resource)
 }
-    
-func (c *ExternalHandlerClient) ActionActivate (resource *ExternalHandler) (*ExternalHandler, error) {
-    
+
+func (c *ExternalHandlerClient) ActionActivate(resource *ExternalHandler) (*ExternalHandler, error) {
+
 	resp := &ExternalHandler{}
-    
+
 	err := c.rancherClient.doAction(EXTERNAL_HANDLER_TYPE, "activate", &resource.Resource, nil, resp)
-    
+
 	return resp, err
 }
-    
-func (c *ExternalHandlerClient) ActionCreate (resource *ExternalHandler) (*ExternalHandler, error) {
-    
+
+func (c *ExternalHandlerClient) ActionCreate(resource *ExternalHandler) (*ExternalHandler, error) {
+
 	resp := &ExternalHandler{}
-    
+
 	err := c.rancherClient.doAction(EXTERNAL_HANDLER_TYPE, "create", &resource.Resource, nil, resp)
-    
+
 	return resp, err
 }
-    
-func (c *ExternalHandlerClient) ActionDeactivate (resource *ExternalHandler) (*ExternalHandler, error) {
-    
+
+func (c *ExternalHandlerClient) ActionDeactivate(resource *ExternalHandler) (*ExternalHandler, error) {
+
 	resp := &ExternalHandler{}
-    
+
 	err := c.rancherClient.doAction(EXTERNAL_HANDLER_TYPE, "deactivate", &resource.Resource, nil, resp)
-    
+
 	return resp, err
 }
-    
-func (c *ExternalHandlerClient) ActionPurge (resource *ExternalHandler) (*ExternalHandler, error) {
-    
+
+func (c *ExternalHandlerClient) ActionPurge(resource *ExternalHandler) (*ExternalHandler, error) {
+
 	resp := &ExternalHandler{}
-    
+
 	err := c.rancherClient.doAction(EXTERNAL_HANDLER_TYPE, "purge", &resource.Resource, nil, resp)
-    
+
 	return resp, err
 }
-    
-func (c *ExternalHandlerClient) ActionRemove (resource *ExternalHandler) (*ExternalHandler, error) {
-    
+
+func (c *ExternalHandlerClient) ActionRemove(resource *ExternalHandler) (*ExternalHandler, error) {
+
 	resp := &ExternalHandler{}
-    
+
 	err := c.rancherClient.doAction(EXTERNAL_HANDLER_TYPE, "remove", &resource.Resource, nil, resp)
-    
+
 	return resp, err
 }
-    
-func (c *ExternalHandlerClient) ActionRestore (resource *ExternalHandler) (*ExternalHandler, error) {
-    
+
+func (c *ExternalHandlerClient) ActionRestore(resource *ExternalHandler) (*ExternalHandler, error) {
+
 	resp := &ExternalHandler{}
-    
+
 	err := c.rancherClient.doAction(EXTERNAL_HANDLER_TYPE, "restore", &resource.Resource, nil, resp)
-    
+
 	return resp, err
 }
-    
-func (c *ExternalHandlerClient) ActionUpdate (resource *ExternalHandler) (*ExternalHandler, error) {
-    
+
+func (c *ExternalHandlerClient) ActionUpdate(resource *ExternalHandler) (*ExternalHandler, error) {
+
 	resp := &ExternalHandler{}
-    
+
 	err := c.rancherClient.doAction(EXTERNAL_HANDLER_TYPE, "update", &resource.Resource, nil, resp)
-    
+
 	return resp, err
 }

@@ -6,9 +6,8 @@ const (
 
 type SetLoadBalancerListenersInput struct {
 	Resource
-    
-    LoadBalancerListenerIds []string `json:"loadBalancerListenerIds,omitempty"`
-    
+
+	LoadBalancerListenerIds []string `json:"loadBalancerListenerIds,omitempty"`
 }
 
 type SetLoadBalancerListenersInputCollection struct {
