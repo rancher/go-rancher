@@ -6,15 +6,16 @@ import (
 )
 
 const (
-	URL        = "http://localhost:8080/v1"
-	ACCESS_KEY = "admin"
-	SECRET_KEY = "adminpass"
-	MAX_WAIT   = time.Duration(time.Second * 10)
+	PROJECT_URL = "http://localhost:8080/v1/projects/1a5/schemas"
+	URL         = "http://localhost:8080/v1"
+	ACCESS_KEY  = "admin"
+	SECRET_KEY  = "adminpass"
+	MAX_WAIT    = time.Duration(time.Second * 10)
 )
 
-func newClient(t *testing.T) *RancherClient {
+func newClient(t *testing.T, url string) *RancherClient {
 	client, err := NewRancherClient(&ClientOpts{
-		Url:       URL,
+		Url:       url,
 		AccessKey: ACCESS_KEY,
 		SecretKey: SECRET_KEY,
 	})
@@ -27,7 +28,7 @@ func newClient(t *testing.T) *RancherClient {
 }
 
 func TestClientLoad(t *testing.T) {
-	client := newClient(t)
+	client := newClient(t, URL)
 	if client.Schemas == nil {
 		t.Fatal("Failed to load schema")
 	}
@@ -42,7 +43,7 @@ func TestClientLoad(t *testing.T) {
 }
 
 func TestContainerList(t *testing.T) {
-	client := newClient(t)
+	client := newClient(t, PROJECT_URL)
 
 	/* Create a container to ensure list will return something */
 	container, err := client.Container.Create(&Container{
@@ -83,7 +84,7 @@ func TestContainerList(t *testing.T) {
 }
 
 func TestContainerCreate(t *testing.T) {
-	client := newClient(t)
+	client := newClient(t, PROJECT_URL)
 	container, err := client.Container.Create(&Container{
 		Name:      "a name",
 		ImageUuid: "docker:nginx",
@@ -105,7 +106,7 @@ func TestContainerCreate(t *testing.T) {
 }
 
 func TestContainerUpdate(t *testing.T) {
-	client := newClient(t)
+	client := newClient(t, PROJECT_URL)
 	container, err := client.Container.Create(&Container{
 		Name:      "a name",
 		ImageUuid: "docker:nginx",
@@ -144,7 +145,7 @@ func TestContainerUpdate(t *testing.T) {
 }
 
 func TestContainerDelete(t *testing.T) {
-	client := newClient(t)
+	client := newClient(t, PROJECT_URL)
 	container, err := client.Container.Create(&Container{
 		Name:      "a name",
 		ImageUuid: "docker:nginx",
@@ -161,7 +162,7 @@ func TestContainerDelete(t *testing.T) {
 }
 
 func TestContainerNotExists(t *testing.T) {
-	client := newClient(t)
+	client := newClient(t, PROJECT_URL)
 	_, err := client.Container.ById("badId1")
 	if err == nil {
 		t.Fatal("Should have received an error getting non-existent container.")
@@ -177,7 +178,7 @@ func TestContainerNotExists(t *testing.T) {
 }
 
 func TestAccountAction(t *testing.T) {
-	client := newClient(t)
+	client := newClient(t, URL)
 	account, err := client.Account.Create(&Account{
 		Name: "a name",
 	})
@@ -201,17 +202,6 @@ func TestAccountAction(t *testing.T) {
 	account = waitAccountTransition(account, client, t)
 	if account.State != "inactive" {
 		t.Fatal("Account didnt deactivate")
-	}
-}
-
-func TestPublishCreate(t *testing.T) {
-	client := newClient(t)
-	_, err := client.Publish.Create(&Publish{
-		Name: "foo",
-	})
-
-	if err != nil {
-		t.Fatal(err)
 	}
 }
 
