@@ -75,6 +75,7 @@ type RancherClient struct {
 	ProcessInstance                          ProcessInstanceOperations
 	ProjectMember                            ProjectMemberOperations
 	Service                                  ServiceOperations
+	ServiceEvent                             ServiceEventOperations
 	ServiceExposeMap                         ServiceExposeMapOperations
 	Setting                                  SettingOperations
 	Snapshot                                 SnapshotOperations
@@ -188,6 +189,7 @@ func constructClient() *RancherClient {
 	client.ProcessInstance = newProcessInstanceClient(client)
 	client.ProjectMember = newProjectMemberClient(client)
 	client.Service = newServiceClient(client)
+	client.ServiceEvent = newServiceEventClient(client)
 	client.ServiceExposeMap = newServiceExposeMapClient(client)
 	client.Setting = newSettingClient(client)
 	client.Snapshot = newSnapshotClient(client)
