@@ -3,15 +3,13 @@
 # Building
 
 ```sh
-cd client
-go build
+godep go build ./client
 ```
 
 # Tests
 
 ```sh
-cd client
-go test
+godep go test ./client
 ```
 # Contact
 For bugs, questions, comments, corrections, suggestions, etc., open an issue in
