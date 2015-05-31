@@ -7,37 +7,37 @@ const (
 type ProjectMember struct {
 	Resource
 
-	Created string `json:"created,omitempty"`
+	Created string `json:"created,omitempty" yaml:"created,omitempty"`
 
-	Data map[string]interface{} `json:"data,omitempty"`
+	Data map[string]interface{} `json:"data,omitempty" yaml:"data,omitempty"`
 
-	Description string `json:"description,omitempty"`
+	Description string `json:"description,omitempty" yaml:"description,omitempty"`
 
-	ExternalId string `json:"externalId,omitempty"`
+	ExternalId string `json:"externalId,omitempty" yaml:"external_id,omitempty"`
 
-	ExternalIdType string `json:"externalIdType,omitempty"`
+	ExternalIdType string `json:"externalIdType,omitempty" yaml:"external_id_type,omitempty"`
 
-	Kind string `json:"kind,omitempty"`
+	Kind string `json:"kind,omitempty" yaml:"kind,omitempty"`
 
-	Name string `json:"name,omitempty"`
+	Name string `json:"name,omitempty" yaml:"name,omitempty"`
 
-	ProjectId string `json:"projectId,omitempty"`
+	ProjectId string `json:"projectId,omitempty" yaml:"project_id,omitempty"`
 
-	RemoveTime string `json:"removeTime,omitempty"`
+	RemoveTime string `json:"removeTime,omitempty" yaml:"remove_time,omitempty"`
 
-	Removed string `json:"removed,omitempty"`
+	Removed string `json:"removed,omitempty" yaml:"removed,omitempty"`
 
-	Role string `json:"role,omitempty"`
+	Role string `json:"role,omitempty" yaml:"role,omitempty"`
 
-	State string `json:"state,omitempty"`
+	State string `json:"state,omitempty" yaml:"state,omitempty"`
 
-	Transitioning string `json:"transitioning,omitempty"`
+	Transitioning string `json:"transitioning,omitempty" yaml:"transitioning,omitempty"`
 
-	TransitioningMessage string `json:"transitioningMessage,omitempty"`
+	TransitioningMessage string `json:"transitioningMessage,omitempty" yaml:"transitioning_message,omitempty"`
 
-	TransitioningProgress int `json:"transitioningProgress,omitempty"`
+	TransitioningProgress int64 `json:"transitioningProgress,omitempty" yaml:"transitioning_progress,omitempty"`
 
-	Uuid string `json:"uuid,omitempty"`
+	Uuid string `json:"uuid,omitempty" yaml:"uuid,omitempty"`
 }
 
 type ProjectMemberCollection struct {

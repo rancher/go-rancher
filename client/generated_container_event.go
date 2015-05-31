@@ -7,35 +7,35 @@ const (
 type ContainerEvent struct {
 	Resource
 
-	AccountId string `json:"accountId,omitempty"`
+	AccountId string `json:"accountId,omitempty" yaml:"account_id,omitempty"`
 
-	Created string `json:"created,omitempty"`
+	Created string `json:"created,omitempty" yaml:"created,omitempty"`
 
-	Data map[string]interface{} `json:"data,omitempty"`
+	Data map[string]interface{} `json:"data,omitempty" yaml:"data,omitempty"`
 
-	DockerInspect interface{} `json:"dockerInspect,omitempty"`
+	DockerInspect interface{} `json:"dockerInspect,omitempty" yaml:"docker_inspect,omitempty"`
 
-	ExternalFrom string `json:"externalFrom,omitempty"`
+	ExternalFrom string `json:"externalFrom,omitempty" yaml:"external_from,omitempty"`
 
-	ExternalId string `json:"externalId,omitempty"`
+	ExternalId string `json:"externalId,omitempty" yaml:"external_id,omitempty"`
 
-	ExternalStatus string `json:"externalStatus,omitempty"`
+	ExternalStatus string `json:"externalStatus,omitempty" yaml:"external_status,omitempty"`
 
-	ExternalTimestamp int `json:"externalTimestamp,omitempty"`
+	ExternalTimestamp int64 `json:"externalTimestamp,omitempty" yaml:"external_timestamp,omitempty"`
 
-	HostId string `json:"hostId,omitempty"`
+	HostId string `json:"hostId,omitempty" yaml:"host_id,omitempty"`
 
-	Kind string `json:"kind,omitempty"`
+	Kind string `json:"kind,omitempty" yaml:"kind,omitempty"`
 
-	ReportedHostUuid string `json:"reportedHostUuid,omitempty"`
+	ReportedHostUuid string `json:"reportedHostUuid,omitempty" yaml:"reported_host_uuid,omitempty"`
 
-	State string `json:"state,omitempty"`
+	State string `json:"state,omitempty" yaml:"state,omitempty"`
 
-	Transitioning string `json:"transitioning,omitempty"`
+	Transitioning string `json:"transitioning,omitempty" yaml:"transitioning,omitempty"`
 
-	TransitioningMessage string `json:"transitioningMessage,omitempty"`
+	TransitioningMessage string `json:"transitioningMessage,omitempty" yaml:"transitioning_message,omitempty"`
 
-	TransitioningProgress int `json:"transitioningProgress,omitempty"`
+	TransitioningProgress int64 `json:"transitioningProgress,omitempty" yaml:"transitioning_progress,omitempty"`
 }
 
 type ContainerEventCollection struct {

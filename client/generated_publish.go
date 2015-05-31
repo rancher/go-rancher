@@ -7,27 +7,27 @@ const (
 type Publish struct {
 	Resource
 
-	Data map[string]interface{} `json:"data,omitempty"`
+	Data map[string]interface{} `json:"data,omitempty" yaml:"data,omitempty"`
 
-	Name string `json:"name,omitempty"`
+	Name string `json:"name,omitempty" yaml:"name,omitempty"`
 
-	PreviousIds []string `json:"previousIds,omitempty"`
+	PreviousIds []string `json:"previousIds,omitempty" yaml:"previous_ids,omitempty"`
 
-	Publisher string `json:"publisher,omitempty"`
+	Publisher string `json:"publisher,omitempty" yaml:"publisher,omitempty"`
 
-	ResourceId string `json:"resourceId,omitempty"`
+	ResourceId string `json:"resourceId,omitempty" yaml:"resource_id,omitempty"`
 
-	ResourceType string `json:"resourceType,omitempty"`
+	ResourceType string `json:"resourceType,omitempty" yaml:"resource_type,omitempty"`
 
-	Time int `json:"time,omitempty"`
+	Time int64 `json:"time,omitempty" yaml:"time,omitempty"`
 
-	Transitioning string `json:"transitioning,omitempty"`
+	Transitioning string `json:"transitioning,omitempty" yaml:"transitioning,omitempty"`
 
-	TransitioningInternalMessage string `json:"transitioningInternalMessage,omitempty"`
+	TransitioningInternalMessage string `json:"transitioningInternalMessage,omitempty" yaml:"transitioning_internal_message,omitempty"`
 
-	TransitioningMessage string `json:"transitioningMessage,omitempty"`
+	TransitioningMessage string `json:"transitioningMessage,omitempty" yaml:"transitioning_message,omitempty"`
 
-	TransitioningProgress int `json:"transitioningProgress,omitempty"`
+	TransitioningProgress int64 `json:"transitioningProgress,omitempty" yaml:"transitioning_progress,omitempty"`
 }
 
 type PublishCollection struct {

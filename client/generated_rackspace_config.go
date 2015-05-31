@@ -7,23 +7,23 @@ const (
 type RackspaceConfig struct {
 	Resource
 
-	ApiKey string `json:"apiKey,omitempty"`
+	ApiKey string `json:"apiKey,omitempty" yaml:"api_key,omitempty"`
 
-	DockerInstall string `json:"dockerInstall,omitempty"`
+	DockerInstall string `json:"dockerInstall,omitempty" yaml:"docker_install,omitempty"`
 
-	EndpointType string `json:"endpointType,omitempty"`
+	EndpointType string `json:"endpointType,omitempty" yaml:"endpoint_type,omitempty"`
 
-	FlavorId string `json:"flavorId,omitempty"`
+	FlavorId string `json:"flavorId,omitempty" yaml:"flavor_id,omitempty"`
 
-	ImageId string `json:"imageId,omitempty"`
+	ImageId string `json:"imageId,omitempty" yaml:"image_id,omitempty"`
 
-	Region string `json:"region,omitempty"`
+	Region string `json:"region,omitempty" yaml:"region,omitempty"`
 
-	SshPort string `json:"sshPort,omitempty"`
+	SshPort string `json:"sshPort,omitempty" yaml:"ssh_port,omitempty"`
 
-	SshUser string `json:"sshUser,omitempty"`
+	SshUser string `json:"sshUser,omitempty" yaml:"ssh_user,omitempty"`
 
-	Username string `json:"username,omitempty"`
+	Username string `json:"username,omitempty" yaml:"username,omitempty"`
 }
 
 type RackspaceConfigCollection struct {

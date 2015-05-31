@@ -7,7 +7,7 @@ const (
 type SetLabelsInput struct {
 	Resource
 
-	Labels interface{} `json:"labels,omitempty"`
+	Labels interface{} `json:"labels,omitempty" yaml:"labels,omitempty"`
 }
 
 type SetLabelsInputCollection struct {

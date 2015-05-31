@@ -7,9 +7,9 @@ const (
 type AddLoadBalancerInput struct {
 	Resource
 
-	LoadBalancerId string `json:"loadBalancerId,omitempty"`
+	LoadBalancerId string `json:"loadBalancerId,omitempty" yaml:"load_balancer_id,omitempty"`
 
-	Weight int `json:"weight,omitempty"`
+	Weight int64 `json:"weight,omitempty" yaml:"weight,omitempty"`
 }
 
 type AddLoadBalancerInputCollection struct {

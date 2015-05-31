@@ -7,7 +7,7 @@ const (
 type ResourceDefinition struct {
 	Resource
 
-	Name string `json:"name,omitempty"`
+	Name string `json:"name,omitempty" yaml:"name,omitempty"`
 }
 
 type ResourceDefinitionCollection struct {

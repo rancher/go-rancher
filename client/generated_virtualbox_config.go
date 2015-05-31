@@ -7,15 +7,15 @@ const (
 type VirtualboxConfig struct {
 	Resource
 
-	Boot2dockerUrl string `json:"boot2dockerUrl,omitempty"`
+	Boot2dockerUrl string `json:"boot2dockerUrl,omitempty" yaml:"boot2docker_url,omitempty"`
 
-	CpuCount string `json:"cpuCount,omitempty"`
+	CpuCount string `json:"cpuCount,omitempty" yaml:"cpu_count,omitempty"`
 
-	DiskSize string `json:"diskSize,omitempty"`
+	DiskSize string `json:"diskSize,omitempty" yaml:"disk_size,omitempty"`
 
-	ImportBoot2dockerVm string `json:"importBoot2dockerVm,omitempty"`
+	ImportBoot2dockerVm string `json:"importBoot2dockerVm,omitempty" yaml:"import_boot2docker_vm,omitempty"`
 
-	Memory string `json:"memory,omitempty"`
+	Memory string `json:"memory,omitempty" yaml:"memory,omitempty"`
 }
 
 type VirtualboxConfigCollection struct {

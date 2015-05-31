@@ -7,29 +7,29 @@ const (
 type LoadBalancerHostMap struct {
 	Resource
 
-	AccountId string `json:"accountId,omitempty"`
+	AccountId string `json:"accountId,omitempty" yaml:"account_id,omitempty"`
 
-	Created string `json:"created,omitempty"`
+	Created string `json:"created,omitempty" yaml:"created,omitempty"`
 
-	Data map[string]interface{} `json:"data,omitempty"`
+	Data map[string]interface{} `json:"data,omitempty" yaml:"data,omitempty"`
 
-	Description string `json:"description,omitempty"`
+	Description string `json:"description,omitempty" yaml:"description,omitempty"`
 
-	HostId string `json:"hostId,omitempty"`
+	HostId string `json:"hostId,omitempty" yaml:"host_id,omitempty"`
 
-	Kind string `json:"kind,omitempty"`
+	Kind string `json:"kind,omitempty" yaml:"kind,omitempty"`
 
-	LoadBalancerId string `json:"loadBalancerId,omitempty"`
+	LoadBalancerId string `json:"loadBalancerId,omitempty" yaml:"load_balancer_id,omitempty"`
 
-	Name string `json:"name,omitempty"`
+	Name string `json:"name,omitempty" yaml:"name,omitempty"`
 
-	RemoveTime string `json:"removeTime,omitempty"`
+	RemoveTime string `json:"removeTime,omitempty" yaml:"remove_time,omitempty"`
 
-	Removed string `json:"removed,omitempty"`
+	Removed string `json:"removed,omitempty" yaml:"removed,omitempty"`
 
-	State string `json:"state,omitempty"`
+	State string `json:"state,omitempty" yaml:"state,omitempty"`
 
-	Uuid string `json:"uuid,omitempty"`
+	Uuid string `json:"uuid,omitempty" yaml:"uuid,omitempty"`
 }
 
 type LoadBalancerHostMapCollection struct {

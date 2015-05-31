@@ -7,33 +7,33 @@ const (
 type Registry struct {
 	Resource
 
-	AccountId string `json:"accountId,omitempty"`
+	AccountId string `json:"accountId,omitempty" yaml:"account_id,omitempty"`
 
-	Created string `json:"created,omitempty"`
+	Created string `json:"created,omitempty" yaml:"created,omitempty"`
 
-	Data map[string]interface{} `json:"data,omitempty"`
+	Data map[string]interface{} `json:"data,omitempty" yaml:"data,omitempty"`
 
-	Description string `json:"description,omitempty"`
+	Description string `json:"description,omitempty" yaml:"description,omitempty"`
 
-	Kind string `json:"kind,omitempty"`
+	Kind string `json:"kind,omitempty" yaml:"kind,omitempty"`
 
-	Name string `json:"name,omitempty"`
+	Name string `json:"name,omitempty" yaml:"name,omitempty"`
 
-	RemoveTime string `json:"removeTime,omitempty"`
+	RemoveTime string `json:"removeTime,omitempty" yaml:"remove_time,omitempty"`
 
-	Removed string `json:"removed,omitempty"`
+	Removed string `json:"removed,omitempty" yaml:"removed,omitempty"`
 
-	ServerAddress string `json:"serverAddress,omitempty"`
+	ServerAddress string `json:"serverAddress,omitempty" yaml:"server_address,omitempty"`
 
-	State string `json:"state,omitempty"`
+	State string `json:"state,omitempty" yaml:"state,omitempty"`
 
-	Transitioning string `json:"transitioning,omitempty"`
+	Transitioning string `json:"transitioning,omitempty" yaml:"transitioning,omitempty"`
 
-	TransitioningMessage string `json:"transitioningMessage,omitempty"`
+	TransitioningMessage string `json:"transitioningMessage,omitempty" yaml:"transitioning_message,omitempty"`
 
-	TransitioningProgress int `json:"transitioningProgress,omitempty"`
+	TransitioningProgress int64 `json:"transitioningProgress,omitempty" yaml:"transitioning_progress,omitempty"`
 
-	Uuid string `json:"uuid,omitempty"`
+	Uuid string `json:"uuid,omitempty" yaml:"uuid,omitempty"`
 }
 
 type RegistryCollection struct {
@@ -51,6 +51,20 @@ type RegistryOperations interface {
 	Update(existing *Registry, updates interface{}) (*Registry, error)
 	ById(id string) (*Registry, error)
 	Delete(container *Registry) error
+
+	ActionActivate(*Registry) (*StoragePool, error)
+
+	ActionCreate(*Registry) (*StoragePool, error)
+
+	ActionDeactivate(*Registry) (*StoragePool, error)
+
+	ActionPurge(*Registry) (*StoragePool, error)
+
+	ActionRemove(*Registry) (*StoragePool, error)
+
+	ActionRestore(*Registry) (*StoragePool, error)
+
+	ActionUpdate(*Registry) (*StoragePool, error)
 }
 
 func newRegistryClient(rancherClient *RancherClient) *RegistryClient {
@@ -85,4 +99,67 @@ func (c *RegistryClient) ById(id string) (*Registry, error) {
 
 func (c *RegistryClient) Delete(container *Registry) error {
 	return c.rancherClient.doResourceDelete(REGISTRY_TYPE, &container.Resource)
+}
+
+func (c *RegistryClient) ActionActivate(resource *Registry) (*StoragePool, error) {
+
+	resp := &StoragePool{}
+
+	err := c.rancherClient.doAction(REGISTRY_TYPE, "activate", &resource.Resource, nil, resp)
+
+	return resp, err
+}
+
+func (c *RegistryClient) ActionCreate(resource *Registry) (*StoragePool, error) {
+
+	resp := &StoragePool{}
+
+	err := c.rancherClient.doAction(REGISTRY_TYPE, "create", &resource.Resource, nil, resp)
+
+	return resp, err
+}
+
+func (c *RegistryClient) ActionDeactivate(resource *Registry) (*StoragePool, error) {
+
+	resp := &StoragePool{}
+
+	err := c.rancherClient.doAction(REGISTRY_TYPE, "deactivate", &resource.Resource, nil, resp)
+
+	return resp, err
+}
+
+func (c *RegistryClient) ActionPurge(resource *Registry) (*StoragePool, error) {
+
+	resp := &StoragePool{}
+
+	err := c.rancherClient.doAction(REGISTRY_TYPE, "purge", &resource.Resource, nil, resp)
+
+	return resp, err
+}
+
+func (c *RegistryClient) ActionRemove(resource *Registry) (*StoragePool, error) {
+
+	resp := &StoragePool{}
+
+	err := c.rancherClient.doAction(REGISTRY_TYPE, "remove", &resource.Resource, nil, resp)
+
+	return resp, err
+}
+
+func (c *RegistryClient) ActionRestore(resource *Registry) (*StoragePool, error) {
+
+	resp := &StoragePool{}
+
+	err := c.rancherClient.doAction(REGISTRY_TYPE, "restore", &resource.Resource, nil, resp)
+
+	return resp, err
+}
+
+func (c *RegistryClient) ActionUpdate(resource *Registry) (*StoragePool, error) {
+
+	resp := &StoragePool{}
+
+	err := c.rancherClient.doAction(REGISTRY_TYPE, "update", &resource.Resource, nil, resp)
+
+	return resp, err
 }

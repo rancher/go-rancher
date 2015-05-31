@@ -7,19 +7,19 @@ const (
 type ConfigItemStatus struct {
 	Resource
 
-	AgentId string `json:"agentId,omitempty"`
+	AgentId string `json:"agentId,omitempty" yaml:"agent_id,omitempty"`
 
-	AppliedUpdated string `json:"appliedUpdated,omitempty"`
+	AppliedUpdated string `json:"appliedUpdated,omitempty" yaml:"applied_updated,omitempty"`
 
-	AppliedVersion int `json:"appliedVersion,omitempty"`
+	AppliedVersion int64 `json:"appliedVersion,omitempty" yaml:"applied_version,omitempty"`
 
-	Name string `json:"name,omitempty"`
+	Name string `json:"name,omitempty" yaml:"name,omitempty"`
 
-	RequestedUpdated string `json:"requestedUpdated,omitempty"`
+	RequestedUpdated string `json:"requestedUpdated,omitempty" yaml:"requested_updated,omitempty"`
 
-	RequestedVersion int `json:"requestedVersion,omitempty"`
+	RequestedVersion int64 `json:"requestedVersion,omitempty" yaml:"requested_version,omitempty"`
 
-	SourceVersion string `json:"sourceVersion,omitempty"`
+	SourceVersion string `json:"sourceVersion,omitempty" yaml:"source_version,omitempty"`
 }
 
 type ConfigItemStatusCollection struct {

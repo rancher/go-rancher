@@ -7,15 +7,15 @@ const (
 type ExtensionPoint struct {
 	Resource
 
-	ExcludeSetting string `json:"excludeSetting,omitempty"`
+	ExcludeSetting string `json:"excludeSetting,omitempty" yaml:"exclude_setting,omitempty"`
 
-	Implementations []interface{} `json:"implementations,omitempty"`
+	Implementations []interface{} `json:"implementations,omitempty" yaml:"implementations,omitempty"`
 
-	IncludeSetting string `json:"includeSetting,omitempty"`
+	IncludeSetting string `json:"includeSetting,omitempty" yaml:"include_setting,omitempty"`
 
-	ListSetting string `json:"listSetting,omitempty"`
+	ListSetting string `json:"listSetting,omitempty" yaml:"list_setting,omitempty"`
 
-	Name string `json:"name,omitempty"`
+	Name string `json:"name,omitempty" yaml:"name,omitempty"`
 }
 
 type ExtensionPointCollection struct {

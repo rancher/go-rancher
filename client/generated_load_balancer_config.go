@@ -7,39 +7,39 @@ const (
 type LoadBalancerConfig struct {
 	Resource
 
-	AccountId string `json:"accountId,omitempty"`
+	AccountId string `json:"accountId,omitempty" yaml:"account_id,omitempty"`
 
-	AppCookieStickinessPolicy *LoadBalancerAppCookieStickinessPolicy `json:"appCookieStickinessPolicy,omitempty"`
+	AppCookieStickinessPolicy *LoadBalancerAppCookieStickinessPolicy `json:"appCookieStickinessPolicy,omitempty" yaml:"app_cookie_stickiness_policy,omitempty"`
 
-	Created string `json:"created,omitempty"`
+	Created string `json:"created,omitempty" yaml:"created,omitempty"`
 
-	Data map[string]interface{} `json:"data,omitempty"`
+	Data map[string]interface{} `json:"data,omitempty" yaml:"data,omitempty"`
 
-	Description string `json:"description,omitempty"`
+	Description string `json:"description,omitempty" yaml:"description,omitempty"`
 
-	HealthCheck *LoadBalancerHealthCheck `json:"healthCheck,omitempty"`
+	HealthCheck *LoadBalancerHealthCheck `json:"healthCheck,omitempty" yaml:"health_check,omitempty"`
 
-	Kind string `json:"kind,omitempty"`
+	Kind string `json:"kind,omitempty" yaml:"kind,omitempty"`
 
-	LbCookieStickinessPolicy *LoadBalancerCookieStickinessPolicy `json:"lbCookieStickinessPolicy,omitempty"`
+	LbCookieStickinessPolicy *LoadBalancerCookieStickinessPolicy `json:"lbCookieStickinessPolicy,omitempty" yaml:"lb_cookie_stickiness_policy,omitempty"`
 
-	Name string `json:"name,omitempty"`
+	Name string `json:"name,omitempty" yaml:"name,omitempty"`
 
-	RemoveTime string `json:"removeTime,omitempty"`
+	RemoveTime string `json:"removeTime,omitempty" yaml:"remove_time,omitempty"`
 
-	Removed string `json:"removed,omitempty"`
+	Removed string `json:"removed,omitempty" yaml:"removed,omitempty"`
 
-	ServiceId string `json:"serviceId,omitempty"`
+	ServiceId string `json:"serviceId,omitempty" yaml:"service_id,omitempty"`
 
-	State string `json:"state,omitempty"`
+	State string `json:"state,omitempty" yaml:"state,omitempty"`
 
-	Transitioning string `json:"transitioning,omitempty"`
+	Transitioning string `json:"transitioning,omitempty" yaml:"transitioning,omitempty"`
 
-	TransitioningMessage string `json:"transitioningMessage,omitempty"`
+	TransitioningMessage string `json:"transitioningMessage,omitempty" yaml:"transitioning_message,omitempty"`
 
-	TransitioningProgress int `json:"transitioningProgress,omitempty"`
+	TransitioningProgress int64 `json:"transitioningProgress,omitempty" yaml:"transitioning_progress,omitempty"`
 
-	Uuid string `json:"uuid,omitempty"`
+	Uuid string `json:"uuid,omitempty" yaml:"uuid,omitempty"`
 }
 
 type LoadBalancerConfigCollection struct {

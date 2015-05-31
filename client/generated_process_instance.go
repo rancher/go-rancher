@@ -7,29 +7,29 @@ const (
 type ProcessInstance struct {
 	Resource
 
-	Data map[string]interface{} `json:"data,omitempty"`
+	Data map[string]interface{} `json:"data,omitempty" yaml:"data,omitempty"`
 
-	EndTime string `json:"endTime,omitempty"`
+	EndTime string `json:"endTime,omitempty" yaml:"end_time,omitempty"`
 
-	ExitReason string `json:"exitReason,omitempty"`
+	ExitReason string `json:"exitReason,omitempty" yaml:"exit_reason,omitempty"`
 
-	Phase string `json:"phase,omitempty"`
+	Phase string `json:"phase,omitempty" yaml:"phase,omitempty"`
 
-	Priority int `json:"priority,omitempty"`
+	Priority int64 `json:"priority,omitempty" yaml:"priority,omitempty"`
 
-	ProcessName string `json:"processName,omitempty"`
+	ProcessName string `json:"processName,omitempty" yaml:"process_name,omitempty"`
 
-	ResourceId string `json:"resourceId,omitempty"`
+	ResourceId string `json:"resourceId,omitempty" yaml:"resource_id,omitempty"`
 
-	ResourceType string `json:"resourceType,omitempty"`
+	ResourceType string `json:"resourceType,omitempty" yaml:"resource_type,omitempty"`
 
-	Result string `json:"result,omitempty"`
+	Result string `json:"result,omitempty" yaml:"result,omitempty"`
 
-	RunningProcessServerId string `json:"runningProcessServerId,omitempty"`
+	RunningProcessServerId string `json:"runningProcessServerId,omitempty" yaml:"running_process_server_id,omitempty"`
 
-	StartProcessServerId string `json:"startProcessServerId,omitempty"`
+	StartProcessServerId string `json:"startProcessServerId,omitempty" yaml:"start_process_server_id,omitempty"`
 
-	StartTime string `json:"startTime,omitempty"`
+	StartTime string `json:"startTime,omitempty" yaml:"start_time,omitempty"`
 }
 
 type ProcessInstanceCollection struct {

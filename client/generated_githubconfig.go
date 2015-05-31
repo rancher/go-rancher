@@ -7,19 +7,19 @@ const (
 type Githubconfig struct {
 	Resource
 
-	AccessMode string `json:"accessMode,omitempty"`
+	AccessMode string `json:"accessMode,omitempty" yaml:"access_mode,omitempty"`
 
-	AllowedOrganizations []string `json:"allowedOrganizations,omitempty"`
+	AllowedOrganizations []string `json:"allowedOrganizations,omitempty" yaml:"allowed_organizations,omitempty"`
 
-	AllowedUsers []string `json:"allowedUsers,omitempty"`
+	AllowedUsers []string `json:"allowedUsers,omitempty" yaml:"allowed_users,omitempty"`
 
-	ClientId string `json:"clientId,omitempty"`
+	ClientId string `json:"clientId,omitempty" yaml:"client_id,omitempty"`
 
-	ClientSecret string `json:"clientSecret,omitempty"`
+	ClientSecret string `json:"clientSecret,omitempty" yaml:"client_secret,omitempty"`
 
-	Enabled bool `json:"enabled,omitempty"`
+	Enabled bool `json:"enabled,omitempty" yaml:"enabled,omitempty"`
 
-	Hostname string `json:"hostname,omitempty"`
+	Hostname string `json:"hostname,omitempty" yaml:"hostname,omitempty"`
 }
 
 type GithubconfigCollection struct {
