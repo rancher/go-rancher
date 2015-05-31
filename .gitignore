@@ -1,4 +1,5 @@
 *.swp
 
-bin
-gopath
+/build
+/bin
+/gopath

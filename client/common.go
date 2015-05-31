@@ -11,6 +11,8 @@ import (
 	"net/url"
 	"os"
 	"regexp"
+
+	"github.com/gorilla/websocket"
 )
 
 const (
@@ -19,7 +21,8 @@ const (
 )
 
 var (
-	debug = false
+	debug  = false
+	dialer = &websocket.Dialer{}
 )
 
 type ClientOpts struct {
@@ -190,6 +193,10 @@ func (rancherClient *RancherBaseClient) doDelete(url string) error {
 	return nil
 }
 
+func (rancherClient *RancherBaseClient) Websocket(url string, headers map[string][]string) (*websocket.Conn, *http.Response, error) {
+	return dialer.Dial(url, http.Header(headers))
+}
+
 func (rancherClient *RancherBaseClient) doGet(url string, opts *ListOpts, respObject interface{}) error {
 	if opts == nil {
 		opts = NewListOpts()
@@ -254,6 +261,15 @@ func (rancherClient *RancherBaseClient) doList(schemaType string, opts *ListOpts
 
 func (rancherClient *RancherBaseClient) Post(url string, createObj interface{}, respObject interface{}) error {
 	return rancherClient.doModify("POST", url, createObj, respObject)
+}
+
+func (rancherClient *RancherBaseClient) GetLink(resource Resource, link string, respObject interface{}) error {
+	url := resource.Links[link]
+	if url == "" {
+		return fmt.Errorf("Failed to find link: %s", link)
+	}
+
+	return rancherClient.doGet(url, &ListOpts{}, respObject)
 }
 
 func (rancherClient *RancherBaseClient) doModify(method string, url string, createObj interface{}, respObject interface{}) error {
