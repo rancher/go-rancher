@@ -7,33 +7,33 @@ const (
 type VmwarevcloudairConfig struct {
 	Resource
 
-	Catalog string `json:"catalog,omitempty"`
+	Catalog string `json:"catalog,omitempty" yaml:"catalog,omitempty"`
 
-	Catalogitem string `json:"catalogitem,omitempty"`
+	Catalogitem string `json:"catalogitem,omitempty" yaml:"catalogitem,omitempty"`
 
-	Computeid string `json:"computeid,omitempty"`
+	Computeid string `json:"computeid,omitempty" yaml:"computeid,omitempty"`
 
-	CpuCount string `json:"cpuCount,omitempty"`
+	CpuCount string `json:"cpuCount,omitempty" yaml:"cpu_count,omitempty"`
 
-	DockerPort string `json:"dockerPort,omitempty"`
+	DockerPort string `json:"dockerPort,omitempty" yaml:"docker_port,omitempty"`
 
-	Edgegateway string `json:"edgegateway,omitempty"`
+	Edgegateway string `json:"edgegateway,omitempty" yaml:"edgegateway,omitempty"`
 
-	MemorySize string `json:"memorySize,omitempty"`
+	MemorySize string `json:"memorySize,omitempty" yaml:"memory_size,omitempty"`
 
-	Orgvdcnetwork string `json:"orgvdcnetwork,omitempty"`
+	Orgvdcnetwork string `json:"orgvdcnetwork,omitempty" yaml:"orgvdcnetwork,omitempty"`
 
-	Password string `json:"password,omitempty"`
+	Password string `json:"password,omitempty" yaml:"password,omitempty"`
 
-	Provision bool `json:"provision,omitempty"`
+	Provision bool `json:"provision,omitempty" yaml:"provision,omitempty"`
 
-	Publicip string `json:"publicip,omitempty"`
+	Publicip string `json:"publicip,omitempty" yaml:"publicip,omitempty"`
 
-	SshPort string `json:"sshPort,omitempty"`
+	SshPort string `json:"sshPort,omitempty" yaml:"ssh_port,omitempty"`
 
-	Username string `json:"username,omitempty"`
+	Username string `json:"username,omitempty" yaml:"username,omitempty"`
 
-	Vdcid string `json:"vdcid,omitempty"`
+	Vdcid string `json:"vdcid,omitempty" yaml:"vdcid,omitempty"`
 }
 
 type VmwarevcloudairConfigCollection struct {

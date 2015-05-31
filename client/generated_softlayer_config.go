@@ -7,35 +7,35 @@ const (
 type SoftlayerConfig struct {
 	Resource
 
-	ApiEndpoint string `json:"apiEndpoint,omitempty"`
+	ApiEndpoint string `json:"apiEndpoint,omitempty" yaml:"api_endpoint,omitempty"`
 
-	ApiKey string `json:"apiKey,omitempty"`
+	ApiKey string `json:"apiKey,omitempty" yaml:"api_key,omitempty"`
 
-	Cpu string `json:"cpu,omitempty"`
+	Cpu string `json:"cpu,omitempty" yaml:"cpu,omitempty"`
 
-	DiskSize string `json:"diskSize,omitempty"`
+	DiskSize string `json:"diskSize,omitempty" yaml:"disk_size,omitempty"`
 
-	Domain string `json:"domain,omitempty"`
+	Domain string `json:"domain,omitempty" yaml:"domain,omitempty"`
 
-	Hostname string `json:"hostname,omitempty"`
+	Hostname string `json:"hostname,omitempty" yaml:"hostname,omitempty"`
 
-	HourlyBilling bool `json:"hourlyBilling,omitempty"`
+	HourlyBilling bool `json:"hourlyBilling,omitempty" yaml:"hourly_billing,omitempty"`
 
-	Image string `json:"image,omitempty"`
+	Image string `json:"image,omitempty" yaml:"image,omitempty"`
 
-	LocalDisk bool `json:"localDisk,omitempty"`
+	LocalDisk bool `json:"localDisk,omitempty" yaml:"local_disk,omitempty"`
 
-	Memory string `json:"memory,omitempty"`
+	Memory string `json:"memory,omitempty" yaml:"memory,omitempty"`
 
-	PrivateNetOnly bool `json:"privateNetOnly,omitempty"`
+	PrivateNetOnly bool `json:"privateNetOnly,omitempty" yaml:"private_net_only,omitempty"`
 
-	PrivateVlanId string `json:"privateVlanId,omitempty"`
+	PrivateVlanId string `json:"privateVlanId,omitempty" yaml:"private_vlan_id,omitempty"`
 
-	PublicVlanId string `json:"publicVlanId,omitempty"`
+	PublicVlanId string `json:"publicVlanId,omitempty" yaml:"public_vlan_id,omitempty"`
 
-	Region string `json:"region,omitempty"`
+	Region string `json:"region,omitempty" yaml:"region,omitempty"`
 
-	User string `json:"user,omitempty"`
+	User string `json:"user,omitempty" yaml:"user,omitempty"`
 }
 
 type SoftlayerConfigCollection struct {

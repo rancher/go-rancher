@@ -7,43 +7,43 @@ const (
 type LoadBalancerListener struct {
 	Resource
 
-	AccountId string `json:"accountId,omitempty"`
+	AccountId string `json:"accountId,omitempty" yaml:"account_id,omitempty"`
 
-	Algorithm string `json:"algorithm,omitempty"`
+	Algorithm string `json:"algorithm,omitempty" yaml:"algorithm,omitempty"`
 
-	Created string `json:"created,omitempty"`
+	Created string `json:"created,omitempty" yaml:"created,omitempty"`
 
-	Data map[string]interface{} `json:"data,omitempty"`
+	Data map[string]interface{} `json:"data,omitempty" yaml:"data,omitempty"`
 
-	Description string `json:"description,omitempty"`
+	Description string `json:"description,omitempty" yaml:"description,omitempty"`
 
-	Kind string `json:"kind,omitempty"`
+	Kind string `json:"kind,omitempty" yaml:"kind,omitempty"`
 
-	Name string `json:"name,omitempty"`
+	Name string `json:"name,omitempty" yaml:"name,omitempty"`
 
-	RemoveTime string `json:"removeTime,omitempty"`
+	RemoveTime string `json:"removeTime,omitempty" yaml:"remove_time,omitempty"`
 
-	Removed string `json:"removed,omitempty"`
+	Removed string `json:"removed,omitempty" yaml:"removed,omitempty"`
 
-	ServiceId string `json:"serviceId,omitempty"`
+	ServiceId string `json:"serviceId,omitempty" yaml:"service_id,omitempty"`
 
-	SourcePort int `json:"sourcePort,omitempty"`
+	SourcePort int64 `json:"sourcePort,omitempty" yaml:"source_port,omitempty"`
 
-	SourceProtocol string `json:"sourceProtocol,omitempty"`
+	SourceProtocol string `json:"sourceProtocol,omitempty" yaml:"source_protocol,omitempty"`
 
-	State string `json:"state,omitempty"`
+	State string `json:"state,omitempty" yaml:"state,omitempty"`
 
-	TargetPort int `json:"targetPort,omitempty"`
+	TargetPort int64 `json:"targetPort,omitempty" yaml:"target_port,omitempty"`
 
-	TargetProtocol string `json:"targetProtocol,omitempty"`
+	TargetProtocol string `json:"targetProtocol,omitempty" yaml:"target_protocol,omitempty"`
 
-	Transitioning string `json:"transitioning,omitempty"`
+	Transitioning string `json:"transitioning,omitempty" yaml:"transitioning,omitempty"`
 
-	TransitioningMessage string `json:"transitioningMessage,omitempty"`
+	TransitioningMessage string `json:"transitioningMessage,omitempty" yaml:"transitioning_message,omitempty"`
 
-	TransitioningProgress int `json:"transitioningProgress,omitempty"`
+	TransitioningProgress int64 `json:"transitioningProgress,omitempty" yaml:"transitioning_progress,omitempty"`
 
-	Uuid string `json:"uuid,omitempty"`
+	Uuid string `json:"uuid,omitempty" yaml:"uuid,omitempty"`
 }
 
 type LoadBalancerListenerCollection struct {

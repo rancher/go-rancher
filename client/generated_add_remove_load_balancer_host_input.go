@@ -7,7 +7,7 @@ const (
 type AddRemoveLoadBalancerHostInput struct {
 	Resource
 
-	HostId string `json:"hostId,omitempty"`
+	HostId string `json:"hostId,omitempty" yaml:"host_id,omitempty"`
 }
 
 type AddRemoveLoadBalancerHostInputCollection struct {

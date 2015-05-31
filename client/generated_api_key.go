@@ -7,35 +7,35 @@ const (
 type ApiKey struct {
 	Resource
 
-	AccountId string `json:"accountId,omitempty"`
+	AccountId string `json:"accountId,omitempty" yaml:"account_id,omitempty"`
 
-	Created string `json:"created,omitempty"`
+	Created string `json:"created,omitempty" yaml:"created,omitempty"`
 
-	Data map[string]interface{} `json:"data,omitempty"`
+	Data map[string]interface{} `json:"data,omitempty" yaml:"data,omitempty"`
 
-	Description string `json:"description,omitempty"`
+	Description string `json:"description,omitempty" yaml:"description,omitempty"`
 
-	Kind string `json:"kind,omitempty"`
+	Kind string `json:"kind,omitempty" yaml:"kind,omitempty"`
 
-	Name string `json:"name,omitempty"`
+	Name string `json:"name,omitempty" yaml:"name,omitempty"`
 
-	PublicValue string `json:"publicValue,omitempty"`
+	PublicValue string `json:"publicValue,omitempty" yaml:"public_value,omitempty"`
 
-	RemoveTime string `json:"removeTime,omitempty"`
+	RemoveTime string `json:"removeTime,omitempty" yaml:"remove_time,omitempty"`
 
-	Removed string `json:"removed,omitempty"`
+	Removed string `json:"removed,omitempty" yaml:"removed,omitempty"`
 
-	SecretValue string `json:"secretValue,omitempty"`
+	SecretValue string `json:"secretValue,omitempty" yaml:"secret_value,omitempty"`
 
-	State string `json:"state,omitempty"`
+	State string `json:"state,omitempty" yaml:"state,omitempty"`
 
-	Transitioning string `json:"transitioning,omitempty"`
+	Transitioning string `json:"transitioning,omitempty" yaml:"transitioning,omitempty"`
 
-	TransitioningMessage string `json:"transitioningMessage,omitempty"`
+	TransitioningMessage string `json:"transitioningMessage,omitempty" yaml:"transitioning_message,omitempty"`
 
-	TransitioningProgress int `json:"transitioningProgress,omitempty"`
+	TransitioningProgress int64 `json:"transitioningProgress,omitempty" yaml:"transitioning_progress,omitempty"`
 
-	Uuid string `json:"uuid,omitempty"`
+	Uuid string `json:"uuid,omitempty" yaml:"uuid,omitempty"`
 }
 
 type ApiKeyCollection struct {
@@ -53,6 +53,20 @@ type ApiKeyOperations interface {
 	Update(existing *ApiKey, updates interface{}) (*ApiKey, error)
 	ById(id string) (*ApiKey, error)
 	Delete(container *ApiKey) error
+
+	ActionActivate(*ApiKey) (*Credential, error)
+
+	ActionCreate(*ApiKey) (*Credential, error)
+
+	ActionDeactivate(*ApiKey) (*Credential, error)
+
+	ActionPurge(*ApiKey) (*Credential, error)
+
+	ActionRemove(*ApiKey) (*Credential, error)
+
+	ActionRestore(*ApiKey) (*Credential, error)
+
+	ActionUpdate(*ApiKey) (*Credential, error)
 }
 
 func newApiKeyClient(rancherClient *RancherClient) *ApiKeyClient {
@@ -87,4 +101,67 @@ func (c *ApiKeyClient) ById(id string) (*ApiKey, error) {
 
 func (c *ApiKeyClient) Delete(container *ApiKey) error {
 	return c.rancherClient.doResourceDelete(API_KEY_TYPE, &container.Resource)
+}
+
+func (c *ApiKeyClient) ActionActivate(resource *ApiKey) (*Credential, error) {
+
+	resp := &Credential{}
+
+	err := c.rancherClient.doAction(API_KEY_TYPE, "activate", &resource.Resource, nil, resp)
+
+	return resp, err
+}
+
+func (c *ApiKeyClient) ActionCreate(resource *ApiKey) (*Credential, error) {
+
+	resp := &Credential{}
+
+	err := c.rancherClient.doAction(API_KEY_TYPE, "create", &resource.Resource, nil, resp)
+
+	return resp, err
+}
+
+func (c *ApiKeyClient) ActionDeactivate(resource *ApiKey) (*Credential, error) {
+
+	resp := &Credential{}
+
+	err := c.rancherClient.doAction(API_KEY_TYPE, "deactivate", &resource.Resource, nil, resp)
+
+	return resp, err
+}
+
+func (c *ApiKeyClient) ActionPurge(resource *ApiKey) (*Credential, error) {
+
+	resp := &Credential{}
+
+	err := c.rancherClient.doAction(API_KEY_TYPE, "purge", &resource.Resource, nil, resp)
+
+	return resp, err
+}
+
+func (c *ApiKeyClient) ActionRemove(resource *ApiKey) (*Credential, error) {
+
+	resp := &Credential{}
+
+	err := c.rancherClient.doAction(API_KEY_TYPE, "remove", &resource.Resource, nil, resp)
+
+	return resp, err
+}
+
+func (c *ApiKeyClient) ActionRestore(resource *ApiKey) (*Credential, error) {
+
+	resp := &Credential{}
+
+	err := c.rancherClient.doAction(API_KEY_TYPE, "restore", &resource.Resource, nil, resp)
+
+	return resp, err
+}
+
+func (c *ApiKeyClient) ActionUpdate(resource *ApiKey) (*Credential, error) {
+
+	resp := &Credential{}
+
+	err := c.rancherClient.doAction(API_KEY_TYPE, "update", &resource.Resource, nil, resp)
+
+	return resp, err
 }

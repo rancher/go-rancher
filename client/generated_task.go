@@ -7,7 +7,7 @@ const (
 type Task struct {
 	Resource
 
-	Name string `json:"name,omitempty"`
+	Name string `json:"name,omitempty" yaml:"name,omitempty"`
 }
 
 type TaskCollection struct {

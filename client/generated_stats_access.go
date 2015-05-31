@@ -7,9 +7,9 @@ const (
 type StatsAccess struct {
 	Resource
 
-	Token string `json:"token,omitempty"`
+	Token string `json:"token,omitempty" yaml:"token,omitempty"`
 
-	Url string `json:"url,omitempty"`
+	Url string `json:"url,omitempty" yaml:"url,omitempty"`
 }
 
 type StatsAccessCollection struct {

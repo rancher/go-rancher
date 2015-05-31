@@ -7,7 +7,7 @@ const (
 type SetServiceLinksInput struct {
 	Resource
 
-	ServiceIds []string `json:"serviceIds,omitempty"`
+	ServiceIds []string `json:"serviceIds,omitempty" yaml:"service_ids,omitempty"`
 }
 
 type SetServiceLinksInputCollection struct {

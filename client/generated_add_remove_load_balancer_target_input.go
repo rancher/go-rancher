@@ -7,9 +7,9 @@ const (
 type AddRemoveLoadBalancerTargetInput struct {
 	Resource
 
-	InstanceId string `json:"instanceId,omitempty"`
+	InstanceId string `json:"instanceId,omitempty" yaml:"instance_id,omitempty"`
 
-	IpAddress string `json:"ipAddress,omitempty"`
+	IpAddress string `json:"ipAddress,omitempty" yaml:"ip_address,omitempty"`
 }
 
 type AddRemoveLoadBalancerTargetInputCollection struct {

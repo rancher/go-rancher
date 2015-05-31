@@ -7,11 +7,11 @@ const (
 type ExtensionImplementation struct {
 	Resource
 
-	ClassName string `json:"className,omitempty"`
+	ClassName string `json:"className,omitempty" yaml:"class_name,omitempty"`
 
-	Name string `json:"name,omitempty"`
+	Name string `json:"name,omitempty" yaml:"name,omitempty"`
 
-	Properties map[string]interface{} `json:"properties,omitempty"`
+	Properties map[string]interface{} `json:"properties,omitempty" yaml:"properties,omitempty"`
 }
 
 type ExtensionImplementationCollection struct {

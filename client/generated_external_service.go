@@ -7,35 +7,35 @@ const (
 type ExternalService struct {
 	Resource
 
-	AccountId string `json:"accountId,omitempty"`
+	AccountId string `json:"accountId,omitempty" yaml:"account_id,omitempty"`
 
-	Created string `json:"created,omitempty"`
+	Created string `json:"created,omitempty" yaml:"created,omitempty"`
 
-	Data map[string]interface{} `json:"data,omitempty"`
+	Data map[string]interface{} `json:"data,omitempty" yaml:"data,omitempty"`
 
-	Description string `json:"description,omitempty"`
+	Description string `json:"description,omitempty" yaml:"description,omitempty"`
 
-	EnvironmentId string `json:"environmentId,omitempty"`
+	EnvironmentId string `json:"environmentId,omitempty" yaml:"environment_id,omitempty"`
 
-	ExternalIpAddresses []string `json:"externalIpAddresses,omitempty"`
+	ExternalIpAddresses []string `json:"externalIpAddresses,omitempty" yaml:"external_ip_addresses,omitempty"`
 
-	Kind string `json:"kind,omitempty"`
+	Kind string `json:"kind,omitempty" yaml:"kind,omitempty"`
 
-	Name string `json:"name,omitempty"`
+	Name string `json:"name,omitempty" yaml:"name,omitempty"`
 
-	RemoveTime string `json:"removeTime,omitempty"`
+	RemoveTime string `json:"removeTime,omitempty" yaml:"remove_time,omitempty"`
 
-	Removed string `json:"removed,omitempty"`
+	Removed string `json:"removed,omitempty" yaml:"removed,omitempty"`
 
-	State string `json:"state,omitempty"`
+	State string `json:"state,omitempty" yaml:"state,omitempty"`
 
-	Transitioning string `json:"transitioning,omitempty"`
+	Transitioning string `json:"transitioning,omitempty" yaml:"transitioning,omitempty"`
 
-	TransitioningMessage string `json:"transitioningMessage,omitempty"`
+	TransitioningMessage string `json:"transitioningMessage,omitempty" yaml:"transitioning_message,omitempty"`
 
-	TransitioningProgress int `json:"transitioningProgress,omitempty"`
+	TransitioningProgress int64 `json:"transitioningProgress,omitempty" yaml:"transitioning_progress,omitempty"`
 
-	Uuid string `json:"uuid,omitempty"`
+	Uuid string `json:"uuid,omitempty" yaml:"uuid,omitempty"`
 }
 
 type ExternalServiceCollection struct {
@@ -53,6 +53,22 @@ type ExternalServiceOperations interface {
 	Update(existing *ExternalService, updates interface{}) (*ExternalService, error)
 	ById(id string) (*ExternalService, error)
 	Delete(container *ExternalService) error
+
+	ActionActivate(*ExternalService) (*Service, error)
+
+	ActionAddservicelink(*ExternalService, *AddRemoveServiceLinkInput) (*Service, error)
+
+	ActionCreate(*ExternalService) (*Service, error)
+
+	ActionDeactivate(*ExternalService) (*Service, error)
+
+	ActionRemove(*ExternalService) (*Service, error)
+
+	ActionRemoveservicelink(*ExternalService, *AddRemoveServiceLinkInput) (*Service, error)
+
+	ActionSetservicelinks(*ExternalService, *SetServiceLinksInput) (*Service, error)
+
+	ActionUpdate(*ExternalService) (*Service, error)
 }
 
 func newExternalServiceClient(rancherClient *RancherClient) *ExternalServiceClient {
@@ -87,4 +103,76 @@ func (c *ExternalServiceClient) ById(id string) (*ExternalService, error) {
 
 func (c *ExternalServiceClient) Delete(container *ExternalService) error {
 	return c.rancherClient.doResourceDelete(EXTERNAL_SERVICE_TYPE, &container.Resource)
+}
+
+func (c *ExternalServiceClient) ActionActivate(resource *ExternalService) (*Service, error) {
+
+	resp := &Service{}
+
+	err := c.rancherClient.doAction(EXTERNAL_SERVICE_TYPE, "activate", &resource.Resource, nil, resp)
+
+	return resp, err
+}
+
+func (c *ExternalServiceClient) ActionAddservicelink(resource *ExternalService, input *AddRemoveServiceLinkInput) (*Service, error) {
+
+	resp := &Service{}
+
+	err := c.rancherClient.doAction(EXTERNAL_SERVICE_TYPE, "addservicelink", &resource.Resource, input, resp)
+
+	return resp, err
+}
+
+func (c *ExternalServiceClient) ActionCreate(resource *ExternalService) (*Service, error) {
+
+	resp := &Service{}
+
+	err := c.rancherClient.doAction(EXTERNAL_SERVICE_TYPE, "create", &resource.Resource, nil, resp)
+
+	return resp, err
+}
+
+func (c *ExternalServiceClient) ActionDeactivate(resource *ExternalService) (*Service, error) {
+
+	resp := &Service{}
+
+	err := c.rancherClient.doAction(EXTERNAL_SERVICE_TYPE, "deactivate", &resource.Resource, nil, resp)
+
+	return resp, err
+}
+
+func (c *ExternalServiceClient) ActionRemove(resource *ExternalService) (*Service, error) {
+
+	resp := &Service{}
+
+	err := c.rancherClient.doAction(EXTERNAL_SERVICE_TYPE, "remove", &resource.Resource, nil, resp)
+
+	return resp, err
+}
+
+func (c *ExternalServiceClient) ActionRemoveservicelink(resource *ExternalService, input *AddRemoveServiceLinkInput) (*Service, error) {
+
+	resp := &Service{}
+
+	err := c.rancherClient.doAction(EXTERNAL_SERVICE_TYPE, "removeservicelink", &resource.Resource, input, resp)
+
+	return resp, err
+}
+
+func (c *ExternalServiceClient) ActionSetservicelinks(resource *ExternalService, input *SetServiceLinksInput) (*Service, error) {
+
+	resp := &Service{}
+
+	err := c.rancherClient.doAction(EXTERNAL_SERVICE_TYPE, "setservicelinks", &resource.Resource, input, resp)
+
+	return resp, err
+}
+
+func (c *ExternalServiceClient) ActionUpdate(resource *ExternalService) (*Service, error) {
+
+	resp := &Service{}
+
+	err := c.rancherClient.doAction(EXTERNAL_SERVICE_TYPE, "update", &resource.Resource, nil, resp)
+
+	return resp, err
 }

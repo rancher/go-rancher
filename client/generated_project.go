@@ -7,31 +7,31 @@ const (
 type Project struct {
 	Resource
 
-	Created string `json:"created,omitempty"`
+	Created string `json:"created,omitempty" yaml:"created,omitempty"`
 
-	Data map[string]interface{} `json:"data,omitempty"`
+	Data map[string]interface{} `json:"data,omitempty" yaml:"data,omitempty"`
 
-	Description string `json:"description,omitempty"`
+	Description string `json:"description,omitempty" yaml:"description,omitempty"`
 
-	Kind string `json:"kind,omitempty"`
+	Kind string `json:"kind,omitempty" yaml:"kind,omitempty"`
 
-	Members []interface{} `json:"members,omitempty"`
+	Members []interface{} `json:"members,omitempty" yaml:"members,omitempty"`
 
-	Name string `json:"name,omitempty"`
+	Name string `json:"name,omitempty" yaml:"name,omitempty"`
 
-	RemoveTime string `json:"removeTime,omitempty"`
+	RemoveTime string `json:"removeTime,omitempty" yaml:"remove_time,omitempty"`
 
-	Removed string `json:"removed,omitempty"`
+	Removed string `json:"removed,omitempty" yaml:"removed,omitempty"`
 
-	State string `json:"state,omitempty"`
+	State string `json:"state,omitempty" yaml:"state,omitempty"`
 
-	Transitioning string `json:"transitioning,omitempty"`
+	Transitioning string `json:"transitioning,omitempty" yaml:"transitioning,omitempty"`
 
-	TransitioningMessage string `json:"transitioningMessage,omitempty"`
+	TransitioningMessage string `json:"transitioningMessage,omitempty" yaml:"transitioning_message,omitempty"`
 
-	TransitioningProgress int `json:"transitioningProgress,omitempty"`
+	TransitioningProgress int64 `json:"transitioningProgress,omitempty" yaml:"transitioning_progress,omitempty"`
 
-	Uuid string `json:"uuid,omitempty"`
+	Uuid string `json:"uuid,omitempty" yaml:"uuid,omitempty"`
 }
 
 type ProjectCollection struct {
@@ -49,6 +49,22 @@ type ProjectOperations interface {
 	Update(existing *Project, updates interface{}) (*Project, error)
 	ById(id string) (*Project, error)
 	Delete(container *Project) error
+
+	ActionActivate(*Project) (*Account, error)
+
+	ActionCreate(*Project) (*Account, error)
+
+	ActionDeactivate(*Project) (*Account, error)
+
+	ActionPurge(*Project) (*Account, error)
+
+	ActionRemove(*Project) (*Account, error)
+
+	ActionRestore(*Project) (*Account, error)
+
+	ActionSetmembers(*Project, *SetProjectMembersInput) (*SetProjectMembersInput, error)
+
+	ActionUpdate(*Project) (*Account, error)
 }
 
 func newProjectClient(rancherClient *RancherClient) *ProjectClient {
@@ -83,4 +99,76 @@ func (c *ProjectClient) ById(id string) (*Project, error) {
 
 func (c *ProjectClient) Delete(container *Project) error {
 	return c.rancherClient.doResourceDelete(PROJECT_TYPE, &container.Resource)
+}
+
+func (c *ProjectClient) ActionActivate(resource *Project) (*Account, error) {
+
+	resp := &Account{}
+
+	err := c.rancherClient.doAction(PROJECT_TYPE, "activate", &resource.Resource, nil, resp)
+
+	return resp, err
+}
+
+func (c *ProjectClient) ActionCreate(resource *Project) (*Account, error) {
+
+	resp := &Account{}
+
+	err := c.rancherClient.doAction(PROJECT_TYPE, "create", &resource.Resource, nil, resp)
+
+	return resp, err
+}
+
+func (c *ProjectClient) ActionDeactivate(resource *Project) (*Account, error) {
+
+	resp := &Account{}
+
+	err := c.rancherClient.doAction(PROJECT_TYPE, "deactivate", &resource.Resource, nil, resp)
+
+	return resp, err
+}
+
+func (c *ProjectClient) ActionPurge(resource *Project) (*Account, error) {
+
+	resp := &Account{}
+
+	err := c.rancherClient.doAction(PROJECT_TYPE, "purge", &resource.Resource, nil, resp)
+
+	return resp, err
+}
+
+func (c *ProjectClient) ActionRemove(resource *Project) (*Account, error) {
+
+	resp := &Account{}
+
+	err := c.rancherClient.doAction(PROJECT_TYPE, "remove", &resource.Resource, nil, resp)
+
+	return resp, err
+}
+
+func (c *ProjectClient) ActionRestore(resource *Project) (*Account, error) {
+
+	resp := &Account{}
+
+	err := c.rancherClient.doAction(PROJECT_TYPE, "restore", &resource.Resource, nil, resp)
+
+	return resp, err
+}
+
+func (c *ProjectClient) ActionSetmembers(resource *Project, input *SetProjectMembersInput) (*SetProjectMembersInput, error) {
+
+	resp := &SetProjectMembersInput{}
+
+	err := c.rancherClient.doAction(PROJECT_TYPE, "setmembers", &resource.Resource, input, resp)
+
+	return resp, err
+}
+
+func (c *ProjectClient) ActionUpdate(resource *Project) (*Account, error) {
+
+	resp := &Account{}
+
+	err := c.rancherClient.doAction(PROJECT_TYPE, "update", &resource.Resource, nil, resp)
+
+	return resp, err
 }

@@ -7,29 +7,29 @@ const (
 type VmwarevsphereConfig struct {
 	Resource
 
-	Boot2dockerUrl string `json:"boot2dockerUrl,omitempty"`
+	Boot2dockerUrl string `json:"boot2dockerUrl,omitempty" yaml:"boot2docker_url,omitempty"`
 
-	ComputeIp string `json:"computeIp,omitempty"`
+	ComputeIp string `json:"computeIp,omitempty" yaml:"compute_ip,omitempty"`
 
-	CpuCount string `json:"cpuCount,omitempty"`
+	CpuCount string `json:"cpuCount,omitempty" yaml:"cpu_count,omitempty"`
 
-	Datacenter string `json:"datacenter,omitempty"`
+	Datacenter string `json:"datacenter,omitempty" yaml:"datacenter,omitempty"`
 
-	Datastore string `json:"datastore,omitempty"`
+	Datastore string `json:"datastore,omitempty" yaml:"datastore,omitempty"`
 
-	DiskSize string `json:"diskSize,omitempty"`
+	DiskSize string `json:"diskSize,omitempty" yaml:"disk_size,omitempty"`
 
-	MemorySize string `json:"memorySize,omitempty"`
+	MemorySize string `json:"memorySize,omitempty" yaml:"memory_size,omitempty"`
 
-	Network string `json:"network,omitempty"`
+	Network string `json:"network,omitempty" yaml:"network,omitempty"`
 
-	Password string `json:"password,omitempty"`
+	Password string `json:"password,omitempty" yaml:"password,omitempty"`
 
-	Pool string `json:"pool,omitempty"`
+	Pool string `json:"pool,omitempty" yaml:"pool,omitempty"`
 
-	Username string `json:"username,omitempty"`
+	Username string `json:"username,omitempty" yaml:"username,omitempty"`
 
-	Vcenter string `json:"vcenter,omitempty"`
+	Vcenter string `json:"vcenter,omitempty" yaml:"vcenter,omitempty"`
 }
 
 type VmwarevsphereConfigCollection struct {
