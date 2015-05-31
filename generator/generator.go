@@ -32,7 +32,6 @@ func init() {
 
 	noConversionTypes = make(map[string]bool)
 	noConversionTypes["string"] = true
-	noConversionTypes["int"] = true
 
 	schemaExists = make(map[string]bool)
 }
@@ -63,7 +62,7 @@ func getTypeMap(schema client.Schema) map[string]string {
 			} else if strings.Contains(field.Type, "resource") {
 				result[fieldName] = "[]interface{}"
 			} else if strings.Contains(field.Type, "int") {
-				result[fieldName] = "[]int"
+				result[fieldName] = "[]int64"
 			} else if strings.Contains(field.Type, "float") {
 				result[fieldName] = "[]float64"
 			} else {
@@ -80,6 +79,8 @@ func getTypeMap(schema client.Schema) map[string]string {
 			result[fieldName] = "interface{}"
 		} else if strings.HasPrefix(field.Type, "float") {
 			result[fieldName] = "float64"
+		} else if strings.HasPrefix(field.Type, "int") {
+			result[fieldName] = "int64"
 		} else if _, noConvert := noConversionTypes[field.Type]; noConvert {
 			result[fieldName] = field.Type
 		} else if field.Nullable {
