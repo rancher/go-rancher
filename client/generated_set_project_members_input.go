@@ -6,9 +6,8 @@ const (
 
 type SetProjectMembersInput struct {
 	Resource
-    
-    Members []interface{} `json:"members,omitempty"`
-    
+
+	Members []interface{} `json:"members,omitempty"`
 }
 
 type SetProjectMembersInputCollection struct {

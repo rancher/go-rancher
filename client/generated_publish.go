@@ -6,29 +6,28 @@ const (
 
 type Publish struct {
 	Resource
-    
-    Data map[string]interface{} `json:"data,omitempty"`
-    
-    Name string `json:"name,omitempty"`
-    
-    PreviousIds []string `json:"previousIds,omitempty"`
-    
-    Publisher string `json:"publisher,omitempty"`
-    
-    ResourceId string `json:"resourceId,omitempty"`
-    
-    ResourceType string `json:"resourceType,omitempty"`
-    
-    Time int `json:"time,omitempty"`
-    
-    Transitioning string `json:"transitioning,omitempty"`
-    
-    TransitioningInternalMessage string `json:"transitioningInternalMessage,omitempty"`
-    
-    TransitioningMessage string `json:"transitioningMessage,omitempty"`
-    
-    TransitioningProgress int `json:"transitioningProgress,omitempty"`
-    
+
+	Data map[string]interface{} `json:"data,omitempty"`
+
+	Name string `json:"name,omitempty"`
+
+	PreviousIds []string `json:"previousIds,omitempty"`
+
+	Publisher string `json:"publisher,omitempty"`
+
+	ResourceId string `json:"resourceId,omitempty"`
+
+	ResourceType string `json:"resourceType,omitempty"`
+
+	Time int `json:"time,omitempty"`
+
+	Transitioning string `json:"transitioning,omitempty"`
+
+	TransitioningInternalMessage string `json:"transitioningInternalMessage,omitempty"`
+
+	TransitioningMessage string `json:"transitioningMessage,omitempty"`
+
+	TransitioningProgress int `json:"transitioningProgress,omitempty"`
 }
 
 type PublishCollection struct {

@@ -6,37 +6,36 @@ const (
 
 type Agent struct {
 	Resource
-    
-    AccountId string `json:"accountId,omitempty"`
-    
-    Created string `json:"created,omitempty"`
-    
-    Data map[string]interface{} `json:"data,omitempty"`
-    
-    Description string `json:"description,omitempty"`
-    
-    Kind string `json:"kind,omitempty"`
-    
-    ManagedConfig bool `json:"managedConfig,omitempty"`
-    
-    Name string `json:"name,omitempty"`
-    
-    RemoveTime string `json:"removeTime,omitempty"`
-    
-    Removed string `json:"removed,omitempty"`
-    
-    State string `json:"state,omitempty"`
-    
-    Transitioning string `json:"transitioning,omitempty"`
-    
-    TransitioningMessage string `json:"transitioningMessage,omitempty"`
-    
-    TransitioningProgress int `json:"transitioningProgress,omitempty"`
-    
-    Uri string `json:"uri,omitempty"`
-    
-    Uuid string `json:"uuid,omitempty"`
-    
+
+	AccountId string `json:"accountId,omitempty"`
+
+	Created string `json:"created,omitempty"`
+
+	Data map[string]interface{} `json:"data,omitempty"`
+
+	Description string `json:"description,omitempty"`
+
+	Kind string `json:"kind,omitempty"`
+
+	ManagedConfig bool `json:"managedConfig,omitempty"`
+
+	Name string `json:"name,omitempty"`
+
+	RemoveTime string `json:"removeTime,omitempty"`
+
+	Removed string `json:"removed,omitempty"`
+
+	State string `json:"state,omitempty"`
+
+	Transitioning string `json:"transitioning,omitempty"`
+
+	TransitioningMessage string `json:"transitioningMessage,omitempty"`
+
+	TransitioningProgress int `json:"transitioningProgress,omitempty"`
+
+	Uri string `json:"uri,omitempty"`
+
+	Uuid string `json:"uuid,omitempty"`
 }
 
 type AgentCollection struct {
@@ -54,30 +53,22 @@ type AgentOperations interface {
 	Update(existing *Agent, updates interface{}) (*Agent, error)
 	ById(id string) (*Agent, error)
 	Delete(container *Agent) error
-    
-    ActionActivate (*Agent) (*Agent, error)
-    
-    
-    ActionCreate (*Agent) (*Agent, error)
-    
-    
-    ActionDeactivate (*Agent) (*Agent, error)
-    
-    
-    ActionPurge (*Agent) (*Agent, error)
-    
-    
-    ActionReconnect (*Agent) (*Agent, error)
-    
-    
-    ActionRemove (*Agent) (*Agent, error)
-    
-    
-    ActionRestore (*Agent) (*Agent, error)
-    
-    
-    ActionUpdate (*Agent) (*Agent, error)
-    
+
+	ActionActivate(*Agent) (*Agent, error)
+
+	ActionCreate(*Agent) (*Agent, error)
+
+	ActionDeactivate(*Agent) (*Agent, error)
+
+	ActionPurge(*Agent) (*Agent, error)
+
+	ActionReconnect(*Agent) (*Agent, error)
+
+	ActionRemove(*Agent) (*Agent, error)
+
+	ActionRestore(*Agent) (*Agent, error)
+
+	ActionUpdate(*Agent) (*Agent, error)
 }
 
 func newAgentClient(rancherClient *RancherClient) *AgentClient {
@@ -113,75 +104,75 @@ func (c *AgentClient) ById(id string) (*Agent, error) {
 func (c *AgentClient) Delete(container *Agent) error {
 	return c.rancherClient.doResourceDelete(AGENT_TYPE, &container.Resource)
 }
-    
-func (c *AgentClient) ActionActivate (resource *Agent) (*Agent, error) {
-    
+
+func (c *AgentClient) ActionActivate(resource *Agent) (*Agent, error) {
+
 	resp := &Agent{}
-    
+
 	err := c.rancherClient.doAction(AGENT_TYPE, "activate", &resource.Resource, nil, resp)
-    
+
 	return resp, err
 }
-    
-func (c *AgentClient) ActionCreate (resource *Agent) (*Agent, error) {
-    
+
+func (c *AgentClient) ActionCreate(resource *Agent) (*Agent, error) {
+
 	resp := &Agent{}
-    
+
 	err := c.rancherClient.doAction(AGENT_TYPE, "create", &resource.Resource, nil, resp)
-    
+
 	return resp, err
 }
-    
-func (c *AgentClient) ActionDeactivate (resource *Agent) (*Agent, error) {
-    
+
+func (c *AgentClient) ActionDeactivate(resource *Agent) (*Agent, error) {
+
 	resp := &Agent{}
-    
+
 	err := c.rancherClient.doAction(AGENT_TYPE, "deactivate", &resource.Resource, nil, resp)
-    
+
 	return resp, err
 }
-    
-func (c *AgentClient) ActionPurge (resource *Agent) (*Agent, error) {
-    
+
+func (c *AgentClient) ActionPurge(resource *Agent) (*Agent, error) {
+
 	resp := &Agent{}
-    
+
 	err := c.rancherClient.doAction(AGENT_TYPE, "purge", &resource.Resource, nil, resp)
-    
+
 	return resp, err
 }
-    
-func (c *AgentClient) ActionReconnect (resource *Agent) (*Agent, error) {
-    
+
+func (c *AgentClient) ActionReconnect(resource *Agent) (*Agent, error) {
+
 	resp := &Agent{}
-    
+
 	err := c.rancherClient.doAction(AGENT_TYPE, "reconnect", &resource.Resource, nil, resp)
-    
+
 	return resp, err
 }
-    
-func (c *AgentClient) ActionRemove (resource *Agent) (*Agent, error) {
-    
+
+func (c *AgentClient) ActionRemove(resource *Agent) (*Agent, error) {
+
 	resp := &Agent{}
-    
+
 	err := c.rancherClient.doAction(AGENT_TYPE, "remove", &resource.Resource, nil, resp)
-    
+
 	return resp, err
 }
-    
-func (c *AgentClient) ActionRestore (resource *Agent) (*Agent, error) {
-    
+
+func (c *AgentClient) ActionRestore(resource *Agent) (*Agent, error) {
+
 	resp := &Agent{}
-    
+
 	err := c.rancherClient.doAction(AGENT_TYPE, "restore", &resource.Resource, nil, resp)
-    
+
 	return resp, err
 }
-    
-func (c *AgentClient) ActionUpdate (resource *Agent) (*Agent, error) {
-    
+
+func (c *AgentClient) ActionUpdate(resource *Agent) (*Agent, error) {
+
 	resp := &Agent{}
-    
+
 	err := c.rancherClient.doAction(AGENT_TYPE, "update", &resource.Resource, nil, resp)
-    
+
 	return resp, err
 }

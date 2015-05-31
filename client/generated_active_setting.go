@@ -6,17 +6,16 @@ const (
 
 type ActiveSetting struct {
 	Resource
-    
-    ActiveValue interface{} `json:"activeValue,omitempty"`
-    
-    InDb bool `json:"inDb,omitempty"`
-    
-    Name string `json:"name,omitempty"`
-    
-    Source string `json:"source,omitempty"`
-    
-    Value string `json:"value,omitempty"`
-    
+
+	ActiveValue interface{} `json:"activeValue,omitempty"`
+
+	InDb bool `json:"inDb,omitempty"`
+
+	Name string `json:"name,omitempty"`
+
+	Source string `json:"source,omitempty"`
+
+	Value string `json:"value,omitempty"`
 }
 
 type ActiveSettingCollection struct {

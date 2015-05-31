@@ -6,7 +6,6 @@ const (
 
 type InstanceConsoleInput struct {
 	Resource
-    
 }
 
 type InstanceConsoleInputCollection struct {

@@ -6,11 +6,10 @@ const (
 
 type ComposeConfig struct {
 	Resource
-    
-    DockerComposeConfig string `json:"dockerComposeConfig,omitempty"`
-    
-    RancherComposeConfig string `json:"rancherComposeConfig,omitempty"`
-    
+
+	DockerComposeConfig string `json:"dockerComposeConfig,omitempty"`
+
+	RancherComposeConfig string `json:"rancherComposeConfig,omitempty"`
 }
 
 type ComposeConfigCollection struct {

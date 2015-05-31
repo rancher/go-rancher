@@ -6,49 +6,48 @@ const (
 
 type Cluster struct {
 	Resource
-    
-    AccountId string `json:"accountId,omitempty"`
-    
-    AgentId string `json:"agentId,omitempty"`
-    
-    ApiProxy string `json:"apiProxy,omitempty"`
-    
-    ComputeTotal int `json:"computeTotal,omitempty"`
-    
-    Created string `json:"created,omitempty"`
-    
-    Data map[string]interface{} `json:"data,omitempty"`
-    
-    Description string `json:"description,omitempty"`
-    
-    DiscoverySpec string `json:"discoverySpec,omitempty"`
-    
-    Info interface{} `json:"info,omitempty"`
-    
-    Kind string `json:"kind,omitempty"`
-    
-    Labels map[string]interface{} `json:"labels,omitempty"`
-    
-    Name string `json:"name,omitempty"`
-    
-    PhysicalHostId string `json:"physicalHostId,omitempty"`
-    
-    Port int `json:"port,omitempty"`
-    
-    RemoveTime string `json:"removeTime,omitempty"`
-    
-    Removed string `json:"removed,omitempty"`
-    
-    State string `json:"state,omitempty"`
-    
-    Transitioning string `json:"transitioning,omitempty"`
-    
-    TransitioningMessage string `json:"transitioningMessage,omitempty"`
-    
-    TransitioningProgress int `json:"transitioningProgress,omitempty"`
-    
-    Uuid string `json:"uuid,omitempty"`
-    
+
+	AccountId string `json:"accountId,omitempty"`
+
+	AgentId string `json:"agentId,omitempty"`
+
+	ApiProxy string `json:"apiProxy,omitempty"`
+
+	ComputeTotal int `json:"computeTotal,omitempty"`
+
+	Created string `json:"created,omitempty"`
+
+	Data map[string]interface{} `json:"data,omitempty"`
+
+	Description string `json:"description,omitempty"`
+
+	DiscoverySpec string `json:"discoverySpec,omitempty"`
+
+	Info interface{} `json:"info,omitempty"`
+
+	Kind string `json:"kind,omitempty"`
+
+	Labels map[string]interface{} `json:"labels,omitempty"`
+
+	Name string `json:"name,omitempty"`
+
+	PhysicalHostId string `json:"physicalHostId,omitempty"`
+
+	Port int `json:"port,omitempty"`
+
+	RemoveTime string `json:"removeTime,omitempty"`
+
+	Removed string `json:"removed,omitempty"`
+
+	State string `json:"state,omitempty"`
+
+	Transitioning string `json:"transitioning,omitempty"`
+
+	TransitioningMessage string `json:"transitioningMessage,omitempty"`
+
+	TransitioningProgress int `json:"transitioningProgress,omitempty"`
+
+	Uuid string `json:"uuid,omitempty"`
 }
 
 type ClusterCollection struct {
@@ -66,12 +65,10 @@ type ClusterOperations interface {
 	Update(existing *Cluster, updates interface{}) (*Cluster, error)
 	ById(id string) (*Cluster, error)
 	Delete(container *Cluster) error
-    
-    ActionAddhost (*Cluster, *AddRemoveClusterHostInput) (*Cluster, error)
-    
-    
-    ActionRemovehost (*Cluster, *AddRemoveClusterHostInput) (*Cluster, error)
-    
+
+	ActionAddhost(*Cluster, *AddRemoveClusterHostInput) (*Cluster, error)
+
+	ActionRemovehost(*Cluster, *AddRemoveClusterHostInput) (*Cluster, error)
 }
 
 func newClusterClient(rancherClient *RancherClient) *ClusterClient {
@@ -107,21 +104,21 @@ func (c *ClusterClient) ById(id string) (*Cluster, error) {
 func (c *ClusterClient) Delete(container *Cluster) error {
 	return c.rancherClient.doResourceDelete(CLUSTER_TYPE, &container.Resource)
 }
-    
-func (c *ClusterClient) ActionAddhost (resource *Cluster, input *AddRemoveClusterHostInput) (*Cluster, error) {
-    
+
+func (c *ClusterClient) ActionAddhost(resource *Cluster, input *AddRemoveClusterHostInput) (*Cluster, error) {
+
 	resp := &Cluster{}
-    
+
 	err := c.rancherClient.doAction(CLUSTER_TYPE, "addhost", &resource.Resource, input, resp)
-    
+
 	return resp, err
 }
-    
-func (c *ClusterClient) ActionRemovehost (resource *Cluster, input *AddRemoveClusterHostInput) (*Cluster, error) {
-    
+
+func (c *ClusterClient) ActionRemovehost(resource *Cluster, input *AddRemoveClusterHostInput) (*Cluster, error) {
+
 	resp := &Cluster{}
-    
+
 	err := c.rancherClient.doAction(CLUSTER_TYPE, "removehost", &resource.Resource, input, resp)
-    
+
 	return resp, err
 }

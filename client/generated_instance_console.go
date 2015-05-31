@@ -6,13 +6,12 @@ const (
 
 type InstanceConsole struct {
 	Resource
-    
-    Kind string `json:"kind,omitempty"`
-    
-    Password string `json:"password,omitempty"`
-    
-    Url string `json:"url,omitempty"`
-    
+
+	Kind string `json:"kind,omitempty"`
+
+	Password string `json:"password,omitempty"`
+
+	Url string `json:"url,omitempty"`
 }
 
 type InstanceConsoleCollection struct {

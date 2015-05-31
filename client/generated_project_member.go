@@ -6,39 +6,38 @@ const (
 
 type ProjectMember struct {
 	Resource
-    
-    Created string `json:"created,omitempty"`
-    
-    Data map[string]interface{} `json:"data,omitempty"`
-    
-    Description string `json:"description,omitempty"`
-    
-    ExternalId string `json:"externalId,omitempty"`
-    
-    ExternalIdType string `json:"externalIdType,omitempty"`
-    
-    Kind string `json:"kind,omitempty"`
-    
-    Name string `json:"name,omitempty"`
-    
-    ProjectId string `json:"projectId,omitempty"`
-    
-    RemoveTime string `json:"removeTime,omitempty"`
-    
-    Removed string `json:"removed,omitempty"`
-    
-    Role string `json:"role,omitempty"`
-    
-    State string `json:"state,omitempty"`
-    
-    Transitioning string `json:"transitioning,omitempty"`
-    
-    TransitioningMessage string `json:"transitioningMessage,omitempty"`
-    
-    TransitioningProgress int `json:"transitioningProgress,omitempty"`
-    
-    Uuid string `json:"uuid,omitempty"`
-    
+
+	Created string `json:"created,omitempty"`
+
+	Data map[string]interface{} `json:"data,omitempty"`
+
+	Description string `json:"description,omitempty"`
+
+	ExternalId string `json:"externalId,omitempty"`
+
+	ExternalIdType string `json:"externalIdType,omitempty"`
+
+	Kind string `json:"kind,omitempty"`
+
+	Name string `json:"name,omitempty"`
+
+	ProjectId string `json:"projectId,omitempty"`
+
+	RemoveTime string `json:"removeTime,omitempty"`
+
+	Removed string `json:"removed,omitempty"`
+
+	Role string `json:"role,omitempty"`
+
+	State string `json:"state,omitempty"`
+
+	Transitioning string `json:"transitioning,omitempty"`
+
+	TransitioningMessage string `json:"transitioningMessage,omitempty"`
+
+	TransitioningProgress int `json:"transitioningProgress,omitempty"`
+
+	Uuid string `json:"uuid,omitempty"`
 }
 
 type ProjectMemberCollection struct {
@@ -56,27 +55,20 @@ type ProjectMemberOperations interface {
 	Update(existing *ProjectMember, updates interface{}) (*ProjectMember, error)
 	ById(id string) (*ProjectMember, error)
 	Delete(container *ProjectMember) error
-    
-    ActionActivate (*ProjectMember) (*ProjectMember, error)
-    
-    
-    ActionCreate (*ProjectMember) (*ProjectMember, error)
-    
-    
-    ActionDeactivate (*ProjectMember) (*ProjectMember, error)
-    
-    
-    ActionPurge (*ProjectMember) (*ProjectMember, error)
-    
-    
-    ActionRemove (*ProjectMember) (*ProjectMember, error)
-    
-    
-    ActionRestore (*ProjectMember) (*ProjectMember, error)
-    
-    
-    ActionUpdate (*ProjectMember) (*ProjectMember, error)
-    
+
+	ActionActivate(*ProjectMember) (*ProjectMember, error)
+
+	ActionCreate(*ProjectMember) (*ProjectMember, error)
+
+	ActionDeactivate(*ProjectMember) (*ProjectMember, error)
+
+	ActionPurge(*ProjectMember) (*ProjectMember, error)
+
+	ActionRemove(*ProjectMember) (*ProjectMember, error)
+
+	ActionRestore(*ProjectMember) (*ProjectMember, error)
+
+	ActionUpdate(*ProjectMember) (*ProjectMember, error)
 }
 
 func newProjectMemberClient(rancherClient *RancherClient) *ProjectMemberClient {
@@ -112,66 +104,66 @@ func (c *ProjectMemberClient) ById(id string) (*ProjectMember, error) {
 func (c *ProjectMemberClient) Delete(container *ProjectMember) error {
 	return c.rancherClient.doResourceDelete(PROJECT_MEMBER_TYPE, &container.Resource)
 }
-    
-func (c *ProjectMemberClient) ActionActivate (resource *ProjectMember) (*ProjectMember, error) {
-    
+
+func (c *ProjectMemberClient) ActionActivate(resource *ProjectMember) (*ProjectMember, error) {
+
 	resp := &ProjectMember{}
-    
+
 	err := c.rancherClient.doAction(PROJECT_MEMBER_TYPE, "activate", &resource.Resource, nil, resp)
-    
+
 	return resp, err
 }
-    
-func (c *ProjectMemberClient) ActionCreate (resource *ProjectMember) (*ProjectMember, error) {
-    
+
+func (c *ProjectMemberClient) ActionCreate(resource *ProjectMember) (*ProjectMember, error) {
+
 	resp := &ProjectMember{}
-    
+
 	err := c.rancherClient.doAction(PROJECT_MEMBER_TYPE, "create", &resource.Resource, nil, resp)
-    
+
 	return resp, err
 }
-    
-func (c *ProjectMemberClient) ActionDeactivate (resource *ProjectMember) (*ProjectMember, error) {
-    
+
+func (c *ProjectMemberClient) ActionDeactivate(resource *ProjectMember) (*ProjectMember, error) {
+
 	resp := &ProjectMember{}
-    
+
 	err := c.rancherClient.doAction(PROJECT_MEMBER_TYPE, "deactivate", &resource.Resource, nil, resp)
-    
+
 	return resp, err
 }
-    
-func (c *ProjectMemberClient) ActionPurge (resource *ProjectMember) (*ProjectMember, error) {
-    
+
+func (c *ProjectMemberClient) ActionPurge(resource *ProjectMember) (*ProjectMember, error) {
+
 	resp := &ProjectMember{}
-    
+
 	err := c.rancherClient.doAction(PROJECT_MEMBER_TYPE, "purge", &resource.Resource, nil, resp)
-    
+
 	return resp, err
 }
-    
-func (c *ProjectMemberClient) ActionRemove (resource *ProjectMember) (*ProjectMember, error) {
-    
+
+func (c *ProjectMemberClient) ActionRemove(resource *ProjectMember) (*ProjectMember, error) {
+
 	resp := &ProjectMember{}
-    
+
 	err := c.rancherClient.doAction(PROJECT_MEMBER_TYPE, "remove", &resource.Resource, nil, resp)
-    
+
 	return resp, err
 }
-    
-func (c *ProjectMemberClient) ActionRestore (resource *ProjectMember) (*ProjectMember, error) {
-    
+
+func (c *ProjectMemberClient) ActionRestore(resource *ProjectMember) (*ProjectMember, error) {
+
 	resp := &ProjectMember{}
-    
+
 	err := c.rancherClient.doAction(PROJECT_MEMBER_TYPE, "restore", &resource.Resource, nil, resp)
-    
+
 	return resp, err
 }
-    
-func (c *ProjectMemberClient) ActionUpdate (resource *ProjectMember) (*ProjectMember, error) {
-    
+
+func (c *ProjectMemberClient) ActionUpdate(resource *ProjectMember) (*ProjectMember, error) {
+
 	resp := &ProjectMember{}
-    
+
 	err := c.rancherClient.doAction(PROJECT_MEMBER_TYPE, "update", &resource.Resource, nil, resp)
-    
+
 	return resp, err
 }

@@ -6,21 +6,20 @@ const (
 
 type ProcessDefinition struct {
 	Resource
-    
-    ExtensionBased bool `json:"extensionBased,omitempty"`
-    
-    Name string `json:"name,omitempty"`
-    
-    PostProcessListeners interface{} `json:"postProcessListeners,omitempty"`
-    
-    PreProcessListeners interface{} `json:"preProcessListeners,omitempty"`
-    
-    ProcessHandlers interface{} `json:"processHandlers,omitempty"`
-    
-    ResourceType string `json:"resourceType,omitempty"`
-    
-    StateTransitions []interface{} `json:"stateTransitions,omitempty"`
-    
+
+	ExtensionBased bool `json:"extensionBased,omitempty"`
+
+	Name string `json:"name,omitempty"`
+
+	PostProcessListeners interface{} `json:"postProcessListeners,omitempty"`
+
+	PreProcessListeners interface{} `json:"preProcessListeners,omitempty"`
+
+	ProcessHandlers interface{} `json:"processHandlers,omitempty"`
+
+	ResourceType string `json:"resourceType,omitempty"`
+
+	StateTransitions []interface{} `json:"stateTransitions,omitempty"`
 }
 
 type ProcessDefinitionCollection struct {

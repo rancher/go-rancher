@@ -6,15 +6,14 @@ const (
 
 type ContainerExec struct {
 	Resource
-    
-    AttachStdin bool `json:"attachStdin,omitempty"`
-    
-    AttachStdout bool `json:"attachStdout,omitempty"`
-    
-    Command []string `json:"command,omitempty"`
-    
-    Tty bool `json:"tty,omitempty"`
-    
+
+	AttachStdin bool `json:"attachStdin,omitempty"`
+
+	AttachStdout bool `json:"attachStdout,omitempty"`
+
+	Command []string `json:"command,omitempty"`
+
+	Tty bool `json:"tty,omitempty"`
 }
 
 type ContainerExecCollection struct {

@@ -6,23 +6,22 @@ const (
 
 type ExoscaleConfig struct {
 	Resource
-    
-    ApiKey string `json:"apiKey,omitempty"`
-    
-    ApiSecretKey string `json:"apiSecretKey,omitempty"`
-    
-    AvailabilityZone string `json:"availabilityZone,omitempty"`
-    
-    DiskSize string `json:"diskSize,omitempty"`
-    
-    Image string `json:"image,omitempty"`
-    
-    InstanceProfile string `json:"instanceProfile,omitempty"`
-    
-    SecurityGroup string `json:"securityGroup,omitempty"`
-    
-    Url string `json:"url,omitempty"`
-    
+
+	ApiKey string `json:"apiKey,omitempty"`
+
+	ApiSecretKey string `json:"apiSecretKey,omitempty"`
+
+	AvailabilityZone string `json:"availabilityZone,omitempty"`
+
+	DiskSize string `json:"diskSize,omitempty"`
+
+	Image string `json:"image,omitempty"`
+
+	InstanceProfile string `json:"instanceProfile,omitempty"`
+
+	SecurityGroup string `json:"securityGroup,omitempty"`
+
+	Url string `json:"url,omitempty"`
 }
 
 type ExoscaleConfigCollection struct {

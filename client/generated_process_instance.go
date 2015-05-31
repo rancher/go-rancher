@@ -6,31 +6,30 @@ const (
 
 type ProcessInstance struct {
 	Resource
-    
-    Data map[string]interface{} `json:"data,omitempty"`
-    
-    EndTime string `json:"endTime,omitempty"`
-    
-    ExitReason string `json:"exitReason,omitempty"`
-    
-    Phase string `json:"phase,omitempty"`
-    
-    Priority int `json:"priority,omitempty"`
-    
-    ProcessName string `json:"processName,omitempty"`
-    
-    ResourceId string `json:"resourceId,omitempty"`
-    
-    ResourceType string `json:"resourceType,omitempty"`
-    
-    Result string `json:"result,omitempty"`
-    
-    RunningProcessServerId string `json:"runningProcessServerId,omitempty"`
-    
-    StartProcessServerId string `json:"startProcessServerId,omitempty"`
-    
-    StartTime string `json:"startTime,omitempty"`
-    
+
+	Data map[string]interface{} `json:"data,omitempty"`
+
+	EndTime string `json:"endTime,omitempty"`
+
+	ExitReason string `json:"exitReason,omitempty"`
+
+	Phase string `json:"phase,omitempty"`
+
+	Priority int `json:"priority,omitempty"`
+
+	ProcessName string `json:"processName,omitempty"`
+
+	ResourceId string `json:"resourceId,omitempty"`
+
+	ResourceType string `json:"resourceType,omitempty"`
+
+	Result string `json:"result,omitempty"`
+
+	RunningProcessServerId string `json:"runningProcessServerId,omitempty"`
+
+	StartProcessServerId string `json:"startProcessServerId,omitempty"`
+
+	StartTime string `json:"startTime,omitempty"`
 }
 
 type ProcessInstanceCollection struct {

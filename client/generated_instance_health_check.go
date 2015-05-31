@@ -6,21 +6,20 @@ const (
 
 type InstanceHealthCheck struct {
 	Resource
-    
-    HealthyThreshold int `json:"healthyThreshold,omitempty"`
-    
-    Interval int `json:"interval,omitempty"`
-    
-    Name string `json:"name,omitempty"`
-    
-    Port int `json:"port,omitempty"`
-    
-    RequestLine string `json:"requestLine,omitempty"`
-    
-    ResponseTimeout int `json:"responseTimeout,omitempty"`
-    
-    UnhealthyThreshold int `json:"unhealthyThreshold,omitempty"`
-    
+
+	HealthyThreshold int `json:"healthyThreshold,omitempty"`
+
+	Interval int `json:"interval,omitempty"`
+
+	Name string `json:"name,omitempty"`
+
+	Port int `json:"port,omitempty"`
+
+	RequestLine string `json:"requestLine,omitempty"`
+
+	ResponseTimeout int `json:"responseTimeout,omitempty"`
+
+	UnhealthyThreshold int `json:"unhealthyThreshold,omitempty"`
 }
 
 type InstanceHealthCheckCollection struct {

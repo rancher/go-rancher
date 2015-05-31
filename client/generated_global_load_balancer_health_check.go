@@ -6,9 +6,8 @@ const (
 
 type GlobalLoadBalancerHealthCheck struct {
 	Resource
-    
-    Name string `json:"name,omitempty"`
-    
+
+	Name string `json:"name,omitempty"`
 }
 
 type GlobalLoadBalancerHealthCheckCollection struct {

@@ -6,41 +6,40 @@ const (
 
 type RegistrationToken struct {
 	Resource
-    
-    AccountId string `json:"accountId,omitempty"`
-    
-    Command string `json:"command,omitempty"`
-    
-    Created string `json:"created,omitempty"`
-    
-    Data map[string]interface{} `json:"data,omitempty"`
-    
-    Description string `json:"description,omitempty"`
-    
-    Image string `json:"image,omitempty"`
-    
-    Kind string `json:"kind,omitempty"`
-    
-    Name string `json:"name,omitempty"`
-    
-    RegistrationUrl string `json:"registrationUrl,omitempty"`
-    
-    RemoveTime string `json:"removeTime,omitempty"`
-    
-    Removed string `json:"removed,omitempty"`
-    
-    State string `json:"state,omitempty"`
-    
-    Token string `json:"token,omitempty"`
-    
-    Transitioning string `json:"transitioning,omitempty"`
-    
-    TransitioningMessage string `json:"transitioningMessage,omitempty"`
-    
-    TransitioningProgress int `json:"transitioningProgress,omitempty"`
-    
-    Uuid string `json:"uuid,omitempty"`
-    
+
+	AccountId string `json:"accountId,omitempty"`
+
+	Command string `json:"command,omitempty"`
+
+	Created string `json:"created,omitempty"`
+
+	Data map[string]interface{} `json:"data,omitempty"`
+
+	Description string `json:"description,omitempty"`
+
+	Image string `json:"image,omitempty"`
+
+	Kind string `json:"kind,omitempty"`
+
+	Name string `json:"name,omitempty"`
+
+	RegistrationUrl string `json:"registrationUrl,omitempty"`
+
+	RemoveTime string `json:"removeTime,omitempty"`
+
+	Removed string `json:"removed,omitempty"`
+
+	State string `json:"state,omitempty"`
+
+	Token string `json:"token,omitempty"`
+
+	Transitioning string `json:"transitioning,omitempty"`
+
+	TransitioningMessage string `json:"transitioningMessage,omitempty"`
+
+	TransitioningProgress int `json:"transitioningProgress,omitempty"`
+
+	Uuid string `json:"uuid,omitempty"`
 }
 
 type RegistrationTokenCollection struct {
@@ -58,27 +57,20 @@ type RegistrationTokenOperations interface {
 	Update(existing *RegistrationToken, updates interface{}) (*RegistrationToken, error)
 	ById(id string) (*RegistrationToken, error)
 	Delete(container *RegistrationToken) error
-    
-    ActionActivate (*RegistrationToken) (*Credential, error)
-    
-    
-    ActionCreate (*RegistrationToken) (*Credential, error)
-    
-    
-    ActionDeactivate (*RegistrationToken) (*Credential, error)
-    
-    
-    ActionPurge (*RegistrationToken) (*Credential, error)
-    
-    
-    ActionRemove (*RegistrationToken) (*Credential, error)
-    
-    
-    ActionRestore (*RegistrationToken) (*Credential, error)
-    
-    
-    ActionUpdate (*RegistrationToken) (*Credential, error)
-    
+
+	ActionActivate(*RegistrationToken) (*Credential, error)
+
+	ActionCreate(*RegistrationToken) (*Credential, error)
+
+	ActionDeactivate(*RegistrationToken) (*Credential, error)
+
+	ActionPurge(*RegistrationToken) (*Credential, error)
+
+	ActionRemove(*RegistrationToken) (*Credential, error)
+
+	ActionRestore(*RegistrationToken) (*Credential, error)
+
+	ActionUpdate(*RegistrationToken) (*Credential, error)
 }
 
 func newRegistrationTokenClient(rancherClient *RancherClient) *RegistrationTokenClient {
@@ -114,66 +106,66 @@ func (c *RegistrationTokenClient) ById(id string) (*RegistrationToken, error) {
 func (c *RegistrationTokenClient) Delete(container *RegistrationToken) error {
 	return c.rancherClient.doResourceDelete(REGISTRATION_TOKEN_TYPE, &container.Resource)
 }
-    
-func (c *RegistrationTokenClient) ActionActivate (resource *RegistrationToken) (*Credential, error) {
-    
+
+func (c *RegistrationTokenClient) ActionActivate(resource *RegistrationToken) (*Credential, error) {
+
 	resp := &Credential{}
-    
+
 	err := c.rancherClient.doAction(REGISTRATION_TOKEN_TYPE, "activate", &resource.Resource, nil, resp)
-    
+
 	return resp, err
 }
-    
-func (c *RegistrationTokenClient) ActionCreate (resource *RegistrationToken) (*Credential, error) {
-    
+
+func (c *RegistrationTokenClient) ActionCreate(resource *RegistrationToken) (*Credential, error) {
+
 	resp := &Credential{}
-    
+
 	err := c.rancherClient.doAction(REGISTRATION_TOKEN_TYPE, "create", &resource.Resource, nil, resp)
-    
+
 	return resp, err
 }
-    
-func (c *RegistrationTokenClient) ActionDeactivate (resource *RegistrationToken) (*Credential, error) {
-    
+
+func (c *RegistrationTokenClient) ActionDeactivate(resource *RegistrationToken) (*Credential, error) {
+
 	resp := &Credential{}
-    
+
 	err := c.rancherClient.doAction(REGISTRATION_TOKEN_TYPE, "deactivate", &resource.Resource, nil, resp)
-    
+
 	return resp, err
 }
-    
-func (c *RegistrationTokenClient) ActionPurge (resource *RegistrationToken) (*Credential, error) {
-    
+
+func (c *RegistrationTokenClient) ActionPurge(resource *RegistrationToken) (*Credential, error) {
+
 	resp := &Credential{}
-    
+
 	err := c.rancherClient.doAction(REGISTRATION_TOKEN_TYPE, "purge", &resource.Resource, nil, resp)
-    
+
 	return resp, err
 }
-    
-func (c *RegistrationTokenClient) ActionRemove (resource *RegistrationToken) (*Credential, error) {
-    
+
+func (c *RegistrationTokenClient) ActionRemove(resource *RegistrationToken) (*Credential, error) {
+
 	resp := &Credential{}
-    
+
 	err := c.rancherClient.doAction(REGISTRATION_TOKEN_TYPE, "remove", &resource.Resource, nil, resp)
-    
+
 	return resp, err
 }
-    
-func (c *RegistrationTokenClient) ActionRestore (resource *RegistrationToken) (*Credential, error) {
-    
+
+func (c *RegistrationTokenClient) ActionRestore(resource *RegistrationToken) (*Credential, error) {
+
 	resp := &Credential{}
-    
+
 	err := c.rancherClient.doAction(REGISTRATION_TOKEN_TYPE, "restore", &resource.Resource, nil, resp)
-    
+
 	return resp, err
 }
-    
-func (c *RegistrationTokenClient) ActionUpdate (resource *RegistrationToken) (*Credential, error) {
-    
+
+func (c *RegistrationTokenClient) ActionUpdate(resource *RegistrationToken) (*Credential, error) {
+
 	resp := &Credential{}
-    
+
 	err := c.rancherClient.doAction(REGISTRATION_TOKEN_TYPE, "update", &resource.Resource, nil, resp)
-    
+
 	return resp, err
 }

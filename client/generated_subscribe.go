@@ -6,11 +6,10 @@ const (
 
 type Subscribe struct {
 	Resource
-    
-    AgentId string `json:"agentId,omitempty"`
-    
-    EventNames []string `json:"eventNames,omitempty"`
-    
+
+	AgentId string `json:"agentId,omitempty"`
+
+	EventNames []string `json:"eventNames,omitempty"`
 }
 
 type SubscribeCollection struct {

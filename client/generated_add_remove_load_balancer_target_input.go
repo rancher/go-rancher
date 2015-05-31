@@ -6,11 +6,10 @@ const (
 
 type AddRemoveLoadBalancerTargetInput struct {
 	Resource
-    
-    InstanceId string `json:"instanceId,omitempty"`
-    
-    IpAddress string `json:"ipAddress,omitempty"`
-    
+
+	InstanceId string `json:"instanceId,omitempty"`
+
+	IpAddress string `json:"ipAddress,omitempty"`
 }
 
 type AddRemoveLoadBalancerTargetInputCollection struct {

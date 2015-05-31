@@ -6,47 +6,46 @@ const (
 
 type OpenstackConfig struct {
 	Resource
-    
-    AuthUrl string `json:"authUrl,omitempty"`
-    
-    DomainId string `json:"domainId,omitempty"`
-    
-    DomainName string `json:"domainName,omitempty"`
-    
-    EndpointType string `json:"endpointType,omitempty"`
-    
-    FlavorId string `json:"flavorId,omitempty"`
-    
-    FlavorName string `json:"flavorName,omitempty"`
-    
-    FloatingipPool string `json:"floatingipPool,omitempty"`
-    
-    ImageId string `json:"imageId,omitempty"`
-    
-    ImageName string `json:"imageName,omitempty"`
-    
-    Insecure bool `json:"insecure,omitempty"`
-    
-    NetId string `json:"netId,omitempty"`
-    
-    NetName string `json:"netName,omitempty"`
-    
-    Password string `json:"password,omitempty"`
-    
-    Region string `json:"region,omitempty"`
-    
-    SecGroups string `json:"secGroups,omitempty"`
-    
-    SshPort string `json:"sshPort,omitempty"`
-    
-    SshUser string `json:"sshUser,omitempty"`
-    
-    TenantId string `json:"tenantId,omitempty"`
-    
-    TenantName string `json:"tenantName,omitempty"`
-    
-    Username string `json:"username,omitempty"`
-    
+
+	AuthUrl string `json:"authUrl,omitempty"`
+
+	DomainId string `json:"domainId,omitempty"`
+
+	DomainName string `json:"domainName,omitempty"`
+
+	EndpointType string `json:"endpointType,omitempty"`
+
+	FlavorId string `json:"flavorId,omitempty"`
+
+	FlavorName string `json:"flavorName,omitempty"`
+
+	FloatingipPool string `json:"floatingipPool,omitempty"`
+
+	ImageId string `json:"imageId,omitempty"`
+
+	ImageName string `json:"imageName,omitempty"`
+
+	Insecure bool `json:"insecure,omitempty"`
+
+	NetId string `json:"netId,omitempty"`
+
+	NetName string `json:"netName,omitempty"`
+
+	Password string `json:"password,omitempty"`
+
+	Region string `json:"region,omitempty"`
+
+	SecGroups string `json:"secGroups,omitempty"`
+
+	SshPort string `json:"sshPort,omitempty"`
+
+	SshUser string `json:"sshUser,omitempty"`
+
+	TenantId string `json:"tenantId,omitempty"`
+
+	TenantName string `json:"tenantName,omitempty"`
+
+	Username string `json:"username,omitempty"`
 }
 
 type OpenstackConfigCollection struct {

@@ -6,9 +6,8 @@ const (
 
 type Task struct {
 	Resource
-    
-    Name string `json:"name,omitempty"`
-    
+
+	Name string `json:"name,omitempty"`
 }
 
 type TaskCollection struct {
@@ -26,9 +25,8 @@ type TaskOperations interface {
 	Update(existing *Task, updates interface{}) (*Task, error)
 	ById(id string) (*Task, error)
 	Delete(container *Task) error
-    
-    ActionExecute (*Task) (*Task, error)
-    
+
+	ActionExecute(*Task) (*Task, error)
 }
 
 func newTaskClient(rancherClient *RancherClient) *TaskClient {
@@ -64,12 +62,12 @@ func (c *TaskClient) ById(id string) (*Task, error) {
 func (c *TaskClient) Delete(container *Task) error {
 	return c.rancherClient.doResourceDelete(TASK_TYPE, &container.Resource)
 }
-    
-func (c *TaskClient) ActionExecute (resource *Task) (*Task, error) {
-    
+
+func (c *TaskClient) ActionExecute(resource *Task) (*Task, error) {
+
 	resp := &Task{}
-    
+
 	err := c.rancherClient.doAction(TASK_TYPE, "execute", &resource.Resource, nil, resp)
-    
+
 	return resp, err
 }

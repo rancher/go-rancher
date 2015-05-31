@@ -6,21 +6,20 @@ const (
 
 type LoadBalancerAppCookieStickinessPolicy struct {
 	Resource
-    
-    Cookie string `json:"cookie,omitempty"`
-    
-    MaxLength int `json:"maxLength,omitempty"`
-    
-    Mode string `json:"mode,omitempty"`
-    
-    Name string `json:"name,omitempty"`
-    
-    Prefix bool `json:"prefix,omitempty"`
-    
-    RequestLearn bool `json:"requestLearn,omitempty"`
-    
-    Timeout int `json:"timeout,omitempty"`
-    
+
+	Cookie string `json:"cookie,omitempty"`
+
+	MaxLength int `json:"maxLength,omitempty"`
+
+	Mode string `json:"mode,omitempty"`
+
+	Name string `json:"name,omitempty"`
+
+	Prefix bool `json:"prefix,omitempty"`
+
+	RequestLearn bool `json:"requestLearn,omitempty"`
+
+	Timeout int `json:"timeout,omitempty"`
 }
 
 type LoadBalancerAppCookieStickinessPolicyCollection struct {

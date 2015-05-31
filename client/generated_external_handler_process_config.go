@@ -6,11 +6,10 @@ const (
 
 type ExternalHandlerProcessConfig struct {
 	Resource
-    
-    Name string `json:"name,omitempty"`
-    
-    OnError string `json:"onError,omitempty"`
-    
+
+	Name string `json:"name,omitempty"`
+
+	OnError string `json:"onError,omitempty"`
 }
 
 type ExternalHandlerProcessConfigCollection struct {

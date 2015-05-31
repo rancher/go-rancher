@@ -6,21 +6,20 @@ const (
 
 type DigitaloceanConfig struct {
 	Resource
-    
-    AccessToken string `json:"accessToken,omitempty"`
-    
-    Backups bool `json:"backups,omitempty"`
-    
-    Image string `json:"image,omitempty"`
-    
-    Ipv6 bool `json:"ipv6,omitempty"`
-    
-    PrivateNetworking bool `json:"privateNetworking,omitempty"`
-    
-    Region string `json:"region,omitempty"`
-    
-    Size string `json:"size,omitempty"`
-    
+
+	AccessToken string `json:"accessToken,omitempty"`
+
+	Backups bool `json:"backups,omitempty"`
+
+	Image string `json:"image,omitempty"`
+
+	Ipv6 bool `json:"ipv6,omitempty"`
+
+	PrivateNetworking bool `json:"privateNetworking,omitempty"`
+
+	Region string `json:"region,omitempty"`
+
+	Size string `json:"size,omitempty"`
 }
 
 type DigitaloceanConfigCollection struct {
