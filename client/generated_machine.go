@@ -15,6 +15,8 @@ type Machine struct {
 
 	AuthKey string `json:"authKey,omitempty" yaml:"auth_key,omitempty"`
 
+	AzureConfig *AzureConfig `json:"azureConfig,omitempty" yaml:"azure_config,omitempty"`
+
 	Created string `json:"created,omitempty" yaml:"created,omitempty"`
 
 	Data map[string]interface{} `json:"data,omitempty" yaml:"data,omitempty"`

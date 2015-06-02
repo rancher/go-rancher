@@ -7,6 +7,8 @@ const (
 type ConfigItemStatus struct {
 	Resource
 
+	AccountId string `json:"accountId,omitempty" yaml:"account_id,omitempty"`
+
 	AgentId string `json:"agentId,omitempty" yaml:"agent_id,omitempty"`
 
 	AppliedUpdated string `json:"appliedUpdated,omitempty" yaml:"applied_updated,omitempty"`
