@@ -96,6 +96,7 @@ type RancherClient struct {
 	Githubconfig                             GithubconfigOperations
 	StatsAccess                              StatsAccessOperations
 	Amazonec2Config                          Amazonec2ConfigOperations
+	AzureConfig                              AzureConfigOperations
 	DigitaloceanConfig                       DigitaloceanConfigOperations
 	ExoscaleConfig                           ExoscaleConfigOperations
 	OpenstackConfig                          OpenstackConfigOperations
@@ -210,6 +211,7 @@ func constructClient() *RancherClient {
 	client.Githubconfig = newGithubconfigClient(client)
 	client.StatsAccess = newStatsAccessClient(client)
 	client.Amazonec2Config = newAmazonec2ConfigClient(client)
+	client.AzureConfig = newAzureConfigClient(client)
 	client.DigitaloceanConfig = newDigitaloceanConfigClient(client)
 	client.ExoscaleConfig = newExoscaleConfigClient(client)
 	client.OpenstackConfig = newOpenstackConfigClient(client)
