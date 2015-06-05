@@ -13,6 +13,8 @@ type Container struct {
 
 	AllocationState string `json:"allocationState,omitempty" yaml:"allocation_state,omitempty"`
 
+	Build *DockerBuild `json:"build,omitempty" yaml:"build,omitempty"`
+
 	CapAdd []string `json:"capAdd,omitempty" yaml:"cap_add,omitempty"`
 
 	CapDrop []string `json:"capDrop,omitempty" yaml:"cap_drop,omitempty"`
@@ -37,8 +39,6 @@ type Container struct {
 
 	Devices []string `json:"devices,omitempty" yaml:"devices,omitempty"`
 
-	Directory string `json:"directory,omitempty" yaml:"directory,omitempty"`
-
 	Dns []string `json:"dns,omitempty" yaml:"dns,omitempty"`
 
 	DnsSearch []string `json:"dnsSearch,omitempty" yaml:"dns_search,omitempty"`
@@ -50,6 +50,8 @@ type Container struct {
 	Environment map[string]interface{} `json:"environment,omitempty" yaml:"environment,omitempty"`
 
 	ExternalId string `json:"externalId,omitempty" yaml:"external_id,omitempty"`
+
+	ExtraHosts []string `json:"extraHosts,omitempty" yaml:"extra_hosts,omitempty"`
 
 	FirstRunning string `json:"firstRunning,omitempty" yaml:"first_running,omitempty"`
 
@@ -67,6 +69,8 @@ type Container struct {
 
 	Labels map[string]interface{} `json:"labels,omitempty" yaml:"labels,omitempty"`
 
+	LogConfig *LogConfig `json:"logConfig,omitempty" yaml:"log_config,omitempty"`
+
 	LxcConf map[string]interface{} `json:"lxcConf,omitempty" yaml:"lxc_conf,omitempty"`
 
 	Memory int64 `json:"memory,omitempty" yaml:"memory,omitempty"`
@@ -83,6 +87,8 @@ type Container struct {
 
 	NetworkMode string `json:"networkMode,omitempty" yaml:"network_mode,omitempty"`
 
+	PidMode string `json:"pidMode,omitempty" yaml:"pid_mode,omitempty"`
+
 	Ports []string `json:"ports,omitempty" yaml:"ports,omitempty"`
 
 	PrimaryIpAddress string `json:"primaryIpAddress,omitempty" yaml:"primary_ip_address,omitempty"`
@@ -90,6 +96,8 @@ type Container struct {
 	Privileged bool `json:"privileged,omitempty" yaml:"privileged,omitempty"`
 
 	PublishAllPorts bool `json:"publishAllPorts,omitempty" yaml:"publish_all_ports,omitempty"`
+
+	ReadOnly bool `json:"readOnly,omitempty" yaml:"read_only,omitempty"`
 
 	RegistryCredentialId string `json:"registryCredentialId,omitempty" yaml:"registry_credential_id,omitempty"`
 
@@ -100,6 +108,8 @@ type Container struct {
 	RequestedHostId string `json:"requestedHostId,omitempty" yaml:"requested_host_id,omitempty"`
 
 	RestartPolicy *RestartPolicy `json:"restartPolicy,omitempty" yaml:"restart_policy,omitempty"`
+
+	SecurityOpt []string `json:"securityOpt,omitempty" yaml:"security_opt,omitempty"`
 
 	StartOnCreate bool `json:"startOnCreate,omitempty" yaml:"start_on_create,omitempty"`
 
@@ -122,6 +132,8 @@ type Container struct {
 	User string `json:"user,omitempty" yaml:"user,omitempty"`
 
 	Uuid string `json:"uuid,omitempty" yaml:"uuid,omitempty"`
+
+	WorkingDir string `json:"workingDir,omitempty" yaml:"working_dir,omitempty"`
 }
 
 type ContainerCollection struct {

@@ -27,6 +27,8 @@ type LoadBalancerService struct {
 
 	Name string `json:"name,omitempty" yaml:"name,omitempty"`
 
+	NetworkServiceId string `json:"networkServiceId,omitempty" yaml:"network_service_id,omitempty"`
+
 	RemoveTime string `json:"removeTime,omitempty" yaml:"remove_time,omitempty"`
 
 	Removed string `json:"removed,omitempty" yaml:"removed,omitempty"`
