@@ -5,6 +5,7 @@ type RancherClient struct {
 
 	Subscribe                                SubscribeOperations
 	Publish                                  PublishOperations
+	LogConfig                                LogConfigOperations
 	RestartPolicy                            RestartPolicyOperations
 	LoadBalancerHealthCheck                  LoadBalancerHealthCheckOperations
 	LoadBalancerCookieStickinessPolicy       LoadBalancerCookieStickinessPolicyOperations
@@ -87,6 +88,7 @@ type RancherClient struct {
 	ContainerExec                            ContainerExecOperations
 	ContainerLogs                            ContainerLogsOperations
 	HostAccess                               HostAccessOperations
+	DockerBuild                              DockerBuildOperations
 	ActiveSetting                            ActiveSettingOperations
 	ExtensionImplementation                  ExtensionImplementationOperations
 	ExtensionPoint                           ExtensionPointOperations
@@ -120,6 +122,7 @@ func constructClient() *RancherClient {
 
 	client.Subscribe = newSubscribeClient(client)
 	client.Publish = newPublishClient(client)
+	client.LogConfig = newLogConfigClient(client)
 	client.RestartPolicy = newRestartPolicyClient(client)
 	client.LoadBalancerHealthCheck = newLoadBalancerHealthCheckClient(client)
 	client.LoadBalancerCookieStickinessPolicy = newLoadBalancerCookieStickinessPolicyClient(client)
@@ -202,6 +205,7 @@ func constructClient() *RancherClient {
 	client.ContainerExec = newContainerExecClient(client)
 	client.ContainerLogs = newContainerLogsClient(client)
 	client.HostAccess = newHostAccessClient(client)
+	client.DockerBuild = newDockerBuildClient(client)
 	client.ActiveSetting = newActiveSettingClient(client)
 	client.ExtensionImplementation = newExtensionImplementationClient(client)
 	client.ExtensionPoint = newExtensionPointClient(client)
