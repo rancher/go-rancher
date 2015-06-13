@@ -5,6 +5,7 @@ type RancherClient struct {
 
 	Subscribe                                SubscribeOperations
 	Publish                                  PublishOperations
+	LogConfig                                LogConfigOperations
 	RestartPolicy                            RestartPolicyOperations
 	LoadBalancerHealthCheck                  LoadBalancerHealthCheckOperations
 	LoadBalancerCookieStickinessPolicy       LoadBalancerCookieStickinessPolicyOperations
@@ -41,6 +42,8 @@ type RancherClient struct {
 	LoadBalancerService                      LoadBalancerServiceOperations
 	ExternalService                          ExternalServiceOperations
 	DnsService                               DnsServiceOperations
+	LaunchConfig                             LaunchConfigOperations
+	SecondaryLaunchConfig                    SecondaryLaunchConfigOperations
 	Account                                  AccountOperations
 	Agent                                    AgentOperations
 	Certificate                              CertificateOperations
@@ -75,6 +78,7 @@ type RancherClient struct {
 	ProcessInstance                          ProcessInstanceOperations
 	ProjectMember                            ProjectMemberOperations
 	Service                                  ServiceOperations
+	ServiceConsumeMap                        ServiceConsumeMapOperations
 	ServiceEvent                             ServiceEventOperations
 	ServiceExposeMap                         ServiceExposeMapOperations
 	Setting                                  SettingOperations
@@ -87,6 +91,7 @@ type RancherClient struct {
 	ContainerExec                            ContainerExecOperations
 	ContainerLogs                            ContainerLogsOperations
 	HostAccess                               HostAccessOperations
+	DockerBuild                              DockerBuildOperations
 	ActiveSetting                            ActiveSettingOperations
 	ExtensionImplementation                  ExtensionImplementationOperations
 	ExtensionPoint                           ExtensionPointOperations
@@ -107,6 +112,7 @@ type RancherClient struct {
 	VmwarevcloudairConfig                    VmwarevcloudairConfigOperations
 	VmwarevsphereConfig                      VmwarevsphereConfigOperations
 	Machine                                  MachineOperations
+	HostApiProxyToken                        HostApiProxyTokenOperations
 	Register                                 RegisterOperations
 	RegistrationToken                        RegistrationTokenOperations
 }
@@ -120,6 +126,7 @@ func constructClient() *RancherClient {
 
 	client.Subscribe = newSubscribeClient(client)
 	client.Publish = newPublishClient(client)
+	client.LogConfig = newLogConfigClient(client)
 	client.RestartPolicy = newRestartPolicyClient(client)
 	client.LoadBalancerHealthCheck = newLoadBalancerHealthCheckClient(client)
 	client.LoadBalancerCookieStickinessPolicy = newLoadBalancerCookieStickinessPolicyClient(client)
@@ -156,6 +163,8 @@ func constructClient() *RancherClient {
 	client.LoadBalancerService = newLoadBalancerServiceClient(client)
 	client.ExternalService = newExternalServiceClient(client)
 	client.DnsService = newDnsServiceClient(client)
+	client.LaunchConfig = newLaunchConfigClient(client)
+	client.SecondaryLaunchConfig = newSecondaryLaunchConfigClient(client)
 	client.Account = newAccountClient(client)
 	client.Agent = newAgentClient(client)
 	client.Certificate = newCertificateClient(client)
@@ -190,6 +199,7 @@ func constructClient() *RancherClient {
 	client.ProcessInstance = newProcessInstanceClient(client)
 	client.ProjectMember = newProjectMemberClient(client)
 	client.Service = newServiceClient(client)
+	client.ServiceConsumeMap = newServiceConsumeMapClient(client)
 	client.ServiceEvent = newServiceEventClient(client)
 	client.ServiceExposeMap = newServiceExposeMapClient(client)
 	client.Setting = newSettingClient(client)
@@ -202,6 +212,7 @@ func constructClient() *RancherClient {
 	client.ContainerExec = newContainerExecClient(client)
 	client.ContainerLogs = newContainerLogsClient(client)
 	client.HostAccess = newHostAccessClient(client)
+	client.DockerBuild = newDockerBuildClient(client)
 	client.ActiveSetting = newActiveSettingClient(client)
 	client.ExtensionImplementation = newExtensionImplementationClient(client)
 	client.ExtensionPoint = newExtensionPointClient(client)
@@ -222,6 +233,7 @@ func constructClient() *RancherClient {
 	client.VmwarevcloudairConfig = newVmwarevcloudairConfigClient(client)
 	client.VmwarevsphereConfig = newVmwarevsphereConfigClient(client)
 	client.Machine = newMachineClient(client)
+	client.HostApiProxyToken = newHostApiProxyTokenClient(client)
 	client.Register = newRegisterClient(client)
 	client.RegistrationToken = newRegistrationTokenClient(client)
 
