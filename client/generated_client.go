@@ -88,6 +88,7 @@ type RancherClient struct {
 	TaskInstance                             TaskInstanceOperations
 	Volume                                   VolumeOperations
 	TypeDocumentation                        TypeDocumentationOperations
+	FieldDocumentation                       FieldDocumentationOperations
 	ContainerExec                            ContainerExecOperations
 	ContainerLogs                            ContainerLogsOperations
 	HostAccess                               HostAccessOperations
@@ -209,6 +210,7 @@ func constructClient() *RancherClient {
 	client.TaskInstance = newTaskInstanceClient(client)
 	client.Volume = newVolumeClient(client)
 	client.TypeDocumentation = newTypeDocumentationClient(client)
+	client.FieldDocumentation = newFieldDocumentationClient(client)
 	client.ContainerExec = newContainerExecClient(client)
 	client.ContainerLogs = newContainerLogsClient(client)
 	client.HostAccess = newHostAccessClient(client)
