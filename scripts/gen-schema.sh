@@ -23,7 +23,7 @@ curl -s -u service:servicepass http://localhost:8080/v1/schemas | jq . > schemas
 echo Saved schemas.json
 
 echo -n Generating go code...
-go run generator.go
+godep go run generator.go
 echo " Done"
 
 gofmt -w ../client/generated_*
