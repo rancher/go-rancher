@@ -1404,6 +1404,113 @@
       ]
     },
     {
+      "id": "serviceUpgrade",
+      "type": "schema",
+      "links": {
+        "self": "http://localhost:8080/v1/schemas/serviceupgrade"
+      },
+      "actions": {},
+      "pluralName": "serviceUpgrades",
+      "resourceFields": {
+        "batchSize": {
+          "type": "int",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "readOnCreateOnly": false,
+          "min": 1,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": 1
+        },
+        "finalScale": {
+          "type": "int",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": true,
+          "readOnCreateOnly": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "intervalMillis": {
+          "type": "int",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "readOnCreateOnly": false,
+          "min": 100,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": 2000
+        },
+        "toServiceId": {
+          "type": "reference[service]",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": false,
+          "unique": false,
+          "required": true,
+          "readOnCreateOnly": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "updateLinks": {
+          "type": "boolean",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": false,
+          "unique": false,
+          "required": false,
+          "readOnCreateOnly": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        }
+      },
+      "collectionFilters": {},
+      "includeableLinks": [],
+      "resourceActions": {},
+      "collectionActions": {},
+      "collectionFields": {},
+      "collectionMethods": [
+        "POST"
+      ],
+      "resourceMethods": [
+        "GET"
+      ]
+    },
+    {
       "id": "addLoadBalancerInput",
       "type": "schema",
       "links": {
@@ -6700,6 +6807,7 @@
           "options": [
             "activating",
             "active",
+            "canceling-upgrade",
             "deactivating",
             "inactive",
             "registering",
@@ -6707,7 +6815,8 @@
             "removing",
             "requested",
             "updating-active",
-            "updating-inactive"
+            "updating-inactive",
+            "upgrading"
           ],
           "default": null
         },
@@ -6756,6 +6865,23 @@
           "create": false,
           "update": false,
           "nullable": true,
+          "unique": false,
+          "required": false,
+          "readOnCreateOnly": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "upgrade": {
+          "type": "serviceUpgrade",
+          "validChars": null,
+          "invalidChars": null,
+          "create": false,
+          "update": false,
+          "nullable": false,
           "unique": false,
           "required": false,
           "readOnCreateOnly": false,
@@ -6932,6 +7058,10 @@
         "loadbalancers"
       ],
       "resourceActions": {
+        "upgrade": {
+          "input": "serviceUpgrade",
+          "output": "service"
+        },
         "update": {
           "input": null,
           "output": "service"
@@ -6946,6 +7076,10 @@
         },
         "setservicelinks": {
           "input": "setLoadBalancerServiceLinksInput",
+          "output": "service"
+        },
+        "cancelupgrade": {
+          "input": null,
           "output": "service"
         },
         "removeservicelink": {
@@ -7174,6 +7308,7 @@
           "options": [
             "activating",
             "active",
+            "canceling-upgrade",
             "deactivating",
             "inactive",
             "registering",
@@ -7181,7 +7316,8 @@
             "removing",
             "requested",
             "updating-active",
-            "updating-inactive"
+            "updating-inactive",
+            "upgrading"
           ],
           "default": null
         },
@@ -7230,6 +7366,23 @@
           "create": false,
           "update": false,
           "nullable": true,
+          "unique": false,
+          "required": false,
+          "readOnCreateOnly": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "upgrade": {
+          "type": "serviceUpgrade",
+          "validChars": null,
+          "invalidChars": null,
+          "create": false,
+          "update": false,
+          "nullable": false,
           "unique": false,
           "required": false,
           "readOnCreateOnly": false,
@@ -7406,6 +7559,10 @@
         "loadbalancers"
       ],
       "resourceActions": {
+        "upgrade": {
+          "input": "serviceUpgrade",
+          "output": "service"
+        },
         "update": {
           "input": null,
           "output": "service"
@@ -7420,6 +7577,10 @@
         },
         "setservicelinks": {
           "input": "setServiceLinksInput",
+          "output": "service"
+        },
+        "cancelupgrade": {
+          "input": null,
           "output": "service"
         },
         "removeservicelink": {
@@ -7648,6 +7809,7 @@
           "options": [
             "activating",
             "active",
+            "canceling-upgrade",
             "deactivating",
             "inactive",
             "registering",
@@ -7655,7 +7817,8 @@
             "removing",
             "requested",
             "updating-active",
-            "updating-inactive"
+            "updating-inactive",
+            "upgrading"
           ],
           "default": null
         },
@@ -7704,6 +7867,23 @@
           "create": false,
           "update": false,
           "nullable": true,
+          "unique": false,
+          "required": false,
+          "readOnCreateOnly": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "upgrade": {
+          "type": "serviceUpgrade",
+          "validChars": null,
+          "invalidChars": null,
+          "create": false,
+          "update": false,
+          "nullable": false,
           "unique": false,
           "required": false,
           "readOnCreateOnly": false,
@@ -7863,6 +8043,10 @@
         "loadbalancers"
       ],
       "resourceActions": {
+        "upgrade": {
+          "input": "serviceUpgrade",
+          "output": "service"
+        },
         "update": {
           "input": null,
           "output": "service"
@@ -7877,6 +8061,10 @@
         },
         "setservicelinks": {
           "input": "setServiceLinksInput",
+          "output": "service"
+        },
+        "cancelupgrade": {
+          "input": null,
           "output": "service"
         },
         "removeservicelink": {
@@ -26235,6 +26423,7 @@
           "options": [
             "activating",
             "active",
+            "canceling-upgrade",
             "deactivating",
             "inactive",
             "registering",
@@ -26242,7 +26431,8 @@
             "removing",
             "requested",
             "updating-active",
-            "updating-inactive"
+            "updating-inactive",
+            "upgrading"
           ],
           "default": null
         },
@@ -26344,6 +26534,23 @@
           "nullable": false,
           "unique": false,
           "required": true,
+          "readOnCreateOnly": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "upgrade": {
+          "type": "serviceUpgrade",
+          "validChars": null,
+          "invalidChars": null,
+          "create": false,
+          "update": false,
+          "nullable": false,
+          "unique": false,
+          "required": false,
           "readOnCreateOnly": false,
           "min": null,
           "max": null,
@@ -26501,6 +26708,10 @@
         "loadbalancers"
       ],
       "resourceActions": {
+        "upgrade": {
+          "input": "serviceUpgrade",
+          "output": "service"
+        },
         "update": {
           "input": null,
           "output": "service"
@@ -26515,6 +26726,10 @@
         },
         "setservicelinks": {
           "input": "setServiceLinksInput",
+          "output": "service"
+        },
+        "cancelupgrade": {
+          "input": null,
           "output": "service"
         },
         "removeservicelink": {
