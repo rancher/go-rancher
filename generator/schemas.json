@@ -1439,7 +1439,7 @@
           "unique": false,
           "required": true,
           "readOnCreateOnly": false,
-          "min": null,
+          "min": 1,
           "max": null,
           "minLength": null,
           "maxLength": null,
@@ -3118,6 +3118,23 @@
           "max": null,
           "minLength": null,
           "maxLength": 1024,
+          "options": null,
+          "default": null
+        },
+        "expose": {
+          "type": "array[string]",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "readOnCreateOnly": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
           "options": null,
           "default": null
         },
@@ -7416,9 +7433,26 @@
           "invalidChars": null,
           "create": true,
           "update": true,
-          "nullable": false,
+          "nullable": true,
           "unique": false,
-          "required": true,
+          "required": false,
+          "readOnCreateOnly": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "hostname": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "unique": false,
+          "required": false,
           "readOnCreateOnly": false,
           "min": null,
           "max": null,
@@ -8530,6 +8564,23 @@
           "create": true,
           "update": false,
           "nullable": false,
+          "unique": false,
+          "required": false,
+          "readOnCreateOnly": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "expose": {
+          "type": "array[string]",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
           "unique": false,
           "required": false,
           "readOnCreateOnly": false,
@@ -10232,6 +10283,23 @@
           "options": null,
           "default": null
         },
+        "expose": {
+          "type": "array[string]",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "readOnCreateOnly": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
         "externalId": {
           "type": "string",
           "validChars": null,
@@ -11571,7 +11639,7 @@
           "update": false,
           "nullable": true,
           "unique": false,
-          "required": true,
+          "required": false,
           "readOnCreateOnly": false,
           "min": null,
           "max": null,
@@ -22299,6 +22367,23 @@
           "options": null,
           "default": null
         },
+        "privatePort": {
+          "type": "int",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "readOnCreateOnly": false,
+          "min": 1,
+          "max": 65535,
+          "minLength": null,
+          "maxLength": 255,
+          "options": null,
+          "default": null
+        },
         "removeTime": {
           "type": "date",
           "validChars": null,
@@ -22356,9 +22441,9 @@
           "invalidChars": null,
           "create": true,
           "update": false,
-          "nullable": false,
+          "nullable": true,
           "unique": false,
-          "required": true,
+          "required": false,
           "readOnCreateOnly": false,
           "min": 1,
           "max": 65535,
@@ -22603,6 +22688,18 @@
             "prefix",
             "like",
             "notlike",
+            "null",
+            "notnull"
+          ]
+        },
+        "privatePort": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "lt",
+            "lte",
+            "gt",
+            "gte",
             "null",
             "notnull"
           ]
@@ -28101,6 +28198,17 @@
           ]
         },
         "dnsPrefix": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "prefix",
+            "like",
+            "notlike",
+            "null",
+            "notnull"
+          ]
+        },
+        "hostName": {
           "modifiers": [
             "eq",
             "ne",
