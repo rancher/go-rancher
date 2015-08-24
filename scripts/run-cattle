@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-URL=https://github.com/rancherio/cattle/releases/download/v0.46.0/cattle.jar
+URL=https://github.com/rancher/cattle/releases/download/v0.46.0/cattle.jar
 
 cd $(dirname $0)/..
 
@@ -19,7 +19,7 @@ EOF
 done
 
 if [ ! -e cattle.jar ]; then
-    curl -L -O https://github.com/rancherio/cattle/releases/download/v0.46.0/cattle.jar
+    curl -L -O https://github.com/rancher/cattle/releases/download/v0.46.0/cattle.jar
 fi
 
 java -jar cattle.jar --notify $(pwd)/run-success.sh --notify-error $(pwd)/run-error.sh &
