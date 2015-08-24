@@ -105,6 +105,8 @@ type RancherClient struct {
 	ResourceDefinition                       ResourceDefinitionOperations
 	StateTransition                          StateTransitionOperations
 	Githubconfig                             GithubconfigOperations
+	Identity                                 IdentityOperations
+	Ldapconfig                               LdapconfigOperations
 	StatsAccess                              StatsAccessOperations
 	Amazonec2Config                          Amazonec2ConfigOperations
 	AzureConfig                              AzureConfigOperations
@@ -232,6 +234,8 @@ func constructClient() *RancherClient {
 	client.ResourceDefinition = newResourceDefinitionClient(client)
 	client.StateTransition = newStateTransitionClient(client)
 	client.Githubconfig = newGithubconfigClient(client)
+	client.Identity = newIdentityClient(client)
+	client.Ldapconfig = newLdapconfigClient(client)
 	client.StatsAccess = newStatsAccessClient(client)
 	client.Amazonec2Config = newAmazonec2ConfigClient(client)
 	client.AzureConfig = newAzureConfigClient(client)
