@@ -3070,6 +3070,23 @@
           "options": null,
           "default": null
         },
+        "createIndex": {
+          "type": "int",
+          "validChars": null,
+          "invalidChars": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "readOnCreateOnly": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": 255,
+          "options": null,
+          "default": null
+        },
         "created": {
           "type": "date",
           "validChars": null,
@@ -4286,6 +4303,18 @@
           ]
         },
         "compute": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "lt",
+            "lte",
+            "gt",
+            "gte",
+            "null",
+            "notnull"
+          ]
+        },
+        "createIndex": {
           "modifiers": [
             "eq",
             "ne",
@@ -7004,6 +7033,18 @@
             "notnull"
           ]
         },
+        "createIndex": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "lt",
+            "lte",
+            "gt",
+            "gte",
+            "null",
+            "notnull"
+          ]
+        },
         "created": {
           "modifiers": [
             "eq",
@@ -7550,6 +7591,18 @@
             "notnull"
           ]
         },
+        "createIndex": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "lt",
+            "lte",
+            "gt",
+            "gte",
+            "null",
+            "notnull"
+          ]
+        },
         "created": {
           "modifiers": [
             "eq",
@@ -8045,6 +8098,18 @@
             "notnull"
           ]
         },
+        "createIndex": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "lt",
+            "lte",
+            "gt",
+            "gte",
+            "null",
+            "notnull"
+          ]
+        },
         "created": {
           "modifiers": [
             "eq",
@@ -8485,6 +8550,23 @@
           "max": null,
           "minLength": null,
           "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "createIndex": {
+          "type": "int",
+          "validChars": null,
+          "invalidChars": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "readOnCreateOnly": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": 255,
           "options": null,
           "default": null
         },
@@ -9541,6 +9623,18 @@
           ]
         },
         "compute": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "lt",
+            "lte",
+            "gt",
+            "gte",
+            "null",
+            "notnull"
+          ]
+        },
+        "createIndex": {
           "modifiers": [
             "eq",
             "ne",
@@ -10180,6 +10274,23 @@
           "options": null,
           "default": null
         },
+        "createIndex": {
+          "type": "int",
+          "validChars": null,
+          "invalidChars": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "readOnCreateOnly": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": 255,
+          "options": null,
+          "default": null
+        },
         "created": {
           "type": "date",
           "validChars": null,
@@ -11250,6 +11361,18 @@
           ]
         },
         "compute": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "lt",
+            "lte",
+            "gt",
+            "gte",
+            "null",
+            "notnull"
+          ]
+        },
+        "createIndex": {
           "modifiers": [
             "eq",
             "ne",
@@ -13054,6 +13177,159 @@
         },
         "certFingerprint": {
           "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": false,
+          "update": false,
+          "nullable": false,
+          "unique": false,
+          "required": false,
+          "readOnCreateOnly": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "CN": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": false,
+          "update": false,
+          "nullable": false,
+          "unique": false,
+          "required": false,
+          "readOnCreateOnly": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "expiresAt": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": false,
+          "update": false,
+          "nullable": false,
+          "unique": false,
+          "required": false,
+          "readOnCreateOnly": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "issuer": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": false,
+          "update": false,
+          "nullable": false,
+          "unique": false,
+          "required": false,
+          "readOnCreateOnly": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "issuedAt": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": false,
+          "update": false,
+          "nullable": false,
+          "unique": false,
+          "required": false,
+          "readOnCreateOnly": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "algorithm": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": false,
+          "update": false,
+          "nullable": false,
+          "unique": false,
+          "required": false,
+          "readOnCreateOnly": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "version": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": false,
+          "update": false,
+          "nullable": false,
+          "unique": false,
+          "required": false,
+          "readOnCreateOnly": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "serialNumber": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": false,
+          "update": false,
+          "nullable": false,
+          "unique": false,
+          "required": false,
+          "readOnCreateOnly": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "keySize": {
+          "type": "int",
+          "validChars": null,
+          "invalidChars": null,
+          "create": false,
+          "update": false,
+          "nullable": false,
+          "unique": false,
+          "required": false,
+          "readOnCreateOnly": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "subjectAlternativeNames": {
+          "type": "array[string]",
           "validChars": null,
           "invalidChars": null,
           "create": false,
@@ -15296,6 +15572,40 @@
           "create": false,
           "update": false,
           "nullable": true,
+          "unique": false,
+          "required": false,
+          "readOnCreateOnly": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "dockerCompose": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": false,
+          "unique": false,
+          "required": false,
+          "readOnCreateOnly": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "rancherCompose": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": false,
           "unique": false,
           "required": false,
           "readOnCreateOnly": false,
@@ -18685,6 +18995,18 @@
           ]
         },
         "compute": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "lt",
+            "lte",
+            "gt",
+            "gte",
+            "null",
+            "notnull"
+          ]
+        },
+        "createIndex": {
           "modifiers": [
             "eq",
             "ne",
@@ -26580,6 +26902,23 @@
           "options": null,
           "default": null
         },
+        "createIndex": {
+          "type": "int",
+          "validChars": null,
+          "invalidChars": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "readOnCreateOnly": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": 255,
+          "options": null,
+          "default": null
+        },
         "created": {
           "type": "date",
           "validChars": null,
@@ -26926,6 +27265,18 @@
           "modifiers": [
             "eq",
             "ne",
+            "null",
+            "notnull"
+          ]
+        },
+        "createIndex": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "lt",
+            "lte",
+            "gt",
+            "gte",
             "null",
             "notnull"
           ]
