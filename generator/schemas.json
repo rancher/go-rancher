@@ -12899,9 +12899,9 @@
           "invalidChars": null,
           "create": true,
           "update": true,
-          "nullable": true,
+          "nullable": false,
           "unique": false,
-          "required": false,
+          "required": true,
           "readOnCreateOnly": false,
           "min": null,
           "max": null,
@@ -13001,9 +13001,9 @@
           "invalidChars": null,
           "create": true,
           "update": false,
-          "nullable": true,
+          "nullable": false,
           "unique": false,
-          "required": false,
+          "required": true,
           "readOnCreateOnly": true,
           "min": null,
           "max": null,
@@ -15503,6 +15503,8 @@
           "options": [
             "activating",
             "active",
+            "error",
+            "erroring",
             "removed",
             "removing",
             "requested",
@@ -15751,6 +15753,10 @@
         "exportconfig": {
           "input": "composeConfigInput",
           "output": "composeConfig"
+        },
+        "error": {
+          "input": null,
+          "output": "environment"
         },
         "remove": {
           "input": null,
@@ -32948,6 +32954,23 @@
           "options": null,
           "default": null
         },
+        "usePrivateAddress": {
+          "type": "boolean",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "readOnCreateOnly": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
         "vpcId": {
           "type": "string",
           "validChars": null,
@@ -33005,6 +33028,23 @@
       "pluralName": "azureConfigs",
       "resourceFields": {
         "dockerPort": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "readOnCreateOnly": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "dockerSwarmMasterPort": {
           "type": "string",
           "validChars": null,
           "invalidChars": null,
@@ -33314,6 +33354,23 @@
           "maxLength": null,
           "options": null,
           "default": null
+        },
+        "sshUser": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "readOnCreateOnly": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
         }
       },
       "collectionFilters": {},
@@ -33440,7 +33497,7 @@
           "default": null
         },
         "securityGroup": {
-          "type": "string",
+          "type": "array[string]",
           "validChars": null,
           "invalidChars": null,
           "create": true,
@@ -34537,6 +34594,23 @@
         },
         "memory": {
           "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "readOnCreateOnly": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "noShare": {
+          "type": "boolean",
           "validChars": null,
           "invalidChars": null,
           "create": true,
