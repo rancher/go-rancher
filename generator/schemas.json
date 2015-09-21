@@ -13216,6 +13216,24 @@
             "cached"
           ],
           "default": "all"
+        },
+        "status": {
+          "type": "map[string]",
+          "validChars": null,
+          "invalidChars": null,
+          "transform": null,
+          "create": false,
+          "update": false,
+          "nullable": false,
+          "unique": false,
+          "required": false,
+          "readOnCreateOnly": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
         }
       },
       "collectionFilters": {
