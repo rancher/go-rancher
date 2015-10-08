@@ -1502,7 +1502,7 @@
           "update": false,
           "nullable": true,
           "unique": false,
-          "required": true,
+          "required": false,
           "readOnCreateOnly": false,
           "min": 1,
           "max": null,
@@ -1529,6 +1529,42 @@
           "options": null,
           "default": 2000
         },
+        "launchConfig": {
+          "type": "launchConfig",
+          "validChars": null,
+          "invalidChars": null,
+          "transform": null,
+          "create": true,
+          "update": false,
+          "nullable": false,
+          "unique": false,
+          "required": false,
+          "readOnCreateOnly": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "secondaryLaunchConfigs": {
+          "type": "array[secondaryLaunchConfig]",
+          "validChars": null,
+          "invalidChars": null,
+          "transform": null,
+          "create": true,
+          "update": false,
+          "nullable": false,
+          "unique": false,
+          "required": false,
+          "readOnCreateOnly": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
         "toServiceId": {
           "type": "reference[service]",
           "validChars": null,
@@ -1538,7 +1574,7 @@
           "update": false,
           "nullable": false,
           "unique": false,
-          "required": true,
+          "required": false,
           "readOnCreateOnly": false,
           "min": null,
           "max": null,
@@ -3297,6 +3333,24 @@
           "options": null,
           "default": null
         },
+        "deploymentUnitUuid": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "transform": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "readOnCreateOnly": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": 128,
+          "options": null,
+          "default": null
+        },
         "description": {
           "type": "string",
           "validChars": null,
@@ -3811,6 +3865,24 @@
           "maxLength": 128,
           "options": null,
           "default": null
+        },
+        "version": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "transform": null,
+          "create": false,
+          "update": false,
+          "nullable": false,
+          "unique": false,
+          "required": false,
+          "readOnCreateOnly": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": 255,
+          "options": null,
+          "default": "0"
         },
         "volumeDriver": {
           "type": "string",
@@ -4846,6 +4918,17 @@
           ]
         },
         "uuid": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "prefix",
+            "like",
+            "notlike",
+            "null",
+            "notnull"
+          ]
+        },
+        "version": {
           "modifiers": [
             "eq",
             "ne",
@@ -7591,7 +7674,7 @@
           "update": false,
           "nullable": false,
           "unique": false,
-          "required": true,
+          "required": false,
           "readOnCreateOnly": false,
           "min": null,
           "max": null,
@@ -7689,6 +7772,42 @@
           "maxLength": null,
           "options": null,
           "default": 1
+        },
+        "selectorContainer": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "transform": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "readOnCreateOnly": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": 4096,
+          "options": null,
+          "default": null
+        },
+        "selectorLink": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "transform": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "readOnCreateOnly": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": 4096,
+          "options": null,
+          "default": null
         },
         "state": {
           "type": "enum",
@@ -7998,6 +8117,28 @@
             "notnull"
           ]
         },
+        "selectorContainer": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "prefix",
+            "like",
+            "notlike",
+            "null",
+            "notnull"
+          ]
+        },
+        "selectorLink": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "prefix",
+            "like",
+            "notlike",
+            "null",
+            "notnull"
+          ]
+        },
         "state": {
           "modifiers": [
             "eq",
@@ -8231,6 +8372,24 @@
           "options": null,
           "default": null
         },
+        "launchConfig": {
+          "type": "launchConfig",
+          "validChars": null,
+          "invalidChars": null,
+          "transform": null,
+          "create": true,
+          "update": false,
+          "nullable": false,
+          "unique": false,
+          "required": false,
+          "readOnCreateOnly": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
         "metadata": {
           "type": "map[json]",
           "validChars": null,
@@ -8300,6 +8459,42 @@
           "max": null,
           "minLength": null,
           "maxLength": 255,
+          "options": null,
+          "default": null
+        },
+        "selectorContainer": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "transform": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "readOnCreateOnly": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": 4096,
+          "options": null,
+          "default": null
+        },
+        "selectorLink": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "transform": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "readOnCreateOnly": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": 4096,
           "options": null,
           "default": null
         },
@@ -8593,6 +8788,28 @@
             "notnull"
           ]
         },
+        "selectorContainer": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "prefix",
+            "like",
+            "notlike",
+            "null",
+            "notnull"
+          ]
+        },
+        "selectorLink": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "prefix",
+            "like",
+            "notlike",
+            "null",
+            "notnull"
+          ]
+        },
         "state": {
           "modifiers": [
             "eq",
@@ -8826,6 +9043,24 @@
           "options": null,
           "default": null
         },
+        "launchConfig": {
+          "type": "launchConfig",
+          "validChars": null,
+          "invalidChars": null,
+          "transform": null,
+          "create": true,
+          "update": false,
+          "nullable": false,
+          "unique": false,
+          "required": false,
+          "readOnCreateOnly": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": null,
+          "options": null,
+          "default": null
+        },
         "metadata": {
           "type": "map[json]",
           "validChars": null,
@@ -8895,6 +9130,42 @@
           "max": null,
           "minLength": null,
           "maxLength": 255,
+          "options": null,
+          "default": null
+        },
+        "selectorContainer": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "transform": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "readOnCreateOnly": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": 4096,
+          "options": null,
+          "default": null
+        },
+        "selectorLink": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "transform": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "readOnCreateOnly": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": 4096,
           "options": null,
           "default": null
         },
@@ -9130,6 +9401,28 @@
             "lte",
             "gt",
             "gte",
+            "null",
+            "notnull"
+          ]
+        },
+        "selectorContainer": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "prefix",
+            "like",
+            "notlike",
+            "null",
+            "notnull"
+          ]
+        },
+        "selectorLink": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "prefix",
+            "like",
+            "notlike",
             "null",
             "notnull"
           ]
@@ -9606,6 +9899,24 @@
           "options": null,
           "default": null
         },
+        "deploymentUnitUuid": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "transform": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "readOnCreateOnly": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": 128,
+          "options": null,
+          "default": null
+        },
         "description": {
           "type": "string",
           "validChars": null,
@@ -10543,6 +10854,24 @@
           "options": null,
           "default": null
         },
+        "version": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "transform": null,
+          "create": false,
+          "update": false,
+          "nullable": false,
+          "unique": false,
+          "required": false,
+          "readOnCreateOnly": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": 255,
+          "options": null,
+          "default": "0"
+        },
         "volumeDriver": {
           "type": "string",
           "validChars": null,
@@ -10943,6 +11272,17 @@
             "notnull"
           ]
         },
+        "version": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "prefix",
+            "like",
+            "notlike",
+            "null",
+            "notnull"
+          ]
+        },
         "zoneId": {
           "modifiers": [
             "eq",
@@ -11047,7 +11387,8 @@
         "POST"
       ],
       "resourceMethods": [
-        "GET"
+        "GET",
+        "PUT"
       ]
     },
     {
@@ -11440,6 +11781,24 @@
           "max": null,
           "minLength": null,
           "maxLength": null,
+          "options": null,
+          "default": null
+        },
+        "deploymentUnitUuid": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "transform": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "readOnCreateOnly": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": 128,
           "options": null,
           "default": null
         },
@@ -12416,6 +12775,24 @@
           "options": null,
           "default": null
         },
+        "version": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "transform": null,
+          "create": false,
+          "update": false,
+          "nullable": false,
+          "unique": false,
+          "required": false,
+          "readOnCreateOnly": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": 255,
+          "options": null,
+          "default": "0"
+        },
         "volumeDriver": {
           "type": "string",
           "validChars": null,
@@ -12780,6 +13157,17 @@
             "notnull"
           ]
         },
+        "version": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "prefix",
+            "like",
+            "notlike",
+            "null",
+            "notnull"
+          ]
+        },
         "zoneId": {
           "modifiers": [
             "eq",
@@ -12884,7 +13272,8 @@
         "POST"
       ],
       "resourceMethods": [
-        "GET"
+        "GET",
+        "PUT"
       ]
     },
     {
@@ -21195,6 +21584,17 @@
             "notnull"
           ]
         },
+        "version": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "prefix",
+            "like",
+            "notlike",
+            "null",
+            "notnull"
+          ]
+        },
         "zoneId": {
           "modifiers": [
             "eq",
@@ -29253,6 +29653,42 @@
           "options": null,
           "default": null
         },
+        "selectorContainer": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "transform": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "readOnCreateOnly": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": 4096,
+          "options": null,
+          "default": null
+        },
+        "selectorLink": {
+          "type": "string",
+          "validChars": null,
+          "invalidChars": null,
+          "transform": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "unique": false,
+          "required": false,
+          "readOnCreateOnly": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": 4096,
+          "options": null,
+          "default": null
+        },
         "state": {
           "type": "enum",
           "validChars": null,
@@ -29405,7 +29841,7 @@
           "update": false,
           "nullable": false,
           "unique": false,
-          "required": true,
+          "required": false,
           "readOnCreateOnly": false,
           "min": null,
           "max": null,
@@ -29575,6 +30011,28 @@
             "lte",
             "gt",
             "gte",
+            "null",
+            "notnull"
+          ]
+        },
+        "selectorContainer": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "prefix",
+            "like",
+            "notlike",
+            "null",
+            "notnull"
+          ]
+        },
+        "selectorLink": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "prefix",
+            "like",
+            "notlike",
             "null",
             "notnull"
           ]
@@ -30868,6 +31326,24 @@
           "options": null,
           "default": null
         },
+        "managed": {
+          "type": "boolean",
+          "validChars": null,
+          "invalidChars": null,
+          "transform": null,
+          "create": false,
+          "update": false,
+          "nullable": false,
+          "unique": false,
+          "required": false,
+          "readOnCreateOnly": false,
+          "min": null,
+          "max": null,
+          "minLength": null,
+          "maxLength": 255,
+          "options": null,
+          "default": null
+        },
         "name": {
           "type": "string",
           "validChars": null,
@@ -31133,6 +31609,14 @@
             "prefix",
             "like",
             "notlike",
+            "null",
+            "notnull"
+          ]
+        },
+        "managed": {
+          "modifiers": [
+            "eq",
+            "ne",
             "null",
             "notnull"
           ]
