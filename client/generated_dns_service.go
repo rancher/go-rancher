@@ -29,8 +29,6 @@ type DnsService struct {
 
 	Removed string `json:"removed,omitempty" yaml:"removed,omitempty"`
 
-	SelectorContainer string `json:"selectorContainer,omitempty" yaml:"selector_container,omitempty"`
-
 	SelectorLink string `json:"selectorLink,omitempty" yaml:"selector_link,omitempty"`
 
 	State string `json:"state,omitempty" yaml:"state,omitempty"`

@@ -52,6 +52,8 @@ type RancherClient struct {
 	SetLoadBalancerServiceLinksInput         SetLoadBalancerServiceLinksInputOperations
 	LoadBalancerServiceLink                  LoadBalancerServiceLinkOperations
 	PullTask                                 PullTaskOperations
+	ExternalVolumeEvent                      ExternalVolumeEventOperations
+	ExternalStoragePoolEvent                 ExternalStoragePoolEventOperations
 	Account                                  AccountOperations
 	Agent                                    AgentOperations
 	Certificate                              CertificateOperations
@@ -62,6 +64,7 @@ type RancherClient struct {
 	Databasechangelog                        DatabasechangelogOperations
 	Databasechangeloglock                    DatabasechangeloglockOperations
 	Environment                              EnvironmentOperations
+	ExternalEvent                            ExternalEventOperations
 	ExternalHandler                          ExternalHandlerOperations
 	ExternalHandlerExternalHandlerProcessMap ExternalHandlerExternalHandlerProcessMapOperations
 	ExternalHandlerProcess                   ExternalHandlerProcessOperations
@@ -185,6 +188,8 @@ func constructClient() *RancherClient {
 	client.SetLoadBalancerServiceLinksInput = newSetLoadBalancerServiceLinksInputClient(client)
 	client.LoadBalancerServiceLink = newLoadBalancerServiceLinkClient(client)
 	client.PullTask = newPullTaskClient(client)
+	client.ExternalVolumeEvent = newExternalVolumeEventClient(client)
+	client.ExternalStoragePoolEvent = newExternalStoragePoolEventClient(client)
 	client.Account = newAccountClient(client)
 	client.Agent = newAgentClient(client)
 	client.Certificate = newCertificateClient(client)
@@ -195,6 +200,7 @@ func constructClient() *RancherClient {
 	client.Databasechangelog = newDatabasechangelogClient(client)
 	client.Databasechangeloglock = newDatabasechangeloglockClient(client)
 	client.Environment = newEnvironmentClient(client)
+	client.ExternalEvent = newExternalEventClient(client)
 	client.ExternalHandler = newExternalHandlerClient(client)
 	client.ExternalHandlerExternalHandlerProcessMap = newExternalHandlerExternalHandlerProcessMapClient(client)
 	client.ExternalHandlerProcess = newExternalHandlerProcessClient(client)
