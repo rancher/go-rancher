@@ -60,6 +60,11 @@ func (c *{{.typeCapitalized}}Client) List(opts *ListOpts) (*{{.typeCapitalized}}
 func (c *{{.typeCapitalized}}Client) ById(id string) (*{{.typeCapitalized}}, error) {
 	resp := &{{.typeCapitalized}}{}
 	err := c.rancherClient.doById({{.typeUpper}}_TYPE, id, resp)
+	if apiError, ok := err.(*ApiError); ok {
+		if apiError.StatusCode == 404 {
+			return nil, nil
+		}
+	}
 	return resp, err
 }
 
