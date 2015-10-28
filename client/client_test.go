@@ -163,17 +163,9 @@ func TestContainerDelete(t *testing.T) {
 
 func TestContainerNotExists(t *testing.T) {
 	client := newClient(t, PROJECT_URL)
-	_, err := client.Container.ById("badId1")
-	if err == nil {
-		t.Fatal("Should have received an error getting non-existent container.")
-	}
-
-	apiError, ok := err.(*ApiError)
-	if !ok {
-		t.Fatal("Should have received an ApiError.")
-	}
-	if apiError.StatusCode != 404 {
-		t.Fatal("Should have received a 404 and reported it on the ApiError.")
+	ret, err := client.Container.ById("badId1")
+	if ret != nil || err != nil {
+		t.Fatal("Should receive nothing on 404")
 	}
 }
 
