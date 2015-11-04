@@ -4897,6 +4897,13 @@
           "readOnCreateOnly": false,
           "maxLength": 255
         },
+        "fqdn": {
+          "type": "string",
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
         "id": {
           "type": "int",
           "create": false,
@@ -4936,19 +4943,6 @@
           "readOnCreateOnly": false,
           "minLength": 1,
           "maxLength": 255
-        },
-        "previousLaunchConfig": {
-          "type": "launchConfig",
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false
-        },
-        "previousSecondaryLaunchConfigs": {
-          "type": "array[secondaryLaunchConfig]",
-          "create": false,
-          "update": false,
-          "readOnCreateOnly": false
         },
         "removeTime": {
           "type": "date",
@@ -5368,6 +5362,13 @@
           "readOnCreateOnly": false,
           "maxLength": 255
         },
+        "fqdn": {
+          "type": "string",
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
         "id": {
           "type": "int",
           "create": false,
@@ -5407,19 +5408,6 @@
           "readOnCreateOnly": false,
           "minLength": 1,
           "maxLength": 255
-        },
-        "previousLaunchConfig": {
-          "type": "launchConfig",
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false
-        },
-        "previousSecondaryLaunchConfigs": {
-          "type": "array[secondaryLaunchConfig]",
-          "create": false,
-          "update": false,
-          "readOnCreateOnly": false
         },
         "removeTime": {
           "type": "date",
@@ -5824,6 +5812,13 @@
           "readOnCreateOnly": false,
           "maxLength": 255
         },
+        "fqdn": {
+          "type": "string",
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
         "id": {
           "type": "int",
           "create": false,
@@ -5863,19 +5858,6 @@
           "readOnCreateOnly": false,
           "minLength": 1,
           "maxLength": 255
-        },
-        "previousLaunchConfig": {
-          "type": "launchConfig",
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false
-        },
-        "previousSecondaryLaunchConfigs": {
-          "type": "array[secondaryLaunchConfig]",
-          "create": false,
-          "update": false,
-          "readOnCreateOnly": false
         },
         "removeTime": {
           "type": "date",
@@ -9399,6 +9381,262 @@
       ]
     },
     {
+      "id": "externalDnsEvent",
+      "type": "schema",
+      "links": {
+        "self": "http://localhost:8080/v1/schemas/externaldnsevent",
+        "collection": "http://localhost:8080/v1/externaldnsevents"
+      },
+      "actions": {},
+      "pluralName": "externalDnsEvents",
+      "resourceFields": {
+        "accountId": {
+          "type": "reference[account]",
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false,
+          "maxLength": 255
+        },
+        "created": {
+          "type": "date",
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false,
+          "maxLength": 255
+        },
+        "data": {
+          "type": "map[json]",
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false,
+          "maxLength": 65535
+        },
+        "eventType": {
+          "type": "string",
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false,
+          "maxLength": 255
+        },
+        "externalId": {
+          "type": "string",
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false,
+          "maxLength": 255
+        },
+        "id": {
+          "type": "int",
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "kind": {
+          "type": "string",
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false,
+          "maxLength": 255
+        },
+        "reportedAccountId": {
+          "type": "reference[account]",
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false,
+          "maxLength": 255
+        },
+        "state": {
+          "type": "enum",
+          "create": false,
+          "update": false,
+          "readOnCreateOnly": false,
+          "maxLength": 128,
+          "options": [
+            "created",
+            "creating",
+            "removed",
+            "removing",
+            "requested"
+          ]
+        },
+        "transitioning": {
+          "type": "enum",
+          "create": false,
+          "update": false,
+          "readOnCreateOnly": false,
+          "options": [
+            "yes",
+            "no",
+            "error"
+          ]
+        },
+        "transitioningMessage": {
+          "type": "string",
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "transitioningProgress": {
+          "type": "int",
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "uuid": {
+          "type": "string",
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false,
+          "maxLength": 128
+        },
+        "serviceName": {
+          "type": "string",
+          "create": false,
+          "update": false,
+          "readOnCreateOnly": false
+        },
+        "stackName": {
+          "type": "string",
+          "create": false,
+          "update": false,
+          "readOnCreateOnly": false
+        },
+        "fqdn": {
+          "type": "string",
+          "create": false,
+          "update": false,
+          "readOnCreateOnly": false
+        }
+      },
+      "collectionFilters": {
+        "accountId": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "null",
+            "notnull"
+          ]
+        },
+        "created": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "lt",
+            "lte",
+            "gt",
+            "gte",
+            "null",
+            "notnull"
+          ]
+        },
+        "eventType": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "prefix",
+            "like",
+            "notlike",
+            "null",
+            "notnull"
+          ]
+        },
+        "externalId": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "prefix",
+            "like",
+            "notlike",
+            "null",
+            "notnull"
+          ]
+        },
+        "id": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "lt",
+            "lte",
+            "gt",
+            "gte",
+            "null",
+            "notnull"
+          ]
+        },
+        "kind": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "prefix",
+            "like",
+            "notlike",
+            "null",
+            "notnull"
+          ]
+        },
+        "reportedAccountId": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "null",
+            "notnull"
+          ]
+        },
+        "state": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "null",
+            "notnull"
+          ]
+        },
+        "uuid": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "prefix",
+            "like",
+            "notlike",
+            "null",
+            "notnull"
+          ]
+        }
+      },
+      "includeableLinks": [
+        "reportedaccount",
+        "account"
+      ],
+      "resourceActions": {
+        "remove": {
+          "input": null,
+          "output": "externalEvent"
+        },
+        "create": {
+          "input": null,
+          "output": "externalEvent"
+        }
+      },
+      "collectionActions": {},
+      "collectionFields": {},
+      "resourceMethods": [
+        "GET"
+      ],
+      "collectionMethods": [
+        "GET"
+      ]
+    },
+    {
       "id": "account",
       "type": "schema",
       "links": {
@@ -12056,7 +12294,7 @@
         },
         "activateservices": {
           "input": null,
-          "output": null
+          "output": "environment"
         },
         "rollback": {
           "input": null,
@@ -12064,7 +12302,7 @@
         },
         "deactivateservices": {
           "input": null,
-          "output": null
+          "output": "environment"
         },
         "create": {
           "input": null,
@@ -20280,17 +20518,11 @@
           "nullable": true,
           "readOnCreateOnly": false
         },
-        "previousLaunchConfig": {
-          "type": "launchConfig",
+        "fqdn": {
+          "type": "string",
           "create": false,
           "update": false,
           "nullable": true,
-          "readOnCreateOnly": false
-        },
-        "previousSecondaryLaunchConfigs": {
-          "type": "array[secondaryLaunchConfig]",
-          "create": false,
-          "update": false,
           "readOnCreateOnly": false
         },
         "serviceSchemas": {

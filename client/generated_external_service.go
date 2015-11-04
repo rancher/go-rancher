@@ -19,6 +19,8 @@ type ExternalService struct {
 
 	ExternalIpAddresses []string `json:"externalIpAddresses,omitempty" yaml:"external_ip_addresses,omitempty"`
 
+	Fqdn string `json:"fqdn,omitempty" yaml:"fqdn,omitempty"`
+
 	HealthCheck *InstanceHealthCheck `json:"healthCheck,omitempty" yaml:"health_check,omitempty"`
 
 	Hostname string `json:"hostname,omitempty" yaml:"hostname,omitempty"`
@@ -30,10 +32,6 @@ type ExternalService struct {
 	Metadata map[string]interface{} `json:"metadata,omitempty" yaml:"metadata,omitempty"`
 
 	Name string `json:"name,omitempty" yaml:"name,omitempty"`
-
-	PreviousLaunchConfig *LaunchConfig `json:"previousLaunchConfig,omitempty" yaml:"previous_launch_config,omitempty"`
-
-	PreviousSecondaryLaunchConfigs []interface{} `json:"previousSecondaryLaunchConfigs,omitempty" yaml:"previous_secondary_launch_configs,omitempty"`
 
 	RemoveTime string `json:"removeTime,omitempty" yaml:"remove_time,omitempty"`
 
