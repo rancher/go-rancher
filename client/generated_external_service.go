@@ -17,6 +17,8 @@ type ExternalService struct {
 
 	EnvironmentId string `json:"environmentId,omitempty" yaml:"environment_id,omitempty"`
 
+	ExternalId string `json:"externalId,omitempty" yaml:"external_id,omitempty"`
+
 	ExternalIpAddresses []string `json:"externalIpAddresses,omitempty" yaml:"external_ip_addresses,omitempty"`
 
 	Fqdn string `json:"fqdn,omitempty" yaml:"fqdn,omitempty"`
