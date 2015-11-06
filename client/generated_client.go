@@ -57,6 +57,7 @@ type RancherClient struct {
 	PullTask                                 PullTaskOperations
 	ExternalVolumeEvent                      ExternalVolumeEventOperations
 	ExternalStoragePoolEvent                 ExternalStoragePoolEventOperations
+	ExternalServiceEvent                     ExternalServiceEventOperations
 	EnvironmentUpgrade                       EnvironmentUpgradeOperations
 	ExternalDnsEvent                         ExternalDnsEventOperations
 	Account                                  AccountOperations
@@ -198,6 +199,7 @@ func constructClient() *RancherClient {
 	client.PullTask = newPullTaskClient(client)
 	client.ExternalVolumeEvent = newExternalVolumeEventClient(client)
 	client.ExternalStoragePoolEvent = newExternalStoragePoolEventClient(client)
+	client.ExternalServiceEvent = newExternalServiceEventClient(client)
 	client.EnvironmentUpgrade = newEnvironmentUpgradeClient(client)
 	client.ExternalDnsEvent = newExternalDnsEventClient(client)
 	client.Account = newAccountClient(client)
