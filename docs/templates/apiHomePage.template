@@ -1,0 +1,15 @@
+---
+title: API
+layout: rancher-default
+---
+
+## Resource Types
+
+{{if $.schemaMap}}{{range $key, $value := .schemaMap}}{{range $link, $val := $value.Resource.Links}}{{if eq $link "collection"}}<br>
+
+[{{$key}}]({{"{{"}}site.baseurl{{"}}"}}/rancher/api/api-resources/{{$key}}/)|
+---|
+{{$key | getResourceDescription }} |
+
+<br><br>
+{{end}}{{end}}{{end}}{{end}}
