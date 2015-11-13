@@ -59,6 +59,8 @@ type Machine struct {
 
 	TransitioningProgress int64 `json:"transitioningProgress,omitempty" yaml:"transitioning_progress,omitempty"`
 
+	UbiquityConfig *UbiquityConfig `json:"ubiquityConfig,omitempty" yaml:"ubiquity_config,omitempty"`
+
 	Uuid string `json:"uuid,omitempty" yaml:"uuid,omitempty"`
 
 	VirtualboxConfig *VirtualboxConfig `json:"virtualboxConfig,omitempty" yaml:"virtualbox_config,omitempty"`

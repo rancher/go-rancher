@@ -60,6 +60,7 @@ type RancherClient struct {
 	ExternalServiceEvent                     ExternalServiceEventOperations
 	EnvironmentUpgrade                       EnvironmentUpgradeOperations
 	ExternalDnsEvent                         ExternalDnsEventOperations
+	ExternalHostEvent                        ExternalHostEventOperations
 	Account                                  AccountOperations
 	Agent                                    AgentOperations
 	Certificate                              CertificateOperations
@@ -129,6 +130,7 @@ type RancherClient struct {
 	PacketConfig                             PacketConfigOperations
 	RackspaceConfig                          RackspaceConfigOperations
 	SoftlayerConfig                          SoftlayerConfigOperations
+	UbiquityConfig                           UbiquityConfigOperations
 	VirtualboxConfig                         VirtualboxConfigOperations
 	VmwarevcloudairConfig                    VmwarevcloudairConfigOperations
 	VmwarevsphereConfig                      VmwarevsphereConfigOperations
@@ -202,6 +204,7 @@ func constructClient() *RancherClient {
 	client.ExternalServiceEvent = newExternalServiceEventClient(client)
 	client.EnvironmentUpgrade = newEnvironmentUpgradeClient(client)
 	client.ExternalDnsEvent = newExternalDnsEventClient(client)
+	client.ExternalHostEvent = newExternalHostEventClient(client)
 	client.Account = newAccountClient(client)
 	client.Agent = newAgentClient(client)
 	client.Certificate = newCertificateClient(client)
@@ -271,6 +274,7 @@ func constructClient() *RancherClient {
 	client.PacketConfig = newPacketConfigClient(client)
 	client.RackspaceConfig = newRackspaceConfigClient(client)
 	client.SoftlayerConfig = newSoftlayerConfigClient(client)
+	client.UbiquityConfig = newUbiquityConfigClient(client)
 	client.VirtualboxConfig = newVirtualboxConfigClient(client)
 	client.VmwarevcloudairConfig = newVmwarevcloudairConfigClient(client)
 	client.VmwarevsphereConfig = newVmwarevsphereConfigClient(client)
