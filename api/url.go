@@ -75,11 +75,7 @@ func (u *urlBuilder) Current() string {
 
 func (u *urlBuilder) Collection(resourceType string) string {
 	plural := u.getPluralName(resourceType)
-	if plural == "" {
-		return ""
-	} else {
-		return u.constructBasicUrl(true, plural)
-	}
+	return u.constructBasicUrl(true, plural)
 }
 
 func (u *urlBuilder) Link(resource client.Resource, name string) string {
@@ -91,7 +87,7 @@ func (u *urlBuilder) Link(resource client.Resource, name string) string {
 }
 
 func (u *urlBuilder) ReferenceLink(resource client.Resource) string {
-	return u.ReferenceByIdLink(u.getPluralName(resource.Type), resource.Id)
+	return u.ReferenceByIdLink(resource.Type, resource.Id)
 }
 
 func (u *urlBuilder) ReferenceByIdLink(resourceType string, id string) string {
@@ -127,6 +123,9 @@ func (u *urlBuilder) constructBasicUrl(lowercase bool, parts ...string) string {
 
 func (u *urlBuilder) getPluralName(resourceType string) string {
 	schema := u.schemas.Schema(resourceType)
+	if schema.PluralName == "" {
+		return resourceType
+	}
 	return schema.PluralName
 }
 
