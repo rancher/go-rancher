@@ -75,7 +75,7 @@ func (u *urlBuilder) Current() string {
 
 func (u *urlBuilder) Collection(resourceType string) string {
 	plural := u.getPluralName(resourceType)
-	return u.constructBasicUrl(true, plural)
+	return u.constructBasicUrl(plural)
 }
 
 func (u *urlBuilder) Link(resource client.Resource, name string) string {
@@ -83,7 +83,7 @@ func (u *urlBuilder) Link(resource client.Resource, name string) string {
 		return ""
 	}
 
-	return u.constructBasicUrl(true, u.getPluralName(resource.Type), resource.Id, strings.ToLower(name))
+	return u.constructBasicUrl(u.getPluralName(resource.Type), resource.Id, strings.ToLower(name))
 }
 
 func (u *urlBuilder) ReferenceLink(resource client.Resource) string {
@@ -91,14 +91,14 @@ func (u *urlBuilder) ReferenceLink(resource client.Resource) string {
 }
 
 func (u *urlBuilder) ReferenceByIdLink(resourceType string, id string) string {
-	return u.constructBasicUrl(true, u.getPluralName(resourceType), id)
+	return u.constructBasicUrl(u.getPluralName(resourceType), id)
 }
 
 func (u *urlBuilder) Version(version string) string {
 	return fmt.Sprintf("%s/%s", u.responseUrlBase, version)
 }
 
-func (u *urlBuilder) constructBasicUrl(lowercase bool, parts ...string) string {
+func (u *urlBuilder) constructBasicUrl(parts ...string) string {
 	buffer := bytes.Buffer{}
 
 	buffer.WriteString(u.responseUrlBase)
@@ -114,19 +114,15 @@ func (u *urlBuilder) constructBasicUrl(lowercase bool, parts ...string) string {
 		buffer.WriteString(part)
 	}
 
-	if lowercase {
-		return strings.ToLower(buffer.String())
-	} else {
-		return buffer.String()
-	}
+	return buffer.String()
 }
 
 func (u *urlBuilder) getPluralName(resourceType string) string {
 	schema := u.schemas.Schema(resourceType)
 	if schema.PluralName == "" {
-		return resourceType
+		return strings.ToLower(resourceType)
 	}
-	return schema.PluralName
+	return strings.ToLower(schema.PluralName)
 }
 
 // Constructs the request URL based off of standard headers in the request, falling back to the HttpServletRequest.getRequestURL()
