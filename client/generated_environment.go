@@ -25,6 +25,8 @@ type Environment struct {
 
 	Name string `json:"name,omitempty" yaml:"name,omitempty"`
 
+	Outputs map[string]interface{} `json:"outputs,omitempty" yaml:"outputs,omitempty"`
+
 	PreviousExternalId string `json:"previousExternalId,omitempty" yaml:"previous_external_id,omitempty"`
 
 	RancherCompose string `json:"rancherCompose,omitempty" yaml:"rancher_compose,omitempty"`
@@ -32,6 +34,8 @@ type Environment struct {
 	RemoveTime string `json:"removeTime,omitempty" yaml:"remove_time,omitempty"`
 
 	Removed string `json:"removed,omitempty" yaml:"removed,omitempty"`
+
+	StartOnCreate bool `json:"startOnCreate,omitempty" yaml:"start_on_create,omitempty"`
 
 	State string `json:"state,omitempty" yaml:"state,omitempty"`
 
@@ -61,6 +65,8 @@ type EnvironmentOperations interface {
 	Delete(container *Environment) error
 
 	ActionActivateservices(*Environment) (*Environment, error)
+
+	ActionAddoutputs(*Environment, *AddOutputsInput) (*Environment, error)
 
 	ActionCancelrollback(*Environment) (*Environment, error)
 
@@ -129,6 +135,15 @@ func (c *EnvironmentClient) ActionActivateservices(resource *Environment) (*Envi
 	resp := &Environment{}
 
 	err := c.rancherClient.doAction(ENVIRONMENT_TYPE, "activateservices", &resource.Resource, nil, resp)
+
+	return resp, err
+}
+
+func (c *EnvironmentClient) ActionAddoutputs(resource *Environment, input *AddOutputsInput) (*Environment, error) {
+
+	resp := &Environment{}
+
+	err := c.rancherClient.doAction(ENVIRONMENT_TYPE, "addoutputs", &resource.Resource, input, resp)
 
 	return resp, err
 }
