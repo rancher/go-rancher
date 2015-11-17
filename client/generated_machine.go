@@ -25,7 +25,11 @@ type Machine struct {
 
 	DigitaloceanConfig *DigitaloceanConfig `json:"digitaloceanConfig,omitempty" yaml:"digitalocean_config,omitempty"`
 
+	DockerVersion string `json:"dockerVersion,omitempty" yaml:"docker_version,omitempty"`
+
 	Driver string `json:"driver,omitempty" yaml:"driver,omitempty"`
+
+	EngineOpts []string `json:"engineOpts,omitempty" yaml:"engine_opts,omitempty"`
 
 	ExoscaleConfig *ExoscaleConfig `json:"exoscaleConfig,omitempty" yaml:"exoscale_config,omitempty"`
 

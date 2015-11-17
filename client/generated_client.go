@@ -21,6 +21,7 @@ type RancherClient struct {
 	InServiceUpgradeStrategy                 InServiceUpgradeStrategyOperations
 	ToServiceUpgradeStrategy                 ToServiceUpgradeStrategyOperations
 	AddLoadBalancerInput                     AddLoadBalancerInputOperations
+	AddOutputsInput                          AddOutputsInputOperations
 	AddRemoveClusterHostInput                AddRemoveClusterHostInputOperations
 	AddRemoveLoadBalancerHostInput           AddRemoveLoadBalancerHostInputOperations
 	AddRemoveLoadBalancerListenerInput       AddRemoveLoadBalancerListenerInputOperations
@@ -165,6 +166,7 @@ func constructClient() *RancherClient {
 	client.InServiceUpgradeStrategy = newInServiceUpgradeStrategyClient(client)
 	client.ToServiceUpgradeStrategy = newToServiceUpgradeStrategyClient(client)
 	client.AddLoadBalancerInput = newAddLoadBalancerInputClient(client)
+	client.AddOutputsInput = newAddOutputsInputClient(client)
 	client.AddRemoveClusterHostInput = newAddRemoveClusterHostInputClient(client)
 	client.AddRemoveLoadBalancerHostInput = newAddRemoveLoadBalancerHostInputClient(client)
 	client.AddRemoveLoadBalancerListenerInput = newAddRemoveLoadBalancerListenerInputClient(client)
