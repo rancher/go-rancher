@@ -29,7 +29,17 @@ type Machine struct {
 
 	Driver string `json:"driver,omitempty" yaml:"driver,omitempty"`
 
+	EngineEnv []string `json:"engineEnv,omitempty" yaml:"engine_env,omitempty"`
+
+	EngineInsecureRegistry []string `json:"engineInsecureRegistry,omitempty" yaml:"engine_insecure_registry,omitempty"`
+
+	EngineLabel []string `json:"engineLabel,omitempty" yaml:"engine_label,omitempty"`
+
 	EngineOpts []string `json:"engineOpts,omitempty" yaml:"engine_opts,omitempty"`
+
+	EngineRegistryMirror []string `json:"engineRegistryMirror,omitempty" yaml:"engine_registry_mirror,omitempty"`
+
+	EngineStorageDriver string `json:"engineStorageDriver,omitempty" yaml:"engine_storage_driver,omitempty"`
 
 	ExoscaleConfig *ExoscaleConfig `json:"exoscaleConfig,omitempty" yaml:"exoscale_config,omitempty"`
 
