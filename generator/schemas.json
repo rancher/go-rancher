@@ -315,76 +315,6 @@
       ]
     },
     {
-      "id": "loadBalancerHealthCheck",
-      "type": "schema",
-      "links": {
-        "self": "http://localhost:8080/v1/schemas/loadbalancerhealthcheck"
-      },
-      "actions": {},
-      "pluralName": "loadBalancerHealthChecks",
-      "resourceFields": {
-        "healthyThreshold": {
-          "type": "int",
-          "create": true,
-          "update": true,
-          "nullable": true,
-          "readOnCreateOnly": false
-        },
-        "interval": {
-          "type": "int",
-          "create": true,
-          "update": true,
-          "nullable": true,
-          "readOnCreateOnly": false
-        },
-        "name": {
-          "type": "string",
-          "create": true,
-          "update": true,
-          "readOnCreateOnly": false
-        },
-        "port": {
-          "type": "int",
-          "create": true,
-          "update": true,
-          "nullable": true,
-          "readOnCreateOnly": false
-        },
-        "requestLine": {
-          "type": "string",
-          "create": true,
-          "update": true,
-          "readOnCreateOnly": false
-        },
-        "responseTimeout": {
-          "type": "int",
-          "create": true,
-          "update": true,
-          "nullable": true,
-          "readOnCreateOnly": false
-        },
-        "unhealthyThreshold": {
-          "type": "int",
-          "create": true,
-          "update": true,
-          "nullable": true,
-          "readOnCreateOnly": false
-        }
-      },
-      "collectionFilters": {},
-      "includeableLinks": [],
-      "resourceActions": {},
-      "collectionActions": {},
-      "collectionFields": {},
-      "resourceMethods": [
-        "GET",
-        "PUT"
-      ],
-      "collectionMethods": [
-        "POST"
-      ]
-    },
-    {
       "id": "loadBalancerCookieStickinessPolicy",
       "type": "schema",
       "links": {
@@ -528,62 +458,6 @@
       "resourceMethods": [
         "GET",
         "PUT"
-      ],
-      "collectionMethods": [
-        "POST"
-      ]
-    },
-    {
-      "id": "globalLoadBalancerPolicy",
-      "type": "schema",
-      "links": {
-        "self": "http://localhost:8080/v1/schemas/globalloadbalancerpolicy"
-      },
-      "actions": {},
-      "pluralName": "globalLoadBalancerPolicys",
-      "resourceFields": {
-        "name": {
-          "type": "string",
-          "create": true,
-          "update": true,
-          "readOnCreateOnly": false
-        }
-      },
-      "collectionFilters": {},
-      "includeableLinks": [],
-      "resourceActions": {},
-      "collectionActions": {},
-      "collectionFields": {},
-      "resourceMethods": [
-        "GET"
-      ],
-      "collectionMethods": [
-        "POST"
-      ]
-    },
-    {
-      "id": "globalLoadBalancerHealthCheck",
-      "type": "schema",
-      "links": {
-        "self": "http://localhost:8080/v1/schemas/globalloadbalancerhealthcheck"
-      },
-      "actions": {},
-      "pluralName": "globalLoadBalancerHealthChecks",
-      "resourceFields": {
-        "name": {
-          "type": "string",
-          "create": true,
-          "update": true,
-          "readOnCreateOnly": false
-        }
-      },
-      "collectionFilters": {},
-      "includeableLinks": [],
-      "resourceActions": {},
-      "collectionActions": {},
-      "collectionFields": {},
-      "resourceMethods": [
-        "GET"
       ],
       "collectionMethods": [
         "POST"
@@ -983,26 +857,46 @@
       ]
     },
     {
-      "id": "addLoadBalancerInput",
+      "id": "publicEndpoint",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/addloadbalancerinput"
+        "self": "http://localhost:8080/v1/schemas/publicendpoint"
       },
       "actions": {},
-      "pluralName": "addLoadBalancerInputs",
+      "pluralName": "publicEndpoints",
       "resourceFields": {
-        "loadBalancerId": {
-          "type": "reference[loadBalancer]",
-          "create": true,
+        "hostId": {
+          "type": "reference[host]",
+          "transform": "",
+          "create": false,
           "update": false,
-          "required": true,
           "readOnCreateOnly": false
         },
-        "weight": {
-          "type": "int",
-          "create": true,
+        "instanceId": {
+          "type": "reference[instance]",
+          "transform": "",
+          "create": false,
           "update": false,
-          "required": true,
+          "readOnCreateOnly": false
+        },
+        "ipAddress": {
+          "type": "string",
+          "create": false,
+          "update": false,
+          "readOnCreateOnly": false
+        },
+        "port": {
+          "type": "int",
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "serviceId": {
+          "type": "reference[service]",
+          "transform": "",
+          "create": false,
+          "update": false,
           "readOnCreateOnly": false
         }
       },
@@ -1014,9 +908,7 @@
       "resourceMethods": [
         "GET"
       ],
-      "collectionMethods": [
-        "POST"
-      ]
+      "collectionMethods": []
     },
     {
       "id": "addOutputsInput",
@@ -1061,93 +953,6 @@
           "type": "reference[host]",
           "create": true,
           "update": false,
-          "readOnCreateOnly": false
-        }
-      },
-      "collectionFilters": {},
-      "includeableLinks": [],
-      "resourceActions": {},
-      "collectionActions": {},
-      "collectionFields": {},
-      "resourceMethods": [
-        "GET"
-      ],
-      "collectionMethods": [
-        "POST"
-      ]
-    },
-    {
-      "id": "addRemoveLoadBalancerHostInput",
-      "type": "schema",
-      "links": {
-        "self": "http://localhost:8080/v1/schemas/addremoveloadbalancerhostinput"
-      },
-      "actions": {},
-      "pluralName": "addRemoveLoadBalancerHostInputs",
-      "resourceFields": {
-        "hostId": {
-          "type": "reference[host]",
-          "create": true,
-          "update": false,
-          "required": true,
-          "readOnCreateOnly": false
-        }
-      },
-      "collectionFilters": {},
-      "includeableLinks": [],
-      "resourceActions": {},
-      "collectionActions": {},
-      "collectionFields": {},
-      "resourceMethods": [
-        "GET"
-      ],
-      "collectionMethods": [
-        "POST"
-      ]
-    },
-    {
-      "id": "addRemoveLoadBalancerListenerInput",
-      "type": "schema",
-      "links": {
-        "self": "http://localhost:8080/v1/schemas/addremoveloadbalancerlistenerinput"
-      },
-      "actions": {},
-      "pluralName": "addRemoveLoadBalancerListenerInputs",
-      "resourceFields": {
-        "loadBalancerListenerId": {
-          "type": "reference[loadBalancerListener]",
-          "create": true,
-          "update": false,
-          "required": true,
-          "readOnCreateOnly": false
-        }
-      },
-      "collectionFilters": {},
-      "includeableLinks": [],
-      "resourceActions": {},
-      "collectionActions": {},
-      "collectionFields": {},
-      "resourceMethods": [
-        "GET"
-      ],
-      "collectionMethods": [
-        "POST"
-      ]
-    },
-    {
-      "id": "addRemoveLoadBalancerTargetInput",
-      "type": "schema",
-      "links": {
-        "self": "http://localhost:8080/v1/schemas/addremoveloadbalancertargetinput"
-      },
-      "actions": {},
-      "pluralName": "addRemoveLoadBalancerTargetInputs",
-      "resourceFields": {
-        "loadBalancerTarget": {
-          "type": "loadBalancerTarget",
-          "create": true,
-          "update": false,
-          "required": true,
           "readOnCreateOnly": false
         }
       },
@@ -1707,6 +1512,13 @@
           "readOnCreateOnly": false,
           "maxLength": 255
         },
+        "publicEndpoints": {
+          "type": "array[publicEndpoint]",
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
         "removeTime": {
           "type": "date",
           "create": false,
@@ -1973,19 +1785,17 @@
         }
       },
       "includeableLinks": [
+        "ipaddresses",
         "storagepools",
+        "clusters",
         "physicalhost",
         "hostlabels",
-        "containerevents",
-        "loadbalancerhostmaps",
-        "instances",
-        "agent",
-        "loadbalancers",
-        "ipaddresses",
-        "clusters",
-        "hosts",
         "serviceevents",
-        "account"
+        "hosts",
+        "containerevents",
+        "account",
+        "instances",
+        "agent"
       ],
       "resourceActions": {
         "update": {
@@ -3082,7 +2892,6 @@
         "services",
         "networkcontainer",
         "instancelinks",
-        "loadbalancertargets",
         "volumes",
         "targetinstancelinks",
         "instances",
@@ -3092,8 +2901,8 @@
         "ports",
         "mounts",
         "serviceexposemaps",
-        "serviceevents",
         "hosts",
+        "serviceevents",
         "account",
         "credentials"
       ],
@@ -3580,38 +3389,31 @@
         }
       },
       "includeableLinks": [
+        "networks",
+        "services",
+        "storagepools",
         "serviceconsumemaps",
         "externalevents",
         "agents",
-        "globalloadbalancers",
+        "configitemstatuses",
+        "labels",
+        "environments",
         "instancelinks",
         "containerevents",
         "volumes",
         "instances",
-        "loadbalancers",
-        "loadbalancerconfiglistenermaps",
-        "ipaddresses",
-        "loadbalancerconfigs",
-        "serviceexposemaps",
-        "hosts",
-        "physicalhosts",
-        "credentials",
-        "snapshots",
-        "certificates",
-        "networks",
-        "services",
-        "storagepools",
-        "configitemstatuses",
-        "labels",
-        "environments",
-        "loadbalancertargets",
-        "loadbalancerhostmaps",
         "ports",
-        "loadbalancerlisteners",
+        "ipaddresses",
         "mounts",
         "projectmembers",
+        "serviceexposemaps",
         "serviceevents",
-        "images"
+        "physicalhosts",
+        "hosts",
+        "images",
+        "credentials",
+        "snapshots",
+        "certificates"
       ],
       "resourceActions": {
         "update": {
@@ -4744,122 +4546,6 @@
       ]
     },
     {
-      "id": "removeLoadBalancerInput",
-      "type": "schema",
-      "links": {
-        "self": "http://localhost:8080/v1/schemas/removeloadbalancerinput"
-      },
-      "actions": {},
-      "pluralName": "removeLoadBalancerInputs",
-      "resourceFields": {
-        "loadBalancerId": {
-          "type": "reference[loadBalancer]",
-          "create": true,
-          "update": false,
-          "required": true,
-          "readOnCreateOnly": false
-        }
-      },
-      "collectionFilters": {},
-      "includeableLinks": [],
-      "resourceActions": {},
-      "collectionActions": {},
-      "collectionFields": {},
-      "resourceMethods": [
-        "GET"
-      ],
-      "collectionMethods": [
-        "POST"
-      ]
-    },
-    {
-      "id": "setLoadBalancerHostsInput",
-      "type": "schema",
-      "links": {
-        "self": "http://localhost:8080/v1/schemas/setloadbalancerhostsinput"
-      },
-      "actions": {},
-      "pluralName": "setLoadBalancerHostsInputs",
-      "resourceFields": {
-        "hostIds": {
-          "type": "array[reference[host]]",
-          "create": true,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false
-        }
-      },
-      "collectionFilters": {},
-      "includeableLinks": [],
-      "resourceActions": {},
-      "collectionActions": {},
-      "collectionFields": {},
-      "resourceMethods": [
-        "GET"
-      ],
-      "collectionMethods": [
-        "POST"
-      ]
-    },
-    {
-      "id": "setLoadBalancerListenersInput",
-      "type": "schema",
-      "links": {
-        "self": "http://localhost:8080/v1/schemas/setloadbalancerlistenersinput"
-      },
-      "actions": {},
-      "pluralName": "setLoadBalancerListenersInputs",
-      "resourceFields": {
-        "loadBalancerListenerIds": {
-          "type": "array[reference[loadBalancerListener]]",
-          "create": true,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false
-        }
-      },
-      "collectionFilters": {},
-      "includeableLinks": [],
-      "resourceActions": {},
-      "collectionActions": {},
-      "collectionFields": {},
-      "resourceMethods": [
-        "GET"
-      ],
-      "collectionMethods": [
-        "POST"
-      ]
-    },
-    {
-      "id": "setLoadBalancerTargetsInput",
-      "type": "schema",
-      "links": {
-        "self": "http://localhost:8080/v1/schemas/setloadbalancertargetsinput"
-      },
-      "actions": {},
-      "pluralName": "setLoadBalancerTargetsInputs",
-      "resourceFields": {
-        "loadBalancerTargets": {
-          "type": "array[loadBalancerTarget]",
-          "create": true,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false
-        }
-      },
-      "collectionFilters": {},
-      "includeableLinks": [],
-      "resourceActions": {},
-      "collectionActions": {},
-      "collectionFields": {},
-      "resourceMethods": [
-        "GET"
-      ],
-      "collectionMethods": [
-        "POST"
-      ]
-    },
-    {
       "id": "setProjectMembersInput",
       "type": "schema",
       "links": {
@@ -5021,7 +4707,14 @@
           "required": true,
           "readOnCreateOnly": false,
           "minLength": 1,
-          "maxLength": 255
+          "maxLength": 63
+        },
+        "publicEndpoints": {
+          "type": "array[publicEndpoint]",
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false
         },
         "removeTime": {
           "type": "date",
@@ -5325,16 +5018,13 @@
         }
       },
       "includeableLinks": [
-        "loadbalancerlisteners",
         "environment",
-        "loadbalancerconfigs",
         "consumedservices",
         "configitemstatuses",
         "serviceexposemaps",
         "account",
         "instances",
-        "consumedbyservices",
-        "loadbalancers"
+        "consumedbyservices"
       ],
       "resourceActions": {
         "update": {
@@ -5505,7 +5195,7 @@
           "required": true,
           "readOnCreateOnly": false,
           "minLength": 1,
-          "maxLength": 255
+          "maxLength": 63
         },
         "removeTime": {
           "type": "date",
@@ -5522,14 +5212,6 @@
           "nullable": true,
           "readOnCreateOnly": false,
           "maxLength": 255
-        },
-        "selectorLink": {
-          "type": "string",
-          "create": true,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false,
-          "maxLength": 4096
         },
         "state": {
           "type": "enum",
@@ -5794,16 +5476,13 @@
         }
       },
       "includeableLinks": [
-        "loadbalancerlisteners",
         "environment",
-        "loadbalancerconfigs",
         "consumedservices",
         "configitemstatuses",
         "serviceexposemaps",
         "account",
         "instances",
-        "consumedbyservices",
-        "loadbalancers"
+        "consumedbyservices"
       ],
       "resourceActions": {
         "update": {
@@ -5974,7 +5653,7 @@
           "required": true,
           "readOnCreateOnly": false,
           "minLength": 1,
-          "maxLength": 255
+          "maxLength": 63
         },
         "removeTime": {
           "type": "date",
@@ -6242,16 +5921,13 @@
         }
       },
       "includeableLinks": [
-        "loadbalancerlisteners",
         "environment",
-        "loadbalancerconfigs",
         "consumedservices",
         "configitemstatuses",
         "serviceexposemaps",
         "account",
         "instances",
-        "consumedbyservices",
-        "loadbalancers"
+        "consumedbyservices"
       ],
       "resourceActions": {
         "update": {
@@ -7329,7 +7005,6 @@
         "services",
         "networkcontainer",
         "instancelinks",
-        "loadbalancertargets",
         "volumes",
         "targetinstancelinks",
         "instances",
@@ -7339,8 +7014,8 @@
         "ports",
         "mounts",
         "serviceexposemaps",
-        "serviceevents",
         "hosts",
+        "serviceevents",
         "account",
         "credentials"
       ],
@@ -7825,7 +7500,8 @@
           "update": false,
           "required": true,
           "readOnCreateOnly": false,
-          "maxLength": 255
+          "minLength": 1,
+          "maxLength": 63
         },
         "nativeContainer": {
           "type": "boolean",
@@ -8442,7 +8118,6 @@
         "services",
         "networkcontainer",
         "instancelinks",
-        "loadbalancertargets",
         "volumes",
         "targetinstancelinks",
         "instances",
@@ -8452,8 +8127,8 @@
         "ports",
         "mounts",
         "serviceexposemaps",
-        "serviceevents",
         "hosts",
+        "serviceevents",
         "account",
         "credentials"
       ],
@@ -10271,6 +9946,46 @@
       ]
     },
     {
+      "id": "loadBalancerConfig",
+      "type": "schema",
+      "links": {
+        "self": "http://localhost:8080/v1/schemas/loadbalancerconfig",
+        "collection": "http://localhost:8080/v1/loadbalancerconfigs"
+      },
+      "actions": {},
+      "pluralName": "loadBalancerConfigs",
+      "resourceFields": {
+        "appCookieStickinessPolicy": {
+          "type": "loadBalancerAppCookieStickinessPolicy",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "lbCookieStickinessPolicy": {
+          "type": "loadBalancerCookieStickinessPolicy",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        }
+      },
+      "collectionFilters": {},
+      "includeableLinks": [],
+      "resourceActions": {},
+      "collectionActions": {},
+      "collectionFields": {},
+      "resourceMethods": [
+        "GET",
+        "PUT",
+        "DELETE"
+      ],
+      "collectionMethods": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
       "id": "account",
       "type": "schema",
       "links": {
@@ -10541,38 +10256,31 @@
         }
       },
       "includeableLinks": [
+        "networks",
+        "services",
+        "storagepools",
         "serviceconsumemaps",
         "externalevents",
         "agents",
-        "globalloadbalancers",
+        "configitemstatuses",
+        "labels",
+        "environments",
         "instancelinks",
         "containerevents",
         "volumes",
         "instances",
-        "loadbalancers",
-        "loadbalancerconfiglistenermaps",
-        "ipaddresses",
-        "loadbalancerconfigs",
-        "serviceexposemaps",
-        "hosts",
-        "physicalhosts",
-        "credentials",
-        "snapshots",
-        "certificates",
-        "networks",
-        "services",
-        "storagepools",
-        "configitemstatuses",
-        "labels",
-        "environments",
-        "loadbalancertargets",
-        "loadbalancerhostmaps",
         "ports",
-        "loadbalancerlisteners",
+        "ipaddresses",
         "mounts",
         "projectmembers",
+        "serviceexposemaps",
         "serviceevents",
-        "images"
+        "physicalhosts",
+        "hosts",
+        "images",
+        "credentials",
+        "snapshots",
+        "certificates"
       ],
       "resourceActions": {
         "update": {
@@ -12676,7 +12384,7 @@
           "required": true,
           "readOnCreateOnly": false,
           "minLength": 1,
-          "maxLength": 255
+          "maxLength": 63
         },
         "removeTime": {
           "type": "date",
@@ -14139,294 +13847,6 @@
       ]
     },
     {
-      "id": "globalLoadBalancer",
-      "type": "schema",
-      "links": {
-        "self": "http://localhost:8080/v1/schemas/globalloadbalancer",
-        "collection": "http://localhost:8080/v1/globalloadbalancers"
-      },
-      "actions": {},
-      "pluralName": "globalLoadBalancers",
-      "resourceFields": {
-        "accountId": {
-          "type": "reference[account]",
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false,
-          "maxLength": 255
-        },
-        "created": {
-          "type": "date",
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false,
-          "maxLength": 255
-        },
-        "data": {
-          "type": "map[json]",
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false,
-          "maxLength": 16777215
-        },
-        "description": {
-          "type": "string",
-          "create": true,
-          "update": true,
-          "nullable": true,
-          "readOnCreateOnly": false,
-          "maxLength": 1024
-        },
-        "id": {
-          "type": "int",
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false
-        },
-        "kind": {
-          "type": "string",
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false,
-          "maxLength": 255
-        },
-        "name": {
-          "type": "string",
-          "create": true,
-          "update": true,
-          "nullable": true,
-          "readOnCreateOnly": false,
-          "maxLength": 255
-        },
-        "removeTime": {
-          "type": "date",
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false,
-          "maxLength": 255
-        },
-        "removed": {
-          "type": "date",
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false,
-          "maxLength": 255
-        },
-        "state": {
-          "type": "enum",
-          "create": false,
-          "update": false,
-          "readOnCreateOnly": false,
-          "maxLength": 128,
-          "options": [
-            "activating",
-            "active",
-            "removed",
-            "removing",
-            "requested",
-            "updating-active"
-          ]
-        },
-        "uuid": {
-          "type": "string",
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false,
-          "maxLength": 128
-        },
-        "transitioning": {
-          "type": "enum",
-          "create": false,
-          "update": false,
-          "readOnCreateOnly": false,
-          "options": [
-            "yes",
-            "no",
-            "error"
-          ]
-        },
-        "transitioningMessage": {
-          "type": "string",
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false
-        },
-        "transitioningProgress": {
-          "type": "int",
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false
-        },
-        "globalLoadBalancerHealthCheck": {
-          "type": "array[globalLoadBalancerHealthCheck]",
-          "create": true,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false
-        },
-        "globalLoadBalancerPolicy": {
-          "type": "array[globalLoadBalancerPolicy]",
-          "create": true,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false
-        }
-      },
-      "collectionFilters": {
-        "accountId": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "null",
-            "notnull"
-          ]
-        },
-        "created": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "lt",
-            "lte",
-            "gt",
-            "gte",
-            "null",
-            "notnull"
-          ]
-        },
-        "description": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "prefix",
-            "like",
-            "notlike",
-            "null",
-            "notnull"
-          ]
-        },
-        "id": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "lt",
-            "lte",
-            "gt",
-            "gte",
-            "null",
-            "notnull"
-          ]
-        },
-        "kind": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "prefix",
-            "like",
-            "notlike",
-            "null",
-            "notnull"
-          ]
-        },
-        "name": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "prefix",
-            "like",
-            "notlike",
-            "null",
-            "notnull"
-          ]
-        },
-        "removeTime": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "lt",
-            "lte",
-            "gt",
-            "gte",
-            "null",
-            "notnull"
-          ]
-        },
-        "removed": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "lt",
-            "lte",
-            "gt",
-            "gte",
-            "null",
-            "notnull"
-          ]
-        },
-        "state": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "null",
-            "notnull"
-          ]
-        },
-        "uuid": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "prefix",
-            "like",
-            "notlike",
-            "null",
-            "notnull"
-          ]
-        }
-      },
-      "includeableLinks": [
-        "account",
-        "loadbalancers"
-      ],
-      "resourceActions": {
-        "remove": {
-          "input": null,
-          "output": "globalLoadBalancer"
-        },
-        "addloadbalancer": {
-          "input": "addLoadBalancerInput",
-          "output": "globalLoadBalancer"
-        },
-        "removeloadbalancer": {
-          "input": "removeLoadBalancerInput",
-          "output": "globalLoadBalancer"
-        },
-        "create": {
-          "input": null,
-          "output": "globalLoadBalancer"
-        }
-      },
-      "collectionActions": {},
-      "collectionFields": {},
-      "resourceMethods": [
-        "GET",
-        "PUT",
-        "DELETE"
-      ],
-      "collectionMethods": [
-        "GET",
-        "POST"
-      ]
-    },
-    {
       "id": "host",
       "type": "schema",
       "links": {
@@ -14612,6 +14032,13 @@
           "create": false,
           "update": true,
           "readOnCreateOnly": false
+        },
+        "publicEndpoints": {
+          "type": "array[publicEndpoint]",
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false
         }
       },
       "collectionFilters": {
@@ -14795,19 +14222,17 @@
         }
       },
       "includeableLinks": [
+        "ipaddresses",
         "storagepools",
+        "clusters",
         "physicalhost",
         "hostlabels",
-        "containerevents",
-        "loadbalancerhostmaps",
-        "instances",
-        "agent",
-        "loadbalancers",
-        "ipaddresses",
-        "clusters",
-        "hosts",
         "serviceevents",
-        "account"
+        "hosts",
+        "containerevents",
+        "account",
+        "instances",
+        "agent"
       ],
       "resourceActions": {
         "update": {
@@ -15727,7 +15152,6 @@
       "includeableLinks": [
         "services",
         "instancelinks",
-        "loadbalancertargets",
         "volumes",
         "targetinstancelinks",
         "instances",
@@ -16850,2011 +16274,6 @@
         "create": {
           "input": null,
           "output": "label"
-        }
-      },
-      "collectionActions": {},
-      "collectionFields": {},
-      "resourceMethods": [
-        "GET"
-      ],
-      "collectionMethods": [
-        "GET"
-      ]
-    },
-    {
-      "id": "loadBalancer",
-      "type": "schema",
-      "links": {
-        "self": "http://localhost:8080/v1/schemas/loadbalancer",
-        "collection": "http://localhost:8080/v1/loadbalancers"
-      },
-      "actions": {},
-      "pluralName": "loadBalancers",
-      "resourceFields": {
-        "accountId": {
-          "type": "reference[account]",
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false,
-          "maxLength": 255
-        },
-        "created": {
-          "type": "date",
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false,
-          "maxLength": 255
-        },
-        "data": {
-          "type": "map[json]",
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false,
-          "maxLength": 16777215
-        },
-        "description": {
-          "type": "string",
-          "create": true,
-          "update": true,
-          "nullable": true,
-          "readOnCreateOnly": false,
-          "maxLength": 1024
-        },
-        "globalLoadBalancerId": {
-          "type": "reference[globalLoadBalancer]",
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false,
-          "maxLength": 255
-        },
-        "id": {
-          "type": "int",
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false
-        },
-        "kind": {
-          "type": "string",
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false,
-          "maxLength": 255
-        },
-        "loadBalancerConfigId": {
-          "type": "reference[loadBalancerConfig]",
-          "create": true,
-          "update": false,
-          "required": true,
-          "readOnCreateOnly": false,
-          "maxLength": 255
-        },
-        "name": {
-          "type": "string",
-          "create": true,
-          "update": true,
-          "nullable": true,
-          "readOnCreateOnly": false,
-          "maxLength": 255
-        },
-        "removeTime": {
-          "type": "date",
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false,
-          "maxLength": 255
-        },
-        "removed": {
-          "type": "date",
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false,
-          "maxLength": 255
-        },
-        "serviceId": {
-          "type": "reference[service]",
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false,
-          "maxLength": 255
-        },
-        "state": {
-          "type": "enum",
-          "create": false,
-          "update": false,
-          "readOnCreateOnly": false,
-          "maxLength": 128,
-          "options": [
-            "activating",
-            "active",
-            "deactivating",
-            "inactive",
-            "removed",
-            "removing",
-            "requested",
-            "updating-active"
-          ]
-        },
-        "uuid": {
-          "type": "string",
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false,
-          "maxLength": 128
-        },
-        "weight": {
-          "type": "int",
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false,
-          "maxLength": 255
-        },
-        "transitioning": {
-          "type": "enum",
-          "create": false,
-          "update": false,
-          "readOnCreateOnly": false,
-          "options": [
-            "yes",
-            "no",
-            "error"
-          ]
-        },
-        "transitioningMessage": {
-          "type": "string",
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false
-        },
-        "transitioningProgress": {
-          "type": "int",
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false
-        },
-        "certificateIds": {
-          "type": "array[reference[certificate]]",
-          "create": true,
-          "update": true,
-          "nullable": true,
-          "readOnCreateOnly": false
-        },
-        "defaultCertificateId": {
-          "type": "reference[certificate]",
-          "create": true,
-          "update": true,
-          "nullable": true,
-          "readOnCreateOnly": false
-        }
-      },
-      "collectionFilters": {
-        "accountId": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "null",
-            "notnull"
-          ]
-        },
-        "created": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "lt",
-            "lte",
-            "gt",
-            "gte",
-            "null",
-            "notnull"
-          ]
-        },
-        "description": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "prefix",
-            "like",
-            "notlike",
-            "null",
-            "notnull"
-          ]
-        },
-        "globalLoadBalancerId": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "null",
-            "notnull"
-          ]
-        },
-        "id": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "lt",
-            "lte",
-            "gt",
-            "gte",
-            "null",
-            "notnull"
-          ]
-        },
-        "kind": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "prefix",
-            "like",
-            "notlike",
-            "null",
-            "notnull"
-          ]
-        },
-        "loadBalancerConfigId": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "null",
-            "notnull"
-          ]
-        },
-        "name": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "prefix",
-            "like",
-            "notlike",
-            "null",
-            "notnull"
-          ]
-        },
-        "removeTime": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "lt",
-            "lte",
-            "gt",
-            "gte",
-            "null",
-            "notnull"
-          ]
-        },
-        "removed": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "lt",
-            "lte",
-            "gt",
-            "gte",
-            "null",
-            "notnull"
-          ]
-        },
-        "serviceId": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "null",
-            "notnull"
-          ]
-        },
-        "state": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "null",
-            "notnull"
-          ]
-        },
-        "uuid": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "prefix",
-            "like",
-            "notlike",
-            "null",
-            "notnull"
-          ]
-        },
-        "weight": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "lt",
-            "lte",
-            "gt",
-            "gte",
-            "null",
-            "notnull"
-          ]
-        }
-      },
-      "includeableLinks": [
-        "loadbalancerconfig",
-        "service",
-        "loadbalancertargets",
-        "hosts",
-        "globalloadbalancer",
-        "account",
-        "loadbalancerhostmaps"
-      ],
-      "resourceActions": {
-        "update": {
-          "input": null,
-          "output": "loadBalancer"
-        },
-        "activate": {
-          "input": null,
-          "output": "loadBalancer"
-        },
-        "sethosts": {
-          "input": "setLoadBalancerHostsInput",
-          "output": "loadBalancer"
-        },
-        "addtarget": {
-          "input": "addRemoveLoadBalancerTargetInput",
-          "output": "loadBalancer"
-        },
-        "removehost": {
-          "input": "addRemoveLoadBalancerHostInput",
-          "output": "loadBalancer"
-        },
-        "remove": {
-          "input": null,
-          "output": "loadBalancer"
-        },
-        "addhost": {
-          "input": "addRemoveLoadBalancerHostInput",
-          "output": "loadBalancer"
-        },
-        "deactivate": {
-          "input": null,
-          "output": "loadBalancer"
-        },
-        "create": {
-          "input": null,
-          "output": "loadBalancer"
-        },
-        "removetarget": {
-          "input": "addRemoveLoadBalancerTargetInput",
-          "output": "loadBalancer"
-        },
-        "settargets": {
-          "input": "setLoadBalancerTargetsInput",
-          "output": "loadBalancer"
-        }
-      },
-      "collectionActions": {},
-      "collectionFields": {},
-      "resourceMethods": [
-        "GET",
-        "PUT",
-        "DELETE"
-      ],
-      "collectionMethods": [
-        "GET",
-        "POST"
-      ]
-    },
-    {
-      "id": "loadBalancerConfig",
-      "type": "schema",
-      "links": {
-        "self": "http://localhost:8080/v1/schemas/loadbalancerconfig",
-        "collection": "http://localhost:8080/v1/loadbalancerconfigs"
-      },
-      "actions": {},
-      "pluralName": "loadBalancerConfigs",
-      "resourceFields": {
-        "accountId": {
-          "type": "reference[account]",
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false,
-          "maxLength": 255
-        },
-        "created": {
-          "type": "date",
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false,
-          "maxLength": 255
-        },
-        "data": {
-          "type": "map[json]",
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false,
-          "maxLength": 16777215
-        },
-        "description": {
-          "type": "string",
-          "create": true,
-          "update": true,
-          "nullable": true,
-          "readOnCreateOnly": false,
-          "maxLength": 1024
-        },
-        "id": {
-          "type": "int",
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false
-        },
-        "kind": {
-          "type": "string",
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false,
-          "maxLength": 255
-        },
-        "name": {
-          "type": "string",
-          "create": true,
-          "update": true,
-          "nullable": true,
-          "readOnCreateOnly": false,
-          "maxLength": 255
-        },
-        "removeTime": {
-          "type": "date",
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false,
-          "maxLength": 255
-        },
-        "removed": {
-          "type": "date",
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false,
-          "maxLength": 255
-        },
-        "serviceId": {
-          "type": "reference[service]",
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false,
-          "maxLength": 255
-        },
-        "state": {
-          "type": "enum",
-          "create": false,
-          "update": false,
-          "readOnCreateOnly": false,
-          "maxLength": 128,
-          "options": [
-            "activating",
-            "active",
-            "removed",
-            "removing",
-            "requested",
-            "updating-active"
-          ]
-        },
-        "uuid": {
-          "type": "string",
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false,
-          "maxLength": 128
-        },
-        "transitioning": {
-          "type": "enum",
-          "create": false,
-          "update": false,
-          "readOnCreateOnly": false,
-          "options": [
-            "yes",
-            "no",
-            "error"
-          ]
-        },
-        "transitioningMessage": {
-          "type": "string",
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false
-        },
-        "transitioningProgress": {
-          "type": "int",
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false
-        },
-        "healthCheck": {
-          "type": "loadBalancerHealthCheck",
-          "create": true,
-          "update": true,
-          "nullable": true,
-          "readOnCreateOnly": false
-        },
-        "appCookieStickinessPolicy": {
-          "type": "loadBalancerAppCookieStickinessPolicy",
-          "create": true,
-          "update": true,
-          "nullable": true,
-          "readOnCreateOnly": false
-        },
-        "lbCookieStickinessPolicy": {
-          "type": "loadBalancerCookieStickinessPolicy",
-          "create": true,
-          "update": true,
-          "nullable": true,
-          "readOnCreateOnly": false
-        }
-      },
-      "collectionFilters": {
-        "accountId": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "null",
-            "notnull"
-          ]
-        },
-        "created": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "lt",
-            "lte",
-            "gt",
-            "gte",
-            "null",
-            "notnull"
-          ]
-        },
-        "description": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "prefix",
-            "like",
-            "notlike",
-            "null",
-            "notnull"
-          ]
-        },
-        "id": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "lt",
-            "lte",
-            "gt",
-            "gte",
-            "null",
-            "notnull"
-          ]
-        },
-        "kind": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "prefix",
-            "like",
-            "notlike",
-            "null",
-            "notnull"
-          ]
-        },
-        "name": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "prefix",
-            "like",
-            "notlike",
-            "null",
-            "notnull"
-          ]
-        },
-        "removeTime": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "lt",
-            "lte",
-            "gt",
-            "gte",
-            "null",
-            "notnull"
-          ]
-        },
-        "removed": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "lt",
-            "lte",
-            "gt",
-            "gte",
-            "null",
-            "notnull"
-          ]
-        },
-        "serviceId": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "null",
-            "notnull"
-          ]
-        },
-        "state": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "null",
-            "notnull"
-          ]
-        },
-        "uuid": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "prefix",
-            "like",
-            "notlike",
-            "null",
-            "notnull"
-          ]
-        }
-      },
-      "includeableLinks": [
-        "loadbalancerconfiglistenermaps",
-        "loadbalancerlisteners",
-        "service",
-        "account",
-        "loadbalancers"
-      ],
-      "resourceActions": {
-        "removelistener": {
-          "input": "addRemoveLoadBalancerListenerInput",
-          "output": "loadBalancerConfig"
-        },
-        "update": {
-          "input": null,
-          "output": "loadBalancerConfig"
-        },
-        "remove": {
-          "input": null,
-          "output": "loadBalancerConfig"
-        },
-        "setlisteners": {
-          "input": "setLoadBalancerListenersInput",
-          "output": "loadBalancerConfig"
-        },
-        "addlistener": {
-          "input": "addRemoveLoadBalancerListenerInput",
-          "output": "loadBalancerConfig"
-        },
-        "create": {
-          "input": null,
-          "output": "loadBalancerConfig"
-        }
-      },
-      "collectionActions": {},
-      "collectionFields": {},
-      "resourceMethods": [
-        "GET",
-        "PUT",
-        "DELETE"
-      ],
-      "collectionMethods": [
-        "GET",
-        "POST"
-      ]
-    },
-    {
-      "id": "loadBalancerConfigListenerMap",
-      "type": "schema",
-      "links": {
-        "self": "http://localhost:8080/v1/schemas/loadbalancerconfiglistenermap",
-        "collection": "http://localhost:8080/v1/loadbalancerconfiglistenermaps"
-      },
-      "actions": {},
-      "pluralName": "loadBalancerConfigListenerMaps",
-      "resourceFields": {
-        "accountId": {
-          "type": "reference[account]",
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false,
-          "maxLength": 255
-        },
-        "created": {
-          "type": "date",
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false,
-          "maxLength": 255
-        },
-        "data": {
-          "type": "map[json]",
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false,
-          "maxLength": 16777215
-        },
-        "description": {
-          "type": "string",
-          "create": true,
-          "update": true,
-          "nullable": true,
-          "readOnCreateOnly": false,
-          "maxLength": 1024
-        },
-        "id": {
-          "type": "int",
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false
-        },
-        "kind": {
-          "type": "string",
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false,
-          "maxLength": 255
-        },
-        "loadBalancerConfigId": {
-          "type": "reference[loadBalancerConfig]",
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false,
-          "maxLength": 255
-        },
-        "loadBalancerListenerId": {
-          "type": "reference[loadBalancerListener]",
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false,
-          "maxLength": 255
-        },
-        "name": {
-          "type": "string",
-          "create": true,
-          "update": true,
-          "nullable": true,
-          "readOnCreateOnly": false,
-          "maxLength": 255
-        },
-        "removeTime": {
-          "type": "date",
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false,
-          "maxLength": 255
-        },
-        "removed": {
-          "type": "date",
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false,
-          "maxLength": 255
-        },
-        "state": {
-          "type": "enum",
-          "create": false,
-          "update": false,
-          "readOnCreateOnly": false,
-          "maxLength": 128,
-          "options": [
-            "activating",
-            "active",
-            "removed",
-            "removing",
-            "requested"
-          ]
-        },
-        "uuid": {
-          "type": "string",
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false,
-          "maxLength": 128
-        },
-        "transitioning": {
-          "type": "enum",
-          "create": false,
-          "update": false,
-          "readOnCreateOnly": false,
-          "options": [
-            "yes",
-            "no",
-            "error"
-          ]
-        },
-        "transitioningMessage": {
-          "type": "string",
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false
-        },
-        "transitioningProgress": {
-          "type": "int",
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false
-        }
-      },
-      "collectionFilters": {
-        "accountId": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "null",
-            "notnull"
-          ]
-        },
-        "created": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "lt",
-            "lte",
-            "gt",
-            "gte",
-            "null",
-            "notnull"
-          ]
-        },
-        "description": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "prefix",
-            "like",
-            "notlike",
-            "null",
-            "notnull"
-          ]
-        },
-        "id": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "lt",
-            "lte",
-            "gt",
-            "gte",
-            "null",
-            "notnull"
-          ]
-        },
-        "kind": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "prefix",
-            "like",
-            "notlike",
-            "null",
-            "notnull"
-          ]
-        },
-        "loadBalancerConfigId": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "null",
-            "notnull"
-          ]
-        },
-        "loadBalancerListenerId": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "null",
-            "notnull"
-          ]
-        },
-        "name": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "prefix",
-            "like",
-            "notlike",
-            "null",
-            "notnull"
-          ]
-        },
-        "removeTime": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "lt",
-            "lte",
-            "gt",
-            "gte",
-            "null",
-            "notnull"
-          ]
-        },
-        "removed": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "lt",
-            "lte",
-            "gt",
-            "gte",
-            "null",
-            "notnull"
-          ]
-        },
-        "state": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "null",
-            "notnull"
-          ]
-        },
-        "uuid": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "prefix",
-            "like",
-            "notlike",
-            "null",
-            "notnull"
-          ]
-        }
-      },
-      "includeableLinks": [
-        "loadbalancerlistener",
-        "loadbalancerconfig",
-        "account"
-      ],
-      "resourceActions": {
-        "remove": {
-          "input": null,
-          "output": "loadBalancerConfigListenerMap"
-        },
-        "create": {
-          "input": null,
-          "output": "loadBalancerConfigListenerMap"
-        }
-      },
-      "collectionActions": {},
-      "collectionFields": {},
-      "resourceMethods": [
-        "GET"
-      ],
-      "collectionMethods": [
-        "GET"
-      ]
-    },
-    {
-      "id": "loadBalancerHostMap",
-      "type": "schema",
-      "links": {
-        "self": "http://localhost:8080/v1/schemas/loadbalancerhostmap",
-        "collection": "http://localhost:8080/v1/loadbalancerhostmaps"
-      },
-      "actions": {},
-      "pluralName": "loadBalancerHostMaps",
-      "resourceFields": {
-        "accountId": {
-          "type": "reference[account]",
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false,
-          "maxLength": 255
-        },
-        "created": {
-          "type": "date",
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false,
-          "maxLength": 255
-        },
-        "data": {
-          "type": "map[json]",
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false,
-          "maxLength": 16777215
-        },
-        "description": {
-          "type": "string",
-          "create": true,
-          "update": true,
-          "nullable": true,
-          "readOnCreateOnly": false,
-          "maxLength": 1024
-        },
-        "hostId": {
-          "type": "reference[host]",
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false,
-          "maxLength": 255
-        },
-        "id": {
-          "type": "int",
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false
-        },
-        "kind": {
-          "type": "string",
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false,
-          "maxLength": 255
-        },
-        "loadBalancerId": {
-          "type": "reference[loadBalancer]",
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false,
-          "maxLength": 255
-        },
-        "name": {
-          "type": "string",
-          "create": true,
-          "update": true,
-          "nullable": true,
-          "readOnCreateOnly": false,
-          "maxLength": 255
-        },
-        "removeTime": {
-          "type": "date",
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false,
-          "maxLength": 255
-        },
-        "removed": {
-          "type": "date",
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false,
-          "maxLength": 255
-        },
-        "state": {
-          "type": "string",
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false,
-          "maxLength": 128
-        },
-        "uuid": {
-          "type": "string",
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false,
-          "maxLength": 128
-        }
-      },
-      "collectionFilters": {
-        "accountId": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "null",
-            "notnull"
-          ]
-        },
-        "created": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "lt",
-            "lte",
-            "gt",
-            "gte",
-            "null",
-            "notnull"
-          ]
-        },
-        "description": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "prefix",
-            "like",
-            "notlike",
-            "null",
-            "notnull"
-          ]
-        },
-        "hostId": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "null",
-            "notnull"
-          ]
-        },
-        "id": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "lt",
-            "lte",
-            "gt",
-            "gte",
-            "null",
-            "notnull"
-          ]
-        },
-        "kind": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "prefix",
-            "like",
-            "notlike",
-            "null",
-            "notnull"
-          ]
-        },
-        "loadBalancerId": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "null",
-            "notnull"
-          ]
-        },
-        "name": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "prefix",
-            "like",
-            "notlike",
-            "null",
-            "notnull"
-          ]
-        },
-        "removeTime": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "lt",
-            "lte",
-            "gt",
-            "gte",
-            "null",
-            "notnull"
-          ]
-        },
-        "removed": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "lt",
-            "lte",
-            "gt",
-            "gte",
-            "null",
-            "notnull"
-          ]
-        },
-        "state": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "prefix",
-            "like",
-            "notlike",
-            "null",
-            "notnull"
-          ]
-        },
-        "uuid": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "prefix",
-            "like",
-            "notlike",
-            "null",
-            "notnull"
-          ]
-        }
-      },
-      "includeableLinks": [
-        "host",
-        "loadbalancer",
-        "account"
-      ],
-      "resourceActions": {},
-      "collectionActions": {},
-      "collectionFields": {},
-      "resourceMethods": [
-        "GET"
-      ],
-      "collectionMethods": [
-        "GET"
-      ]
-    },
-    {
-      "id": "loadBalancerListener",
-      "type": "schema",
-      "links": {
-        "self": "http://localhost:8080/v1/schemas/loadbalancerlistener",
-        "collection": "http://localhost:8080/v1/loadbalancerlisteners"
-      },
-      "actions": {},
-      "pluralName": "loadBalancerListeners",
-      "resourceFields": {
-        "accountId": {
-          "type": "reference[account]",
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false,
-          "maxLength": 255
-        },
-        "created": {
-          "type": "date",
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false,
-          "maxLength": 255
-        },
-        "data": {
-          "type": "map[json]",
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false,
-          "maxLength": 16777215
-        },
-        "description": {
-          "type": "string",
-          "create": true,
-          "update": true,
-          "nullable": true,
-          "readOnCreateOnly": false,
-          "maxLength": 1024
-        },
-        "id": {
-          "type": "int",
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false
-        },
-        "kind": {
-          "type": "string",
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false,
-          "maxLength": 255
-        },
-        "name": {
-          "type": "string",
-          "create": true,
-          "update": true,
-          "nullable": true,
-          "readOnCreateOnly": false,
-          "maxLength": 255
-        },
-        "privatePort": {
-          "type": "int",
-          "create": true,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false,
-          "min": 1,
-          "max": 65535,
-          "maxLength": 255
-        },
-        "removeTime": {
-          "type": "date",
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false,
-          "maxLength": 255
-        },
-        "removed": {
-          "type": "date",
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false,
-          "maxLength": 255
-        },
-        "serviceId": {
-          "type": "reference[service]",
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false,
-          "maxLength": 255
-        },
-        "sourcePort": {
-          "type": "int",
-          "create": true,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false,
-          "min": 1,
-          "max": 65535,
-          "maxLength": 255
-        },
-        "sourceProtocol": {
-          "type": "enum",
-          "create": true,
-          "update": false,
-          "required": true,
-          "readOnCreateOnly": false,
-          "maxLength": 255,
-          "options": [
-            "tcp",
-            "http",
-            "ssl",
-            "https"
-          ]
-        },
-        "state": {
-          "type": "enum",
-          "create": false,
-          "update": false,
-          "readOnCreateOnly": false,
-          "maxLength": 128,
-          "options": [
-            "activating",
-            "active",
-            "removed",
-            "removing",
-            "requested"
-          ]
-        },
-        "targetPort": {
-          "type": "int",
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false,
-          "min": 1,
-          "max": 65535,
-          "maxLength": 255
-        },
-        "targetProtocol": {
-          "type": "enum",
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false,
-          "maxLength": 255,
-          "options": [
-            "tcp",
-            "http",
-            "ssl",
-            "https"
-          ]
-        },
-        "uuid": {
-          "type": "string",
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false,
-          "maxLength": 128
-        },
-        "transitioning": {
-          "type": "enum",
-          "create": false,
-          "update": false,
-          "readOnCreateOnly": false,
-          "options": [
-            "yes",
-            "no",
-            "error"
-          ]
-        },
-        "transitioningMessage": {
-          "type": "string",
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false
-        },
-        "transitioningProgress": {
-          "type": "int",
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false
-        },
-        "algorithm": {
-          "type": "enum",
-          "create": true,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false,
-          "options": [
-            "roundrobin",
-            "leastconn",
-            "source"
-          ],
-          "default": "roundrobin"
-        }
-      },
-      "collectionFilters": {
-        "accountId": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "null",
-            "notnull"
-          ]
-        },
-        "created": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "lt",
-            "lte",
-            "gt",
-            "gte",
-            "null",
-            "notnull"
-          ]
-        },
-        "description": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "prefix",
-            "like",
-            "notlike",
-            "null",
-            "notnull"
-          ]
-        },
-        "id": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "lt",
-            "lte",
-            "gt",
-            "gte",
-            "null",
-            "notnull"
-          ]
-        },
-        "kind": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "prefix",
-            "like",
-            "notlike",
-            "null",
-            "notnull"
-          ]
-        },
-        "name": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "prefix",
-            "like",
-            "notlike",
-            "null",
-            "notnull"
-          ]
-        },
-        "privatePort": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "lt",
-            "lte",
-            "gt",
-            "gte",
-            "null",
-            "notnull"
-          ]
-        },
-        "removeTime": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "lt",
-            "lte",
-            "gt",
-            "gte",
-            "null",
-            "notnull"
-          ]
-        },
-        "removed": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "lt",
-            "lte",
-            "gt",
-            "gte",
-            "null",
-            "notnull"
-          ]
-        },
-        "serviceId": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "null",
-            "notnull"
-          ]
-        },
-        "sourcePort": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "lt",
-            "lte",
-            "gt",
-            "gte",
-            "null",
-            "notnull"
-          ]
-        },
-        "sourceProtocol": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "prefix",
-            "like",
-            "notlike",
-            "null",
-            "notnull"
-          ]
-        },
-        "state": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "null",
-            "notnull"
-          ]
-        },
-        "targetPort": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "lt",
-            "lte",
-            "gt",
-            "gte",
-            "null",
-            "notnull"
-          ]
-        },
-        "targetProtocol": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "prefix",
-            "like",
-            "notlike",
-            "null",
-            "notnull"
-          ]
-        },
-        "uuid": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "prefix",
-            "like",
-            "notlike",
-            "null",
-            "notnull"
-          ]
-        }
-      },
-      "includeableLinks": [
-        "loadbalancerconfiglistenermaps",
-        "loadbalancerconfigs",
-        "service",
-        "account"
-      ],
-      "resourceActions": {
-        "remove": {
-          "input": null,
-          "output": "loadBalancerListener"
-        },
-        "create": {
-          "input": null,
-          "output": "loadBalancerListener"
-        }
-      },
-      "collectionActions": {},
-      "collectionFields": {},
-      "resourceMethods": [
-        "GET",
-        "PUT",
-        "DELETE"
-      ],
-      "collectionMethods": [
-        "GET",
-        "POST"
-      ]
-    },
-    {
-      "id": "loadBalancerTarget",
-      "type": "schema",
-      "links": {
-        "self": "http://localhost:8080/v1/schemas/loadbalancertarget",
-        "collection": "http://localhost:8080/v1/loadbalancertargets"
-      },
-      "actions": {},
-      "pluralName": "loadBalancerTargets",
-      "resourceFields": {
-        "accountId": {
-          "type": "reference[account]",
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false,
-          "maxLength": 255
-        },
-        "created": {
-          "type": "date",
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false,
-          "maxLength": 255
-        },
-        "data": {
-          "type": "map[json]",
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false,
-          "maxLength": 16777215
-        },
-        "description": {
-          "type": "string",
-          "create": true,
-          "update": true,
-          "nullable": true,
-          "readOnCreateOnly": false,
-          "maxLength": 1024
-        },
-        "id": {
-          "type": "int",
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false
-        },
-        "instanceId": {
-          "type": "reference[instance]",
-          "create": true,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false,
-          "maxLength": 255
-        },
-        "ipAddress": {
-          "type": "string",
-          "create": true,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false,
-          "maxLength": 255
-        },
-        "kind": {
-          "type": "string",
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false,
-          "maxLength": 255
-        },
-        "loadBalancerId": {
-          "type": "reference[loadBalancer]",
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false,
-          "maxLength": 255
-        },
-        "name": {
-          "type": "string",
-          "create": true,
-          "update": true,
-          "nullable": true,
-          "readOnCreateOnly": false,
-          "maxLength": 255
-        },
-        "removeTime": {
-          "type": "date",
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false,
-          "maxLength": 255
-        },
-        "removed": {
-          "type": "date",
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false,
-          "maxLength": 255
-        },
-        "state": {
-          "type": "enum",
-          "create": false,
-          "update": false,
-          "readOnCreateOnly": false,
-          "maxLength": 128,
-          "options": [
-            "activating",
-            "active",
-            "removed",
-            "removing",
-            "requested",
-            "updating-active"
-          ]
-        },
-        "uuid": {
-          "type": "string",
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false,
-          "maxLength": 128
-        },
-        "transitioning": {
-          "type": "enum",
-          "create": false,
-          "update": false,
-          "readOnCreateOnly": false,
-          "options": [
-            "yes",
-            "no",
-            "error"
-          ]
-        },
-        "transitioningMessage": {
-          "type": "string",
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false
-        },
-        "transitioningProgress": {
-          "type": "int",
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false
-        },
-        "ports": {
-          "type": "array[string]",
-          "create": true,
-          "update": false,
-          "nullable": true,
-          "required": true,
-          "readOnCreateOnly": false
-        }
-      },
-      "collectionFilters": {
-        "accountId": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "null",
-            "notnull"
-          ]
-        },
-        "created": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "lt",
-            "lte",
-            "gt",
-            "gte",
-            "null",
-            "notnull"
-          ]
-        },
-        "description": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "prefix",
-            "like",
-            "notlike",
-            "null",
-            "notnull"
-          ]
-        },
-        "id": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "lt",
-            "lte",
-            "gt",
-            "gte",
-            "null",
-            "notnull"
-          ]
-        },
-        "instanceId": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "null",
-            "notnull"
-          ]
-        },
-        "ipAddress": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "prefix",
-            "like",
-            "notlike",
-            "null",
-            "notnull"
-          ]
-        },
-        "kind": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "prefix",
-            "like",
-            "notlike",
-            "null",
-            "notnull"
-          ]
-        },
-        "loadBalancerId": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "null",
-            "notnull"
-          ]
-        },
-        "name": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "prefix",
-            "like",
-            "notlike",
-            "null",
-            "notnull"
-          ]
-        },
-        "removeTime": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "lt",
-            "lte",
-            "gt",
-            "gte",
-            "null",
-            "notnull"
-          ]
-        },
-        "removed": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "lt",
-            "lte",
-            "gt",
-            "gte",
-            "null",
-            "notnull"
-          ]
-        },
-        "state": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "null",
-            "notnull"
-          ]
-        },
-        "uuid": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "prefix",
-            "like",
-            "notlike",
-            "null",
-            "notnull"
-          ]
-        }
-      },
-      "includeableLinks": [
-        "loadbalancer",
-        "account",
-        "instance"
-      ],
-      "resourceActions": {
-        "update": {
-          "input": null,
-          "output": "loadBalancerTarget"
-        },
-        "remove": {
-          "input": null,
-          "output": "loadBalancerTarget"
-        },
-        "create": {
-          "input": null,
-          "output": "loadBalancerTarget"
         }
       },
       "collectionActions": {},
@@ -20701,7 +18120,8 @@
           "options": [
             "member",
             "owner",
-            "readonly"
+            "readonly",
+            "restricted"
           ],
           "default": "member"
         },
@@ -21044,7 +18464,7 @@
           "required": true,
           "readOnCreateOnly": false,
           "minLength": 1,
-          "maxLength": 255
+          "maxLength": 63
         },
         "removeTime": {
           "type": "date",
@@ -21189,6 +18609,13 @@
         "serviceSchemas": {
           "type": "map[schema]",
           "create": true,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "publicEndpoints": {
+          "type": "array[publicEndpoint]",
+          "create": false,
           "update": false,
           "nullable": true,
           "readOnCreateOnly": false
@@ -21369,16 +18796,13 @@
         }
       },
       "includeableLinks": [
-        "loadbalancerlisteners",
         "environment",
-        "loadbalancerconfigs",
         "consumedservices",
         "configitemstatuses",
         "serviceexposemaps",
         "account",
         "instances",
-        "consumedbyservices",
-        "loadbalancers"
+        "consumedbyservices"
       ],
       "resourceActions": {
         "update": {
@@ -24720,6 +22144,15 @@
           "nullable": true,
           "readOnCreateOnly": false
         },
+        "groupMemberMappingAttribute": {
+          "type": "string",
+          "transform": "",
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false,
+          "default": "memberOf"
+        },
         "groupNameField": {
           "type": "string",
           "transform": "",
@@ -24766,6 +22199,7 @@
           "transform": "",
           "create": true,
           "update": false,
+          "nullable": true,
           "required": true,
           "readOnCreateOnly": false,
           "default": 389
@@ -24803,6 +22237,7 @@
           "transform": "",
           "create": true,
           "update": false,
+          "nullable": true,
           "required": true,
           "readOnCreateOnly": false
         },
@@ -24811,6 +22246,7 @@
           "transform": "",
           "create": true,
           "update": false,
+          "nullable": true,
           "readOnCreateOnly": false,
           "default": 2
         },
@@ -24830,6 +22266,15 @@
           "required": true,
           "readOnCreateOnly": false,
           "default": "sAMAccountName"
+        },
+        "userMemberAttribute": {
+          "type": "string",
+          "transform": "",
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false,
+          "default": "memberOf"
         },
         "userNameField": {
           "type": "string",
@@ -24857,6 +22302,215 @@
           "required": true,
           "readOnCreateOnly": false,
           "default": "sAMAccountName"
+        }
+      },
+      "collectionFilters": {},
+      "includeableLinks": [],
+      "resourceActions": {},
+      "collectionActions": {},
+      "collectionFields": {},
+      "resourceMethods": [
+        "GET",
+        "PUT"
+      ],
+      "collectionMethods": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "id": "openldapconfig",
+      "type": "schema",
+      "links": {
+        "self": "http://localhost:8080/v1/schemas/openldapconfig",
+        "collection": "http://localhost:8080/v1/openldapconfigs"
+      },
+      "actions": {},
+      "pluralName": "openldapconfigs",
+      "resourceFields": {
+        "accessMode": {
+          "type": "string",
+          "transform": "",
+          "create": true,
+          "update": false,
+          "required": true,
+          "readOnCreateOnly": false,
+          "default": "unrestricted"
+        },
+        "domain": {
+          "type": "string",
+          "transform": "",
+          "create": true,
+          "update": false,
+          "required": true,
+          "readOnCreateOnly": false,
+          "minLength": 1
+        },
+        "enabled": {
+          "type": "boolean",
+          "transform": "",
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "groupMemberMappingAttribute": {
+          "type": "string",
+          "transform": "",
+          "create": true,
+          "update": false,
+          "required": true,
+          "readOnCreateOnly": false,
+          "default": "memberUid"
+        },
+        "groupNameField": {
+          "type": "string",
+          "transform": "",
+          "create": true,
+          "update": false,
+          "required": true,
+          "readOnCreateOnly": false,
+          "default": "cn"
+        },
+        "groupObjectClass": {
+          "type": "string",
+          "transform": "",
+          "create": true,
+          "update": false,
+          "required": true,
+          "readOnCreateOnly": false,
+          "default": "posixGroup"
+        },
+        "groupSearchField": {
+          "type": "string",
+          "transform": "",
+          "create": true,
+          "update": false,
+          "required": true,
+          "readOnCreateOnly": false,
+          "default": "cn"
+        },
+        "loginDomain": {
+          "type": "string",
+          "transform": "",
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "name": {
+          "type": "string",
+          "create": false,
+          "update": false,
+          "readOnCreateOnly": false
+        },
+        "port": {
+          "type": "int",
+          "transform": "",
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "required": true,
+          "readOnCreateOnly": false,
+          "default": 389
+        },
+        "server": {
+          "type": "string",
+          "transform": "",
+          "create": true,
+          "update": false,
+          "required": true,
+          "readOnCreateOnly": false,
+          "minLength": 1
+        },
+        "serviceAccountPassword": {
+          "type": "string",
+          "transform": "",
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "required": true,
+          "readOnCreateOnly": true,
+          "minLength": 1
+        },
+        "serviceAccountUsername": {
+          "type": "string",
+          "transform": "",
+          "create": true,
+          "update": false,
+          "required": true,
+          "readOnCreateOnly": false,
+          "minLength": 1
+        },
+        "tls": {
+          "type": "boolean",
+          "transform": "",
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "required": true,
+          "readOnCreateOnly": false
+        },
+        "userDisabledBitMask": {
+          "type": "int",
+          "transform": "",
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "userEnabledAttribute": {
+          "type": "string",
+          "transform": "",
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "userLoginField": {
+          "type": "string",
+          "transform": "",
+          "create": true,
+          "update": false,
+          "required": true,
+          "readOnCreateOnly": false,
+          "default": "uid"
+        },
+        "userMemberAttribute": {
+          "type": "string",
+          "transform": "",
+          "create": true,
+          "update": false,
+          "required": true,
+          "readOnCreateOnly": false,
+          "default": "gidNumber"
+        },
+        "userNameField": {
+          "type": "string",
+          "transform": "",
+          "create": true,
+          "update": false,
+          "required": true,
+          "readOnCreateOnly": false,
+          "default": "givenName"
+        },
+        "userObjectClass": {
+          "type": "string",
+          "transform": "",
+          "create": true,
+          "update": false,
+          "required": true,
+          "readOnCreateOnly": false,
+          "default": "inetOrgPerson"
+        },
+        "userSearchField": {
+          "type": "string",
+          "transform": "",
+          "create": true,
+          "update": false,
+          "required": true,
+          "readOnCreateOnly": false,
+          "default": "uid"
         }
       },
       "collectionFilters": {},
@@ -26459,6 +24113,41 @@
           "readOnCreateOnly": false
         },
         "engineOpts": {
+          "type": "array[string]",
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "engineInsecureRegistry": {
+          "type": "array[string]",
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "engineRegistryMirror": {
+          "type": "array[string]",
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "engineLabel": {
+          "type": "array[string]",
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "engineStorageDriver": {
+          "type": "string",
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "engineEnv": {
           "type": "array[string]",
           "create": true,
           "update": false,

@@ -7,11 +7,8 @@ type RancherClient struct {
 	Publish                                  PublishOperations
 	LogConfig                                LogConfigOperations
 	RestartPolicy                            RestartPolicyOperations
-	LoadBalancerHealthCheck                  LoadBalancerHealthCheckOperations
 	LoadBalancerCookieStickinessPolicy       LoadBalancerCookieStickinessPolicyOperations
 	LoadBalancerAppCookieStickinessPolicy    LoadBalancerAppCookieStickinessPolicyOperations
-	GlobalLoadBalancerPolicy                 GlobalLoadBalancerPolicyOperations
-	GlobalLoadBalancerHealthCheck            GlobalLoadBalancerHealthCheckOperations
 	ExternalHandlerProcessConfig             ExternalHandlerProcessConfigOperations
 	ComposeConfig                            ComposeConfigOperations
 	InstanceHealthCheck                      InstanceHealthCheckOperations
@@ -20,12 +17,9 @@ type RancherClient struct {
 	ServiceUpgradeStrategy                   ServiceUpgradeStrategyOperations
 	InServiceUpgradeStrategy                 InServiceUpgradeStrategyOperations
 	ToServiceUpgradeStrategy                 ToServiceUpgradeStrategyOperations
-	AddLoadBalancerInput                     AddLoadBalancerInputOperations
+	PublicEndpoint                           PublicEndpointOperations
 	AddOutputsInput                          AddOutputsInputOperations
 	AddRemoveClusterHostInput                AddRemoveClusterHostInputOperations
-	AddRemoveLoadBalancerHostInput           AddRemoveLoadBalancerHostInputOperations
-	AddRemoveLoadBalancerListenerInput       AddRemoveLoadBalancerListenerInputOperations
-	AddRemoveLoadBalancerTargetInput         AddRemoveLoadBalancerTargetInputOperations
 	AddRemoveServiceLinkInput                AddRemoveServiceLinkInputOperations
 	ChangeSecretInput                        ChangeSecretInputOperations
 	SetLabelsInput                           SetLabelsInputOperations
@@ -41,10 +35,6 @@ type RancherClient struct {
 	Password                                 PasswordOperations
 	Registry                                 RegistryOperations
 	RegistryCredential                       RegistryCredentialOperations
-	RemoveLoadBalancerInput                  RemoveLoadBalancerInputOperations
-	SetLoadBalancerHostsInput                SetLoadBalancerHostsInputOperations
-	SetLoadBalancerListenersInput            SetLoadBalancerListenersInputOperations
-	SetLoadBalancerTargetsInput              SetLoadBalancerTargetsInputOperations
 	SetProjectMembersInput                   SetProjectMembersInputOperations
 	SetServiceLinksInput                     SetServiceLinksInputOperations
 	LoadBalancerService                      LoadBalancerServiceOperations
@@ -62,6 +52,7 @@ type RancherClient struct {
 	EnvironmentUpgrade                       EnvironmentUpgradeOperations
 	ExternalDnsEvent                         ExternalDnsEventOperations
 	ExternalHostEvent                        ExternalHostEventOperations
+	LoadBalancerConfig                       LoadBalancerConfigOperations
 	Account                                  AccountOperations
 	Agent                                    AgentOperations
 	Certificate                              CertificateOperations
@@ -76,19 +67,12 @@ type RancherClient struct {
 	ExternalHandler                          ExternalHandlerOperations
 	ExternalHandlerExternalHandlerProcessMap ExternalHandlerExternalHandlerProcessMapOperations
 	ExternalHandlerProcess                   ExternalHandlerProcessOperations
-	GlobalLoadBalancer                       GlobalLoadBalancerOperations
 	Host                                     HostOperations
 	Image                                    ImageOperations
 	Instance                                 InstanceOperations
 	InstanceLink                             InstanceLinkOperations
 	IpAddress                                IpAddressOperations
 	Label                                    LabelOperations
-	LoadBalancer                             LoadBalancerOperations
-	LoadBalancerConfig                       LoadBalancerConfigOperations
-	LoadBalancerConfigListenerMap            LoadBalancerConfigListenerMapOperations
-	LoadBalancerHostMap                      LoadBalancerHostMapOperations
-	LoadBalancerListener                     LoadBalancerListenerOperations
-	LoadBalancerTarget                       LoadBalancerTargetOperations
 	Mount                                    MountOperations
 	Network                                  NetworkOperations
 	PhysicalHost                             PhysicalHostOperations
@@ -121,6 +105,7 @@ type RancherClient struct {
 	Githubconfig                             GithubconfigOperations
 	Identity                                 IdentityOperations
 	Ldapconfig                               LdapconfigOperations
+	Openldapconfig                           OpenldapconfigOperations
 	LocalAuthConfig                          LocalAuthConfigOperations
 	StatsAccess                              StatsAccessOperations
 	Amazonec2Config                          Amazonec2ConfigOperations
@@ -152,11 +137,8 @@ func constructClient() *RancherClient {
 	client.Publish = newPublishClient(client)
 	client.LogConfig = newLogConfigClient(client)
 	client.RestartPolicy = newRestartPolicyClient(client)
-	client.LoadBalancerHealthCheck = newLoadBalancerHealthCheckClient(client)
 	client.LoadBalancerCookieStickinessPolicy = newLoadBalancerCookieStickinessPolicyClient(client)
 	client.LoadBalancerAppCookieStickinessPolicy = newLoadBalancerAppCookieStickinessPolicyClient(client)
-	client.GlobalLoadBalancerPolicy = newGlobalLoadBalancerPolicyClient(client)
-	client.GlobalLoadBalancerHealthCheck = newGlobalLoadBalancerHealthCheckClient(client)
 	client.ExternalHandlerProcessConfig = newExternalHandlerProcessConfigClient(client)
 	client.ComposeConfig = newComposeConfigClient(client)
 	client.InstanceHealthCheck = newInstanceHealthCheckClient(client)
@@ -165,12 +147,9 @@ func constructClient() *RancherClient {
 	client.ServiceUpgradeStrategy = newServiceUpgradeStrategyClient(client)
 	client.InServiceUpgradeStrategy = newInServiceUpgradeStrategyClient(client)
 	client.ToServiceUpgradeStrategy = newToServiceUpgradeStrategyClient(client)
-	client.AddLoadBalancerInput = newAddLoadBalancerInputClient(client)
+	client.PublicEndpoint = newPublicEndpointClient(client)
 	client.AddOutputsInput = newAddOutputsInputClient(client)
 	client.AddRemoveClusterHostInput = newAddRemoveClusterHostInputClient(client)
-	client.AddRemoveLoadBalancerHostInput = newAddRemoveLoadBalancerHostInputClient(client)
-	client.AddRemoveLoadBalancerListenerInput = newAddRemoveLoadBalancerListenerInputClient(client)
-	client.AddRemoveLoadBalancerTargetInput = newAddRemoveLoadBalancerTargetInputClient(client)
 	client.AddRemoveServiceLinkInput = newAddRemoveServiceLinkInputClient(client)
 	client.ChangeSecretInput = newChangeSecretInputClient(client)
 	client.SetLabelsInput = newSetLabelsInputClient(client)
@@ -186,10 +165,6 @@ func constructClient() *RancherClient {
 	client.Password = newPasswordClient(client)
 	client.Registry = newRegistryClient(client)
 	client.RegistryCredential = newRegistryCredentialClient(client)
-	client.RemoveLoadBalancerInput = newRemoveLoadBalancerInputClient(client)
-	client.SetLoadBalancerHostsInput = newSetLoadBalancerHostsInputClient(client)
-	client.SetLoadBalancerListenersInput = newSetLoadBalancerListenersInputClient(client)
-	client.SetLoadBalancerTargetsInput = newSetLoadBalancerTargetsInputClient(client)
 	client.SetProjectMembersInput = newSetProjectMembersInputClient(client)
 	client.SetServiceLinksInput = newSetServiceLinksInputClient(client)
 	client.LoadBalancerService = newLoadBalancerServiceClient(client)
@@ -207,6 +182,7 @@ func constructClient() *RancherClient {
 	client.EnvironmentUpgrade = newEnvironmentUpgradeClient(client)
 	client.ExternalDnsEvent = newExternalDnsEventClient(client)
 	client.ExternalHostEvent = newExternalHostEventClient(client)
+	client.LoadBalancerConfig = newLoadBalancerConfigClient(client)
 	client.Account = newAccountClient(client)
 	client.Agent = newAgentClient(client)
 	client.Certificate = newCertificateClient(client)
@@ -221,19 +197,12 @@ func constructClient() *RancherClient {
 	client.ExternalHandler = newExternalHandlerClient(client)
 	client.ExternalHandlerExternalHandlerProcessMap = newExternalHandlerExternalHandlerProcessMapClient(client)
 	client.ExternalHandlerProcess = newExternalHandlerProcessClient(client)
-	client.GlobalLoadBalancer = newGlobalLoadBalancerClient(client)
 	client.Host = newHostClient(client)
 	client.Image = newImageClient(client)
 	client.Instance = newInstanceClient(client)
 	client.InstanceLink = newInstanceLinkClient(client)
 	client.IpAddress = newIpAddressClient(client)
 	client.Label = newLabelClient(client)
-	client.LoadBalancer = newLoadBalancerClient(client)
-	client.LoadBalancerConfig = newLoadBalancerConfigClient(client)
-	client.LoadBalancerConfigListenerMap = newLoadBalancerConfigListenerMapClient(client)
-	client.LoadBalancerHostMap = newLoadBalancerHostMapClient(client)
-	client.LoadBalancerListener = newLoadBalancerListenerClient(client)
-	client.LoadBalancerTarget = newLoadBalancerTargetClient(client)
 	client.Mount = newMountClient(client)
 	client.Network = newNetworkClient(client)
 	client.PhysicalHost = newPhysicalHostClient(client)
@@ -266,6 +235,7 @@ func constructClient() *RancherClient {
 	client.Githubconfig = newGithubconfigClient(client)
 	client.Identity = newIdentityClient(client)
 	client.Ldapconfig = newLdapconfigClient(client)
+	client.Openldapconfig = newOpenldapconfigClient(client)
 	client.LocalAuthConfig = newLocalAuthConfigClient(client)
 	client.StatsAccess = newStatsAccessClient(client)
 	client.Amazonec2Config = newAmazonec2ConfigClient(client)

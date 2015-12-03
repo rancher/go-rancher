@@ -39,8 +39,6 @@ type ExternalService struct {
 
 	Removed string `json:"removed,omitempty" yaml:"removed,omitempty"`
 
-	SelectorLink string `json:"selectorLink,omitempty" yaml:"selector_link,omitempty"`
-
 	State string `json:"state,omitempty" yaml:"state,omitempty"`
 
 	Transitioning string `json:"transitioning,omitempty" yaml:"transitioning,omitempty"`
