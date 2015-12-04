@@ -18,6 +18,7 @@ type RancherClient struct {
 	InServiceUpgradeStrategy                 InServiceUpgradeStrategyOperations
 	ToServiceUpgradeStrategy                 ToServiceUpgradeStrategyOperations
 	PublicEndpoint                           PublicEndpointOperations
+	VirtualMachineDisk                       VirtualMachineDiskOperations
 	AddOutputsInput                          AddOutputsInputOperations
 	AddRemoveClusterHostInput                AddRemoveClusterHostInputOperations
 	AddRemoveServiceLinkInput                AddRemoveServiceLinkInputOperations
@@ -37,6 +38,7 @@ type RancherClient struct {
 	RegistryCredential                       RegistryCredentialOperations
 	SetProjectMembersInput                   SetProjectMembersInputOperations
 	SetServiceLinksInput                     SetServiceLinksInputOperations
+	VirtualMachine                           VirtualMachineOperations
 	LoadBalancerService                      LoadBalancerServiceOperations
 	ExternalService                          ExternalServiceOperations
 	DnsService                               DnsServiceOperations
@@ -148,6 +150,7 @@ func constructClient() *RancherClient {
 	client.InServiceUpgradeStrategy = newInServiceUpgradeStrategyClient(client)
 	client.ToServiceUpgradeStrategy = newToServiceUpgradeStrategyClient(client)
 	client.PublicEndpoint = newPublicEndpointClient(client)
+	client.VirtualMachineDisk = newVirtualMachineDiskClient(client)
 	client.AddOutputsInput = newAddOutputsInputClient(client)
 	client.AddRemoveClusterHostInput = newAddRemoveClusterHostInputClient(client)
 	client.AddRemoveServiceLinkInput = newAddRemoveServiceLinkInputClient(client)
@@ -167,6 +170,7 @@ func constructClient() *RancherClient {
 	client.RegistryCredential = newRegistryCredentialClient(client)
 	client.SetProjectMembersInput = newSetProjectMembersInputClient(client)
 	client.SetServiceLinksInput = newSetServiceLinksInputClient(client)
+	client.VirtualMachine = newVirtualMachineClient(client)
 	client.LoadBalancerService = newLoadBalancerServiceClient(client)
 	client.ExternalService = newExternalServiceClient(client)
 	client.DnsService = newDnsServiceClient(client)

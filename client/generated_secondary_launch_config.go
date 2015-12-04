@@ -47,6 +47,8 @@ type SecondaryLaunchConfig struct {
 
 	Devices []string `json:"devices,omitempty" yaml:"devices,omitempty"`
 
+	Disks []interface{} `json:"disks,omitempty" yaml:"disks,omitempty"`
+
 	Dns []string `json:"dns,omitempty" yaml:"dns,omitempty"`
 
 	DnsSearch []string `json:"dnsSearch,omitempty" yaml:"dns_search,omitempty"`
@@ -84,6 +86,8 @@ type SecondaryLaunchConfig struct {
 	LxcConf map[string]interface{} `json:"lxcConf,omitempty" yaml:"lxc_conf,omitempty"`
 
 	Memory int64 `json:"memory,omitempty" yaml:"memory,omitempty"`
+
+	MemoryMb int64 `json:"memoryMb,omitempty" yaml:"memory_mb,omitempty"`
 
 	MemorySwap int64 `json:"memorySwap,omitempty" yaml:"memory_swap,omitempty"`
 
@@ -143,7 +147,11 @@ type SecondaryLaunchConfig struct {
 
 	User string `json:"user,omitempty" yaml:"user,omitempty"`
 
+	Userdata string `json:"userdata,omitempty" yaml:"userdata,omitempty"`
+
 	Uuid string `json:"uuid,omitempty" yaml:"uuid,omitempty"`
+
+	Vcpu int64 `json:"vcpu,omitempty" yaml:"vcpu,omitempty"`
 
 	Version string `json:"version,omitempty" yaml:"version,omitempty"`
 
