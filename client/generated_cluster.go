@@ -37,7 +37,7 @@ type Cluster struct {
 
 	Port int64 `json:"port,omitempty" yaml:"port,omitempty"`
 
-	PublicEndpoints []int64 `json:"publicEndpoints,omitempty" yaml:"public_endpoints,omitempty"`
+	PublicEndpoints []interface{} `json:"publicEndpoints,omitempty" yaml:"public_endpoints,omitempty"`
 
 	RemoveTime string `json:"removeTime,omitempty" yaml:"remove_time,omitempty"`
 
