@@ -33,6 +33,8 @@ type Machine struct {
 
 	EngineInsecureRegistry []string `json:"engineInsecureRegistry,omitempty" yaml:"engine_insecure_registry,omitempty"`
 
+	EngineInstallUrl string `json:"engineInstallUrl,omitempty" yaml:"engine_install_url,omitempty"`
+
 	EngineLabel []string `json:"engineLabel,omitempty" yaml:"engine_label,omitempty"`
 
 	EngineOpts []string `json:"engineOpts,omitempty" yaml:"engine_opts,omitempty"`
