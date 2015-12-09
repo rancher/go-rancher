@@ -17,7 +17,6 @@ const (
 	FORWARDED_HOST_HEADER             = "X-Forwarded-Host"
 	FORWARDED_PROTO_HEADER            = "X-Forwarded-Proto"
 	FORWARDED_PORT_HEADER             = "X-Forwarded-Port"
-	HOST_HEADER                       = "Host"
 	SELF                              = "self"
 	COLLECTION                        = "collection"
 	LATEST                            = "latest"
@@ -161,7 +160,7 @@ func getUrlFromStandardHeaders(r *http.Request) string {
 
 	host := getOverrideHeader(r, FORWARDED_HOST_HEADER, "")
 	if host == "" {
-		host = getOverrideHeader(r, HOST_HEADER, "")
+		host = r.Host
 	}
 
 	if host == "" {
