@@ -25166,7 +25166,7 @@
           "nullable": true,
           "readOnCreateOnly": false
         },
-        "engineOpts": {
+        "engineOpt": {
           "type": "map[string]",
           "create": true,
           "update": false,

@@ -37,7 +37,7 @@ type Machine struct {
 
 	EngineLabel map[string]interface{} `json:"engineLabel,omitempty" yaml:"engine_label,omitempty"`
 
-	EngineOpts map[string]interface{} `json:"engineOpts,omitempty" yaml:"engine_opts,omitempty"`
+	EngineOpt map[string]interface{} `json:"engineOpt,omitempty" yaml:"engine_opt,omitempty"`
 
 	EngineRegistryMirror []string `json:"engineRegistryMirror,omitempty" yaml:"engine_registry_mirror,omitempty"`
 
