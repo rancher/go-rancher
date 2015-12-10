@@ -29,15 +29,15 @@ type Machine struct {
 
 	Driver string `json:"driver,omitempty" yaml:"driver,omitempty"`
 
-	EngineEnv []string `json:"engineEnv,omitempty" yaml:"engine_env,omitempty"`
+	EngineEnv map[string]interface{} `json:"engineEnv,omitempty" yaml:"engine_env,omitempty"`
 
 	EngineInsecureRegistry []string `json:"engineInsecureRegistry,omitempty" yaml:"engine_insecure_registry,omitempty"`
 
 	EngineInstallUrl string `json:"engineInstallUrl,omitempty" yaml:"engine_install_url,omitempty"`
 
-	EngineLabel []string `json:"engineLabel,omitempty" yaml:"engine_label,omitempty"`
+	EngineLabel map[string]interface{} `json:"engineLabel,omitempty" yaml:"engine_label,omitempty"`
 
-	EngineOpts []string `json:"engineOpts,omitempty" yaml:"engine_opts,omitempty"`
+	EngineOpts map[string]interface{} `json:"engineOpts,omitempty" yaml:"engine_opts,omitempty"`
 
 	EngineRegistryMirror []string `json:"engineRegistryMirror,omitempty" yaml:"engine_registry_mirror,omitempty"`
 
