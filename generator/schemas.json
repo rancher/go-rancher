@@ -627,6 +627,12 @@
           "update": false,
           "required": true,
           "readOnCreateOnly": false
+        },
+        "uuid": {
+          "type": "string",
+          "create": false,
+          "update": false,
+          "readOnCreateOnly": false
         }
       },
       "collectionFilters": {},
@@ -957,6 +963,45 @@
       "collectionFields": {},
       "resourceMethods": [
         "GET"
+      ],
+      "collectionMethods": [
+        "POST"
+      ]
+    },
+    {
+      "id": "haproxyConfig",
+      "type": "schema",
+      "links": {
+        "self": "http://localhost:8080/v1/schemas/haproxyconfig"
+      },
+      "actions": {},
+      "pluralName": "haproxyConfigs",
+      "resourceFields": {
+        "defaults": {
+          "type": "string",
+          "transform": "",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "global": {
+          "type": "string",
+          "transform": "",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        }
+      },
+      "collectionFilters": {},
+      "includeableLinks": [],
+      "resourceActions": {},
+      "collectionActions": {},
+      "collectionFields": {},
+      "resourceMethods": [
+        "GET",
+        "PUT"
       ],
       "collectionMethods": [
         "POST"
@@ -3441,31 +3486,32 @@
         }
       },
       "includeableLinks": [
-        "networks",
-        "services",
-        "storagepools",
-        "serviceconsumemaps",
         "externalevents",
+        "serviceconsumemaps",
         "agents",
-        "configitemstatuses",
-        "labels",
-        "environments",
         "instancelinks",
         "containerevents",
         "volumes",
         "instances",
-        "ports",
         "ipaddresses",
-        "mounts",
-        "projectmembers",
-        "serviceexposemaps",
-        "serviceevents",
-        "physicalhosts",
         "hosts",
-        "images",
+        "physicalhosts",
+        "serviceexposemaps",
         "credentials",
         "snapshots",
-        "certificates"
+        "certificates",
+        "networks",
+        "services",
+        "storagepools",
+        "configitemstatuses",
+        "labels",
+        "environments",
+        "ports",
+        "mounts",
+        "auditlogs",
+        "projectmembers",
+        "serviceevents",
+        "images"
       ],
       "resourceActions": {
         "update": {
@@ -5797,7 +5843,7 @@
         "loadBalancerConfig": {
           "type": "loadBalancerConfig",
           "create": true,
-          "update": false,
+          "update": true,
           "nullable": true,
           "readOnCreateOnly": false
         },
@@ -9327,6 +9373,12 @@
           "required": true,
           "readOnCreateOnly": false
         },
+        "uuid": {
+          "type": "string",
+          "create": false,
+          "update": false,
+          "readOnCreateOnly": false
+        },
         "ports": {
           "type": "array[string]",
           "create": true,
@@ -11013,6 +11065,13 @@
           "update": true,
           "nullable": true,
           "readOnCreateOnly": false
+        },
+        "haproxyConfig": {
+          "type": "haproxyConfig",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
         }
       },
       "collectionFilters": {},
@@ -11301,31 +11360,32 @@
         }
       },
       "includeableLinks": [
-        "networks",
-        "services",
-        "storagepools",
-        "serviceconsumemaps",
         "externalevents",
+        "serviceconsumemaps",
         "agents",
-        "configitemstatuses",
-        "labels",
-        "environments",
         "instancelinks",
         "containerevents",
         "volumes",
         "instances",
-        "ports",
         "ipaddresses",
-        "mounts",
-        "projectmembers",
-        "serviceexposemaps",
-        "serviceevents",
-        "physicalhosts",
         "hosts",
-        "images",
+        "physicalhosts",
+        "serviceexposemaps",
         "credentials",
         "snapshots",
-        "certificates"
+        "certificates",
+        "networks",
+        "services",
+        "storagepools",
+        "configitemstatuses",
+        "labels",
+        "environments",
+        "ports",
+        "mounts",
+        "auditlogs",
+        "projectmembers",
+        "serviceevents",
+        "images"
       ],
       "resourceActions": {
         "update": {
@@ -11711,6 +11771,288 @@
           "output": "agent"
         }
       },
+      "collectionActions": {},
+      "collectionFields": {},
+      "resourceMethods": [
+        "GET"
+      ],
+      "collectionMethods": [
+        "GET"
+      ]
+    },
+    {
+      "id": "auditLog",
+      "type": "schema",
+      "links": {
+        "self": "http://localhost:8080/v1/schemas/auditlog",
+        "collection": "http://localhost:8080/v1/auditlogs"
+      },
+      "actions": {},
+      "pluralName": "auditLogs",
+      "resourceFields": {
+        "accountId": {
+          "type": "reference[account]",
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false,
+          "maxLength": 255
+        },
+        "authType": {
+          "type": "enum",
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "required": true,
+          "readOnCreateOnly": false,
+          "maxLength": 255,
+          "options": [
+            "AdminAuth",
+            "BasicAuth",
+            "HeaderAuth",
+            "RegistrationToken",
+            "TokenAccount",
+            "TokenAuth"
+          ]
+        },
+        "authenticatedAsAccountId": {
+          "type": "reference[account]",
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false,
+          "maxLength": 255
+        },
+        "authenticatedAsIdentityId": {
+          "type": "reference[identity]",
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false,
+          "maxLength": 255
+        },
+        "created": {
+          "type": "date",
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false,
+          "maxLength": 255
+        },
+        "description": {
+          "type": "string",
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false,
+          "maxLength": 1024
+        },
+        "eventType": {
+          "type": "string",
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false,
+          "maxLength": 255
+        },
+        "id": {
+          "type": "int",
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "kind": {
+          "type": "string",
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false,
+          "maxLength": 255
+        },
+        "resourceId": {
+          "type": "int",
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false,
+          "maxLength": 255
+        },
+        "resourceType": {
+          "type": "string",
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false,
+          "maxLength": 255
+        },
+        "responseCode": {
+          "type": "string",
+          "create": false,
+          "update": false,
+          "readOnCreateOnly": false
+        },
+        "requestObject": {
+          "type": "json",
+          "create": false,
+          "update": false,
+          "readOnCreateOnly": false
+        },
+        "responseObject": {
+          "type": "json",
+          "create": false,
+          "update": false,
+          "readOnCreateOnly": false
+        }
+      },
+      "collectionFilters": {
+        "accountId": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "null",
+            "notnull"
+          ]
+        },
+        "authType": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "prefix",
+            "like",
+            "notlike",
+            "null",
+            "notnull"
+          ]
+        },
+        "authenticatedAsAccountId": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "null",
+            "notnull"
+          ]
+        },
+        "authenticatedAsIdentityId": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "prefix",
+            "like",
+            "notlike",
+            "null",
+            "notnull"
+          ]
+        },
+        "clientIp": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "prefix",
+            "like",
+            "notlike",
+            "null",
+            "notnull"
+          ]
+        },
+        "created": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "lt",
+            "lte",
+            "gt",
+            "gte",
+            "null",
+            "notnull"
+          ]
+        },
+        "description": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "prefix",
+            "like",
+            "notlike",
+            "null",
+            "notnull"
+          ]
+        },
+        "eventType": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "prefix",
+            "like",
+            "notlike",
+            "null",
+            "notnull"
+          ]
+        },
+        "id": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "lt",
+            "lte",
+            "gt",
+            "gte",
+            "null",
+            "notnull"
+          ]
+        },
+        "kind": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "prefix",
+            "like",
+            "notlike",
+            "null",
+            "notnull"
+          ]
+        },
+        "resourceId": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "lt",
+            "lte",
+            "gt",
+            "gte",
+            "null",
+            "notnull"
+          ]
+        },
+        "resourceType": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "prefix",
+            "like",
+            "notlike",
+            "null",
+            "notnull"
+          ]
+        },
+        "runtime": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "lt",
+            "lte",
+            "gt",
+            "gte",
+            "null",
+            "notnull"
+          ]
+        }
+      },
+      "includeableLinks": [
+        "account",
+        "authenticatedasaccount"
+      ],
+      "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
       "resourceMethods": [
@@ -23485,6 +23827,7 @@
           "transform": "",
           "create": true,
           "update": false,
+          "nullable": true,
           "required": true,
           "readOnCreateOnly": false,
           "minLength": 1
