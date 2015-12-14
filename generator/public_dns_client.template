@@ -1,0 +1,35 @@
+package client
+
+import "github.com/rancher/go-rancher/client"
+
+type RancherDNSClient struct {
+    client.RancherClient
+    client.RancherBaseClient
+	{{range .schemas}}
+    {{.Id}} {{.Id}}Operations{{end}}
+}
+
+func constructDNSClient() *RancherDNSClient {
+	dnsClient := &RancherDNSClient{
+		RancherBaseClient: client.RancherBaseClient{
+			Types: map[string]client.Schema{},
+		},
+	}
+
+    {{range .schemas}}
+    dnsClient.{{.Id}} = new{{.Id}}Client(dnsClient){{end}} 
+
+
+	return dnsClient
+}
+
+func NewRancherDNSClient(opts *client.ClientOpts) (*RancherDNSClient, error) {
+    dnsClient := constructDNSClient()
+        
+    err := client.SetupRancherBaseClient(&dnsClient.RancherBaseClient, opts)
+    if err != nil {
+        return nil, err
+    }
+
+    return dnsClient, nil
+}
