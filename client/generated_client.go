@@ -304,7 +304,7 @@ func NewRancherClient(opts *ClientOpts) (*RancherClient, error) {
 	}
 	client := constructClient(rancherBaseClient)
 
-	err := setupRancherBaseClient(rancherBaseClient, opts)
+	err := SetupRancherBaseClient(rancherBaseClient, opts)
 	if err != nil {
 		return nil, err
 	}

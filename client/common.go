@@ -28,10 +28,11 @@ var (
 )
 
 type ClientOpts struct {
-	Url       string
-	AccessKey string
-	SecretKey string
-	Timeout   time.Duration
+	Url             string
+	AccessKey       string
+	SecretKey       string
+	Timeout         time.Duration
+	CustomAuthToken string
 }
 
 type ApiError struct {
@@ -129,11 +130,12 @@ func appendFilters(urlString string, filters map[string]interface{}) (string, er
 	return u.String(), nil
 }
 
-func setupRancherBaseClient(rancherClient *RancherBaseClientImpl, opts *ClientOpts) error {
+func SetupRancherBaseClient(rancherClient *RancherBaseClientImpl, opts *ClientOpts) error {
 	if opts.Timeout == 0 {
 		opts.Timeout = time.Second * 10
 	}
 	client := &http.Client{Timeout: opts.Timeout}
+
 	req, err := http.NewRequest("GET", opts.Url, nil)
 	if err != nil {
 		return err
@@ -204,7 +206,11 @@ func NewListOpts() *ListOpts {
 }
 
 func (rancherClient *RancherBaseClientImpl) setupRequest(req *http.Request) {
-	req.SetBasicAuth(rancherClient.Opts.AccessKey, rancherClient.Opts.SecretKey)
+	if rancherClient.Opts.AccessKey != "" {
+		req.SetBasicAuth(rancherClient.Opts.AccessKey, rancherClient.Opts.SecretKey)
+	} else if rancherClient.Opts.CustomAuthToken != "" {
+		req.Header.Add("Authorization", rancherClient.Opts.CustomAuthToken)
+	}
 }
 
 func (rancherClient *RancherBaseClientImpl) newHttpClient() *http.Client {
@@ -262,23 +268,19 @@ func (rancherClient *RancherBaseClientImpl) doGet(url string, opts *ListOpts, re
 	}
 
 	rancherClient.setupRequest(req)
-
 	resp, err := client.Do(req)
 	if err != nil {
 		return err
 	}
-
 	defer resp.Body.Close()
 
 	if resp.StatusCode != 200 {
 		return newApiError(resp, url)
 	}
-
 	byteContent, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
 		return err
 	}
-
 	if debug {
 		fmt.Println("Response <= " + string(byteContent))
 	}
@@ -470,6 +472,10 @@ func (rancherClient *RancherBaseClientImpl) Delete(existing *Resource) error {
 		return nil
 	}
 	return rancherClient.doResourceDelete(existing.Type, existing)
+}
+
+func (rancherClient *RancherBaseClientImpl) ResourceDelete(schemaType string, existing *Resource) error {
+	return rancherClient.doResourceDelete(schemaType, existing)
 }
 
 func (rancherClient *RancherBaseClientImpl) doResourceDelete(schemaType string, existing *Resource) error {
