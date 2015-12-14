@@ -269,7 +269,7 @@ func constructClient() *RancherClient {
 func NewRancherClient(opts *ClientOpts) (*RancherClient, error) {
 	client := constructClient()
 
-	err := setupRancherBaseClient(&client.RancherBaseClient, opts)
+	err := SetupRancherBaseClient(&client.RancherBaseClient, opts)
 	if err != nil {
 		return nil, err
 	}
