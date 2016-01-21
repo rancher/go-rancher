@@ -1,0 +1,174 @@
+{
+  "data": [
+    {
+      "actions": {},
+      "id": "apiVersion",
+      "links": {
+        "self": "http://localhost:8089/v1-rancher-dns/schemas/apiVersion"
+      },
+      "pluralName": "apiVersions",
+      "resourceFields": {
+        "actions": {
+          "type": "map[string]"
+        },
+        "id": {
+          "type": "string"
+        },
+        "links": {
+          "type": "map[string]"
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "resourceMethods": [
+        "GET"
+      ],
+      "type": "schema"
+    },
+    {
+      "actions": {},
+      "collectionMethods": [
+        "GET"
+      ],
+      "id": "schema",
+      "links": {
+        "collection": "http://localhost:8089/v1-rancher-dns/schemas",
+        "self": "http://localhost:8089/v1-rancher-dns/schemas/schema"
+      },
+      "pluralName": "schemas",
+      "resourceFields": {
+        "actions": {
+          "type": "map[string]"
+        },
+        "collectionActions": {
+          "type": "map[string]"
+        },
+        "collectionFields": {
+          "type": "map[string]"
+        },
+        "collectionFilters": {
+          "type": "map[string]"
+        },
+        "collectionMethods": {
+          "type": "array[string]"
+        },
+        "id": {
+          "type": "string"
+        },
+        "includeableLinks": {
+          "type": "array[string]"
+        },
+        "links": {
+          "type": "map[string]"
+        },
+        "pluralName": {
+          "type": "string"
+        },
+        "resourceActions": {
+          "type": "map[string]"
+        },
+        "resourceFields": {
+          "type": "map[string]"
+        },
+        "resourceMethods": {
+          "type": "array[string]"
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "resourceMethods": [
+        "GET"
+      ],
+      "type": "schema"
+    },
+    {
+      "actions": {},
+      "collectionMethods": [
+        "GET",
+        "POST"
+      ],
+      "id": "rootDomainInfo",
+      "links": {
+        "collection": "http://localhost:8089/v1-rancher-dns/rootdomaininfo",
+        "self": "http://localhost:8089/v1-rancher-dns/schemas/rootDomainInfo"
+      },
+      "pluralName": "rootDomainInfo",
+      "resourceFields": {
+        "actions": {
+          "type": "map[string]"
+        },
+        "id": {
+          "type": "string"
+        },
+        "links": {
+          "type": "map[string]"
+        },
+        "rootDomain": {
+          "type": "string"
+        },
+        "token": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "resourceMethods": [
+        "GET"
+      ],
+      "type": "schema"
+    },
+    {
+      "actions": {},
+      "collectionMethods": [
+        "GET",
+        "POST"
+      ],
+      "id": "dnsRecord",
+      "links": {
+        "collection": "http://localhost:8089/v1-rancher-dns/dnsrecords",
+        "self": "http://localhost:8089/v1-rancher-dns/schemas/dnsRecord"
+      },
+      "pluralName": "dnsRecords",
+      "resourceFields": {
+        "actions": {
+          "type": "map[string]"
+        },
+        "fqdn": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "links": {
+          "type": "map[string]"
+        },
+        "records": {
+          "type": "array[string]"
+        },
+        "recordtype": {
+          "type": "string"
+        },
+        "ttl": {
+          "type": "int"
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "resourceMethods": [
+        "GET",
+        "PUT",
+        "DELETE"
+      ],
+      "type": "schema"
+    }
+  ],
+  "links": {
+    "self": "http://localhost:8089/v1-rancher-dns/schemas"
+  },
+  "resourceType": "schema",
+  "type": "collection"
+}
