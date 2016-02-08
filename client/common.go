@@ -13,7 +13,6 @@ import (
 	"regexp"
 
 	"github.com/gorilla/websocket"
-	"time"
 )
 
 const (
@@ -30,7 +29,6 @@ type ClientOpts struct {
 	Url       string
 	AccessKey string
 	SecretKey string
-	Timeout   time.Duration
 }
 
 type ApiError struct {
@@ -114,10 +112,7 @@ func appendFilters(urlString string, filters map[string]interface{}) (string, er
 }
 
 func setupRancherBaseClient(rancherClient *RancherBaseClient, opts *ClientOpts) error {
-	if opts.Timeout == 0 {
-		opts.Timeout = time.Second * 10
-	}
-	client := &http.Client{Timeout: opts.Timeout}
+	client := &http.Client{}
 	req, err := http.NewRequest("GET", opts.Url, nil)
 	if err != nil {
 		return err
@@ -192,10 +187,7 @@ func (rancherClient *RancherBaseClient) setupRequest(req *http.Request) {
 }
 
 func (rancherClient *RancherBaseClient) newHttpClient() *http.Client {
-	if rancherClient.Opts.Timeout == 0 {
-		rancherClient.Opts.Timeout = time.Second * 10
-	}
-	return &http.Client{Timeout: rancherClient.Opts.Timeout}
+	return &http.Client{}
 }
 
 func (rancherClient *RancherBaseClient) doDelete(url string) error {
