@@ -143,6 +143,8 @@ type Container struct {
 
 	Uuid string `json:"uuid,omitempty" yaml:"uuid,omitempty"`
 
+	ValidHostIds []string `json:"validHostIds,omitempty" yaml:"valid_host_ids,omitempty"`
+
 	Version string `json:"version,omitempty" yaml:"version,omitempty"`
 
 	VolumeDriver string `json:"volumeDriver,omitempty" yaml:"volume_driver,omitempty"`

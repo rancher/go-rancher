@@ -149,6 +149,8 @@ type LaunchConfig struct {
 
 	Uuid string `json:"uuid,omitempty" yaml:"uuid,omitempty"`
 
+	ValidHostIds []string `json:"validHostIds,omitempty" yaml:"valid_host_ids,omitempty"`
+
 	Vcpu int64 `json:"vcpu,omitempty" yaml:"vcpu,omitempty"`
 
 	Version string `json:"version,omitempty" yaml:"version,omitempty"`
