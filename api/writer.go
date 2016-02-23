@@ -44,7 +44,7 @@ func setIfNot(data map[string]interface{}, key string, value interface{}) map[st
 }
 
 func (a *ApiContext) WriteCollection(obj interface{}) error {
-	collectionData, resourcesData, err := CollectionToMap(obj, a.schemas)
+	collectionData, resourcesData, err := CollectionToMap(obj, a.Schemas)
 	if err != nil {
 		return err
 	}
@@ -58,7 +58,7 @@ func (a *ApiContext) WriteCollection(obj interface{}) error {
 }
 
 func (a *ApiContext) WriteResource(obj interface{}) error {
-	resourceData, err := ResourceToMap(obj, a.schemas)
+	resourceData, err := ResourceToMap(obj, a.Schemas)
 	if err != nil {
 		return err
 	}

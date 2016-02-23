@@ -15,18 +15,18 @@ const (
 
 type ApiContext struct {
 	r                 *http.Request
-	schemas           *client.Schemas
+	Schemas           *client.Schemas
 	UrlBuilder        UrlBuilder
 	apiResponseWriter ApiResponseWriter
 	responseWriter    http.ResponseWriter
-	Policy            Policy
+	Policy            *Policy
+	IDFormatter       IDFormatter
 }
 
 
 type Policy struct {
-	ID interface{} `json:"id"`
-	AccountID int `json:"accountId"`
-	AuthenticatedAsAccountID int `json:"authenticatedAsAccountId"`
+	AccountID int64 `json:"accountId"`
+	AuthenticatedAsAccountID int64 `json:"authenticatedAsAccountId"`
 	Identities []Identity `json:"identities"`
 	Username string `json:"username"`
 }
@@ -53,7 +53,7 @@ func CreateApiContext(rw http.ResponseWriter, r *http.Request, schemas *client.S
 
 	apiContext := &ApiContext{
 		r:                 r,
-		schemas:           schemas,
+		Schemas:           schemas,
 		UrlBuilder:        urlBuilder,
 		apiResponseWriter: parseResponseType(r),
 		responseWriter:    rw,
