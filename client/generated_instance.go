@@ -60,6 +60,8 @@ type InstanceOperations interface {
 
 	ActionDeallocate(*Instance) (*Instance, error)
 
+	ActionError(*Instance) (*Instance, error)
+
 	ActionMigrate(*Instance) (*Instance, error)
 
 	ActionPurge(*Instance) (*Instance, error)
@@ -154,6 +156,15 @@ func (c *InstanceClient) ActionDeallocate(resource *Instance) (*Instance, error)
 	resp := &Instance{}
 
 	err := c.rancherClient.doAction(INSTANCE_TYPE, "deallocate", &resource.Resource, nil, resp)
+
+	return resp, err
+}
+
+func (c *InstanceClient) ActionError(resource *Instance) (*Instance, error) {
+
+	resp := &Instance{}
+
+	err := c.rancherClient.doAction(INSTANCE_TYPE, "error", &resource.Resource, nil, resp)
 
 	return resp, err
 }
