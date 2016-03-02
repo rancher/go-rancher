@@ -1,0 +1,2031 @@
+account:
+ description: 
+ resourceFields:
+    created: The date of when the account was created.
+    description: 
+    id: The unique identifier for the account
+    kind: 
+    name: 
+    removed: The date of when the account was removed
+    state: The current state of the account. The options are [activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, restoring, updating-active, updating-inactive].
+    transitioning: Whether or not the account is in a transitioning state
+    transitioningMessage: The message to show while in a transitioning state
+    transitioningProgress: The percentage remaining in the transitioning process of the account
+    uuid: The universally unique identifier for the account. This will always be unique across Rancher installations.
+ resourceActions:
+    activate: To activate the account
+    create: To create the account
+    deactivate: To deactivate the account
+    purge: To purge the account
+    remove: To remove the account
+    restore: To restore the account
+    update: To update the account
+    
+
+activeSetting:
+ description: 
+ resourceFields:
+    activeValue: 
+    id: The unique identifier for the activeSetting
+    name: 
+    value: 
+
+addOutputsInput:
+ description: 
+ resourceFields:
+    outputs: 
+
+addRemoveLoadBalancerServiceLinkInput:
+ description: 
+ resourceFields:
+    serviceLink: 
+
+addRemoveServiceLinkInput:
+ description: 
+ resourceFields:
+    serviceLink: 
+
+apiKey:
+ description: 
+ resourceFields:
+    accountId: The unique identifier for the associated account
+    created: The date of when the apiKey was created.
+    description: 
+    id: The unique identifier for the apiKey
+    kind: 
+    name: 
+    publicValue: The public value of the apiKey
+    removed: The date of when the apiKey was removed
+    secretValue: The secret value of the apiKey
+    state: The current state of the apiKey. The options are [activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, updating-active, updating-inactive].
+    transitioning: Whether or not the apiKey is in a transitioning state
+    transitioningMessage: The message to show while in a transitioning state
+    transitioningProgress: The percentage remaining in the transitioning process of the apiKey
+    uuid: The universally unique identifier for the apiKey. This will always be unique across Rancher installations.
+ resourceActions:
+    activate: To activate the apiKey
+    create: To create the apiKey
+    deactivate: To deactivate the apiKey
+    purge: To purge the apiKey
+    remove: To remove the apiKey
+    update: To update the apiKey
+    
+
+auditLog:
+ description: 
+ resourceFields:
+    accountId: The unique identifier for the associated account
+    authType: 
+    authenticatedAsAccountId: 
+    authenticatedAsIdentityId: 
+    clientIp: 
+    created: The date of when the auditLog was created.
+    description: 
+    eventType: 
+    id: The unique identifier for the auditLog
+    kind: 
+    requestObject: 
+    resourceId: 
+    resourceType: 
+    responseCode: 
+    responseObject: 
+
+baseMachineConfig:
+ description: 
+
+certificate:
+ description: 
+ resourceFields:
+    CN: 
+    accountId: The unique identifier for the associated account
+    algorithm: 
+    cert: 
+    certChain: 
+    certFingerprint: 
+    created: The date of when the certificate was created.
+    description: 
+    expiresAt: 
+    id: The unique identifier for the certificate
+    issuedAt: 
+    issuer: 
+    key: 
+    keySize: 
+    kind: 
+    name: 
+    removed: The date of when the certificate was removed
+    serialNumber: 
+    state: The current state of the certificate. The options are [activating, active, removed, removing, requested].
+    subjectAlternativeNames: 
+    transitioning: Whether or not the certificate is in a transitioning state
+    transitioningMessage: The message to show while in a transitioning state
+    transitioningProgress: The percentage remaining in the transitioning process of the certificate
+    uuid: The universally unique identifier for the certificate. This will always be unique across Rancher installations.
+    version: 
+ resourceActions:
+    create: To create the certificate
+    remove: To remove the certificate
+    
+
+changeSecretInput:
+ description: 
+ resourceFields:
+    newSecret: 
+    oldSecret: 
+
+composeConfig:
+ description: 
+ resourceFields:
+    dockerComposeConfig: 
+    rancherComposeConfig: 
+
+composeConfigInput:
+ description: 
+ resourceFields:
+    serviceIds: 
+
+composeProject:
+ description: 
+ resourceFields:
+    accountId: The unique identifier for the associated account
+    created: The date of when the composeProject was created.
+    description: 
+    environment: 
+    externalId: 
+    healthState: 
+    id: The unique identifier for the composeProject
+    kind: 
+    name: 
+    previousEnvironment: 
+    previousExternalId: 
+    removed: The date of when the composeProject was removed
+    state: The current state of the composeProject. The options are [activating, active, canceled-upgrade, canceling-rollback, canceling-upgrade, error, erroring, finishing-upgrade, removed, removing, requested, rolling-back, updating-active, upgraded, upgrading].
+    templates: 
+    transitioning: Whether or not the composeProject is in a transitioning state
+    transitioningMessage: The message to show while in a transitioning state
+    transitioningProgress: The percentage remaining in the transitioning process of the composeProject
+    uuid: The universally unique identifier for the composeProject. This will always be unique across Rancher installations.
+ resourceActions:
+    cancelrollback: To cancelrollback the composeProject
+    cancelupgrade: To cancelupgrade the composeProject
+    create: To create the composeProject
+    error: To error the composeProject
+    finishupgrade: To finishupgrade the composeProject
+    remove: To remove the composeProject
+    rollback: To rollback the composeProject
+    
+
+composeService:
+ description: 
+ resourceFields:
+    accountId: The unique identifier for the associated account
+    created: The date of when the composeService was created.
+    description: 
+    environmentId: 
+    externalId: 
+    fqdn: 
+    healthState: 
+    id: The unique identifier for the composeService
+    kind: 
+    launchConfig: 
+    name: 
+    publicEndpoints: 
+    removed: The date of when the composeService was removed
+    scale: 
+    selectorContainer: 
+    selectorLink: 
+    startOnCreate: 
+    state: The current state of the composeService. The options are [activating, active, canceled-rollback, canceled-upgrade, canceling-rollback, canceling-upgrade, deactivating, finishing-upgrade, inactive, registering, removed, removing, requested, restarting, rolling-back, updating-active, updating-inactive, upgraded, upgrading].
+    transitioning: Whether or not the composeService is in a transitioning state
+    transitioningMessage: The message to show while in a transitioning state
+    transitioningProgress: The percentage remaining in the transitioning process of the composeService
+    uuid: The universally unique identifier for the composeService. This will always be unique across Rancher installations.
+    vip: 
+ resourceActions:
+    activate: To activate the composeService
+    cancelrollback: To cancelrollback the composeService
+    cancelupgrade: To cancelupgrade the composeService
+    create: To create the composeService
+    finishupgrade: To finishupgrade the composeService
+    remove: To remove the composeService
+    rollback: To rollback the composeService
+    
+
+container:
+ description: 
+ resourceFields:
+    accountId: The unique identifier for the associated account
+    build: 
+    capAdd: 
+    capDrop: 
+    command: 
+    count: 
+    cpuSet: 
+    cpuShares: 
+    createIndex: 
+    created: The date of when the container was created.
+    dataVolumeMounts: 
+    dataVolumes: 
+    dataVolumesFrom: 
+    deploymentUnitUuid: 
+    description: 
+    devices: 
+    dns: 
+    dnsSearch: 
+    domainName: 
+    entryPoint: 
+    environment: 
+    expose: 
+    externalId: 
+    extraHosts: 
+    firstRunning: 
+    healthCheck: 
+    healthState: 
+    hostId: The unique identifier for the associated host
+    hostname: 
+    id: The unique identifier for the container
+    imageUuid: 
+    instanceLinks: 
+    kind: 
+    labels: 
+    logConfig: 
+    lxcConf: 
+    memory: 
+    memorySwap: 
+    name: 
+    nativeContainer: 
+    networkContainerId: 
+    networkIds: 
+    networkMode: 
+    pidMode: 
+    ports: 
+    primaryIpAddress: 
+    privileged: 
+    publishAllPorts: 
+    readOnly: 
+    registryCredentialId: 
+    removed: The date of when the container was removed
+    requestedHostId: 
+    restartPolicy: 
+    securityOpt: 
+    startCount: 
+    startOnCreate: 
+    state: The current state of the container. The options are [creating, error, erroring, migrating, purged, purging, removed, removing, requested, restarting, restoring, running, starting, stopped, stopping, updating-running, updating-stopped].
+    stdinOpen: 
+    systemContainer: 
+    transitioning: Whether or not the container is in a transitioning state
+    transitioningMessage: The message to show while in a transitioning state
+    transitioningProgress: The percentage remaining in the transitioning process of the container
+    tty: 
+    user: 
+    uuid: The universally unique identifier for the container. This will always be unique across Rancher installations.
+    version: 
+    volumeDriver: 
+    workingDir: 
+ resourceActions:
+    allocate: To allocate the container
+    console: To console the container
+    create: To create the container
+    deallocate: To deallocate the container
+    error: To error the container
+    execute: To execute the container
+    logs: To logs the container
+    migrate: To migrate the container
+    proxy: To proxy the container
+    purge: To purge the container
+    remove: To remove the container
+    restart: To restart the container
+    restore: To restore the container
+    setlabels: To setlabels the container
+    start: To start the container
+    stop: To stop the container
+    update: To update the container
+    updatehealthy: To updatehealthy the container
+    updatereinitializing: To updatereinitializing the container
+    updateunhealthy: To updateunhealthy the container
+    
+
+containerEvent:
+ description: 
+ resourceFields:
+    accountId: The unique identifier for the associated account
+    created: The date of when the containerEvent was created.
+    dockerInspect: 
+    externalFrom: 
+    externalId: 
+    externalStatus: 
+    externalTimestamp: 
+    hostId: The unique identifier for the associated host
+    id: The unique identifier for the containerEvent
+    kind: 
+    reportedHostUuid: 
+    state: The current state of the containerEvent. The options are [created, creating, removed, removing, requested].
+    transitioning: Whether or not the containerEvent is in a transitioning state
+    transitioningMessage: The message to show while in a transitioning state
+    transitioningProgress: The percentage remaining in the transitioning process of the containerEvent
+ resourceActions:
+    create: To create the containerEvent
+    remove: To remove the containerEvent
+    
+
+containerExec:
+ description: 
+ resourceFields:
+    attachStdin: 
+    attachStdout: 
+    command: 
+    tty: 
+
+containerLogs:
+ description: 
+ resourceFields:
+    follow: 
+    lines: 
+
+containerProxy:
+ description: 
+ resourceFields:
+    port: 
+    scheme: 
+
+credential:
+ description: 
+ resourceFields:
+    accountId: The unique identifier for the associated account
+    created: The date of when the credential was created.
+    description: 
+    id: The unique identifier for the credential
+    kind: 
+    name: 
+    publicValue: The public value of the credential
+    removed: The date of when the credential was removed
+    secretValue: The secret value of the credential
+    state: The current state of the credential. The options are [activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, updating-active, updating-inactive].
+    transitioning: Whether or not the credential is in a transitioning state
+    transitioningMessage: The message to show while in a transitioning state
+    transitioningProgress: The percentage remaining in the transitioning process of the credential
+    uuid: The universally unique identifier for the credential. This will always be unique across Rancher installations.
+ resourceActions:
+    activate: To activate the credential
+    create: To create the credential
+    deactivate: To deactivate the credential
+    purge: To purge the credential
+    remove: To remove the credential
+    update: To update the credential
+    
+
+dnsService:
+ description: 
+ resourceFields:
+    accountId: The unique identifier for the associated account
+    assignServiceIpAddress: 
+    created: The date of when the dnsService was created.
+    description: 
+    environmentId: 
+    externalId: 
+    fqdn: 
+    healthState: 
+    id: The unique identifier for the dnsService
+    kind: 
+    launchConfig: 
+    metadata: 
+    name: 
+    removed: The date of when the dnsService was removed
+    retainIp: 
+    selectorLink: 
+    startOnCreate: 
+    state: The current state of the dnsService. The options are [activating, active, canceled-rollback, canceled-upgrade, canceling-rollback, canceling-upgrade, deactivating, finishing-upgrade, inactive, registering, removed, removing, requested, restarting, rolling-back, updating-active, updating-inactive, upgraded, upgrading].
+    transitioning: Whether or not the dnsService is in a transitioning state
+    transitioningMessage: The message to show while in a transitioning state
+    transitioningProgress: The percentage remaining in the transitioning process of the dnsService
+    upgrade: 
+    uuid: The universally unique identifier for the dnsService. This will always be unique across Rancher installations.
+ resourceActions:
+    activate: To activate the dnsService
+    addservicelink: To addservicelink the dnsService
+    cancelrollback: To cancelrollback the dnsService
+    cancelupgrade: To cancelupgrade the dnsService
+    create: To create the dnsService
+    deactivate: To deactivate the dnsService
+    finishupgrade: To finishupgrade the dnsService
+    remove: To remove the dnsService
+    removeservicelink: To removeservicelink the dnsService
+    restart: To restart the dnsService
+    rollback: To rollback the dnsService
+    setservicelinks: To setservicelinks the dnsService
+    update: To update the dnsService
+    upgrade: To upgrade the dnsService
+    
+
+dockerBuild:
+ description: 
+ resourceFields:
+    context: 
+    dockerfile: 
+    forcerm: 
+    nocache: 
+    remote: 
+    rm: 
+
+environment:
+ description: 
+ resourceFields:
+    accountId: The unique identifier for the associated account
+    created: The date of when the environment was created.
+    description: 
+    dockerCompose: 
+    environment: 
+    externalId: 
+    healthState: 
+    id: The unique identifier for the environment
+    kind: 
+    name: 
+    outputs: 
+    previousEnvironment: 
+    previousExternalId: 
+    rancherCompose: 
+    removed: The date of when the environment was removed
+    startOnCreate: 
+    state: The current state of the environment. The options are [activating, active, canceled-upgrade, canceling-rollback, canceling-upgrade, error, erroring, finishing-upgrade, removed, removing, requested, rolling-back, updating-active, upgraded, upgrading].
+    transitioning: Whether or not the environment is in a transitioning state
+    transitioningMessage: The message to show while in a transitioning state
+    transitioningProgress: The percentage remaining in the transitioning process of the environment
+    uuid: The universally unique identifier for the environment. This will always be unique across Rancher installations.
+ resourceActions:
+    activateservices: To activateservices the environment
+    addoutputs: To addoutputs the environment
+    cancelrollback: To cancelrollback the environment
+    cancelupgrade: To cancelupgrade the environment
+    create: To create the environment
+    deactivateservices: To deactivateservices the environment
+    error: To error the environment
+    exportconfig: To exportconfig the environment
+    finishupgrade: To finishupgrade the environment
+    remove: To remove the environment
+    rollback: To rollback the environment
+    update: To update the environment
+    upgrade: To upgrade the environment
+    
+
+environmentUpgrade:
+ description: 
+ resourceFields:
+    dockerCompose: 
+    environment: 
+    externalId: 
+    rancherCompose: 
+
+externalDnsEvent:
+ description: 
+ resourceFields:
+    accountId: The unique identifier for the associated account
+    created: The date of when the externalDnsEvent was created.
+    eventType: 
+    externalId: 
+    fqdn: 
+    id: The unique identifier for the externalDnsEvent
+    kind: 
+    reportedAccountId: 
+    serviceName: 
+    stackName: 
+    state: The current state of the externalDnsEvent. The options are [created, creating, removed, removing, requested].
+    transitioning: Whether or not the externalDnsEvent is in a transitioning state
+    transitioningMessage: The message to show while in a transitioning state
+    transitioningProgress: The percentage remaining in the transitioning process of the externalDnsEvent
+    uuid: The universally unique identifier for the externalDnsEvent. This will always be unique across Rancher installations.
+ resourceActions:
+    create: To create the externalDnsEvent
+    remove: To remove the externalDnsEvent
+    
+
+externalEvent:
+ description: 
+ resourceFields:
+    accountId: The unique identifier for the associated account
+    created: The date of when the externalEvent was created.
+    eventType: 
+    externalId: 
+    id: The unique identifier for the externalEvent
+    kind: 
+    reportedAccountId: 
+    state: The current state of the externalEvent. The options are [created, creating, removed, removing, requested].
+    transitioning: Whether or not the externalEvent is in a transitioning state
+    transitioningMessage: The message to show while in a transitioning state
+    transitioningProgress: The percentage remaining in the transitioning process of the externalEvent
+    uuid: The universally unique identifier for the externalEvent. This will always be unique across Rancher installations.
+ resourceActions:
+    create: To create the externalEvent
+    remove: To remove the externalEvent
+    
+
+externalHostEvent:
+ description: 
+ resourceFields:
+    accountId: The unique identifier for the associated account
+    created: The date of when the externalHostEvent was created.
+    deleteHost: 
+    eventType: 
+    externalId: 
+    hostId: The unique identifier for the associated host
+    hostLabel: 
+    id: The unique identifier for the externalHostEvent
+    kind: 
+    reportedAccountId: 
+    state: The current state of the externalHostEvent. The options are [created, creating, removed, removing, requested].
+    transitioning: Whether or not the externalHostEvent is in a transitioning state
+    transitioningMessage: The message to show while in a transitioning state
+    transitioningProgress: The percentage remaining in the transitioning process of the externalHostEvent
+    uuid: The universally unique identifier for the externalHostEvent. This will always be unique across Rancher installations.
+ resourceActions:
+    create: To create the externalHostEvent
+    remove: To remove the externalHostEvent
+    
+
+externalService:
+ description: 
+ resourceFields:
+    accountId: The unique identifier for the associated account
+    created: The date of when the externalService was created.
+    description: 
+    environmentId: 
+    externalId: 
+    externalIpAddresses: 
+    fqdn: 
+    healthCheck: 
+    healthState: 
+    hostname: 
+    id: The unique identifier for the externalService
+    kind: 
+    launchConfig: 
+    metadata: 
+    name: 
+    removed: The date of when the externalService was removed
+    startOnCreate: 
+    state: The current state of the externalService. The options are [activating, active, canceled-rollback, canceled-upgrade, canceling-rollback, canceling-upgrade, deactivating, finishing-upgrade, inactive, registering, removed, removing, requested, restarting, rolling-back, updating-active, updating-inactive, upgraded, upgrading].
+    transitioning: Whether or not the externalService is in a transitioning state
+    transitioningMessage: The message to show while in a transitioning state
+    transitioningProgress: The percentage remaining in the transitioning process of the externalService
+    upgrade: 
+    uuid: The universally unique identifier for the externalService. This will always be unique across Rancher installations.
+ resourceActions:
+    activate: To activate the externalService
+    cancelrollback: To cancelrollback the externalService
+    cancelupgrade: To cancelupgrade the externalService
+    create: To create the externalService
+    deactivate: To deactivate the externalService
+    finishupgrade: To finishupgrade the externalService
+    remove: To remove the externalService
+    restart: To restart the externalService
+    rollback: To rollback the externalService
+    update: To update the externalService
+    upgrade: To upgrade the externalService
+    
+
+externalServiceEvent:
+ description: 
+ resourceFields:
+    accountId: The unique identifier for the associated account
+    created: The date of when the externalServiceEvent was created.
+    environment: 
+    eventType: 
+    externalId: 
+    id: The unique identifier for the externalServiceEvent
+    kind: 
+    reportedAccountId: 
+    service: 
+    state: The current state of the externalServiceEvent. The options are [created, creating, removed, removing, requested].
+    transitioning: Whether or not the externalServiceEvent is in a transitioning state
+    transitioningMessage: The message to show while in a transitioning state
+    transitioningProgress: The percentage remaining in the transitioning process of the externalServiceEvent
+    uuid: The universally unique identifier for the externalServiceEvent. This will always be unique across Rancher installations.
+ resourceActions:
+    create: To create the externalServiceEvent
+    remove: To remove the externalServiceEvent
+    
+
+externalStoragePoolEvent:
+ description: 
+ resourceFields:
+    accountId: The unique identifier for the associated account
+    created: The date of when the externalStoragePoolEvent was created.
+    eventType: 
+    externalId: 
+    hostUuids: 
+    id: The unique identifier for the externalStoragePoolEvent
+    kind: 
+    reportedAccountId: 
+    state: The current state of the externalStoragePoolEvent. The options are [created, creating, removed, removing, requested].
+    storagePool: 
+    transitioning: Whether or not the externalStoragePoolEvent is in a transitioning state
+    transitioningMessage: The message to show while in a transitioning state
+    transitioningProgress: The percentage remaining in the transitioning process of the externalStoragePoolEvent
+    uuid: The universally unique identifier for the externalStoragePoolEvent. This will always be unique across Rancher installations.
+ resourceActions:
+    create: To create the externalStoragePoolEvent
+    remove: To remove the externalStoragePoolEvent
+    
+
+externalVolumeEvent:
+ description: 
+ resourceFields:
+    accountId: The unique identifier for the associated account
+    created: The date of when the externalVolumeEvent was created.
+    eventType: 
+    externalId: 
+    id: The unique identifier for the externalVolumeEvent
+    kind: 
+    reportedAccountId: 
+    state: The current state of the externalVolumeEvent. The options are [created, creating, removed, removing, requested].
+    transitioning: Whether or not the externalVolumeEvent is in a transitioning state
+    transitioningMessage: The message to show while in a transitioning state
+    transitioningProgress: The percentage remaining in the transitioning process of the externalVolumeEvent
+    uuid: The universally unique identifier for the externalVolumeEvent. This will always be unique across Rancher installations.
+    volume: 
+ resourceActions:
+    create: To create the externalVolumeEvent
+    remove: To remove the externalVolumeEvent
+    
+
+fieldDocumentation:
+ description: 
+ resourceFields:
+    description: 
+
+haproxyConfig:
+ description: 
+ resourceFields:
+    defaults: 
+    global: 
+
+healthcheckInstanceHostMap:
+ description: 
+ resourceFields:
+    accountId: The unique identifier for the associated account
+    created: The date of when the healthcheckInstanceHostMap was created.
+    description: 
+    healthState: 
+    hostId: The unique identifier for the associated host
+    id: The unique identifier for the healthcheckInstanceHostMap
+    instanceId: The unique identifier for the associated instance
+    kind: 
+    name: 
+    removed: The date of when the healthcheckInstanceHostMap was removed
+    state: The current state of the healthcheckInstanceHostMap. The options are [activating, active, removed, removing, requested].
+    transitioning: Whether or not the healthcheckInstanceHostMap is in a transitioning state
+    transitioningMessage: The message to show while in a transitioning state
+    transitioningProgress: The percentage remaining in the transitioning process of the healthcheckInstanceHostMap
+    uuid: The universally unique identifier for the healthcheckInstanceHostMap. This will always be unique across Rancher installations.
+ resourceActions:
+    create: To create the healthcheckInstanceHostMap
+    remove: To remove the healthcheckInstanceHostMap
+    
+
+host:
+ description: 
+ resourceFields:
+    accountId: The unique identifier for the associated account
+    agentState: 
+    computeTotal: 
+    created: The date of when the host was created.
+    description: 
+    hostname: 
+    id: The unique identifier for the host
+    info: 
+    kind: 
+    labels: 
+    name: 
+    physicalHostId: 
+    publicEndpoints: 
+    removed: The date of when the host was removed
+    state: The current state of the host. The options are [activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, restoring, updating-active, updating-inactive].
+    transitioning: Whether or not the host is in a transitioning state
+    transitioningMessage: The message to show while in a transitioning state
+    transitioningProgress: The percentage remaining in the transitioning process of the host
+    uuid: The universally unique identifier for the host. This will always be unique across Rancher installations.
+ resourceActions:
+    activate: To activate the host
+    create: To create the host
+    deactivate: To deactivate the host
+    dockersocket: To dockersocket the host
+    purge: To purge the host
+    remove: To remove the host
+    restore: To restore the host
+    update: To update the host
+    
+
+hostAccess:
+ description: 
+ resourceFields:
+    token: 
+    url: 
+
+identity:
+ description: 
+ resourceFields:
+    all: 
+    externalId: 
+    externalIdType: 
+    id: The unique identifier for the identity
+    login: 
+    name: 
+    profilePicture: 
+    profileUrl: 
+    projectId: 
+    role: 
+
+image:
+ description: 
+ resourceFields:
+    accountId: The unique identifier for the associated account
+    created: The date of when the image was created.
+    description: 
+    id: The unique identifier for the image
+    kind: 
+    name: 
+    removed: The date of when the image was removed
+    state: The current state of the image. The options are [activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, restoring, updating-active, updating-inactive].
+    transitioning: Whether or not the image is in a transitioning state
+    transitioningMessage: The message to show while in a transitioning state
+    transitioningProgress: The percentage remaining in the transitioning process of the image
+    uuid: The universally unique identifier for the image. This will always be unique across Rancher installations.
+ resourceActions:
+    activate: To activate the image
+    create: To create the image
+    deactivate: To deactivate the image
+    purge: To purge the image
+    remove: To remove the image
+    restore: To restore the image
+    update: To update the image
+    
+
+inServiceUpgradeStrategy:
+ description: 
+ resourceFields:
+    batchSize: 
+    intervalMillis: 
+    launchConfig: 
+    previousLaunchConfig: 
+    previousSecondaryLaunchConfigs: 
+    secondaryLaunchConfigs: 
+    startFirst: 
+
+instance:
+ description: 
+ resourceFields:
+    accountId: The unique identifier for the associated account
+    created: The date of when the instance was created.
+    description: 
+    externalId: 
+    hostId: The unique identifier for the associated host
+    id: The unique identifier for the instance
+    kind: 
+    name: 
+    removed: The date of when the instance was removed
+    state: The current state of the instance. The options are [creating, error, erroring, migrating, purged, purging, removed, removing, requested, restarting, restoring, running, starting, stopped, stopping, updating-running, updating-stopped].
+    transitioning: Whether or not the instance is in a transitioning state
+    transitioningMessage: The message to show while in a transitioning state
+    transitioningProgress: The percentage remaining in the transitioning process of the instance
+    uuid: The universally unique identifier for the instance. This will always be unique across Rancher installations.
+ resourceActions:
+    allocate: To allocate the instance
+    console: To console the instance
+    create: To create the instance
+    deallocate: To deallocate the instance
+    error: To error the instance
+    migrate: To migrate the instance
+    purge: To purge the instance
+    remove: To remove the instance
+    restart: To restart the instance
+    restore: To restore the instance
+    start: To start the instance
+    stop: To stop the instance
+    update: To update the instance
+    updatehealthy: To updatehealthy the instance
+    updatereinitializing: To updatereinitializing the instance
+    updateunhealthy: To updateunhealthy the instance
+    
+
+instanceConsole:
+ description: 
+ resourceFields:
+    kind: 
+    password: 
+    url: 
+
+instanceConsoleInput:
+ description: 
+
+instanceHealthCheck:
+ description: 
+ resourceFields:
+    healthyThreshold: 
+    initializingTimeout: 
+    interval: 
+    name: 
+    port: 
+    recreateOnQuorumStrategyConfig: 
+    reinitializingTimeout: 
+    requestLine: 
+    responseTimeout: 
+    strategy: 
+    unhealthyThreshold: 
+
+instanceLink:
+ description: 
+ resourceFields:
+    accountId: The unique identifier for the associated account
+    created: The date of when the instanceLink was created.
+    description: 
+    id: The unique identifier for the instanceLink
+    instanceId: The unique identifier for the associated instance
+    kind: 
+    linkName: 
+    name: 
+    removed: The date of when the instanceLink was removed
+    state: The current state of the instanceLink. The options are [activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, restoring, updating-active, updating-inactive].
+    targetInstanceId: 
+    transitioning: Whether or not the instanceLink is in a transitioning state
+    transitioningMessage: The message to show while in a transitioning state
+    transitioningProgress: The percentage remaining in the transitioning process of the instanceLink
+    uuid: The universally unique identifier for the instanceLink. This will always be unique across Rancher installations.
+ resourceActions:
+    activate: To activate the instanceLink
+    create: To create the instanceLink
+    deactivate: To deactivate the instanceLink
+    purge: To purge the instanceLink
+    remove: To remove the instanceLink
+    restore: To restore the instanceLink
+    update: To update the instanceLink
+    
+
+instanceStop:
+ description: 
+ resourceFields:
+    remove: 
+    timeout: 
+
+ipAddress:
+ description: 
+ resourceFields:
+    accountId: The unique identifier for the associated account
+    address: 
+    created: The date of when the ipAddress was created.
+    description: 
+    id: The unique identifier for the ipAddress
+    kind: 
+    name: 
+    networkId: 
+    removed: The date of when the ipAddress was removed
+    state: The current state of the ipAddress. The options are [activating, active, associated, associating, deactivating, disassociating, inactive, purged, purging, registering, removed, removing, requested, restoring, updating-active, updating-inactive].
+    transitioning: Whether or not the ipAddress is in a transitioning state
+    transitioningMessage: The message to show while in a transitioning state
+    transitioningProgress: The percentage remaining in the transitioning process of the ipAddress
+    uuid: The universally unique identifier for the ipAddress. This will always be unique across Rancher installations.
+ resourceActions:
+    activate: To activate the ipAddress
+    associate: To associate the ipAddress
+    create: To create the ipAddress
+    deactivate: To deactivate the ipAddress
+    disassociate: To disassociate the ipAddress
+    purge: To purge the ipAddress
+    remove: To remove the ipAddress
+    restore: To restore the ipAddress
+    update: To update the ipAddress
+    
+
+ipAddressAssociateInput:
+ description: 
+ resourceFields:
+    ipAddressId: 
+
+kubernetesService:
+ description: 
+ resourceFields:
+    accountId: The unique identifier for the associated account
+    created: The date of when the kubernetesService was created.
+    description: 
+    environmentId: 
+    externalId: 
+    healthState: 
+    id: The unique identifier for the kubernetesService
+    kind: 
+    name: 
+    removed: The date of when the kubernetesService was removed
+    selectorContainer: 
+    state: The current state of the kubernetesService. The options are [activating, active, canceled-rollback, canceled-upgrade, canceling-rollback, canceling-upgrade, deactivating, finishing-upgrade, inactive, registering, removed, removing, requested, restarting, rolling-back, updating-active, updating-inactive, upgraded, upgrading].
+    template: 
+    transitioning: Whether or not the kubernetesService is in a transitioning state
+    transitioningMessage: The message to show while in a transitioning state
+    transitioningProgress: The percentage remaining in the transitioning process of the kubernetesService
+    uuid: The universally unique identifier for the kubernetesService. This will always be unique across Rancher installations.
+    vip: 
+ resourceActions:
+    activate: To activate the kubernetesService
+    addservicelink: To addservicelink the kubernetesService
+    cancelrollback: To cancelrollback the kubernetesService
+    cancelupgrade: To cancelupgrade the kubernetesService
+    create: To create the kubernetesService
+    deactivate: To deactivate the kubernetesService
+    finishupgrade: To finishupgrade the kubernetesService
+    remove: To remove the kubernetesService
+    removeservicelink: To removeservicelink the kubernetesService
+    restart: To restart the kubernetesService
+    rollback: To rollback the kubernetesService
+    setservicelinks: To setservicelinks the kubernetesService
+    update: To update the kubernetesService
+    upgrade: To upgrade the kubernetesService
+    
+
+label:
+ description: 
+ resourceFields:
+    accountId: The unique identifier for the associated account
+    created: The date of when the label was created.
+    description: 
+    id: The unique identifier for the label
+    key: 
+    kind: 
+    name: 
+    removed: The date of when the label was removed
+    state: The current state of the label. The options are [created, creating, removed, removing, requested].
+    transitioning: Whether or not the label is in a transitioning state
+    transitioningMessage: The message to show while in a transitioning state
+    transitioningProgress: The percentage remaining in the transitioning process of the label
+    uuid: The universally unique identifier for the label. This will always be unique across Rancher installations.
+    value: 
+ resourceActions:
+    create: To create the label
+    remove: To remove the label
+    
+
+launchConfig:
+ description: 
+ resourceFields:
+    accountId: The unique identifier for the associated account
+    build: 
+    capAdd: 
+    capDrop: 
+    command: 
+    count: 
+    cpuSet: 
+    cpuShares: 
+    createIndex: 
+    created: The date of when the launchConfig was created.
+    dataVolumeMounts: 
+    dataVolumes: 
+    dataVolumesFrom: 
+    dataVolumesFromLaunchConfigs: 
+    deploymentUnitUuid: 
+    description: 
+    devices: 
+    disks: 
+    dns: 
+    dnsSearch: 
+    domainName: 
+    entryPoint: 
+    environment: 
+    expose: 
+    externalId: 
+    extraHosts: 
+    firstRunning: 
+    healthCheck: 
+    healthState: 
+    hostId: The unique identifier for the associated host
+    hostname: 
+    id: The unique identifier for the launchConfig
+    imageUuid: 
+    instanceLinks: 
+    kind: 
+    labels: 
+    logConfig: 
+    lxcConf: 
+    memory: 
+    memoryMb: 
+    memorySwap: 
+    nativeContainer: 
+    networkContainerId: 
+    networkIds: 
+    networkLaunchConfig: 
+    networkMode: 
+    pidMode: 
+    ports: 
+    primaryIpAddress: 
+    privileged: 
+    publishAllPorts: 
+    readOnly: 
+    registryCredentialId: 
+    removed: The date of when the launchConfig was removed
+    requestedHostId: 
+    requestedIpAddress: 
+    securityOpt: 
+    startCount: 
+    startOnCreate: 
+    state: The current state of the launchConfig. The options are [creating, error, erroring, migrating, purged, purging, removed, removing, requested, restarting, restoring, running, starting, stopped, stopping, updating-running, updating-stopped].
+    stdinOpen: 
+    systemContainer: 
+    transitioning: Whether or not the launchConfig is in a transitioning state
+    transitioningMessage: The message to show while in a transitioning state
+    transitioningProgress: The percentage remaining in the transitioning process of the launchConfig
+    tty: 
+    user: 
+    userdata: 
+    uuid: The universally unique identifier for the launchConfig. This will always be unique across Rancher installations.
+    vcpu: 
+    version: 
+    volumeDriver: 
+    workingDir: 
+ resourceActions:
+    allocate: To allocate the launchConfig
+    console: To console the launchConfig
+    create: To create the launchConfig
+    deallocate: To deallocate the launchConfig
+    error: To error the launchConfig
+    execute: To execute the launchConfig
+    logs: To logs the launchConfig
+    migrate: To migrate the launchConfig
+    proxy: To proxy the launchConfig
+    purge: To purge the launchConfig
+    remove: To remove the launchConfig
+    restart: To restart the launchConfig
+    restore: To restore the launchConfig
+    setlabels: To setlabels the launchConfig
+    start: To start the launchConfig
+    stop: To stop the launchConfig
+    update: To update the launchConfig
+    updatehealthy: To updatehealthy the launchConfig
+    updatereinitializing: To updatereinitializing the launchConfig
+    updateunhealthy: To updateunhealthy the launchConfig
+    
+
+loadBalancerAppCookieStickinessPolicy:
+ description: 
+ resourceFields:
+    cookie: 
+    maxLength: 
+    mode: 
+    name: 
+    prefix: 
+    requestLearn: 
+    timeout: 
+
+loadBalancerConfig:
+ description: 
+ resourceFields:
+    haproxyConfig: 
+    lbCookieStickinessPolicy: 
+
+loadBalancerCookieStickinessPolicy:
+ description: 
+ resourceFields:
+    cookie: 
+    domain: 
+    indirect: 
+    mode: 
+    name: 
+    nocache: 
+    postonly: 
+
+loadBalancerService:
+ description: 
+ resourceFields:
+    accountId: The unique identifier for the associated account
+    assignServiceIpAddress: 
+    certificateIds: 
+    created: The date of when the loadBalancerService was created.
+    defaultCertificateId: 
+    description: 
+    environmentId: 
+    externalId: 
+    fqdn: 
+    healthState: 
+    id: The unique identifier for the loadBalancerService
+    kind: 
+    launchConfig: 
+    loadBalancerConfig: 
+    metadata: 
+    name: 
+    publicEndpoints: 
+    removed: The date of when the loadBalancerService was removed
+    retainIp: 
+    scale: 
+    selectorLink: 
+    startOnCreate: 
+    state: The current state of the loadBalancerService. The options are [activating, active, canceled-rollback, canceled-upgrade, canceling-rollback, canceling-upgrade, deactivating, finishing-upgrade, inactive, registering, removed, removing, requested, restarting, rolling-back, updating-active, updating-inactive, upgraded, upgrading].
+    transitioning: Whether or not the loadBalancerService is in a transitioning state
+    transitioningMessage: The message to show while in a transitioning state
+    transitioningProgress: The percentage remaining in the transitioning process of the loadBalancerService
+    upgrade: 
+    uuid: The universally unique identifier for the loadBalancerService. This will always be unique across Rancher installations.
+    vip: 
+ resourceActions:
+    activate: To activate the loadBalancerService
+    addservicelink: To addservicelink the loadBalancerService
+    cancelrollback: To cancelrollback the loadBalancerService
+    cancelupgrade: To cancelupgrade the loadBalancerService
+    create: To create the loadBalancerService
+    deactivate: To deactivate the loadBalancerService
+    finishupgrade: To finishupgrade the loadBalancerService
+    remove: To remove the loadBalancerService
+    removeservicelink: To removeservicelink the loadBalancerService
+    restart: To restart the loadBalancerService
+    rollback: To rollback the loadBalancerService
+    setservicelinks: To setservicelinks the loadBalancerService
+    update: To update the loadBalancerService
+    upgrade: To upgrade the loadBalancerService
+    
+
+loadBalancerServiceLink:
+ description: 
+ resourceFields:
+    ports: 
+    serviceId: The unique identifier of the associated service
+    uuid: The universally unique identifier for the loadBalancerServiceLink. This will always be unique across Rancher installations.
+
+logConfig:
+ description: 
+ resourceFields:
+    config: 
+    driver: 
+
+machine:
+ description: 
+ resourceFields:
+    accountId: The unique identifier for the associated account
+    authCertificateAuthority: 
+    authKey: 
+    created: The date of when the machine was created.
+    description: 
+    dockerVersion: 
+    driver: 
+    engineEnv: 
+    engineInsecureRegistry: 
+    engineInstallUrl: 
+    engineLabel: 
+    engineOpt: 
+    engineRegistryMirror: 
+    engineStorageDriver: 
+    externalId: 
+    id: The unique identifier for the machine
+    kind: 
+    labels: 
+    name: 
+    removed: The date of when the machine was removed
+    state: The current state of the machine. The options are [active, bootstrapping, created, creating, error, erroring, removed, removing, requested, updating].
+    transitioning: Whether or not the machine is in a transitioning state
+    transitioningMessage: The message to show while in a transitioning state
+    transitioningProgress: The percentage remaining in the transitioning process of the machine
+    uuid: The universally unique identifier for the machine. This will always be unique across Rancher installations.
+ resourceActions:
+    bootstrap: To bootstrap the machine
+    create: To create the machine
+    error: To error the machine
+    remove: To remove the machine
+    update: To update the machine
+    
+
+mount:
+ description: 
+ resourceFields:
+    accountId: The unique identifier for the associated account
+    created: The date of when the mount was created.
+    description: 
+    id: The unique identifier for the mount
+    instanceId: The unique identifier for the associated instance
+    kind: 
+    name: 
+    path: 
+    permissions: 
+    removed: The date of when the mount was removed
+    state: The current state of the mount. The options are [activating, active, deactivating, inactive, removed, removing, requested].
+    transitioning: Whether or not the mount is in a transitioning state
+    transitioningMessage: The message to show while in a transitioning state
+    transitioningProgress: The percentage remaining in the transitioning process of the mount
+    uuid: The universally unique identifier for the mount. This will always be unique across Rancher installations.
+    volumeId: 
+ resourceActions:
+    create: To create the mount
+    deactivate: To deactivate the mount
+    remove: To remove the mount
+    
+
+network:
+ description: 
+ resourceFields:
+    accountId: The unique identifier for the associated account
+    created: The date of when the network was created.
+    description: 
+    id: The unique identifier for the network
+    kind: 
+    name: 
+    removed: The date of when the network was removed
+    state: The current state of the network. The options are [activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, restoring, updating-active, updating-inactive].
+    transitioning: Whether or not the network is in a transitioning state
+    transitioningMessage: The message to show while in a transitioning state
+    transitioningProgress: The percentage remaining in the transitioning process of the network
+    uuid: The universally unique identifier for the network. This will always be unique across Rancher installations.
+ resourceActions:
+    activate: To activate the network
+    create: To create the network
+    deactivate: To deactivate the network
+    purge: To purge the network
+    remove: To remove the network
+    restore: To restore the network
+    update: To update the network
+    
+
+password:
+ description: 
+ resourceFields:
+    accountId: The unique identifier for the associated account
+    created: The date of when the password was created.
+    description: 
+    id: The unique identifier for the password
+    kind: 
+    name: 
+    publicValue: The public value of the password
+    removed: The date of when the password was removed
+    secretValue: The secret value of the password
+    state: The current state of the password. The options are [activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, updating-active, updating-inactive].
+    transitioning: Whether or not the password is in a transitioning state
+    transitioningMessage: The message to show while in a transitioning state
+    transitioningProgress: The percentage remaining in the transitioning process of the password
+    uuid: The universally unique identifier for the password. This will always be unique across Rancher installations.
+ resourceActions:
+    activate: To activate the password
+    changesecret: To changesecret the password
+    create: To create the password
+    deactivate: To deactivate the password
+    purge: To purge the password
+    remove: To remove the password
+    update: To update the password
+    
+
+physicalHost:
+ description: 
+ resourceFields:
+    accountId: The unique identifier for the associated account
+    created: The date of when the physicalHost was created.
+    description: 
+    driver: 
+    externalId: 
+    id: The unique identifier for the physicalHost
+    kind: 
+    name: 
+    removed: The date of when the physicalHost was removed
+    state: The current state of the physicalHost. The options are [active, bootstrapping, created, creating, error, erroring, removed, removing, requested, updating].
+    transitioning: Whether or not the physicalHost is in a transitioning state
+    transitioningMessage: The message to show while in a transitioning state
+    transitioningProgress: The percentage remaining in the transitioning process of the physicalHost
+    uuid: The universally unique identifier for the physicalHost. This will always be unique across Rancher installations.
+ resourceActions:
+    bootstrap: To bootstrap the physicalHost
+    create: To create the physicalHost
+    error: To error the physicalHost
+    remove: To remove the physicalHost
+    update: To update the physicalHost
+    
+
+port:
+ description: 
+ resourceFields:
+    accountId: The unique identifier for the associated account
+    bindAddress: 
+    created: The date of when the port was created.
+    description: 
+    id: The unique identifier for the port
+    instanceId: The unique identifier for the associated instance
+    kind: 
+    name: 
+    privateIpAddressId: 
+    privatePort: 
+    protocol: 
+    publicIpAddressId: 
+    publicPort: 
+    removed: The date of when the port was removed
+    state: The current state of the port. The options are [activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, restoring, updating-active, updating-inactive].
+    transitioning: Whether or not the port is in a transitioning state
+    transitioningMessage: The message to show while in a transitioning state
+    transitioningProgress: The percentage remaining in the transitioning process of the port
+    uuid: The universally unique identifier for the port. This will always be unique across Rancher installations.
+ resourceActions:
+    activate: To activate the port
+    create: To create the port
+    deactivate: To deactivate the port
+    purge: To purge the port
+    remove: To remove the port
+    restore: To restore the port
+    update: To update the port
+    
+
+project:
+ description: 
+ resourceFields:
+    created: The date of when the project was created.
+    description: 
+    id: The unique identifier for the project
+    kind: 
+    kubernetes: 
+    members: 
+    name: 
+    publicDns: 
+    removed: The date of when the project was removed
+    servicesPortRange: 
+    state: The current state of the project. The options are [activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, restoring, updating-active, updating-inactive].
+    swarm: 
+    transitioning: Whether or not the project is in a transitioning state
+    transitioningMessage: The message to show while in a transitioning state
+    transitioningProgress: The percentage remaining in the transitioning process of the project
+    uuid: The universally unique identifier for the project. This will always be unique across Rancher installations.
+ resourceActions:
+    activate: To activate the project
+    create: To create the project
+    deactivate: To deactivate the project
+    delete: To delete the project
+    purge: To purge the project
+    remove: To remove the project
+    restore: To restore the project
+    setmembers: To setmembers the project
+    update: To update the project
+    
+
+projectMember:
+ description: 
+ resourceFields:
+    created: The date of when the projectMember was created.
+    description: 
+    externalId: 
+    externalIdType: 
+    id: The unique identifier for the projectMember
+    kind: 
+    name: 
+    projectId: 
+    removed: The date of when the projectMember was removed
+    role: 
+    state: The current state of the projectMember. The options are [activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, restoring, updating-active, updating-inactive].
+    transitioning: Whether or not the projectMember is in a transitioning state
+    transitioningMessage: The message to show while in a transitioning state
+    transitioningProgress: The percentage remaining in the transitioning process of the projectMember
+    uuid: The universally unique identifier for the projectMember. This will always be unique across Rancher installations.
+ resourceActions:
+    activate: To activate the projectMember
+    create: To create the projectMember
+    deactivate: To deactivate the projectMember
+    purge: To purge the projectMember
+    remove: To remove the projectMember
+    restore: To restore the projectMember
+    update: To update the projectMember
+    
+
+publicEndpoint:
+ description: 
+ resourceFields:
+    hostId: The unique identifier for the associated host
+    instanceId: The unique identifier for the associated instance
+    ipAddress: 
+    port: 
+    serviceId: The unique identifier of the associated service
+
+pullTask:
+ description: 
+ resourceFields:
+    accountId: The unique identifier for the associated account
+    created: The date of when the pullTask was created.
+    description: 
+    id: The unique identifier for the pullTask
+    image: 
+    kind: 
+    labels: 
+    mode: 
+    name: 
+    removed: The date of when the pullTask was removed
+    state: The current state of the pullTask. The options are [activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, restoring, updating-active, updating-inactive].
+    status: 
+    transitioning: Whether or not the pullTask is in a transitioning state
+    transitioningMessage: The message to show while in a transitioning state
+    transitioningProgress: The percentage remaining in the transitioning process of the pullTask
+    uuid: The universally unique identifier for the pullTask. This will always be unique across Rancher installations.
+ resourceActions:
+    activate: To activate the pullTask
+    create: To create the pullTask
+    deactivate: To deactivate the pullTask
+    purge: To purge the pullTask
+    remove: To remove the pullTask
+    restore: To restore the pullTask
+    update: To update the pullTask
+    
+
+recreateOnQuorumStrategyConfig:
+ description: 
+ resourceFields:
+    quorum: 
+
+register:
+ description: 
+ resourceFields:
+    accessKey: 
+    accountId: The unique identifier for the associated account
+    created: The date of when the register was created.
+    description: 
+    id: The unique identifier for the register
+    key: 
+    kind: 
+    name: 
+    removed: The date of when the register was removed
+    secretKey: 
+    state: The current state of the register. The options are [activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, restoring, updating-active, updating-inactive].
+    transitioning: Whether or not the register is in a transitioning state
+    transitioningMessage: The message to show while in a transitioning state
+    transitioningProgress: The percentage remaining in the transitioning process of the register
+    uuid: The universally unique identifier for the register. This will always be unique across Rancher installations.
+ resourceActions:
+    activate: To activate the register
+    create: To create the register
+    deactivate: To deactivate the register
+    purge: To purge the register
+    remove: To remove the register
+    restore: To restore the register
+    stop: To stop the register
+    update: To update the register
+    
+
+registrationToken:
+ description: 
+ resourceFields:
+    accountId: The unique identifier for the associated account
+    command: 
+    created: The date of when the registrationToken was created.
+    description: 
+    id: The unique identifier for the registrationToken
+    image: 
+    kind: 
+    name: 
+    registrationUrl: 
+    removed: The date of when the registrationToken was removed
+    state: The current state of the registrationToken. The options are [activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, updating-active, updating-inactive].
+    token: 
+    transitioning: Whether or not the registrationToken is in a transitioning state
+    transitioningMessage: The message to show while in a transitioning state
+    transitioningProgress: The percentage remaining in the transitioning process of the registrationToken
+    uuid: The universally unique identifier for the registrationToken. This will always be unique across Rancher installations.
+ resourceActions:
+    activate: To activate the registrationToken
+    create: To create the registrationToken
+    deactivate: To deactivate the registrationToken
+    purge: To purge the registrationToken
+    remove: To remove the registrationToken
+    update: To update the registrationToken
+    
+
+registry:
+ description: 
+ resourceFields:
+    accountId: The unique identifier for the associated account
+    created: The date of when the registry was created.
+    description: 
+    driverName: 
+    externalId: 
+    id: The unique identifier for the registry
+    kind: 
+    name: 
+    removed: The date of when the registry was removed
+    serverAddress: 
+    state: The current state of the registry. The options are [activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, restoring, updating-active, updating-inactive].
+    transitioning: Whether or not the registry is in a transitioning state
+    transitioningMessage: The message to show while in a transitioning state
+    transitioningProgress: The percentage remaining in the transitioning process of the registry
+    uuid: The universally unique identifier for the registry. This will always be unique across Rancher installations.
+ resourceActions:
+    activate: To activate the registry
+    create: To create the registry
+    deactivate: To deactivate the registry
+    purge: To purge the registry
+    remove: To remove the registry
+    restore: To restore the registry
+    update: To update the registry
+    
+
+registryCredential:
+ description: 
+ resourceFields:
+    accountId: The unique identifier for the associated account
+    created: The date of when the registryCredential was created.
+    description: 
+    email: 
+    id: The unique identifier for the registryCredential
+    kind: 
+    name: 
+    publicValue: The public value of the registryCredential
+    registryId: 
+    removed: The date of when the registryCredential was removed
+    secretValue: The secret value of the registryCredential
+    state: The current state of the registryCredential. The options are [activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, updating-active, updating-inactive].
+    transitioning: Whether or not the registryCredential is in a transitioning state
+    transitioningMessage: The message to show while in a transitioning state
+    transitioningProgress: The percentage remaining in the transitioning process of the registryCredential
+    uuid: The universally unique identifier for the registryCredential. This will always be unique across Rancher installations.
+ resourceActions:
+    activate: To activate the registryCredential
+    create: To create the registryCredential
+    deactivate: To deactivate the registryCredential
+    purge: To purge the registryCredential
+    remove: To remove the registryCredential
+    update: To update the registryCredential
+    
+
+restartPolicy:
+ description: 
+ resourceFields:
+    maximumRetryCount: 
+    name: 
+
+rollingRestartStrategy:
+ description: 
+ resourceFields:
+    batchSize: 
+    intervalMillis: 
+
+secondaryLaunchConfig:
+ description: 
+ resourceFields:
+    accountId: The unique identifier for the associated account
+    build: 
+    capAdd: 
+    capDrop: 
+    command: 
+    count: 
+    cpuSet: 
+    cpuShares: 
+    createIndex: 
+    created: The date of when the secondaryLaunchConfig was created.
+    dataVolumeMounts: 
+    dataVolumes: 
+    dataVolumesFrom: 
+    dataVolumesFromLaunchConfigs: 
+    deploymentUnitUuid: 
+    description: 
+    devices: 
+    disks: 
+    dns: 
+    dnsSearch: 
+    domainName: 
+    entryPoint: 
+    environment: 
+    expose: 
+    externalId: 
+    extraHosts: 
+    firstRunning: 
+    healthCheck: 
+    healthState: 
+    hostId: The unique identifier for the associated host
+    hostname: 
+    id: The unique identifier for the secondaryLaunchConfig
+    imageUuid: 
+    instanceLinks: 
+    kind: 
+    labels: 
+    logConfig: 
+    lxcConf: 
+    memory: 
+    memoryMb: 
+    memorySwap: 
+    name: 
+    nativeContainer: 
+    networkContainerId: 
+    networkIds: 
+    networkLaunchConfig: 
+    networkMode: 
+    pidMode: 
+    ports: 
+    primaryIpAddress: 
+    privileged: 
+    publishAllPorts: 
+    readOnly: 
+    registryCredentialId: 
+    removed: The date of when the secondaryLaunchConfig was removed
+    requestedHostId: 
+    requestedIpAddress: 
+    securityOpt: 
+    startCount: 
+    startOnCreate: 
+    state: The current state of the secondaryLaunchConfig. The options are [creating, error, erroring, migrating, purged, purging, removed, removing, requested, restarting, restoring, running, starting, stopped, stopping, updating-running, updating-stopped].
+    stdinOpen: 
+    systemContainer: 
+    transitioning: Whether or not the secondaryLaunchConfig is in a transitioning state
+    transitioningMessage: The message to show while in a transitioning state
+    transitioningProgress: The percentage remaining in the transitioning process of the secondaryLaunchConfig
+    tty: 
+    user: 
+    userdata: 
+    uuid: The universally unique identifier for the secondaryLaunchConfig. This will always be unique across Rancher installations.
+    vcpu: 
+    version: 
+    volumeDriver: 
+    workingDir: 
+ resourceActions:
+    allocate: To allocate the secondaryLaunchConfig
+    console: To console the secondaryLaunchConfig
+    create: To create the secondaryLaunchConfig
+    deallocate: To deallocate the secondaryLaunchConfig
+    error: To error the secondaryLaunchConfig
+    execute: To execute the secondaryLaunchConfig
+    logs: To logs the secondaryLaunchConfig
+    migrate: To migrate the secondaryLaunchConfig
+    proxy: To proxy the secondaryLaunchConfig
+    purge: To purge the secondaryLaunchConfig
+    remove: To remove the secondaryLaunchConfig
+    restart: To restart the secondaryLaunchConfig
+    restore: To restore the secondaryLaunchConfig
+    setlabels: To setlabels the secondaryLaunchConfig
+    start: To start the secondaryLaunchConfig
+    stop: To stop the secondaryLaunchConfig
+    update: To update the secondaryLaunchConfig
+    updatehealthy: To updatehealthy the secondaryLaunchConfig
+    updatereinitializing: To updatereinitializing the secondaryLaunchConfig
+    updateunhealthy: To updateunhealthy the secondaryLaunchConfig
+    
+
+service:
+ description: 
+ resourceFields:
+    accountId: The unique identifier for the associated account
+    assignServiceIpAddress: 
+    createIndex: 
+    created: The date of when the service was created.
+    description: 
+    environmentId: 
+    externalId: 
+    fqdn: 
+    healthState: 
+    id: The unique identifier for the service
+    kind: 
+    launchConfig: 
+    metadata: 
+    name: 
+    publicEndpoints: 
+    removed: The date of when the service was removed
+    retainIp: 
+    scale: 
+    secondaryLaunchConfigs: 
+    selectorContainer: 
+    selectorLink: 
+    startOnCreate: 
+    state: The current state of the service. The options are [activating, active, canceled-rollback, canceled-upgrade, canceling-rollback, canceling-upgrade, deactivating, finishing-upgrade, inactive, registering, removed, removing, requested, restarting, rolling-back, updating-active, updating-inactive, upgraded, upgrading].
+    transitioning: Whether or not the service is in a transitioning state
+    transitioningMessage: The message to show while in a transitioning state
+    transitioningProgress: The percentage remaining in the transitioning process of the service
+    upgrade: 
+    uuid: The universally unique identifier for the service. This will always be unique across Rancher installations.
+    vip: 
+ resourceActions:
+    activate: To activate the service
+    addservicelink: To addservicelink the service
+    cancelrollback: To cancelrollback the service
+    cancelupgrade: To cancelupgrade the service
+    create: To create the service
+    deactivate: To deactivate the service
+    finishupgrade: To finishupgrade the service
+    remove: To remove the service
+    removeservicelink: To removeservicelink the service
+    restart: To restart the service
+    rollback: To rollback the service
+    setservicelinks: To setservicelinks the service
+    update: To update the service
+    upgrade: To upgrade the service
+    
+
+serviceConsumeMap:
+ description: 
+ resourceFields:
+    accountId: The unique identifier for the associated account
+    consumedServiceId: 
+    created: The date of when the serviceConsumeMap was created.
+    description: 
+    id: The unique identifier for the serviceConsumeMap
+    kind: 
+    name: 
+    ports: 
+    removed: The date of when the serviceConsumeMap was removed
+    serviceId: The unique identifier of the associated service
+    state: The current state of the serviceConsumeMap. The options are [activating, active, removed, removing, requested, updating-active].
+    transitioning: Whether or not the serviceConsumeMap is in a transitioning state
+    transitioningMessage: The message to show while in a transitioning state
+    transitioningProgress: The percentage remaining in the transitioning process of the serviceConsumeMap
+    uuid: The universally unique identifier for the serviceConsumeMap. This will always be unique across Rancher installations.
+ resourceActions:
+    create: To create the serviceConsumeMap
+    remove: To remove the serviceConsumeMap
+    update: To update the serviceConsumeMap
+    
+
+serviceEvent:
+ description: 
+ resourceFields:
+    accountId: The unique identifier for the associated account
+    created: The date of when the serviceEvent was created.
+    description: 
+    externalTimestamp: 
+    healthcheckUuid: 
+    hostId: The unique identifier for the associated host
+    id: The unique identifier for the serviceEvent
+    instanceId: The unique identifier for the associated instance
+    kind: 
+    name: 
+    removed: The date of when the serviceEvent was removed
+    reportedHealth: 
+    state: The current state of the serviceEvent. The options are [created, creating, removed, removing, requested].
+    transitioning: Whether or not the serviceEvent is in a transitioning state
+    transitioningMessage: The message to show while in a transitioning state
+    transitioningProgress: The percentage remaining in the transitioning process of the serviceEvent
+    uuid: The universally unique identifier for the serviceEvent. This will always be unique across Rancher installations.
+ resourceActions:
+    create: To create the serviceEvent
+    remove: To remove the serviceEvent
+    
+
+serviceExposeMap:
+ description: 
+ resourceFields:
+    accountId: The unique identifier for the associated account
+    created: The date of when the serviceExposeMap was created.
+    description: 
+    id: The unique identifier for the serviceExposeMap
+    instanceId: The unique identifier for the associated instance
+    ipAddress: 
+    kind: 
+    managed: 
+    name: 
+    removed: The date of when the serviceExposeMap was removed
+    serviceId: The unique identifier of the associated service
+    state: The current state of the serviceExposeMap. The options are [activating, active, removed, removing, requested].
+    transitioning: Whether or not the serviceExposeMap is in a transitioning state
+    transitioningMessage: The message to show while in a transitioning state
+    transitioningProgress: The percentage remaining in the transitioning process of the serviceExposeMap
+    uuid: The universally unique identifier for the serviceExposeMap. This will always be unique across Rancher installations.
+ resourceActions:
+    create: To create the serviceExposeMap
+    remove: To remove the serviceExposeMap
+    
+
+serviceLink:
+ description: 
+ resourceFields:
+    name: 
+    serviceId: The unique identifier of the associated service
+    uuid: The universally unique identifier for the serviceLink. This will always be unique across Rancher installations.
+
+serviceProxy:
+ description: 
+ resourceFields:
+    port: 
+    scheme: 
+    service: 
+    token: 
+    url: 
+
+serviceRestart:
+ description: 
+ resourceFields:
+    rollingRestartStrategy: 
+
+serviceUpgrade:
+ description: 
+ resourceFields:
+    inServiceStrategy: 
+    toServiceStrategy: 
+
+serviceUpgradeStrategy:
+ description: 
+ resourceFields:
+    batchSize: 
+    intervalMillis: 
+
+servicesPortRange:
+ description: 
+ resourceFields:
+    endPort: 
+    startPort: 
+
+setLabelsInput:
+ description: 
+ resourceFields:
+    labels: 
+
+setLoadBalancerServiceLinksInput:
+ description: 
+ resourceFields:
+    serviceLinks: 
+
+setProjectMembersInput:
+ description: 
+ resourceFields:
+    members: 
+
+setServiceLinksInput:
+ description: 
+ resourceFields:
+    serviceLinks: 
+
+setting:
+ description: 
+ resourceFields:
+    id: The unique identifier for the setting
+    name: 
+    value: 
+
+snapshot:
+ description: 
+ resourceFields:
+    accountId: The unique identifier for the associated account
+    created: The date of when the snapshot was created.
+    description: 
+    id: The unique identifier for the snapshot
+    kind: 
+    managedVolumeUUID: 
+    name: 
+    removed: The date of when the snapshot was removed
+    state: The current state of the snapshot. The options are [backed-up, backing-up, created, creating, removed, removing, requested].
+    transitioning: Whether or not the snapshot is in a transitioning state
+    transitioningMessage: The message to show while in a transitioning state
+    transitioningProgress: The percentage remaining in the transitioning process of the snapshot
+    uuid: The universally unique identifier for the snapshot. This will always be unique across Rancher installations.
+    volumeId: 
+ resourceActions:
+    backup: To backup the snapshot
+    create: To create the snapshot
+    remove: To remove the snapshot
+    
+
+statsAccess:
+ description: 
+ resourceFields:
+    token: 
+    url: 
+
+storagePool:
+ description: 
+ resourceFields:
+    accountId: The unique identifier for the associated account
+    created: The date of when the storagePool was created.
+    description: 
+    driverName: 
+    externalId: 
+    id: The unique identifier for the storagePool
+    kind: 
+    name: 
+    removed: The date of when the storagePool was removed
+    state: The current state of the storagePool. The options are [activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, restoring, updating-active, updating-inactive].
+    transitioning: Whether or not the storagePool is in a transitioning state
+    transitioningMessage: The message to show while in a transitioning state
+    transitioningProgress: The percentage remaining in the transitioning process of the storagePool
+    uuid: The universally unique identifier for the storagePool. This will always be unique across Rancher installations.
+ resourceActions:
+    activate: To activate the storagePool
+    create: To create the storagePool
+    deactivate: To deactivate the storagePool
+    purge: To purge the storagePool
+    remove: To remove the storagePool
+    restore: To restore the storagePool
+    update: To update the storagePool
+    
+
+subscribe:
+ description: 
+ resourceFields:
+    eventNames: 
+
+toServiceUpgradeStrategy:
+ description: 
+ resourceFields:
+    batchSize: 
+    finalScale: 
+    intervalMillis: 
+    toServiceId: 
+    updateLinks: 
+
+typeDocumentation:
+ description: 
+ resourceFields:
+    description: 
+    id: The unique identifier for the typeDocumentation
+    resourceFields: 
+
+virtualMachine:
+ description: 
+ resourceFields:
+    accountId: The unique identifier for the associated account
+    command: 
+    count: 
+    cpuSet: 
+    cpuShares: 
+    createIndex: 
+    created: The date of when the virtualMachine was created.
+    deploymentUnitUuid: 
+    description: 
+    disks: 
+    dns: 
+    dnsSearch: 
+    domainName: 
+    expose: 
+    externalId: 
+    extraHosts: 
+    firstRunning: 
+    healthCheck: 
+    healthState: 
+    hostId: The unique identifier for the associated host
+    hostname: 
+    id: The unique identifier for the virtualMachine
+    imageUuid: 
+    instanceLinks: 
+    kind: 
+    labels: 
+    logConfig: 
+    memory: 
+    memoryMb: 
+    memorySwap: 
+    name: 
+    nativeContainer: 
+    networkIds: 
+    networkMode: 
+    ports: 
+    primaryIpAddress: 
+    registryCredentialId: 
+    removed: The date of when the virtualMachine was removed
+    requestedHostId: 
+    restartPolicy: 
+    securityOpt: 
+    startCount: 
+    startOnCreate: 
+    state: The current state of the virtualMachine. The options are [creating, error, erroring, migrating, purged, purging, removed, removing, requested, restarting, restoring, running, starting, stopped, stopping, updating-running, updating-stopped].
+    systemContainer: 
+    transitioning: Whether or not the virtualMachine is in a transitioning state
+    transitioningMessage: The message to show while in a transitioning state
+    transitioningProgress: The percentage remaining in the transitioning process of the virtualMachine
+    userdata: 
+    uuid: The universally unique identifier for the virtualMachine. This will always be unique across Rancher installations.
+    vcpu: 
+    version: 
+    volumeDriver: 
+ resourceActions:
+    allocate: To allocate the virtualMachine
+    console: To console the virtualMachine
+    create: To create the virtualMachine
+    deallocate: To deallocate the virtualMachine
+    error: To error the virtualMachine
+    execute: To execute the virtualMachine
+    logs: To logs the virtualMachine
+    migrate: To migrate the virtualMachine
+    proxy: To proxy the virtualMachine
+    purge: To purge the virtualMachine
+    remove: To remove the virtualMachine
+    restart: To restart the virtualMachine
+    restore: To restore the virtualMachine
+    setlabels: To setlabels the virtualMachine
+    start: To start the virtualMachine
+    stop: To stop the virtualMachine
+    update: To update the virtualMachine
+    updatehealthy: To updatehealthy the virtualMachine
+    updatereinitializing: To updatereinitializing the virtualMachine
+    updateunhealthy: To updateunhealthy the virtualMachine
+    
+
+virtualMachineDisk:
+ description: 
+ resourceFields:
+    driver: 
+    name: 
+    opts: 
+    root: 
+    size: 
+
+volume:
+ description: 
+ resourceFields:
+    accountId: The unique identifier for the associated account
+    created: The date of when the volume was created.
+    description: 
+    driver: 
+    driverOpts: 
+    externalId: 
+    id: The unique identifier for the volume
+    imageId: 
+    instanceId: The unique identifier for the associated instance
+    isHostPath: 
+    kind: 
+    name: 
+    removed: The date of when the volume was removed
+    state: The current state of the volume. The options are [activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, restoring, updating-active, updating-inactive].
+    transitioning: Whether or not the volume is in a transitioning state
+    transitioningMessage: The message to show while in a transitioning state
+    transitioningProgress: The percentage remaining in the transitioning process of the volume
+    uri: 
+    uuid: The universally unique identifier for the volume. This will always be unique across Rancher installations.
+ resourceActions:
+    activate: To activate the volume
+    allocate: To allocate the volume
+    create: To create the volume
+    deallocate: To deallocate the volume
+    purge: To purge the volume
+    remove: To remove the volume
+    restore: To restore the volume
+    update: To update the volume
+    
+

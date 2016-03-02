@@ -1,0 +1,9 @@
+{{range $name, $resource := .descriptionMap}}{{$name}}:
+ description: {{$resource.Description}}{{if $resource.ResourceFields}}
+ resourceFields:{{range $fieldName, $fieldDescription := $resource.ResourceFields}}
+    {{$fieldName}}: {{$fieldDescription}}{{end}}{{end}}{{if $resource.ResourceActions}}
+ resourceActions:
+    {{range $actionName, $actionDescription := $resource.ResourceActions}}{{$actionName}}: {{$actionDescription}}
+    {{end}}{{end}}
+
+{{end}}
