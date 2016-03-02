@@ -1,0 +1,17 @@
+---
+title: API
+layout: rancher-default
+---
+
+## {{.schemaId}}
+
+
+{{.resourceDescription}}
+
+​​{{if $.fieldMap}}
+### Resource Fields
+
+Field | Type | Required | Default | Description
+---|---|---|---|---
+{{range $key, $value := .fieldMap}}{{$key}} | {{if $value.TypeReference}}{{$value.TypeReference}}{{else}}{{$value.Type}}{{end}} | {{$value.Required}} | {{$value.Default}} | {{$value.Description}}
+{{end}}{{end}}
