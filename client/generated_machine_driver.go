@@ -58,13 +58,11 @@ type MachineDriverOperations interface {
 
 	ActionActivate(*MachineDriver) (*MachineDriver, error)
 
-	ActionCreate(*MachineDriver) (*MachineDriver, error)
-
 	ActionError(*MachineDriver, *MachineDriverErrorInput) (*MachineDriver, error)
 
-	ActionPurge(*MachineDriver) (*MachineDriver, error)
-
 	ActionRemove(*MachineDriver) (*MachineDriver, error)
+
+	ActionRetry(*MachineDriver) (*MachineDriver, error)
 
 	ActionUpdate(*MachineDriver, *MachineDriverUpdateInput) (*MachineDriver, error)
 }
@@ -117,15 +115,6 @@ func (c *MachineDriverClient) ActionActivate(resource *MachineDriver) (*MachineD
 	return resp, err
 }
 
-func (c *MachineDriverClient) ActionCreate(resource *MachineDriver) (*MachineDriver, error) {
-
-	resp := &MachineDriver{}
-
-	err := c.rancherClient.doAction(MACHINE_DRIVER_TYPE, "create", &resource.Resource, nil, resp)
-
-	return resp, err
-}
-
 func (c *MachineDriverClient) ActionError(resource *MachineDriver, input *MachineDriverErrorInput) (*MachineDriver, error) {
 
 	resp := &MachineDriver{}
@@ -135,20 +124,20 @@ func (c *MachineDriverClient) ActionError(resource *MachineDriver, input *Machin
 	return resp, err
 }
 
-func (c *MachineDriverClient) ActionPurge(resource *MachineDriver) (*MachineDriver, error) {
-
-	resp := &MachineDriver{}
-
-	err := c.rancherClient.doAction(MACHINE_DRIVER_TYPE, "purge", &resource.Resource, nil, resp)
-
-	return resp, err
-}
-
 func (c *MachineDriverClient) ActionRemove(resource *MachineDriver) (*MachineDriver, error) {
 
 	resp := &MachineDriver{}
 
 	err := c.rancherClient.doAction(MACHINE_DRIVER_TYPE, "remove", &resource.Resource, nil, resp)
+
+	return resp, err
+}
+
+func (c *MachineDriverClient) ActionRetry(resource *MachineDriver) (*MachineDriver, error) {
+
+	resp := &MachineDriver{}
+
+	err := c.rancherClient.doAction(MACHINE_DRIVER_TYPE, "retry", &resource.Resource, nil, resp)
 
 	return resp, err
 }
