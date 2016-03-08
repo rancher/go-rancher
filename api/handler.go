@@ -9,6 +9,12 @@ import (
 	"github.com/rancher/go-rancher/client"
 )
 
+func ApiHandlerFunc(schemas *client.Schemas, f http.HandlerFunc) http.HandlerFunc {
+	return func(rw http.ResponseWriter, r *http.Request) {
+		ApiHandler(schemas, f).ServeHTTP(rw, r)
+	}
+}
+
 func ApiHandler(schemas *client.Schemas, f http.Handler) http.Handler {
 	return context.ClearHandler(http.HandlerFunc(func(rw http.ResponseWriter, r *http.Request) {
 		if err := CreateApiContext(rw, r, schemas); err != nil {

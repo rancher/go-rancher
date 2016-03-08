@@ -2597,6 +2597,8 @@
           "maxLength": 128,
           "options": [
             "creating",
+            "error",
+            "erroring",
             "migrating",
             "purged",
             "purging",
@@ -3448,6 +3450,10 @@
           "input": null,
           "output": "instance"
         },
+        "error": {
+          "input": null,
+          "output": "instance"
+        },
         "remove": {
           "input": null,
           "output": "instance"
@@ -3502,6 +3508,10 @@
         },
         "execute": {
           "input": "containerExec",
+          "output": "hostAccess"
+        },
+        "proxy": {
+          "input": "containerProxy",
           "output": "hostAccess"
         }
       },
@@ -5642,6 +5652,8 @@
           "maxLength": 128,
           "options": [
             "creating",
+            "error",
+            "erroring",
             "migrating",
             "purged",
             "purging",
@@ -6155,6 +6167,10 @@
           "input": null,
           "output": "instance"
         },
+        "error": {
+          "input": null,
+          "output": "instance"
+        },
         "remove": {
           "input": null,
           "output": "instance"
@@ -6210,6 +6226,10 @@
         "execute": {
           "input": "containerExec",
           "output": "hostAccess"
+        },
+        "proxy": {
+          "input": "containerProxy",
+          "output": "hostAccess"
         }
       },
       "collectionActions": {},
@@ -6242,6 +6262,14 @@
           "nullable": true,
           "readOnCreateOnly": false,
           "maxLength": 255
+        },
+        "assignServiceIpAddress": {
+          "type": "boolean",
+          "description": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false
         },
         "created": {
           "type": "date",
@@ -6295,6 +6323,15 @@
           "update": false,
           "nullable": true,
           "readOnCreateOnly": false
+        },
+        "healthState": {
+          "type": "string",
+          "description": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false,
+          "maxLength": 128
         },
         "id": {
           "type": "int",
@@ -6454,6 +6491,7 @@
           "description": null,
           "create": false,
           "update": false,
+          "nullable": true,
           "readOnCreateOnly": false
         },
         "uuid": {
@@ -6552,6 +6590,17 @@
           ]
         },
         "externalId": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "prefix",
+            "like",
+            "notlike",
+            "null",
+            "notnull"
+          ]
+        },
+        "healthState": {
           "modifiers": [
             "eq",
             "ne",
@@ -6825,6 +6874,15 @@
           "nullable": true,
           "readOnCreateOnly": false
         },
+        "healthState": {
+          "type": "string",
+          "description": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false,
+          "maxLength": 128
+        },
         "id": {
           "type": "int",
           "description": null,
@@ -6950,6 +7008,7 @@
           "description": null,
           "create": false,
           "update": false,
+          "nullable": true,
           "readOnCreateOnly": false
         },
         "uuid": {
@@ -7039,6 +7098,17 @@
           ]
         },
         "externalId": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "prefix",
+            "like",
+            "notlike",
+            "null",
+            "notnull"
+          ]
+        },
+        "healthState": {
           "modifiers": [
             "eq",
             "ne",
@@ -7259,6 +7329,14 @@
           "readOnCreateOnly": false,
           "maxLength": 255
         },
+        "assignServiceIpAddress": {
+          "type": "boolean",
+          "description": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
         "created": {
           "type": "date",
           "description": null,
@@ -7311,6 +7389,15 @@
           "update": false,
           "nullable": true,
           "readOnCreateOnly": false
+        },
+        "healthState": {
+          "type": "string",
+          "description": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false,
+          "maxLength": 128
         },
         "id": {
           "type": "int",
@@ -7454,6 +7541,7 @@
           "description": null,
           "create": false,
           "update": false,
+          "nullable": true,
           "readOnCreateOnly": false
         },
         "uuid": {
@@ -7519,6 +7607,17 @@
           ]
         },
         "externalId": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "prefix",
+            "like",
+            "notlike",
+            "null",
+            "notnull"
+          ]
+        },
+        "healthState": {
           "modifiers": [
             "eq",
             "ne",
@@ -7718,6 +7817,480 @@
       "collectionMethods": [
         "GET",
         "POST"
+      ]
+    },
+    {
+      "id": "kubernetesService",
+      "type": "schema",
+      "links": {
+        "self": "http://localhost:8080/v1/schemas/kubernetesservice",
+        "collection": "http://localhost:8080/v1/kubernetesservices"
+      },
+      "actions": {},
+      "pluralName": "kubernetesServices",
+      "resourceFields": {
+        "accountId": {
+          "type": "reference[account]",
+          "description": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false,
+          "maxLength": 255
+        },
+        "created": {
+          "type": "date",
+          "description": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false,
+          "maxLength": 255
+        },
+        "data": {
+          "type": "map[json]",
+          "description": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false,
+          "maxLength": 16777215
+        },
+        "description": {
+          "type": "string",
+          "description": null,
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false,
+          "maxLength": 1024
+        },
+        "environmentId": {
+          "type": "reference[environment]",
+          "description": null,
+          "create": true,
+          "update": false,
+          "required": true,
+          "readOnCreateOnly": false,
+          "maxLength": 255
+        },
+        "externalId": {
+          "type": "string",
+          "description": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false,
+          "maxLength": 255
+        },
+        "healthState": {
+          "type": "string",
+          "description": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false,
+          "maxLength": 128
+        },
+        "id": {
+          "type": "int",
+          "description": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "kind": {
+          "type": "string",
+          "description": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false,
+          "maxLength": 255
+        },
+        "name": {
+          "type": "string",
+          "validChars": "a-zA-Z0-9-",
+          "description": null,
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "required": true,
+          "readOnCreateOnly": false,
+          "minLength": 1,
+          "maxLength": 63
+        },
+        "removeTime": {
+          "type": "date",
+          "description": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false,
+          "maxLength": 255
+        },
+        "removed": {
+          "type": "date",
+          "description": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false,
+          "maxLength": 255
+        },
+        "selectorContainer": {
+          "type": "string",
+          "description": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false,
+          "maxLength": 4096
+        },
+        "state": {
+          "type": "enum",
+          "description": null,
+          "create": false,
+          "update": false,
+          "readOnCreateOnly": false,
+          "maxLength": 128,
+          "options": [
+            "activating",
+            "active",
+            "canceled-rollback",
+            "canceled-upgrade",
+            "canceling-rollback",
+            "canceling-upgrade",
+            "deactivating",
+            "finishing-upgrade",
+            "inactive",
+            "registering",
+            "removed",
+            "removing",
+            "requested",
+            "restarting",
+            "rolling-back",
+            "updating-active",
+            "updating-inactive",
+            "upgraded",
+            "upgrading"
+          ]
+        },
+        "transitioning": {
+          "type": "enum",
+          "description": null,
+          "create": false,
+          "update": false,
+          "readOnCreateOnly": false,
+          "options": [
+            "yes",
+            "no",
+            "error"
+          ]
+        },
+        "transitioningMessage": {
+          "type": "string",
+          "description": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "transitioningProgress": {
+          "type": "int",
+          "description": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "uuid": {
+          "type": "string",
+          "description": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false,
+          "maxLength": 128
+        },
+        "vip": {
+          "type": "string",
+          "description": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false,
+          "maxLength": 255
+        },
+        "template": {
+          "type": "json",
+          "description": null,
+          "create": false,
+          "update": false,
+          "readOnCreateOnly": false
+        }
+      },
+      "collectionFilters": {
+        "accountId": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "null",
+            "notnull"
+          ]
+        },
+        "createIndex": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "lt",
+            "lte",
+            "gt",
+            "gte",
+            "null",
+            "notnull"
+          ]
+        },
+        "created": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "lt",
+            "lte",
+            "gt",
+            "gte",
+            "null",
+            "notnull"
+          ]
+        },
+        "description": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "prefix",
+            "like",
+            "notlike",
+            "null",
+            "notnull"
+          ]
+        },
+        "environmentId": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "null",
+            "notnull"
+          ]
+        },
+        "externalId": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "prefix",
+            "like",
+            "notlike",
+            "null",
+            "notnull"
+          ]
+        },
+        "healthState": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "prefix",
+            "like",
+            "notlike",
+            "null",
+            "notnull"
+          ]
+        },
+        "id": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "lt",
+            "lte",
+            "gt",
+            "gte",
+            "null",
+            "notnull"
+          ]
+        },
+        "kind": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "prefix",
+            "like",
+            "notlike",
+            "null",
+            "notnull"
+          ]
+        },
+        "name": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "prefix",
+            "like",
+            "notlike",
+            "null",
+            "notnull"
+          ]
+        },
+        "removeTime": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "lt",
+            "lte",
+            "gt",
+            "gte",
+            "null",
+            "notnull"
+          ]
+        },
+        "removed": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "lt",
+            "lte",
+            "gt",
+            "gte",
+            "null",
+            "notnull"
+          ]
+        },
+        "selectorContainer": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "prefix",
+            "like",
+            "notlike",
+            "null",
+            "notnull"
+          ]
+        },
+        "selectorLink": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "prefix",
+            "like",
+            "notlike",
+            "null",
+            "notnull"
+          ]
+        },
+        "state": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "null",
+            "notnull"
+          ]
+        },
+        "uuid": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "prefix",
+            "like",
+            "notlike",
+            "null",
+            "notnull"
+          ]
+        },
+        "vip": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "prefix",
+            "like",
+            "notlike",
+            "null",
+            "notnull"
+          ]
+        }
+      },
+      "includeableLinks": [
+        "dynamicschemas",
+        "environment",
+        "consumedservices",
+        "configitemstatuses",
+        "serviceexposemaps",
+        "account",
+        "instances",
+        "consumedbyservices"
+      ],
+      "resourceActions": {
+        "update": {
+          "input": null,
+          "output": "service"
+        },
+        "finishupgrade": {
+          "input": null,
+          "output": "service"
+        },
+        "restart": {
+          "input": "serviceRestart",
+          "output": "service"
+        },
+        "remove": {
+          "input": null,
+          "output": "service"
+        },
+        "setservicelinks": {
+          "input": "setServiceLinksInput",
+          "output": "service"
+        },
+        "cancelupgrade": {
+          "input": null,
+          "output": "service"
+        },
+        "removeservicelink": {
+          "input": "addRemoveServiceLinkInput",
+          "output": "service"
+        },
+        "rollback": {
+          "input": null,
+          "output": "service"
+        },
+        "create": {
+          "input": null,
+          "output": "service"
+        },
+        "activate": {
+          "input": null,
+          "output": "service"
+        },
+        "upgrade": {
+          "input": "serviceUpgrade",
+          "output": "service"
+        },
+        "deactivate": {
+          "input": null,
+          "output": "service"
+        },
+        "addservicelink": {
+          "input": "addRemoveServiceLinkInput",
+          "output": "service"
+        },
+        "cancelrollback": {
+          "input": null,
+          "output": "service"
+        }
+      },
+      "collectionActions": {},
+      "collectionFields": {},
+      "resourceMethods": [
+        "GET"
+      ],
+      "collectionMethods": [
+        "GET"
       ]
     },
     {
@@ -8288,6 +8861,14 @@
           "nullable": true,
           "readOnCreateOnly": false
         },
+        "requestedIpAddress": {
+          "type": "string",
+          "description": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
         "securityOpt": {
           "type": "array[string]",
           "description": null,
@@ -8322,6 +8903,8 @@
           "maxLength": 128,
           "options": [
             "creating",
+            "error",
+            "erroring",
             "migrating",
             "purged",
             "purging",
@@ -8886,6 +9469,10 @@
           "input": null,
           "output": "instance"
         },
+        "error": {
+          "input": null,
+          "output": "instance"
+        },
         "remove": {
           "input": null,
           "output": "instance"
@@ -8940,6 +9527,10 @@
         },
         "execute": {
           "input": "containerExec",
+          "output": "hostAccess"
+        },
+        "proxy": {
+          "input": "containerProxy",
           "output": "hostAccess"
         }
       },
@@ -9467,8 +10058,7 @@
             "host",
             "managed",
             "container"
-          ],
-          "default": "managed"
+          ]
         },
         "pidMode": {
           "type": "enum",
@@ -9555,6 +10145,14 @@
           "nullable": true,
           "readOnCreateOnly": false
         },
+        "requestedIpAddress": {
+          "type": "string",
+          "description": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
         "securityOpt": {
           "type": "array[string]",
           "description": null,
@@ -9589,6 +10187,8 @@
           "maxLength": 128,
           "options": [
             "creating",
+            "error",
+            "erroring",
             "migrating",
             "purged",
             "purging",
@@ -10129,6 +10729,10 @@
           "input": null,
           "output": "instance"
         },
+        "error": {
+          "input": null,
+          "output": "instance"
+        },
         "remove": {
           "input": null,
           "output": "instance"
@@ -10183,6 +10787,10 @@
         },
         "execute": {
           "input": "containerExec",
+          "output": "hostAccess"
+        },
+        "proxy": {
+          "input": "containerProxy",
           "output": "hostAccess"
         }
       },
@@ -12081,52 +12689,6 @@
       ]
     },
     {
-      "id": "machineDriverUpdateInput",
-      "type": "schema",
-      "links": {
-        "self": "http://localhost:8080/v1/schemas/machinedriverupdateinput"
-      },
-      "actions": {},
-      "pluralName": "machineDriverUpdateInputs",
-      "resourceFields": {
-        "uri": {
-          "type": "string",
-          "description": null,
-          "create": true,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false
-        },
-        "name": {
-          "type": "string",
-          "description": null,
-          "create": true,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false
-        },
-        "md5checksum": {
-          "type": "string",
-          "description": null,
-          "create": true,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false
-        }
-      },
-      "collectionFilters": {},
-      "includeableLinks": [],
-      "resourceActions": {},
-      "collectionActions": {},
-      "collectionFields": {},
-      "resourceMethods": [
-        "GET"
-      ],
-      "collectionMethods": [
-        "POST"
-      ]
-    },
-    {
       "id": "machineDriverErrorInput",
       "type": "schema",
       "links": {
@@ -12314,6 +12876,13 @@
           "create": false,
           "update": false,
           "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "identity": {
+          "type": "reference[identity]",
+          "description": null,
+          "create": false,
+          "update": false,
           "readOnCreateOnly": false
         }
       },
@@ -15252,6 +15821,15 @@
           "readOnCreateOnly": false,
           "maxLength": 128
         },
+        "healthState": {
+          "type": "string",
+          "description": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false,
+          "maxLength": 128
+        },
         "id": {
           "type": "int",
           "description": null,
@@ -15440,6 +16018,17 @@
           ]
         },
         "externalId": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "prefix",
+            "like",
+            "notlike",
+            "null",
+            "notnull"
+          ]
+        },
+        "healthState": {
           "modifiers": [
             "eq",
             "ne",
@@ -18125,6 +18714,8 @@
           "maxLength": 128,
           "options": [
             "creating",
+            "error",
+            "erroring",
             "migrating",
             "purged",
             "purging",
@@ -18568,6 +19159,10 @@
           "output": "instance"
         },
         "updatereinitializing": {
+          "input": null,
+          "output": "instance"
+        },
+        "error": {
           "input": null,
           "output": "instance"
         },
@@ -19838,17 +20433,13 @@
           "options": [
             "activating",
             "active",
-            "creating",
+            "create",
             "error",
             "erroring",
-            "inactive",
-            "purged",
-            "purging",
-            "registering",
             "removed",
             "removing",
             "requested",
-            "updating"
+            "requesting"
           ]
         },
         "uri": {
@@ -20057,11 +20648,7 @@
           "input": "machineDriverErrorInput",
           "output": "machineDriver"
         },
-        "create": {
-          "input": null,
-          "output": "machineDriver"
-        },
-        "purge": {
+        "retry": {
           "input": null,
           "output": "machineDriver"
         }
@@ -20070,7 +20657,6 @@
       "collectionFields": {},
       "resourceMethods": [
         "GET",
-        "PUT",
         "DELETE"
       ],
       "collectionMethods": [
@@ -21529,6 +22115,15 @@
       "actions": {},
       "pluralName": "processExecutions",
       "resourceFields": {
+        "created": {
+          "type": "date",
+          "description": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false,
+          "maxLength": 255
+        },
         "id": {
           "type": "int",
           "description": null,
@@ -21565,6 +22160,18 @@
         }
       },
       "collectionFilters": {
+        "created": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "lt",
+            "lte",
+            "gt",
+            "gte",
+            "null",
+            "notnull"
+          ]
+        },
         "id": {
           "modifiers": [
             "eq",
@@ -22349,6 +22956,15 @@
           "readOnCreateOnly": false,
           "maxLength": 255
         },
+        "healthState": {
+          "type": "string",
+          "description": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false,
+          "maxLength": 128
+        },
         "id": {
           "type": "int",
           "description": null,
@@ -22510,6 +23126,7 @@
           "description": null,
           "create": false,
           "update": false,
+          "nullable": true,
           "readOnCreateOnly": false
         },
         "secondaryLaunchConfigs": {
@@ -22535,14 +23152,6 @@
           "nullable": true,
           "readOnCreateOnly": false
         },
-        "serviceSchemas": {
-          "type": "map[schema]",
-          "description": null,
-          "create": true,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false
-        },
         "publicEndpoints": {
           "type": "array[publicEndpoint]",
           "description": null,
@@ -22552,6 +23161,14 @@
           "readOnCreateOnly": false
         },
         "retainIp": {
+          "type": "boolean",
+          "description": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "assignServiceIpAddress": {
           "type": "boolean",
           "description": null,
           "create": true,
@@ -22613,6 +23230,17 @@
           ]
         },
         "externalId": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "prefix",
+            "like",
+            "notlike",
+            "null",
+            "notnull"
+          ]
+        },
+        "healthState": {
           "modifiers": [
             "eq",
             "ne",
@@ -25596,6 +26224,124 @@
         "GET"
       ],
       "collectionMethods": [
+        "POST"
+      ]
+    },
+    {
+      "id": "containerProxy",
+      "type": "schema",
+      "links": {
+        "self": "http://localhost:8080/v1/schemas/containerproxy"
+      },
+      "actions": {},
+      "pluralName": "containerProxys",
+      "resourceFields": {
+        "port": {
+          "type": "int",
+          "transform": "",
+          "description": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false,
+          "min": 0,
+          "default": 80
+        },
+        "scheme": {
+          "type": "enum",
+          "transform": "",
+          "description": null,
+          "create": true,
+          "update": false,
+          "readOnCreateOnly": false,
+          "options": [
+            "http",
+            "https"
+          ],
+          "default": "http"
+        }
+      },
+      "collectionFilters": {},
+      "includeableLinks": [],
+      "resourceActions": {},
+      "collectionActions": {},
+      "collectionFields": {},
+      "resourceMethods": [
+        "GET"
+      ],
+      "collectionMethods": [
+        "POST"
+      ]
+    },
+    {
+      "id": "serviceProxy",
+      "type": "schema",
+      "links": {
+        "self": "http://localhost:8080/v1/schemas/serviceproxy",
+        "collection": "http://localhost:8080/v1/serviceproxies"
+      },
+      "actions": {},
+      "pluralName": "serviceProxies",
+      "resourceFields": {
+        "port": {
+          "type": "int",
+          "transform": "",
+          "description": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false,
+          "min": 0,
+          "default": 80
+        },
+        "scheme": {
+          "type": "enum",
+          "transform": "",
+          "description": null,
+          "create": true,
+          "update": false,
+          "readOnCreateOnly": false,
+          "options": [
+            "http",
+            "https"
+          ],
+          "default": "http"
+        },
+        "service": {
+          "type": "string",
+          "transform": "",
+          "description": null,
+          "create": true,
+          "update": false,
+          "required": true,
+          "readOnCreateOnly": false,
+          "minLength": 1
+        },
+        "token": {
+          "type": "string",
+          "description": null,
+          "create": false,
+          "update": false,
+          "readOnCreateOnly": false
+        },
+        "url": {
+          "type": "string",
+          "description": null,
+          "create": false,
+          "update": false,
+          "readOnCreateOnly": false
+        }
+      },
+      "collectionFilters": {},
+      "includeableLinks": [],
+      "resourceActions": {},
+      "collectionActions": {},
+      "collectionFields": {},
+      "resourceMethods": [
+        "GET"
+      ],
+      "collectionMethods": [
+        "GET",
         "POST"
       ]
     },

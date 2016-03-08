@@ -9,7 +9,7 @@ type Githubconfig struct {
 
 	AccessMode string `json:"accessMode,omitempty" yaml:"access_mode,omitempty"`
 
-	AllowedIdentities []interface{} `json:"allowedIdentities,omitempty" yaml:"allowed_identities,omitempty"`
+	AllowedIdentities []Identity `json:"allowedIdentities,omitempty" yaml:"allowed_identities,omitempty"`
 
 	ClientId string `json:"clientId,omitempty" yaml:"client_id,omitempty"`
 
