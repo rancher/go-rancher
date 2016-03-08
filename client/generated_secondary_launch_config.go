@@ -123,6 +123,8 @@ type SecondaryLaunchConfig struct {
 
 	RequestedHostId string `json:"requestedHostId,omitempty" yaml:"requested_host_id,omitempty"`
 
+	RequestedIpAddress string `json:"requestedIpAddress,omitempty" yaml:"requested_ip_address,omitempty"`
+
 	SecurityOpt []string `json:"securityOpt,omitempty" yaml:"security_opt,omitempty"`
 
 	StartCount int64 `json:"startCount,omitempty" yaml:"start_count,omitempty"`
@@ -184,11 +186,15 @@ type SecondaryLaunchConfigOperations interface {
 
 	ActionDeallocate(*SecondaryLaunchConfig) (*Instance, error)
 
+	ActionError(*SecondaryLaunchConfig) (*Instance, error)
+
 	ActionExecute(*SecondaryLaunchConfig, *ContainerExec) (*HostAccess, error)
 
 	ActionLogs(*SecondaryLaunchConfig, *ContainerLogs) (*HostAccess, error)
 
 	ActionMigrate(*SecondaryLaunchConfig) (*Instance, error)
+
+	ActionProxy(*SecondaryLaunchConfig, *ContainerProxy) (*HostAccess, error)
 
 	ActionPurge(*SecondaryLaunchConfig) (*Instance, error)
 
@@ -288,6 +294,15 @@ func (c *SecondaryLaunchConfigClient) ActionDeallocate(resource *SecondaryLaunch
 	return resp, err
 }
 
+func (c *SecondaryLaunchConfigClient) ActionError(resource *SecondaryLaunchConfig) (*Instance, error) {
+
+	resp := &Instance{}
+
+	err := c.rancherClient.doAction(SECONDARY_LAUNCH_CONFIG_TYPE, "error", &resource.Resource, nil, resp)
+
+	return resp, err
+}
+
 func (c *SecondaryLaunchConfigClient) ActionExecute(resource *SecondaryLaunchConfig, input *ContainerExec) (*HostAccess, error) {
 
 	resp := &HostAccess{}
@@ -311,6 +326,15 @@ func (c *SecondaryLaunchConfigClient) ActionMigrate(resource *SecondaryLaunchCon
 	resp := &Instance{}
 
 	err := c.rancherClient.doAction(SECONDARY_LAUNCH_CONFIG_TYPE, "migrate", &resource.Resource, nil, resp)
+
+	return resp, err
+}
+
+func (c *SecondaryLaunchConfigClient) ActionProxy(resource *SecondaryLaunchConfig, input *ContainerProxy) (*HostAccess, error) {
+
+	resp := &HostAccess{}
+
+	err := c.rancherClient.doAction(SECONDARY_LAUNCH_CONFIG_TYPE, "proxy", &resource.Resource, input, resp)
 
 	return resp, err
 }
