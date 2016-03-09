@@ -144,11 +144,15 @@ type VirtualMachineOperations interface {
 
 	ActionDeallocate(*VirtualMachine) (*Instance, error)
 
+	ActionError(*VirtualMachine) (*Instance, error)
+
 	ActionExecute(*VirtualMachine, *ContainerExec) (*HostAccess, error)
 
 	ActionLogs(*VirtualMachine, *ContainerLogs) (*HostAccess, error)
 
 	ActionMigrate(*VirtualMachine) (*Instance, error)
+
+	ActionProxy(*VirtualMachine, *ContainerProxy) (*HostAccess, error)
 
 	ActionPurge(*VirtualMachine) (*Instance, error)
 
@@ -248,6 +252,15 @@ func (c *VirtualMachineClient) ActionDeallocate(resource *VirtualMachine) (*Inst
 	return resp, err
 }
 
+func (c *VirtualMachineClient) ActionError(resource *VirtualMachine) (*Instance, error) {
+
+	resp := &Instance{}
+
+	err := c.rancherClient.doAction(VIRTUAL_MACHINE_TYPE, "error", &resource.Resource, nil, resp)
+
+	return resp, err
+}
+
 func (c *VirtualMachineClient) ActionExecute(resource *VirtualMachine, input *ContainerExec) (*HostAccess, error) {
 
 	resp := &HostAccess{}
@@ -271,6 +284,15 @@ func (c *VirtualMachineClient) ActionMigrate(resource *VirtualMachine) (*Instanc
 	resp := &Instance{}
 
 	err := c.rancherClient.doAction(VIRTUAL_MACHINE_TYPE, "migrate", &resource.Resource, nil, resp)
+
+	return resp, err
+}
+
+func (c *VirtualMachineClient) ActionProxy(resource *VirtualMachine, input *ContainerProxy) (*HostAccess, error) {
+
+	resp := &HostAccess{}
+
+	err := c.rancherClient.doAction(VIRTUAL_MACHINE_TYPE, "proxy", &resource.Resource, input, resp)
 
 	return resp, err
 }

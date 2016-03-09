@@ -21,6 +21,8 @@ type Environment struct {
 
 	ExternalId string `json:"externalId,omitempty" yaml:"external_id,omitempty"`
 
+	HealthState string `json:"healthState,omitempty" yaml:"health_state,omitempty"`
+
 	Kind string `json:"kind,omitempty" yaml:"kind,omitempty"`
 
 	Name string `json:"name,omitempty" yaml:"name,omitempty"`
