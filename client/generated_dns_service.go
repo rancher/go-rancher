@@ -9,6 +9,8 @@ type DnsService struct {
 
 	AccountId string `json:"accountId,omitempty" yaml:"account_id,omitempty"`
 
+	AssignServiceIpAddress bool `json:"assignServiceIpAddress,omitempty" yaml:"assign_service_ip_address,omitempty"`
+
 	Created string `json:"created,omitempty" yaml:"created,omitempty"`
 
 	Data map[string]interface{} `json:"data,omitempty" yaml:"data,omitempty"`
@@ -20,6 +22,8 @@ type DnsService struct {
 	ExternalId string `json:"externalId,omitempty" yaml:"external_id,omitempty"`
 
 	Fqdn string `json:"fqdn,omitempty" yaml:"fqdn,omitempty"`
+
+	HealthState string `json:"healthState,omitempty" yaml:"health_state,omitempty"`
 
 	Kind string `json:"kind,omitempty" yaml:"kind,omitempty"`
 
@@ -45,7 +49,7 @@ type DnsService struct {
 
 	TransitioningProgress int64 `json:"transitioningProgress,omitempty" yaml:"transitioning_progress,omitempty"`
 
-	Upgrade ServiceUpgrade `json:"upgrade,omitempty" yaml:"upgrade,omitempty"`
+	Upgrade *ServiceUpgrade `json:"upgrade,omitempty" yaml:"upgrade,omitempty"`
 
 	Uuid string `json:"uuid,omitempty" yaml:"uuid,omitempty"`
 }
