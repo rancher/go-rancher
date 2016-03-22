@@ -29,6 +29,8 @@ type Environment struct {
 
 	Outputs map[string]interface{} `json:"outputs,omitempty" yaml:"outputs,omitempty"`
 
+	PreviousEnvironment map[string]interface{} `json:"previousEnvironment,omitempty" yaml:"previous_environment,omitempty"`
+
 	PreviousExternalId string `json:"previousExternalId,omitempty" yaml:"previous_external_id,omitempty"`
 
 	RancherCompose string `json:"rancherCompose,omitempty" yaml:"rancher_compose,omitempty"`
