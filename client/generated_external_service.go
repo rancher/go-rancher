@@ -41,6 +41,8 @@ type ExternalService struct {
 
 	Removed string `json:"removed,omitempty" yaml:"removed,omitempty"`
 
+	StartOnCreate bool `json:"startOnCreate,omitempty" yaml:"start_on_create,omitempty"`
+
 	State string `json:"state,omitempty" yaml:"state,omitempty"`
 
 	Transitioning string `json:"transitioning,omitempty" yaml:"transitioning,omitempty"`

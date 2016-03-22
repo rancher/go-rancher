@@ -86,6 +86,8 @@ func getTypeMap(schema client.Schema) map[string]string {
 			result[fieldName] = "float64"
 		} else if strings.HasPrefix(field.Type, "int") {
 			result[fieldName] = "int64"
+		} else if strings.HasPrefix(field.Type, "password") {
+			result[fieldName] = "string"
 		} else if _, noConvert := noConversionTypes[field.Type]; noConvert {
 			result[fieldName] = field.Type
 		} else if field.Nullable {

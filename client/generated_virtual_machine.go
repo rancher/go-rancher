@@ -51,6 +51,8 @@ type VirtualMachine struct {
 
 	HealthState string `json:"healthState,omitempty" yaml:"health_state,omitempty"`
 
+	HostId string `json:"hostId,omitempty" yaml:"host_id,omitempty"`
+
 	Hostname string `json:"hostname,omitempty" yaml:"hostname,omitempty"`
 
 	ImageUuid string `json:"imageUuid,omitempty" yaml:"image_uuid,omitempty"`

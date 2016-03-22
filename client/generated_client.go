@@ -25,12 +25,10 @@ type RancherClient struct {
 	ServicesPortRange                        ServicesPortRangeOperations
 	RecreateOnQuorumStrategyConfig           RecreateOnQuorumStrategyConfigOperations
 	AddOutputsInput                          AddOutputsInputOperations
-	AddRemoveClusterHostInput                AddRemoveClusterHostInputOperations
 	AddRemoveServiceLinkInput                AddRemoveServiceLinkInputOperations
 	ChangeSecretInput                        ChangeSecretInputOperations
 	SetLabelsInput                           SetLabelsInputOperations
 	ApiKey                                   ApiKeyOperations
-	Cluster                                  ClusterOperations
 	ComposeConfigInput                       ComposeConfigInputOperations
 	Container                                ContainerOperations
 	InstanceConsole                          InstanceConsoleOperations
@@ -61,6 +59,8 @@ type RancherClient struct {
 	ExternalDnsEvent                         ExternalDnsEventOperations
 	ExternalHostEvent                        ExternalHostEventOperations
 	LoadBalancerConfig                       LoadBalancerConfigOperations
+	ComposeService                           ComposeServiceOperations
+	ComposeProject                           ComposeProjectOperations
 	MachineDriverErrorInput                  MachineDriverErrorInputOperations
 	Account                                  AccountOperations
 	Agent                                    AgentOperations
@@ -127,7 +127,6 @@ type RancherClient struct {
 	HostApiProxyToken                        HostApiProxyTokenOperations
 	Register                                 RegisterOperations
 	RegistrationToken                        RegistrationTokenOperations
-	Machine                                  MachineOperations
 }
 
 func constructClient() *RancherClient {
@@ -159,12 +158,10 @@ func constructClient() *RancherClient {
 	client.ServicesPortRange = newServicesPortRangeClient(client)
 	client.RecreateOnQuorumStrategyConfig = newRecreateOnQuorumStrategyConfigClient(client)
 	client.AddOutputsInput = newAddOutputsInputClient(client)
-	client.AddRemoveClusterHostInput = newAddRemoveClusterHostInputClient(client)
 	client.AddRemoveServiceLinkInput = newAddRemoveServiceLinkInputClient(client)
 	client.ChangeSecretInput = newChangeSecretInputClient(client)
 	client.SetLabelsInput = newSetLabelsInputClient(client)
 	client.ApiKey = newApiKeyClient(client)
-	client.Cluster = newClusterClient(client)
 	client.ComposeConfigInput = newComposeConfigInputClient(client)
 	client.Container = newContainerClient(client)
 	client.InstanceConsole = newInstanceConsoleClient(client)
@@ -195,6 +192,8 @@ func constructClient() *RancherClient {
 	client.ExternalDnsEvent = newExternalDnsEventClient(client)
 	client.ExternalHostEvent = newExternalHostEventClient(client)
 	client.LoadBalancerConfig = newLoadBalancerConfigClient(client)
+	client.ComposeService = newComposeServiceClient(client)
+	client.ComposeProject = newComposeProjectClient(client)
 	client.MachineDriverErrorInput = newMachineDriverErrorInputClient(client)
 	client.Account = newAccountClient(client)
 	client.Agent = newAgentClient(client)
@@ -261,7 +260,6 @@ func constructClient() *RancherClient {
 	client.HostApiProxyToken = newHostApiProxyTokenClient(client)
 	client.Register = newRegisterClient(client)
 	client.RegistrationToken = newRegistrationTokenClient(client)
-	client.Machine = newMachineClient(client)
 
 	return client
 }
