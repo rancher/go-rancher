@@ -1,6 +1,6 @@
 {
 	"ImportPath": "github.com/rancher/go-rancher",
-	"GoVersion": "go1.4.1",
+	"GoVersion": "go1.6",
 	"Packages": [
 		"./..."
 	],
@@ -21,6 +21,10 @@
 		{
 			"ImportPath": "github.com/gorilla/websocket",
 			"Rev": "1551221275a7bd42978745a376b2531f791d88f3"
+		},
+		{
+			"ImportPath": "gopkg.in/yaml.v2",
+			"Rev": "a83829b6f1293c91addabc89d0571c246397bbf4"
 		}
 	]
 }
