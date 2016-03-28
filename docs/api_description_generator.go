@@ -2,14 +2,15 @@ package main
 
 import (
 	"encoding/json"
-	"github.com/rancher/go-rancher/client"
-	"gopkg.in/yaml.v2"
 	"io/ioutil"
 	"os"
 	"path"
 	"regexp"
 	"strings"
 	"text/template"
+
+	"github.com/rancher/go-rancher/client"
+	"gopkg.in/yaml.v2"
 )
 
 var (
@@ -106,7 +107,7 @@ func generateDescriptionFile() error {
 
 	templateName := "apiDescription.template"
 
-	typeTemplate, err := template.New(templateName).ParseFiles("./templates/"+templateName)
+	typeTemplate, err := template.New(templateName).ParseFiles("./templates/" + templateName)
 	if err != nil {
 		return err
 	}

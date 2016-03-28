@@ -2,14 +2,15 @@ package main
 
 import (
 	"encoding/json"
-	"github.com/rancher/go-rancher/client"
-	"gopkg.in/yaml.v2"
 	"io/ioutil"
 	"os"
 	"path"
 	"regexp"
 	"strings"
 	"text/template"
+
+	"github.com/rancher/go-rancher/client"
+	"gopkg.in/yaml.v2"
 )
 
 const (
@@ -73,7 +74,6 @@ func capitalize(s string) string {
 	return strings.ToUpper(s[:1]) + s[1:]
 }
 
-
 func isCommonField(fieldName string) bool {
 	for _, commonFieldName := range commonFields {
 		if fieldName == commonFieldName {
@@ -82,7 +82,6 @@ func isCommonField(fieldName string) bool {
 	}
 	return false
 }
-
 
 func getFieldMap(schema client.Schema) map[string]APIField {
 	fieldMap := make(map[string]APIField)
@@ -142,21 +141,21 @@ func generateTypeValue(field client.Field) interface{} {
 	if field.Default != nil {
 		return field.Default
 	}
-	
+
 	//basic types
 	switch field.Type {
-		case "string":
-			return "string"
-		case "int":
-			return 0
-		case "boolean":
-			return true
-		case "array[string]":
-			return [...]string{"string1", "string2","...stringN"}
-		case "map[string]":
-			return map[string]string{"key1": "value1","key2": "value2","keyN": "valueN"}
-		case "password":
-			return field.Type
+	case "string":
+		return "string"
+	case "int":
+		return 0
+	case "boolean":
+		return true
+	case "array[string]":
+		return [...]string{"string1", "string2", "...stringN"}
+	case "map[string]":
+		return map[string]string{"key1": "value1", "key2": "value2", "keyN": "valueN"}
+	case "password":
+		return field.Type
 	}
 
 	//another resourceType
@@ -179,7 +178,7 @@ func getActionMap(schema client.Schema, isCUD bool) map[string]APIAction {
 				apiAction := APIAction{}
 				apiAction.Description = getActionDescription(schema.Id, "create")
 				apiAction.Verb = "POST"
-				apiAction.ActionURL = "/v1/"+schema.Id
+				apiAction.ActionURL = "/v1/" + schema.Id
 				resourceFields := make(map[string]client.Field)
 
 				for fieldName, field := range schema.ResourceFields {
@@ -260,15 +259,14 @@ func generateDoc(schema client.Schema, isResource bool) error {
 		"actionMap":           getActionMap(schema, false),
 		"pluralName":          schema.PluralName,
 	}
-	
-	
+
 	var templateName string
 	if isResource {
 		templateName = "apiResource.template"
 	} else {
 		templateName = "apiActionInput.template"
 	}
-	typeTemplate, err := template.New(templateName).ParseFiles("./templates/"+templateName)
+	typeTemplate, err := template.New(templateName).ParseFiles("./templates/" + templateName)
 	if err != nil {
 		return err
 	}
