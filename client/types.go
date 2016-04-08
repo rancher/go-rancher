@@ -89,7 +89,7 @@ type ListOpts struct {
 }
 
 type ServerApiError struct {
-	Type    string `json:"type"`
+	Resource
 	Status  int    `json:"status"`
 	Code    string `json:"code"`
 	Message string `json:"message"`
