@@ -24,6 +24,7 @@ type RancherClient struct {
 	ServiceRestart                           ServiceRestartOperations
 	ServicesPortRange                        ServicesPortRangeOperations
 	RecreateOnQuorumStrategyConfig           RecreateOnQuorumStrategyConfigOperations
+	HaConfigInput                            HaConfigInputOperations
 	AddOutputsInput                          AddOutputsInputOperations
 	AddRemoveServiceLinkInput                AddRemoveServiceLinkInputOperations
 	ChangeSecretInput                        ChangeSecretInputOperations
@@ -62,6 +63,7 @@ type RancherClient struct {
 	ComposeService                           ComposeServiceOperations
 	ComposeProject                           ComposeProjectOperations
 	MachineDriverErrorInput                  MachineDriverErrorInputOperations
+	HaConfig                                 HaConfigOperations
 	Account                                  AccountOperations
 	Agent                                    AgentOperations
 	AuditLog                                 AuditLogOperations
@@ -127,6 +129,7 @@ type RancherClient struct {
 	HostApiProxyToken                        HostApiProxyTokenOperations
 	Register                                 RegisterOperations
 	RegistrationToken                        RegistrationTokenOperations
+	Machine                                  MachineOperations
 }
 
 func constructClient() *RancherClient {
@@ -157,6 +160,7 @@ func constructClient() *RancherClient {
 	client.ServiceRestart = newServiceRestartClient(client)
 	client.ServicesPortRange = newServicesPortRangeClient(client)
 	client.RecreateOnQuorumStrategyConfig = newRecreateOnQuorumStrategyConfigClient(client)
+	client.HaConfigInput = newHaConfigInputClient(client)
 	client.AddOutputsInput = newAddOutputsInputClient(client)
 	client.AddRemoveServiceLinkInput = newAddRemoveServiceLinkInputClient(client)
 	client.ChangeSecretInput = newChangeSecretInputClient(client)
@@ -195,6 +199,7 @@ func constructClient() *RancherClient {
 	client.ComposeService = newComposeServiceClient(client)
 	client.ComposeProject = newComposeProjectClient(client)
 	client.MachineDriverErrorInput = newMachineDriverErrorInputClient(client)
+	client.HaConfig = newHaConfigClient(client)
 	client.Account = newAccountClient(client)
 	client.Agent = newAgentClient(client)
 	client.AuditLog = newAuditLogClient(client)
@@ -260,6 +265,7 @@ func constructClient() *RancherClient {
 	client.HostApiProxyToken = newHostApiProxyTokenClient(client)
 	client.Register = newRegisterClient(client)
 	client.RegistrationToken = newRegistrationTokenClient(client)
+	client.Machine = newMachineClient(client)
 
 	return client
 }

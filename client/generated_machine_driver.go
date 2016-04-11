@@ -15,6 +15,8 @@ type MachineDriver struct {
 
 	Description string `json:"description,omitempty" yaml:"description,omitempty"`
 
+	ErrorMessage string `json:"errorMessage,omitempty" yaml:"error_message,omitempty"`
+
 	Kind string `json:"kind,omitempty" yaml:"kind,omitempty"`
 
 	Md5checksum string `json:"md5checksum,omitempty" yaml:"md5checksum,omitempty"`
@@ -32,6 +34,8 @@ type MachineDriver struct {
 	TransitioningMessage string `json:"transitioningMessage,omitempty" yaml:"transitioning_message,omitempty"`
 
 	TransitioningProgress int64 `json:"transitioningProgress,omitempty" yaml:"transitioning_progress,omitempty"`
+
+	UiUrl string `json:"uiUrl,omitempty" yaml:"ui_url,omitempty"`
 
 	Uri string `json:"uri,omitempty" yaml:"uri,omitempty"`
 
@@ -56,11 +60,13 @@ type MachineDriverOperations interface {
 
 	ActionActivate(*MachineDriver) (*MachineDriver, error)
 
-	ActionError(*MachineDriver) (*MachineDriver, error)
+	ActionError(*MachineDriver, *MachineDriverErrorInput) (*MachineDriver, error)
 
 	ActionRemove(*MachineDriver) (*MachineDriver, error)
 
 	ActionRetry(*MachineDriver) (*MachineDriver, error)
+
+	ActionUpdate(*MachineDriver, *MachineDriverUpdateInput) (*MachineDriver, error)
 }
 
 func newMachineDriverClient(rancherClient *RancherClient) *MachineDriverClient {
@@ -111,11 +117,11 @@ func (c *MachineDriverClient) ActionActivate(resource *MachineDriver) (*MachineD
 	return resp, err
 }
 
-func (c *MachineDriverClient) ActionError(resource *MachineDriver) (*MachineDriver, error) {
+func (c *MachineDriverClient) ActionError(resource *MachineDriver, input *MachineDriverErrorInput) (*MachineDriver, error) {
 
 	resp := &MachineDriver{}
 
-	err := c.rancherClient.doAction(MACHINE_DRIVER_TYPE, "error", &resource.Resource, nil, resp)
+	err := c.rancherClient.doAction(MACHINE_DRIVER_TYPE, "error", &resource.Resource, input, resp)
 
 	return resp, err
 }
@@ -134,6 +140,15 @@ func (c *MachineDriverClient) ActionRetry(resource *MachineDriver) (*MachineDriv
 	resp := &MachineDriver{}
 
 	err := c.rancherClient.doAction(MACHINE_DRIVER_TYPE, "retry", &resource.Resource, nil, resp)
+
+	return resp, err
+}
+
+func (c *MachineDriverClient) ActionUpdate(resource *MachineDriver, input *MachineDriverUpdateInput) (*MachineDriver, error) {
+
+	resp := &MachineDriver{}
+
+	err := c.rancherClient.doAction(MACHINE_DRIVER_TYPE, "update", &resource.Resource, input, resp)
 
 	return resp, err
 }

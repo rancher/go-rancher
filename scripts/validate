@@ -1,0 +1,29 @@
+#!/bin/bash
+
+cd $(dirname $0)/..
+
+if [ -f ./build/bootstrap.envs ];then
+    . ./build/bootstrap.envs
+fi
+
+. ./scripts/common_functions
+
+set_project_vars
+
+if [ -L ${PACKAGE} ]; then
+    rm ${PACKAGE}
+fi
+
+if [ ! -e ${PACKAGE} ]; then
+    mkdir -p $(dirname $PACKAGE)
+    ln -s $(pwd) $PACKAGE
+fi
+
+echo export GOPATH=$GOPATH
+
+./scripts/gen-schema.sh
+if [ -n "$(git status --porcelain --untracked-files=no)" ]; then
+    echo Modified files
+    git status --porcelain --untracked-files=no
+    exit 1
+fi
