@@ -5,6 +5,7 @@ import (
 	"errors"
 	"reflect"
 
+	"github.com/Sirupsen/logrus"
 	"github.com/rancher/go-rancher/client"
 )
 
@@ -122,7 +123,12 @@ func ResourceToMap(obj interface{}, schemas *client.Schemas) (map[string]interfa
 		return result, err
 	}
 
-	schema := schemas.Schema(resource.Type)
+	schema, ok := schemas.CheckSchema(resource.Type)
+	if !ok {
+		logrus.Errorf("Attempting to Write an unknown type: %s", resource.Type)
+		return result, nil
+	}
+
 	for k, v := range objMap {
 		_, ok := schema.CheckField(k)
 		if !ok {

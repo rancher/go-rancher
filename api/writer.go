@@ -6,10 +6,27 @@ import (
 	"reflect"
 
 	"github.com/Sirupsen/logrus"
+	"github.com/rancher/go-rancher/client"
 )
 
 type ApiResponseWriter interface {
 	Write(obj interface{}, rw http.ResponseWriter) error
+}
+
+func (a *ApiContext) WriteErr(err error) {
+	logrus.Errorf("Error in request: %v", err)
+	a.responseWriter.WriteHeader(500)
+	writeErr := a.WriteResource(&client.ServerApiError{
+		Resource: client.Resource{
+			Type: "error",
+		},
+		Status:  500,
+		Code:    "Server Error",
+		Message: err.Error(),
+	})
+	if writeErr != nil {
+		logrus.Errorf("Failed to write err: %v", err)
+	}
 }
 
 func (a *ApiContext) Write(obj interface{}) {
@@ -23,7 +40,7 @@ func (a *ApiContext) Write(obj interface{}) {
 
 	if err != nil {
 		logrus.WithField("err", err).Errorf("Failed to write response")
-		a.responseWriter.WriteHeader(500)
+		a.WriteErr(err)
 	}
 }
 
