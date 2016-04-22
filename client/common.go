@@ -14,6 +14,7 @@ import (
 
 	"github.com/gorilla/websocket"
 	"time"
+	"reflect"
 )
 
 const (
@@ -320,6 +321,10 @@ func (rancherClient *RancherBaseClient) doModify(method string, url string, crea
 	rancherClient.setupRequest(req)
 	req.Header.Set("Content-Type", "application/json")
 	req.Header.Set("Content-Length", string(len(bodyContent)))
+	accountId := reflect.ValueOf(createObj).Elem().FieldByName("AccountId").String()
+	if accountId != "" {
+		req.Header.Set("x-api-project-id", accountId)
+	}
 
 	resp, err := client.Do(req)
 	if err != nil {
@@ -364,7 +369,7 @@ func (rancherClient *RancherBaseClient) doCreate(schemaType string, createObj in
 	}
 
 	if !contains(schema.CollectionMethods, "POST") {
-		return errors.New("Resource type [" + schemaType + "] is not creatable")
+		// TODO - by pass validation and let the server validate?
 	}
 
 	var collectionUrl string
