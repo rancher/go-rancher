@@ -9,8 +9,6 @@ type VmwarevsphereConfig struct {
 
 	Boot2dockerUrl string `json:"boot2dockerUrl,omitempty" yaml:"boot2docker_url,omitempty"`
 
-	ComputeIp string `json:"computeIp,omitempty" yaml:"compute_ip,omitempty"`
-
 	CpuCount string `json:"cpuCount,omitempty" yaml:"cpu_count,omitempty"`
 
 	Datacenter string `json:"datacenter,omitempty" yaml:"datacenter,omitempty"`
@@ -18,6 +16,8 @@ type VmwarevsphereConfig struct {
 	Datastore string `json:"datastore,omitempty" yaml:"datastore,omitempty"`
 
 	DiskSize string `json:"diskSize,omitempty" yaml:"disk_size,omitempty"`
+
+	Hostsystem string `json:"hostsystem,omitempty" yaml:"hostsystem,omitempty"`
 
 	MemorySize string `json:"memorySize,omitempty" yaml:"memory_size,omitempty"`
 
@@ -30,6 +30,8 @@ type VmwarevsphereConfig struct {
 	Username string `json:"username,omitempty" yaml:"username,omitempty"`
 
 	Vcenter string `json:"vcenter,omitempty" yaml:"vcenter,omitempty"`
+
+	VcenterPort string `json:"vcenterPort,omitempty" yaml:"vcenter_port,omitempty"`
 }
 
 type VmwarevsphereConfigCollection struct {

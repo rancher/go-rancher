@@ -129,7 +129,23 @@ type RancherClient struct {
 	HostApiProxyToken                        HostApiProxyTokenOperations
 	Register                                 RegisterOperations
 	RegistrationToken                        RegistrationTokenOperations
+	VirtualboxConfig                         VirtualboxConfigOperations
+	GoogleConfig                             GoogleConfigOperations
+	RackspaceConfig                          RackspaceConfigOperations
+	VmwarevcloudairConfig                    VmwarevcloudairConfigOperations
+	AzureConfig                              AzureConfigOperations
+	VmwarefusionConfig                       VmwarefusionConfigOperations
+	HypervConfig                             HypervConfigOperations
+	SoftlayerConfig                          SoftlayerConfigOperations
+	ExoscaleConfig                           ExoscaleConfigOperations
+	Amazonec2Config                          Amazonec2ConfigOperations
 	Machine                                  MachineOperations
+	OpenstackConfig                          OpenstackConfigOperations
+	PacketConfig                             PacketConfigOperations
+	GenericConfig                            GenericConfigOperations
+	VmwarevsphereConfig                      VmwarevsphereConfigOperations
+	DigitaloceanConfig                       DigitaloceanConfigOperations
+	UbiquityConfig                           UbiquityConfigOperations
 }
 
 func constructClient() *RancherClient {
@@ -265,7 +281,23 @@ func constructClient() *RancherClient {
 	client.HostApiProxyToken = newHostApiProxyTokenClient(client)
 	client.Register = newRegisterClient(client)
 	client.RegistrationToken = newRegistrationTokenClient(client)
+	client.VirtualboxConfig = newVirtualboxConfigClient(client)
+	client.GoogleConfig = newGoogleConfigClient(client)
+	client.RackspaceConfig = newRackspaceConfigClient(client)
+	client.VmwarevcloudairConfig = newVmwarevcloudairConfigClient(client)
+	client.AzureConfig = newAzureConfigClient(client)
+	client.VmwarefusionConfig = newVmwarefusionConfigClient(client)
+	client.HypervConfig = newHypervConfigClient(client)
+	client.SoftlayerConfig = newSoftlayerConfigClient(client)
+	client.ExoscaleConfig = newExoscaleConfigClient(client)
+	client.Amazonec2Config = newAmazonec2ConfigClient(client)
 	client.Machine = newMachineClient(client)
+	client.OpenstackConfig = newOpenstackConfigClient(client)
+	client.PacketConfig = newPacketConfigClient(client)
+	client.GenericConfig = newGenericConfigClient(client)
+	client.VmwarevsphereConfig = newVmwarevsphereConfigClient(client)
+	client.DigitaloceanConfig = newDigitaloceanConfigClient(client)
+	client.UbiquityConfig = newUbiquityConfigClient(client)
 
 	return client
 }

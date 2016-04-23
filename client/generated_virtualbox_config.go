@@ -13,13 +13,23 @@ type VirtualboxConfig struct {
 
 	DiskSize string `json:"diskSize,omitempty" yaml:"disk_size,omitempty"`
 
+	DnsProxy bool `json:"dnsProxy,omitempty" yaml:"dns_proxy,omitempty"`
+
+	HostDnsResolver bool `json:"hostDnsResolver,omitempty" yaml:"host_dns_resolver,omitempty"`
+
 	HostonlyCidr string `json:"hostonlyCidr,omitempty" yaml:"hostonly_cidr,omitempty"`
+
+	HostonlyNicpromisc string `json:"hostonlyNicpromisc,omitempty" yaml:"hostonly_nicpromisc,omitempty"`
+
+	HostonlyNictype string `json:"hostonlyNictype,omitempty" yaml:"hostonly_nictype,omitempty"`
 
 	ImportBoot2dockerVm string `json:"importBoot2dockerVm,omitempty" yaml:"import_boot2docker_vm,omitempty"`
 
 	Memory string `json:"memory,omitempty" yaml:"memory,omitempty"`
 
 	NoShare bool `json:"noShare,omitempty" yaml:"no_share,omitempty"`
+
+	NoVtxCheck bool `json:"noVtxCheck,omitempty" yaml:"no_vtx_check,omitempty"`
 }
 
 type VirtualboxConfigCollection struct {

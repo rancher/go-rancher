@@ -7,6 +7,8 @@ const (
 type OpenstackConfig struct {
 	Resource
 
+	ActiveTimeout string `json:"activeTimeout,omitempty" yaml:"active_timeout,omitempty"`
+
 	AuthUrl string `json:"authUrl,omitempty" yaml:"auth_url,omitempty"`
 
 	AvailabilityZone string `json:"availabilityZone,omitempty" yaml:"availability_zone,omitempty"`
@@ -29,11 +31,19 @@ type OpenstackConfig struct {
 
 	Insecure bool `json:"insecure,omitempty" yaml:"insecure,omitempty"`
 
+	IpVersion string `json:"ipVersion,omitempty" yaml:"ip_version,omitempty"`
+
+	KeypairName string `json:"keypairName,omitempty" yaml:"keypair_name,omitempty"`
+
 	NetId string `json:"netId,omitempty" yaml:"net_id,omitempty"`
 
 	NetName string `json:"netName,omitempty" yaml:"net_name,omitempty"`
 
+	NovaNetwork bool `json:"novaNetwork,omitempty" yaml:"nova_network,omitempty"`
+
 	Password string `json:"password,omitempty" yaml:"password,omitempty"`
+
+	PrivateKeyFile string `json:"privateKeyFile,omitempty" yaml:"private_key_file,omitempty"`
 
 	Region string `json:"region,omitempty" yaml:"region,omitempty"`
 

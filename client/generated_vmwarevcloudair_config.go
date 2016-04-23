@@ -25,8 +25,6 @@ type VmwarevcloudairConfig struct {
 
 	Password string `json:"password,omitempty" yaml:"password,omitempty"`
 
-	Provision bool `json:"provision,omitempty" yaml:"provision,omitempty"`
-
 	Publicip string `json:"publicip,omitempty" yaml:"publicip,omitempty"`
 
 	SshPort string `json:"sshPort,omitempty" yaml:"ssh_port,omitempty"`

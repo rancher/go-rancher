@@ -2,7 +2,7 @@
   "type": "collection",
   "resourceType": "schema",
   "links": {
-    "self": "http://localhost:18282/v1/schemas"
+    "self": "http://server.rancher.local:8080/v1/schemas"
   },
   "createTypes": {},
   "actions": {},
@@ -11,8 +11,8 @@
       "id": "schema",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/schema",
-        "collection": "http://localhost:18282/v1/schemas"
+        "self": "http://server.rancher.local:8080/v1/schemas/schema",
+        "collection": "http://server.rancher.local:8080/v1/schemas"
       },
       "actions": {},
       "pluralName": "schemas",
@@ -86,10 +86,10 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
+      "resourceMethods": [
         "GET"
       ],
-      "resourceMethods": [
+      "collectionMethods": [
         "GET"
       ]
     },
@@ -97,8 +97,8 @@
       "id": "subscribe",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/subscribe",
-        "collection": "http://localhost:18282/v1/subscribe"
+        "self": "http://server.rancher.local:8080/v1/schemas/subscribe",
+        "collection": "http://server.rancher.local:8080/v1/subscribe"
       },
       "actions": {},
       "pluralName": "subscribe",
@@ -133,19 +133,19 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
+      "resourceMethods": [
+        "GET"
+      ],
       "collectionMethods": [
         "GET",
         "POST"
-      ],
-      "resourceMethods": [
-        "GET"
       ]
     },
     {
       "id": "publish",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/publish"
+        "self": "http://server.rancher.local:8080/v1/schemas/publish"
       },
       "actions": {},
       "pluralName": "publish",
@@ -258,18 +258,18 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "POST"
-      ],
       "resourceMethods": [
         "GET"
+      ],
+      "collectionMethods": [
+        "POST"
       ]
     },
     {
       "id": "logConfig",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/logconfig"
+        "self": "http://server.rancher.local:8080/v1/schemas/logconfig"
       },
       "actions": {},
       "pluralName": "logConfigs",
@@ -298,18 +298,18 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "POST"
-      ],
       "resourceMethods": [
         "GET"
+      ],
+      "collectionMethods": [
+        "POST"
       ]
     },
     {
       "id": "restartPolicy",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/restartpolicy"
+        "self": "http://server.rancher.local:8080/v1/schemas/restartpolicy"
       },
       "actions": {},
       "pluralName": "restartPolicys",
@@ -334,18 +334,18 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "POST"
-      ],
       "resourceMethods": [
         "GET"
+      ],
+      "collectionMethods": [
+        "POST"
       ]
     },
     {
       "id": "loadBalancerCookieStickinessPolicy",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/loadbalancercookiestickinesspolicy"
+        "self": "http://server.rancher.local:8080/v1/schemas/loadbalancercookiestickinesspolicy"
       },
       "actions": {},
       "pluralName": "loadBalancerCookieStickinessPolicys",
@@ -413,19 +413,19 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "POST"
-      ],
       "resourceMethods": [
         "GET",
         "PUT"
+      ],
+      "collectionMethods": [
+        "POST"
       ]
     },
     {
       "id": "loadBalancerAppCookieStickinessPolicy",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/loadbalancerappcookiestickinesspolicy"
+        "self": "http://server.rancher.local:8080/v1/schemas/loadbalancerappcookiestickinesspolicy"
       },
       "actions": {},
       "pluralName": "loadBalancerAppCookieStickinessPolicys",
@@ -496,19 +496,19 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "POST"
-      ],
       "resourceMethods": [
         "GET",
         "PUT"
+      ],
+      "collectionMethods": [
+        "POST"
       ]
     },
     {
       "id": "externalHandlerProcessConfig",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/externalhandlerprocessconfig"
+        "self": "http://server.rancher.local:8080/v1/schemas/externalhandlerprocessconfig"
       },
       "actions": {},
       "pluralName": "externalHandlerProcessConfigs",
@@ -533,18 +533,18 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "POST"
-      ],
       "resourceMethods": [
         "GET"
+      ],
+      "collectionMethods": [
+        "POST"
       ]
     },
     {
       "id": "composeConfig",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/composeconfig"
+        "self": "http://server.rancher.local:8080/v1/schemas/composeconfig"
       },
       "actions": {},
       "pluralName": "composeConfigs",
@@ -569,16 +569,16 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [],
       "resourceMethods": [
         "GET"
-      ]
+      ],
+      "collectionMethods": []
     },
     {
       "id": "instanceHealthCheck",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/instancehealthcheck"
+        "self": "http://server.rancher.local:8080/v1/schemas/instancehealthcheck"
       },
       "actions": {},
       "pluralName": "instanceHealthChecks",
@@ -691,18 +691,18 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "POST"
-      ],
       "resourceMethods": [
         "GET"
+      ],
+      "collectionMethods": [
+        "POST"
       ]
     },
     {
       "id": "serviceLink",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/servicelink"
+        "self": "http://server.rancher.local:8080/v1/schemas/servicelink"
       },
       "actions": {},
       "pluralName": "serviceLinks",
@@ -737,18 +737,18 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "POST"
-      ],
       "resourceMethods": [
         "GET"
+      ],
+      "collectionMethods": [
+        "POST"
       ]
     },
     {
       "id": "serviceUpgrade",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/serviceupgrade"
+        "self": "http://server.rancher.local:8080/v1/schemas/serviceupgrade"
       },
       "actions": {},
       "pluralName": "serviceUpgrades",
@@ -777,18 +777,18 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "POST"
-      ],
       "resourceMethods": [
         "GET"
+      ],
+      "collectionMethods": [
+        "POST"
       ]
     },
     {
       "id": "serviceUpgradeStrategy",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/serviceupgradestrategy"
+        "self": "http://server.rancher.local:8080/v1/schemas/serviceupgradestrategy"
       },
       "actions": {},
       "pluralName": "serviceUpgradeStrategys",
@@ -821,16 +821,16 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [],
       "resourceMethods": [
         "GET"
-      ]
+      ],
+      "collectionMethods": []
     },
     {
       "id": "inServiceUpgradeStrategy",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/inserviceupgradestrategy"
+        "self": "http://server.rancher.local:8080/v1/schemas/inserviceupgradestrategy"
       },
       "actions": {},
       "pluralName": "inServiceUpgradeStrategys",
@@ -902,18 +902,18 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "POST"
-      ],
       "resourceMethods": [
         "GET"
+      ],
+      "collectionMethods": [
+        "POST"
       ]
     },
     {
       "id": "toServiceUpgradeStrategy",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/toserviceupgradestrategy"
+        "self": "http://server.rancher.local:8080/v1/schemas/toserviceupgradestrategy"
       },
       "actions": {},
       "pluralName": "toServiceUpgradeStrategys",
@@ -972,18 +972,18 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "POST"
-      ],
       "resourceMethods": [
         "GET"
+      ],
+      "collectionMethods": [
+        "POST"
       ]
     },
     {
       "id": "publicEndpoint",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/publicendpoint"
+        "self": "http://server.rancher.local:8080/v1/schemas/publicendpoint"
       },
       "actions": {},
       "pluralName": "publicEndpoints",
@@ -1033,16 +1033,16 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [],
       "resourceMethods": [
         "GET"
-      ]
+      ],
+      "collectionMethods": []
     },
     {
       "id": "virtualMachineDisk",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/virtualmachinedisk"
+        "self": "http://server.rancher.local:8080/v1/schemas/virtualmachinedisk"
       },
       "actions": {},
       "pluralName": "virtualMachineDisks",
@@ -1094,18 +1094,18 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "POST"
-      ],
       "resourceMethods": [
         "GET"
+      ],
+      "collectionMethods": [
+        "POST"
       ]
     },
     {
       "id": "haproxyConfig",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/haproxyconfig"
+        "self": "http://server.rancher.local:8080/v1/schemas/haproxyconfig"
       },
       "actions": {},
       "pluralName": "haproxyConfigs",
@@ -1134,19 +1134,19 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "POST"
-      ],
       "resourceMethods": [
         "GET",
         "PUT"
+      ],
+      "collectionMethods": [
+        "POST"
       ]
     },
     {
       "id": "rollingRestartStrategy",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/rollingrestartstrategy"
+        "self": "http://server.rancher.local:8080/v1/schemas/rollingrestartstrategy"
       },
       "actions": {},
       "pluralName": "rollingRestartStrategys",
@@ -1179,18 +1179,18 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "POST"
-      ],
       "resourceMethods": [
         "GET"
+      ],
+      "collectionMethods": [
+        "POST"
       ]
     },
     {
       "id": "serviceRestart",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/servicerestart"
+        "self": "http://server.rancher.local:8080/v1/schemas/servicerestart"
       },
       "actions": {},
       "pluralName": "serviceRestarts",
@@ -1210,18 +1210,18 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "POST"
-      ],
       "resourceMethods": [
         "GET"
+      ],
+      "collectionMethods": [
+        "POST"
       ]
     },
     {
       "id": "servicesPortRange",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/servicesportrange"
+        "self": "http://server.rancher.local:8080/v1/schemas/servicesportrange"
       },
       "actions": {},
       "pluralName": "servicesPortRanges",
@@ -1256,19 +1256,19 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "POST"
-      ],
       "resourceMethods": [
         "GET",
         "PUT"
+      ],
+      "collectionMethods": [
+        "POST"
       ]
     },
     {
       "id": "recreateOnQuorumStrategyConfig",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/recreateonquorumstrategyconfig"
+        "self": "http://server.rancher.local:8080/v1/schemas/recreateonquorumstrategyconfig"
       },
       "actions": {},
       "pluralName": "recreateOnQuorumStrategyConfigs",
@@ -1289,19 +1289,19 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "POST"
-      ],
       "resourceMethods": [
         "GET"
+      ],
+      "collectionMethods": [
+        "POST"
       ]
     },
     {
       "id": "haConfigInput",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/haconfiginput",
-        "collection": "http://localhost:18282/v1/haconfiginputs"
+        "self": "http://server.rancher.local:8080/v1/schemas/haconfiginput",
+        "collection": "http://server.rancher.local:8080/v1/haconfiginputs"
       },
       "actions": {},
       "pluralName": "haConfigInputs",
@@ -1417,7 +1417,7 @@
           "readOnCreateOnly": false,
           "min": 1,
           "max": 65535,
-          "default": 6375
+          "default": 6379
         },
         "swarmEnabled": {
           "type": "boolean",
@@ -1438,7 +1438,7 @@
           "readOnCreateOnly": false,
           "min": 1,
           "max": 65535,
-          "default": 2367
+          "default": 2376
         },
         "zookeeperClientPort": {
           "type": "int",
@@ -1479,20 +1479,20 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
+      "resourceMethods": [
+        "GET"
+      ],
       "collectionMethods": [
         "GET",
         "POST"
-      ],
-      "resourceMethods": [
-        "GET"
       ]
     },
     {
       "id": "addOutputsInput",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/addoutputsinput",
-        "collection": "http://localhost:18282/v1/addoutputsinputs"
+        "self": "http://server.rancher.local:8080/v1/schemas/addoutputsinput",
+        "collection": "http://server.rancher.local:8080/v1/addoutputsinputs"
       },
       "actions": {},
       "pluralName": "addOutputsInputs",
@@ -1511,10 +1511,10 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
+      "resourceMethods": [
         "GET"
       ],
-      "resourceMethods": [
+      "collectionMethods": [
         "GET"
       ]
     },
@@ -1522,7 +1522,7 @@
       "id": "addRemoveServiceLinkInput",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/addremoveservicelinkinput"
+        "self": "http://server.rancher.local:8080/v1/schemas/addremoveservicelinkinput"
       },
       "actions": {},
       "pluralName": "addRemoveServiceLinkInputs",
@@ -1541,18 +1541,18 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "POST"
-      ],
       "resourceMethods": [
         "GET"
+      ],
+      "collectionMethods": [
+        "POST"
       ]
     },
     {
       "id": "changeSecretInput",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/changesecretinput"
+        "self": "http://server.rancher.local:8080/v1/schemas/changesecretinput"
       },
       "actions": {},
       "pluralName": "changeSecretInputs",
@@ -1579,18 +1579,18 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "POST"
-      ],
       "resourceMethods": [
         "GET"
+      ],
+      "collectionMethods": [
+        "POST"
       ]
     },
     {
       "id": "setLabelsInput",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/setlabelsinput"
+        "self": "http://server.rancher.local:8080/v1/schemas/setlabelsinput"
       },
       "actions": {},
       "pluralName": "setLabelsInputs",
@@ -1608,19 +1608,19 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "POST"
-      ],
       "resourceMethods": [
         "GET"
+      ],
+      "collectionMethods": [
+        "POST"
       ]
     },
     {
       "id": "apiKey",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/apikey",
-        "collection": "http://localhost:18282/v1/apikeys"
+        "self": "http://server.rancher.local:8080/v1/schemas/apikey",
+        "collection": "http://server.rancher.local:8080/v1/apikeys"
       },
       "actions": {},
       "pluralName": "apiKeys",
@@ -1956,21 +1956,21 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "GET",
-        "POST"
-      ],
       "resourceMethods": [
         "GET",
         "PUT",
         "DELETE"
+      ],
+      "collectionMethods": [
+        "GET",
+        "POST"
       ]
     },
     {
       "id": "composeConfigInput",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/composeconfiginput"
+        "self": "http://server.rancher.local:8080/v1/schemas/composeconfiginput"
       },
       "actions": {},
       "pluralName": "composeConfigInputs",
@@ -1989,19 +1989,19 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "POST"
-      ],
       "resourceMethods": [
         "GET"
+      ],
+      "collectionMethods": [
+        "POST"
       ]
     },
     {
       "id": "container",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/container",
-        "collection": "http://localhost:18282/v1/containers"
+        "self": "http://server.rancher.local:8080/v1/schemas/container",
+        "collection": "http://server.rancher.local:8080/v1/containers"
       },
       "actions": {},
       "pluralName": "containers",
@@ -3231,21 +3231,21 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "GET",
-        "POST"
-      ],
       "resourceMethods": [
         "GET",
         "PUT",
         "DELETE"
+      ],
+      "collectionMethods": [
+        "GET",
+        "POST"
       ]
     },
     {
       "id": "instanceConsole",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/instanceconsole"
+        "self": "http://server.rancher.local:8080/v1/schemas/instanceconsole"
       },
       "actions": {},
       "pluralName": "instanceConsoles",
@@ -3277,16 +3277,16 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [],
       "resourceMethods": [
         "GET"
-      ]
+      ],
+      "collectionMethods": []
     },
     {
       "id": "instanceConsoleInput",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/instanceconsoleinput"
+        "self": "http://server.rancher.local:8080/v1/schemas/instanceconsoleinput"
       },
       "actions": {},
       "pluralName": "instanceConsoleInputs",
@@ -3296,16 +3296,16 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [],
       "resourceMethods": [
         "GET"
-      ]
+      ],
+      "collectionMethods": []
     },
     {
       "id": "instanceStop",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/instancestop"
+        "self": "http://server.rancher.local:8080/v1/schemas/instancestop"
       },
       "actions": {},
       "pluralName": "instanceStops",
@@ -3330,18 +3330,18 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "POST"
-      ],
       "resourceMethods": [
         "GET"
+      ],
+      "collectionMethods": [
+        "POST"
       ]
     },
     {
       "id": "ipAddressAssociateInput",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/ipaddressassociateinput"
+        "self": "http://server.rancher.local:8080/v1/schemas/ipaddressassociateinput"
       },
       "actions": {},
       "pluralName": "ipAddressAssociateInputs",
@@ -3359,19 +3359,19 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "POST"
-      ],
       "resourceMethods": [
         "GET"
+      ],
+      "collectionMethods": [
+        "POST"
       ]
     },
     {
       "id": "project",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/project",
-        "collection": "http://localhost:18282/v1/projects"
+        "self": "http://server.rancher.local:8080/v1/schemas/project",
+        "collection": "http://server.rancher.local:8080/v1/projects"
       },
       "actions": {},
       "pluralName": "projects",
@@ -3752,20 +3752,20 @@
       },
       "collectionActions": {},
       "collectionFields": {},
+      "resourceMethods": [
+        "GET"
+      ],
       "collectionMethods": [
         "GET",
         "POST"
-      ],
-      "resourceMethods": [
-        "GET"
       ]
     },
     {
       "id": "password",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/password",
-        "collection": "http://localhost:18282/v1/passwords"
+        "self": "http://server.rancher.local:8080/v1/schemas/password",
+        "collection": "http://server.rancher.local:8080/v1/passwords"
       },
       "actions": {},
       "pluralName": "passwords",
@@ -4106,22 +4106,22 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "GET",
-        "POST"
-      ],
       "resourceMethods": [
         "GET",
         "PUT",
         "DELETE"
+      ],
+      "collectionMethods": [
+        "GET",
+        "POST"
       ]
     },
     {
       "id": "registry",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/registry",
-        "collection": "http://localhost:18282/v1/registries"
+        "self": "http://server.rancher.local:8080/v1/schemas/registry",
+        "collection": "http://server.rancher.local:8080/v1/registries"
       },
       "actions": {},
       "pluralName": "registries",
@@ -4514,22 +4514,22 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "GET",
-        "POST"
-      ],
       "resourceMethods": [
         "GET",
         "PUT",
         "DELETE"
+      ],
+      "collectionMethods": [
+        "GET",
+        "POST"
       ]
     },
     {
       "id": "registryCredential",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/registrycredential",
-        "collection": "http://localhost:18282/v1/registrycredentials"
+        "self": "http://server.rancher.local:8080/v1/schemas/registrycredential",
+        "collection": "http://server.rancher.local:8080/v1/registrycredentials"
       },
       "actions": {},
       "pluralName": "registryCredentials",
@@ -4884,21 +4884,21 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "GET",
-        "POST"
-      ],
       "resourceMethods": [
         "GET",
         "PUT",
         "DELETE"
+      ],
+      "collectionMethods": [
+        "GET",
+        "POST"
       ]
     },
     {
       "id": "setProjectMembersInput",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/setprojectmembersinput"
+        "self": "http://server.rancher.local:8080/v1/schemas/setprojectmembersinput"
       },
       "actions": {},
       "pluralName": "setProjectMembersInputs",
@@ -4918,18 +4918,18 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "POST"
-      ],
       "resourceMethods": [
         "GET"
+      ],
+      "collectionMethods": [
+        "POST"
       ]
     },
     {
       "id": "setServiceLinksInput",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/setservicelinksinput"
+        "self": "http://server.rancher.local:8080/v1/schemas/setservicelinksinput"
       },
       "actions": {},
       "pluralName": "setServiceLinksInputs",
@@ -4948,19 +4948,19 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "POST"
-      ],
       "resourceMethods": [
         "GET"
+      ],
+      "collectionMethods": [
+        "POST"
       ]
     },
     {
       "id": "virtualMachine",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/virtualmachine",
-        "collection": "http://localhost:18282/v1/virtualmachines"
+        "self": "http://server.rancher.local:8080/v1/schemas/virtualmachine",
+        "collection": "http://server.rancher.local:8080/v1/virtualmachines"
       },
       "actions": {},
       "pluralName": "virtualMachines",
@@ -5988,22 +5988,22 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "GET",
-        "POST"
-      ],
       "resourceMethods": [
         "GET",
         "PUT",
         "DELETE"
+      ],
+      "collectionMethods": [
+        "GET",
+        "POST"
       ]
     },
     {
       "id": "loadBalancerService",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/loadbalancerservice",
-        "collection": "http://localhost:18282/v1/loadbalancerservices"
+        "self": "http://server.rancher.local:8080/v1/schemas/loadbalancerservice",
+        "collection": "http://server.rancher.local:8080/v1/loadbalancerservices"
       },
       "actions": {},
       "pluralName": "loadBalancerServices",
@@ -6555,22 +6555,22 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "GET",
-        "POST"
-      ],
       "resourceMethods": [
         "GET",
         "PUT",
         "DELETE"
+      ],
+      "collectionMethods": [
+        "GET",
+        "POST"
       ]
     },
     {
       "id": "externalService",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/externalservice",
-        "collection": "http://localhost:18282/v1/externalservices"
+        "self": "http://server.rancher.local:8080/v1/schemas/externalservice",
+        "collection": "http://server.rancher.local:8080/v1/externalservices"
       },
       "actions": {},
       "pluralName": "externalServices",
@@ -7072,22 +7072,22 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "GET",
-        "POST"
-      ],
       "resourceMethods": [
         "GET",
         "PUT",
         "DELETE"
+      ],
+      "collectionMethods": [
+        "GET",
+        "POST"
       ]
     },
     {
       "id": "dnsService",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/dnsservice",
-        "collection": "http://localhost:18282/v1/dnsservices"
+        "self": "http://server.rancher.local:8080/v1/schemas/dnsservice",
+        "collection": "http://server.rancher.local:8080/v1/dnsservices"
       },
       "actions": {},
       "pluralName": "dnsServices",
@@ -7590,22 +7590,22 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "GET",
-        "POST"
-      ],
       "resourceMethods": [
         "GET",
         "PUT",
         "DELETE"
+      ],
+      "collectionMethods": [
+        "GET",
+        "POST"
       ]
     },
     {
       "id": "kubernetesService",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/kubernetesservice",
-        "collection": "http://localhost:18282/v1/kubernetesservices"
+        "self": "http://server.rancher.local:8080/v1/schemas/kubernetesservice",
+        "collection": "http://server.rancher.local:8080/v1/kubernetesservices"
       },
       "actions": {},
       "pluralName": "kubernetesServices",
@@ -8067,10 +8067,10 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
+      "resourceMethods": [
         "GET"
       ],
-      "resourceMethods": [
+      "collectionMethods": [
         "GET"
       ]
     },
@@ -8078,7 +8078,7 @@
       "id": "launchConfig",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/launchconfig"
+        "self": "http://server.rancher.local:8080/v1/schemas/launchconfig"
       },
       "actions": {},
       "pluralName": "launchConfigs",
@@ -9355,19 +9355,19 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "POST"
-      ],
       "resourceMethods": [
         "GET",
         "PUT"
+      ],
+      "collectionMethods": [
+        "POST"
       ]
     },
     {
       "id": "secondaryLaunchConfig",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/secondarylaunchconfig"
+        "self": "http://server.rancher.local:8080/v1/schemas/secondarylaunchconfig"
       },
       "actions": {},
       "pluralName": "secondaryLaunchConfigs",
@@ -10655,19 +10655,19 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "POST"
-      ],
       "resourceMethods": [
         "GET",
         "PUT"
+      ],
+      "collectionMethods": [
+        "POST"
       ]
     },
     {
       "id": "addRemoveLoadBalancerServiceLinkInput",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/addremoveloadbalancerservicelinkinput"
+        "self": "http://server.rancher.local:8080/v1/schemas/addremoveloadbalancerservicelinkinput"
       },
       "actions": {},
       "pluralName": "addRemoveLoadBalancerServiceLinkInputs",
@@ -10686,16 +10686,16 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [],
       "resourceMethods": [
         "GET"
-      ]
+      ],
+      "collectionMethods": []
     },
     {
       "id": "setLoadBalancerServiceLinksInput",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/setloadbalancerservicelinksinput"
+        "self": "http://server.rancher.local:8080/v1/schemas/setloadbalancerservicelinksinput"
       },
       "actions": {},
       "pluralName": "setLoadBalancerServiceLinksInputs",
@@ -10714,16 +10714,16 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [],
       "resourceMethods": [
         "GET"
-      ]
+      ],
+      "collectionMethods": []
     },
     {
       "id": "loadBalancerServiceLink",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/loadbalancerservicelink"
+        "self": "http://server.rancher.local:8080/v1/schemas/loadbalancerservicelink"
       },
       "actions": {},
       "pluralName": "loadBalancerServiceLinks",
@@ -10757,19 +10757,19 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "POST"
-      ],
       "resourceMethods": [
         "GET"
+      ],
+      "collectionMethods": [
+        "POST"
       ]
     },
     {
       "id": "pullTask",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/pulltask",
-        "collection": "http://localhost:18282/v1/pulltasks"
+        "self": "http://server.rancher.local:8080/v1/schemas/pulltask",
+        "collection": "http://server.rancher.local:8080/v1/pulltasks"
       },
       "actions": {},
       "pluralName": "pullTasks",
@@ -11106,20 +11106,20 @@
       },
       "collectionActions": {},
       "collectionFields": {},
+      "resourceMethods": [
+        "GET"
+      ],
       "collectionMethods": [
         "GET",
         "POST"
-      ],
-      "resourceMethods": [
-        "GET"
       ]
     },
     {
       "id": "externalVolumeEvent",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/externalvolumeevent",
-        "collection": "http://localhost:18282/v1/externalvolumeevents"
+        "self": "http://server.rancher.local:8080/v1/schemas/externalvolumeevent",
+        "collection": "http://server.rancher.local:8080/v1/externalvolumeevents"
       },
       "actions": {},
       "pluralName": "externalVolumeEvents",
@@ -11366,10 +11366,10 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
+      "resourceMethods": [
         "GET"
       ],
-      "resourceMethods": [
+      "collectionMethods": [
         "GET"
       ]
     },
@@ -11377,8 +11377,8 @@
       "id": "externalStoragePoolEvent",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/externalstoragepoolevent",
-        "collection": "http://localhost:18282/v1/externalstoragepoolevents"
+        "self": "http://server.rancher.local:8080/v1/schemas/externalstoragepoolevent",
+        "collection": "http://server.rancher.local:8080/v1/externalstoragepoolevents"
       },
       "actions": {},
       "pluralName": "externalStoragePoolEvents",
@@ -11632,10 +11632,10 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
+      "resourceMethods": [
         "GET"
       ],
-      "resourceMethods": [
+      "collectionMethods": [
         "GET"
       ]
     },
@@ -11643,8 +11643,8 @@
       "id": "externalServiceEvent",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/externalserviceevent",
-        "collection": "http://localhost:18282/v1/externalserviceevents"
+        "self": "http://server.rancher.local:8080/v1/schemas/externalserviceevent",
+        "collection": "http://server.rancher.local:8080/v1/externalserviceevents"
       },
       "actions": {},
       "pluralName": "externalServiceEvents",
@@ -11898,10 +11898,10 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
+      "resourceMethods": [
         "GET"
       ],
-      "resourceMethods": [
+      "collectionMethods": [
         "GET"
       ]
     },
@@ -11909,8 +11909,8 @@
       "id": "environmentUpgrade",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/environmentupgrade",
-        "collection": "http://localhost:18282/v1/environmentupgrades"
+        "self": "http://server.rancher.local:8080/v1/schemas/environmentupgrade",
+        "collection": "http://server.rancher.local:8080/v1/environmentupgrades"
       },
       "actions": {},
       "pluralName": "environmentUpgrades",
@@ -11949,20 +11949,20 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
+      "resourceMethods": [
+        "GET"
+      ],
       "collectionMethods": [
         "GET",
         "POST"
-      ],
-      "resourceMethods": [
-        "GET"
       ]
     },
     {
       "id": "externalDnsEvent",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/externaldnsevent",
-        "collection": "http://localhost:18282/v1/externaldnsevents"
+        "self": "http://server.rancher.local:8080/v1/schemas/externaldnsevent",
+        "collection": "http://server.rancher.local:8080/v1/externaldnsevents"
       },
       "actions": {},
       "pluralName": "externalDnsEvents",
@@ -12222,10 +12222,10 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
+      "resourceMethods": [
         "GET"
       ],
-      "resourceMethods": [
+      "collectionMethods": [
         "GET"
       ]
     },
@@ -12233,8 +12233,8 @@
       "id": "externalHostEvent",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/externalhostevent",
-        "collection": "http://localhost:18282/v1/externalhostevents"
+        "self": "http://server.rancher.local:8080/v1/schemas/externalhostevent",
+        "collection": "http://server.rancher.local:8080/v1/externalhostevents"
       },
       "actions": {},
       "pluralName": "externalHostEvents",
@@ -12497,20 +12497,20 @@
       },
       "collectionActions": {},
       "collectionFields": {},
+      "resourceMethods": [
+        "GET"
+      ],
       "collectionMethods": [
         "GET",
         "POST"
-      ],
-      "resourceMethods": [
-        "GET"
       ]
     },
     {
       "id": "loadBalancerConfig",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/loadbalancerconfig",
-        "collection": "http://localhost:18282/v1/loadbalancerconfigs"
+        "self": "http://server.rancher.local:8080/v1/schemas/loadbalancerconfig",
+        "collection": "http://server.rancher.local:8080/v1/loadbalancerconfigs"
       },
       "actions": {},
       "pluralName": "loadBalancerConfigs",
@@ -12537,22 +12537,22 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "GET",
-        "POST"
-      ],
       "resourceMethods": [
         "GET",
         "PUT",
         "DELETE"
+      ],
+      "collectionMethods": [
+        "GET",
+        "POST"
       ]
     },
     {
       "id": "composeService",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/composeservice",
-        "collection": "http://localhost:18282/v1/composeservices"
+        "self": "http://server.rancher.local:8080/v1/schemas/composeservice",
+        "collection": "http://server.rancher.local:8080/v1/composeservices"
       },
       "actions": {},
       "pluralName": "composeServices",
@@ -13057,20 +13057,20 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "GET"
-      ],
       "resourceMethods": [
         "GET",
         "DELETE"
+      ],
+      "collectionMethods": [
+        "GET"
       ]
     },
     {
       "id": "composeProject",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/composeproject",
-        "collection": "http://localhost:18282/v1/composeprojects"
+        "self": "http://server.rancher.local:8080/v1/schemas/composeproject",
+        "collection": "http://server.rancher.local:8080/v1/composeprojects"
       },
       "actions": {},
       "pluralName": "composeProjects",
@@ -13463,21 +13463,21 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "GET",
-        "POST"
-      ],
       "resourceMethods": [
         "GET",
         "PUT",
         "DELETE"
+      ],
+      "collectionMethods": [
+        "GET",
+        "POST"
       ]
     },
     {
       "id": "machineDriverErrorInput",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/machinedrivererrorinput"
+        "self": "http://server.rancher.local:8080/v1/schemas/machinedrivererrorinput"
       },
       "actions": {},
       "pluralName": "machineDriverErrorInputs",
@@ -13496,19 +13496,19 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "POST"
-      ],
       "resourceMethods": [
         "GET"
+      ],
+      "collectionMethods": [
+        "POST"
       ]
     },
     {
       "id": "haConfig",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/haconfig",
-        "collection": "http://localhost:18282/v1/haconfigs"
+        "self": "http://server.rancher.local:8080/v1/schemas/haconfig",
+        "collection": "http://server.rancher.local:8080/v1/haconfigs"
       },
       "actions": {},
       "pluralName": "haConfigs",
@@ -13555,20 +13555,20 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "GET"
-      ],
       "resourceMethods": [
         "GET",
         "PUT"
+      ],
+      "collectionMethods": [
+        "GET"
       ]
     },
     {
       "id": "account",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/account",
-        "collection": "http://localhost:18282/v1/accounts"
+        "self": "http://server.rancher.local:8080/v1/schemas/account",
+        "collection": "http://server.rancher.local:8080/v1/accounts"
       },
       "actions": {},
       "pluralName": "accounts",
@@ -13918,22 +13918,22 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "GET",
-        "POST"
-      ],
       "resourceMethods": [
         "GET",
         "PUT",
         "DELETE"
+      ],
+      "collectionMethods": [
+        "GET",
+        "POST"
       ]
     },
     {
       "id": "agent",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/agent",
-        "collection": "http://localhost:18282/v1/agents"
+        "self": "http://server.rancher.local:8080/v1/schemas/agent",
+        "collection": "http://server.rancher.local:8080/v1/agents"
       },
       "actions": {},
       "pluralName": "agents",
@@ -14288,10 +14288,10 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
+      "resourceMethods": [
         "GET"
       ],
-      "resourceMethods": [
+      "collectionMethods": [
         "GET"
       ]
     },
@@ -14299,8 +14299,8 @@
       "id": "auditLog",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/auditlog",
-        "collection": "http://localhost:18282/v1/auditlogs"
+        "self": "http://server.rancher.local:8080/v1/schemas/auditlog",
+        "collection": "http://server.rancher.local:8080/v1/auditlogs"
       },
       "actions": {},
       "pluralName": "auditLogs",
@@ -14592,10 +14592,10 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
+      "resourceMethods": [
         "GET"
       ],
-      "resourceMethods": [
+      "collectionMethods": [
         "GET"
       ]
     },
@@ -14603,8 +14603,8 @@
       "id": "certificate",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/certificate",
-        "collection": "http://localhost:18282/v1/certificates"
+        "self": "http://server.rancher.local:8080/v1/schemas/certificate",
+        "collection": "http://server.rancher.local:8080/v1/certificates"
       },
       "actions": {},
       "pluralName": "certificates",
@@ -15004,22 +15004,22 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "GET",
-        "POST"
-      ],
       "resourceMethods": [
         "GET",
         "PUT",
         "DELETE"
+      ],
+      "collectionMethods": [
+        "GET",
+        "POST"
       ]
     },
     {
       "id": "configItem",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/configitem",
-        "collection": "http://localhost:18282/v1/configitems"
+        "self": "http://server.rancher.local:8080/v1/schemas/configitem",
+        "collection": "http://server.rancher.local:8080/v1/configitems"
       },
       "actions": {},
       "pluralName": "configItems",
@@ -15091,10 +15091,10 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
+      "resourceMethods": [
         "GET"
       ],
-      "resourceMethods": [
+      "collectionMethods": [
         "GET"
       ]
     },
@@ -15102,8 +15102,8 @@
       "id": "configItemStatus",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/configitemstatus",
-        "collection": "http://localhost:18282/v1/configitemstatuses"
+        "self": "http://server.rancher.local:8080/v1/schemas/configitemstatus",
+        "collection": "http://server.rancher.local:8080/v1/configitemstatuses"
       },
       "actions": {},
       "pluralName": "configItemStatuses",
@@ -15332,20 +15332,20 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "GET"
-      ],
       "resourceMethods": [
         "GET",
         "PUT"
+      ],
+      "collectionMethods": [
+        "GET"
       ]
     },
     {
       "id": "containerEvent",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/containerevent",
-        "collection": "http://localhost:18282/v1/containerevents"
+        "self": "http://server.rancher.local:8080/v1/schemas/containerevent",
+        "collection": "http://server.rancher.local:8080/v1/containerevents"
       },
       "actions": {},
       "pluralName": "containerEvents",
@@ -15632,10 +15632,10 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
+      "resourceMethods": [
         "GET"
       ],
-      "resourceMethods": [
+      "collectionMethods": [
         "GET"
       ]
     },
@@ -15643,8 +15643,8 @@
       "id": "credential",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/credential",
-        "collection": "http://localhost:18282/v1/credentials"
+        "self": "http://server.rancher.local:8080/v1/schemas/credential",
+        "collection": "http://server.rancher.local:8080/v1/credentials"
       },
       "actions": {},
       "pluralName": "credentials",
@@ -15980,20 +15980,20 @@
       },
       "collectionActions": {},
       "collectionFields": {},
+      "resourceMethods": [
+        "GET"
+      ],
       "collectionMethods": [
         "GET",
         "POST"
-      ],
-      "resourceMethods": [
-        "GET"
       ]
     },
     {
       "id": "databasechangelog",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/databasechangelog",
-        "collection": "http://localhost:18282/v1/databasechangelogs"
+        "self": "http://server.rancher.local:8080/v1/schemas/databasechangelog",
+        "collection": "http://server.rancher.local:8080/v1/databasechangelogs"
       },
       "actions": {},
       "pluralName": "databasechangelogs",
@@ -16223,20 +16223,20 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "GET"
-      ],
       "resourceMethods": [
         "GET",
         "DELETE"
+      ],
+      "collectionMethods": [
+        "GET"
       ]
     },
     {
       "id": "databasechangeloglock",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/databasechangeloglock",
-        "collection": "http://localhost:18282/v1/databasechangeloglocks"
+        "self": "http://server.rancher.local:8080/v1/schemas/databasechangeloglock",
+        "collection": "http://server.rancher.local:8080/v1/databasechangeloglocks"
       },
       "actions": {},
       "pluralName": "databasechangeloglocks",
@@ -16325,20 +16325,20 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "GET"
-      ],
       "resourceMethods": [
         "GET",
         "DELETE"
+      ],
+      "collectionMethods": [
+        "GET"
       ]
     },
     {
       "id": "dynamicSchema",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/dynamicschema",
-        "collection": "http://localhost:18282/v1/dynamicschemas"
+        "self": "http://server.rancher.local:8080/v1/schemas/dynamicschema",
+        "collection": "http://server.rancher.local:8080/v1/dynamicschemas"
       },
       "actions": {},
       "pluralName": "dynamicSchemas",
@@ -16615,21 +16615,21 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "GET",
-        "POST"
-      ],
       "resourceMethods": [
         "GET",
         "DELETE"
+      ],
+      "collectionMethods": [
+        "GET",
+        "POST"
       ]
     },
     {
       "id": "environment",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/environment",
-        "collection": "http://localhost:18282/v1/environments"
+        "self": "http://server.rancher.local:8080/v1/schemas/environment",
+        "collection": "http://server.rancher.local:8080/v1/environments"
       },
       "actions": {},
       "pluralName": "environments",
@@ -17044,22 +17044,22 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "GET",
-        "POST"
-      ],
       "resourceMethods": [
         "GET",
         "PUT",
         "DELETE"
+      ],
+      "collectionMethods": [
+        "GET",
+        "POST"
       ]
     },
     {
       "id": "externalEvent",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/externalevent",
-        "collection": "http://localhost:18282/v1/externalevents"
+        "self": "http://server.rancher.local:8080/v1/schemas/externalevent",
+        "collection": "http://server.rancher.local:8080/v1/externalevents"
       },
       "actions": {},
       "pluralName": "externalEvents",
@@ -17298,10 +17298,10 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
+      "resourceMethods": [
         "GET"
       ],
-      "resourceMethods": [
+      "collectionMethods": [
         "GET"
       ]
     },
@@ -17309,8 +17309,8 @@
       "id": "externalHandler",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/externalhandler",
-        "collection": "http://localhost:18282/v1/externalhandlers"
+        "self": "http://server.rancher.local:8080/v1/schemas/externalhandler",
+        "collection": "http://server.rancher.local:8080/v1/externalhandlers"
       },
       "actions": {},
       "pluralName": "externalHandlers",
@@ -17632,21 +17632,21 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "GET",
-        "POST"
-      ],
       "resourceMethods": [
         "GET",
         "PUT"
+      ],
+      "collectionMethods": [
+        "GET",
+        "POST"
       ]
     },
     {
       "id": "externalHandlerExternalHandlerProcessMap",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/externalhandlerexternalhandlerprocessmap",
-        "collection": "http://localhost:18282/v1/externalhandlerexternalhandlerprocessmaps"
+        "self": "http://server.rancher.local:8080/v1/schemas/externalhandlerexternalhandlerprocessmap",
+        "collection": "http://server.rancher.local:8080/v1/externalhandlerexternalhandlerprocessmaps"
       },
       "actions": {},
       "pluralName": "externalHandlerExternalHandlerProcessMaps",
@@ -17975,10 +17975,10 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
+      "resourceMethods": [
         "GET"
       ],
-      "resourceMethods": [
+      "collectionMethods": [
         "GET"
       ]
     },
@@ -17986,8 +17986,8 @@
       "id": "externalHandlerProcess",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/externalhandlerprocess",
-        "collection": "http://localhost:18282/v1/externalhandlerprocesses"
+        "self": "http://server.rancher.local:8080/v1/schemas/externalhandlerprocess",
+        "collection": "http://server.rancher.local:8080/v1/externalhandlerprocesses"
       },
       "actions": {},
       "pluralName": "externalHandlerProcesses",
@@ -18262,10 +18262,10 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
+      "resourceMethods": [
         "GET"
       ],
-      "resourceMethods": [
+      "collectionMethods": [
         "GET"
       ]
     },
@@ -18273,8 +18273,8 @@
       "id": "healthcheckInstanceHostMap",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/healthcheckinstancehostmap",
-        "collection": "http://localhost:18282/v1/healthcheckinstancehostmaps"
+        "self": "http://server.rancher.local:8080/v1/schemas/healthcheckinstancehostmap",
+        "collection": "http://server.rancher.local:8080/v1/healthcheckinstancehostmaps"
       },
       "actions": {},
       "pluralName": "healthcheckInstanceHostMaps",
@@ -18613,10 +18613,10 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
+      "resourceMethods": [
         "GET"
       ],
-      "resourceMethods": [
+      "collectionMethods": [
         "GET"
       ]
     },
@@ -18624,8 +18624,8 @@
       "id": "host",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/host",
-        "collection": "http://localhost:18282/v1/hosts"
+        "self": "http://server.rancher.local:8080/v1/schemas/host",
+        "collection": "http://server.rancher.local:8080/v1/hosts"
       },
       "actions": {},
       "pluralName": "hosts",
@@ -19074,21 +19074,21 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "GET"
-      ],
       "resourceMethods": [
         "GET",
         "PUT",
         "DELETE"
+      ],
+      "collectionMethods": [
+        "GET"
       ]
     },
     {
       "id": "image",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/image",
-        "collection": "http://localhost:18282/v1/images"
+        "self": "http://server.rancher.local:8080/v1/schemas/image",
+        "collection": "http://server.rancher.local:8080/v1/images"
       },
       "actions": {},
       "pluralName": "images",
@@ -19466,10 +19466,10 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
+      "resourceMethods": [
         "GET"
       ],
-      "resourceMethods": [
+      "collectionMethods": [
         "GET"
       ]
     },
@@ -19477,8 +19477,8 @@
       "id": "instance",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/instance",
-        "collection": "http://localhost:18282/v1/instances"
+        "self": "http://server.rancher.local:8080/v1/schemas/instance",
+        "collection": "http://server.rancher.local:8080/v1/instances"
       },
       "actions": {},
       "pluralName": "instances",
@@ -20118,10 +20118,10 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
+      "resourceMethods": [
         "GET"
       ],
-      "resourceMethods": [
+      "collectionMethods": [
         "GET"
       ]
     },
@@ -20129,8 +20129,8 @@
       "id": "instanceLink",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/instancelink",
-        "collection": "http://localhost:18282/v1/instancelinks"
+        "self": "http://server.rancher.local:8080/v1/schemas/instancelink",
+        "collection": "http://server.rancher.local:8080/v1/instancelinks"
       },
       "actions": {},
       "pluralName": "instanceLinks",
@@ -20492,20 +20492,20 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "GET"
-      ],
       "resourceMethods": [
         "GET",
         "PUT"
+      ],
+      "collectionMethods": [
+        "GET"
       ]
     },
     {
       "id": "ipAddress",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/ipaddress",
-        "collection": "http://localhost:18282/v1/ipaddresses"
+        "self": "http://server.rancher.local:8080/v1/schemas/ipaddress",
+        "collection": "http://server.rancher.local:8080/v1/ipaddresses"
       },
       "actions": {},
       "pluralName": "ipAddresses",
@@ -20894,10 +20894,10 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
+      "resourceMethods": [
         "GET"
       ],
-      "resourceMethods": [
+      "collectionMethods": [
         "GET"
       ]
     },
@@ -20905,8 +20905,8 @@
       "id": "label",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/label",
-        "collection": "http://localhost:18282/v1/labels"
+        "self": "http://server.rancher.local:8080/v1/schemas/label",
+        "collection": "http://server.rancher.local:8080/v1/labels"
       },
       "actions": {},
       "pluralName": "labels",
@@ -21222,10 +21222,10 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
+      "resourceMethods": [
         "GET"
       ],
-      "resourceMethods": [
+      "collectionMethods": [
         "GET"
       ]
     },
@@ -21233,8 +21233,8 @@
       "id": "machineDriver",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/machinedriver",
-        "collection": "http://localhost:18282/v1/machinedrivers"
+        "self": "http://server.rancher.local:8080/v1/schemas/machinedriver",
+        "collection": "http://server.rancher.local:8080/v1/machinedrivers"
       },
       "actions": {},
       "pluralName": "machineDrivers",
@@ -21570,21 +21570,21 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "GET",
-        "POST"
-      ],
       "resourceMethods": [
         "GET",
         "DELETE"
+      ],
+      "collectionMethods": [
+        "GET",
+        "POST"
       ]
     },
     {
       "id": "mount",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/mount",
-        "collection": "http://localhost:18282/v1/mounts"
+        "self": "http://server.rancher.local:8080/v1/schemas/mount",
+        "collection": "http://server.rancher.local:8080/v1/mounts"
       },
       "actions": {},
       "pluralName": "mounts",
@@ -21929,10 +21929,10 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
+      "resourceMethods": [
         "GET"
       ],
-      "resourceMethods": [
+      "collectionMethods": [
         "GET"
       ]
     },
@@ -21940,8 +21940,8 @@
       "id": "network",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/network",
-        "collection": "http://localhost:18282/v1/networks"
+        "self": "http://server.rancher.local:8080/v1/schemas/network",
+        "collection": "http://server.rancher.local:8080/v1/networks"
       },
       "actions": {},
       "pluralName": "networks",
@@ -22252,10 +22252,10 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
+      "resourceMethods": [
         "GET"
       ],
-      "resourceMethods": [
+      "collectionMethods": [
         "GET"
       ]
     },
@@ -22263,8 +22263,8 @@
       "id": "physicalHost",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/physicalhost",
-        "collection": "http://localhost:18282/v1/physicalhosts"
+        "self": "http://server.rancher.local:8080/v1/schemas/physicalhost",
+        "collection": "http://server.rancher.local:8080/v1/physicalhosts"
       },
       "actions": {},
       "pluralName": "physicalHosts",
@@ -22593,10 +22593,10 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
+      "resourceMethods": [
         "GET"
       ],
-      "resourceMethods": [
+      "collectionMethods": [
         "GET"
       ]
     },
@@ -22604,8 +22604,8 @@
       "id": "port",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/port",
-        "collection": "http://localhost:18282/v1/ports"
+        "self": "http://server.rancher.local:8080/v1/schemas/port",
+        "collection": "http://server.rancher.local:8080/v1/ports"
       },
       "actions": {},
       "pluralName": "ports",
@@ -23020,20 +23020,20 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "GET"
-      ],
       "resourceMethods": [
         "GET",
         "PUT"
+      ],
+      "collectionMethods": [
+        "GET"
       ]
     },
     {
       "id": "processExecution",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/processexecution",
-        "collection": "http://localhost:18282/v1/processexecutions"
+        "self": "http://server.rancher.local:8080/v1/schemas/processexecution",
+        "collection": "http://server.rancher.local:8080/v1/processexecutions"
       },
       "actions": {},
       "pluralName": "processExecutions",
@@ -23133,10 +23133,10 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
+      "resourceMethods": [
         "GET"
       ],
-      "resourceMethods": [
+      "collectionMethods": [
         "GET"
       ]
     },
@@ -23144,8 +23144,8 @@
       "id": "processInstance",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/processinstance",
-        "collection": "http://localhost:18282/v1/processinstances"
+        "self": "http://server.rancher.local:8080/v1/schemas/processinstance",
+        "collection": "http://server.rancher.local:8080/v1/processinstances"
       },
       "actions": {},
       "pluralName": "processInstances",
@@ -23411,10 +23411,10 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
+      "resourceMethods": [
         "GET"
       ],
-      "resourceMethods": [
+      "collectionMethods": [
         "GET"
       ]
     },
@@ -23422,8 +23422,8 @@
       "id": "projectMember",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/projectmember",
-        "collection": "http://localhost:18282/v1/projectmembers"
+        "self": "http://server.rancher.local:8080/v1/schemas/projectmember",
+        "collection": "http://server.rancher.local:8080/v1/projectmembers"
       },
       "actions": {},
       "pluralName": "projectMembers",
@@ -23799,10 +23799,10 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
+      "resourceMethods": [
         "GET"
       ],
-      "resourceMethods": [
+      "collectionMethods": [
         "GET"
       ]
     },
@@ -23810,8 +23810,8 @@
       "id": "service",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/service",
-        "collection": "http://localhost:18282/v1/services"
+        "self": "http://server.rancher.local:8080/v1/schemas/service",
+        "collection": "http://server.rancher.local:8080/v1/services"
       },
       "actions": {},
       "pluralName": "services",
@@ -24364,22 +24364,22 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "GET",
-        "POST"
-      ],
       "resourceMethods": [
         "GET",
         "PUT",
         "DELETE"
+      ],
+      "collectionMethods": [
+        "GET",
+        "POST"
       ]
     },
     {
       "id": "serviceConsumeMap",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/serviceconsumemap",
-        "collection": "http://localhost:18282/v1/serviceconsumemaps"
+        "self": "http://server.rancher.local:8080/v1/schemas/serviceconsumemap",
+        "collection": "http://server.rancher.local:8080/v1/serviceconsumemaps"
       },
       "actions": {},
       "pluralName": "serviceConsumeMaps",
@@ -24693,10 +24693,10 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
+      "resourceMethods": [
         "GET"
       ],
-      "resourceMethods": [
+      "collectionMethods": [
         "GET"
       ]
     },
@@ -24704,8 +24704,8 @@
       "id": "serviceEvent",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/serviceevent",
-        "collection": "http://localhost:18282/v1/serviceevents"
+        "self": "http://server.rancher.local:8080/v1/schemas/serviceevent",
+        "collection": "http://server.rancher.local:8080/v1/serviceevents"
       },
       "actions": {},
       "pluralName": "serviceEvents",
@@ -25073,10 +25073,10 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
+      "resourceMethods": [
         "GET"
       ],
-      "resourceMethods": [
+      "collectionMethods": [
         "GET"
       ]
     },
@@ -25084,8 +25084,8 @@
       "id": "serviceExposeMap",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/serviceexposemap",
-        "collection": "http://localhost:18282/v1/serviceexposemaps"
+        "self": "http://server.rancher.local:8080/v1/schemas/serviceexposemap",
+        "collection": "http://server.rancher.local:8080/v1/serviceexposemaps"
       },
       "actions": {},
       "pluralName": "serviceExposeMaps",
@@ -25450,10 +25450,10 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
+      "resourceMethods": [
         "GET"
       ],
-      "resourceMethods": [
+      "collectionMethods": [
         "GET"
       ]
     },
@@ -25461,8 +25461,8 @@
       "id": "setting",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/setting",
-        "collection": "http://localhost:18282/v1/settings"
+        "self": "http://server.rancher.local:8080/v1/schemas/setting",
+        "collection": "http://server.rancher.local:8080/v1/settings"
       },
       "actions": {},
       "pluralName": "settings",
@@ -25555,22 +25555,22 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "GET",
-        "POST"
-      ],
       "resourceMethods": [
         "GET",
         "PUT",
         "DELETE"
+      ],
+      "collectionMethods": [
+        "GET",
+        "POST"
       ]
     },
     {
       "id": "snapshot",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/snapshot",
-        "collection": "http://localhost:18282/v1/snapshots"
+        "self": "http://server.rancher.local:8080/v1/schemas/snapshot",
+        "collection": "http://server.rancher.local:8080/v1/snapshots"
       },
       "actions": {},
       "pluralName": "snapshots",
@@ -25866,20 +25866,20 @@
       },
       "collectionActions": {},
       "collectionFields": {},
+      "resourceMethods": [
+        "GET"
+      ],
       "collectionMethods": [
         "GET",
         "POST"
-      ],
-      "resourceMethods": [
-        "GET"
       ]
     },
     {
       "id": "storagePool",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/storagepool",
-        "collection": "http://localhost:18282/v1/storagepools"
+        "self": "http://server.rancher.local:8080/v1/schemas/storagepool",
+        "collection": "http://server.rancher.local:8080/v1/storagepools"
       },
       "actions": {},
       "pluralName": "storagePools",
@@ -26263,10 +26263,10 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
+      "resourceMethods": [
         "GET"
       ],
-      "resourceMethods": [
+      "collectionMethods": [
         "GET"
       ]
     },
@@ -26274,8 +26274,8 @@
       "id": "task",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/task",
-        "collection": "http://localhost:18282/v1/tasks"
+        "self": "http://server.rancher.local:8080/v1/schemas/task",
+        "collection": "http://server.rancher.local:8080/v1/tasks"
       },
       "actions": {},
       "pluralName": "tasks",
@@ -26334,10 +26334,10 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
+      "resourceMethods": [
         "GET"
       ],
-      "resourceMethods": [
+      "collectionMethods": [
         "GET"
       ]
     },
@@ -26345,8 +26345,8 @@
       "id": "taskInstance",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/taskinstance",
-        "collection": "http://localhost:18282/v1/taskinstances"
+        "self": "http://server.rancher.local:8080/v1/schemas/taskinstance",
+        "collection": "http://server.rancher.local:8080/v1/taskinstances"
       },
       "actions": {},
       "pluralName": "taskInstances",
@@ -26497,10 +26497,10 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
+      "resourceMethods": [
         "GET"
       ],
-      "resourceMethods": [
+      "collectionMethods": [
         "GET"
       ]
     },
@@ -26508,8 +26508,8 @@
       "id": "volume",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/volume",
-        "collection": "http://localhost:18282/v1/volumes"
+        "self": "http://server.rancher.local:8080/v1/schemas/volume",
+        "collection": "http://server.rancher.local:8080/v1/volumes"
       },
       "actions": {},
       "pluralName": "volumes",
@@ -26998,21 +26998,21 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "GET",
-        "POST"
-      ],
       "resourceMethods": [
         "GET",
         "DELETE"
+      ],
+      "collectionMethods": [
+        "GET",
+        "POST"
       ]
     },
     {
       "id": "typeDocumentation",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/typedocumentation",
-        "collection": "http://localhost:18282/v1/typedocumentations"
+        "self": "http://server.rancher.local:8080/v1/schemas/typedocumentation",
+        "collection": "http://server.rancher.local:8080/v1/typedocumentations"
       },
       "actions": {},
       "pluralName": "typeDocumentations",
@@ -27044,10 +27044,10 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
+      "resourceMethods": [
         "GET"
       ],
-      "resourceMethods": [
+      "collectionMethods": [
         "GET"
       ]
     },
@@ -27055,7 +27055,7 @@
       "id": "fieldDocumentation",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/fielddocumentation"
+        "self": "http://server.rancher.local:8080/v1/schemas/fielddocumentation"
       },
       "actions": {},
       "pluralName": "fieldDocumentations",
@@ -27073,17 +27073,17 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [],
       "resourceMethods": [
         "GET"
-      ]
+      ],
+      "collectionMethods": []
     },
     {
       "id": "containerExec",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/containerexec",
-        "collection": "http://localhost:18282/v1/containerexecs"
+        "self": "http://server.rancher.local:8080/v1/schemas/containerexec",
+        "collection": "http://server.rancher.local:8080/v1/containerexecs"
       },
       "actions": {},
       "pluralName": "containerExecs",
@@ -27130,19 +27130,19 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
+      "resourceMethods": [
+        "GET"
+      ],
       "collectionMethods": [
         "GET",
         "POST"
-      ],
-      "resourceMethods": [
-        "GET"
       ]
     },
     {
       "id": "containerLogs",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/containerlogs"
+        "self": "http://server.rancher.local:8080/v1/schemas/containerlogs"
       },
       "actions": {},
       "pluralName": "containerLogses",
@@ -27173,18 +27173,18 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "POST"
-      ],
       "resourceMethods": [
         "GET"
+      ],
+      "collectionMethods": [
+        "POST"
       ]
     },
     {
       "id": "containerProxy",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/containerproxy"
+        "self": "http://server.rancher.local:8080/v1/schemas/containerproxy"
       },
       "actions": {},
       "pluralName": "containerProxys",
@@ -27219,19 +27219,19 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "POST"
-      ],
       "resourceMethods": [
         "GET"
+      ],
+      "collectionMethods": [
+        "POST"
       ]
     },
     {
       "id": "serviceProxy",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/serviceproxy",
-        "collection": "http://localhost:18282/v1/serviceproxies"
+        "self": "http://server.rancher.local:8080/v1/schemas/serviceproxy",
+        "collection": "http://server.rancher.local:8080/v1/serviceproxies"
       },
       "actions": {},
       "pluralName": "serviceProxies",
@@ -27290,20 +27290,20 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
+      "resourceMethods": [
+        "GET"
+      ],
       "collectionMethods": [
         "GET",
         "POST"
-      ],
-      "resourceMethods": [
-        "GET"
       ]
     },
     {
       "id": "hostAccess",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/hostaccess",
-        "collection": "http://localhost:18282/v1/hostaccesses"
+        "self": "http://server.rancher.local:8080/v1/schemas/hostaccess",
+        "collection": "http://server.rancher.local:8080/v1/hostaccesses"
       },
       "actions": {},
       "pluralName": "hostAccesses",
@@ -27328,10 +27328,10 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
+      "resourceMethods": [
         "GET"
       ],
-      "resourceMethods": [
+      "collectionMethods": [
         "GET"
       ]
     },
@@ -27339,8 +27339,8 @@
       "id": "dockerBuild",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/dockerbuild",
-        "collection": "http://localhost:18282/v1/dockerbuilds"
+        "self": "http://server.rancher.local:8080/v1/schemas/dockerbuild",
+        "collection": "http://server.rancher.local:8080/v1/dockerbuilds"
       },
       "actions": {},
       "pluralName": "dockerBuilds",
@@ -27399,19 +27399,19 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
+      "resourceMethods": [
+        "GET"
+      ],
       "collectionMethods": [
         "GET",
         "POST"
-      ],
-      "resourceMethods": [
-        "GET"
       ]
     },
     {
       "id": "activeSetting",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/activesetting"
+        "self": "http://server.rancher.local:8080/v1/schemas/activesetting"
       },
       "actions": {},
       "pluralName": "activeSettings",
@@ -27465,18 +27465,18 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [],
       "resourceMethods": [
         "GET",
         "PUT",
         "DELETE"
-      ]
+      ],
+      "collectionMethods": []
     },
     {
       "id": "extensionImplementation",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/extensionimplementation"
+        "self": "http://server.rancher.local:8080/v1/schemas/extensionimplementation"
       },
       "actions": {},
       "pluralName": "extensionImplementations",
@@ -27508,17 +27508,17 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [],
       "resourceMethods": [
         "GET"
-      ]
+      ],
+      "collectionMethods": []
     },
     {
       "id": "extensionPoint",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/extensionpoint",
-        "collection": "http://localhost:18282/v1/extensionpoints"
+        "self": "http://server.rancher.local:8080/v1/schemas/extensionpoint",
+        "collection": "http://server.rancher.local:8080/v1/extensionpoints"
       },
       "actions": {},
       "pluralName": "extensionPoints",
@@ -27564,10 +27564,10 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
+      "resourceMethods": [
         "GET"
       ],
-      "resourceMethods": [
+      "collectionMethods": [
         "GET"
       ]
     },
@@ -27575,8 +27575,8 @@
       "id": "processDefinition",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/processdefinition",
-        "collection": "http://localhost:18282/v1/processdefinitions"
+        "self": "http://server.rancher.local:8080/v1/schemas/processdefinition",
+        "collection": "http://server.rancher.local:8080/v1/processdefinitions"
       },
       "actions": {},
       "pluralName": "processDefinitions",
@@ -27643,10 +27643,10 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
+      "resourceMethods": [
         "GET"
       ],
-      "resourceMethods": [
+      "collectionMethods": [
         "GET"
       ]
     },
@@ -27654,8 +27654,8 @@
       "id": "resourceDefinition",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/resourcedefinition",
-        "collection": "http://localhost:18282/v1/resourcedefinitions"
+        "self": "http://server.rancher.local:8080/v1/schemas/resourcedefinition",
+        "collection": "http://server.rancher.local:8080/v1/resourcedefinitions"
       },
       "actions": {},
       "pluralName": "resourceDefinitions",
@@ -27680,10 +27680,10 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
+      "resourceMethods": [
         "GET"
       ],
-      "resourceMethods": [
+      "collectionMethods": [
         "GET"
       ]
     },
@@ -27691,7 +27691,7 @@
       "id": "stateTransition",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/statetransition"
+        "self": "http://server.rancher.local:8080/v1/schemas/statetransition"
       },
       "actions": {},
       "pluralName": "stateTransitions",
@@ -27701,17 +27701,17 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [],
       "resourceMethods": [
         "GET"
-      ]
+      ],
+      "collectionMethods": []
     },
     {
       "id": "githubconfig",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/githubconfig",
-        "collection": "http://localhost:18282/v1/githubconfigs"
+        "self": "http://server.rancher.local:8080/v1/schemas/githubconfig",
+        "collection": "http://server.rancher.local:8080/v1/githubconfigs"
       },
       "actions": {},
       "pluralName": "githubconfigs",
@@ -27797,21 +27797,21 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "GET",
-        "POST"
-      ],
       "resourceMethods": [
         "GET",
         "PUT"
+      ],
+      "collectionMethods": [
+        "GET",
+        "POST"
       ]
     },
     {
       "id": "identity",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/identity",
-        "collection": "http://localhost:18282/v1/identities"
+        "self": "http://server.rancher.local:8080/v1/schemas/identity",
+        "collection": "http://server.rancher.local:8080/v1/identities"
       },
       "actions": {},
       "pluralName": "identities",
@@ -27923,10 +27923,10 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
+      "resourceMethods": [
         "GET"
       ],
-      "resourceMethods": [
+      "collectionMethods": [
         "GET"
       ]
     },
@@ -27934,8 +27934,8 @@
       "id": "ldapconfig",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/ldapconfig",
-        "collection": "http://localhost:18282/v1/ldapconfigs"
+        "self": "http://server.rancher.local:8080/v1/schemas/ldapconfig",
+        "collection": "http://server.rancher.local:8080/v1/ldapconfigs"
       },
       "actions": {},
       "pluralName": "ldapconfigs",
@@ -28166,21 +28166,21 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "GET",
-        "POST"
-      ],
       "resourceMethods": [
         "GET",
         "PUT"
+      ],
+      "collectionMethods": [
+        "GET",
+        "POST"
       ]
     },
     {
       "id": "openldapconfig",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/openldapconfig",
-        "collection": "http://localhost:18282/v1/openldapconfigs"
+        "self": "http://server.rancher.local:8080/v1/schemas/openldapconfig",
+        "collection": "http://server.rancher.local:8080/v1/openldapconfigs"
       },
       "actions": {},
       "pluralName": "openldapconfigs",
@@ -28407,21 +28407,21 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "GET",
-        "POST"
-      ],
       "resourceMethods": [
         "GET",
         "PUT"
+      ],
+      "collectionMethods": [
+        "GET",
+        "POST"
       ]
     },
     {
       "id": "localAuthConfig",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/localauthconfig",
-        "collection": "http://localhost:18282/v1/localauthconfigs"
+        "self": "http://server.rancher.local:8080/v1/schemas/localauthconfig",
+        "collection": "http://server.rancher.local:8080/v1/localauthconfigs"
       },
       "actions": {},
       "pluralName": "localAuthConfigs",
@@ -28479,20 +28479,20 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
+      "resourceMethods": [
+        "GET"
+      ],
       "collectionMethods": [
         "GET",
         "POST"
-      ],
-      "resourceMethods": [
-        "GET"
       ]
     },
     {
       "id": "statsAccess",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/statsaccess",
-        "collection": "http://localhost:18282/v1/statsaccesses"
+        "self": "http://server.rancher.local:8080/v1/schemas/statsaccess",
+        "collection": "http://server.rancher.local:8080/v1/statsaccesses"
       },
       "actions": {},
       "pluralName": "statsAccesses",
@@ -28517,10 +28517,10 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
+      "resourceMethods": [
         "GET"
       ],
-      "resourceMethods": [
+      "collectionMethods": [
         "GET"
       ]
     },
@@ -28528,7 +28528,7 @@
       "id": "baseMachineConfig",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/basemachineconfig"
+        "self": "http://server.rancher.local:8080/v1/schemas/basemachineconfig"
       },
       "actions": {},
       "pluralName": "baseMachineConfigs",
@@ -28538,17 +28538,17 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [],
       "resourceMethods": [
         "GET"
-      ]
+      ],
+      "collectionMethods": []
     },
     {
       "id": "hostApiProxyToken",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/hostapiproxytoken",
-        "collection": "http://localhost:18282/v1/hostapiproxytokens"
+        "self": "http://server.rancher.local:8080/v1/schemas/hostapiproxytoken",
+        "collection": "http://server.rancher.local:8080/v1/hostapiproxytokens"
       },
       "actions": {},
       "pluralName": "hostApiProxyTokens",
@@ -28580,10 +28580,10 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
+      "resourceMethods": [
         "GET"
       ],
-      "resourceMethods": [
+      "collectionMethods": [
         "GET"
       ]
     },
@@ -28591,8 +28591,8 @@
       "id": "register",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/register",
-        "collection": "http://localhost:18282/v1/register"
+        "self": "http://server.rancher.local:8080/v1/schemas/register",
+        "collection": "http://server.rancher.local:8080/v1/register"
       },
       "actions": {},
       "pluralName": "register",
@@ -28927,20 +28927,20 @@
       },
       "collectionActions": {},
       "collectionFields": {},
+      "resourceMethods": [
+        "GET"
+      ],
       "collectionMethods": [
         "GET",
         "POST"
-      ],
-      "resourceMethods": [
-        "GET"
       ]
     },
     {
       "id": "registrationToken",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/registrationtoken",
-        "collection": "http://localhost:18282/v1/registrationtokens"
+        "self": "http://server.rancher.local:8080/v1/schemas/registrationtoken",
+        "collection": "http://server.rancher.local:8080/v1/registrationtokens"
       },
       "actions": {},
       "pluralName": "registrationTokens",
@@ -29286,20 +29286,1131 @@
       },
       "collectionActions": {},
       "collectionFields": {},
+      "resourceMethods": [
+        "GET"
+      ],
       "collectionMethods": [
         "GET",
         "POST"
-      ],
+      ]
+    },
+    {
+      "id": "virtualboxConfig",
+      "type": "schema",
+      "links": {
+        "self": "http://server.rancher.local:8080/v1/schemas/virtualboxconfig",
+        "collection": "http://server.rancher.local:8080/v1/virtualboxconfigs"
+      },
+      "actions": {},
+      "pluralName": "virtualboxConfigs",
+      "resourceFields": {
+        "boot2dockerUrl": {
+          "type": "string",
+          "description": "The URL of the boot2docker image. Defaults to the latest available version",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "cpuCount": {
+          "type": "string",
+          "description": "number of CPUs for the machine (-1 to use the number of CPUs available)",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "diskSize": {
+          "type": "string",
+          "description": "Size of disk for host in MB",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "dnsProxy": {
+          "type": "boolean",
+          "description": "Proxy all DNS requests to the host",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "hostDnsResolver": {
+          "type": "boolean",
+          "description": "Use the host DNS resolver",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "hostonlyCidr": {
+          "type": "string",
+          "description": "Specify the Host Only CIDR",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "hostonlyNicpromisc": {
+          "type": "string",
+          "description": "Specify the Host Only Network Adapter Promiscuous Mode",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "hostonlyNictype": {
+          "type": "string",
+          "description": "Specify the Host Only Network Adapter Type",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "importBoot2dockerVm": {
+          "type": "string",
+          "description": "The name of a Boot2Docker VM to import",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "memory": {
+          "type": "string",
+          "description": "Size of memory for host in MB",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "noShare": {
+          "type": "boolean",
+          "description": "Disable the mount of your home directory",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "noVtxCheck": {
+          "type": "boolean",
+          "description": "Disable checking for the availability of hardware virtualization before the vm is started",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        }
+      },
+      "collectionFilters": {},
+      "includeableLinks": [],
+      "resourceActions": {},
+      "collectionActions": {},
+      "collectionFields": {},
       "resourceMethods": [
         "GET"
+      ],
+      "collectionMethods": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "id": "googleConfig",
+      "type": "schema",
+      "links": {
+        "self": "http://server.rancher.local:8080/v1/schemas/googleconfig",
+        "collection": "http://server.rancher.local:8080/v1/googleconfigs"
+      },
+      "actions": {},
+      "pluralName": "googleConfigs",
+      "resourceFields": {
+        "address": {
+          "type": "string",
+          "description": "GCE Instance External IP",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "diskSize": {
+          "type": "string",
+          "description": "GCE Instance Disk Size (in GB)",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "diskType": {
+          "type": "string",
+          "description": "GCE Instance Disk type",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "machineImage": {
+          "type": "string",
+          "description": "GCE Machine Image Absolute URL",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "machineType": {
+          "type": "string",
+          "description": "GCE Machine Type",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "preemptible": {
+          "type": "boolean",
+          "description": "GCE Instance Preemptibility",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "project": {
+          "type": "string",
+          "description": "GCE Project",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "scopes": {
+          "type": "string",
+          "description": "GCE Scopes (comma-separated if multiple scopes)",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "tags": {
+          "type": "string",
+          "description": "GCE Instance Tags (comma-separated)",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "useExisting": {
+          "type": "boolean",
+          "description": "Don't create a new VM, use an existing one",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "useInternalIp": {
+          "type": "boolean",
+          "description": "Use internal GCE Instance IP rather than public one",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "username": {
+          "type": "string",
+          "description": "GCE User Name",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "zone": {
+          "type": "string",
+          "description": "GCE Zone",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        }
+      },
+      "collectionFilters": {},
+      "includeableLinks": [],
+      "resourceActions": {},
+      "collectionActions": {},
+      "collectionFields": {},
+      "resourceMethods": [
+        "GET"
+      ],
+      "collectionMethods": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "id": "rackspaceConfig",
+      "type": "schema",
+      "links": {
+        "self": "http://server.rancher.local:8080/v1/schemas/rackspaceconfig",
+        "collection": "http://server.rancher.local:8080/v1/rackspaceconfigs"
+      },
+      "actions": {},
+      "pluralName": "rackspaceConfigs",
+      "resourceFields": {
+        "apiKey": {
+          "type": "string",
+          "description": "Rackspace API key",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "dockerInstall": {
+          "type": "string",
+          "description": "Set if docker have to be installed on the machine",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "endpointType": {
+          "type": "string",
+          "description": "Rackspace endpoint type (adminURL, internalURL or the default publicURL)",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "flavorId": {
+          "type": "string",
+          "description": "Rackspace flavor ID. Default: General Purpose 1GB",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "imageId": {
+          "type": "string",
+          "description": "Rackspace image ID. Default: Ubuntu 14.04 LTS (Trusty Tahr) (PVHVM)",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "region": {
+          "type": "string",
+          "description": "Rackspace region name",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "sshPort": {
+          "type": "string",
+          "description": "SSH port for the newly booted machine. Set to 22 by default",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "sshUser": {
+          "type": "string",
+          "description": "SSH user for the newly booted machine. Set to root by default",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "username": {
+          "type": "string",
+          "description": "Rackspace account username",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        }
+      },
+      "collectionFilters": {},
+      "includeableLinks": [],
+      "resourceActions": {},
+      "collectionActions": {},
+      "collectionFields": {},
+      "resourceMethods": [
+        "GET"
+      ],
+      "collectionMethods": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "id": "vmwarevcloudairConfig",
+      "type": "schema",
+      "links": {
+        "self": "http://server.rancher.local:8080/v1/schemas/vmwarevcloudairconfig",
+        "collection": "http://server.rancher.local:8080/v1/vmwarevcloudairconfigs"
+      },
+      "actions": {},
+      "pluralName": "vmwarevcloudairConfigs",
+      "resourceFields": {
+        "catalog": {
+          "type": "string",
+          "description": "vCloud Air Catalog (default is Public Catalog)",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "catalogitem": {
+          "type": "string",
+          "description": "vCloud Air Catalog Item (default is Ubuntu Precise)",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "computeid": {
+          "type": "string",
+          "description": "vCloud Air Compute ID (if using Dedicated Cloud)",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "cpuCount": {
+          "type": "string",
+          "description": "vCloud Air VM Cpu Count (default 1)",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "dockerPort": {
+          "type": "string",
+          "description": "vCloud Air Docker port",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "edgegateway": {
+          "type": "string",
+          "description": "vCloud Air Org Edge Gateway (Default is <vdcid>)",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "memorySize": {
+          "type": "string",
+          "description": "vCloud Air VM Memory Size in MB (default 2048)",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "orgvdcnetwork": {
+          "type": "string",
+          "description": "vCloud Air Org VDC Network (Default is <vdcid>-default-routed)",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "password": {
+          "type": "string",
+          "description": "vCloud Air password",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "publicip": {
+          "type": "string",
+          "description": "vCloud Air Org Public IP to use",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "sshPort": {
+          "type": "string",
+          "description": "vCloud Air SSH port",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "username": {
+          "type": "string",
+          "description": "vCloud Air username",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "vdcid": {
+          "type": "string",
+          "description": "vCloud Air VDC ID",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        }
+      },
+      "collectionFilters": {},
+      "includeableLinks": [],
+      "resourceActions": {},
+      "collectionActions": {},
+      "collectionFields": {},
+      "resourceMethods": [
+        "GET"
+      ],
+      "collectionMethods": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "id": "azureConfig",
+      "type": "schema",
+      "links": {
+        "self": "http://server.rancher.local:8080/v1/schemas/azureconfig",
+        "collection": "http://server.rancher.local:8080/v1/azureconfigs"
+      },
+      "actions": {},
+      "pluralName": "azureConfigs",
+      "resourceFields": {
+        "dockerPort": {
+          "type": "string",
+          "description": "Azure Docker port",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "dockerSwarmMasterPort": {
+          "type": "string",
+          "description": "Azure Docker Swarm master port",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "image": {
+          "type": "string",
+          "description": "Azure image name. Default is Ubuntu 14.04 LTS x64",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "location": {
+          "type": "string",
+          "description": "Azure location",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "password": {
+          "type": "string",
+          "description": "Azure user password",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "publishSettingsFile": {
+          "type": "string",
+          "description": "Azure publish settings file",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "size": {
+          "type": "string",
+          "description": "Azure size",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "sshPort": {
+          "type": "string",
+          "description": "Azure SSH port",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "subscriptionCert": {
+          "type": "string",
+          "description": "Azure subscription cert",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "subscriptionId": {
+          "type": "string",
+          "description": "Azure subscription ID",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "username": {
+          "type": "string",
+          "description": "Azure username",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        }
+      },
+      "collectionFilters": {},
+      "includeableLinks": [],
+      "resourceActions": {},
+      "collectionActions": {},
+      "collectionFields": {},
+      "resourceMethods": [
+        "GET"
+      ],
+      "collectionMethods": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "id": "vmwarefusionConfig",
+      "type": "schema",
+      "links": {
+        "self": "http://server.rancher.local:8080/v1/schemas/vmwarefusionconfig",
+        "collection": "http://server.rancher.local:8080/v1/vmwarefusionconfigs"
+      },
+      "actions": {},
+      "pluralName": "vmwarefusionConfigs",
+      "resourceFields": {},
+      "collectionFilters": {},
+      "includeableLinks": [],
+      "resourceActions": {},
+      "collectionActions": {},
+      "collectionFields": {},
+      "resourceMethods": [
+        "GET"
+      ],
+      "collectionMethods": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "id": "hypervConfig",
+      "type": "schema",
+      "links": {
+        "self": "http://server.rancher.local:8080/v1/schemas/hypervconfig",
+        "collection": "http://server.rancher.local:8080/v1/hypervconfigs"
+      },
+      "actions": {},
+      "pluralName": "hypervConfigs",
+      "resourceFields": {
+        "boot2dockerUrl": {
+          "type": "string",
+          "description": "URL of the boot2docker ISO. Defaults to the latest available version.",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "cpuCount": {
+          "type": "string",
+          "description": "number of CPUs for the machine",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "diskSize": {
+          "type": "string",
+          "description": "Maximum size of dynamically expanding disk in MB.",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "memory": {
+          "type": "string",
+          "description": "Memory size for host in MB.",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "virtualSwitch": {
+          "type": "string",
+          "description": "Virtual switch name. Defaults to first found.",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        }
+      },
+      "collectionFilters": {},
+      "includeableLinks": [],
+      "resourceActions": {},
+      "collectionActions": {},
+      "collectionFields": {},
+      "resourceMethods": [
+        "GET"
+      ],
+      "collectionMethods": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "id": "softlayerConfig",
+      "type": "schema",
+      "links": {
+        "self": "http://server.rancher.local:8080/v1/schemas/softlayerconfig",
+        "collection": "http://server.rancher.local:8080/v1/softlayerconfigs"
+      },
+      "actions": {},
+      "pluralName": "softlayerConfigs",
+      "resourceFields": {
+        "apiEndpoint": {
+          "type": "string",
+          "description": "softlayer api endpoint to use",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "apiKey": {
+          "type": "string",
+          "description": "softlayer user API key",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "cpu": {
+          "type": "string",
+          "description": "number of CPU's for the machine",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "diskSize": {
+          "type": "string",
+          "description": "Disk size for machine, a value of 0 uses the default size on softlayer",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "domain": {
+          "type": "string",
+          "description": "domain name for machine",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "hostname": {
+          "type": "string",
+          "description": "hostname for the machine - defaults to machine name",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "hourlyBilling": {
+          "type": "boolean",
+          "description": "set hourly billing for machine - on by default",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "image": {
+          "type": "string",
+          "description": "OS image for machine",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "localDisk": {
+          "type": "boolean",
+          "description": "use machine local disk instead of softlayer SAN",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "memory": {
+          "type": "string",
+          "description": "Memory in MB for machine",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "privateNetOnly": {
+          "type": "boolean",
+          "description": "Use only private networking",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "privateVlanId": {
+          "type": "string",
+          "description": null,
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "publicVlanId": {
+          "type": "string",
+          "description": null,
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "region": {
+          "type": "string",
+          "description": "softlayer region for machine",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "user": {
+          "type": "string",
+          "description": "softlayer user account name",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        }
+      },
+      "collectionFilters": {},
+      "includeableLinks": [],
+      "resourceActions": {},
+      "collectionActions": {},
+      "collectionFields": {},
+      "resourceMethods": [
+        "GET"
+      ],
+      "collectionMethods": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "id": "exoscaleConfig",
+      "type": "schema",
+      "links": {
+        "self": "http://server.rancher.local:8080/v1/schemas/exoscaleconfig",
+        "collection": "http://server.rancher.local:8080/v1/exoscaleconfigs"
+      },
+      "actions": {},
+      "pluralName": "exoscaleConfigs",
+      "resourceFields": {
+        "apiKey": {
+          "type": "string",
+          "description": "exoscale API key",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "apiSecretKey": {
+          "type": "string",
+          "description": "exoscale API secret key",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "availabilityZone": {
+          "type": "string",
+          "description": "exoscale availibility zone",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "diskSize": {
+          "type": "string",
+          "description": "exoscale disk size (10, 50, 100, 200, 400)",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "image": {
+          "type": "string",
+          "description": "exoscale image template",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "instanceProfile": {
+          "type": "string",
+          "description": "exoscale instance profile (small, medium, large, ...)",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "securityGroup": {
+          "type": "array[string]",
+          "description": "exoscale security group",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "url": {
+          "type": "string",
+          "description": "exoscale API endpoint",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        }
+      },
+      "collectionFilters": {},
+      "includeableLinks": [],
+      "resourceActions": {},
+      "collectionActions": {},
+      "collectionFields": {},
+      "resourceMethods": [
+        "GET"
+      ],
+      "collectionMethods": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "id": "amazonec2Config",
+      "type": "schema",
+      "links": {
+        "self": "http://server.rancher.local:8080/v1/schemas/amazonec2config",
+        "collection": "http://server.rancher.local:8080/v1/amazonec2configs"
+      },
+      "actions": {},
+      "pluralName": "amazonec2Configs",
+      "resourceFields": {
+        "accessKey": {
+          "type": "string",
+          "description": "AWS Access Key",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "ami": {
+          "type": "string",
+          "description": "AWS machine image",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "deviceName": {
+          "type": "string",
+          "description": "AWS root device name",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "iamInstanceProfile": {
+          "type": "string",
+          "description": "AWS IAM Instance Profile",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "instanceType": {
+          "type": "string",
+          "description": "AWS instance type",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "monitoring": {
+          "type": "boolean",
+          "description": "Set this flag to enable CloudWatch monitoring",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "privateAddressOnly": {
+          "type": "boolean",
+          "description": "Only use a private IP address",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "region": {
+          "type": "string",
+          "description": "AWS region",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "requestSpotInstance": {
+          "type": "boolean",
+          "description": "Set this flag to request spot instance",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "rootSize": {
+          "type": "string",
+          "description": "AWS root disk size (in GB)",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "secretKey": {
+          "type": "string",
+          "description": "AWS Secret Key",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "securityGroup": {
+          "type": "string",
+          "description": "AWS VPC security group",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "sessionToken": {
+          "type": "string",
+          "description": "AWS Session Token",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "spotPrice": {
+          "type": "string",
+          "description": "AWS spot instance bid price (in dollar)",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "sshKeypath": {
+          "type": "string",
+          "description": "SSH Key for Instance",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "sshUser": {
+          "type": "string",
+          "description": "Set the name of the ssh user",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "subnetId": {
+          "type": "string",
+          "description": "AWS VPC subnet id",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "tags": {
+          "type": "string",
+          "description": "AWS Tags (e.g. key1,value1,key2,value2)",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "useEbsOptimizedInstance": {
+          "type": "boolean",
+          "description": "Create an EBS optimized instance",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "usePrivateAddress": {
+          "type": "boolean",
+          "description": "Force the usage of private IP address",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "volumeType": {
+          "type": "string",
+          "description": "Amazon EBS volume type",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "vpcId": {
+          "type": "string",
+          "description": "AWS VPC id",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "zone": {
+          "type": "string",
+          "description": "AWS zone for instance (i.e. a,b,c,d,e)",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        }
+      },
+      "collectionFilters": {},
+      "includeableLinks": [],
+      "resourceActions": {},
+      "collectionActions": {},
+      "collectionFields": {},
+      "resourceMethods": [
+        "GET"
+      ],
+      "collectionMethods": [
+        "GET",
+        "POST"
       ]
     },
     {
       "id": "machine",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/machine",
-        "collection": "http://localhost:18282/v1/machines"
+        "self": "http://server.rancher.local:8080/v1/schemas/machine",
+        "collection": "http://server.rancher.local:8080/v1/machines"
       },
       "actions": {},
       "pluralName": "machines",
@@ -29381,8 +30492,7 @@
           "create": true,
           "update": false,
           "required": true,
-          "readOnCreateOnly": false,
-          "minLength": 1
+          "readOnCreateOnly": false
         },
         "removeTime": {
           "type": "date",
@@ -29459,6 +30569,14 @@
           "nullable": true,
           "readOnCreateOnly": false
         },
+        "amazonec2Config": {
+          "type": "amazonec2Config",
+          "description": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
         "authCertificateAuthority": {
           "type": "string",
           "description": null,
@@ -29475,24 +30593,16 @@
           "nullable": true,
           "readOnCreateOnly": false
         },
-        "extractedConfig": {
-          "type": "string",
-          "description": null,
-          "create": false,
-          "update": true,
-          "nullable": true,
-          "readOnCreateOnly": false
-        },
-        "labels": {
-          "type": "map[string]",
+        "azureConfig": {
+          "type": "azureConfig",
           "description": null,
           "create": true,
           "update": false,
           "nullable": true,
           "readOnCreateOnly": false
         },
-        "engineInstallUrl": {
-          "type": "string",
+        "digitaloceanConfig": {
+          "type": "digitaloceanConfig",
           "description": null,
           "create": true,
           "update": false,
@@ -29507,7 +30617,7 @@
           "nullable": true,
           "readOnCreateOnly": false
         },
-        "engineOpt": {
+        "engineEnv": {
           "type": "map[string]",
           "description": null,
           "create": true,
@@ -29523,8 +30633,8 @@
           "nullable": true,
           "readOnCreateOnly": false
         },
-        "engineRegistryMirror": {
-          "type": "array[string]",
+        "engineInstallUrl": {
+          "type": "string",
           "description": null,
           "create": true,
           "update": false,
@@ -29539,6 +30649,22 @@
           "nullable": true,
           "readOnCreateOnly": false
         },
+        "engineOpt": {
+          "type": "map[string]",
+          "description": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "engineRegistryMirror": {
+          "type": "array[string]",
+          "description": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
         "engineStorageDriver": {
           "type": "string",
           "description": null,
@@ -29547,8 +30673,120 @@
           "nullable": true,
           "readOnCreateOnly": false
         },
-        "engineEnv": {
+        "exoscaleConfig": {
+          "type": "exoscaleConfig",
+          "description": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "extractedConfig": {
+          "type": "string",
+          "description": null,
+          "create": false,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "genericConfig": {
+          "type": "genericConfig",
+          "description": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "googleConfig": {
+          "type": "googleConfig",
+          "description": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "hypervConfig": {
+          "type": "hypervConfig",
+          "description": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "labels": {
           "type": "map[string]",
+          "description": null,
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "openstackConfig": {
+          "type": "openstackConfig",
+          "description": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "packetConfig": {
+          "type": "packetConfig",
+          "description": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "rackspaceConfig": {
+          "type": "rackspaceConfig",
+          "description": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "softlayerConfig": {
+          "type": "softlayerConfig",
+          "description": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "ubiquityConfig": {
+          "type": "ubiquityConfig",
+          "description": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "virtualboxConfig": {
+          "type": "virtualboxConfig",
+          "description": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "vmwarefusionConfig": {
+          "type": "vmwarefusionConfig",
+          "description": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "vmwarevcloudairConfig": {
+          "type": "vmwarevcloudairConfig",
+          "description": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "vmwarevsphereConfig": {
+          "type": "vmwarevsphereConfig",
           "description": null,
           "create": true,
           "update": false,
@@ -29724,14 +30962,678 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "GET",
-        "POST"
-      ],
       "resourceMethods": [
         "GET",
         "PUT",
         "DELETE"
+      ],
+      "collectionMethods": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "id": "openstackConfig",
+      "type": "schema",
+      "links": {
+        "self": "http://server.rancher.local:8080/v1/schemas/openstackconfig",
+        "collection": "http://server.rancher.local:8080/v1/openstackconfigs"
+      },
+      "actions": {},
+      "pluralName": "openstackConfigs",
+      "resourceFields": {
+        "activeTimeout": {
+          "type": "string",
+          "description": "OpenStack active timeout",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "authUrl": {
+          "type": "string",
+          "description": "OpenStack authentication URL",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "availabilityZone": {
+          "type": "string",
+          "description": "OpenStack availability zone",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "domainId": {
+          "type": "string",
+          "description": "OpenStack domain ID (identity v3 only)",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "domainName": {
+          "type": "string",
+          "description": "OpenStack domain name (identity v3 only)",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "endpointType": {
+          "type": "string",
+          "description": "OpenStack endpoint type (adminURL, internalURL or publicURL)",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "flavorId": {
+          "type": "string",
+          "description": "OpenStack flavor id to use for the instance",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "flavorName": {
+          "type": "string",
+          "description": "OpenStack flavor name to use for the instance",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "floatingipPool": {
+          "type": "string",
+          "description": "OpenStack floating IP pool to get an IP from to assign to the instance",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "imageId": {
+          "type": "string",
+          "description": "OpenStack image id to use for the instance",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "imageName": {
+          "type": "string",
+          "description": "OpenStack image name to use for the instance",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "insecure": {
+          "type": "boolean",
+          "description": "Disable TLS credential checking.",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "ipVersion": {
+          "type": "string",
+          "description": "OpenStack version of IP address assigned for the machine",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "keypairName": {
+          "type": "string",
+          "description": "OpenStack keypair to use to SSH to the instance",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "netId": {
+          "type": "string",
+          "description": "OpenStack network id the machine will be connected on",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "netName": {
+          "type": "string",
+          "description": "OpenStack network name the machine will be connected on",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "novaNetwork": {
+          "type": "boolean",
+          "description": "Use the nova networking services instead of neutron.",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "password": {
+          "type": "string",
+          "description": "OpenStack password",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "privateKeyFile": {
+          "type": "string",
+          "description": "Private keyfile to use for SSH (absolute path)",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "region": {
+          "type": "string",
+          "description": "OpenStack region name",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "secGroups": {
+          "type": "string",
+          "description": "OpenStack comma separated security groups for the machine",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "sshPort": {
+          "type": "string",
+          "description": "OpenStack SSH port",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "sshUser": {
+          "type": "string",
+          "description": "OpenStack SSH user",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "tenantId": {
+          "type": "string",
+          "description": "OpenStack tenant id",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "tenantName": {
+          "type": "string",
+          "description": "OpenStack tenant name",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "username": {
+          "type": "string",
+          "description": "OpenStack username",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        }
+      },
+      "collectionFilters": {},
+      "includeableLinks": [],
+      "resourceActions": {},
+      "collectionActions": {},
+      "collectionFields": {},
+      "resourceMethods": [
+        "GET"
+      ],
+      "collectionMethods": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "id": "packetConfig",
+      "type": "schema",
+      "links": {
+        "self": "http://server.rancher.local:8080/v1/schemas/packetconfig",
+        "collection": "http://server.rancher.local:8080/v1/packetconfigs"
+      },
+      "actions": {},
+      "pluralName": "packetConfigs",
+      "resourceFields": {
+        "apiKey": {
+          "type": "string",
+          "description": "Packet api key",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "billingCycle": {
+          "type": "string",
+          "description": "Packet billing cycle, hourly or monthly",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "facilityCode": {
+          "type": "string",
+          "description": "Packet facility code",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "os": {
+          "type": "string",
+          "description": "Packet OS, possible values are: ubuntu_14_04",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "plan": {
+          "type": "string",
+          "description": "Packet Server Plan",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "projectId": {
+          "type": "string",
+          "description": "Packet Project Id",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        }
+      },
+      "collectionFilters": {},
+      "includeableLinks": [],
+      "resourceActions": {},
+      "collectionActions": {},
+      "collectionFields": {},
+      "resourceMethods": [
+        "GET"
+      ],
+      "collectionMethods": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "id": "genericConfig",
+      "type": "schema",
+      "links": {
+        "self": "http://server.rancher.local:8080/v1/schemas/genericconfig",
+        "collection": "http://server.rancher.local:8080/v1/genericconfigs"
+      },
+      "actions": {},
+      "pluralName": "genericConfigs",
+      "resourceFields": {
+        "ipAddress": {
+          "type": "string",
+          "description": "IP Address of machine",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "sshKey": {
+          "type": "string",
+          "description": "SSH private key path (if not provided, identities in ssh-agent will be used)",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "sshPort": {
+          "type": "string",
+          "description": "SSH port",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "sshUser": {
+          "type": "string",
+          "description": "SSH user",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        }
+      },
+      "collectionFilters": {},
+      "includeableLinks": [],
+      "resourceActions": {},
+      "collectionActions": {},
+      "collectionFields": {},
+      "resourceMethods": [
+        "GET"
+      ],
+      "collectionMethods": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "id": "vmwarevsphereConfig",
+      "type": "schema",
+      "links": {
+        "self": "http://server.rancher.local:8080/v1/schemas/vmwarevsphereconfig",
+        "collection": "http://server.rancher.local:8080/v1/vmwarevsphereconfigs"
+      },
+      "actions": {},
+      "pluralName": "vmwarevsphereConfigs",
+      "resourceFields": {
+        "boot2dockerUrl": {
+          "type": "string",
+          "description": "vSphere URL for boot2docker image",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "cpuCount": {
+          "type": "string",
+          "description": "vSphere CPU number for docker VM",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "datacenter": {
+          "type": "string",
+          "description": "vSphere datacenter for docker VM",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "datastore": {
+          "type": "string",
+          "description": "vSphere datastore for docker VM",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "diskSize": {
+          "type": "string",
+          "description": "vSphere size of disk for docker VM (in MB)",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "hostsystem": {
+          "type": "string",
+          "description": "vSphere compute resource where the docker VM will be instantiated (use <cluster>/* or <cluster>/<host> if using a cluster)",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "memorySize": {
+          "type": "string",
+          "description": "vSphere size of memory for docker VM (in MB)",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "network": {
+          "type": "string",
+          "description": "vSphere network where the docker VM will be attached",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "password": {
+          "type": "string",
+          "description": "vSphere password",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "pool": {
+          "type": "string",
+          "description": "vSphere resource pool for docker VM",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "username": {
+          "type": "string",
+          "description": "vSphere username",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "vcenter": {
+          "type": "string",
+          "description": "vSphere IP/hostname for vCenter",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "vcenterPort": {
+          "type": "string",
+          "description": "vSphere Port for vCenter",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        }
+      },
+      "collectionFilters": {},
+      "includeableLinks": [],
+      "resourceActions": {},
+      "collectionActions": {},
+      "collectionFields": {},
+      "resourceMethods": [
+        "GET"
+      ],
+      "collectionMethods": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "id": "digitaloceanConfig",
+      "type": "schema",
+      "links": {
+        "self": "http://server.rancher.local:8080/v1/schemas/digitaloceanconfig",
+        "collection": "http://server.rancher.local:8080/v1/digitaloceanconfigs"
+      },
+      "actions": {},
+      "pluralName": "digitaloceanConfigs",
+      "resourceFields": {
+        "accessToken": {
+          "type": "string",
+          "description": "Digital Ocean access token",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "backups": {
+          "type": "boolean",
+          "description": "enable backups for droplet",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "image": {
+          "type": "string",
+          "description": "Digital Ocean Image",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "ipv6": {
+          "type": "boolean",
+          "description": "enable ipv6 for droplet",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "privateNetworking": {
+          "type": "boolean",
+          "description": "enable private networking for droplet",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "region": {
+          "type": "string",
+          "description": "Digital Ocean region",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "size": {
+          "type": "string",
+          "description": "Digital Ocean size",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "sshPort": {
+          "type": "string",
+          "description": "SSH port",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "sshUser": {
+          "type": "string",
+          "description": "SSH username",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "userdata": {
+          "type": "string",
+          "description": "path to file with cloud-init user-data",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        }
+      },
+      "collectionFilters": {},
+      "includeableLinks": [],
+      "resourceActions": {},
+      "collectionActions": {},
+      "collectionFields": {},
+      "resourceMethods": [
+        "GET"
+      ],
+      "collectionMethods": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "id": "ubiquityConfig",
+      "type": "schema",
+      "links": {
+        "self": "http://server.rancher.local:8080/v1/schemas/ubiquityconfig",
+        "collection": "http://server.rancher.local:8080/v1/ubiquityconfigs"
+      },
+      "actions": {},
+      "pluralName": "ubiquityConfigs",
+      "resourceFields": {
+        "apiToken": {
+          "type": "string",
+          "description": "Ubiquity API token for authentication",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "apiUsername": {
+          "type": "string",
+          "description": "Ubiquity username for API authentication",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "clientId": {
+          "type": "string",
+          "description": "Ubiquity client ID for account authentication",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "flavorId": {
+          "type": "string",
+          "description": "Ubiquity VM size details for VM creation",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "imageId": {
+          "type": "string",
+          "description": "Ubiquity VM image for VM creation",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "zoneId": {
+          "type": "string",
+          "description": "Ubiquity zone location for VM creation",
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        }
+      },
+      "collectionFilters": {},
+      "includeableLinks": [],
+      "resourceActions": {},
+      "collectionActions": {},
+      "collectionFields": {},
+      "resourceMethods": [
+        "GET"
+      ],
+      "collectionMethods": [
+        "GET",
+        "POST"
       ]
     }
   ],
