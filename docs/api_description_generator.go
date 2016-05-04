@@ -36,7 +36,7 @@ func getOptions(options []string) string {
 	return strings.Join(options, ", ")
 }
 
-func generateDescriptionFile() error {
+func generateDescriptionFile(emtyDesc bool) error {
 
 	schemaBytes, err := ioutil.ReadFile("./input/schemas.json")
 	if err != nil {
@@ -63,28 +63,40 @@ func generateDescriptionFile() error {
 			continue
 		}
 
+		/*collectionLink := schema.Resource.Links["collection"]
+		if collectionLink == "" {
+			continue
+		}*/
+
 		//add to descriptionsMap
 		rd := ResourceDescription{}
 		rd.ResourceActions = make(map[string]string)
 		rd.ResourceFields = make(map[string]string)
 
 		for actionName, _ := range schema.ResourceActions {
-			rd.ResourceActions[actionName] = "To " + actionName + " the " + schema.Id
+			if !emtyDesc {
+				rd.ResourceActions[actionName] = "To " + actionName + " the " + schema.Id
+			} else {
+				rd.ResourceActions[actionName] = ""
+			}
 		}
 
 		for fieldName, field := range schema.ResourceFields {
-			//check if a generic desc exists
-			genDesc, ok := genDescMap[fieldName]
-			var description string
-			if ok {
-				description = descRegexp.ReplaceAllString(genDesc, schema.Id)
-				description = optionsRegexp.ReplaceAllString(description, "["+getOptions(field.Options)+"]")
-			} /*else {
-				//description = "The " + fieldName + " for the " + schema.Id
-			}*/
-			rd.ResourceFields[fieldName] = description
+			if emtyDesc {
+				rd.ResourceFields[fieldName] = ""
+			} else {
+				//check if a generic desc exists
+				genDesc, ok := genDescMap[fieldName]
+				var description string
+				if ok {
+					description = descRegexp.ReplaceAllString(genDesc, schema.Id)
+					description = optionsRegexp.ReplaceAllString(description, "["+getOptions(field.Options)+"]")
+				} /*else {
+					//description = "The " + fieldName + " for the " + schema.Id
+				}*/
+				rd.ResourceFields[fieldName] = description
+			}
 		}
-
 		descriptionsMap[schema.Id] = rd
 	}
 
