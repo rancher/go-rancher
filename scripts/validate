@@ -20,9 +20,10 @@ if [ ! -e ${PACKAGE} ]; then
 fi
 
 echo export GOPATH=$GOPATH
+export PATH=/go/bin:$PATH
 
 ./scripts/gen-schema.sh
-if [ -n "$(git status --porcelain --untracked-files=no)" ]; then
+if [ -n "$(git status --porcelain --untracked-files=no | grep -v generator/schemas.json)" ]; then
     echo Modified files
     git status --porcelain --untracked-files=no
     exit 1
