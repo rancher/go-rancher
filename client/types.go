@@ -73,6 +73,7 @@ type Field struct {
 	Options      []string    `json:"options,omitempty"`
 	ValidChars   string      `json:"validChars,omitempty"`
 	InvalidChars string      `json:"invalidChars,omitempty"`
+	Description  string      `json:"description,omitempty"`
 }
 
 type Action struct {
