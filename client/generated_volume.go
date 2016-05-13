@@ -7,6 +7,8 @@ const (
 type Volume struct {
 	Resource
 
+	AccessMode string `json:"accessMode,omitempty" yaml:"access_mode,omitempty"`
+
 	AccountId string `json:"accountId,omitempty" yaml:"account_id,omitempty"`
 
 	Created string `json:"created,omitempty" yaml:"created,omitempty"`

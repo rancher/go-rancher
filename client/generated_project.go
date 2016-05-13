@@ -21,6 +21,8 @@ type Project struct {
 
 	Members []interface{} `json:"members,omitempty" yaml:"members,omitempty"`
 
+	Mesos bool `json:"mesos,omitempty" yaml:"mesos,omitempty"`
+
 	Name string `json:"name,omitempty" yaml:"name,omitempty"`
 
 	PublicDns bool `json:"publicDns,omitempty" yaml:"public_dns,omitempty"`
