@@ -211,9 +211,9 @@ func (rancherClient *RancherBaseClient) doDelete(url string) error {
 	if err != nil {
 		return err
 	}
-
 	defer resp.Body.Close()
-	defer io.Copy(ioutil.Discard, resp.Body)
+
+	io.Copy(ioutil.Discard, resp.Body)
 
 	if resp.StatusCode >= 300 {
 		return newApiError(resp, url)
