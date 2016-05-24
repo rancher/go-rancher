@@ -213,7 +213,6 @@ func (rancherClient *RancherBaseClient) doDelete(url string) error {
 		return err
 	}
 	defer resp.Body.Close()
-	defer io.Copy(ioutil.Discard, resp.Body)
 
 	io.Copy(ioutil.Discard, resp.Body)
 
