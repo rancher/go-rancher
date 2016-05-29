@@ -17,6 +17,11 @@ type GenericCollection struct {
 	Data []interface{} `json:"data,omitempty"`
 }
 
+type ResourceCollection struct {
+	Collection
+	Data []Resource `json:"data,omitempty"`
+}
+
 type Sort struct {
 	Name    string `json:"name,omitempty"`
 	Order   string `json:"order,omitempty"`
