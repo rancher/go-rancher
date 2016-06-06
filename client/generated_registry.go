@@ -42,6 +42,8 @@ type Registry struct {
 	Uuid string `json:"uuid,omitempty" yaml:"uuid,omitempty"`
 
 	VolumeAccessMode string `json:"volumeAccessMode,omitempty" yaml:"volume_access_mode,omitempty"`
+
+	VolumeCapabilities []string `json:"volumeCapabilities,omitempty" yaml:"volume_capabilities,omitempty"`
 }
 
 type RegistryCollection struct {

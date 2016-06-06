@@ -40,6 +40,8 @@ type StoragePool struct {
 	Uuid string `json:"uuid,omitempty" yaml:"uuid,omitempty"`
 
 	VolumeAccessMode string `json:"volumeAccessMode,omitempty" yaml:"volume_access_mode,omitempty"`
+
+	VolumeCapabilities []string `json:"volumeCapabilities,omitempty" yaml:"volume_capabilities,omitempty"`
 }
 
 type StoragePoolCollection struct {

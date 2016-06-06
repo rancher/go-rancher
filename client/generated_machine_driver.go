@@ -21,6 +21,8 @@ type MachineDriver struct {
 
 	Description string `json:"description,omitempty" yaml:"description,omitempty"`
 
+	ExternalId string `json:"externalId,omitempty" yaml:"external_id,omitempty"`
+
 	Kind string `json:"kind,omitempty" yaml:"kind,omitempty"`
 
 	Name string `json:"name,omitempty" yaml:"name,omitempty"`
