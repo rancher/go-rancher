@@ -11,6 +11,8 @@ type RancherClient struct {
 	Agent                                    AgentOperations
 	ApiKey                                   ApiKeyOperations
 	AuditLog                                 AuditLogOperations
+	Backup                                   BackupOperations
+	BackupTarget                             BackupTargetOperations
 	BaseMachineConfig                        BaseMachineConfigOperations
 	Certificate                              CertificateOperations
 	ChangeSecretInput                        ChangeSecretInputOperations
@@ -100,6 +102,8 @@ type RancherClient struct {
 	RegistryCredential                       RegistryCredentialOperations
 	ResourceDefinition                       ResourceDefinitionOperations
 	RestartPolicy                            RestartPolicyOperations
+	RestoreFromBackupInput                   RestoreFromBackupInputOperations
+	RevertToSnapshotInput                    RevertToSnapshotInputOperations
 	RollingRestartStrategy                   RollingRestartStrategyOperations
 	SecondaryLaunchConfig                    SecondaryLaunchConfigOperations
 	Service                                  ServiceOperations
@@ -118,6 +122,7 @@ type RancherClient struct {
 	SetServiceLinksInput                     SetServiceLinksInputOperations
 	Setting                                  SettingOperations
 	Snapshot                                 SnapshotOperations
+	SnapshotBackupInput                      SnapshotBackupInputOperations
 	StateTransition                          StateTransitionOperations
 	StatsAccess                              StatsAccessOperations
 	StoragePool                              StoragePoolOperations
@@ -129,6 +134,7 @@ type RancherClient struct {
 	VirtualMachine                           VirtualMachineOperations
 	VirtualMachineDisk                       VirtualMachineDiskOperations
 	Volume                                   VolumeOperations
+	VolumeSnapshotInput                      VolumeSnapshotInputOperations
 }
 
 func constructClient() *RancherClient {
@@ -146,6 +152,8 @@ func constructClient() *RancherClient {
 	client.Agent = newAgentClient(client)
 	client.ApiKey = newApiKeyClient(client)
 	client.AuditLog = newAuditLogClient(client)
+	client.Backup = newBackupClient(client)
+	client.BackupTarget = newBackupTargetClient(client)
 	client.BaseMachineConfig = newBaseMachineConfigClient(client)
 	client.Certificate = newCertificateClient(client)
 	client.ChangeSecretInput = newChangeSecretInputClient(client)
@@ -235,6 +243,8 @@ func constructClient() *RancherClient {
 	client.RegistryCredential = newRegistryCredentialClient(client)
 	client.ResourceDefinition = newResourceDefinitionClient(client)
 	client.RestartPolicy = newRestartPolicyClient(client)
+	client.RestoreFromBackupInput = newRestoreFromBackupInputClient(client)
+	client.RevertToSnapshotInput = newRevertToSnapshotInputClient(client)
 	client.RollingRestartStrategy = newRollingRestartStrategyClient(client)
 	client.SecondaryLaunchConfig = newSecondaryLaunchConfigClient(client)
 	client.Service = newServiceClient(client)
@@ -253,6 +263,7 @@ func constructClient() *RancherClient {
 	client.SetServiceLinksInput = newSetServiceLinksInputClient(client)
 	client.Setting = newSettingClient(client)
 	client.Snapshot = newSnapshotClient(client)
+	client.SnapshotBackupInput = newSnapshotBackupInputClient(client)
 	client.StateTransition = newStateTransitionClient(client)
 	client.StatsAccess = newStatsAccessClient(client)
 	client.StoragePool = newStoragePoolClient(client)
@@ -264,6 +275,7 @@ func constructClient() *RancherClient {
 	client.VirtualMachine = newVirtualMachineClient(client)
 	client.VirtualMachineDisk = newVirtualMachineDiskClient(client)
 	client.Volume = newVolumeClient(client)
+	client.VolumeSnapshotInput = newVolumeSnapshotInputClient(client)
 
 	return client
 }
