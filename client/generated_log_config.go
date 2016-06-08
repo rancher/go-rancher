@@ -7,7 +7,7 @@ const (
 type LogConfig struct {
 	Resource
 
-	Config map[string]interface{} `json:"config,omitempty" yaml:"config,omitempty"`
+	Config map[string]interface{} `json:"config" yaml:"config,omitempty"`
 
 	Driver string `json:"driver,omitempty" yaml:"driver,omitempty"`
 }
