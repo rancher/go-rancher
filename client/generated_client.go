@@ -14,6 +14,7 @@ type RancherClient struct {
 	Backup                                   BackupOperations
 	BackupTarget                             BackupTargetOperations
 	BaseMachineConfig                        BaseMachineConfigOperations
+	BlkioDeviceOption                        BlkioDeviceOptionOperations
 	Certificate                              CertificateOperations
 	ChangeSecretInput                        ChangeSecretInputOperations
 	ComposeConfig                            ComposeConfigOperations
@@ -83,6 +84,7 @@ type RancherClient struct {
 	MachineDriver                            MachineDriverOperations
 	Mount                                    MountOperations
 	Network                                  NetworkOperations
+	NfsConfig                                NfsConfigOperations
 	Openldapconfig                           OpenldapconfigOperations
 	Password                                 PasswordOperations
 	PhysicalHost                             PhysicalHostOperations
@@ -155,6 +157,7 @@ func constructClient() *RancherClient {
 	client.Backup = newBackupClient(client)
 	client.BackupTarget = newBackupTargetClient(client)
 	client.BaseMachineConfig = newBaseMachineConfigClient(client)
+	client.BlkioDeviceOption = newBlkioDeviceOptionClient(client)
 	client.Certificate = newCertificateClient(client)
 	client.ChangeSecretInput = newChangeSecretInputClient(client)
 	client.ComposeConfig = newComposeConfigClient(client)
@@ -224,6 +227,7 @@ func constructClient() *RancherClient {
 	client.MachineDriver = newMachineDriverClient(client)
 	client.Mount = newMountClient(client)
 	client.Network = newNetworkClient(client)
+	client.NfsConfig = newNfsConfigClient(client)
 	client.Openldapconfig = newOpenldapconfigClient(client)
 	client.Password = newPasswordClient(client)
 	client.PhysicalHost = newPhysicalHostClient(client)

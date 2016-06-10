@@ -1203,7 +1203,6 @@
         }
       },
       "includeableLinks": [
-        "backuptargets",
         "images",
         "account",
         "instances"
@@ -1928,15 +1927,6 @@
           "readOnCreateOnly": false,
           "maxLength": 255
         },
-        "credentialId": {
-          "type": "reference[credential]",
-          "description": null,
-          "create": true,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false,
-          "maxLength": 255
-        },
         "data": {
           "type": "map[json]",
           "description": null,
@@ -1954,15 +1944,6 @@
           "nullable": true,
           "readOnCreateOnly": false,
           "maxLength": 1024
-        },
-        "destination": {
-          "type": "string",
-          "description": null,
-          "create": true,
-          "update": false,
-          "required": true,
-          "readOnCreateOnly": false,
-          "maxLength": 4096
         },
         "id": {
           "type": "int",
@@ -1983,11 +1964,13 @@
         },
         "name": {
           "type": "string",
+          "validChars": "a-zA-Z0-9_.-",
           "description": null,
           "create": true,
           "update": true,
-          "nullable": true,
+          "required": true,
           "readOnCreateOnly": false,
+          "minLength": 1,
           "maxLength": 255
         },
         "removeTime": {
@@ -2059,6 +2042,14 @@
           "update": false,
           "nullable": true,
           "readOnCreateOnly": false
+        },
+        "nfsConfig": {
+          "type": "nfsConfig",
+          "description": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false
         }
       },
       "collectionFilters": {
@@ -2082,26 +2073,7 @@
             "notnull"
           ]
         },
-        "credentialId": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "null",
-            "notnull"
-          ]
-        },
         "description": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "prefix",
-            "like",
-            "notlike",
-            "null",
-            "notnull"
-          ]
-        },
-        "destination": {
           "modifiers": [
             "eq",
             "ne",
@@ -2192,8 +2164,7 @@
       },
       "includeableLinks": [
         "account",
-        "backups",
-        "credential"
+        "backups"
       ],
       "resourceActions": {
         "remove": {
@@ -2234,6 +2205,68 @@
         "GET"
       ],
       "collectionMethods": []
+    },
+    {
+      "id": "blkioDeviceOption",
+      "type": "schema",
+      "links": {
+        "self": "http://localhost:8080/v1/schemas/blkiodeviceoption"
+      },
+      "actions": {},
+      "pluralName": "blkioDeviceOptions",
+      "resourceFields": {
+        "readBps": {
+          "type": "int",
+          "description": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "readIops": {
+          "type": "int",
+          "description": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "weight": {
+          "type": "int",
+          "description": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "writeBps": {
+          "type": "int",
+          "description": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "writeIops": {
+          "type": "int",
+          "description": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false
+        }
+      },
+      "collectionFilters": {},
+      "includeableLinks": [],
+      "resourceActions": {},
+      "collectionActions": {},
+      "collectionFields": {},
+      "resourceMethods": [
+        "GET"
+      ],
+      "collectionMethods": [
+        "POST"
+      ]
     },
     {
       "id": "certificate",
@@ -4640,6 +4673,14 @@
           "nullable": true,
           "readOnCreateOnly": false
         },
+        "blkioDeviceOptions": {
+          "type": "map[blkioDeviceOption]",
+          "description": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
         "labels": {
           "type": "map[string]",
           "description": null,
@@ -6005,7 +6046,6 @@
         }
       },
       "includeableLinks": [
-        "backuptargets",
         "images",
         "account",
         "instances"
@@ -15408,6 +15448,14 @@
           "readOnCreateOnly": false,
           "maxLength": 255
         },
+        "blkioDeviceOptions": {
+          "type": "map[blkioDeviceOption]",
+          "description": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
         "build": {
           "type": "dockerBuild",
           "description": null,
@@ -19312,6 +19360,50 @@
       ]
     },
     {
+      "id": "nfsConfig",
+      "type": "schema",
+      "links": {
+        "self": "http://localhost:8080/v1/schemas/nfsconfig"
+      },
+      "actions": {},
+      "pluralName": "nfsConfigs",
+      "resourceFields": {
+        "server": {
+          "type": "string",
+          "description": null,
+          "create": true,
+          "update": false,
+          "required": true,
+          "readOnCreateOnly": false
+        },
+        "share": {
+          "type": "string",
+          "description": null,
+          "create": true,
+          "update": false,
+          "required": true,
+          "readOnCreateOnly": false
+        },
+        "mountOptions": {
+          "type": "string",
+          "description": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false
+        }
+      },
+      "collectionFilters": {},
+      "includeableLinks": [],
+      "resourceActions": {},
+      "collectionActions": {},
+      "collectionFields": {},
+      "resourceMethods": [
+        "GET"
+      ],
+      "collectionMethods": []
+    },
+    {
       "id": "openldapconfig",
       "type": "schema",
       "links": {
@@ -19862,7 +19954,6 @@
         }
       },
       "includeableLinks": [
-        "backuptargets",
         "images",
         "account",
         "instances"
@@ -23178,7 +23269,6 @@
         }
       },
       "includeableLinks": [
-        "backuptargets",
         "images",
         "account",
         "instances"
@@ -23989,7 +24079,6 @@
         }
       },
       "includeableLinks": [
-        "backuptargets",
         "images",
         "account",
         "registry",
@@ -24327,6 +24416,14 @@
           "nullable": true,
           "readOnCreateOnly": false,
           "maxLength": 255
+        },
+        "blkioDeviceOptions": {
+          "type": "map[blkioDeviceOption]",
+          "description": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false
         },
         "build": {
           "type": "dockerBuild",
@@ -29180,6 +29277,14 @@
           "readOnCreateOnly": false,
           "maxLength": 255
         },
+        "blkioDeviceOptions": {
+          "type": "map[blkioDeviceOption]",
+          "description": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
         "command": {
           "type": "array[string]",
           "description": null,
@@ -30220,6 +30325,14 @@
           "update": false,
           "readOnCreateOnly": false
         },
+        "readIops": {
+          "type": "int",
+          "description": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
         "root": {
           "type": "boolean",
           "description": null,
@@ -30235,6 +30348,14 @@
           "update": false,
           "readOnCreateOnly": false,
           "default": "40g"
+        },
+        "writeIops": {
+          "type": "int",
+          "description": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false
         }
       },
       "collectionFilters": {},

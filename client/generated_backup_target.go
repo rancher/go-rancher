@@ -11,17 +11,15 @@ type BackupTarget struct {
 
 	Created string `json:"created,omitempty" yaml:"created,omitempty"`
 
-	CredentialId string `json:"credentialId,omitempty" yaml:"credential_id,omitempty"`
-
 	Data map[string]interface{} `json:"data,omitempty" yaml:"data,omitempty"`
 
 	Description string `json:"description,omitempty" yaml:"description,omitempty"`
 
-	Destination string `json:"destination,omitempty" yaml:"destination,omitempty"`
-
 	Kind string `json:"kind,omitempty" yaml:"kind,omitempty"`
 
 	Name string `json:"name,omitempty" yaml:"name,omitempty"`
+
+	NfsConfig *NfsConfig `json:"nfsConfig,omitempty" yaml:"nfs_config,omitempty"`
 
 	RemoveTime string `json:"removeTime,omitempty" yaml:"remove_time,omitempty"`
 
