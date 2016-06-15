@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-CATTLE_VERSION=v0.159.4
+CATTLE_VERSION=v0.161.3
 
 cleanup()
 {
