@@ -330,7 +330,7 @@ func (rancherClient *RancherBaseClient) doModify(method string, url string, crea
 	req.Header.Set("Content-Type", "application/json")
 	req.Header.Set("Content-Length", string(len(bodyContent)))
 	accountId := reflect.ValueOf(createObj).Elem().FieldByName("AccountId").String()
-	if accountId != "" {
+	if accountId != "" && accountId != "<invalid Value>" {
 		req.Header.Set("x-api-project-id", accountId)
 	}
 
@@ -377,7 +377,8 @@ func (rancherClient *RancherBaseClient) doCreate(schemaType string, createObj in
 	}
 
 	if !contains(schema.CollectionMethods, "POST") {
-		// TODO - by pass validation and let the server validate?
+		// TODO - by pass validation and let the server validate until fixing the issue with the client schema being out of sync
+		//return errors.New("Resource type [" + schemaType + "] is not creatable")
 	}
 
 	var collectionUrl string
@@ -420,8 +421,7 @@ func (rancherClient *RancherBaseClient) doUpdate(schemaType string, existing *Re
 	}
 
 	if !contains(schema.ResourceMethods, "PUT") {
-		// TODO - by pass validation and let the server validate?
-		fmt.Printf("Resource type [" + schemaType + "] is not updatable")
+		// TODO - by pass validation and let the server validate until fixing the issue with the client schema being out of sync
 		//return errors.New("Resource type [" + schemaType + "] is not updatable")
 	}
 
