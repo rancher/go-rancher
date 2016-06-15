@@ -13,7 +13,6 @@ import (
 	"regexp"
 
 	"time"
-	"github.com/gorilla/websocket"
 	"reflect"
 )
 
@@ -24,7 +23,6 @@ const (
 
 var (
 	debug  = false
-	dialer = &websocket.Dialer{}
 )
 
 type ClientOpts struct {
@@ -230,10 +228,6 @@ func (rancherClient *RancherBaseClient) doDelete(url string) error {
 	}
 
 	return nil
-}
-
-func (rancherClient *RancherBaseClient) Websocket(url string, headers map[string][]string) (*websocket.Conn, *http.Response, error) {
-	return dialer.Dial(url, http.Header(headers))
 }
 
 func (rancherClient *RancherBaseClient) doGet(url string, opts *ListOpts, respObject interface{}) error {
