@@ -412,7 +412,9 @@ func (rancherClient *RancherBaseClient) doUpdate(schemaType string, existing *Re
 	}
 
 	if !contains(schema.ResourceMethods, "PUT") {
-		return errors.New("Resource type [" + schemaType + "] is not updatable")
+		// TODO - by pass validation and let the server validate?
+		fmt.Printf("Resource type [" + schemaType + "] is not updatable")
+		//return errors.New("Resource type [" + schemaType + "] is not updatable")
 	}
 
 	return rancherClient.doModify("PUT", selfUrl, updates, respObject)
