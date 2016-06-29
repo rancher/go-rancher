@@ -549,6 +549,26 @@ func (rancherClient *RancherBaseClient) doAction(schemaType string, action strin
 	return json.Unmarshal(byteContent, respObject)
 }
 
+func (rancherClient *RancherBaseClient) doByListFilter(schemaType string, id string, filter string, respObject interface{}) error {
+	schema, ok := rancherClient.Types[schemaType]
+	if !ok {
+		return errors.New("Unknown schema type [" + schemaType + "]")
+	}
+
+	if !contains(schema.ResourceMethods, "GET") {
+		return errors.New("Resource type [" + schemaType + "] can not be looked up by ID")
+	}
+
+	collectionUrl, ok := schema.Links[COLLECTION]
+	if !ok {
+		return errors.New("Failed to find collection URL for [" + schemaType + "]")
+	}
+
+	err := rancherClient.doGet(collectionUrl+"/"+id+"/"+filter, nil, respObject)
+	//TODO check for 404 and return nil, nil
+	return err
+}
+
 func init() {
 	debug = os.Getenv("RANCHER_CLIENT_DEBUG") == "true"
 	if debug {

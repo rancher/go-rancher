@@ -69,6 +69,8 @@ type IpAddressOperations interface {
 	ActionRestore(*IpAddress) (*IpAddress, error)
 
 	ActionUpdate(*IpAddress) (*IpAddress, error)
+
+	ListHosts(id string) (*HostCollection, error)
 }
 
 func newIpAddressClient(rancherClient *RancherClient) *IpAddressClient {
@@ -179,5 +181,11 @@ func (c *IpAddressClient) ActionUpdate(resource *IpAddress) (*IpAddress, error) 
 
 	err := c.rancherClient.doAction(IP_ADDRESS_TYPE, "update", &resource.Resource, nil, resp)
 
+	return resp, err
+}
+
+func (c *IpAddressClient) ListHosts(id string) (*HostCollection, error) {
+	resp := &HostCollection{}
+	err := c.rancherClient.doByListFilter(IP_ADDRESS_TYPE, id, "hosts", resp)
 	return resp, err
 }
