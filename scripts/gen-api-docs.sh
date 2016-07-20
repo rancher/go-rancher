@@ -8,6 +8,6 @@ echo Saved schemas.json
 
 godep go run *.go -command=generate-description
 
-godep go run *.go -command=generate-docs
+godep go run *.go -command=generate-docs -version=v1.0 -lang=zh -layout=rancher-default-v1.0
 
 echo Success

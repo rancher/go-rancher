@@ -45,6 +45,33 @@ addRemoveServiceLinkInput:
  resourceFields:
     serviceLink: 
 
+amazonec2Config:
+ description: 
+ resourceFields:
+    accessKey: 
+    ami: 
+    deviceName: 
+    iamInstanceProfile: 
+    instanceType: 
+    monitoring: 
+    privateAddressOnly: 
+    region: The region to use when launching the host
+    requestSpotInstance: 
+    rootSize: 
+    secretKey: 
+    securityGroup: 
+    sessionToken: 
+    spotPrice: 
+    sshKeypath: 
+    sshUser: The ssh username to use to ssh into the host
+    subnetId: 
+    tags: 
+    useEbsOptimizedInstance: 
+    usePrivateAddress: 
+    volumeType: 
+    vpcId: 
+    zone: 
+
 apiKey:
  description: 
  resourceFields:
@@ -90,6 +117,21 @@ auditLog:
     responseCode: 
     responseObject: 
 
+azureConfig:
+ description: 
+ resourceFields:
+    dockerPort: 
+    dockerSwarmMasterPort: 
+    image: 
+    location: 
+    password: 
+    publishSettingsFile: 
+    size: 
+    sshPort: The port to ssh into the host
+    subscriptionCert: 
+    subscriptionId: 
+    username: 
+
 baseMachineConfig:
  description: 
 
@@ -114,7 +156,7 @@ certificate:
     name: 
     removed: The date of when the certificate was removed
     serialNumber: 
-    state: The current state of the certificate. The options are [activating, active, removed, removing, requested].
+    state: The current state of the certificate. The options are [activating, active, removed, removing, requested, updating-active].
     subjectAlternativeNames: 
     transitioning: Whether or not the certificate is in a transitioning state
     transitioningMessage: The message to show while in a transitioning state
@@ -124,6 +166,7 @@ certificate:
  resourceActions:
     create: To create the certificate
     remove: To remove the certificate
+    update: To update the certificate
     
 
 changeSecretInput:
@@ -373,6 +416,20 @@ credential:
     update: To update the credential
     
 
+digitaloceanConfig:
+ description: 
+ resourceFields:
+    accessToken: 
+    backups: 
+    image: 
+    ipv6: 
+    privateNetworking: 
+    region: The region to use when launching the host
+    size: 
+    sshPort: The port to ssh into the host
+    sshUser: The ssh username to use to ssh into the host
+    userdata: 
+
 dnsService:
  description: 
  resourceFields:
@@ -473,6 +530,18 @@ environmentUpgrade:
     environment: 
     externalId: 
     rancherCompose: 
+
+exoscaleConfig:
+ description: 
+ resourceFields:
+    apiKey: 
+    apiSecretKey: 
+    availabilityZone: 
+    diskSize: 
+    image: 
+    instanceProfile: 
+    securityGroup: 
+    url: 
 
 externalDnsEvent:
  description: 
@@ -650,6 +719,31 @@ fieldDocumentation:
  resourceFields:
     description: 
 
+genericConfig:
+ description: 
+ resourceFields:
+    ipAddress: 
+    sshKey: 
+    sshPort: The port to ssh into the host
+    sshUser: The ssh username to use to ssh into the host
+
+googleConfig:
+ description: 
+ resourceFields:
+    address: 
+    diskSize: 
+    diskType: 
+    machineImage: 
+    machineType: 
+    preemptible: 
+    project: 
+    scopes: 
+    tags: 
+    useExisting: 
+    useInternalIp: 
+    username: 
+    zone: 
+
 haproxyConfig:
  description: 
  resourceFields:
@@ -717,6 +811,15 @@ hostAccess:
  resourceFields:
     token: 
     url: 
+
+hypervConfig:
+ description: 
+ resourceFields:
+    boot2dockerUrl: 
+    cpuCount: 
+    diskSize: 
+    memory: 
+    virtualSwitch: 
 
 identity:
  description: 
@@ -1150,10 +1253,13 @@ machine:
  description: 
  resourceFields:
     accountId: The unique identifier for the associated account
+    amazonec2Config: 
     authCertificateAuthority: 
     authKey: 
+    azureConfig: 
     created: The date of when the machine was created.
     description: 
+    digitaloceanConfig: 
     dockerVersion: 
     driver: 
     engineEnv: 
@@ -1163,17 +1269,30 @@ machine:
     engineOpt: 
     engineRegistryMirror: 
     engineStorageDriver: 
+    exoscaleConfig: 
     externalId: 
+    genericConfig: 
+    googleConfig: 
+    hypervConfig: 
     id: The unique identifier for the machine
     kind: 
     labels: 
     name: 
+    openstackConfig: 
+    packetConfig: 
+    rackspaceConfig: 
     removed: The date of when the machine was removed
+    softlayerConfig: 
     state: The current state of the machine. The options are [active, bootstrapping, created, creating, error, erroring, removed, removing, requested, updating].
     transitioning: Whether or not the machine is in a transitioning state
     transitioningMessage: The message to show while in a transitioning state
     transitioningProgress: The percentage remaining in the transitioning process of the machine
+    ubiquityConfig: 
     uuid: The universally unique identifier for the machine. This will always be unique across Rancher installations.
+    virtualboxConfig: 
+    vmwarefusionConfig: 
+    vmwarevcloudairConfig: 
+    vmwarevsphereConfig: 
  resourceActions:
     bootstrap: To bootstrap the machine
     create: To create the machine
@@ -1231,6 +1350,46 @@ network:
     restore: To restore the network
     update: To update the network
     
+
+openstackConfig:
+ description: 
+ resourceFields:
+    activeTimeout: 
+    authUrl: 
+    availabilityZone: 
+    domainId: 
+    domainName: 
+    endpointType: 
+    flavorId: 
+    flavorName: 
+    floatingipPool: 
+    imageId: 
+    imageName: 
+    insecure: 
+    ipVersion: 
+    keypairName: 
+    netId: 
+    netName: 
+    novaNetwork: 
+    password: 
+    privateKeyFile: 
+    region: The region to use when launching the host
+    secGroups: 
+    sshPort: The port to ssh into the host
+    sshUser: The ssh username to use to ssh into the host
+    tenantId: 
+    tenantName: 
+    username: 
+
+packetConfig:
+ description: 
+ resourceFields:
+    apiKey: 
+    billingCycle: 
+    facilityCode: 
+    os: 
+    plan: 
+    projectId: 
 
 password:
  description: 
@@ -1412,6 +1571,19 @@ pullTask:
     restore: To restore the pullTask
     update: To update the pullTask
     
+
+rackspaceConfig:
+ description: 
+ resourceFields:
+    apiKey: 
+    dockerInstall: 
+    endpointType: 
+    flavorId: 
+    imageId: 
+    region: The region to use when launching the host
+    sshPort: The port to ssh into the host
+    sshUser: The ssh username to use to ssh into the host
+    username: 
 
 recreateOnQuorumStrategyConfig:
  description: 
@@ -1827,6 +1999,7 @@ setServiceLinksInput:
 setting:
  description: 
  resourceFields:
+    activeValue: 
     id: The unique identifier for the setting
     name: 
     value: 
@@ -1853,6 +2026,25 @@ snapshot:
     create: To create the snapshot
     remove: To remove the snapshot
     
+
+softlayerConfig:
+ description: 
+ resourceFields:
+    apiEndpoint: 
+    apiKey: 
+    cpu: 
+    diskSize: 
+    domain: 
+    hostname: 
+    hourlyBilling: 
+    image: 
+    localDisk: 
+    memory: 
+    privateNetOnly: 
+    privateVlanId: 
+    publicVlanId: 
+    region: The region to use when launching the host
+    user: 
 
 statsAccess:
  description: 
@@ -1907,6 +2099,16 @@ typeDocumentation:
     description: 
     id: The unique identifier for the typeDocumentation
     resourceFields: 
+
+ubiquityConfig:
+ description: 
+ resourceFields:
+    apiToken: 
+    apiUsername: 
+    clientId: 
+    flavorId: 
+    imageId: 
+    zoneId: 
 
 virtualMachine:
  description: 
@@ -1995,6 +2197,59 @@ virtualMachineDisk:
     opts: 
     root: 
     size: 
+
+virtualboxConfig:
+ description: 
+ resourceFields:
+    boot2dockerUrl: 
+    cpuCount: 
+    diskSize: 
+    dnsProxy: 
+    hostDnsResolver: 
+    hostonlyCidr: 
+    hostonlyNicpromisc: 
+    hostonlyNictype: 
+    importBoot2dockerVm: 
+    memory: 
+    noShare: 
+    noVtxCheck: 
+
+vmwarefusionConfig:
+ description: 
+
+vmwarevcloudairConfig:
+ description: 
+ resourceFields:
+    catalog: 
+    catalogitem: 
+    computeid: 
+    cpuCount: 
+    dockerPort: 
+    edgegateway: 
+    memorySize: 
+    orgvdcnetwork: 
+    password: 
+    publicip: 
+    sshPort: The port to ssh into the host
+    username: 
+    vdcid: 
+
+vmwarevsphereConfig:
+ description: 
+ resourceFields:
+    boot2dockerUrl: 
+    cpuCount: 
+    datacenter: 
+    datastore: 
+    diskSize: 
+    hostsystem: 
+    memorySize: 
+    network: 
+    password: 
+    pool: 
+    username: 
+    vcenter: 
+    vcenterPort: 
 
 volume:
  description: 

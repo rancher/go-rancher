@@ -7,7 +7,10 @@ import (
 )
 
 var (
-	command = flag.String("command", "", "generate-docs | generate-description")
+	command  = flag.String("command", "", "generate-docs | generate-description")
+	version  = flag.String("version", "v1.0", "docs version")
+	language = flag.String("lang", "en", "docs language")
+	layout   = flag.String("layout", "rancher-default", "docs layout")
 )
 
 func main() {
@@ -19,7 +22,7 @@ func main() {
 		switch *command {
 		case "generate-description":
 			log.Info("Generating the api descriptions file...")
-			err := generateDescriptionFile()
+			err := generateDescriptionFile(false)
 			if err != nil {
 				log.Fatal(err)
 				os.Exit(1)
@@ -28,6 +31,14 @@ func main() {
 		case "generate-docs":
 			log.Info("Generating the api docs...")
 			err := generateFiles()
+			if err != nil {
+				log.Fatal(err)
+				os.Exit(1)
+			}
+			log.Info("Done...")
+		case "generate-empty-description":
+			log.Info("Generating the api descriptions file with empty descriptions...")
+			err := generateDescriptionFile(true)
 			if err != nil {
 				log.Fatal(err)
 				os.Exit(1)

@@ -63,7 +63,7 @@ func addSpace(input string) string {
 }
 
 func getTypeRef(input string) string {
-	return refeRegexp.ReplaceAllString(input, "[$1]({{site.baseurl}}/rancher/api/api-resources/$1/)")
+	return refeRegexp.ReplaceAllString(input, "[$1]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/$1/)")
 }
 
 func capitalize(s string) string {
@@ -99,9 +99,14 @@ func getFieldMap(schema client.Schema) map[string]APIField {
 			//[type]({{site.baseurl}}/rancher/api/type/)
 			apiField.TypeReference = getTypeRef(apiField.Field.Type)
 		} else if _, ok := schemaMap[apiField.Field.Type]; ok {
-			apiField.TypeReference = "[" + apiField.Field.Type + "]({{site.baseurl}}/rancher/api/api-resources/" + apiField.Field.Type + "/)"
+			apiField.TypeReference = "[" + apiField.Field.Type + "]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/" + apiField.Field.Type + "/)"
 		}
 		apiField.Description = getFieldDescription(schema.Id, fieldName)
+
+		if field.Default == nil {
+			apiField.Default = ""
+		}
+
 		fieldMap[fieldName] = apiField
 	}
 
@@ -258,6 +263,9 @@ func generateDoc(schema client.Schema, isResource bool) error {
 		"CUDActions":          getActionMap(schema, true),
 		"actionMap":           getActionMap(schema, false),
 		"pluralName":          schema.PluralName,
+		"version":             version,
+		"language":            language,
+		"layout":              layout,
 	}
 
 	var templateName string
@@ -285,6 +293,9 @@ func generateApiHomePage() error {
 
 	data := map[string]interface{}{
 		"schemaMap": schemaMap,
+		"version":   version,
+		"language":  language,
+		"layout":    layout,
 	}
 
 	funcMap := template.FuncMap{

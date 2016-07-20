@@ -1,6 +1,8 @@
 ---
 title: API
-layout: rancher-default
+layout: {{.layout}}
+version: {{.version}}
+lang: {{.language}}
 ---
 
 ## {{.schemaId}}
@@ -8,7 +10,7 @@ layout: rancher-default
 
 {{.resourceDescription}}
 
-​​{{if $.fieldMap}}
+{{if $.fieldMap}}
 ### Resource Fields
 
 Field | Type | Required | Default | Description

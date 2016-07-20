@@ -1,15 +1,17 @@
 ---
 title: API
-layout: rancher-default
+layout: {{.layout}}
+version: {{.version}}
+lang: {{.language}}
 ---
 
 ## Resource Types
 
-{{if $.schemaMap}}{{range $key, $value := .schemaMap}}{{range $link, $val := $value.Resource.Links}}{{if eq $link "collection"}}<br>
+{{if $.schemaMap}}{{range $key, $value := .schemaMap}}{{range $link, $val := $value.Resource.Links}}{{if eq $link "collection"}}
 
-[{{$key}}]({{"{{"}}site.baseurl{{"}}"}}/rancher/api/api-resources/{{$key}}/)|
+<br>
+
+[{{$key}}]({{"{{"}}site.baseurl{{"}}"}}/rancher/{{"{{"}}page.version{{"}}"}}/{{"{{"}}page.lang{{"}}"}}/api/api-resources/{{$key}}/)|
 ---|
 {{$key | getResourceDescription }} |
-
-<br><br>
 {{end}}{{end}}{{end}}{{end}}
