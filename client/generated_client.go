@@ -71,6 +71,8 @@ type RancherClient struct {
 	IpAddress                                IpAddressOperations
 	IpAddressAssociateInput                  IpAddressAssociateInputOperations
 	KubernetesService                        KubernetesServiceOperations
+	KubernetesStack                          KubernetesStackOperations
+	KubernetesStackUpgrade                   KubernetesStackUpgradeOperations
 	Label                                    LabelOperations
 	LaunchConfig                             LaunchConfigOperations
 	Ldapconfig                               LdapconfigOperations
@@ -216,6 +218,8 @@ func constructClient() *RancherClient {
 	client.IpAddress = newIpAddressClient(client)
 	client.IpAddressAssociateInput = newIpAddressAssociateInputClient(client)
 	client.KubernetesService = newKubernetesServiceClient(client)
+	client.KubernetesStack = newKubernetesStackClient(client)
+	client.KubernetesStackUpgrade = newKubernetesStackUpgradeClient(client)
 	client.Label = newLabelClient(client)
 	client.LaunchConfig = newLaunchConfigClient(client)
 	client.Ldapconfig = newLdapconfigClient(client)
