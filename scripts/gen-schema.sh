@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-CATTLE_VERSION=v0.161.3
+CATTLE_VERSION=v0.167.5
 
 cleanup()
 {
@@ -21,7 +21,7 @@ URL_BASE='http://localhost:8080'
 
 if [ "$1" != "-l" ]; then
     URL_BASE='http://localhost:18282'
-    docker run -p 18282:8080 --rm -e CATTLE_MACHINE_EXECUTE=false -e URL=$CATTLE_JAR rancher/server:v1.0.1-rc1 &
+    docker run -p 18282:8080 --rm -e CATTLE_MACHINE_EXECUTE=false -e URL=$CATTLE_JAR rancher/server:v1.1.2 &
     PID=$!
     sleep 2
 fi
