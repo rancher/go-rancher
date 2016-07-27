@@ -6,27 +6,26 @@ const (
 
 type Catalog struct {
 	Resource
-    
-    Actions map[string]interface{} `json:"actions,omitempty" yaml:"actions,omitempty"`
-    
-    CatalogRoot string `json:"catalogRoot,omitempty" yaml:"catalog_root,omitempty"`
-    
-    Description string `json:"description,omitempty" yaml:"description,omitempty"`
-    
-    LastUpdated string `json:"lastUpdated,omitempty" yaml:"last_updated,omitempty"`
-    
-    Links map[string]interface{} `json:"links,omitempty" yaml:"links,omitempty"`
-    
-    Message string `json:"message,omitempty" yaml:"message,omitempty"`
-    
-    Metadata map[string]interface{} `json:"metadata,omitempty" yaml:"metadata,omitempty"`
-    
-    State string `json:"state,omitempty" yaml:"state,omitempty"`
-    
-    Type string `json:"type,omitempty" yaml:"type,omitempty"`
-    
-    Uri string `json:"uri,omitempty" yaml:"uri,omitempty"`
-    
+
+	Actions map[string]interface{} `json:"actions,omitempty" yaml:"actions,omitempty"`
+
+	CatalogRoot string `json:"catalogRoot,omitempty" yaml:"catalog_root,omitempty"`
+
+	Description string `json:"description,omitempty" yaml:"description,omitempty"`
+
+	LastUpdated string `json:"lastUpdated,omitempty" yaml:"last_updated,omitempty"`
+
+	Links map[string]interface{} `json:"links,omitempty" yaml:"links,omitempty"`
+
+	Message string `json:"message,omitempty" yaml:"message,omitempty"`
+
+	Metadata map[string]interface{} `json:"metadata,omitempty" yaml:"metadata,omitempty"`
+
+	State string `json:"state,omitempty" yaml:"state,omitempty"`
+
+	Type string `json:"type,omitempty" yaml:"type,omitempty"`
+
+	Uri string `json:"uri,omitempty" yaml:"uri,omitempty"`
 }
 
 type CatalogCollection struct {

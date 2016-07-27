@@ -1,20 +1,11 @@
 #!/bin/bash
-
 set -e
 
 cd $(dirname $0)/..
 
-. ./scripts/common_functions
+echo Running tests
 
-set_project_vars
+PACKAGES=". $(find -name '*.go' | xargs -I{} dirname {} |  cut -f2 -d/ | sort -u | grep -Ev '(^\.$|.git|.trash-cache|vendor|bin)' | sed -e 's!^!./!' -e 's!$!/...!')"
 
-go test ./...
-
-result=$(find . -name "*.go" | grep -v ./Godeps | xargs gofmt -l)
-for i in $result; do
-    echo Violates gofmt: $i
-done
-
-[ -n "$result" ] && exit 1
-
-echo OK
+[ "${ARCH}" == "amd64" ] && RACE=-race
+go test ${RACE} -cover -tags=test ${PACKAGES}

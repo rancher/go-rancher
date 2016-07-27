@@ -6,13 +6,12 @@ const (
 
 type ApiVersion struct {
 	Resource
-    
-    Actions map[string]interface{} `json:"actions,omitempty" yaml:"actions,omitempty"`
-    
-    Links map[string]interface{} `json:"links,omitempty" yaml:"links,omitempty"`
-    
-    Type string `json:"type,omitempty" yaml:"type,omitempty"`
-    
+
+	Actions map[string]interface{} `json:"actions,omitempty" yaml:"actions,omitempty"`
+
+	Links map[string]interface{} `json:"links,omitempty" yaml:"links,omitempty"`
+
+	Type string `json:"type,omitempty" yaml:"type,omitempty"`
 }
 
 type ApiVersionCollection struct {

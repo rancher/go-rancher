@@ -6,17 +6,16 @@ const (
 
 type Error struct {
 	Resource
-    
-    Actions map[string]interface{} `json:"actions,omitempty" yaml:"actions,omitempty"`
-    
-    Links map[string]interface{} `json:"links,omitempty" yaml:"links,omitempty"`
-    
-    Message string `json:"message,omitempty" yaml:"message,omitempty"`
-    
-    Status string `json:"status,omitempty" yaml:"status,omitempty"`
-    
-    Type string `json:"type,omitempty" yaml:"type,omitempty"`
-    
+
+	Actions map[string]interface{} `json:"actions,omitempty" yaml:"actions,omitempty"`
+
+	Links map[string]interface{} `json:"links,omitempty" yaml:"links,omitempty"`
+
+	Message string `json:"message,omitempty" yaml:"message,omitempty"`
+
+	Status string `json:"status,omitempty" yaml:"status,omitempty"`
+
+	Type string `json:"type,omitempty" yaml:"type,omitempty"`
 }
 
 type ErrorCollection struct {
