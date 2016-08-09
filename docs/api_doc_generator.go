@@ -9,99 +9,310 @@ import (
 	"strings"
 	"text/template"
 
-	"github.com/rancher/go-rancher/client"
-	"gopkg.in/yaml.v2"
-)
+	yaml "gopkg.in/yaml.v2"
 
-const (
-	API_OUTPUT_DIR = "./output/api-resources"
-	API_INPUT_DIR  = "./input"
+	"github.com/rancher/go-rancher/client"
 )
 
 var (
-	blackListTypes          map[string]bool
-	commonFields            []string
-	spaceRegexp             *regexp.Regexp = regexp.MustCompile(`([a-z])([A-Z])`)
-	refeRegexp              *regexp.Regexp = regexp.MustCompile(`reference\[([a-zA-Z]+)\]`)
-	descriptionsMap         map[string]ResourceDescription
-	schemaMap               map[string]client.Schema
-	descriptionsOverrideMap map[string]ResourceDescription
+	commonFieldsMap        map[string]bool
+	schemaMap              map[string]client.Schema
+	referenceRegexp        *regexp.Regexp = regexp.MustCompile(`reference\[([a-zA-Z]+)\]`)
+	descriptionsMap        map[string]string
+	genericDescriptionsMap map[string]string
 )
 
 func init() {
-	blackListTypes = make(map[string]bool)
-	blackListTypes["schema"] = true
-	blackListTypes["resource"] = true
-	blackListTypes["collection"] = true
+	commonFieldsMap = make(map[string]bool)
 	schemaMap = make(map[string]client.Schema)
+	descriptionsMap = make(map[string]string)
+	genericDescriptionsMap = make(map[string]string)
 }
 
-//struct to hold resourceFields
-
+//APIField is to add in description and provide URL
 type APIField struct {
 	client.Field
-	Description   string `json:"description"`
-	TypeReference string
-}
-
-type ActionInput struct {
-	Name      string
-	FieldMap  map[string]APIField
-	InputJson string
+	Description string `json:"description"`
+	TypeURL     string
 }
 
 type APIAction struct {
 	Input       ActionInput
 	Output      string
 	Description string `json:"description"`
-	Verb        string
+	Method      string
 	ActionURL   string
 }
 
-func addSpace(input string) string {
-	return strings.ToLower(spaceRegexp.ReplaceAllString(input, `${1} ${2}`))
+type ActionInput struct {
+	Name      string
+	FieldMap  map[string]APIField
+	InputJSON string
 }
 
-func getTypeRef(input string) string {
-	return refeRegexp.ReplaceAllString(input, "[$1]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/$1/)")
-}
+func generateFiles() error {
+	schemas, err := readCattleSchema()
 
-func capitalize(s string) string {
-	if len(s) <= 1 {
-		return strings.ToUpper(s)
+	if err != nil {
+		return err
 	}
 
-	return strings.ToUpper(s[:1]) + s[1:]
-}
+	if err = readBlacklistFiles(); err != nil {
+		return err
+	}
 
-func isCommonField(fieldName string) bool {
-	for _, commonFieldName := range commonFields {
-		if fieldName == commonFieldName {
-			return true
+	if err = readInputFiles(); err != nil {
+		return err
+	}
+
+	if err = setupDirectory(apiOutputDir + "/api-resources/"); err != nil {
+		return err
+	}
+
+	//Create a map of all resources but exclude the blacklist items
+
+	for _, resourceSchema := range schemas.Data {
+		//Filter out any blacklist types
+		if blacklistTypes[resourceSchema.Id] {
+			continue
+		}
+
+		//Create a new Resource Action Map to eliminate any blacklist actions
+		resourceActionMap := make(map[string]client.Action)
+
+		//Add in check if resourceAction should be should be visible
+		for resourceAction, resourceActionValue := range resourceSchema.ResourceActions {
+			if !isBlacklistAction(resourceSchema.Id, resourceAction) {
+				resourceActionMap[resourceAction] = resourceActionValue
+			}
+		}
+
+		//Update the resource actions to the new resource action map
+		resourceSchema.ResourceActions = resourceActionMap
+
+		if !isBlacklistCollection(resourceSchema.Id) {
+			for key := range resourceSchema.Resource.Links {
+				if key == "collection" {
+					//Add a link to show the resource for the visible pages
+					resourceSchema.Resource.Links["showResource"] = "true"
+				}
+			}
+		}
+
+		schemaMap[resourceSchema.Id] = resourceSchema
+	}
+
+	generateCollectionResourcePages()
+
+	for _, schema := range schemaMap {
+		//Add in check to show if collection should be visible and if actions should be shown
+		showActions := false
+
+		if _, ok := schema.Resource.Links["showResource"]; ok {
+			showActions = true
+		}
+
+		if err = generateIndividualDocs(schema, showActions); err != nil {
+			return err
 		}
 	}
-	return false
+
+	return nil
+}
+
+func readInputFiles() error {
+
+	//Read API Description Files for All Resources
+	composeBytes, err := ioutil.ReadFile(apiInputDir + "/schema-check/api_description.yml")
+	if err != nil {
+		return err
+	}
+	//resourceDescriptionsMap = make(map[string]string)
+
+	if err = yaml.Unmarshal(composeBytes, &descriptionsMap); err != nil {
+		return err
+	}
+
+	//Read API Description for the Manual Descriptions
+	composeBytes, err = ioutil.ReadFile(apiInputDir + "/api_description_override.yml")
+	if err != nil {
+		return err
+	}
+
+	descriptionsOverrideMap := make(map[string]string)
+
+	if err = yaml.Unmarshal(composeBytes, descriptionsOverrideMap); err != nil {
+		return err
+	}
+
+	for key, desc := range descriptionsOverrideMap {
+		if desc != "" {
+			descriptionsMap[key] = desc
+
+		}
+	}
+
+	//Read API Description Files for Collection Only Resources
+	composeBytes, err = ioutil.ReadFile(apiInputDir + "/collection_api_description.yml")
+	if err != nil {
+		return err
+	}
+	collectionDescriptionsMap := make(map[string]string)
+
+	if err = yaml.Unmarshal(composeBytes, collectionDescriptionsMap); err != nil {
+		return err
+	}
+
+	for key, desc := range collectionDescriptionsMap {
+		if desc != "" {
+			descriptionsMap[key] = desc
+		}
+	}
+	//read yaml file to load the common fields
+	composeBytes, err = ioutil.ReadFile(apiInputDir + "/common_fields.yml")
+	if err != nil {
+		return err
+	}
+
+	if err = yaml.Unmarshal(composeBytes, &commonFieldsMap); err != nil {
+		return err
+	}
+
+	//read yaml file to load the generic description fields
+	composeBytes, err = ioutil.ReadFile(apiInputDir + "/generic_descriptions.yml")
+	if err != nil {
+		return err
+	}
+
+	return yaml.Unmarshal(composeBytes, &genericDescriptionsMap)
+}
+
+func generateCollectionResourcePages() error {
+	output, err := os.Create(path.Join(apiOutputDir, "api-resources", "index.md"))
+
+	if err != nil {
+		return err
+	}
+
+	defer output.Close()
+
+	data := map[string]interface{}{
+		"schemaMap": schemaMap,
+		"version":   version,
+		"language":  language,
+		"layout":    layout,
+	}
+
+	funcMap := template.FuncMap{
+		"getResourceDescription": getResourceDescription,
+		"capitalize":             strings.Title,
+	}
+
+	typeTemplate, err := template.New("apiHomePage.template").Funcs(funcMap).ParseFiles("./templates/apiHomePage.template")
+	if err != nil {
+		return err
+	}
+
+	if err = typeTemplate.Execute(output, data); err != nil {
+		return err
+	}
+
+	output, err = os.Create(path.Join(apiOutputDir, "rancher-api-sidebar.html"))
+
+	if err != nil {
+		return err
+	}
+
+	defer output.Close()
+
+	typeTemplate, err = template.New("apiNavBar.template").Funcs(funcMap).ParseFiles("./templates/apiNavBar.template")
+	if err != nil {
+		return err
+	}
+
+	return typeTemplate.Execute(output, data)
+}
+
+func generateIndividualDocs(schema client.Schema, showActions bool) error {
+	if err := setupDirectory(apiOutputDir + "/api-resources/" + schema.Id); err != nil {
+		return err
+	}
+
+	output, err := os.Create(path.Join(apiOutputDir, "api-resources", schema.Id, "index.md"))
+
+	if err != nil {
+		return err
+	}
+
+	defer output.Close()
+
+	data := map[string]interface{}{
+		"schemaId":            schema.Id,
+		"resourceDescription": getResourceDescription(schema.Id),
+		"fieldMap":            getFieldMap(schema),
+		"operationMap":        getActionMap(schema, true),
+		"actionMap":           getActionMap(schema, false),
+		"pluralName":          schema.PluralName,
+		"version":             version,
+		"language":            language,
+		"layout":              layout,
+	}
+
+	funcMap := template.FuncMap{
+		"getResourceDescription": getResourceDescription,
+		"capitalize":             strings.Title,
+	}
+
+	var templateName string
+
+	if showActions {
+		templateName = "apiResource.template"
+	} else {
+		templateName = "apiActionInput.template"
+	}
+
+	typeTemplate, err := template.New(templateName).Funcs(funcMap).ParseFiles("./templates/" + templateName)
+	if err != nil {
+		return err
+	}
+
+	return typeTemplate.Execute(output, data)
+}
+
+func getResourceDescription(resourceID string) string {
+	var desc string
+
+	if updatedDesc, inDescMap := descriptionsMap[resourceID+"-description"]; inDescMap {
+		if updatedDesc != "" {
+			return updatedDesc
+		}
+	}
+	return desc
 }
 
 func getFieldMap(schema client.Schema) map[string]APIField {
 	fieldMap := make(map[string]APIField)
 
 	for fieldName, field := range schema.ResourceFields {
-
-		if isCommonField(fieldName) {
+		// Skip any fields that are in the common field list
+		if commonFieldsMap[fieldName] {
 			continue
 		}
 
 		apiField := APIField{}
 		apiField.Field = field
-		if refeRegexp.MatchString(apiField.Field.Type) {
+		apiField.Description = getFieldDescription(schema.Id, fieldName, field)
+
+		if referenceRegexp.MatchString(field.Type) {
 			//put the link to the referenced field in the form
-			//[type]({{site.baseurl}}/rancher/api/type/)
-			apiField.TypeReference = getTypeRef(apiField.Field.Type)
-		} else if _, ok := schemaMap[apiField.Field.Type]; ok {
-			apiField.TypeReference = "[" + apiField.Field.Type + "]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/" + apiField.Field.Type + "/)"
+			//[type]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/type/)
+			apiField.TypeURL = getRefTypeURL(field.Type)
+		} else if strings.HasSuffix(field.Type, "]") {
+			//Update other types that have references to other resources
+			apiField.TypeURL = getTypeURL(field.Type)
+		} else if _, isResourceType := schemaMap[field.Type]; isResourceType {
+			apiField.TypeURL = "[" + field.Type + "]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/" + field.Type + "/)"
 		}
-		apiField.Description = getFieldDescription(schema.Id, fieldName)
 
 		if field.Default == nil {
 			apiField.Default = ""
@@ -113,32 +324,161 @@ func getFieldMap(schema client.Schema) map[string]APIField {
 	return fieldMap
 }
 
+func getFieldDescription(resourceID string, fieldID string, field client.Field) string {
+	var desc string
+	//desc := "This is the " + fieldID + " field"
+
+	//If it's a generic Description, translate the <resource> and <options>
+	if genDescription, isGenericDescription := genericDescriptionsMap[fieldID]; isGenericDescription {
+		desc = descRegexp.ReplaceAllString(genDescription, resourceID)
+		desc = optionsRegexp.ReplaceAllString(desc, "["+strings.Join(field.Options, ", ")+"]")
+		return desc
+	}
+
+	if updatedDesc, inDescMap := descriptionsMap[resourceID+"-resourceField-"+fieldID]; inDescMap {
+		if updatedDesc != "" {
+			return updatedDesc
+		}
+	}
+
+	return desc
+}
+
+func getRefTypeURL(input string) string {
+	return referenceRegexp.ReplaceAllString(input, "[$1]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/$1/)")
+}
+
+func getTypeURL(typeInput string) string {
+	var stringSliceByOpenBracket []string
+	stringSliceByOpenBracket = strings.SplitAfter(typeInput, "[")
+
+	var resourceName string
+
+	for _, value := range stringSliceByOpenBracket {
+		if strings.Contains(value, "]") {
+			resourceName = strings.Replace(value, "]", "", -1)
+		}
+	}
+
+	if _, isResourceType := schemaMap[resourceName]; isResourceType {
+		urlResourceName := "[" + resourceName + "]({{site.baseurl}}/rancher/{{page.version}}/{{page.lang}}/api/api-resources/" + resourceName + "/)"
+		return strings.Replace(typeInput, resourceName, urlResourceName, -1)
+	}
+	return typeInput
+}
+
+func getActionMap(schema client.Schema, operationsActions bool) map[string]APIAction {
+	actionMap := make(map[string]APIAction)
+
+	if operationsActions {
+		//Check for create by looking for POST in collectionMethods
+		for _, method := range schema.CollectionMethods {
+			if method == postAPI {
+				//add create
+				apiAction := APIAction{}
+				apiAction.Description = getActionDescription(schema.Id, "create")
+				apiAction.Method = postAPI
+				apiAction.ActionURL = "/v1/" + schema.PluralName
+				resourceFields := make(map[string]client.Field)
+
+				for fieldName, field := range schema.ResourceFields {
+					if field.Create {
+						resourceFields[fieldName] = field
+					}
+				}
+
+				apiAction.Input.InputJSON = generateJSONFromFields(resourceFields)
+				actionMap["Create"] = apiAction
+			}
+		}
+
+		for _, method := range schema.ResourceMethods {
+			if method == "PUT" {
+				//add update
+				apiAction := APIAction{}
+				apiAction.Description = getActionDescription(schema.Id, "update")
+				apiAction.Method = "PUT"
+				apiAction.ActionURL = "/v1/" + schema.PluralName + "/${ID}"
+				resourceFields := make(map[string]client.Field)
+
+				for fieldName, field := range schema.ResourceFields {
+					if field.Update {
+						resourceFields[fieldName] = field
+					}
+				}
+
+				apiAction.Input.InputJSON = generateJSONFromFields(resourceFields)
+				actionMap["Update"] = apiAction
+			} else if method == "DELETE" {
+				//add delete
+				apiAction := APIAction{}
+				apiAction.Description = getActionDescription(schema.Id, "delete")
+				apiAction.Method = "DELETE"
+				apiAction.ActionURL = "/v1/" + schema.PluralName + "/${ID}"
+				actionMap["Delete"] = apiAction
+			}
+		}
+
+	} else {
+
+		for actionName, action := range schema.ResourceActions {
+			//Check if general action or resource specific action is blacklisted
+			if isBlacklistAction(schema.Id, actionName) {
+				continue
+			}
+
+			apiAction := APIAction{}
+			apiAction.Description = getActionDescription(schema.Id, actionName)
+			apiAction.Input = getActionInput(action.Input)
+			apiAction.Output = action.Output
+			apiAction.Method = postAPI
+			apiAction.ActionURL = "/v1/" + schema.PluralName + "/${ID}?action=" + actionName
+
+			actionMap[actionName] = apiAction
+		}
+	}
+
+	return actionMap
+}
+
+func getActionDescription(resourceID string, fieldID string) string {
+	var desc string
+	//desc := "This is the " + fieldID + " action"
+
+	if updatedDesc, inDescMap := descriptionsMap[resourceID+"-resourceAction-"+fieldID]; inDescMap {
+		if updatedDesc != "" {
+			return updatedDesc
+		}
+	}
+
+	return desc
+}
+
 func getActionInput(schemaID string) ActionInput {
 	actionInput := ActionInput{}
 	actionInput.Name = schemaID
-	actionInput.FieldMap = getFieldMap(schemaMap[schemaID])
-	actionInput.InputJson = generateJsonFromFields(schemaMap[schemaID].ResourceFields)
+	//actionInput.FieldMap = getFieldMap(schemaMap[schemaID])
+	actionInput.InputJSON = generateJSONFromFields(schemaMap[schemaID].ResourceFields)
 
 	return actionInput
 }
 
-func generateJsonFromFields(resourceFields map[string]client.Field) string {
-	j, err := json.MarshalIndent(generateFieldTypeMap(resourceFields), "\n", "\t")
+func generateJSONFromFields(resourceFields map[string]client.Field) string {
+	j, err := json.MarshalIndent(generateFieldTypeMap(resourceFields), "", "\t")
 
 	if err != nil {
 		return err.Error()
-	} else {
-		return string(j)
 	}
+	return strings.Replace(string(j), "&#34;", "", -1)
+
 }
 
 func generateFieldTypeMap(resourceFields map[string]client.Field) map[string]interface{} {
-	fieldTypeJsonMap := make(map[string]interface{})
+	fieldTypeJSONMap := make(map[string]interface{})
 	for fieldName, field := range resourceFields {
-		fieldTypeJsonMap[fieldName] = generateTypeValue(field)
-
+		fieldTypeJSONMap[fieldName] = generateTypeValue(field)
 	}
-	return fieldTypeJsonMap
+	return fieldTypeJSONMap
 }
 
 func generateTypeValue(field client.Field) interface{} {
@@ -170,308 +510,4 @@ func generateTypeValue(field client.Field) interface{} {
 	}
 
 	return field.Type
-}
-
-func getActionMap(schema client.Schema, isCUD bool) map[string]APIAction {
-	actionMap := make(map[string]APIAction)
-
-	if isCUD {
-		//get create
-		for _, method := range schema.CollectionMethods {
-			if method == "POST" {
-				//add create
-				apiAction := APIAction{}
-				apiAction.Description = getActionDescription(schema.Id, "create")
-				apiAction.Verb = "POST"
-				apiAction.ActionURL = "/v1/" + schema.Id
-				resourceFields := make(map[string]client.Field)
-
-				for fieldName, field := range schema.ResourceFields {
-					if field.Create {
-						resourceFields[fieldName] = field
-					}
-				}
-
-				apiAction.Input.InputJson = generateJsonFromFields(resourceFields)
-				actionMap["Create"] = apiAction
-			}
-		}
-
-		for _, method := range schema.ResourceMethods {
-			if method == "PUT" {
-				//add update
-				apiAction := APIAction{}
-				apiAction.Description = getActionDescription(schema.Id, "update")
-				apiAction.Verb = "PUT"
-				apiAction.ActionURL = "links.self"
-				resourceFields := make(map[string]client.Field)
-
-				for fieldName, field := range schema.ResourceFields {
-					if field.Update {
-						resourceFields[fieldName] = field
-					}
-				}
-
-				apiAction.Input.InputJson = generateJsonFromFields(resourceFields)
-				actionMap["Update"] = apiAction
-			} else if method == "DELETE" {
-				//add delete
-				apiAction := APIAction{}
-				apiAction.Description = getActionDescription(schema.Id, "delete")
-				apiAction.Verb = "DELETE"
-				apiAction.ActionURL = "links.self"
-				actionMap["Delete"] = apiAction
-			}
-		}
-
-	} else {
-		for actionName, action := range schema.ResourceActions {
-			if strings.EqualFold("create", actionName) || strings.EqualFold("update", actionName) || strings.EqualFold("delete", actionName) {
-				continue
-			}
-			apiAction := APIAction{}
-			apiAction.Description = getActionDescription(schema.Id, actionName)
-			apiAction.Input = getActionInput(action.Input)
-			apiAction.Output = action.Output
-			apiAction.Verb = "POST"
-			apiAction.ActionURL = "actions." + actionName
-			actionMap[actionName] = apiAction
-		}
-	}
-
-	return actionMap
-}
-
-func generateDoc(schema client.Schema, isResource bool) error {
-	err := setupDirectory(API_OUTPUT_DIR + "/" + schema.Id)
-	if err != nil {
-		return err
-	}
-
-	output, err := os.Create(path.Join(API_OUTPUT_DIR, schema.Id, "index.md"))
-
-	if err != nil {
-		return err
-	}
-
-	defer output.Close()
-
-	data := map[string]interface{}{
-		"schemaId":            schema.Id,
-		"resourceDescription": getResourceDescription(schema.Id),
-		"fieldMap":            getFieldMap(schema),
-		"CUDActions":          getActionMap(schema, true),
-		"actionMap":           getActionMap(schema, false),
-		"pluralName":          schema.PluralName,
-		"version":             version,
-		"language":            language,
-		"layout":              layout,
-	}
-
-	var templateName string
-	if isResource {
-		templateName = "apiResource.template"
-	} else {
-		templateName = "apiActionInput.template"
-	}
-	typeTemplate, err := template.New(templateName).ParseFiles("./templates/" + templateName)
-	if err != nil {
-		return err
-	}
-
-	return typeTemplate.Execute(output, data)
-}
-
-func generateApiHomePage() error {
-	output, err := os.Create(path.Join(API_OUTPUT_DIR, "index.md"))
-
-	if err != nil {
-		return err
-	}
-
-	defer output.Close()
-
-	data := map[string]interface{}{
-		"schemaMap": schemaMap,
-		"version":   version,
-		"language":  language,
-		"layout":    layout,
-	}
-
-	funcMap := template.FuncMap{
-		"getResourceDescription": getResourceDescription,
-	}
-
-	typeTemplate, err := template.New("apiHomePage.template").Funcs(funcMap).ParseFiles("./templates/apiHomePage.template")
-	if err != nil {
-		return err
-	}
-
-	return typeTemplate.Execute(output, data)
-}
-
-func setupDirectory(dir string) error {
-	if _, err := os.Stat(dir); os.IsNotExist(err) {
-		return os.MkdirAll(dir, 0755)
-	}
-
-	return nil
-}
-
-func generateFiles() error {
-	err := setupDirectory(API_OUTPUT_DIR)
-	if err != nil {
-		return err
-	}
-
-	err = readDescFile()
-	if err != nil {
-		return err
-	}
-
-	err = readCommonFieldsFile()
-	if err != nil {
-		return err
-	}
-
-	schemaBytes, err := ioutil.ReadFile(API_INPUT_DIR + "/schemas.json")
-	if err != nil {
-		return err
-	}
-
-	var schemas client.Schemas
-
-	err = json.Unmarshal(schemaBytes, &schemas)
-	if err != nil {
-		return err
-	}
-
-	for _, schema := range schemas.Data {
-		schemaMap[schema.Id] = schema
-	}
-
-	for _, schema := range schemaMap {
-		if _, ok := blackListTypes[schema.Id]; ok {
-			continue
-		}
-
-		var isResource bool
-		collectionLink := schema.Resource.Links["collection"]
-		if collectionLink != "" {
-			//a resource has a collection link present. We should only document resources
-			isResource = true
-		} else {
-			isResource = false
-		}
-
-		err = generateDoc(schema, isResource)
-		if err != nil {
-			return err
-		}
-	}
-
-	//generate the home page
-	generateApiHomePage()
-
-	return nil
-}
-
-func readDescFile() error {
-	composeBytes, err := ioutil.ReadFile(API_INPUT_DIR + "/api_description.yml")
-	if err != nil {
-		return err
-	}
-	descriptionsMap = make(map[string]ResourceDescription)
-	err = yaml.Unmarshal(composeBytes, &descriptionsMap)
-	if err != nil {
-		return err
-	}
-
-	composeBytes, err = ioutil.ReadFile(API_INPUT_DIR + "/api_description_override.yml")
-	if err != nil {
-		return err
-	}
-
-	descriptionsOverrideMap = make(map[string]ResourceDescription)
-
-	return yaml.Unmarshal(composeBytes, &descriptionsOverrideMap)
-}
-
-func readCommonFieldsFile() error {
-	//read yaml file to load the common fields
-	composeBytes, err := ioutil.ReadFile(API_INPUT_DIR + "/common_fields.yml")
-	if err != nil {
-		return err
-	}
-	return yaml.Unmarshal(composeBytes, &commonFields)
-}
-
-func getResourceDescription(resourceID string) string {
-	var desc string
-
-	descStruct, ok := descriptionsOverrideMap[resourceID]
-
-	if ok && descStruct.Description != "" {
-		desc = descStruct.Description
-	} else {
-		descStruct, ok = descriptionsMap[resourceID]
-
-		if ok {
-			desc = descStruct.Description
-		} else {
-			desc = "This is the " + resourceID + " resource"
-		}
-	}
-
-	return desc
-}
-
-func getFieldDescription(resourceID string, fieldID string) string {
-	desc := "This is the " + fieldID + " field"
-
-	resDescStruct, ok := descriptionsOverrideMap[resourceID]
-
-	if ok {
-
-		fieldDesc, ok := resDescStruct.ResourceFields[fieldID]
-		if ok && fieldDesc != "" {
-
-			return fieldDesc
-		}
-	}
-
-	resDescStruct, ok = descriptionsMap[resourceID]
-
-	if ok {
-		fieldDesc, ok := resDescStruct.ResourceFields[fieldID]
-		if ok {
-			return fieldDesc
-		}
-	}
-
-	return desc
-}
-
-func getActionDescription(resourceID string, actionID string) string {
-	desc := "This is the " + actionID + " action"
-
-	resDescStruct, ok := descriptionsOverrideMap[resourceID]
-
-	if ok {
-		actionDesc, ok := resDescStruct.ResourceFields[actionID]
-		if ok && actionDesc != "" {
-			return actionDesc
-		}
-	}
-
-	resDescStruct, ok = descriptionsMap[resourceID]
-
-	if ok {
-		actionDesc, ok := resDescStruct.ResourceActions[actionID]
-		if ok {
-			return actionDesc
-		}
-	}
-
-	return desc
 }

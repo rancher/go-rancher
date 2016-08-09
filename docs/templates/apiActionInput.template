@@ -15,5 +15,5 @@ lang: {{.language}}
 
 Field | Type | Required | Default | Description
 ---|---|---|---|---
-{{range $key, $value := .fieldMap}}{{$key}} | {{if $value.TypeReference}}{{$value.TypeReference}}{{else}}{{$value.Type}}{{end}} | {{$value.Required}} | {{$value.Default}} | {{$value.Description}}
+{{range $key, $value := .fieldMap}}{{$key}} | {{if $value.TypeURL}}{{$value.TypeURL}}{{else}}{{$value.Type}}{{end}} | {{$value.Required}} | {{$value.Default}} | {{$value.Description}}
 {{end}}{{end}}

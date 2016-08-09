@@ -1,16 +1,11 @@
 package main
 
 import (
-	"encoding/json"
-	"io/ioutil"
 	"os"
 	"path"
 	"regexp"
 	"strings"
 	"text/template"
-
-	"github.com/rancher/go-rancher/client"
-	"gopkg.in/yaml.v2"
 )
 
 var (
@@ -18,95 +13,80 @@ var (
 	optionsRegexp *regexp.Regexp = regexp.MustCompile(`<list of options>`)
 )
 
-type ResourceDescription struct {
-	Description     string            `yaml:"description"`
-	ResourceFields  map[string]string `yaml:"resourceFields,omitempty"`
-	ResourceActions map[string]string `yaml:"resourceActions,omitempty"`
-}
+func generateDescriptionFile(emptyDesc bool, collectionOnly bool) error {
+	schemas, err := readCattleSchema()
 
-type FieldDescription struct {
-	Description string `yaml:"description"`
-}
-
-type ActionDescription struct {
-	Description string `yaml:"description"`
-}
-
-func getOptions(options []string) string {
-	return strings.Join(options, ", ")
-}
-
-func generateDescriptionFile(emtyDesc bool) error {
-
-	schemaBytes, err := ioutil.ReadFile("./input/schemas.json")
 	if err != nil {
 		return err
 	}
 
-	var schemas client.Schemas
+	if err = readBlacklistFiles(); err != nil {
+		return err
+	}
 
-	err = json.Unmarshal(schemaBytes, &schemas)
+	genericDescMap := make(map[string]string)
+	err = readGenDescFile(genericDescMap)
 	if err != nil {
 		return err
 	}
 
-	genDescMap := make(map[string]string)
-	err = readGenDescFile(genDescMap)
-	if err != nil {
-		return err
-	}
-
-	descriptionsMap = make(map[string]ResourceDescription)
-
-	for _, schema := range schemas.Data {
-		if _, ok := blackListTypes[schema.Id]; ok {
+	for _, resourceSchema := range schemas.Data {
+		//Check if it's an invalid Resource Type
+		if blacklistTypes[resourceSchema.Id] {
 			continue
 		}
 
-		/*collectionLink := schema.Resource.Links["collection"]
-		if collectionLink == "" {
-			continue
-		}*/
+		//Only print out collection links for the collection yml
+		if collectionOnly {
+			// If it's not a collection or it's a blacklist Collection, skip
+			if _, isCollection := resourceSchema.Links["collection"]; !isCollection || isBlacklistCollection(resourceSchema.Id) {
+				continue
+			}
+		} else {
+			//Only add in actions and fields for non-collection only files
+			for actionName := range resourceSchema.ResourceActions {
+				if !isBlacklistAction(resourceSchema.Id, actionName) {
+					if emptyDesc {
+						resourceDescriptionsMap[resourceSchema.Id+"-resourceActions-"+actionName] = ""
+						//resourceDescriptionsMap[resourceSchema.Id+"-"+actionName] = ""
+					} else {
+						resourceDescriptionsMap[resourceSchema.Id+"-resourceActions-"+actionName] = "To " + actionName + " the " + resourceSchema.Id
+					}
+				}
+			}
 
-		//add to descriptionsMap
-		rd := ResourceDescription{}
-		rd.ResourceActions = make(map[string]string)
-		rd.ResourceFields = make(map[string]string)
-
-		for actionName, _ := range schema.ResourceActions {
-			if !emtyDesc {
-				rd.ResourceActions[actionName] = "To " + actionName + " the " + schema.Id
-			} else {
-				rd.ResourceActions[actionName] = ""
+			for fieldName, field := range resourceSchema.ResourceFields {
+				if emptyDesc {
+					resourceDescriptionsMap[resourceSchema.Id+"-resourceFields-"+fieldName] = ""
+					//resourceDescriptionsMap[resourceSchema.Id+"-"+fieldName] = ""
+				} else {
+					//check if a generic desc exists
+					var description string
+					if genericDesc, ok := genericDescMap[fieldName]; ok {
+						description = descRegexp.ReplaceAllString(genericDesc, resourceSchema.Id)
+						description = optionsRegexp.ReplaceAllString(description, "["+strings.Join(field.Options, ", ")+"]")
+					} /*else {
+						//description = "The " + fieldName + " for the " + schema.Id
+					}*/
+					resourceDescriptionsMap[resourceSchema.Id+"-resourceFields-"+fieldName] = description
+				}
 			}
 		}
-
-		for fieldName, field := range schema.ResourceFields {
-			if emtyDesc {
-				rd.ResourceFields[fieldName] = ""
-			} else {
-				//check if a generic desc exists
-				genDesc, ok := genDescMap[fieldName]
-				var description string
-				if ok {
-					description = descRegexp.ReplaceAllString(genDesc, schema.Id)
-					description = optionsRegexp.ReplaceAllString(description, "["+getOptions(field.Options)+"]")
-				} /*else {
-					//description = "The " + fieldName + " for the " + schema.Id
-				}*/
-				rd.ResourceFields[fieldName] = description
-			}
-		}
-		descriptionsMap[schema.Id] = rd
+		resourceDescriptionsMap[resourceSchema.Id+"-description"] = ""
 	}
 
-	err = setupDirectory(API_OUTPUT_DIR)
-	if err != nil {
+	if err = setupDirectory(apiOutputDir); err != nil {
 		return err
 	}
 
-	output, err := os.Create(path.Join(API_INPUT_DIR, "api_description.yml"))
+	var filePrefix string
+	if collectionOnly {
+		filePrefix = "blank_collection_"
+	} else if emptyDesc {
+		filePrefix = "blank_"
+	}
 
+	output, err := os.Create(path.Join(apiInputDir, "/schema-check/"+filePrefix+"api_description.yml"))
 	if err != nil {
 		return err
 	}
@@ -114,24 +94,13 @@ func generateDescriptionFile(emtyDesc bool) error {
 	defer output.Close()
 
 	data := map[string]interface{}{
-		"descriptionMap": descriptionsMap,
+		"descriptionMap": resourceDescriptionsMap,
 	}
 
-	templateName := "apiDescription.template"
-
-	typeTemplate, err := template.New(templateName).ParseFiles("./templates/" + templateName)
+	typeTemplate, err := template.New("apiDescription.template").ParseFiles("./templates/apiDescription.template")
 	if err != nil {
 		return err
 	}
 
 	return typeTemplate.Execute(output, data)
-}
-
-func readGenDescFile(structure map[string]string) error {
-	//read yaml file to load the common desc
-	composeBytes, err := ioutil.ReadFile("./input/generic_descriptions.yml")
-	if err != nil {
-		return err
-	}
-	return yaml.Unmarshal(composeBytes, &structure)
 }
