@@ -14,6 +14,7 @@ import (
 
 	"time"
 	"reflect"
+	"strings"
 )
 
 const (
@@ -207,6 +208,9 @@ func (rancherClient *RancherBaseClient) newHttpClient() *http.Client {
 }
 
 func (rancherClient *RancherBaseClient) doDelete(url string) error {
+	if debug {
+		fmt.Println("DELETE  " + url)
+	}
 	client := rancherClient.newHttpClient()
 	req, err := http.NewRequest("DELETE", url, nil)
 	if err != nil {
@@ -466,10 +470,18 @@ func (rancherClient *RancherBaseClient) doResourceDelete(schemaType string, exis
 	}
 
 	if !contains(schema.ResourceMethods, "DELETE") {
-		return errors.New("Resource type [" + schemaType + "] can not be deleted")
+		// TODO - by pass validation and let the server validate until fixing the issue with the client schema being out of sync
+		//return errors.New("Resource type [" + schemaType + "] can not be deleted")
 	}
 
 	selfUrl, ok := existing.Links[SELF]
+	if !strings.Contains("projects", selfUrl) { // Check if it is using an environment API key
+		parts := strings.Split(selfUrl, rancherClient.Opts.Url)
+		if len(parts) != 2 {
+			return errors.New("Error parsing selfUrl " + selfUrl + " - rancherUrl " + rancherClient.Opts.Url)
+		}
+		selfUrl = rancherClient.Opts.Url + "/projects/" + existing.ProjectId + parts[1]
+	}
 	if !ok {
 		return errors.New(fmt.Sprintf("Failed to find self URL of [%v]", existing))
 	}

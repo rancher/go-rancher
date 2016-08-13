@@ -48,6 +48,7 @@ type Resource struct {
 	Type    string            `json:"type,omitempty"`
 	Links   map[string]string `json:"links"`
 	Actions map[string]string `json:"actions"`
+	ProjectId      string            `json:"projectId,omitempty"`
 }
 
 type Schema struct {

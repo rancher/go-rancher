@@ -7,7 +7,7 @@ const (
 type SetLoadBalancerServiceLinksInput struct {
 	Resource
 
-	ServiceLinks []interface{} `json:"serviceLinks,omitempty" yaml:"service_links,omitempty"`
+	ServiceLinks []LoadBalancerServiceLink `json:"serviceLinks,omitempty" yaml:"service_links,omitempty"`
 }
 
 type SetLoadBalancerServiceLinksInputCollection struct {
