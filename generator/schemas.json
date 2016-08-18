@@ -2,7 +2,7 @@
   "type": "collection",
   "resourceType": "schema",
   "links": {
-    "self": "http://localhost:18282/v1/schemas"
+    "self": "http://localhost:8080/v1/schemas"
   },
   "createTypes": {},
   "actions": {},
@@ -11,8 +11,8 @@
       "id": "account",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/account",
-        "collection": "http://localhost:18282/v1/accounts"
+        "self": "http://localhost:8080/v1/schemas/account",
+        "collection": "http://localhost:8080/v1/accounts"
       },
       "actions": {},
       "pluralName": "accounts",
@@ -363,21 +363,21 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "GET",
-        "POST"
-      ],
       "resourceMethods": [
         "GET",
         "PUT",
         "DELETE"
+      ],
+      "collectionMethods": [
+        "GET",
+        "POST"
       ]
     },
     {
       "id": "activeSetting",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/activesetting"
+        "self": "http://localhost:8080/v1/schemas/activesetting"
       },
       "actions": {},
       "pluralName": "activeSettings",
@@ -431,19 +431,18 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [],
       "resourceMethods": [
         "GET",
         "PUT",
         "DELETE"
-      ]
+      ],
+      "collectionMethods": []
     },
     {
       "id": "addOutputsInput",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/addoutputsinput",
-        "collection": "http://localhost:18282/v1/addoutputsinputs"
+        "self": "http://localhost:8080/v1/schemas/addoutputsinput"
       },
       "actions": {},
       "pluralName": "addOutputsInputs",
@@ -462,18 +461,16 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "GET"
-      ],
       "resourceMethods": [
         "GET"
-      ]
+      ],
+      "collectionMethods": []
     },
     {
       "id": "addRemoveLoadBalancerServiceLinkInput",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/addremoveloadbalancerservicelinkinput"
+        "self": "http://localhost:8080/v1/schemas/addremoveloadbalancerservicelinkinput"
       },
       "actions": {},
       "pluralName": "addRemoveLoadBalancerServiceLinkInputs",
@@ -492,16 +489,16 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [],
       "resourceMethods": [
         "GET"
-      ]
+      ],
+      "collectionMethods": []
     },
     {
       "id": "addRemoveServiceLinkInput",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/addremoveservicelinkinput"
+        "self": "http://localhost:8080/v1/schemas/addremoveservicelinkinput"
       },
       "actions": {},
       "pluralName": "addRemoveServiceLinkInputs",
@@ -520,19 +517,19 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "POST"
-      ],
       "resourceMethods": [
         "GET"
+      ],
+      "collectionMethods": [
+        "POST"
       ]
     },
     {
       "id": "agent",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/agent",
-        "collection": "http://localhost:18282/v1/agents"
+        "self": "http://localhost:8080/v1/schemas/agent",
+        "collection": "http://localhost:8080/v1/agents"
       },
       "actions": {},
       "pluralName": "agents",
@@ -637,6 +634,8 @@
             "activating",
             "active",
             "deactivating",
+            "disconnected",
+            "disconnecting",
             "inactive",
             "purged",
             "purging",
@@ -872,6 +871,10 @@
           "input": null,
           "output": "agent"
         },
+        "disconnect": {
+          "input": null,
+          "output": "agent"
+        },
         "deactivate": {
           "input": null,
           "output": "agent"
@@ -887,19 +890,220 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "GET"
-      ],
       "resourceMethods": [
         "GET"
+      ],
+      "collectionMethods": [
+        "GET"
+      ]
+    },
+    {
+      "id": "amazonec2Config",
+      "type": "schema",
+      "links": {
+        "self": "http://localhost:8080/v1/schemas/amazonec2config"
+      },
+      "actions": {},
+      "pluralName": "amazonec2Configs",
+      "resourceFields": {
+        "accessKey": {
+          "type": "string",
+          "description": "AWS Access Key",
+          "create": true,
+          "update": false,
+          "readOnCreateOnly": false,
+          "default": ""
+        },
+        "ami": {
+          "type": "string",
+          "description": "AWS machine image",
+          "create": true,
+          "update": false,
+          "readOnCreateOnly": false,
+          "default": ""
+        },
+        "deviceName": {
+          "type": "string",
+          "description": "AWS root device name",
+          "create": true,
+          "update": false,
+          "readOnCreateOnly": false,
+          "default": "/dev/sda1"
+        },
+        "iamInstanceProfile": {
+          "type": "string",
+          "description": "AWS IAM Instance Profile",
+          "create": true,
+          "update": false,
+          "readOnCreateOnly": false,
+          "default": ""
+        },
+        "instanceType": {
+          "type": "string",
+          "description": "AWS instance type",
+          "create": true,
+          "update": false,
+          "readOnCreateOnly": false,
+          "default": "t2.micro"
+        },
+        "monitoring": {
+          "type": "boolean",
+          "description": "Set this flag to enable CloudWatch monitoring",
+          "create": true,
+          "update": false,
+          "readOnCreateOnly": false
+        },
+        "privateAddressOnly": {
+          "type": "boolean",
+          "description": "Only use a private IP address",
+          "create": true,
+          "update": false,
+          "readOnCreateOnly": false
+        },
+        "region": {
+          "type": "string",
+          "description": "AWS region",
+          "create": true,
+          "update": false,
+          "readOnCreateOnly": false,
+          "default": "us-east-1"
+        },
+        "requestSpotInstance": {
+          "type": "boolean",
+          "description": "Set this flag to request spot instance",
+          "create": true,
+          "update": false,
+          "readOnCreateOnly": false
+        },
+        "rootSize": {
+          "type": "string",
+          "description": "AWS root disk size (in GB)",
+          "create": true,
+          "update": false,
+          "readOnCreateOnly": false,
+          "default": "16"
+        },
+        "secretKey": {
+          "type": "string",
+          "description": "AWS Secret Key",
+          "create": true,
+          "update": false,
+          "readOnCreateOnly": false,
+          "default": ""
+        },
+        "securityGroup": {
+          "type": "string",
+          "description": "AWS VPC security group",
+          "create": true,
+          "update": false,
+          "readOnCreateOnly": false,
+          "default": "docker-machine"
+        },
+        "sessionToken": {
+          "type": "string",
+          "description": "AWS Session Token",
+          "create": true,
+          "update": false,
+          "readOnCreateOnly": false,
+          "default": ""
+        },
+        "spotPrice": {
+          "type": "string",
+          "description": "AWS spot instance bid price (in dollar)",
+          "create": true,
+          "update": false,
+          "readOnCreateOnly": false,
+          "default": "0.50"
+        },
+        "sshKeypath": {
+          "type": "string",
+          "description": "SSH Key for Instance",
+          "create": true,
+          "update": false,
+          "readOnCreateOnly": false,
+          "default": ""
+        },
+        "sshUser": {
+          "type": "string",
+          "description": "Set the name of the ssh user",
+          "create": true,
+          "update": false,
+          "readOnCreateOnly": false,
+          "default": "ubuntu"
+        },
+        "subnetId": {
+          "type": "string",
+          "description": "AWS VPC subnet id",
+          "create": true,
+          "update": false,
+          "readOnCreateOnly": false,
+          "default": ""
+        },
+        "tags": {
+          "type": "string",
+          "description": "AWS Tags (e.g. key1,value1,key2,value2)",
+          "create": true,
+          "update": false,
+          "readOnCreateOnly": false,
+          "default": ""
+        },
+        "useEbsOptimizedInstance": {
+          "type": "boolean",
+          "description": "Create an EBS optimized instance",
+          "create": true,
+          "update": false,
+          "readOnCreateOnly": false
+        },
+        "usePrivateAddress": {
+          "type": "boolean",
+          "description": "Force the usage of private IP address",
+          "create": true,
+          "update": false,
+          "readOnCreateOnly": false
+        },
+        "volumeType": {
+          "type": "string",
+          "description": "Amazon EBS volume type",
+          "create": true,
+          "update": false,
+          "readOnCreateOnly": false,
+          "default": "gp2"
+        },
+        "vpcId": {
+          "type": "string",
+          "description": "AWS VPC id",
+          "create": true,
+          "update": false,
+          "readOnCreateOnly": false,
+          "default": ""
+        },
+        "zone": {
+          "type": "string",
+          "description": "AWS zone for instance (i.e. a,b,c,d,e)",
+          "create": true,
+          "update": false,
+          "readOnCreateOnly": false,
+          "default": "a"
+        }
+      },
+      "collectionFilters": {},
+      "includeableLinks": [],
+      "resourceActions": {},
+      "collectionActions": {},
+      "collectionFields": {},
+      "resourceMethods": [
+        "GET"
+      ],
+      "collectionMethods": [
+        "POST"
       ]
     },
     {
       "id": "apiKey",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/apikey",
-        "collection": "http://localhost:18282/v1/apikeys"
+        "self": "http://localhost:8080/v1/schemas/apikey",
+        "collection": "http://localhost:8080/v1/apikeys"
       },
       "actions": {},
       "pluralName": "apiKeys",
@@ -1235,22 +1439,22 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "GET",
-        "POST"
-      ],
       "resourceMethods": [
         "GET",
         "PUT",
         "DELETE"
+      ],
+      "collectionMethods": [
+        "GET",
+        "POST"
       ]
     },
     {
       "id": "auditLog",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/auditlog",
-        "collection": "http://localhost:18282/v1/auditlogs"
+        "self": "http://localhost:8080/v1/schemas/auditlog",
+        "collection": "http://localhost:8080/v1/auditlogs"
       },
       "actions": {},
       "pluralName": "auditLogs",
@@ -1542,19 +1746,129 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "GET"
-      ],
       "resourceMethods": [
         "GET"
+      ],
+      "collectionMethods": [
+        "GET"
+      ]
+    },
+    {
+      "id": "azureConfig",
+      "type": "schema",
+      "links": {
+        "self": "http://localhost:8080/v1/schemas/azureconfig"
+      },
+      "actions": {},
+      "pluralName": "azureConfigs",
+      "resourceFields": {
+        "dockerPort": {
+          "type": "string",
+          "description": "Azure Docker port",
+          "create": true,
+          "update": false,
+          "readOnCreateOnly": false,
+          "default": "2376"
+        },
+        "dockerSwarmMasterPort": {
+          "type": "string",
+          "description": "Azure Docker Swarm master port",
+          "create": true,
+          "update": false,
+          "readOnCreateOnly": false,
+          "default": "3376"
+        },
+        "image": {
+          "type": "string",
+          "description": "Azure image name. Default is Ubuntu 14.04 LTS x64",
+          "create": true,
+          "update": false,
+          "readOnCreateOnly": false,
+          "default": ""
+        },
+        "location": {
+          "type": "string",
+          "description": "Azure location",
+          "create": true,
+          "update": false,
+          "readOnCreateOnly": false,
+          "default": "West US"
+        },
+        "password": {
+          "type": "string",
+          "description": "Azure user password",
+          "create": true,
+          "update": false,
+          "readOnCreateOnly": false,
+          "default": ""
+        },
+        "publishSettingsFile": {
+          "type": "string",
+          "description": "Azure publish settings file",
+          "create": true,
+          "update": false,
+          "readOnCreateOnly": false,
+          "default": ""
+        },
+        "size": {
+          "type": "string",
+          "description": "Azure size",
+          "create": true,
+          "update": false,
+          "readOnCreateOnly": false,
+          "default": "Small"
+        },
+        "sshPort": {
+          "type": "string",
+          "description": "Azure SSH port",
+          "create": true,
+          "update": false,
+          "readOnCreateOnly": false,
+          "default": "22"
+        },
+        "subscriptionCert": {
+          "type": "string",
+          "description": "Azure subscription cert",
+          "create": true,
+          "update": false,
+          "readOnCreateOnly": false,
+          "default": ""
+        },
+        "subscriptionId": {
+          "type": "string",
+          "description": "Azure subscription ID",
+          "create": true,
+          "update": false,
+          "readOnCreateOnly": false,
+          "default": ""
+        },
+        "username": {
+          "type": "string",
+          "description": "Azure username",
+          "create": true,
+          "update": false,
+          "readOnCreateOnly": false,
+          "default": "ubuntu"
+        }
+      },
+      "collectionFilters": {},
+      "includeableLinks": [],
+      "resourceActions": {},
+      "collectionActions": {},
+      "collectionFields": {},
+      "resourceMethods": [
+        "GET"
+      ],
+      "collectionMethods": [
+        "POST"
       ]
     },
     {
       "id": "azureadconfig",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/azureadconfig",
-        "collection": "http://localhost:18282/v1/azureadconfigs"
+        "self": "http://localhost:8080/v1/schemas/azureadconfig",
+        "collection": "http://localhost:8080/v1/azureadconfigs"
       },
       "actions": {},
       "pluralName": "azureadconfigs",
@@ -1640,21 +1954,21 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "GET",
-        "POST"
-      ],
       "resourceMethods": [
         "GET",
         "PUT"
+      ],
+      "collectionMethods": [
+        "GET",
+        "POST"
       ]
     },
     {
       "id": "backup",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/backup",
-        "collection": "http://localhost:18282/v1/backups"
+        "self": "http://localhost:8080/v1/schemas/backup",
+        "collection": "http://localhost:8080/v1/backups"
       },
       "actions": {},
       "pluralName": "backups",
@@ -1991,20 +2305,20 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "GET"
-      ],
       "resourceMethods": [
         "GET",
         "DELETE"
+      ],
+      "collectionMethods": [
+        "GET"
       ]
     },
     {
       "id": "backupTarget",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/backuptarget",
-        "collection": "http://localhost:18282/v1/backuptargets"
+        "self": "http://localhost:8080/v1/schemas/backuptarget",
+        "collection": "http://localhost:8080/v1/backuptargets"
       },
       "actions": {},
       "pluralName": "backupTargets",
@@ -2278,20 +2592,20 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "GET",
-        "POST"
-      ],
       "resourceMethods": [
         "GET",
         "DELETE"
+      ],
+      "collectionMethods": [
+        "GET",
+        "POST"
       ]
     },
     {
       "id": "baseMachineConfig",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/basemachineconfig"
+        "self": "http://localhost:8080/v1/schemas/basemachineconfig"
       },
       "actions": {},
       "pluralName": "baseMachineConfigs",
@@ -2301,16 +2615,16 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [],
       "resourceMethods": [
         "GET"
-      ]
+      ],
+      "collectionMethods": []
     },
     {
       "id": "blkioDeviceOption",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/blkiodeviceoption"
+        "self": "http://localhost:8080/v1/schemas/blkiodeviceoption"
       },
       "actions": {},
       "pluralName": "blkioDeviceOptions",
@@ -2361,19 +2675,19 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "POST"
-      ],
       "resourceMethods": [
         "GET"
+      ],
+      "collectionMethods": [
+        "POST"
       ]
     },
     {
       "id": "certificate",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/certificate",
-        "collection": "http://localhost:18282/v1/certificates"
+        "self": "http://localhost:8080/v1/schemas/certificate",
+        "collection": "http://localhost:8080/v1/certificates"
       },
       "actions": {},
       "pluralName": "certificates",
@@ -2773,21 +3087,21 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "GET",
-        "POST"
-      ],
       "resourceMethods": [
         "GET",
         "PUT",
         "DELETE"
+      ],
+      "collectionMethods": [
+        "GET",
+        "POST"
       ]
     },
     {
       "id": "changeSecretInput",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/changesecretinput"
+        "self": "http://localhost:8080/v1/schemas/changesecretinput"
       },
       "actions": {},
       "pluralName": "changeSecretInputs",
@@ -2814,18 +3128,18 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "POST"
-      ],
       "resourceMethods": [
         "GET"
+      ],
+      "collectionMethods": [
+        "POST"
       ]
     },
     {
       "id": "composeConfig",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/composeconfig"
+        "self": "http://localhost:8080/v1/schemas/composeconfig"
       },
       "actions": {},
       "pluralName": "composeConfigs",
@@ -2850,16 +3164,16 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [],
       "resourceMethods": [
         "GET"
-      ]
+      ],
+      "collectionMethods": []
     },
     {
       "id": "composeConfigInput",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/composeconfiginput"
+        "self": "http://localhost:8080/v1/schemas/composeconfiginput"
       },
       "actions": {},
       "pluralName": "composeConfigInputs",
@@ -2878,19 +3192,19 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "POST"
-      ],
       "resourceMethods": [
         "GET"
+      ],
+      "collectionMethods": [
+        "POST"
       ]
     },
     {
       "id": "composeProject",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/composeproject",
-        "collection": "http://localhost:18282/v1/composeprojects"
+        "self": "http://localhost:8080/v1/schemas/composeproject",
+        "collection": "http://localhost:8080/v1/composeprojects"
       },
       "actions": {},
       "pluralName": "composeProjects",
@@ -3259,22 +3573,22 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "GET",
-        "POST"
-      ],
       "resourceMethods": [
         "GET",
         "PUT",
         "DELETE"
+      ],
+      "collectionMethods": [
+        "GET",
+        "POST"
       ]
     },
     {
       "id": "composeService",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/composeservice",
-        "collection": "http://localhost:18282/v1/composeservices"
+        "self": "http://localhost:8080/v1/schemas/composeservice",
+        "collection": "http://localhost:8080/v1/composeservices"
       },
       "actions": {},
       "pluralName": "composeServices",
@@ -3766,20 +4080,20 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "GET"
-      ],
       "resourceMethods": [
         "GET",
         "DELETE"
+      ],
+      "collectionMethods": [
+        "GET"
       ]
     },
     {
       "id": "configItem",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/configitem",
-        "collection": "http://localhost:18282/v1/configitems"
+        "self": "http://localhost:8080/v1/schemas/configitem",
+        "collection": "http://localhost:8080/v1/configitems"
       },
       "actions": {},
       "pluralName": "configItems",
@@ -3851,10 +4165,10 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
+      "resourceMethods": [
         "GET"
       ],
-      "resourceMethods": [
+      "collectionMethods": [
         "GET"
       ]
     },
@@ -3862,8 +4176,8 @@
       "id": "configItemStatus",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/configitemstatus",
-        "collection": "http://localhost:18282/v1/configitemstatuses"
+        "self": "http://localhost:8080/v1/schemas/configitemstatus",
+        "collection": "http://localhost:8080/v1/configitemstatuses"
       },
       "actions": {},
       "pluralName": "configItemStatuses",
@@ -4100,20 +4414,20 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "GET"
-      ],
       "resourceMethods": [
         "GET",
         "PUT"
+      ],
+      "collectionMethods": [
+        "GET"
       ]
     },
     {
       "id": "container",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/container",
-        "collection": "http://localhost:18282/v1/containers"
+        "self": "http://localhost:8080/v1/schemas/container",
+        "collection": "http://localhost:8080/v1/containers"
       },
       "actions": {},
       "pluralName": "containers",
@@ -5351,22 +5665,22 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "GET",
-        "POST"
-      ],
       "resourceMethods": [
         "GET",
         "PUT",
         "DELETE"
+      ],
+      "collectionMethods": [
+        "GET",
+        "POST"
       ]
     },
     {
       "id": "containerEvent",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/containerevent",
-        "collection": "http://localhost:18282/v1/containerevents"
+        "self": "http://localhost:8080/v1/schemas/containerevent",
+        "collection": "http://localhost:8080/v1/containerevents"
       },
       "actions": {},
       "pluralName": "containerEvents",
@@ -5653,10 +5967,10 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
+      "resourceMethods": [
         "GET"
       ],
-      "resourceMethods": [
+      "collectionMethods": [
         "GET"
       ]
     },
@@ -5664,8 +5978,7 @@
       "id": "containerExec",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/containerexec",
-        "collection": "http://localhost:18282/v1/containerexecs"
+        "self": "http://localhost:8080/v1/schemas/containerexec"
       },
       "actions": {},
       "pluralName": "containerExecs",
@@ -5712,19 +6025,18 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "GET",
-        "POST"
-      ],
       "resourceMethods": [
         "GET"
+      ],
+      "collectionMethods": [
+        "POST"
       ]
     },
     {
       "id": "containerLogs",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/containerlogs"
+        "self": "http://localhost:8080/v1/schemas/containerlogs"
       },
       "actions": {},
       "pluralName": "containerLogses",
@@ -5755,18 +6067,18 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "POST"
-      ],
       "resourceMethods": [
         "GET"
+      ],
+      "collectionMethods": [
+        "POST"
       ]
     },
     {
       "id": "containerProxy",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/containerproxy"
+        "self": "http://localhost:8080/v1/schemas/containerproxy"
       },
       "actions": {},
       "pluralName": "containerProxys",
@@ -5801,19 +6113,19 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "POST"
-      ],
       "resourceMethods": [
         "GET"
+      ],
+      "collectionMethods": [
+        "POST"
       ]
     },
     {
       "id": "credential",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/credential",
-        "collection": "http://localhost:18282/v1/credentials"
+        "self": "http://localhost:8080/v1/schemas/credential",
+        "collection": "http://localhost:8080/v1/credentials"
       },
       "actions": {},
       "pluralName": "credentials",
@@ -6149,20 +6461,20 @@
       },
       "collectionActions": {},
       "collectionFields": {},
+      "resourceMethods": [
+        "GET"
+      ],
       "collectionMethods": [
         "GET",
         "POST"
-      ],
-      "resourceMethods": [
-        "GET"
       ]
     },
     {
       "id": "databasechangelog",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/databasechangelog",
-        "collection": "http://localhost:18282/v1/databasechangelogs"
+        "self": "http://localhost:8080/v1/schemas/databasechangelog",
+        "collection": "http://localhost:8080/v1/databasechangelogs"
       },
       "actions": {},
       "pluralName": "databasechangelogs",
@@ -6392,20 +6704,20 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "GET"
-      ],
       "resourceMethods": [
         "GET",
         "DELETE"
+      ],
+      "collectionMethods": [
+        "GET"
       ]
     },
     {
       "id": "databasechangeloglock",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/databasechangeloglock",
-        "collection": "http://localhost:18282/v1/databasechangeloglocks"
+        "self": "http://localhost:8080/v1/schemas/databasechangeloglock",
+        "collection": "http://localhost:8080/v1/databasechangeloglocks"
       },
       "actions": {},
       "pluralName": "databasechangeloglocks",
@@ -6494,20 +6806,119 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "GET"
-      ],
       "resourceMethods": [
         "GET",
         "DELETE"
+      ],
+      "collectionMethods": [
+        "GET"
+      ]
+    },
+    {
+      "id": "digitaloceanConfig",
+      "type": "schema",
+      "links": {
+        "self": "http://localhost:8080/v1/schemas/digitaloceanconfig"
+      },
+      "actions": {},
+      "pluralName": "digitaloceanConfigs",
+      "resourceFields": {
+        "accessToken": {
+          "type": "string",
+          "description": "Digital Ocean access token",
+          "create": true,
+          "update": false,
+          "readOnCreateOnly": false,
+          "default": ""
+        },
+        "backups": {
+          "type": "boolean",
+          "description": "enable backups for droplet",
+          "create": true,
+          "update": false,
+          "readOnCreateOnly": false
+        },
+        "image": {
+          "type": "string",
+          "description": "Digital Ocean Image",
+          "create": true,
+          "update": false,
+          "readOnCreateOnly": false,
+          "default": "ubuntu-15-10-x64"
+        },
+        "ipv6": {
+          "type": "boolean",
+          "description": "enable ipv6 for droplet",
+          "create": true,
+          "update": false,
+          "readOnCreateOnly": false
+        },
+        "privateNetworking": {
+          "type": "boolean",
+          "description": "enable private networking for droplet",
+          "create": true,
+          "update": false,
+          "readOnCreateOnly": false
+        },
+        "region": {
+          "type": "string",
+          "description": "Digital Ocean region",
+          "create": true,
+          "update": false,
+          "readOnCreateOnly": false,
+          "default": "nyc3"
+        },
+        "size": {
+          "type": "string",
+          "description": "Digital Ocean size",
+          "create": true,
+          "update": false,
+          "readOnCreateOnly": false,
+          "default": "512mb"
+        },
+        "sshPort": {
+          "type": "string",
+          "description": "SSH port",
+          "create": true,
+          "update": false,
+          "readOnCreateOnly": false,
+          "default": "22"
+        },
+        "sshUser": {
+          "type": "string",
+          "description": "SSH username",
+          "create": true,
+          "update": false,
+          "readOnCreateOnly": false,
+          "default": "root"
+        },
+        "userdata": {
+          "type": "string",
+          "description": "path to file with cloud-init user-data",
+          "create": true,
+          "update": false,
+          "readOnCreateOnly": false,
+          "default": ""
+        }
+      },
+      "collectionFilters": {},
+      "includeableLinks": [],
+      "resourceActions": {},
+      "collectionActions": {},
+      "collectionFields": {},
+      "resourceMethods": [
+        "GET"
+      ],
+      "collectionMethods": [
+        "POST"
       ]
     },
     {
       "id": "dnsService",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/dnsservice",
-        "collection": "http://localhost:18282/v1/dnsservices"
+        "self": "http://localhost:8080/v1/schemas/dnsservice",
+        "collection": "http://localhost:8080/v1/dnsservices"
       },
       "actions": {},
       "pluralName": "dnsServices",
@@ -7010,22 +7421,21 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "GET",
-        "POST"
-      ],
       "resourceMethods": [
         "GET",
         "PUT",
         "DELETE"
+      ],
+      "collectionMethods": [
+        "GET",
+        "POST"
       ]
     },
     {
       "id": "dockerBuild",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/dockerbuild",
-        "collection": "http://localhost:18282/v1/dockerbuilds"
+        "self": "http://localhost:8080/v1/schemas/dockerbuild"
       },
       "actions": {},
       "pluralName": "dockerBuilds",
@@ -7084,20 +7494,19 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "GET",
-        "POST"
-      ],
       "resourceMethods": [
         "GET"
+      ],
+      "collectionMethods": [
+        "POST"
       ]
     },
     {
       "id": "dynamicSchema",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/dynamicschema",
-        "collection": "http://localhost:18282/v1/dynamicschemas"
+        "self": "http://localhost:8080/v1/schemas/dynamicschema",
+        "collection": "http://localhost:8080/v1/dynamicschemas"
       },
       "actions": {},
       "pluralName": "dynamicSchemas",
@@ -7395,21 +7804,21 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "GET",
-        "POST"
-      ],
       "resourceMethods": [
         "GET",
         "DELETE"
+      ],
+      "collectionMethods": [
+        "GET",
+        "POST"
       ]
     },
     {
       "id": "environment",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/environment",
-        "collection": "http://localhost:18282/v1/environments"
+        "self": "http://localhost:8080/v1/schemas/environment",
+        "collection": "http://localhost:8080/v1/environments"
       },
       "actions": {},
       "pluralName": "environments",
@@ -7824,22 +8233,21 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "GET",
-        "POST"
-      ],
       "resourceMethods": [
         "GET",
         "PUT",
         "DELETE"
+      ],
+      "collectionMethods": [
+        "GET",
+        "POST"
       ]
     },
     {
       "id": "environmentUpgrade",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/environmentupgrade",
-        "collection": "http://localhost:18282/v1/environmentupgrades"
+        "self": "http://localhost:8080/v1/schemas/environmentupgrade"
       },
       "actions": {},
       "pluralName": "environmentUpgrades",
@@ -7878,19 +8286,18 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "GET",
-        "POST"
-      ],
       "resourceMethods": [
         "GET"
+      ],
+      "collectionMethods": [
+        "POST"
       ]
     },
     {
       "id": "extensionImplementation",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/extensionimplementation"
+        "self": "http://localhost:8080/v1/schemas/extensionimplementation"
       },
       "actions": {},
       "pluralName": "extensionImplementations",
@@ -7922,17 +8329,17 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [],
       "resourceMethods": [
         "GET"
-      ]
+      ],
+      "collectionMethods": []
     },
     {
       "id": "extensionPoint",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/extensionpoint",
-        "collection": "http://localhost:18282/v1/extensionpoints"
+        "self": "http://localhost:8080/v1/schemas/extensionpoint",
+        "collection": "http://localhost:8080/v1/extensionpoints"
       },
       "actions": {},
       "pluralName": "extensionPoints",
@@ -7978,10 +8385,10 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
+      "resourceMethods": [
         "GET"
       ],
-      "resourceMethods": [
+      "collectionMethods": [
         "GET"
       ]
     },
@@ -7989,8 +8396,8 @@
       "id": "externalDnsEvent",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/externaldnsevent",
-        "collection": "http://localhost:18282/v1/externaldnsevents"
+        "self": "http://localhost:8080/v1/schemas/externaldnsevent",
+        "collection": "http://localhost:8080/v1/externaldnsevents"
       },
       "actions": {},
       "pluralName": "externalDnsEvents",
@@ -8250,10 +8657,10 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
+      "resourceMethods": [
         "GET"
       ],
-      "resourceMethods": [
+      "collectionMethods": [
         "GET"
       ]
     },
@@ -8261,8 +8668,8 @@
       "id": "externalEvent",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/externalevent",
-        "collection": "http://localhost:18282/v1/externalevents"
+        "self": "http://localhost:8080/v1/schemas/externalevent",
+        "collection": "http://localhost:8080/v1/externalevents"
       },
       "actions": {},
       "pluralName": "externalEvents",
@@ -8501,10 +8908,10 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
+      "resourceMethods": [
         "GET"
       ],
-      "resourceMethods": [
+      "collectionMethods": [
         "GET"
       ]
     },
@@ -8512,8 +8919,8 @@
       "id": "externalHandler",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/externalhandler",
-        "collection": "http://localhost:18282/v1/externalhandlers"
+        "self": "http://localhost:8080/v1/schemas/externalhandler",
+        "collection": "http://localhost:8080/v1/externalhandlers"
       },
       "actions": {},
       "pluralName": "externalHandlers",
@@ -8835,21 +9242,21 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "GET",
-        "POST"
-      ],
       "resourceMethods": [
         "GET",
         "PUT"
+      ],
+      "collectionMethods": [
+        "GET",
+        "POST"
       ]
     },
     {
       "id": "externalHandlerExternalHandlerProcessMap",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/externalhandlerexternalhandlerprocessmap",
-        "collection": "http://localhost:18282/v1/externalhandlerexternalhandlerprocessmaps"
+        "self": "http://localhost:8080/v1/schemas/externalhandlerexternalhandlerprocessmap",
+        "collection": "http://localhost:8080/v1/externalhandlerexternalhandlerprocessmaps"
       },
       "actions": {},
       "pluralName": "externalHandlerExternalHandlerProcessMaps",
@@ -9178,10 +9585,10 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
+      "resourceMethods": [
         "GET"
       ],
-      "resourceMethods": [
+      "collectionMethods": [
         "GET"
       ]
     },
@@ -9189,8 +9596,8 @@
       "id": "externalHandlerProcess",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/externalhandlerprocess",
-        "collection": "http://localhost:18282/v1/externalhandlerprocesses"
+        "self": "http://localhost:8080/v1/schemas/externalhandlerprocess",
+        "collection": "http://localhost:8080/v1/externalhandlerprocesses"
       },
       "actions": {},
       "pluralName": "externalHandlerProcesses",
@@ -9465,10 +9872,10 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
+      "resourceMethods": [
         "GET"
       ],
-      "resourceMethods": [
+      "collectionMethods": [
         "GET"
       ]
     },
@@ -9476,7 +9883,7 @@
       "id": "externalHandlerProcessConfig",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/externalhandlerprocessconfig"
+        "self": "http://localhost:8080/v1/schemas/externalhandlerprocessconfig"
       },
       "actions": {},
       "pluralName": "externalHandlerProcessConfigs",
@@ -9501,19 +9908,19 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "POST"
-      ],
       "resourceMethods": [
         "GET"
+      ],
+      "collectionMethods": [
+        "POST"
       ]
     },
     {
       "id": "externalHostEvent",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/externalhostevent",
-        "collection": "http://localhost:18282/v1/externalhostevents"
+        "self": "http://localhost:8080/v1/schemas/externalhostevent",
+        "collection": "http://localhost:8080/v1/externalhostevents"
       },
       "actions": {},
       "pluralName": "externalHostEvents",
@@ -9776,20 +10183,20 @@
       },
       "collectionActions": {},
       "collectionFields": {},
+      "resourceMethods": [
+        "GET"
+      ],
       "collectionMethods": [
         "GET",
         "POST"
-      ],
-      "resourceMethods": [
-        "GET"
       ]
     },
     {
       "id": "externalService",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/externalservice",
-        "collection": "http://localhost:18282/v1/externalservices"
+        "self": "http://localhost:8080/v1/schemas/externalservice",
+        "collection": "http://localhost:8080/v1/externalservices"
       },
       "actions": {},
       "pluralName": "externalServices",
@@ -10279,22 +10686,22 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "GET",
-        "POST"
-      ],
       "resourceMethods": [
         "GET",
         "PUT",
         "DELETE"
+      ],
+      "collectionMethods": [
+        "GET",
+        "POST"
       ]
     },
     {
       "id": "externalServiceEvent",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/externalserviceevent",
-        "collection": "http://localhost:18282/v1/externalserviceevents"
+        "self": "http://localhost:8080/v1/schemas/externalserviceevent",
+        "collection": "http://localhost:8080/v1/externalserviceevents"
       },
       "actions": {},
       "pluralName": "externalServiceEvents",
@@ -10548,10 +10955,10 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
+      "resourceMethods": [
         "GET"
       ],
-      "resourceMethods": [
+      "collectionMethods": [
         "GET"
       ]
     },
@@ -10559,8 +10966,8 @@
       "id": "externalStoragePoolEvent",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/externalstoragepoolevent",
-        "collection": "http://localhost:18282/v1/externalstoragepoolevents"
+        "self": "http://localhost:8080/v1/schemas/externalstoragepoolevent",
+        "collection": "http://localhost:8080/v1/externalstoragepoolevents"
       },
       "actions": {},
       "pluralName": "externalStoragePoolEvents",
@@ -10814,10 +11221,10 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
+      "resourceMethods": [
         "GET"
       ],
-      "resourceMethods": [
+      "collectionMethods": [
         "GET"
       ]
     },
@@ -10825,8 +11232,8 @@
       "id": "externalVolumeEvent",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/externalvolumeevent",
-        "collection": "http://localhost:18282/v1/externalvolumeevents"
+        "self": "http://localhost:8080/v1/schemas/externalvolumeevent",
+        "collection": "http://localhost:8080/v1/externalvolumeevents"
       },
       "actions": {},
       "pluralName": "externalVolumeEvents",
@@ -11073,10 +11480,10 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
+      "resourceMethods": [
         "GET"
       ],
-      "resourceMethods": [
+      "collectionMethods": [
         "GET"
       ]
     },
@@ -11084,7 +11491,7 @@
       "id": "fieldDocumentation",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/fielddocumentation"
+        "self": "http://localhost:8080/v1/schemas/fielddocumentation"
       },
       "actions": {},
       "pluralName": "fieldDocumentations",
@@ -11102,17 +11509,17 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [],
       "resourceMethods": [
         "GET"
-      ]
+      ],
+      "collectionMethods": []
     },
     {
       "id": "githubconfig",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/githubconfig",
-        "collection": "http://localhost:18282/v1/githubconfigs"
+        "self": "http://localhost:8080/v1/schemas/githubconfig",
+        "collection": "http://localhost:8080/v1/githubconfigs"
       },
       "actions": {},
       "pluralName": "githubconfigs",
@@ -11199,21 +11606,21 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "GET",
-        "POST"
-      ],
       "resourceMethods": [
         "GET",
         "PUT"
+      ],
+      "collectionMethods": [
+        "GET",
+        "POST"
       ]
     },
     {
       "id": "haConfig",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/haconfig",
-        "collection": "http://localhost:18282/v1/haconfigs"
+        "self": "http://localhost:8080/v1/schemas/haconfig",
+        "collection": "http://localhost:8080/v1/haconfigs"
       },
       "actions": {},
       "pluralName": "haConfigs",
@@ -11260,20 +11667,20 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "GET"
-      ],
       "resourceMethods": [
         "GET",
         "PUT"
+      ],
+      "collectionMethods": [
+        "GET"
       ]
     },
     {
       "id": "haConfigInput",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/haconfiginput",
-        "collection": "http://localhost:18282/v1/haconfiginputs"
+        "self": "http://localhost:8080/v1/schemas/haconfiginput",
+        "collection": "http://localhost:8080/v1/haconfiginputs"
       },
       "actions": {},
       "pluralName": "haConfigInputs",
@@ -11451,19 +11858,19 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
+      "resourceMethods": [
+        "GET"
+      ],
       "collectionMethods": [
         "GET",
         "POST"
-      ],
-      "resourceMethods": [
-        "GET"
       ]
     },
     {
       "id": "haproxyConfig",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/haproxyconfig"
+        "self": "http://localhost:8080/v1/schemas/haproxyconfig"
       },
       "actions": {},
       "pluralName": "haproxyConfigs",
@@ -11492,20 +11899,20 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "POST"
-      ],
       "resourceMethods": [
         "GET",
         "PUT"
+      ],
+      "collectionMethods": [
+        "POST"
       ]
     },
     {
       "id": "healthcheckInstanceHostMap",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/healthcheckinstancehostmap",
-        "collection": "http://localhost:18282/v1/healthcheckinstancehostmaps"
+        "self": "http://localhost:8080/v1/schemas/healthcheckinstancehostmap",
+        "collection": "http://localhost:8080/v1/healthcheckinstancehostmaps"
       },
       "actions": {},
       "pluralName": "healthcheckInstanceHostMaps",
@@ -11844,10 +12251,10 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
+      "resourceMethods": [
         "GET"
       ],
-      "resourceMethods": [
+      "collectionMethods": [
         "GET"
       ]
     },
@@ -11855,8 +12262,8 @@
       "id": "host",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/host",
-        "collection": "http://localhost:18282/v1/hosts"
+        "self": "http://localhost:8080/v1/schemas/host",
+        "collection": "http://localhost:8080/v1/hosts"
       },
       "actions": {},
       "pluralName": "hosts",
@@ -12307,21 +12714,20 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "GET"
-      ],
       "resourceMethods": [
         "GET",
         "PUT",
         "DELETE"
+      ],
+      "collectionMethods": [
+        "GET"
       ]
     },
     {
       "id": "hostAccess",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/hostaccess",
-        "collection": "http://localhost:18282/v1/hostaccesses"
+        "self": "http://localhost:8080/v1/schemas/hostaccess"
       },
       "actions": {},
       "pluralName": "hostAccesses",
@@ -12346,19 +12752,17 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "GET"
-      ],
       "resourceMethods": [
         "GET"
-      ]
+      ],
+      "collectionMethods": []
     },
     {
       "id": "hostApiProxyToken",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/hostapiproxytoken",
-        "collection": "http://localhost:18282/v1/hostapiproxytokens"
+        "self": "http://localhost:8080/v1/schemas/hostapiproxytoken",
+        "collection": "http://localhost:8080/v1/hostapiproxytokens"
       },
       "actions": {},
       "pluralName": "hostApiProxyTokens",
@@ -12390,10 +12794,10 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
+      "resourceMethods": [
         "GET"
       ],
-      "resourceMethods": [
+      "collectionMethods": [
         "GET"
       ]
     },
@@ -12401,8 +12805,8 @@
       "id": "identity",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/identity",
-        "collection": "http://localhost:18282/v1/identities"
+        "self": "http://localhost:8080/v1/schemas/identity",
+        "collection": "http://localhost:8080/v1/identities"
       },
       "actions": {},
       "pluralName": "identities",
@@ -12514,10 +12918,10 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
+      "resourceMethods": [
         "GET"
       ],
-      "resourceMethods": [
+      "collectionMethods": [
         "GET"
       ]
     },
@@ -12525,8 +12929,8 @@
       "id": "image",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/image",
-        "collection": "http://localhost:18282/v1/images"
+        "self": "http://localhost:8080/v1/schemas/image",
+        "collection": "http://localhost:8080/v1/images"
       },
       "actions": {},
       "pluralName": "images",
@@ -12904,10 +13308,10 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
+      "resourceMethods": [
         "GET"
       ],
-      "resourceMethods": [
+      "collectionMethods": [
         "GET"
       ]
     },
@@ -12915,7 +13319,7 @@
       "id": "inServiceUpgradeStrategy",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/inserviceupgradestrategy"
+        "self": "http://localhost:8080/v1/schemas/inserviceupgradestrategy"
       },
       "actions": {},
       "pluralName": "inServiceUpgradeStrategys",
@@ -12987,19 +13391,19 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "POST"
-      ],
       "resourceMethods": [
         "GET"
+      ],
+      "collectionMethods": [
+        "POST"
       ]
     },
     {
       "id": "instance",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/instance",
-        "collection": "http://localhost:18282/v1/instances"
+        "self": "http://localhost:8080/v1/schemas/instance",
+        "collection": "http://localhost:8080/v1/instances"
       },
       "actions": {},
       "pluralName": "instances",
@@ -13639,10 +14043,10 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
+      "resourceMethods": [
         "GET"
       ],
-      "resourceMethods": [
+      "collectionMethods": [
         "GET"
       ]
     },
@@ -13650,7 +14054,7 @@
       "id": "instanceConsole",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/instanceconsole"
+        "self": "http://localhost:8080/v1/schemas/instanceconsole"
       },
       "actions": {},
       "pluralName": "instanceConsoles",
@@ -13682,16 +14086,16 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [],
       "resourceMethods": [
         "GET"
-      ]
+      ],
+      "collectionMethods": []
     },
     {
       "id": "instanceConsoleInput",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/instanceconsoleinput"
+        "self": "http://localhost:8080/v1/schemas/instanceconsoleinput"
       },
       "actions": {},
       "pluralName": "instanceConsoleInputs",
@@ -13701,16 +14105,16 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [],
       "resourceMethods": [
         "GET"
-      ]
+      ],
+      "collectionMethods": []
     },
     {
       "id": "instanceHealthCheck",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/instancehealthcheck"
+        "self": "http://localhost:8080/v1/schemas/instancehealthcheck"
       },
       "actions": {},
       "pluralName": "instanceHealthChecks",
@@ -13823,19 +14227,19 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "POST"
-      ],
       "resourceMethods": [
         "GET"
+      ],
+      "collectionMethods": [
+        "POST"
       ]
     },
     {
       "id": "instanceLink",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/instancelink",
-        "collection": "http://localhost:18282/v1/instancelinks"
+        "self": "http://localhost:8080/v1/schemas/instancelink",
+        "collection": "http://localhost:8080/v1/instancelinks"
       },
       "actions": {},
       "pluralName": "instanceLinks",
@@ -14197,19 +14601,19 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "GET"
-      ],
       "resourceMethods": [
         "GET",
         "PUT"
+      ],
+      "collectionMethods": [
+        "GET"
       ]
     },
     {
       "id": "instanceStop",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/instancestop"
+        "self": "http://localhost:8080/v1/schemas/instancestop"
       },
       "actions": {},
       "pluralName": "instanceStops",
@@ -14234,19 +14638,19 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "POST"
-      ],
       "resourceMethods": [
         "GET"
+      ],
+      "collectionMethods": [
+        "POST"
       ]
     },
     {
       "id": "ipAddress",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/ipaddress",
-        "collection": "http://localhost:18282/v1/ipaddresses"
+        "self": "http://localhost:8080/v1/schemas/ipaddress",
+        "collection": "http://localhost:8080/v1/ipaddresses"
       },
       "actions": {},
       "pluralName": "ipAddresses",
@@ -14635,10 +15039,10 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
+      "resourceMethods": [
         "GET"
       ],
-      "resourceMethods": [
+      "collectionMethods": [
         "GET"
       ]
     },
@@ -14646,7 +15050,7 @@
       "id": "ipAddressAssociateInput",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/ipaddressassociateinput"
+        "self": "http://localhost:8080/v1/schemas/ipaddressassociateinput"
       },
       "actions": {},
       "pluralName": "ipAddressAssociateInputs",
@@ -14664,19 +15068,19 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "POST"
-      ],
       "resourceMethods": [
         "GET"
+      ],
+      "collectionMethods": [
+        "POST"
       ]
     },
     {
       "id": "kubernetesService",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/kubernetesservice",
-        "collection": "http://localhost:18282/v1/kubernetesservices"
+        "self": "http://localhost:8080/v1/schemas/kubernetesservice",
+        "collection": "http://localhost:8080/v1/kubernetesservices"
       },
       "actions": {},
       "pluralName": "kubernetesServices",
@@ -15138,10 +15542,10 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
+      "resourceMethods": [
         "GET"
       ],
-      "resourceMethods": [
+      "collectionMethods": [
         "GET"
       ]
     },
@@ -15149,8 +15553,8 @@
       "id": "kubernetesStack",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/kubernetesstack",
-        "collection": "http://localhost:18282/v1/kubernetesstacks"
+        "self": "http://localhost:8080/v1/schemas/kubernetesstack",
+        "collection": "http://localhost:8080/v1/kubernetesstacks"
       },
       "actions": {},
       "pluralName": "kubernetesStacks",
@@ -15531,22 +15935,22 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "GET",
-        "POST"
-      ],
       "resourceMethods": [
         "GET",
         "PUT",
         "DELETE"
+      ],
+      "collectionMethods": [
+        "GET",
+        "POST"
       ]
     },
     {
       "id": "kubernetesStackUpgrade",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/kubernetesstackupgrade",
-        "collection": "http://localhost:18282/v1/kubernetesstackupgrades"
+        "self": "http://localhost:8080/v1/schemas/kubernetesstackupgrade",
+        "collection": "http://localhost:8080/v1/kubernetesstackupgrades"
       },
       "actions": {},
       "pluralName": "kubernetesStackUpgrades",
@@ -15578,20 +15982,20 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
+      "resourceMethods": [
+        "GET"
+      ],
       "collectionMethods": [
         "GET",
         "POST"
-      ],
-      "resourceMethods": [
-        "GET"
       ]
     },
     {
       "id": "label",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/label",
-        "collection": "http://localhost:18282/v1/labels"
+        "self": "http://localhost:8080/v1/schemas/label",
+        "collection": "http://localhost:8080/v1/labels"
       },
       "actions": {},
       "pluralName": "labels",
@@ -15907,10 +16311,10 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
+      "resourceMethods": [
         "GET"
       ],
-      "resourceMethods": [
+      "collectionMethods": [
         "GET"
       ]
     },
@@ -15918,7 +16322,7 @@
       "id": "launchConfig",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/launchconfig"
+        "self": "http://localhost:8080/v1/schemas/launchconfig"
       },
       "actions": {},
       "pluralName": "launchConfigs",
@@ -17199,20 +17603,20 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "POST"
-      ],
       "resourceMethods": [
         "GET",
         "PUT"
+      ],
+      "collectionMethods": [
+        "POST"
       ]
     },
     {
       "id": "ldapconfig",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/ldapconfig",
-        "collection": "http://localhost:18282/v1/ldapconfigs"
+        "self": "http://localhost:8080/v1/schemas/ldapconfig",
+        "collection": "http://localhost:8080/v1/ldapconfigs"
       },
       "actions": {},
       "pluralName": "ldapconfigs",
@@ -17453,20 +17857,20 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "GET",
-        "POST"
-      ],
       "resourceMethods": [
         "GET",
         "PUT"
+      ],
+      "collectionMethods": [
+        "GET",
+        "POST"
       ]
     },
     {
       "id": "loadBalancerAppCookieStickinessPolicy",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/loadbalancerappcookiestickinesspolicy"
+        "self": "http://localhost:8080/v1/schemas/loadbalancerappcookiestickinesspolicy"
       },
       "actions": {},
       "pluralName": "loadBalancerAppCookieStickinessPolicys",
@@ -17537,20 +17941,19 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "POST"
-      ],
       "resourceMethods": [
         "GET",
         "PUT"
+      ],
+      "collectionMethods": [
+        "POST"
       ]
     },
     {
       "id": "loadBalancerConfig",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/loadbalancerconfig",
-        "collection": "http://localhost:18282/v1/loadbalancerconfigs"
+        "self": "http://localhost:8080/v1/schemas/loadbalancerconfig"
       },
       "actions": {},
       "pluralName": "loadBalancerConfigs",
@@ -17577,21 +17980,20 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "GET",
-        "POST"
-      ],
       "resourceMethods": [
         "GET",
         "PUT",
         "DELETE"
+      ],
+      "collectionMethods": [
+        "POST"
       ]
     },
     {
       "id": "loadBalancerCookieStickinessPolicy",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/loadbalancercookiestickinesspolicy"
+        "self": "http://localhost:8080/v1/schemas/loadbalancercookiestickinesspolicy"
       },
       "actions": {},
       "pluralName": "loadBalancerCookieStickinessPolicys",
@@ -17659,20 +18061,20 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "POST"
-      ],
       "resourceMethods": [
         "GET",
         "PUT"
+      ],
+      "collectionMethods": [
+        "POST"
       ]
     },
     {
       "id": "loadBalancerService",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/loadbalancerservice",
-        "collection": "http://localhost:18282/v1/loadbalancerservices"
+        "self": "http://localhost:8080/v1/schemas/loadbalancerservice",
+        "collection": "http://localhost:8080/v1/loadbalancerservices"
       },
       "actions": {},
       "pluralName": "loadBalancerServices",
@@ -18239,21 +18641,21 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "GET",
-        "POST"
-      ],
       "resourceMethods": [
         "GET",
         "PUT",
         "DELETE"
+      ],
+      "collectionMethods": [
+        "GET",
+        "POST"
       ]
     },
     {
       "id": "loadBalancerServiceLink",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/loadbalancerservicelink"
+        "self": "http://localhost:8080/v1/schemas/loadbalancerservicelink"
       },
       "actions": {},
       "pluralName": "loadBalancerServiceLinks",
@@ -18287,19 +18689,19 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "POST"
-      ],
       "resourceMethods": [
         "GET"
+      ],
+      "collectionMethods": [
+        "POST"
       ]
     },
     {
       "id": "localAuthConfig",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/localauthconfig",
-        "collection": "http://localhost:18282/v1/localauthconfigs"
+        "self": "http://localhost:8080/v1/schemas/localauthconfig",
+        "collection": "http://localhost:8080/v1/localauthconfigs"
       },
       "actions": {},
       "pluralName": "localAuthConfigs",
@@ -18357,19 +18759,19 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
+      "resourceMethods": [
+        "GET"
+      ],
       "collectionMethods": [
         "GET",
         "POST"
-      ],
-      "resourceMethods": [
-        "GET"
       ]
     },
     {
       "id": "logConfig",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/logconfig"
+        "self": "http://localhost:8080/v1/schemas/logconfig"
       },
       "actions": {},
       "pluralName": "logConfigs",
@@ -18398,19 +18800,19 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "POST"
-      ],
       "resourceMethods": [
         "GET"
+      ],
+      "collectionMethods": [
+        "POST"
       ]
     },
     {
       "id": "machine",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/machine",
-        "collection": "http://localhost:18282/v1/machines"
+        "self": "http://localhost:8080/v1/schemas/machine",
+        "collection": "http://localhost:8080/v1/machines"
       },
       "actions": {},
       "pluralName": "machines",
@@ -18457,8 +18859,7 @@
           "create": false,
           "update": false,
           "nullable": true,
-          "readOnCreateOnly": false,
-          "maxLength": 128
+          "readOnCreateOnly": false
         },
         "externalId": {
           "type": "string",
@@ -18492,9 +18893,7 @@
           "create": true,
           "update": false,
           "required": true,
-          "readOnCreateOnly": false,
-          "minLength": 1,
-          "maxLength": 255
+          "readOnCreateOnly": false
         },
         "removeTime": {
           "type": "date",
@@ -18534,6 +18933,15 @@
             "updating"
           ]
         },
+        "uuid": {
+          "type": "string",
+          "description": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false,
+          "maxLength": 128
+        },
         "transitioning": {
           "type": "enum",
           "description": null,
@@ -18562,14 +18970,13 @@
           "nullable": true,
           "readOnCreateOnly": false
         },
-        "uuid": {
-          "type": "string",
+        "amazonec2Config": {
+          "type": "amazonec2Config",
           "description": null,
-          "create": false,
+          "create": true,
           "update": false,
           "nullable": true,
-          "readOnCreateOnly": false,
-          "maxLength": 128
+          "readOnCreateOnly": false
         },
         "authCertificateAuthority": {
           "type": "string",
@@ -18580,6 +18987,86 @@
           "readOnCreateOnly": false
         },
         "authKey": {
+          "type": "string",
+          "description": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "azureConfig": {
+          "type": "azureConfig",
+          "description": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "digitaloceanConfig": {
+          "type": "digitaloceanConfig",
+          "description": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "dockerVersion": {
+          "type": "string",
+          "description": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "engineEnv": {
+          "type": "map[string]",
+          "description": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "engineInsecureRegistry": {
+          "type": "array[string]",
+          "description": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "engineInstallUrl": {
+          "type": "string",
+          "description": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "engineLabel": {
+          "type": "map[string]",
+          "description": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "engineOpt": {
+          "type": "map[string]",
+          "description": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "engineRegistryMirror": {
+          "type": "array[string]",
+          "description": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "engineStorageDriver": {
           "type": "string",
           "description": null,
           "create": true,
@@ -18603,64 +19090,8 @@
           "nullable": true,
           "readOnCreateOnly": false
         },
-        "engineInstallUrl": {
-          "type": "string",
-          "description": null,
-          "create": true,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false
-        },
-        "dockerVersion": {
-          "type": "string",
-          "description": null,
-          "create": true,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false
-        },
-        "engineOpt": {
-          "type": "map[string]",
-          "description": null,
-          "create": true,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false
-        },
-        "engineInsecureRegistry": {
-          "type": "array[string]",
-          "description": null,
-          "create": true,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false
-        },
-        "engineRegistryMirror": {
-          "type": "array[string]",
-          "description": null,
-          "create": true,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false
-        },
-        "engineLabel": {
-          "type": "map[string]",
-          "description": null,
-          "create": true,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false
-        },
-        "engineStorageDriver": {
-          "type": "string",
-          "description": null,
-          "create": true,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false
-        },
-        "engineEnv": {
-          "type": "map[string]",
+        "packetConfig": {
+          "type": "packetConfig",
           "description": null,
           "create": true,
           "update": false,
@@ -18836,22 +19267,22 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "GET",
-        "POST"
-      ],
       "resourceMethods": [
         "GET",
         "PUT",
         "DELETE"
+      ],
+      "collectionMethods": [
+        "GET",
+        "POST"
       ]
     },
     {
       "id": "machineDriver",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/machinedriver",
-        "collection": "http://localhost:18282/v1/machinedrivers"
+        "self": "http://localhost:8080/v1/schemas/machinedriver",
+        "collection": "http://localhost:8080/v1/machinedrivers"
       },
       "actions": {},
       "pluralName": "machineDrivers",
@@ -18998,7 +19429,7 @@
           "type": "string",
           "description": null,
           "create": true,
-          "update": false,
+          "update": true,
           "readOnCreateOnly": false
         },
         "builtin": {
@@ -19192,22 +19623,22 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "GET",
-        "POST"
-      ],
       "resourceMethods": [
         "GET",
         "PUT",
         "DELETE"
+      ],
+      "collectionMethods": [
+        "GET",
+        "POST"
       ]
     },
     {
       "id": "mount",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/mount",
-        "collection": "http://localhost:18282/v1/mounts"
+        "self": "http://localhost:8080/v1/schemas/mount",
+        "collection": "http://localhost:8080/v1/mounts"
       },
       "actions": {},
       "pluralName": "mounts",
@@ -19552,10 +19983,10 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
+      "resourceMethods": [
         "GET"
       ],
-      "resourceMethods": [
+      "collectionMethods": [
         "GET"
       ]
     },
@@ -19563,8 +19994,8 @@
       "id": "network",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/network",
-        "collection": "http://localhost:18282/v1/networks"
+        "self": "http://localhost:8080/v1/schemas/network",
+        "collection": "http://localhost:8080/v1/networks"
       },
       "actions": {},
       "pluralName": "networks",
@@ -19875,10 +20306,10 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
+      "resourceMethods": [
         "GET"
       ],
-      "resourceMethods": [
+      "collectionMethods": [
         "GET"
       ]
     },
@@ -19886,7 +20317,7 @@
       "id": "nfsConfig",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/nfsconfig"
+        "self": "http://localhost:8080/v1/schemas/nfsconfig"
       },
       "actions": {},
       "pluralName": "nfsConfigs",
@@ -19921,17 +20352,17 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [],
       "resourceMethods": [
         "GET"
-      ]
+      ],
+      "collectionMethods": []
     },
     {
       "id": "openldapconfig",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/openldapconfig",
-        "collection": "http://localhost:18282/v1/openldapconfigs"
+        "self": "http://localhost:8080/v1/schemas/openldapconfig",
+        "collection": "http://localhost:8080/v1/openldapconfigs"
       },
       "actions": {},
       "pluralName": "openldapconfigs",
@@ -20158,21 +20589,91 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "GET",
-        "POST"
-      ],
       "resourceMethods": [
         "GET",
         "PUT"
+      ],
+      "collectionMethods": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "id": "packetConfig",
+      "type": "schema",
+      "links": {
+        "self": "http://localhost:8080/v1/schemas/packetconfig"
+      },
+      "actions": {},
+      "pluralName": "packetConfigs",
+      "resourceFields": {
+        "apiKey": {
+          "type": "string",
+          "description": "Packet api key",
+          "create": true,
+          "update": false,
+          "readOnCreateOnly": false,
+          "default": ""
+        },
+        "billingCycle": {
+          "type": "string",
+          "description": "Packet billing cycle, hourly or monthly",
+          "create": true,
+          "update": false,
+          "readOnCreateOnly": false,
+          "default": "hourly"
+        },
+        "facilityCode": {
+          "type": "string",
+          "description": "Packet facility code",
+          "create": true,
+          "update": false,
+          "readOnCreateOnly": false,
+          "default": "ewr1"
+        },
+        "os": {
+          "type": "string",
+          "description": "Packet OS, possible values are: ubuntu_14_04",
+          "create": true,
+          "update": false,
+          "readOnCreateOnly": false,
+          "default": "ubuntu_14_04"
+        },
+        "plan": {
+          "type": "string",
+          "description": "Packet Server Plan",
+          "create": true,
+          "update": false,
+          "readOnCreateOnly": false,
+          "default": "baremetal_1"
+        },
+        "projectId": {
+          "type": "string",
+          "description": "Packet Project Id",
+          "create": true,
+          "update": false,
+          "readOnCreateOnly": false,
+          "default": ""
+        }
+      },
+      "collectionFilters": {},
+      "includeableLinks": [],
+      "resourceActions": {},
+      "collectionActions": {},
+      "collectionFields": {},
+      "resourceMethods": [
+        "GET"
+      ],
+      "collectionMethods": [
+        "POST"
       ]
     },
     {
       "id": "password",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/password",
-        "collection": "http://localhost:18282/v1/passwords"
+        "self": "http://localhost:8080/v1/schemas/password",
+        "collection": "http://localhost:8080/v1/passwords"
       },
       "actions": {},
       "pluralName": "passwords",
@@ -20513,22 +21014,22 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "GET",
-        "POST"
-      ],
       "resourceMethods": [
         "GET",
         "PUT",
         "DELETE"
+      ],
+      "collectionMethods": [
+        "GET",
+        "POST"
       ]
     },
     {
       "id": "physicalHost",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/physicalhost",
-        "collection": "http://localhost:18282/v1/physicalhosts"
+        "self": "http://localhost:8080/v1/schemas/physicalhost",
+        "collection": "http://localhost:8080/v1/physicalhosts"
       },
       "actions": {},
       "pluralName": "physicalHosts",
@@ -20857,10 +21358,10 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
+      "resourceMethods": [
         "GET"
       ],
-      "resourceMethods": [
+      "collectionMethods": [
         "GET"
       ]
     },
@@ -20868,8 +21369,8 @@
       "id": "port",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/port",
-        "collection": "http://localhost:18282/v1/ports"
+        "self": "http://localhost:8080/v1/schemas/port",
+        "collection": "http://localhost:8080/v1/ports"
       },
       "actions": {},
       "pluralName": "ports",
@@ -21284,20 +21785,20 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "GET"
-      ],
       "resourceMethods": [
         "GET",
         "PUT"
+      ],
+      "collectionMethods": [
+        "GET"
       ]
     },
     {
       "id": "processDefinition",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/processdefinition",
-        "collection": "http://localhost:18282/v1/processdefinitions"
+        "self": "http://localhost:8080/v1/schemas/processdefinition",
+        "collection": "http://localhost:8080/v1/processdefinitions"
       },
       "actions": {},
       "pluralName": "processDefinitions",
@@ -21364,10 +21865,10 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
+      "resourceMethods": [
         "GET"
       ],
-      "resourceMethods": [
+      "collectionMethods": [
         "GET"
       ]
     },
@@ -21375,8 +21876,8 @@
       "id": "processExecution",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/processexecution",
-        "collection": "http://localhost:18282/v1/processexecutions"
+        "self": "http://localhost:8080/v1/schemas/processexecution",
+        "collection": "http://localhost:8080/v1/processexecutions"
       },
       "actions": {},
       "pluralName": "processExecutions",
@@ -21476,10 +21977,10 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
+      "resourceMethods": [
         "GET"
       ],
-      "resourceMethods": [
+      "collectionMethods": [
         "GET"
       ]
     },
@@ -21487,8 +21988,8 @@
       "id": "processInstance",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/processinstance",
-        "collection": "http://localhost:18282/v1/processinstances"
+        "self": "http://localhost:8080/v1/schemas/processinstance",
+        "collection": "http://localhost:8080/v1/processinstances"
       },
       "actions": {},
       "pluralName": "processInstances",
@@ -21754,10 +22255,10 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
+      "resourceMethods": [
         "GET"
       ],
-      "resourceMethods": [
+      "collectionMethods": [
         "GET"
       ]
     },
@@ -21765,8 +22266,8 @@
       "id": "project",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/project",
-        "collection": "http://localhost:18282/v1/projects"
+        "self": "http://localhost:8080/v1/schemas/project",
+        "collection": "http://localhost:8080/v1/projects"
       },
       "actions": {},
       "pluralName": "projects",
@@ -22164,20 +22665,20 @@
       },
       "collectionActions": {},
       "collectionFields": {},
+      "resourceMethods": [
+        "GET"
+      ],
       "collectionMethods": [
         "GET",
         "POST"
-      ],
-      "resourceMethods": [
-        "GET"
       ]
     },
     {
       "id": "projectMember",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/projectmember",
-        "collection": "http://localhost:18282/v1/projectmembers"
+        "self": "http://localhost:8080/v1/schemas/projectmember",
+        "collection": "http://localhost:8080/v1/projectmembers"
       },
       "actions": {},
       "pluralName": "projectMembers",
@@ -22555,10 +23056,10 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
+      "resourceMethods": [
         "GET"
       ],
-      "resourceMethods": [
+      "collectionMethods": [
         "GET"
       ]
     },
@@ -22566,7 +23067,7 @@
       "id": "publicEndpoint",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/publicendpoint"
+        "self": "http://localhost:8080/v1/schemas/publicendpoint"
       },
       "actions": {},
       "pluralName": "publicEndpoints",
@@ -22616,16 +23117,16 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [],
       "resourceMethods": [
         "GET"
-      ]
+      ],
+      "collectionMethods": []
     },
     {
       "id": "publish",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/publish"
+        "self": "http://localhost:8080/v1/schemas/publish"
       },
       "actions": {},
       "pluralName": "publish",
@@ -22738,19 +23239,19 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "POST"
-      ],
       "resourceMethods": [
         "GET"
+      ],
+      "collectionMethods": [
+        "POST"
       ]
     },
     {
       "id": "pullTask",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/pulltask",
-        "collection": "http://localhost:18282/v1/pulltasks"
+        "self": "http://localhost:8080/v1/schemas/pulltask",
+        "collection": "http://localhost:8080/v1/pulltasks"
       },
       "actions": {},
       "pluralName": "pullTasks",
@@ -23087,19 +23588,19 @@
       },
       "collectionActions": {},
       "collectionFields": {},
+      "resourceMethods": [
+        "GET"
+      ],
       "collectionMethods": [
         "GET",
         "POST"
-      ],
-      "resourceMethods": [
-        "GET"
       ]
     },
     {
       "id": "recreateOnQuorumStrategyConfig",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/recreateonquorumstrategyconfig"
+        "self": "http://localhost:8080/v1/schemas/recreateonquorumstrategyconfig"
       },
       "actions": {},
       "pluralName": "recreateOnQuorumStrategyConfigs",
@@ -23120,19 +23621,19 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "POST"
-      ],
       "resourceMethods": [
         "GET"
+      ],
+      "collectionMethods": [
+        "POST"
       ]
     },
     {
       "id": "register",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/register",
-        "collection": "http://localhost:18282/v1/register"
+        "self": "http://localhost:8080/v1/schemas/register",
+        "collection": "http://localhost:8080/v1/register"
       },
       "actions": {},
       "pluralName": "register",
@@ -23467,20 +23968,20 @@
       },
       "collectionActions": {},
       "collectionFields": {},
+      "resourceMethods": [
+        "GET"
+      ],
       "collectionMethods": [
         "GET",
         "POST"
-      ],
-      "resourceMethods": [
-        "GET"
       ]
     },
     {
       "id": "registrationToken",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/registrationtoken",
-        "collection": "http://localhost:18282/v1/registrationtokens"
+        "self": "http://localhost:8080/v1/schemas/registrationtoken",
+        "collection": "http://localhost:8080/v1/registrationtokens"
       },
       "actions": {},
       "pluralName": "registrationTokens",
@@ -23826,20 +24327,20 @@
       },
       "collectionActions": {},
       "collectionFields": {},
+      "resourceMethods": [
+        "GET"
+      ],
       "collectionMethods": [
         "GET",
         "POST"
-      ],
-      "resourceMethods": [
-        "GET"
       ]
     },
     {
       "id": "registry",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/registry",
-        "collection": "http://localhost:18282/v1/registries"
+        "self": "http://localhost:8080/v1/schemas/registry",
+        "collection": "http://localhost:8080/v1/registries"
       },
       "actions": {},
       "pluralName": "registries",
@@ -24267,22 +24768,22 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "GET",
-        "POST"
-      ],
       "resourceMethods": [
         "GET",
         "PUT",
         "DELETE"
+      ],
+      "collectionMethods": [
+        "GET",
+        "POST"
       ]
     },
     {
       "id": "registryCredential",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/registrycredential",
-        "collection": "http://localhost:18282/v1/registrycredentials"
+        "self": "http://localhost:8080/v1/schemas/registrycredential",
+        "collection": "http://localhost:8080/v1/registrycredentials"
       },
       "actions": {},
       "pluralName": "registryCredentials",
@@ -24637,22 +25138,22 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "GET",
-        "POST"
-      ],
       "resourceMethods": [
         "GET",
         "PUT",
         "DELETE"
+      ],
+      "collectionMethods": [
+        "GET",
+        "POST"
       ]
     },
     {
       "id": "resourceDefinition",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/resourcedefinition",
-        "collection": "http://localhost:18282/v1/resourcedefinitions"
+        "self": "http://localhost:8080/v1/schemas/resourcedefinition",
+        "collection": "http://localhost:8080/v1/resourcedefinitions"
       },
       "actions": {},
       "pluralName": "resourceDefinitions",
@@ -24677,10 +25178,10 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
+      "resourceMethods": [
         "GET"
       ],
-      "resourceMethods": [
+      "collectionMethods": [
         "GET"
       ]
     },
@@ -24688,7 +25189,7 @@
       "id": "restartPolicy",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/restartpolicy"
+        "self": "http://localhost:8080/v1/schemas/restartpolicy"
       },
       "actions": {},
       "pluralName": "restartPolicys",
@@ -24713,18 +25214,18 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "POST"
-      ],
       "resourceMethods": [
         "GET"
+      ],
+      "collectionMethods": [
+        "POST"
       ]
     },
     {
       "id": "restoreFromBackupInput",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/restorefrombackupinput"
+        "self": "http://localhost:8080/v1/schemas/restorefrombackupinput"
       },
       "actions": {},
       "pluralName": "restoreFromBackupInputs",
@@ -24743,16 +25244,16 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [],
       "resourceMethods": [
         "GET"
-      ]
+      ],
+      "collectionMethods": []
     },
     {
       "id": "revertToSnapshotInput",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/reverttosnapshotinput"
+        "self": "http://localhost:8080/v1/schemas/reverttosnapshotinput"
       },
       "actions": {},
       "pluralName": "revertToSnapshotInputs",
@@ -24771,16 +25272,16 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [],
       "resourceMethods": [
         "GET"
-      ]
+      ],
+      "collectionMethods": []
     },
     {
       "id": "rollingRestartStrategy",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/rollingrestartstrategy"
+        "self": "http://localhost:8080/v1/schemas/rollingrestartstrategy"
       },
       "actions": {},
       "pluralName": "rollingRestartStrategys",
@@ -24813,19 +25314,18 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "POST"
-      ],
       "resourceMethods": [
         "GET"
+      ],
+      "collectionMethods": [
+        "POST"
       ]
     },
     {
       "id": "scalePolicy",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/scalepolicy",
-        "collection": "http://localhost:18282/v1/scalepolicys"
+        "self": "http://localhost:8080/v1/schemas/scalepolicy"
       },
       "actions": {},
       "pluralName": "scalePolicys",
@@ -24870,19 +25370,17 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "GET"
-      ],
       "resourceMethods": [
         "GET"
-      ]
+      ],
+      "collectionMethods": []
     },
     {
       "id": "schema",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/schema",
-        "collection": "http://localhost:18282/v1/schemas"
+        "self": "http://localhost:8080/v1/schemas/schema",
+        "collection": "http://localhost:8080/v1/schemas"
       },
       "actions": {},
       "pluralName": "schemas",
@@ -24956,10 +25454,10 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
+      "resourceMethods": [
         "GET"
       ],
-      "resourceMethods": [
+      "collectionMethods": [
         "GET"
       ]
     },
@@ -24967,7 +25465,7 @@
       "id": "secondaryLaunchConfig",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/secondarylaunchconfig"
+        "self": "http://localhost:8080/v1/schemas/secondarylaunchconfig"
       },
       "actions": {},
       "pluralName": "secondaryLaunchConfigs",
@@ -26259,20 +26757,20 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "POST"
-      ],
       "resourceMethods": [
         "GET",
         "PUT"
+      ],
+      "collectionMethods": [
+        "POST"
       ]
     },
     {
       "id": "service",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/service",
-        "collection": "http://localhost:18282/v1/services"
+        "self": "http://localhost:8080/v1/schemas/service",
+        "collection": "http://localhost:8080/v1/services"
       },
       "actions": {},
       "pluralName": "services",
@@ -26840,22 +27338,22 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "GET",
-        "POST"
-      ],
       "resourceMethods": [
         "GET",
         "PUT",
         "DELETE"
+      ],
+      "collectionMethods": [
+        "GET",
+        "POST"
       ]
     },
     {
       "id": "serviceConsumeMap",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/serviceconsumemap",
-        "collection": "http://localhost:18282/v1/serviceconsumemaps"
+        "self": "http://localhost:8080/v1/schemas/serviceconsumemap",
+        "collection": "http://localhost:8080/v1/serviceconsumemaps"
       },
       "actions": {},
       "pluralName": "serviceConsumeMaps",
@@ -27169,10 +27667,10 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
+      "resourceMethods": [
         "GET"
       ],
-      "resourceMethods": [
+      "collectionMethods": [
         "GET"
       ]
     },
@@ -27180,8 +27678,8 @@
       "id": "serviceEvent",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/serviceevent",
-        "collection": "http://localhost:18282/v1/serviceevents"
+        "self": "http://localhost:8080/v1/schemas/serviceevent",
+        "collection": "http://localhost:8080/v1/serviceevents"
       },
       "actions": {},
       "pluralName": "serviceEvents",
@@ -27549,10 +28047,10 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
+      "resourceMethods": [
         "GET"
       ],
-      "resourceMethods": [
+      "collectionMethods": [
         "GET"
       ]
     },
@@ -27560,8 +28058,8 @@
       "id": "serviceExposeMap",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/serviceexposemap",
-        "collection": "http://localhost:18282/v1/serviceexposemaps"
+        "self": "http://localhost:8080/v1/schemas/serviceexposemap",
+        "collection": "http://localhost:8080/v1/serviceexposemaps"
       },
       "actions": {},
       "pluralName": "serviceExposeMaps",
@@ -27926,10 +28424,10 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
+      "resourceMethods": [
         "GET"
       ],
-      "resourceMethods": [
+      "collectionMethods": [
         "GET"
       ]
     },
@@ -27937,7 +28435,7 @@
       "id": "serviceLink",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/servicelink"
+        "self": "http://localhost:8080/v1/schemas/servicelink"
       },
       "actions": {},
       "pluralName": "serviceLinks",
@@ -27972,19 +28470,19 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "POST"
-      ],
       "resourceMethods": [
         "GET"
+      ],
+      "collectionMethods": [
+        "POST"
       ]
     },
     {
       "id": "serviceProxy",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/serviceproxy",
-        "collection": "http://localhost:18282/v1/serviceproxies"
+        "self": "http://localhost:8080/v1/schemas/serviceproxy",
+        "collection": "http://localhost:8080/v1/serviceproxies"
       },
       "actions": {},
       "pluralName": "serviceProxies",
@@ -28043,19 +28541,19 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
+      "resourceMethods": [
+        "GET"
+      ],
       "collectionMethods": [
         "GET",
         "POST"
-      ],
-      "resourceMethods": [
-        "GET"
       ]
     },
     {
       "id": "serviceRestart",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/servicerestart"
+        "self": "http://localhost:8080/v1/schemas/servicerestart"
       },
       "actions": {},
       "pluralName": "serviceRestarts",
@@ -28075,18 +28573,18 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "POST"
-      ],
       "resourceMethods": [
         "GET"
+      ],
+      "collectionMethods": [
+        "POST"
       ]
     },
     {
       "id": "serviceUpgrade",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/serviceupgrade"
+        "self": "http://localhost:8080/v1/schemas/serviceupgrade"
       },
       "actions": {},
       "pluralName": "serviceUpgrades",
@@ -28115,18 +28613,18 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "POST"
-      ],
       "resourceMethods": [
         "GET"
+      ],
+      "collectionMethods": [
+        "POST"
       ]
     },
     {
       "id": "serviceUpgradeStrategy",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/serviceupgradestrategy"
+        "self": "http://localhost:8080/v1/schemas/serviceupgradestrategy"
       },
       "actions": {},
       "pluralName": "serviceUpgradeStrategys",
@@ -28159,16 +28657,16 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [],
       "resourceMethods": [
         "GET"
-      ]
+      ],
+      "collectionMethods": []
     },
     {
       "id": "servicesPortRange",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/servicesportrange"
+        "self": "http://localhost:8080/v1/schemas/servicesportrange"
       },
       "actions": {},
       "pluralName": "servicesPortRanges",
@@ -28203,19 +28701,19 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "POST"
-      ],
       "resourceMethods": [
         "GET",
         "PUT"
+      ],
+      "collectionMethods": [
+        "POST"
       ]
     },
     {
       "id": "setLabelsInput",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/setlabelsinput"
+        "self": "http://localhost:8080/v1/schemas/setlabelsinput"
       },
       "actions": {},
       "pluralName": "setLabelsInputs",
@@ -28233,18 +28731,18 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "POST"
-      ],
       "resourceMethods": [
         "GET"
+      ],
+      "collectionMethods": [
+        "POST"
       ]
     },
     {
       "id": "setLoadBalancerServiceLinksInput",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/setloadbalancerservicelinksinput"
+        "self": "http://localhost:8080/v1/schemas/setloadbalancerservicelinksinput"
       },
       "actions": {},
       "pluralName": "setLoadBalancerServiceLinksInputs",
@@ -28263,16 +28761,16 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [],
       "resourceMethods": [
         "GET"
-      ]
+      ],
+      "collectionMethods": []
     },
     {
       "id": "setProjectMembersInput",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/setprojectmembersinput"
+        "self": "http://localhost:8080/v1/schemas/setprojectmembersinput"
       },
       "actions": {},
       "pluralName": "setProjectMembersInputs",
@@ -28292,18 +28790,18 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "POST"
-      ],
       "resourceMethods": [
         "GET"
+      ],
+      "collectionMethods": [
+        "POST"
       ]
     },
     {
       "id": "setServiceLinksInput",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/setservicelinksinput"
+        "self": "http://localhost:8080/v1/schemas/setservicelinksinput"
       },
       "actions": {},
       "pluralName": "setServiceLinksInputs",
@@ -28322,19 +28820,19 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "POST"
-      ],
       "resourceMethods": [
         "GET"
+      ],
+      "collectionMethods": [
+        "POST"
       ]
     },
     {
       "id": "setting",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/setting",
-        "collection": "http://localhost:18282/v1/settings"
+        "self": "http://localhost:8080/v1/schemas/setting",
+        "collection": "http://localhost:8080/v1/settings"
       },
       "actions": {},
       "pluralName": "settings",
@@ -28427,22 +28925,22 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "GET",
-        "POST"
-      ],
       "resourceMethods": [
         "GET",
         "PUT",
         "DELETE"
+      ],
+      "collectionMethods": [
+        "GET",
+        "POST"
       ]
     },
     {
       "id": "snapshot",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/snapshot",
-        "collection": "http://localhost:18282/v1/snapshots"
+        "self": "http://localhost:8080/v1/schemas/snapshot",
+        "collection": "http://localhost:8080/v1/snapshots"
       },
       "actions": {},
       "pluralName": "snapshots",
@@ -28728,20 +29226,19 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "GET"
-      ],
       "resourceMethods": [
         "GET",
         "DELETE"
+      ],
+      "collectionMethods": [
+        "GET"
       ]
     },
     {
       "id": "snapshotBackupInput",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/snapshotbackupinput",
-        "collection": "http://localhost:18282/v1/snapshotbackupinputs"
+        "self": "http://localhost:8080/v1/schemas/snapshotbackupinput"
       },
       "actions": {},
       "pluralName": "snapshotBackupInputs",
@@ -28943,18 +29440,16 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "GET"
-      ],
       "resourceMethods": [
         "GET"
-      ]
+      ],
+      "collectionMethods": []
     },
     {
       "id": "stateTransition",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/statetransition"
+        "self": "http://localhost:8080/v1/schemas/statetransition"
       },
       "actions": {},
       "pluralName": "stateTransitions",
@@ -28964,17 +29459,16 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [],
       "resourceMethods": [
         "GET"
-      ]
+      ],
+      "collectionMethods": []
     },
     {
       "id": "statsAccess",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/statsaccess",
-        "collection": "http://localhost:18282/v1/statsaccesses"
+        "self": "http://localhost:8080/v1/schemas/statsaccess"
       },
       "actions": {},
       "pluralName": "statsAccesses",
@@ -28999,19 +29493,17 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "GET"
-      ],
       "resourceMethods": [
         "GET"
-      ]
+      ],
+      "collectionMethods": []
     },
     {
       "id": "storagePool",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/storagepool",
-        "collection": "http://localhost:18282/v1/storagepools"
+        "self": "http://localhost:8080/v1/schemas/storagepool",
+        "collection": "http://localhost:8080/v1/storagepools"
       },
       "actions": {},
       "pluralName": "storagePools",
@@ -29430,10 +29922,10 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
+      "resourceMethods": [
         "GET"
       ],
-      "resourceMethods": [
+      "collectionMethods": [
         "GET"
       ]
     },
@@ -29441,8 +29933,8 @@
       "id": "subscribe",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/subscribe",
-        "collection": "http://localhost:18282/v1/subscribe"
+        "self": "http://localhost:8080/v1/schemas/subscribe",
+        "collection": "http://localhost:8080/v1/subscribe"
       },
       "actions": {},
       "pluralName": "subscribe",
@@ -29477,20 +29969,20 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
+      "resourceMethods": [
+        "GET"
+      ],
       "collectionMethods": [
         "GET",
         "POST"
-      ],
-      "resourceMethods": [
-        "GET"
       ]
     },
     {
       "id": "task",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/task",
-        "collection": "http://localhost:18282/v1/tasks"
+        "self": "http://localhost:8080/v1/schemas/task",
+        "collection": "http://localhost:8080/v1/tasks"
       },
       "actions": {},
       "pluralName": "tasks",
@@ -29549,10 +30041,10 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
+      "resourceMethods": [
         "GET"
       ],
-      "resourceMethods": [
+      "collectionMethods": [
         "GET"
       ]
     },
@@ -29560,8 +30052,8 @@
       "id": "taskInstance",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/taskinstance",
-        "collection": "http://localhost:18282/v1/taskinstances"
+        "self": "http://localhost:8080/v1/schemas/taskinstance",
+        "collection": "http://localhost:8080/v1/taskinstances"
       },
       "actions": {},
       "pluralName": "taskInstances",
@@ -29712,10 +30204,10 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
+      "resourceMethods": [
         "GET"
       ],
-      "resourceMethods": [
+      "collectionMethods": [
         "GET"
       ]
     },
@@ -29723,7 +30215,7 @@
       "id": "toServiceUpgradeStrategy",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/toserviceupgradestrategy"
+        "self": "http://localhost:8080/v1/schemas/toserviceupgradestrategy"
       },
       "actions": {},
       "pluralName": "toServiceUpgradeStrategys",
@@ -29782,19 +30274,19 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "POST"
-      ],
       "resourceMethods": [
         "GET"
+      ],
+      "collectionMethods": [
+        "POST"
       ]
     },
     {
       "id": "typeDocumentation",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/typedocumentation",
-        "collection": "http://localhost:18282/v1/typedocumentations"
+        "self": "http://localhost:8080/v1/schemas/typedocumentation",
+        "collection": "http://localhost:8080/v1/typedocumentations"
       },
       "actions": {},
       "pluralName": "typeDocumentations",
@@ -29826,10 +30318,10 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
+      "resourceMethods": [
         "GET"
       ],
-      "resourceMethods": [
+      "collectionMethods": [
         "GET"
       ]
     },
@@ -29837,8 +30329,8 @@
       "id": "virtualMachine",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/virtualmachine",
-        "collection": "http://localhost:18282/v1/virtualmachines"
+        "self": "http://localhost:8080/v1/schemas/virtualmachine",
+        "collection": "http://localhost:8080/v1/virtualmachines"
       },
       "actions": {},
       "pluralName": "virtualMachines",
@@ -30874,21 +31366,21 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "GET",
-        "POST"
-      ],
       "resourceMethods": [
         "GET",
         "PUT",
         "DELETE"
+      ],
+      "collectionMethods": [
+        "GET",
+        "POST"
       ]
     },
     {
       "id": "virtualMachineDisk",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/virtualmachinedisk"
+        "self": "http://localhost:8080/v1/schemas/virtualmachinedisk"
       },
       "actions": {},
       "pluralName": "virtualMachineDisks",
@@ -30956,19 +31448,19 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "POST"
-      ],
       "resourceMethods": [
         "GET"
+      ],
+      "collectionMethods": [
+        "POST"
       ]
     },
     {
       "id": "volume",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/volume",
-        "collection": "http://localhost:18282/v1/volumes"
+        "self": "http://localhost:8080/v1/schemas/volume",
+        "collection": "http://localhost:8080/v1/volumes"
       },
       "actions": {},
       "pluralName": "volumes",
@@ -31498,20 +31990,20 @@
       },
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [
-        "GET",
-        "POST"
-      ],
       "resourceMethods": [
         "GET",
         "DELETE"
+      ],
+      "collectionMethods": [
+        "GET",
+        "POST"
       ]
     },
     {
       "id": "volumeSnapshotInput",
       "type": "schema",
       "links": {
-        "self": "http://localhost:18282/v1/schemas/volumesnapshotinput"
+        "self": "http://localhost:8080/v1/schemas/volumesnapshotinput"
       },
       "actions": {},
       "pluralName": "volumeSnapshotInputs",
@@ -31530,10 +32022,10 @@
       "resourceActions": {},
       "collectionActions": {},
       "collectionFields": {},
-      "collectionMethods": [],
       "resourceMethods": [
         "GET"
-      ]
+      ],
+      "collectionMethods": []
     }
   ],
   "sortLinks": {},
