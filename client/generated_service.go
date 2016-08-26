@@ -21,8 +21,6 @@ type Service struct {
 
 	Description string `json:"description,omitempty" yaml:"description,omitempty"`
 
-	EnvironmentId string `json:"environmentId,omitempty" yaml:"environment_id,omitempty"`
-
 	ExternalId string `json:"externalId,omitempty" yaml:"external_id,omitempty"`
 
 	Fqdn string `json:"fqdn,omitempty" yaml:"fqdn,omitempty"`
@@ -54,6 +52,8 @@ type Service struct {
 	SelectorContainer string `json:"selectorContainer,omitempty" yaml:"selector_container,omitempty"`
 
 	SelectorLink string `json:"selectorLink,omitempty" yaml:"selector_link,omitempty"`
+
+	StackId string `json:"stackId,omitempty" yaml:"stack_id,omitempty"`
 
 	StartOnCreate bool `json:"startOnCreate,omitempty" yaml:"start_on_create,omitempty"`
 
@@ -91,8 +91,6 @@ type ServiceOperations interface {
 	ActionActivate(*Service) (*Service, error)
 
 	ActionAddservicelink(*Service, *AddRemoveServiceLinkInput) (*Service, error)
-
-	ActionCancelrollback(*Service) (*Service, error)
 
 	ActionCancelupgrade(*Service) (*Service, error)
 
@@ -170,15 +168,6 @@ func (c *ServiceClient) ActionAddservicelink(resource *Service, input *AddRemove
 	resp := &Service{}
 
 	err := c.rancherClient.doAction(SERVICE_TYPE, "addservicelink", &resource.Resource, input, resp)
-
-	return resp, err
-}
-
-func (c *ServiceClient) ActionCancelrollback(resource *Service) (*Service, error) {
-
-	resp := &Service{}
-
-	err := c.rancherClient.doAction(SERVICE_TYPE, "cancelrollback", &resource.Resource, nil, resp)
 
 	return resp, err
 }

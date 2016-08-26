@@ -9,6 +9,8 @@ type KubernetesStack struct {
 
 	AccountId string `json:"accountId,omitempty" yaml:"account_id,omitempty"`
 
+	Binding *Binding `json:"binding,omitempty" yaml:"binding,omitempty"`
+
 	Created string `json:"created,omitempty" yaml:"created,omitempty"`
 
 	Data map[string]interface{} `json:"data,omitempty" yaml:"data,omitempty"`
@@ -64,19 +66,17 @@ type KubernetesStackOperations interface {
 	ById(id string) (*KubernetesStack, error)
 	Delete(container *KubernetesStack) error
 
-	ActionCancelrollback(*KubernetesStack) (*Environment, error)
+	ActionCancelupgrade(*KubernetesStack) (*Stack, error)
 
-	ActionCancelupgrade(*KubernetesStack) (*Environment, error)
+	ActionCreate(*KubernetesStack) (*Stack, error)
 
-	ActionCreate(*KubernetesStack) (*Environment, error)
+	ActionError(*KubernetesStack) (*Stack, error)
 
-	ActionError(*KubernetesStack) (*Environment, error)
+	ActionFinishupgrade(*KubernetesStack) (*Stack, error)
 
-	ActionFinishupgrade(*KubernetesStack) (*Environment, error)
+	ActionRemove(*KubernetesStack) (*Stack, error)
 
-	ActionRemove(*KubernetesStack) (*Environment, error)
-
-	ActionRollback(*KubernetesStack) (*Environment, error)
+	ActionRollback(*KubernetesStack) (*Stack, error)
 
 	ActionUpgrade(*KubernetesStack, *KubernetesStackUpgrade) (*KubernetesStack, error)
 }
@@ -120,63 +120,54 @@ func (c *KubernetesStackClient) Delete(container *KubernetesStack) error {
 	return c.rancherClient.doResourceDelete(KUBERNETES_STACK_TYPE, &container.Resource)
 }
 
-func (c *KubernetesStackClient) ActionCancelrollback(resource *KubernetesStack) (*Environment, error) {
+func (c *KubernetesStackClient) ActionCancelupgrade(resource *KubernetesStack) (*Stack, error) {
 
-	resp := &Environment{}
-
-	err := c.rancherClient.doAction(KUBERNETES_STACK_TYPE, "cancelrollback", &resource.Resource, nil, resp)
-
-	return resp, err
-}
-
-func (c *KubernetesStackClient) ActionCancelupgrade(resource *KubernetesStack) (*Environment, error) {
-
-	resp := &Environment{}
+	resp := &Stack{}
 
 	err := c.rancherClient.doAction(KUBERNETES_STACK_TYPE, "cancelupgrade", &resource.Resource, nil, resp)
 
 	return resp, err
 }
 
-func (c *KubernetesStackClient) ActionCreate(resource *KubernetesStack) (*Environment, error) {
+func (c *KubernetesStackClient) ActionCreate(resource *KubernetesStack) (*Stack, error) {
 
-	resp := &Environment{}
+	resp := &Stack{}
 
 	err := c.rancherClient.doAction(KUBERNETES_STACK_TYPE, "create", &resource.Resource, nil, resp)
 
 	return resp, err
 }
 
-func (c *KubernetesStackClient) ActionError(resource *KubernetesStack) (*Environment, error) {
+func (c *KubernetesStackClient) ActionError(resource *KubernetesStack) (*Stack, error) {
 
-	resp := &Environment{}
+	resp := &Stack{}
 
 	err := c.rancherClient.doAction(KUBERNETES_STACK_TYPE, "error", &resource.Resource, nil, resp)
 
 	return resp, err
 }
 
-func (c *KubernetesStackClient) ActionFinishupgrade(resource *KubernetesStack) (*Environment, error) {
+func (c *KubernetesStackClient) ActionFinishupgrade(resource *KubernetesStack) (*Stack, error) {
 
-	resp := &Environment{}
+	resp := &Stack{}
 
 	err := c.rancherClient.doAction(KUBERNETES_STACK_TYPE, "finishupgrade", &resource.Resource, nil, resp)
 
 	return resp, err
 }
 
-func (c *KubernetesStackClient) ActionRemove(resource *KubernetesStack) (*Environment, error) {
+func (c *KubernetesStackClient) ActionRemove(resource *KubernetesStack) (*Stack, error) {
 
-	resp := &Environment{}
+	resp := &Stack{}
 
 	err := c.rancherClient.doAction(KUBERNETES_STACK_TYPE, "remove", &resource.Resource, nil, resp)
 
 	return resp, err
 }
 
-func (c *KubernetesStackClient) ActionRollback(resource *KubernetesStack) (*Environment, error) {
+func (c *KubernetesStackClient) ActionRollback(resource *KubernetesStack) (*Stack, error) {
 
-	resp := &Environment{}
+	resp := &Stack{}
 
 	err := c.rancherClient.doAction(KUBERNETES_STACK_TYPE, "rollback", &resource.Resource, nil, resp)
 

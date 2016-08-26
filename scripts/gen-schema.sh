@@ -16,7 +16,7 @@ while ! curl -fs ${URL_BASE}/ping; do
 done
 echo
 
-curl -s "${URL_BASE}/v1/schemas?_role=service" | jq . > schemas.json
+curl -s "${URL_BASE}/v2-beta/schemas?_role=service" | jq . > schemas.json
 echo Saved schemas.json
 
 echo -n Generating go code...

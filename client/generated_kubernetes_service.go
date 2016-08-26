@@ -15,8 +15,6 @@ type KubernetesService struct {
 
 	Description string `json:"description,omitempty" yaml:"description,omitempty"`
 
-	EnvironmentId string `json:"environmentId,omitempty" yaml:"environment_id,omitempty"`
-
 	ExternalId string `json:"externalId,omitempty" yaml:"external_id,omitempty"`
 
 	HealthState string `json:"healthState,omitempty" yaml:"health_state,omitempty"`
@@ -30,6 +28,8 @@ type KubernetesService struct {
 	Removed string `json:"removed,omitempty" yaml:"removed,omitempty"`
 
 	SelectorContainer string `json:"selectorContainer,omitempty" yaml:"selector_container,omitempty"`
+
+	StackId string `json:"stackId,omitempty" yaml:"stack_id,omitempty"`
 
 	State string `json:"state,omitempty" yaml:"state,omitempty"`
 
@@ -65,8 +65,6 @@ type KubernetesServiceOperations interface {
 	ActionActivate(*KubernetesService) (*Service, error)
 
 	ActionAddservicelink(*KubernetesService, *AddRemoveServiceLinkInput) (*Service, error)
-
-	ActionCancelrollback(*KubernetesService) (*Service, error)
 
 	ActionCancelupgrade(*KubernetesService) (*Service, error)
 
@@ -144,15 +142,6 @@ func (c *KubernetesServiceClient) ActionAddservicelink(resource *KubernetesServi
 	resp := &Service{}
 
 	err := c.rancherClient.doAction(KUBERNETES_SERVICE_TYPE, "addservicelink", &resource.Resource, input, resp)
-
-	return resp, err
-}
-
-func (c *KubernetesServiceClient) ActionCancelrollback(resource *KubernetesService) (*Service, error) {
-
-	resp := &Service{}
-
-	err := c.rancherClient.doAction(KUBERNETES_SERVICE_TYPE, "cancelrollback", &resource.Resource, nil, resp)
 
 	return resp, err
 }
