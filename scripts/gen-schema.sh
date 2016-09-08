@@ -34,7 +34,7 @@ gen() {
         rm -rf ../$2
         mv ../client ../$2
         if [ -n "$3" ]; then
-            sed -i 's/package client/package '$2'/g' ../$2/*.go
+            sed -i -e 's/package client/package '$2'/g' ../$2/*.go
         fi
         git checkout ../client
     fi
