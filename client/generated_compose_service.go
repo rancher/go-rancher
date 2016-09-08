@@ -17,8 +17,6 @@ type ComposeService struct {
 
 	Description string `json:"description,omitempty" yaml:"description,omitempty"`
 
-	EnvironmentId string `json:"environmentId,omitempty" yaml:"environment_id,omitempty"`
-
 	ExternalId string `json:"externalId,omitempty" yaml:"external_id,omitempty"`
 
 	Fqdn string `json:"fqdn,omitempty" yaml:"fqdn,omitempty"`
@@ -44,6 +42,8 @@ type ComposeService struct {
 	SelectorContainer string `json:"selectorContainer,omitempty" yaml:"selector_container,omitempty"`
 
 	SelectorLink string `json:"selectorLink,omitempty" yaml:"selector_link,omitempty"`
+
+	StackId string `json:"stackId,omitempty" yaml:"stack_id,omitempty"`
 
 	StartOnCreate bool `json:"startOnCreate,omitempty" yaml:"start_on_create,omitempty"`
 
@@ -77,8 +77,6 @@ type ComposeServiceOperations interface {
 	Delete(container *ComposeService) error
 
 	ActionActivate(*ComposeService) (*Service, error)
-
-	ActionCancelrollback(*ComposeService) (*Service, error)
 
 	ActionCancelupgrade(*ComposeService) (*Service, error)
 
@@ -135,15 +133,6 @@ func (c *ComposeServiceClient) ActionActivate(resource *ComposeService) (*Servic
 	resp := &Service{}
 
 	err := c.rancherClient.doAction(COMPOSE_SERVICE_TYPE, "activate", &resource.Resource, nil, resp)
-
-	return resp, err
-}
-
-func (c *ComposeServiceClient) ActionCancelrollback(resource *ComposeService) (*Service, error) {
-
-	resp := &Service{}
-
-	err := c.rancherClient.doAction(COMPOSE_SERVICE_TYPE, "cancelrollback", &resource.Resource, nil, resp)
 
 	return resp, err
 }

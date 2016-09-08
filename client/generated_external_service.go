@@ -15,8 +15,6 @@ type ExternalService struct {
 
 	Description string `json:"description,omitempty" yaml:"description,omitempty"`
 
-	EnvironmentId string `json:"environmentId,omitempty" yaml:"environment_id,omitempty"`
-
 	ExternalId string `json:"externalId,omitempty" yaml:"external_id,omitempty"`
 
 	ExternalIpAddresses []string `json:"externalIpAddresses,omitempty" yaml:"external_ip_addresses,omitempty"`
@@ -40,6 +38,8 @@ type ExternalService struct {
 	RemoveTime string `json:"removeTime,omitempty" yaml:"remove_time,omitempty"`
 
 	Removed string `json:"removed,omitempty" yaml:"removed,omitempty"`
+
+	StackId string `json:"stackId,omitempty" yaml:"stack_id,omitempty"`
 
 	StartOnCreate bool `json:"startOnCreate,omitempty" yaml:"start_on_create,omitempty"`
 
@@ -73,8 +73,6 @@ type ExternalServiceOperations interface {
 	Delete(container *ExternalService) error
 
 	ActionActivate(*ExternalService) (*Service, error)
-
-	ActionCancelrollback(*ExternalService) (*Service, error)
 
 	ActionCancelupgrade(*ExternalService) (*Service, error)
 
@@ -139,15 +137,6 @@ func (c *ExternalServiceClient) ActionActivate(resource *ExternalService) (*Serv
 	resp := &Service{}
 
 	err := c.rancherClient.doAction(EXTERNAL_SERVICE_TYPE, "activate", &resource.Resource, nil, resp)
-
-	return resp, err
-}
-
-func (c *ExternalServiceClient) ActionCancelrollback(resource *ExternalService) (*Service, error) {
-
-	resp := &Service{}
-
-	err := c.rancherClient.doAction(EXTERNAL_SERVICE_TYPE, "cancelrollback", &resource.Resource, nil, resp)
 
 	return resp, err
 }

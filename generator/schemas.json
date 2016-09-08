@@ -2,7 +2,7 @@
   "type": "collection",
   "resourceType": "schema",
   "links": {
-    "self": "http://localhost:8080/v1/schemas"
+    "self": "http://localhost:8080/v2-beta/schemas"
   },
   "createTypes": {},
   "actions": {},
@@ -11,8 +11,8 @@
       "id": "account",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/account",
-        "collection": "http://localhost:8080/v1/accounts"
+        "self": "http://localhost:8080/v2-beta/schemas/account",
+        "collection": "http://localhost:8080/v2-beta/accounts"
       },
       "actions": {},
       "pluralName": "accounts",
@@ -323,13 +323,14 @@
         "storagepools",
         "configitemstatuses",
         "labels",
-        "environments",
+        "stacks",
         "ports",
         "mounts",
         "auditlogs",
         "projectmembers",
         "serviceevents",
-        "images"
+        "images",
+        "servicelogs"
       ],
       "resourceActions": {
         "update": {
@@ -377,7 +378,7 @@
       "id": "activeSetting",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/activesetting"
+        "self": "http://localhost:8080/v2-beta/schemas/activesetting"
       },
       "actions": {},
       "pluralName": "activeSettings",
@@ -442,7 +443,7 @@
       "id": "addOutputsInput",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/addoutputsinput"
+        "self": "http://localhost:8080/v2-beta/schemas/addoutputsinput"
       },
       "actions": {},
       "pluralName": "addOutputsInputs",
@@ -470,7 +471,7 @@
       "id": "addRemoveLoadBalancerServiceLinkInput",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/addremoveloadbalancerservicelinkinput"
+        "self": "http://localhost:8080/v2-beta/schemas/addremoveloadbalancerservicelinkinput"
       },
       "actions": {},
       "pluralName": "addRemoveLoadBalancerServiceLinkInputs",
@@ -498,7 +499,7 @@
       "id": "addRemoveServiceLinkInput",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/addremoveservicelinkinput"
+        "self": "http://localhost:8080/v2-beta/schemas/addremoveservicelinkinput"
       },
       "actions": {},
       "pluralName": "addRemoveServiceLinkInputs",
@@ -528,8 +529,8 @@
       "id": "agent",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/agent",
-        "collection": "http://localhost:8080/v1/agents"
+        "self": "http://localhost:8080/v2-beta/schemas/agent",
+        "collection": "http://localhost:8080/v2-beta/agents"
       },
       "actions": {},
       "pluralName": "agents",
@@ -898,212 +899,11 @@
       ]
     },
     {
-      "id": "amazonec2Config",
-      "type": "schema",
-      "links": {
-        "self": "http://localhost:8080/v1/schemas/amazonec2config"
-      },
-      "actions": {},
-      "pluralName": "amazonec2Configs",
-      "resourceFields": {
-        "accessKey": {
-          "type": "string",
-          "description": "AWS Access Key",
-          "create": true,
-          "update": false,
-          "readOnCreateOnly": false,
-          "default": ""
-        },
-        "ami": {
-          "type": "string",
-          "description": "AWS machine image",
-          "create": true,
-          "update": false,
-          "readOnCreateOnly": false,
-          "default": ""
-        },
-        "deviceName": {
-          "type": "string",
-          "description": "AWS root device name",
-          "create": true,
-          "update": false,
-          "readOnCreateOnly": false,
-          "default": "/dev/sda1"
-        },
-        "iamInstanceProfile": {
-          "type": "string",
-          "description": "AWS IAM Instance Profile",
-          "create": true,
-          "update": false,
-          "readOnCreateOnly": false,
-          "default": ""
-        },
-        "instanceType": {
-          "type": "string",
-          "description": "AWS instance type",
-          "create": true,
-          "update": false,
-          "readOnCreateOnly": false,
-          "default": "t2.micro"
-        },
-        "monitoring": {
-          "type": "boolean",
-          "description": "Set this flag to enable CloudWatch monitoring",
-          "create": true,
-          "update": false,
-          "readOnCreateOnly": false
-        },
-        "privateAddressOnly": {
-          "type": "boolean",
-          "description": "Only use a private IP address",
-          "create": true,
-          "update": false,
-          "readOnCreateOnly": false
-        },
-        "region": {
-          "type": "string",
-          "description": "AWS region",
-          "create": true,
-          "update": false,
-          "readOnCreateOnly": false,
-          "default": "us-east-1"
-        },
-        "requestSpotInstance": {
-          "type": "boolean",
-          "description": "Set this flag to request spot instance",
-          "create": true,
-          "update": false,
-          "readOnCreateOnly": false
-        },
-        "rootSize": {
-          "type": "string",
-          "description": "AWS root disk size (in GB)",
-          "create": true,
-          "update": false,
-          "readOnCreateOnly": false,
-          "default": "16"
-        },
-        "secretKey": {
-          "type": "string",
-          "description": "AWS Secret Key",
-          "create": true,
-          "update": false,
-          "readOnCreateOnly": false,
-          "default": ""
-        },
-        "securityGroup": {
-          "type": "string",
-          "description": "AWS VPC security group",
-          "create": true,
-          "update": false,
-          "readOnCreateOnly": false,
-          "default": "docker-machine"
-        },
-        "sessionToken": {
-          "type": "string",
-          "description": "AWS Session Token",
-          "create": true,
-          "update": false,
-          "readOnCreateOnly": false,
-          "default": ""
-        },
-        "spotPrice": {
-          "type": "string",
-          "description": "AWS spot instance bid price (in dollar)",
-          "create": true,
-          "update": false,
-          "readOnCreateOnly": false,
-          "default": "0.50"
-        },
-        "sshKeypath": {
-          "type": "string",
-          "description": "SSH Key for Instance",
-          "create": true,
-          "update": false,
-          "readOnCreateOnly": false,
-          "default": ""
-        },
-        "sshUser": {
-          "type": "string",
-          "description": "Set the name of the ssh user",
-          "create": true,
-          "update": false,
-          "readOnCreateOnly": false,
-          "default": "ubuntu"
-        },
-        "subnetId": {
-          "type": "string",
-          "description": "AWS VPC subnet id",
-          "create": true,
-          "update": false,
-          "readOnCreateOnly": false,
-          "default": ""
-        },
-        "tags": {
-          "type": "string",
-          "description": "AWS Tags (e.g. key1,value1,key2,value2)",
-          "create": true,
-          "update": false,
-          "readOnCreateOnly": false,
-          "default": ""
-        },
-        "useEbsOptimizedInstance": {
-          "type": "boolean",
-          "description": "Create an EBS optimized instance",
-          "create": true,
-          "update": false,
-          "readOnCreateOnly": false
-        },
-        "usePrivateAddress": {
-          "type": "boolean",
-          "description": "Force the usage of private IP address",
-          "create": true,
-          "update": false,
-          "readOnCreateOnly": false
-        },
-        "volumeType": {
-          "type": "string",
-          "description": "Amazon EBS volume type",
-          "create": true,
-          "update": false,
-          "readOnCreateOnly": false,
-          "default": "gp2"
-        },
-        "vpcId": {
-          "type": "string",
-          "description": "AWS VPC id",
-          "create": true,
-          "update": false,
-          "readOnCreateOnly": false,
-          "default": ""
-        },
-        "zone": {
-          "type": "string",
-          "description": "AWS zone for instance (i.e. a,b,c,d,e)",
-          "create": true,
-          "update": false,
-          "readOnCreateOnly": false,
-          "default": "a"
-        }
-      },
-      "collectionFilters": {},
-      "includeableLinks": [],
-      "resourceActions": {},
-      "collectionActions": {},
-      "collectionFields": {},
-      "resourceMethods": [
-        "GET"
-      ],
-      "collectionMethods": [
-        "POST"
-      ]
-    },
-    {
       "id": "apiKey",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/apikey",
-        "collection": "http://localhost:8080/v1/apikeys"
+        "self": "http://localhost:8080/v2-beta/schemas/apikey",
+        "collection": "http://localhost:8080/v2-beta/apikeys"
       },
       "actions": {},
       "pluralName": "apiKeys",
@@ -1453,8 +1253,8 @@
       "id": "auditLog",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/auditlog",
-        "collection": "http://localhost:8080/v1/auditlogs"
+        "self": "http://localhost:8080/v2-beta/schemas/auditlog",
+        "collection": "http://localhost:8080/v2-beta/auditlogs"
       },
       "actions": {},
       "pluralName": "auditLogs",
@@ -1754,121 +1554,11 @@
       ]
     },
     {
-      "id": "azureConfig",
-      "type": "schema",
-      "links": {
-        "self": "http://localhost:8080/v1/schemas/azureconfig"
-      },
-      "actions": {},
-      "pluralName": "azureConfigs",
-      "resourceFields": {
-        "dockerPort": {
-          "type": "string",
-          "description": "Azure Docker port",
-          "create": true,
-          "update": false,
-          "readOnCreateOnly": false,
-          "default": "2376"
-        },
-        "dockerSwarmMasterPort": {
-          "type": "string",
-          "description": "Azure Docker Swarm master port",
-          "create": true,
-          "update": false,
-          "readOnCreateOnly": false,
-          "default": "3376"
-        },
-        "image": {
-          "type": "string",
-          "description": "Azure image name. Default is Ubuntu 14.04 LTS x64",
-          "create": true,
-          "update": false,
-          "readOnCreateOnly": false,
-          "default": ""
-        },
-        "location": {
-          "type": "string",
-          "description": "Azure location",
-          "create": true,
-          "update": false,
-          "readOnCreateOnly": false,
-          "default": "West US"
-        },
-        "password": {
-          "type": "string",
-          "description": "Azure user password",
-          "create": true,
-          "update": false,
-          "readOnCreateOnly": false,
-          "default": ""
-        },
-        "publishSettingsFile": {
-          "type": "string",
-          "description": "Azure publish settings file",
-          "create": true,
-          "update": false,
-          "readOnCreateOnly": false,
-          "default": ""
-        },
-        "size": {
-          "type": "string",
-          "description": "Azure size",
-          "create": true,
-          "update": false,
-          "readOnCreateOnly": false,
-          "default": "Small"
-        },
-        "sshPort": {
-          "type": "string",
-          "description": "Azure SSH port",
-          "create": true,
-          "update": false,
-          "readOnCreateOnly": false,
-          "default": "22"
-        },
-        "subscriptionCert": {
-          "type": "string",
-          "description": "Azure subscription cert",
-          "create": true,
-          "update": false,
-          "readOnCreateOnly": false,
-          "default": ""
-        },
-        "subscriptionId": {
-          "type": "string",
-          "description": "Azure subscription ID",
-          "create": true,
-          "update": false,
-          "readOnCreateOnly": false,
-          "default": ""
-        },
-        "username": {
-          "type": "string",
-          "description": "Azure username",
-          "create": true,
-          "update": false,
-          "readOnCreateOnly": false,
-          "default": "ubuntu"
-        }
-      },
-      "collectionFilters": {},
-      "includeableLinks": [],
-      "resourceActions": {},
-      "collectionActions": {},
-      "collectionFields": {},
-      "resourceMethods": [
-        "GET"
-      ],
-      "collectionMethods": [
-        "POST"
-      ]
-    },
-    {
       "id": "azureadconfig",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/azureadconfig",
-        "collection": "http://localhost:8080/v1/azureadconfigs"
+        "self": "http://localhost:8080/v2-beta/schemas/azureadconfig",
+        "collection": "http://localhost:8080/v2-beta/azureadconfigs"
       },
       "actions": {},
       "pluralName": "azureadconfigs",
@@ -1967,8 +1657,8 @@
       "id": "backup",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/backup",
-        "collection": "http://localhost:8080/v1/backups"
+        "self": "http://localhost:8080/v2-beta/schemas/backup",
+        "collection": "http://localhost:8080/v2-beta/backups"
       },
       "actions": {},
       "pluralName": "backups",
@@ -2317,8 +2007,8 @@
       "id": "backupTarget",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/backuptarget",
-        "collection": "http://localhost:8080/v1/backuptargets"
+        "self": "http://localhost:8080/v2-beta/schemas/backuptarget",
+        "collection": "http://localhost:8080/v2-beta/backuptargets"
       },
       "actions": {},
       "pluralName": "backupTargets",
@@ -2605,7 +2295,7 @@
       "id": "baseMachineConfig",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/basemachineconfig"
+        "self": "http://localhost:8080/v2-beta/schemas/basemachineconfig"
       },
       "actions": {},
       "pluralName": "baseMachineConfigs",
@@ -2621,10 +2311,42 @@
       "collectionMethods": []
     },
     {
+      "id": "binding",
+      "type": "schema",
+      "links": {
+        "self": "http://localhost:8080/v2-beta/schemas/binding",
+        "collection": "http://localhost:8080/v2-beta/bindings"
+      },
+      "actions": {},
+      "pluralName": "bindings",
+      "resourceFields": {
+        "services": {
+          "type": "map[serviceBinding]",
+          "description": null,
+          "create": true,
+          "update": false,
+          "readOnCreateOnly": false
+        }
+      },
+      "collectionFilters": {},
+      "includeableLinks": [],
+      "resourceActions": {},
+      "collectionActions": {},
+      "collectionFields": {},
+      "resourceMethods": [
+        "GET",
+        "PUT"
+      ],
+      "collectionMethods": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
       "id": "blkioDeviceOption",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/blkiodeviceoption"
+        "self": "http://localhost:8080/v2-beta/schemas/blkiodeviceoption"
       },
       "actions": {},
       "pluralName": "blkioDeviceOptions",
@@ -2686,8 +2408,8 @@
       "id": "certificate",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/certificate",
-        "collection": "http://localhost:8080/v1/certificates"
+        "self": "http://localhost:8080/v2-beta/schemas/certificate",
+        "collection": "http://localhost:8080/v2-beta/certificates"
       },
       "actions": {},
       "pluralName": "certificates",
@@ -3101,7 +2823,7 @@
       "id": "changeSecretInput",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/changesecretinput"
+        "self": "http://localhost:8080/v2-beta/schemas/changesecretinput"
       },
       "actions": {},
       "pluralName": "changeSecretInputs",
@@ -3139,7 +2861,7 @@
       "id": "composeConfig",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/composeconfig"
+        "self": "http://localhost:8080/v2-beta/schemas/composeconfig"
       },
       "actions": {},
       "pluralName": "composeConfigs",
@@ -3173,7 +2895,7 @@
       "id": "composeConfigInput",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/composeconfiginput"
+        "self": "http://localhost:8080/v2-beta/schemas/composeconfiginput"
       },
       "actions": {},
       "pluralName": "composeConfigInputs",
@@ -3203,8 +2925,8 @@
       "id": "composeProject",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/composeproject",
-        "collection": "http://localhost:8080/v1/composeprojects"
+        "self": "http://localhost:8080/v2-beta/schemas/composeproject",
+        "collection": "http://localhost:8080/v2-beta/composeprojects"
       },
       "actions": {},
       "pluralName": "composeProjects",
@@ -3217,6 +2939,14 @@
           "nullable": true,
           "readOnCreateOnly": false,
           "maxLength": 255
+        },
+        "binding": {
+          "type": "binding",
+          "description": null,
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
         },
         "created": {
           "type": "date",
@@ -3344,7 +3074,6 @@
             "activating",
             "active",
             "canceled-upgrade",
-            "canceling-rollback",
             "canceling-upgrade",
             "error",
             "erroring",
@@ -3544,31 +3273,27 @@
       "resourceActions": {
         "finishupgrade": {
           "input": null,
-          "output": "environment"
+          "output": "stack"
         },
         "remove": {
           "input": null,
-          "output": "environment"
+          "output": "stack"
         },
         "error": {
           "input": null,
-          "output": "environment"
+          "output": "stack"
         },
         "cancelupgrade": {
           "input": null,
-          "output": "environment"
+          "output": "stack"
         },
         "rollback": {
           "input": null,
-          "output": "environment"
+          "output": "stack"
         },
         "create": {
           "input": null,
-          "output": "environment"
-        },
-        "cancelrollback": {
-          "input": null,
-          "output": "environment"
+          "output": "stack"
         }
       },
       "collectionActions": {},
@@ -3587,8 +3312,8 @@
       "id": "composeService",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/composeservice",
-        "collection": "http://localhost:8080/v1/composeservices"
+        "self": "http://localhost:8080/v2-beta/schemas/composeservice",
+        "collection": "http://localhost:8080/v2-beta/composeservices"
       },
       "actions": {},
       "pluralName": "composeServices",
@@ -3635,15 +3360,6 @@
           "nullable": true,
           "readOnCreateOnly": false,
           "maxLength": 1024
-        },
-        "environmentId": {
-          "type": "reference[environment]",
-          "description": null,
-          "create": true,
-          "update": false,
-          "required": true,
-          "readOnCreateOnly": false,
-          "maxLength": 255
         },
         "externalId": {
           "type": "string",
@@ -3768,6 +3484,15 @@
           "readOnCreateOnly": false,
           "maxLength": 4096
         },
+        "stackId": {
+          "type": "reference[stack]",
+          "description": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false,
+          "maxLength": 255
+        },
         "startOnCreate": {
           "type": "boolean",
           "description": null,
@@ -3787,9 +3512,7 @@
           "options": [
             "activating",
             "active",
-            "canceled-rollback",
             "canceled-upgrade",
-            "canceling-rollback",
             "canceling-upgrade",
             "deactivating",
             "finishing-upgrade",
@@ -3897,14 +3620,6 @@
             "notnull"
           ]
         },
-        "environmentId": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "null",
-            "notnull"
-          ]
-        },
         "externalId": {
           "modifiers": [
             "eq",
@@ -4007,6 +3722,14 @@
             "notnull"
           ]
         },
+        "stackId": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "null",
+            "notnull"
+          ]
+        },
         "state": {
           "modifiers": [
             "eq",
@@ -4040,13 +3763,14 @@
       },
       "includeableLinks": [
         "dynamicschemas",
-        "environment",
         "consumedservices",
         "configitemstatuses",
         "serviceexposemaps",
         "account",
+        "stack",
         "instances",
-        "consumedbyservices"
+        "consumedbyservices",
+        "servicelogs"
       ],
       "resourceActions": {
         "finishupgrade": {
@@ -4072,10 +3796,6 @@
         "activate": {
           "input": null,
           "output": "service"
-        },
-        "cancelrollback": {
-          "input": null,
-          "output": "service"
         }
       },
       "collectionActions": {},
@@ -4092,8 +3812,8 @@
       "id": "configItem",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/configitem",
-        "collection": "http://localhost:8080/v1/configitems"
+        "self": "http://localhost:8080/v2-beta/schemas/configitem",
+        "collection": "http://localhost:8080/v2-beta/configitems"
       },
       "actions": {},
       "pluralName": "configItems",
@@ -4176,8 +3896,8 @@
       "id": "configItemStatus",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/configitemstatus",
-        "collection": "http://localhost:8080/v1/configitemstatuses"
+        "self": "http://localhost:8080/v2-beta/schemas/configitemstatus",
+        "collection": "http://localhost:8080/v2-beta/configitemstatuses"
       },
       "actions": {},
       "pluralName": "configItemStatuses",
@@ -4301,14 +4021,6 @@
             "notnull"
           ]
         },
-        "environmentId": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "null",
-            "notnull"
-          ]
-        },
         "hostId": {
           "modifiers": [
             "eq",
@@ -4405,6 +4117,14 @@
             "null",
             "notnull"
           ]
+        },
+        "stackId": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "null",
+            "notnull"
+          ]
         }
       },
       "includeableLinks": [
@@ -4426,8 +4146,8 @@
       "id": "container",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/container",
-        "collection": "http://localhost:8080/v1/containers"
+        "self": "http://localhost:8080/v2-beta/schemas/container",
+        "collection": "http://localhost:8080/v2-beta/containers"
       },
       "actions": {},
       "pluralName": "containers",
@@ -5579,7 +5299,8 @@
         "hosts",
         "account",
         "credentials",
-        "healthcheckinstancehostmaps"
+        "healthcheckinstancehostmaps",
+        "servicelogs"
       ],
       "resourceActions": {
         "update": {
@@ -5679,8 +5400,8 @@
       "id": "containerEvent",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/containerevent",
-        "collection": "http://localhost:8080/v1/containerevents"
+        "self": "http://localhost:8080/v2-beta/schemas/containerevent",
+        "collection": "http://localhost:8080/v2-beta/containerevents"
       },
       "actions": {},
       "pluralName": "containerEvents",
@@ -5978,7 +5699,7 @@
       "id": "containerExec",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/containerexec"
+        "self": "http://localhost:8080/v2-beta/schemas/containerexec"
       },
       "actions": {},
       "pluralName": "containerExecs",
@@ -6036,7 +5757,7 @@
       "id": "containerLogs",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/containerlogs"
+        "self": "http://localhost:8080/v2-beta/schemas/containerlogs"
       },
       "actions": {},
       "pluralName": "containerLogses",
@@ -6078,7 +5799,7 @@
       "id": "containerProxy",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/containerproxy"
+        "self": "http://localhost:8080/v2-beta/schemas/containerproxy"
       },
       "actions": {},
       "pluralName": "containerProxys",
@@ -6124,8 +5845,8 @@
       "id": "credential",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/credential",
-        "collection": "http://localhost:8080/v1/credentials"
+        "self": "http://localhost:8080/v2-beta/schemas/credential",
+        "collection": "http://localhost:8080/v2-beta/credentials"
       },
       "actions": {},
       "pluralName": "credentials",
@@ -6473,8 +6194,8 @@
       "id": "databasechangelog",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/databasechangelog",
-        "collection": "http://localhost:8080/v1/databasechangelogs"
+        "self": "http://localhost:8080/v2-beta/schemas/databasechangelog",
+        "collection": "http://localhost:8080/v2-beta/databasechangelogs"
       },
       "actions": {},
       "pluralName": "databasechangelogs",
@@ -6716,8 +6437,8 @@
       "id": "databasechangeloglock",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/databasechangeloglock",
-        "collection": "http://localhost:8080/v1/databasechangeloglocks"
+        "self": "http://localhost:8080/v2-beta/schemas/databasechangeloglock",
+        "collection": "http://localhost:8080/v2-beta/databasechangeloglocks"
       },
       "actions": {},
       "pluralName": "databasechangeloglocks",
@@ -6815,110 +6536,11 @@
       ]
     },
     {
-      "id": "digitaloceanConfig",
-      "type": "schema",
-      "links": {
-        "self": "http://localhost:8080/v1/schemas/digitaloceanconfig"
-      },
-      "actions": {},
-      "pluralName": "digitaloceanConfigs",
-      "resourceFields": {
-        "accessToken": {
-          "type": "string",
-          "description": "Digital Ocean access token",
-          "create": true,
-          "update": false,
-          "readOnCreateOnly": false,
-          "default": ""
-        },
-        "backups": {
-          "type": "boolean",
-          "description": "enable backups for droplet",
-          "create": true,
-          "update": false,
-          "readOnCreateOnly": false
-        },
-        "image": {
-          "type": "string",
-          "description": "Digital Ocean Image",
-          "create": true,
-          "update": false,
-          "readOnCreateOnly": false,
-          "default": "ubuntu-15-10-x64"
-        },
-        "ipv6": {
-          "type": "boolean",
-          "description": "enable ipv6 for droplet",
-          "create": true,
-          "update": false,
-          "readOnCreateOnly": false
-        },
-        "privateNetworking": {
-          "type": "boolean",
-          "description": "enable private networking for droplet",
-          "create": true,
-          "update": false,
-          "readOnCreateOnly": false
-        },
-        "region": {
-          "type": "string",
-          "description": "Digital Ocean region",
-          "create": true,
-          "update": false,
-          "readOnCreateOnly": false,
-          "default": "nyc3"
-        },
-        "size": {
-          "type": "string",
-          "description": "Digital Ocean size",
-          "create": true,
-          "update": false,
-          "readOnCreateOnly": false,
-          "default": "512mb"
-        },
-        "sshPort": {
-          "type": "string",
-          "description": "SSH port",
-          "create": true,
-          "update": false,
-          "readOnCreateOnly": false,
-          "default": "22"
-        },
-        "sshUser": {
-          "type": "string",
-          "description": "SSH username",
-          "create": true,
-          "update": false,
-          "readOnCreateOnly": false,
-          "default": "root"
-        },
-        "userdata": {
-          "type": "string",
-          "description": "path to file with cloud-init user-data",
-          "create": true,
-          "update": false,
-          "readOnCreateOnly": false,
-          "default": ""
-        }
-      },
-      "collectionFilters": {},
-      "includeableLinks": [],
-      "resourceActions": {},
-      "collectionActions": {},
-      "collectionFields": {},
-      "resourceMethods": [
-        "GET"
-      ],
-      "collectionMethods": [
-        "POST"
-      ]
-    },
-    {
       "id": "dnsService",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/dnsservice",
-        "collection": "http://localhost:8080/v1/dnsservices"
+        "self": "http://localhost:8080/v2-beta/schemas/dnsservice",
+        "collection": "http://localhost:8080/v2-beta/dnsservices"
       },
       "actions": {},
       "pluralName": "dnsServices",
@@ -6966,15 +6588,6 @@
           "nullable": true,
           "readOnCreateOnly": false,
           "maxLength": 1024
-        },
-        "environmentId": {
-          "type": "reference[environment]",
-          "description": null,
-          "create": true,
-          "update": false,
-          "required": true,
-          "readOnCreateOnly": false,
-          "maxLength": 255
         },
         "externalId": {
           "type": "string",
@@ -7082,6 +6695,15 @@
           "readOnCreateOnly": false,
           "maxLength": 4096
         },
+        "stackId": {
+          "type": "reference[stack]",
+          "description": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false,
+          "maxLength": 255
+        },
         "startOnCreate": {
           "type": "boolean",
           "description": null,
@@ -7101,9 +6723,7 @@
           "options": [
             "activating",
             "active",
-            "canceled-rollback",
             "canceled-upgrade",
-            "canceling-rollback",
             "canceling-upgrade",
             "deactivating",
             "finishing-upgrade",
@@ -7210,14 +6830,6 @@
             "notnull"
           ]
         },
-        "environmentId": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "null",
-            "notnull"
-          ]
-        },
         "externalId": {
           "modifiers": [
             "eq",
@@ -7320,6 +6932,14 @@
             "notnull"
           ]
         },
+        "stackId": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "null",
+            "notnull"
+          ]
+        },
         "state": {
           "modifiers": [
             "eq",
@@ -7353,13 +6973,14 @@
       },
       "includeableLinks": [
         "dynamicschemas",
-        "environment",
         "consumedservices",
         "configitemstatuses",
         "serviceexposemaps",
         "account",
+        "stack",
         "instances",
-        "consumedbyservices"
+        "consumedbyservices",
+        "servicelogs"
       ],
       "resourceActions": {
         "update": {
@@ -7406,16 +7027,12 @@
           "input": "serviceUpgrade",
           "output": "service"
         },
-        "addservicelink": {
-          "input": "addRemoveServiceLinkInput",
-          "output": "service"
-        },
         "deactivate": {
           "input": null,
           "output": "service"
         },
-        "cancelrollback": {
-          "input": null,
+        "addservicelink": {
+          "input": "addRemoveServiceLinkInput",
           "output": "service"
         }
       },
@@ -7435,7 +7052,7 @@
       "id": "dockerBuild",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/dockerbuild"
+        "self": "http://localhost:8080/v2-beta/schemas/dockerbuild"
       },
       "actions": {},
       "pluralName": "dockerBuilds",
@@ -7505,8 +7122,8 @@
       "id": "dynamicSchema",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/dynamicschema",
-        "collection": "http://localhost:8080/v1/dynamicschemas"
+        "self": "http://localhost:8080/v2-beta/schemas/dynamicschema",
+        "collection": "http://localhost:8080/v2-beta/dynamicschemas"
       },
       "actions": {},
       "pluralName": "dynamicSchemas",
@@ -7814,490 +7431,10 @@
       ]
     },
     {
-      "id": "environment",
-      "type": "schema",
-      "links": {
-        "self": "http://localhost:8080/v1/schemas/environment",
-        "collection": "http://localhost:8080/v1/environments"
-      },
-      "actions": {},
-      "pluralName": "environments",
-      "resourceFields": {
-        "accountId": {
-          "type": "reference[account]",
-          "description": null,
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false,
-          "maxLength": 255
-        },
-        "created": {
-          "type": "date",
-          "description": null,
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false,
-          "maxLength": 255
-        },
-        "data": {
-          "type": "map[json]",
-          "description": null,
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false,
-          "maxLength": 16777215
-        },
-        "description": {
-          "type": "string",
-          "description": null,
-          "create": true,
-          "update": true,
-          "nullable": true,
-          "readOnCreateOnly": false,
-          "maxLength": 1024
-        },
-        "externalId": {
-          "type": "string",
-          "description": null,
-          "create": true,
-          "update": true,
-          "nullable": true,
-          "readOnCreateOnly": false,
-          "maxLength": 128
-        },
-        "healthState": {
-          "type": "string",
-          "description": null,
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false,
-          "maxLength": 128
-        },
-        "id": {
-          "type": "int",
-          "description": null,
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false
-        },
-        "kind": {
-          "type": "string",
-          "description": null,
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false,
-          "maxLength": 255
-        },
-        "name": {
-          "type": "string",
-          "validChars": "a-zA-Z0-9-",
-          "description": null,
-          "create": true,
-          "update": true,
-          "nullable": true,
-          "required": true,
-          "readOnCreateOnly": false,
-          "minLength": 1,
-          "maxLength": 63
-        },
-        "removeTime": {
-          "type": "date",
-          "description": null,
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false,
-          "maxLength": 255
-        },
-        "removed": {
-          "type": "date",
-          "description": null,
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false,
-          "maxLength": 255
-        },
-        "state": {
-          "type": "enum",
-          "description": null,
-          "create": false,
-          "update": false,
-          "readOnCreateOnly": false,
-          "maxLength": 128,
-          "options": [
-            "activating",
-            "active",
-            "canceled-upgrade",
-            "canceling-rollback",
-            "canceling-upgrade",
-            "error",
-            "erroring",
-            "finishing-upgrade",
-            "removed",
-            "removing",
-            "requested",
-            "rolling-back",
-            "updating-active",
-            "upgraded",
-            "upgrading"
-          ]
-        },
-        "uuid": {
-          "type": "string",
-          "description": null,
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false,
-          "maxLength": 128
-        },
-        "transitioning": {
-          "type": "enum",
-          "description": null,
-          "create": false,
-          "update": false,
-          "readOnCreateOnly": false,
-          "options": [
-            "yes",
-            "no",
-            "error"
-          ]
-        },
-        "transitioningMessage": {
-          "type": "string",
-          "description": null,
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false
-        },
-        "transitioningProgress": {
-          "type": "int",
-          "description": null,
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false
-        },
-        "dockerCompose": {
-          "type": "string",
-          "description": null,
-          "create": true,
-          "update": false,
-          "readOnCreateOnly": false
-        },
-        "rancherCompose": {
-          "type": "string",
-          "description": null,
-          "create": true,
-          "update": false,
-          "readOnCreateOnly": false
-        },
-        "environment": {
-          "type": "map[string]",
-          "description": null,
-          "create": true,
-          "update": false,
-          "readOnCreateOnly": false
-        },
-        "previousExternalId": {
-          "type": "string",
-          "description": null,
-          "create": true,
-          "update": true,
-          "nullable": true,
-          "readOnCreateOnly": false
-        },
-        "previousEnvironment": {
-          "type": "map[string]",
-          "description": null,
-          "create": true,
-          "update": true,
-          "nullable": true,
-          "readOnCreateOnly": false
-        },
-        "startOnCreate": {
-          "type": "boolean",
-          "description": null,
-          "create": true,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false
-        },
-        "outputs": {
-          "type": "map[string]",
-          "description": null,
-          "create": true,
-          "update": true,
-          "nullable": true,
-          "readOnCreateOnly": false
-        }
-      },
-      "collectionFilters": {
-        "accountId": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "null",
-            "notnull"
-          ]
-        },
-        "created": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "lt",
-            "lte",
-            "gt",
-            "gte",
-            "null",
-            "notnull"
-          ]
-        },
-        "description": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "prefix",
-            "like",
-            "notlike",
-            "null",
-            "notnull"
-          ]
-        },
-        "externalId": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "prefix",
-            "like",
-            "notlike",
-            "null",
-            "notnull"
-          ]
-        },
-        "healthState": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "prefix",
-            "like",
-            "notlike",
-            "null",
-            "notnull"
-          ]
-        },
-        "id": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "lt",
-            "lte",
-            "gt",
-            "gte",
-            "null",
-            "notnull"
-          ]
-        },
-        "kind": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "prefix",
-            "like",
-            "notlike",
-            "null",
-            "notnull"
-          ]
-        },
-        "name": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "prefix",
-            "like",
-            "notlike",
-            "null",
-            "notnull"
-          ]
-        },
-        "removeTime": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "lt",
-            "lte",
-            "gt",
-            "gte",
-            "null",
-            "notnull"
-          ]
-        },
-        "removed": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "lt",
-            "lte",
-            "gt",
-            "gte",
-            "null",
-            "notnull"
-          ]
-        },
-        "state": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "null",
-            "notnull"
-          ]
-        },
-        "uuid": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "prefix",
-            "like",
-            "notlike",
-            "null",
-            "notnull"
-          ]
-        }
-      },
-      "includeableLinks": [
-        "services",
-        "configitemstatuses",
-        "account"
-      ],
-      "resourceActions": {
-        "upgrade": {
-          "input": "environmentUpgrade",
-          "output": "environment"
-        },
-        "update": {
-          "input": null,
-          "output": "environment"
-        },
-        "finishupgrade": {
-          "input": null,
-          "output": "environment"
-        },
-        "remove": {
-          "input": null,
-          "output": "environment"
-        },
-        "error": {
-          "input": null,
-          "output": "environment"
-        },
-        "cancelupgrade": {
-          "input": null,
-          "output": "environment"
-        },
-        "addoutputs": {
-          "input": "addOutputsInput",
-          "output": "environment"
-        },
-        "activateservices": {
-          "input": null,
-          "output": "environment"
-        },
-        "rollback": {
-          "input": null,
-          "output": "environment"
-        },
-        "deactivateservices": {
-          "input": null,
-          "output": "environment"
-        },
-        "create": {
-          "input": null,
-          "output": "environment"
-        },
-        "cancelrollback": {
-          "input": null,
-          "output": "environment"
-        },
-        "exportconfig": {
-          "input": "composeConfigInput",
-          "output": "composeConfig"
-        }
-      },
-      "collectionActions": {},
-      "collectionFields": {},
-      "resourceMethods": [
-        "GET",
-        "PUT",
-        "DELETE"
-      ],
-      "collectionMethods": [
-        "GET",
-        "POST"
-      ]
-    },
-    {
-      "id": "environmentUpgrade",
-      "type": "schema",
-      "links": {
-        "self": "http://localhost:8080/v1/schemas/environmentupgrade"
-      },
-      "actions": {},
-      "pluralName": "environmentUpgrades",
-      "resourceFields": {
-        "dockerCompose": {
-          "type": "string",
-          "description": null,
-          "create": true,
-          "update": false,
-          "readOnCreateOnly": false
-        },
-        "rancherCompose": {
-          "type": "string",
-          "description": null,
-          "create": true,
-          "update": false,
-          "readOnCreateOnly": false
-        },
-        "externalId": {
-          "type": "string",
-          "description": null,
-          "create": true,
-          "update": false,
-          "readOnCreateOnly": false
-        },
-        "environment": {
-          "type": "map[string]",
-          "description": null,
-          "create": true,
-          "update": false,
-          "readOnCreateOnly": false
-        }
-      },
-      "collectionFilters": {},
-      "includeableLinks": [],
-      "resourceActions": {},
-      "collectionActions": {},
-      "collectionFields": {},
-      "resourceMethods": [
-        "GET"
-      ],
-      "collectionMethods": [
-        "POST"
-      ]
-    },
-    {
       "id": "extensionImplementation",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/extensionimplementation"
+        "self": "http://localhost:8080/v2-beta/schemas/extensionimplementation"
       },
       "actions": {},
       "pluralName": "extensionImplementations",
@@ -8338,8 +7475,8 @@
       "id": "extensionPoint",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/extensionpoint",
-        "collection": "http://localhost:8080/v1/extensionpoints"
+        "self": "http://localhost:8080/v2-beta/schemas/extensionpoint",
+        "collection": "http://localhost:8080/v2-beta/extensionpoints"
       },
       "actions": {},
       "pluralName": "extensionPoints",
@@ -8396,8 +7533,8 @@
       "id": "externalDnsEvent",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/externaldnsevent",
-        "collection": "http://localhost:8080/v1/externaldnsevents"
+        "self": "http://localhost:8080/v2-beta/schemas/externaldnsevent",
+        "collection": "http://localhost:8080/v2-beta/externaldnsevents"
       },
       "actions": {},
       "pluralName": "externalDnsEvents",
@@ -8668,8 +7805,8 @@
       "id": "externalEvent",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/externalevent",
-        "collection": "http://localhost:8080/v1/externalevents"
+        "self": "http://localhost:8080/v2-beta/schemas/externalevent",
+        "collection": "http://localhost:8080/v2-beta/externalevents"
       },
       "actions": {},
       "pluralName": "externalEvents",
@@ -8919,8 +8056,8 @@
       "id": "externalHandler",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/externalhandler",
-        "collection": "http://localhost:8080/v1/externalhandlers"
+        "self": "http://localhost:8080/v2-beta/schemas/externalhandler",
+        "collection": "http://localhost:8080/v2-beta/externalhandlers"
       },
       "actions": {},
       "pluralName": "externalHandlers",
@@ -9255,8 +8392,8 @@
       "id": "externalHandlerExternalHandlerProcessMap",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/externalhandlerexternalhandlerprocessmap",
-        "collection": "http://localhost:8080/v1/externalhandlerexternalhandlerprocessmaps"
+        "self": "http://localhost:8080/v2-beta/schemas/externalhandlerexternalhandlerprocessmap",
+        "collection": "http://localhost:8080/v2-beta/externalhandlerexternalhandlerprocessmaps"
       },
       "actions": {},
       "pluralName": "externalHandlerExternalHandlerProcessMaps",
@@ -9287,6 +8424,15 @@
           "nullable": true,
           "readOnCreateOnly": false,
           "maxLength": 1024
+        },
+        "eventName": {
+          "type": "string",
+          "description": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false,
+          "maxLength": 255
         },
         "externalHandlerId": {
           "type": "reference[externalHandler]",
@@ -9434,6 +8580,17 @@
           ]
         },
         "description": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "prefix",
+            "like",
+            "notlike",
+            "null",
+            "notnull"
+          ]
+        },
+        "eventName": {
           "modifiers": [
             "eq",
             "ne",
@@ -9596,8 +8753,8 @@
       "id": "externalHandlerProcess",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/externalhandlerprocess",
-        "collection": "http://localhost:8080/v1/externalhandlerprocesses"
+        "self": "http://localhost:8080/v2-beta/schemas/externalhandlerprocess",
+        "collection": "http://localhost:8080/v2-beta/externalhandlerprocesses"
       },
       "actions": {},
       "pluralName": "externalHandlerProcesses",
@@ -9883,7 +9040,7 @@
       "id": "externalHandlerProcessConfig",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/externalhandlerprocessconfig"
+        "self": "http://localhost:8080/v2-beta/schemas/externalhandlerprocessconfig"
       },
       "actions": {},
       "pluralName": "externalHandlerProcessConfigs",
@@ -9919,8 +9076,8 @@
       "id": "externalHostEvent",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/externalhostevent",
-        "collection": "http://localhost:8080/v1/externalhostevents"
+        "self": "http://localhost:8080/v2-beta/schemas/externalhostevent",
+        "collection": "http://localhost:8080/v2-beta/externalhostevents"
       },
       "actions": {},
       "pluralName": "externalHostEvents",
@@ -10195,8 +9352,8 @@
       "id": "externalService",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/externalservice",
-        "collection": "http://localhost:8080/v1/externalservices"
+        "self": "http://localhost:8080/v2-beta/schemas/externalservice",
+        "collection": "http://localhost:8080/v2-beta/externalservices"
       },
       "actions": {},
       "pluralName": "externalServices",
@@ -10236,15 +9393,6 @@
           "nullable": true,
           "readOnCreateOnly": false,
           "maxLength": 1024
-        },
-        "environmentId": {
-          "type": "reference[environment]",
-          "description": null,
-          "create": true,
-          "update": false,
-          "required": true,
-          "readOnCreateOnly": false,
-          "maxLength": 255
         },
         "externalId": {
           "type": "string",
@@ -10335,6 +9483,15 @@
           "readOnCreateOnly": false,
           "maxLength": 255
         },
+        "stackId": {
+          "type": "reference[stack]",
+          "description": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false,
+          "maxLength": 255
+        },
         "startOnCreate": {
           "type": "boolean",
           "description": null,
@@ -10354,9 +9511,7 @@
           "options": [
             "activating",
             "active",
-            "canceled-rollback",
             "canceled-upgrade",
-            "canceling-rollback",
             "canceling-upgrade",
             "deactivating",
             "finishing-upgrade",
@@ -10487,14 +9642,6 @@
             "notnull"
           ]
         },
-        "environmentId": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "null",
-            "notnull"
-          ]
-        },
         "externalId": {
           "modifiers": [
             "eq",
@@ -10597,6 +9744,14 @@
             "notnull"
           ]
         },
+        "stackId": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "null",
+            "notnull"
+          ]
+        },
         "state": {
           "modifiers": [
             "eq",
@@ -10630,13 +9785,14 @@
       },
       "includeableLinks": [
         "dynamicschemas",
-        "environment",
         "consumedservices",
         "configitemstatuses",
         "serviceexposemaps",
         "account",
+        "stack",
         "instances",
-        "consumedbyservices"
+        "consumedbyservices",
+        "servicelogs"
       ],
       "resourceActions": {
         "update": {
@@ -10678,10 +9834,6 @@
         "deactivate": {
           "input": null,
           "output": "service"
-        },
-        "cancelrollback": {
-          "input": null,
-          "output": "service"
         }
       },
       "collectionActions": {},
@@ -10700,8 +9852,8 @@
       "id": "externalServiceEvent",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/externalserviceevent",
-        "collection": "http://localhost:8080/v1/externalserviceevents"
+        "self": "http://localhost:8080/v2-beta/schemas/externalserviceevent",
+        "collection": "http://localhost:8080/v2-beta/externalserviceevents"
       },
       "actions": {},
       "pluralName": "externalServiceEvents",
@@ -10966,8 +10118,8 @@
       "id": "externalStoragePoolEvent",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/externalstoragepoolevent",
-        "collection": "http://localhost:8080/v1/externalstoragepoolevents"
+        "self": "http://localhost:8080/v2-beta/schemas/externalstoragepoolevent",
+        "collection": "http://localhost:8080/v2-beta/externalstoragepoolevents"
       },
       "actions": {},
       "pluralName": "externalStoragePoolEvents",
@@ -11232,8 +10384,8 @@
       "id": "externalVolumeEvent",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/externalvolumeevent",
-        "collection": "http://localhost:8080/v1/externalvolumeevents"
+        "self": "http://localhost:8080/v2-beta/schemas/externalvolumeevent",
+        "collection": "http://localhost:8080/v2-beta/externalvolumeevents"
       },
       "actions": {},
       "pluralName": "externalVolumeEvents",
@@ -11491,7 +10643,7 @@
       "id": "fieldDocumentation",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/fielddocumentation"
+        "self": "http://localhost:8080/v2-beta/schemas/fielddocumentation"
       },
       "actions": {},
       "pluralName": "fieldDocumentations",
@@ -11518,8 +10670,8 @@
       "id": "githubconfig",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/githubconfig",
-        "collection": "http://localhost:8080/v1/githubconfigs"
+        "self": "http://localhost:8080/v2-beta/schemas/githubconfig",
+        "collection": "http://localhost:8080/v2-beta/githubconfigs"
       },
       "actions": {},
       "pluralName": "githubconfigs",
@@ -11619,8 +10771,8 @@
       "id": "haConfig",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/haconfig",
-        "collection": "http://localhost:8080/v1/haconfigs"
+        "self": "http://localhost:8080/v2-beta/schemas/haconfig",
+        "collection": "http://localhost:8080/v2-beta/haconfigs"
       },
       "actions": {},
       "pluralName": "haConfigs",
@@ -11679,8 +10831,8 @@
       "id": "haConfigInput",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/haconfiginput",
-        "collection": "http://localhost:8080/v1/haconfiginputs"
+        "self": "http://localhost:8080/v2-beta/schemas/haconfiginput",
+        "collection": "http://localhost:8080/v2-beta/haconfiginputs"
       },
       "actions": {},
       "pluralName": "haConfigInputs",
@@ -11870,7 +11022,7 @@
       "id": "haproxyConfig",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/haproxyconfig"
+        "self": "http://localhost:8080/v2-beta/schemas/haproxyconfig"
       },
       "actions": {},
       "pluralName": "haproxyConfigs",
@@ -11911,8 +11063,8 @@
       "id": "healthcheckInstanceHostMap",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/healthcheckinstancehostmap",
-        "collection": "http://localhost:8080/v1/healthcheckinstancehostmaps"
+        "self": "http://localhost:8080/v2-beta/schemas/healthcheckinstancehostmap",
+        "collection": "http://localhost:8080/v2-beta/healthcheckinstancehostmaps"
       },
       "actions": {},
       "pluralName": "healthcheckInstanceHostMaps",
@@ -12262,8 +11414,8 @@
       "id": "host",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/host",
-        "collection": "http://localhost:8080/v1/hosts"
+        "self": "http://localhost:8080/v2-beta/schemas/host",
+        "collection": "http://localhost:8080/v2-beta/hosts"
       },
       "actions": {},
       "pluralName": "hosts",
@@ -12727,7 +11879,7 @@
       "id": "hostAccess",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/hostaccess"
+        "self": "http://localhost:8080/v2-beta/schemas/hostaccess"
       },
       "actions": {},
       "pluralName": "hostAccesses",
@@ -12761,8 +11913,8 @@
       "id": "hostApiProxyToken",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/hostapiproxytoken",
-        "collection": "http://localhost:8080/v1/hostapiproxytokens"
+        "self": "http://localhost:8080/v2-beta/schemas/hostapiproxytoken",
+        "collection": "http://localhost:8080/v2-beta/hostapiproxytokens"
       },
       "actions": {},
       "pluralName": "hostApiProxyTokens",
@@ -12805,8 +11957,8 @@
       "id": "identity",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/identity",
-        "collection": "http://localhost:8080/v1/identities"
+        "self": "http://localhost:8080/v2-beta/schemas/identity",
+        "collection": "http://localhost:8080/v2-beta/identities"
       },
       "actions": {},
       "pluralName": "identities",
@@ -12929,8 +12081,8 @@
       "id": "image",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/image",
-        "collection": "http://localhost:8080/v1/images"
+        "self": "http://localhost:8080/v2-beta/schemas/image",
+        "collection": "http://localhost:8080/v2-beta/images"
       },
       "actions": {},
       "pluralName": "images",
@@ -13319,7 +12471,7 @@
       "id": "inServiceUpgradeStrategy",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/inserviceupgradestrategy"
+        "self": "http://localhost:8080/v2-beta/schemas/inserviceupgradestrategy"
       },
       "actions": {},
       "pluralName": "inServiceUpgradeStrategys",
@@ -13402,8 +12554,8 @@
       "id": "instance",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/instance",
-        "collection": "http://localhost:8080/v1/instances"
+        "self": "http://localhost:8080/v2-beta/schemas/instance",
+        "collection": "http://localhost:8080/v2-beta/instances"
       },
       "actions": {},
       "pluralName": "instances",
@@ -13973,7 +13125,8 @@
         "serviceexposemaps",
         "account",
         "credentials",
-        "healthcheckinstancehostmaps"
+        "healthcheckinstancehostmaps",
+        "servicelogs"
       ],
       "resourceActions": {
         "update": {
@@ -14054,7 +13207,7 @@
       "id": "instanceConsole",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/instanceconsole"
+        "self": "http://localhost:8080/v2-beta/schemas/instanceconsole"
       },
       "actions": {},
       "pluralName": "instanceConsoles",
@@ -14095,7 +13248,7 @@
       "id": "instanceConsoleInput",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/instanceconsoleinput"
+        "self": "http://localhost:8080/v2-beta/schemas/instanceconsoleinput"
       },
       "actions": {},
       "pluralName": "instanceConsoleInputs",
@@ -14114,7 +13267,7 @@
       "id": "instanceHealthCheck",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/instancehealthcheck"
+        "self": "http://localhost:8080/v2-beta/schemas/instancehealthcheck"
       },
       "actions": {},
       "pluralName": "instanceHealthChecks",
@@ -14238,8 +13391,8 @@
       "id": "instanceLink",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/instancelink",
-        "collection": "http://localhost:8080/v1/instancelinks"
+        "self": "http://localhost:8080/v2-beta/schemas/instancelink",
+        "collection": "http://localhost:8080/v2-beta/instancelinks"
       },
       "actions": {},
       "pluralName": "instanceLinks",
@@ -14613,7 +13766,7 @@
       "id": "instanceStop",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/instancestop"
+        "self": "http://localhost:8080/v2-beta/schemas/instancestop"
       },
       "actions": {},
       "pluralName": "instanceStops",
@@ -14649,8 +13802,8 @@
       "id": "ipAddress",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/ipaddress",
-        "collection": "http://localhost:8080/v1/ipaddresses"
+        "self": "http://localhost:8080/v2-beta/schemas/ipaddress",
+        "collection": "http://localhost:8080/v2-beta/ipaddresses"
       },
       "actions": {},
       "pluralName": "ipAddresses",
@@ -15050,7 +14203,7 @@
       "id": "ipAddressAssociateInput",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/ipaddressassociateinput"
+        "self": "http://localhost:8080/v2-beta/schemas/ipaddressassociateinput"
       },
       "actions": {},
       "pluralName": "ipAddressAssociateInputs",
@@ -15079,8 +14232,8 @@
       "id": "kubernetesService",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/kubernetesservice",
-        "collection": "http://localhost:8080/v1/kubernetesservices"
+        "self": "http://localhost:8080/v2-beta/schemas/kubernetesservice",
+        "collection": "http://localhost:8080/v2-beta/kubernetesservices"
       },
       "actions": {},
       "pluralName": "kubernetesServices",
@@ -15120,15 +14273,6 @@
           "nullable": true,
           "readOnCreateOnly": false,
           "maxLength": 1024
-        },
-        "environmentId": {
-          "type": "reference[environment]",
-          "description": null,
-          "create": true,
-          "update": false,
-          "required": true,
-          "readOnCreateOnly": false,
-          "maxLength": 255
         },
         "externalId": {
           "type": "string",
@@ -15204,6 +14348,15 @@
           "readOnCreateOnly": false,
           "maxLength": 4096
         },
+        "stackId": {
+          "type": "reference[stack]",
+          "description": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false,
+          "maxLength": 255
+        },
         "state": {
           "type": "enum",
           "description": null,
@@ -15214,9 +14367,7 @@
           "options": [
             "activating",
             "active",
-            "canceled-rollback",
             "canceled-upgrade",
-            "canceling-rollback",
             "canceling-upgrade",
             "deactivating",
             "finishing-upgrade",
@@ -15331,14 +14482,6 @@
             "notnull"
           ]
         },
-        "environmentId": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "null",
-            "notnull"
-          ]
-        },
         "externalId": {
           "modifiers": [
             "eq",
@@ -15441,6 +14584,14 @@
             "notnull"
           ]
         },
+        "stackId": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "null",
+            "notnull"
+          ]
+        },
         "state": {
           "modifiers": [
             "eq",
@@ -15474,13 +14625,14 @@
       },
       "includeableLinks": [
         "dynamicschemas",
-        "environment",
         "consumedservices",
         "configitemstatuses",
         "serviceexposemaps",
         "account",
+        "stack",
         "instances",
-        "consumedbyservices"
+        "consumedbyservices",
+        "servicelogs"
       ],
       "resourceActions": {
         "update": {
@@ -15527,16 +14679,12 @@
           "input": "serviceUpgrade",
           "output": "service"
         },
-        "addservicelink": {
-          "input": "addRemoveServiceLinkInput",
-          "output": "service"
-        },
         "deactivate": {
           "input": null,
           "output": "service"
         },
-        "cancelrollback": {
-          "input": null,
+        "addservicelink": {
+          "input": "addRemoveServiceLinkInput",
           "output": "service"
         }
       },
@@ -15553,8 +14701,8 @@
       "id": "kubernetesStack",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/kubernetesstack",
-        "collection": "http://localhost:8080/v1/kubernetesstacks"
+        "self": "http://localhost:8080/v2-beta/schemas/kubernetesstack",
+        "collection": "http://localhost:8080/v2-beta/kubernetesstacks"
       },
       "actions": {},
       "pluralName": "kubernetesStacks",
@@ -15567,6 +14715,14 @@
           "nullable": true,
           "readOnCreateOnly": false,
           "maxLength": 255
+        },
+        "binding": {
+          "type": "binding",
+          "description": null,
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
         },
         "created": {
           "type": "date",
@@ -15694,7 +14850,6 @@
             "activating",
             "active",
             "canceled-upgrade",
-            "canceling-rollback",
             "canceling-upgrade",
             "error",
             "erroring",
@@ -15906,31 +15061,27 @@
         },
         "finishupgrade": {
           "input": null,
-          "output": "environment"
+          "output": "stack"
         },
         "remove": {
           "input": null,
-          "output": "environment"
+          "output": "stack"
         },
         "error": {
           "input": null,
-          "output": "environment"
+          "output": "stack"
         },
         "cancelupgrade": {
           "input": null,
-          "output": "environment"
+          "output": "stack"
         },
         "rollback": {
           "input": null,
-          "output": "environment"
+          "output": "stack"
         },
         "create": {
           "input": null,
-          "output": "environment"
-        },
-        "cancelrollback": {
-          "input": null,
-          "output": "environment"
+          "output": "stack"
         }
       },
       "collectionActions": {},
@@ -15949,8 +15100,7 @@
       "id": "kubernetesStackUpgrade",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/kubernetesstackupgrade",
-        "collection": "http://localhost:8080/v1/kubernetesstackupgrades"
+        "self": "http://localhost:8080/v2-beta/schemas/kubernetesstackupgrade"
       },
       "actions": {},
       "pluralName": "kubernetesStackUpgrades",
@@ -15986,7 +15136,6 @@
         "GET"
       ],
       "collectionMethods": [
-        "GET",
         "POST"
       ]
     },
@@ -15994,8 +15143,8 @@
       "id": "label",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/label",
-        "collection": "http://localhost:8080/v1/labels"
+        "self": "http://localhost:8080/v2-beta/schemas/label",
+        "collection": "http://localhost:8080/v2-beta/labels"
       },
       "actions": {},
       "pluralName": "labels",
@@ -16322,7 +15471,7 @@
       "id": "launchConfig",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/launchconfig"
+        "self": "http://localhost:8080/v2-beta/schemas/launchconfig"
       },
       "actions": {},
       "pluralName": "launchConfigs",
@@ -17521,7 +16670,8 @@
         "hosts",
         "account",
         "credentials",
-        "healthcheckinstancehostmaps"
+        "healthcheckinstancehostmaps",
+        "servicelogs"
       ],
       "resourceActions": {
         "update": {
@@ -17615,8 +16765,8 @@
       "id": "ldapconfig",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/ldapconfig",
-        "collection": "http://localhost:8080/v1/ldapconfigs"
+        "self": "http://localhost:8080/v2-beta/schemas/ldapconfig",
+        "collection": "http://localhost:8080/v2-beta/ldapconfigs"
       },
       "actions": {},
       "pluralName": "ldapconfigs",
@@ -17870,7 +17020,7 @@
       "id": "loadBalancerAppCookieStickinessPolicy",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/loadbalancerappcookiestickinesspolicy"
+        "self": "http://localhost:8080/v2-beta/schemas/loadbalancerappcookiestickinesspolicy"
       },
       "actions": {},
       "pluralName": "loadBalancerAppCookieStickinessPolicys",
@@ -17953,7 +17103,7 @@
       "id": "loadBalancerConfig",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/loadbalancerconfig"
+        "self": "http://localhost:8080/v2-beta/schemas/loadbalancerconfig"
       },
       "actions": {},
       "pluralName": "loadBalancerConfigs",
@@ -17993,7 +17143,7 @@
       "id": "loadBalancerCookieStickinessPolicy",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/loadbalancercookiestickinesspolicy"
+        "self": "http://localhost:8080/v2-beta/schemas/loadbalancercookiestickinesspolicy"
       },
       "actions": {},
       "pluralName": "loadBalancerCookieStickinessPolicys",
@@ -18073,8 +17223,8 @@
       "id": "loadBalancerService",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/loadbalancerservice",
-        "collection": "http://localhost:8080/v1/loadbalancerservices"
+        "self": "http://localhost:8080/v2-beta/schemas/loadbalancerservice",
+        "collection": "http://localhost:8080/v2-beta/loadbalancerservices"
       },
       "actions": {},
       "pluralName": "loadBalancerServices",
@@ -18129,15 +17279,6 @@
           "nullable": true,
           "readOnCreateOnly": false,
           "maxLength": 1024
-        },
-        "environmentId": {
-          "type": "reference[environment]",
-          "description": null,
-          "create": true,
-          "update": false,
-          "required": true,
-          "readOnCreateOnly": false,
-          "maxLength": 255
         },
         "externalId": {
           "type": "string",
@@ -18269,6 +17410,15 @@
           "readOnCreateOnly": false,
           "maxLength": 4096
         },
+        "stackId": {
+          "type": "reference[stack]",
+          "description": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false,
+          "maxLength": 255
+        },
         "startOnCreate": {
           "type": "boolean",
           "description": null,
@@ -18288,9 +17438,7 @@
           "options": [
             "activating",
             "active",
-            "canceled-rollback",
             "canceled-upgrade",
-            "canceling-rollback",
             "canceling-upgrade",
             "deactivating",
             "finishing-upgrade",
@@ -18430,14 +17578,6 @@
             "notnull"
           ]
         },
-        "environmentId": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "null",
-            "notnull"
-          ]
-        },
         "externalId": {
           "modifiers": [
             "eq",
@@ -18540,6 +17680,14 @@
             "notnull"
           ]
         },
+        "stackId": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "null",
+            "notnull"
+          ]
+        },
         "state": {
           "modifiers": [
             "eq",
@@ -18573,13 +17721,14 @@
       },
       "includeableLinks": [
         "dynamicschemas",
-        "environment",
         "consumedservices",
         "configitemstatuses",
         "serviceexposemaps",
         "account",
+        "stack",
         "instances",
-        "consumedbyservices"
+        "consumedbyservices",
+        "servicelogs"
       ],
       "resourceActions": {
         "update": {
@@ -18626,16 +17775,12 @@
           "input": "serviceUpgrade",
           "output": "service"
         },
-        "addservicelink": {
-          "input": "addRemoveLoadBalancerServiceLinkInput",
-          "output": "service"
-        },
         "deactivate": {
           "input": null,
           "output": "service"
         },
-        "cancelrollback": {
-          "input": null,
+        "addservicelink": {
+          "input": "addRemoveLoadBalancerServiceLinkInput",
           "output": "service"
         }
       },
@@ -18655,7 +17800,7 @@
       "id": "loadBalancerServiceLink",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/loadbalancerservicelink"
+        "self": "http://localhost:8080/v2-beta/schemas/loadbalancerservicelink"
       },
       "actions": {},
       "pluralName": "loadBalancerServiceLinks",
@@ -18700,8 +17845,8 @@
       "id": "localAuthConfig",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/localauthconfig",
-        "collection": "http://localhost:8080/v1/localauthconfigs"
+        "self": "http://localhost:8080/v2-beta/schemas/localauthconfig",
+        "collection": "http://localhost:8080/v2-beta/localauthconfigs"
       },
       "actions": {},
       "pluralName": "localAuthConfigs",
@@ -18771,7 +17916,7 @@
       "id": "logConfig",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/logconfig"
+        "self": "http://localhost:8080/v2-beta/schemas/logconfig"
       },
       "actions": {},
       "pluralName": "logConfigs",
@@ -18811,8 +17956,8 @@
       "id": "machine",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/machine",
-        "collection": "http://localhost:8080/v1/machines"
+        "self": "http://localhost:8080/v2-beta/schemas/machine",
+        "collection": "http://localhost:8080/v2-beta/machines"
       },
       "actions": {},
       "pluralName": "machines",
@@ -18859,7 +18004,8 @@
           "create": false,
           "update": false,
           "nullable": true,
-          "readOnCreateOnly": false
+          "readOnCreateOnly": false,
+          "maxLength": 128
         },
         "externalId": {
           "type": "string",
@@ -18893,7 +18039,9 @@
           "create": true,
           "update": false,
           "required": true,
-          "readOnCreateOnly": false
+          "readOnCreateOnly": false,
+          "minLength": 1,
+          "maxLength": 255
         },
         "removeTime": {
           "type": "date",
@@ -18933,15 +18081,6 @@
             "updating"
           ]
         },
-        "uuid": {
-          "type": "string",
-          "description": null,
-          "create": false,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false,
-          "maxLength": 128
-        },
         "transitioning": {
           "type": "enum",
           "description": null,
@@ -18970,13 +18109,14 @@
           "nullable": true,
           "readOnCreateOnly": false
         },
-        "amazonec2Config": {
-          "type": "amazonec2Config",
+        "uuid": {
+          "type": "string",
           "description": null,
-          "create": true,
+          "create": false,
           "update": false,
           "nullable": true,
-          "readOnCreateOnly": false
+          "readOnCreateOnly": false,
+          "maxLength": 128
         },
         "authCertificateAuthority": {
           "type": "string",
@@ -18987,86 +18127,6 @@
           "readOnCreateOnly": false
         },
         "authKey": {
-          "type": "string",
-          "description": null,
-          "create": true,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false
-        },
-        "azureConfig": {
-          "type": "azureConfig",
-          "description": null,
-          "create": true,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false
-        },
-        "digitaloceanConfig": {
-          "type": "digitaloceanConfig",
-          "description": null,
-          "create": true,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false
-        },
-        "dockerVersion": {
-          "type": "string",
-          "description": null,
-          "create": true,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false
-        },
-        "engineEnv": {
-          "type": "map[string]",
-          "description": null,
-          "create": true,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false
-        },
-        "engineInsecureRegistry": {
-          "type": "array[string]",
-          "description": null,
-          "create": true,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false
-        },
-        "engineInstallUrl": {
-          "type": "string",
-          "description": null,
-          "create": true,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false
-        },
-        "engineLabel": {
-          "type": "map[string]",
-          "description": null,
-          "create": true,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false
-        },
-        "engineOpt": {
-          "type": "map[string]",
-          "description": null,
-          "create": true,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false
-        },
-        "engineRegistryMirror": {
-          "type": "array[string]",
-          "description": null,
-          "create": true,
-          "update": false,
-          "nullable": true,
-          "readOnCreateOnly": false
-        },
-        "engineStorageDriver": {
           "type": "string",
           "description": null,
           "create": true,
@@ -19090,8 +18150,64 @@
           "nullable": true,
           "readOnCreateOnly": false
         },
-        "packetConfig": {
-          "type": "packetConfig",
+        "engineInstallUrl": {
+          "type": "string",
+          "description": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "dockerVersion": {
+          "type": "string",
+          "description": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "engineOpt": {
+          "type": "map[string]",
+          "description": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "engineInsecureRegistry": {
+          "type": "array[string]",
+          "description": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "engineRegistryMirror": {
+          "type": "array[string]",
+          "description": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "engineLabel": {
+          "type": "map[string]",
+          "description": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "engineStorageDriver": {
+          "type": "string",
+          "description": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "engineEnv": {
+          "type": "map[string]",
           "description": null,
           "create": true,
           "update": false,
@@ -19281,8 +18397,8 @@
       "id": "machineDriver",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/machinedriver",
-        "collection": "http://localhost:8080/v1/machinedrivers"
+        "self": "http://localhost:8080/v2-beta/schemas/machinedriver",
+        "collection": "http://localhost:8080/v2-beta/machinedrivers"
       },
       "actions": {},
       "pluralName": "machineDrivers",
@@ -19637,8 +18753,8 @@
       "id": "mount",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/mount",
-        "collection": "http://localhost:8080/v1/mounts"
+        "self": "http://localhost:8080/v2-beta/schemas/mount",
+        "collection": "http://localhost:8080/v2-beta/mounts"
       },
       "actions": {},
       "pluralName": "mounts",
@@ -19994,8 +19110,8 @@
       "id": "network",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/network",
-        "collection": "http://localhost:8080/v1/networks"
+        "self": "http://localhost:8080/v2-beta/schemas/network",
+        "collection": "http://localhost:8080/v2-beta/networks"
       },
       "actions": {},
       "pluralName": "networks",
@@ -20317,7 +19433,7 @@
       "id": "nfsConfig",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/nfsconfig"
+        "self": "http://localhost:8080/v2-beta/schemas/nfsconfig"
       },
       "actions": {},
       "pluralName": "nfsConfigs",
@@ -20361,8 +19477,8 @@
       "id": "openldapconfig",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/openldapconfig",
-        "collection": "http://localhost:8080/v1/openldapconfigs"
+        "self": "http://localhost:8080/v2-beta/schemas/openldapconfig",
+        "collection": "http://localhost:8080/v2-beta/openldapconfigs"
       },
       "actions": {},
       "pluralName": "openldapconfigs",
@@ -20599,81 +19715,11 @@
       ]
     },
     {
-      "id": "packetConfig",
-      "type": "schema",
-      "links": {
-        "self": "http://localhost:8080/v1/schemas/packetconfig"
-      },
-      "actions": {},
-      "pluralName": "packetConfigs",
-      "resourceFields": {
-        "apiKey": {
-          "type": "string",
-          "description": "Packet api key",
-          "create": true,
-          "update": false,
-          "readOnCreateOnly": false,
-          "default": ""
-        },
-        "billingCycle": {
-          "type": "string",
-          "description": "Packet billing cycle, hourly or monthly",
-          "create": true,
-          "update": false,
-          "readOnCreateOnly": false,
-          "default": "hourly"
-        },
-        "facilityCode": {
-          "type": "string",
-          "description": "Packet facility code",
-          "create": true,
-          "update": false,
-          "readOnCreateOnly": false,
-          "default": "ewr1"
-        },
-        "os": {
-          "type": "string",
-          "description": "Packet OS, possible values are: ubuntu_14_04",
-          "create": true,
-          "update": false,
-          "readOnCreateOnly": false,
-          "default": "ubuntu_14_04"
-        },
-        "plan": {
-          "type": "string",
-          "description": "Packet Server Plan",
-          "create": true,
-          "update": false,
-          "readOnCreateOnly": false,
-          "default": "baremetal_1"
-        },
-        "projectId": {
-          "type": "string",
-          "description": "Packet Project Id",
-          "create": true,
-          "update": false,
-          "readOnCreateOnly": false,
-          "default": ""
-        }
-      },
-      "collectionFilters": {},
-      "includeableLinks": [],
-      "resourceActions": {},
-      "collectionActions": {},
-      "collectionFields": {},
-      "resourceMethods": [
-        "GET"
-      ],
-      "collectionMethods": [
-        "POST"
-      ]
-    },
-    {
       "id": "password",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/password",
-        "collection": "http://localhost:8080/v1/passwords"
+        "self": "http://localhost:8080/v2-beta/schemas/password",
+        "collection": "http://localhost:8080/v2-beta/passwords"
       },
       "actions": {},
       "pluralName": "passwords",
@@ -21028,8 +20074,8 @@
       "id": "physicalHost",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/physicalhost",
-        "collection": "http://localhost:8080/v1/physicalhosts"
+        "self": "http://localhost:8080/v2-beta/schemas/physicalhost",
+        "collection": "http://localhost:8080/v2-beta/physicalhosts"
       },
       "actions": {},
       "pluralName": "physicalHosts",
@@ -21369,8 +20415,8 @@
       "id": "port",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/port",
-        "collection": "http://localhost:8080/v1/ports"
+        "self": "http://localhost:8080/v2-beta/schemas/port",
+        "collection": "http://localhost:8080/v2-beta/ports"
       },
       "actions": {},
       "pluralName": "ports",
@@ -21797,8 +20843,8 @@
       "id": "processDefinition",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/processdefinition",
-        "collection": "http://localhost:8080/v1/processdefinitions"
+        "self": "http://localhost:8080/v2-beta/schemas/processdefinition",
+        "collection": "http://localhost:8080/v2-beta/processdefinitions"
       },
       "actions": {},
       "pluralName": "processDefinitions",
@@ -21876,8 +20922,8 @@
       "id": "processExecution",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/processexecution",
-        "collection": "http://localhost:8080/v1/processexecutions"
+        "self": "http://localhost:8080/v2-beta/schemas/processexecution",
+        "collection": "http://localhost:8080/v2-beta/processexecutions"
       },
       "actions": {},
       "pluralName": "processExecutions",
@@ -21988,8 +21034,8 @@
       "id": "processInstance",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/processinstance",
-        "collection": "http://localhost:8080/v1/processinstances"
+        "self": "http://localhost:8080/v2-beta/schemas/processinstance",
+        "collection": "http://localhost:8080/v2-beta/processinstances"
       },
       "actions": {},
       "pluralName": "processInstances",
@@ -22266,8 +21312,8 @@
       "id": "project",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/project",
-        "collection": "http://localhost:8080/v1/projects"
+        "self": "http://localhost:8080/v2-beta/schemas/project",
+        "collection": "http://localhost:8080/v2-beta/projects"
       },
       "actions": {},
       "pluralName": "projects",
@@ -22617,13 +21663,14 @@
         "storagepools",
         "configitemstatuses",
         "labels",
-        "environments",
+        "stacks",
         "ports",
         "mounts",
         "auditlogs",
         "projectmembers",
         "serviceevents",
-        "images"
+        "images",
+        "servicelogs"
       ],
       "resourceActions": {
         "update": {
@@ -22677,8 +21724,8 @@
       "id": "projectMember",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/projectmember",
-        "collection": "http://localhost:8080/v1/projectmembers"
+        "self": "http://localhost:8080/v2-beta/schemas/projectmember",
+        "collection": "http://localhost:8080/v2-beta/projectmembers"
       },
       "actions": {},
       "pluralName": "projectMembers",
@@ -23067,7 +22114,7 @@
       "id": "publicEndpoint",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/publicendpoint"
+        "self": "http://localhost:8080/v2-beta/schemas/publicendpoint"
       },
       "actions": {},
       "pluralName": "publicEndpoints",
@@ -23126,7 +22173,7 @@
       "id": "publish",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/publish"
+        "self": "http://localhost:8080/v2-beta/schemas/publish"
       },
       "actions": {},
       "pluralName": "publish",
@@ -23250,8 +22297,8 @@
       "id": "pullTask",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/pulltask",
-        "collection": "http://localhost:8080/v1/pulltasks"
+        "self": "http://localhost:8080/v2-beta/schemas/pulltask",
+        "collection": "http://localhost:8080/v2-beta/pulltasks"
       },
       "actions": {},
       "pluralName": "pullTasks",
@@ -23600,7 +22647,7 @@
       "id": "recreateOnQuorumStrategyConfig",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/recreateonquorumstrategyconfig"
+        "self": "http://localhost:8080/v2-beta/schemas/recreateonquorumstrategyconfig"
       },
       "actions": {},
       "pluralName": "recreateOnQuorumStrategyConfigs",
@@ -23632,8 +22679,8 @@
       "id": "register",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/register",
-        "collection": "http://localhost:8080/v1/register"
+        "self": "http://localhost:8080/v2-beta/schemas/register",
+        "collection": "http://localhost:8080/v2-beta/register"
       },
       "actions": {},
       "pluralName": "register",
@@ -23980,8 +23027,8 @@
       "id": "registrationToken",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/registrationtoken",
-        "collection": "http://localhost:8080/v1/registrationtokens"
+        "self": "http://localhost:8080/v2-beta/schemas/registrationtoken",
+        "collection": "http://localhost:8080/v2-beta/registrationtokens"
       },
       "actions": {},
       "pluralName": "registrationTokens",
@@ -24339,8 +23386,8 @@
       "id": "registry",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/registry",
-        "collection": "http://localhost:8080/v1/registries"
+        "self": "http://localhost:8080/v2-beta/schemas/registry",
+        "collection": "http://localhost:8080/v2-beta/registries"
       },
       "actions": {},
       "pluralName": "registries",
@@ -24782,8 +23829,8 @@
       "id": "registryCredential",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/registrycredential",
-        "collection": "http://localhost:8080/v1/registrycredentials"
+        "self": "http://localhost:8080/v2-beta/schemas/registrycredential",
+        "collection": "http://localhost:8080/v2-beta/registrycredentials"
       },
       "actions": {},
       "pluralName": "registryCredentials",
@@ -25152,8 +24199,8 @@
       "id": "resourceDefinition",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/resourcedefinition",
-        "collection": "http://localhost:8080/v1/resourcedefinitions"
+        "self": "http://localhost:8080/v2-beta/schemas/resourcedefinition",
+        "collection": "http://localhost:8080/v2-beta/resourcedefinitions"
       },
       "actions": {},
       "pluralName": "resourceDefinitions",
@@ -25189,7 +24236,7 @@
       "id": "restartPolicy",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/restartpolicy"
+        "self": "http://localhost:8080/v2-beta/schemas/restartpolicy"
       },
       "actions": {},
       "pluralName": "restartPolicys",
@@ -25225,7 +24272,7 @@
       "id": "restoreFromBackupInput",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/restorefrombackupinput"
+        "self": "http://localhost:8080/v2-beta/schemas/restorefrombackupinput"
       },
       "actions": {},
       "pluralName": "restoreFromBackupInputs",
@@ -25253,7 +24300,7 @@
       "id": "revertToSnapshotInput",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/reverttosnapshotinput"
+        "self": "http://localhost:8080/v2-beta/schemas/reverttosnapshotinput"
       },
       "actions": {},
       "pluralName": "revertToSnapshotInputs",
@@ -25281,7 +24328,7 @@
       "id": "rollingRestartStrategy",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/rollingrestartstrategy"
+        "self": "http://localhost:8080/v2-beta/schemas/rollingrestartstrategy"
       },
       "actions": {},
       "pluralName": "rollingRestartStrategys",
@@ -25325,7 +24372,7 @@
       "id": "scalePolicy",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/scalepolicy"
+        "self": "http://localhost:8080/v2-beta/schemas/scalepolicy"
       },
       "actions": {},
       "pluralName": "scalePolicys",
@@ -25379,8 +24426,8 @@
       "id": "schema",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/schema",
-        "collection": "http://localhost:8080/v1/schemas"
+        "self": "http://localhost:8080/v2-beta/schemas/schema",
+        "collection": "http://localhost:8080/v2-beta/schemas"
       },
       "actions": {},
       "pluralName": "schemas",
@@ -25465,7 +24512,7 @@
       "id": "secondaryLaunchConfig",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/secondarylaunchconfig"
+        "self": "http://localhost:8080/v2-beta/schemas/secondarylaunchconfig"
       },
       "actions": {},
       "pluralName": "secondaryLaunchConfigs",
@@ -26675,7 +25722,8 @@
         "hosts",
         "account",
         "credentials",
-        "healthcheckinstancehostmaps"
+        "healthcheckinstancehostmaps",
+        "servicelogs"
       ],
       "resourceActions": {
         "update": {
@@ -26769,8 +25817,8 @@
       "id": "service",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/service",
-        "collection": "http://localhost:8080/v1/services"
+        "self": "http://localhost:8080/v2-beta/schemas/service",
+        "collection": "http://localhost:8080/v2-beta/services"
       },
       "actions": {},
       "pluralName": "services",
@@ -26819,15 +25867,6 @@
           "nullable": true,
           "readOnCreateOnly": false,
           "maxLength": 1024
-        },
-        "environmentId": {
-          "type": "reference[environment]",
-          "description": null,
-          "create": true,
-          "update": false,
-          "required": true,
-          "readOnCreateOnly": false,
-          "maxLength": 255
         },
         "externalId": {
           "type": "string",
@@ -26912,6 +25951,15 @@
           "readOnCreateOnly": false,
           "maxLength": 4096
         },
+        "stackId": {
+          "type": "reference[stack]",
+          "description": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false,
+          "maxLength": 255
+        },
         "state": {
           "type": "enum",
           "description": null,
@@ -26922,9 +25970,7 @@
           "options": [
             "activating",
             "active",
-            "canceled-rollback",
             "canceled-upgrade",
-            "canceling-rollback",
             "canceling-upgrade",
             "deactivating",
             "finishing-upgrade",
@@ -27127,14 +26173,6 @@
             "notnull"
           ]
         },
-        "environmentId": {
-          "modifiers": [
-            "eq",
-            "ne",
-            "null",
-            "notnull"
-          ]
-        },
         "externalId": {
           "modifiers": [
             "eq",
@@ -27237,6 +26275,14 @@
             "notnull"
           ]
         },
+        "stackId": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "null",
+            "notnull"
+          ]
+        },
         "state": {
           "modifiers": [
             "eq",
@@ -27270,13 +26316,14 @@
       },
       "includeableLinks": [
         "dynamicschemas",
-        "environment",
         "consumedservices",
         "configitemstatuses",
         "serviceexposemaps",
         "account",
+        "stack",
         "instances",
-        "consumedbyservices"
+        "consumedbyservices",
+        "servicelogs"
       ],
       "resourceActions": {
         "update": {
@@ -27323,16 +26370,12 @@
           "input": "serviceUpgrade",
           "output": "service"
         },
-        "addservicelink": {
-          "input": "addRemoveServiceLinkInput",
-          "output": "service"
-        },
         "deactivate": {
           "input": null,
           "output": "service"
         },
-        "cancelrollback": {
-          "input": null,
+        "addservicelink": {
+          "input": "addRemoveServiceLinkInput",
           "output": "service"
         }
       },
@@ -27349,11 +26392,57 @@
       ]
     },
     {
+      "id": "serviceBinding",
+      "type": "schema",
+      "links": {
+        "self": "http://localhost:8080/v2-beta/schemas/servicebinding",
+        "collection": "http://localhost:8080/v2-beta/servicebindings"
+      },
+      "actions": {},
+      "pluralName": "serviceBindings",
+      "resourceFields": {
+        "labels": {
+          "type": "map[string]",
+          "description": null,
+          "create": true,
+          "update": false,
+          "readOnCreateOnly": false
+        },
+        "scale": {
+          "type": "string",
+          "description": null,
+          "create": true,
+          "update": false,
+          "readOnCreateOnly": false
+        },
+        "ports": {
+          "type": "array[string]",
+          "description": null,
+          "create": true,
+          "update": false,
+          "readOnCreateOnly": false
+        }
+      },
+      "collectionFilters": {},
+      "includeableLinks": [],
+      "resourceActions": {},
+      "collectionActions": {},
+      "collectionFields": {},
+      "resourceMethods": [
+        "GET",
+        "PUT"
+      ],
+      "collectionMethods": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
       "id": "serviceConsumeMap",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/serviceconsumemap",
-        "collection": "http://localhost:8080/v1/serviceconsumemaps"
+        "self": "http://localhost:8080/v2-beta/schemas/serviceconsumemap",
+        "collection": "http://localhost:8080/v2-beta/serviceconsumemaps"
       },
       "actions": {},
       "pluralName": "serviceConsumeMaps",
@@ -27678,8 +26767,8 @@
       "id": "serviceEvent",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/serviceevent",
-        "collection": "http://localhost:8080/v1/serviceevents"
+        "self": "http://localhost:8080/v2-beta/schemas/serviceevent",
+        "collection": "http://localhost:8080/v2-beta/serviceevents"
       },
       "actions": {},
       "pluralName": "serviceEvents",
@@ -28058,8 +27147,8 @@
       "id": "serviceExposeMap",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/serviceexposemap",
-        "collection": "http://localhost:8080/v1/serviceexposemaps"
+        "self": "http://localhost:8080/v2-beta/schemas/serviceexposemap",
+        "collection": "http://localhost:8080/v2-beta/serviceexposemaps"
       },
       "actions": {},
       "pluralName": "serviceExposeMaps",
@@ -28435,7 +27524,7 @@
       "id": "serviceLink",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/servicelink"
+        "self": "http://localhost:8080/v2-beta/schemas/servicelink"
       },
       "actions": {},
       "pluralName": "serviceLinks",
@@ -28478,11 +27567,277 @@
       ]
     },
     {
+      "id": "serviceLog",
+      "type": "schema",
+      "links": {
+        "self": "http://localhost:8080/v2-beta/schemas/servicelog",
+        "collection": "http://localhost:8080/v2-beta/servicelogs"
+      },
+      "actions": {},
+      "pluralName": "serviceLogs",
+      "resourceFields": {
+        "accountId": {
+          "type": "reference[account]",
+          "description": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false,
+          "maxLength": 255
+        },
+        "created": {
+          "type": "date",
+          "description": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false,
+          "maxLength": 255
+        },
+        "data": {
+          "type": "map[json]",
+          "description": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false,
+          "maxLength": 65535
+        },
+        "description": {
+          "type": "string",
+          "description": null,
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false,
+          "maxLength": 1024
+        },
+        "endTime": {
+          "type": "date",
+          "description": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false,
+          "maxLength": 255
+        },
+        "eventType": {
+          "type": "string",
+          "description": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false,
+          "maxLength": 255
+        },
+        "id": {
+          "type": "int",
+          "description": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "instanceId": {
+          "type": "reference[instance]",
+          "description": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false,
+          "maxLength": 255
+        },
+        "kind": {
+          "type": "string",
+          "description": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false,
+          "maxLength": 255
+        },
+        "level": {
+          "type": "string",
+          "description": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false,
+          "maxLength": 255
+        },
+        "serviceId": {
+          "type": "reference[service]",
+          "description": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false,
+          "maxLength": 255
+        },
+        "subLog": {
+          "type": "boolean",
+          "description": null,
+          "create": false,
+          "update": false,
+          "readOnCreateOnly": false,
+          "maxLength": 255
+        },
+        "transactionId": {
+          "type": "string",
+          "description": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false,
+          "maxLength": 255
+        }
+      },
+      "collectionFilters": {
+        "accountId": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "null",
+            "notnull"
+          ]
+        },
+        "created": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "lt",
+            "lte",
+            "gt",
+            "gte",
+            "null",
+            "notnull"
+          ]
+        },
+        "description": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "prefix",
+            "like",
+            "notlike",
+            "null",
+            "notnull"
+          ]
+        },
+        "endTime": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "lt",
+            "lte",
+            "gt",
+            "gte",
+            "null",
+            "notnull"
+          ]
+        },
+        "eventType": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "prefix",
+            "like",
+            "notlike",
+            "null",
+            "notnull"
+          ]
+        },
+        "id": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "lt",
+            "lte",
+            "gt",
+            "gte",
+            "null",
+            "notnull"
+          ]
+        },
+        "instanceId": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "null",
+            "notnull"
+          ]
+        },
+        "kind": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "prefix",
+            "like",
+            "notlike",
+            "null",
+            "notnull"
+          ]
+        },
+        "level": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "prefix",
+            "like",
+            "notlike",
+            "null",
+            "notnull"
+          ]
+        },
+        "serviceId": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "null",
+            "notnull"
+          ]
+        },
+        "subLog": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "null",
+            "notnull"
+          ]
+        },
+        "transactionId": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "prefix",
+            "like",
+            "notlike",
+            "null",
+            "notnull"
+          ]
+        }
+      },
+      "includeableLinks": [
+        "service",
+        "account",
+        "instance"
+      ],
+      "resourceActions": {},
+      "collectionActions": {},
+      "collectionFields": {},
+      "resourceMethods": [
+        "GET"
+      ],
+      "collectionMethods": [
+        "GET"
+      ]
+    },
+    {
       "id": "serviceProxy",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/serviceproxy",
-        "collection": "http://localhost:8080/v1/serviceproxies"
+        "self": "http://localhost:8080/v2-beta/schemas/serviceproxy",
+        "collection": "http://localhost:8080/v2-beta/serviceproxies"
       },
       "actions": {},
       "pluralName": "serviceProxies",
@@ -28553,7 +27908,7 @@
       "id": "serviceRestart",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/servicerestart"
+        "self": "http://localhost:8080/v2-beta/schemas/servicerestart"
       },
       "actions": {},
       "pluralName": "serviceRestarts",
@@ -28584,7 +27939,7 @@
       "id": "serviceUpgrade",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/serviceupgrade"
+        "self": "http://localhost:8080/v2-beta/schemas/serviceupgrade"
       },
       "actions": {},
       "pluralName": "serviceUpgrades",
@@ -28624,7 +27979,7 @@
       "id": "serviceUpgradeStrategy",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/serviceupgradestrategy"
+        "self": "http://localhost:8080/v2-beta/schemas/serviceupgradestrategy"
       },
       "actions": {},
       "pluralName": "serviceUpgradeStrategys",
@@ -28666,7 +28021,7 @@
       "id": "servicesPortRange",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/servicesportrange"
+        "self": "http://localhost:8080/v2-beta/schemas/servicesportrange"
       },
       "actions": {},
       "pluralName": "servicesPortRanges",
@@ -28713,7 +28068,7 @@
       "id": "setLabelsInput",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/setlabelsinput"
+        "self": "http://localhost:8080/v2-beta/schemas/setlabelsinput"
       },
       "actions": {},
       "pluralName": "setLabelsInputs",
@@ -28742,7 +28097,7 @@
       "id": "setLoadBalancerServiceLinksInput",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/setloadbalancerservicelinksinput"
+        "self": "http://localhost:8080/v2-beta/schemas/setloadbalancerservicelinksinput"
       },
       "actions": {},
       "pluralName": "setLoadBalancerServiceLinksInputs",
@@ -28770,7 +28125,7 @@
       "id": "setProjectMembersInput",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/setprojectmembersinput"
+        "self": "http://localhost:8080/v2-beta/schemas/setprojectmembersinput"
       },
       "actions": {},
       "pluralName": "setProjectMembersInputs",
@@ -28801,7 +28156,7 @@
       "id": "setServiceLinksInput",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/setservicelinksinput"
+        "self": "http://localhost:8080/v2-beta/schemas/setservicelinksinput"
       },
       "actions": {},
       "pluralName": "setServiceLinksInputs",
@@ -28831,8 +28186,8 @@
       "id": "setting",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/setting",
-        "collection": "http://localhost:8080/v1/settings"
+        "self": "http://localhost:8080/v2-beta/schemas/setting",
+        "collection": "http://localhost:8080/v2-beta/settings"
       },
       "actions": {},
       "pluralName": "settings",
@@ -28939,8 +28294,8 @@
       "id": "snapshot",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/snapshot",
-        "collection": "http://localhost:8080/v1/snapshots"
+        "self": "http://localhost:8080/v2-beta/schemas/snapshot",
+        "collection": "http://localhost:8080/v2-beta/snapshots"
       },
       "actions": {},
       "pluralName": "snapshots",
@@ -29238,7 +28593,7 @@
       "id": "snapshotBackupInput",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/snapshotbackupinput"
+        "self": "http://localhost:8080/v2-beta/schemas/snapshotbackupinput"
       },
       "actions": {},
       "pluralName": "snapshotBackupInputs",
@@ -29446,10 +28801,493 @@
       "collectionMethods": []
     },
     {
+      "id": "stack",
+      "type": "schema",
+      "links": {
+        "self": "http://localhost:8080/v2-beta/schemas/stack",
+        "collection": "http://localhost:8080/v2-beta/stacks"
+      },
+      "actions": {},
+      "pluralName": "stacks",
+      "resourceFields": {
+        "accountId": {
+          "type": "reference[account]",
+          "description": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false,
+          "maxLength": 255
+        },
+        "created": {
+          "type": "date",
+          "description": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false,
+          "maxLength": 255
+        },
+        "data": {
+          "type": "map[json]",
+          "description": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false,
+          "maxLength": 16777215
+        },
+        "description": {
+          "type": "string",
+          "description": null,
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false,
+          "maxLength": 1024
+        },
+        "externalId": {
+          "type": "string",
+          "description": null,
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false,
+          "maxLength": 128
+        },
+        "healthState": {
+          "type": "string",
+          "description": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false,
+          "maxLength": 128
+        },
+        "id": {
+          "type": "int",
+          "description": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "kind": {
+          "type": "string",
+          "description": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false,
+          "maxLength": 255
+        },
+        "name": {
+          "type": "string",
+          "validChars": "a-zA-Z0-9-",
+          "description": null,
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "required": true,
+          "readOnCreateOnly": false,
+          "minLength": 1,
+          "maxLength": 63
+        },
+        "removeTime": {
+          "type": "date",
+          "description": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false,
+          "maxLength": 255
+        },
+        "removed": {
+          "type": "date",
+          "description": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false,
+          "maxLength": 255
+        },
+        "state": {
+          "type": "enum",
+          "description": null,
+          "create": false,
+          "update": false,
+          "readOnCreateOnly": false,
+          "maxLength": 128,
+          "options": [
+            "activating",
+            "active",
+            "canceled-upgrade",
+            "canceling-upgrade",
+            "error",
+            "erroring",
+            "finishing-upgrade",
+            "removed",
+            "removing",
+            "requested",
+            "rolling-back",
+            "updating-active",
+            "upgraded",
+            "upgrading"
+          ]
+        },
+        "uuid": {
+          "type": "string",
+          "description": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false,
+          "maxLength": 128
+        },
+        "transitioning": {
+          "type": "enum",
+          "description": null,
+          "create": false,
+          "update": false,
+          "readOnCreateOnly": false,
+          "options": [
+            "yes",
+            "no",
+            "error"
+          ]
+        },
+        "transitioningMessage": {
+          "type": "string",
+          "description": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "transitioningProgress": {
+          "type": "int",
+          "description": null,
+          "create": false,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "dockerCompose": {
+          "type": "string",
+          "description": null,
+          "create": true,
+          "update": false,
+          "readOnCreateOnly": false
+        },
+        "rancherCompose": {
+          "type": "string",
+          "description": null,
+          "create": true,
+          "update": false,
+          "readOnCreateOnly": false
+        },
+        "environment": {
+          "type": "map[string]",
+          "description": null,
+          "create": true,
+          "update": false,
+          "readOnCreateOnly": false
+        },
+        "previousExternalId": {
+          "type": "string",
+          "description": null,
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "previousEnvironment": {
+          "type": "map[string]",
+          "description": null,
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "startOnCreate": {
+          "type": "boolean",
+          "description": null,
+          "create": true,
+          "update": false,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "outputs": {
+          "type": "map[string]",
+          "description": null,
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        },
+        "binding": {
+          "type": "binding",
+          "description": null,
+          "create": true,
+          "update": true,
+          "nullable": true,
+          "readOnCreateOnly": false
+        }
+      },
+      "collectionFilters": {
+        "accountId": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "null",
+            "notnull"
+          ]
+        },
+        "created": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "lt",
+            "lte",
+            "gt",
+            "gte",
+            "null",
+            "notnull"
+          ]
+        },
+        "description": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "prefix",
+            "like",
+            "notlike",
+            "null",
+            "notnull"
+          ]
+        },
+        "externalId": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "prefix",
+            "like",
+            "notlike",
+            "null",
+            "notnull"
+          ]
+        },
+        "healthState": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "prefix",
+            "like",
+            "notlike",
+            "null",
+            "notnull"
+          ]
+        },
+        "id": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "lt",
+            "lte",
+            "gt",
+            "gte",
+            "null",
+            "notnull"
+          ]
+        },
+        "kind": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "prefix",
+            "like",
+            "notlike",
+            "null",
+            "notnull"
+          ]
+        },
+        "name": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "prefix",
+            "like",
+            "notlike",
+            "null",
+            "notnull"
+          ]
+        },
+        "removeTime": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "lt",
+            "lte",
+            "gt",
+            "gte",
+            "null",
+            "notnull"
+          ]
+        },
+        "removed": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "lt",
+            "lte",
+            "gt",
+            "gte",
+            "null",
+            "notnull"
+          ]
+        },
+        "state": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "null",
+            "notnull"
+          ]
+        },
+        "uuid": {
+          "modifiers": [
+            "eq",
+            "ne",
+            "prefix",
+            "like",
+            "notlike",
+            "null",
+            "notnull"
+          ]
+        }
+      },
+      "includeableLinks": [
+        "services",
+        "configitemstatuses",
+        "account"
+      ],
+      "resourceActions": {
+        "upgrade": {
+          "input": "stackUpgrade",
+          "output": "stack"
+        },
+        "update": {
+          "input": null,
+          "output": "stack"
+        },
+        "finishupgrade": {
+          "input": null,
+          "output": "stack"
+        },
+        "remove": {
+          "input": null,
+          "output": "stack"
+        },
+        "error": {
+          "input": null,
+          "output": "stack"
+        },
+        "cancelupgrade": {
+          "input": null,
+          "output": "stack"
+        },
+        "addoutputs": {
+          "input": "addOutputsInput",
+          "output": "stack"
+        },
+        "activateservices": {
+          "input": null,
+          "output": "stack"
+        },
+        "rollback": {
+          "input": null,
+          "output": "stack"
+        },
+        "deactivateservices": {
+          "input": null,
+          "output": "stack"
+        },
+        "create": {
+          "input": null,
+          "output": "stack"
+        },
+        "exportconfig": {
+          "input": "composeConfigInput",
+          "output": "composeConfig"
+        }
+      },
+      "collectionActions": {},
+      "collectionFields": {},
+      "resourceMethods": [
+        "GET",
+        "PUT",
+        "DELETE"
+      ],
+      "collectionMethods": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "id": "stackUpgrade",
+      "type": "schema",
+      "links": {
+        "self": "http://localhost:8080/v2-beta/schemas/stackupgrade"
+      },
+      "actions": {},
+      "pluralName": "stackUpgrades",
+      "resourceFields": {
+        "dockerCompose": {
+          "type": "string",
+          "description": null,
+          "create": true,
+          "update": false,
+          "readOnCreateOnly": false
+        },
+        "rancherCompose": {
+          "type": "string",
+          "description": null,
+          "create": true,
+          "update": false,
+          "readOnCreateOnly": false
+        },
+        "externalId": {
+          "type": "string",
+          "description": null,
+          "create": true,
+          "update": false,
+          "readOnCreateOnly": false
+        },
+        "environment": {
+          "type": "map[string]",
+          "description": null,
+          "create": true,
+          "update": false,
+          "readOnCreateOnly": false
+        }
+      },
+      "collectionFilters": {},
+      "includeableLinks": [],
+      "resourceActions": {},
+      "collectionActions": {},
+      "collectionFields": {},
+      "resourceMethods": [
+        "GET"
+      ],
+      "collectionMethods": [
+        "POST"
+      ]
+    },
+    {
       "id": "stateTransition",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/statetransition"
+        "self": "http://localhost:8080/v2-beta/schemas/statetransition"
       },
       "actions": {},
       "pluralName": "stateTransitions",
@@ -29468,7 +29306,7 @@
       "id": "statsAccess",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/statsaccess"
+        "self": "http://localhost:8080/v2-beta/schemas/statsaccess"
       },
       "actions": {},
       "pluralName": "statsAccesses",
@@ -29502,8 +29340,8 @@
       "id": "storagePool",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/storagepool",
-        "collection": "http://localhost:8080/v1/storagepools"
+        "self": "http://localhost:8080/v2-beta/schemas/storagepool",
+        "collection": "http://localhost:8080/v2-beta/storagepools"
       },
       "actions": {},
       "pluralName": "storagePools",
@@ -29933,8 +29771,8 @@
       "id": "subscribe",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/subscribe",
-        "collection": "http://localhost:8080/v1/subscribe"
+        "self": "http://localhost:8080/v2-beta/schemas/subscribe",
+        "collection": "http://localhost:8080/v2-beta/subscribe"
       },
       "actions": {},
       "pluralName": "subscribe",
@@ -29981,8 +29819,8 @@
       "id": "task",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/task",
-        "collection": "http://localhost:8080/v1/tasks"
+        "self": "http://localhost:8080/v2-beta/schemas/task",
+        "collection": "http://localhost:8080/v2-beta/tasks"
       },
       "actions": {},
       "pluralName": "tasks",
@@ -30052,8 +29890,8 @@
       "id": "taskInstance",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/taskinstance",
-        "collection": "http://localhost:8080/v1/taskinstances"
+        "self": "http://localhost:8080/v2-beta/schemas/taskinstance",
+        "collection": "http://localhost:8080/v2-beta/taskinstances"
       },
       "actions": {},
       "pluralName": "taskInstances",
@@ -30215,7 +30053,7 @@
       "id": "toServiceUpgradeStrategy",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/toserviceupgradestrategy"
+        "self": "http://localhost:8080/v2-beta/schemas/toserviceupgradestrategy"
       },
       "actions": {},
       "pluralName": "toServiceUpgradeStrategys",
@@ -30285,8 +30123,8 @@
       "id": "typeDocumentation",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/typedocumentation",
-        "collection": "http://localhost:8080/v1/typedocumentations"
+        "self": "http://localhost:8080/v2-beta/schemas/typedocumentation",
+        "collection": "http://localhost:8080/v2-beta/typedocumentations"
       },
       "actions": {},
       "pluralName": "typeDocumentations",
@@ -30329,8 +30167,8 @@
       "id": "virtualMachine",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/virtualmachine",
-        "collection": "http://localhost:8080/v1/virtualmachines"
+        "self": "http://localhost:8080/v2-beta/schemas/virtualmachine",
+        "collection": "http://localhost:8080/v2-beta/virtualmachines"
       },
       "actions": {},
       "pluralName": "virtualMachines",
@@ -31280,7 +31118,8 @@
         "serviceevents",
         "account",
         "credentials",
-        "healthcheckinstancehostmaps"
+        "healthcheckinstancehostmaps",
+        "servicelogs"
       ],
       "resourceActions": {
         "update": {
@@ -31380,7 +31219,7 @@
       "id": "virtualMachineDisk",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/virtualmachinedisk"
+        "self": "http://localhost:8080/v2-beta/schemas/virtualmachinedisk"
       },
       "actions": {},
       "pluralName": "virtualMachineDisks",
@@ -31459,8 +31298,8 @@
       "id": "volume",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/volume",
-        "collection": "http://localhost:8080/v1/volumes"
+        "self": "http://localhost:8080/v2-beta/schemas/volume",
+        "collection": "http://localhost:8080/v2-beta/volumes"
       },
       "actions": {},
       "pluralName": "volumes",
@@ -32003,7 +31842,7 @@
       "id": "volumeSnapshotInput",
       "type": "schema",
       "links": {
-        "self": "http://localhost:8080/v1/schemas/volumesnapshotinput"
+        "self": "http://localhost:8080/v2-beta/schemas/volumesnapshotinput"
       },
       "actions": {},
       "pluralName": "volumeSnapshotInputs",

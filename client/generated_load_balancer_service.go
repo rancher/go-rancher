@@ -23,8 +23,6 @@ type LoadBalancerService struct {
 
 	Description string `json:"description,omitempty" yaml:"description,omitempty"`
 
-	EnvironmentId string `json:"environmentId,omitempty" yaml:"environment_id,omitempty"`
-
 	ExternalId string `json:"externalId,omitempty" yaml:"external_id,omitempty"`
 
 	Fqdn string `json:"fqdn,omitempty" yaml:"fqdn,omitempty"`
@@ -54,6 +52,8 @@ type LoadBalancerService struct {
 	ScalePolicy *ScalePolicy `json:"scalePolicy,omitempty" yaml:"scale_policy,omitempty"`
 
 	SelectorLink string `json:"selectorLink,omitempty" yaml:"selector_link,omitempty"`
+
+	StackId string `json:"stackId,omitempty" yaml:"stack_id,omitempty"`
 
 	StartOnCreate bool `json:"startOnCreate,omitempty" yaml:"start_on_create,omitempty"`
 
@@ -91,8 +91,6 @@ type LoadBalancerServiceOperations interface {
 	ActionActivate(*LoadBalancerService) (*Service, error)
 
 	ActionAddservicelink(*LoadBalancerService, *AddRemoveLoadBalancerServiceLinkInput) (*Service, error)
-
-	ActionCancelrollback(*LoadBalancerService) (*Service, error)
 
 	ActionCancelupgrade(*LoadBalancerService) (*Service, error)
 
@@ -170,15 +168,6 @@ func (c *LoadBalancerServiceClient) ActionAddservicelink(resource *LoadBalancerS
 	resp := &Service{}
 
 	err := c.rancherClient.doAction(LOAD_BALANCER_SERVICE_TYPE, "addservicelink", &resource.Resource, input, resp)
-
-	return resp, err
-}
-
-func (c *LoadBalancerServiceClient) ActionCancelrollback(resource *LoadBalancerService) (*Service, error) {
-
-	resp := &Service{}
-
-	err := c.rancherClient.doAction(LOAD_BALANCER_SERVICE_TYPE, "cancelrollback", &resource.Resource, nil, resp)
 
 	return resp, err
 }

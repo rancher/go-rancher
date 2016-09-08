@@ -17,8 +17,6 @@ type DnsService struct {
 
 	Description string `json:"description,omitempty" yaml:"description,omitempty"`
 
-	EnvironmentId string `json:"environmentId,omitempty" yaml:"environment_id,omitempty"`
-
 	ExternalId string `json:"externalId,omitempty" yaml:"external_id,omitempty"`
 
 	Fqdn string `json:"fqdn,omitempty" yaml:"fqdn,omitempty"`
@@ -40,6 +38,8 @@ type DnsService struct {
 	RetainIp bool `json:"retainIp,omitempty" yaml:"retain_ip,omitempty"`
 
 	SelectorLink string `json:"selectorLink,omitempty" yaml:"selector_link,omitempty"`
+
+	StackId string `json:"stackId,omitempty" yaml:"stack_id,omitempty"`
 
 	StartOnCreate bool `json:"startOnCreate,omitempty" yaml:"start_on_create,omitempty"`
 
@@ -75,8 +75,6 @@ type DnsServiceOperations interface {
 	ActionActivate(*DnsService) (*Service, error)
 
 	ActionAddservicelink(*DnsService, *AddRemoveServiceLinkInput) (*Service, error)
-
-	ActionCancelrollback(*DnsService) (*Service, error)
 
 	ActionCancelupgrade(*DnsService) (*Service, error)
 
@@ -154,15 +152,6 @@ func (c *DnsServiceClient) ActionAddservicelink(resource *DnsService, input *Add
 	resp := &Service{}
 
 	err := c.rancherClient.doAction(DNS_SERVICE_TYPE, "addservicelink", &resource.Resource, input, resp)
-
-	return resp, err
-}
-
-func (c *DnsServiceClient) ActionCancelrollback(resource *DnsService) (*Service, error) {
-
-	resp := &Service{}
-
-	err := c.rancherClient.doAction(DNS_SERVICE_TYPE, "cancelrollback", &resource.Resource, nil, resp)
 
 	return resp, err
 }

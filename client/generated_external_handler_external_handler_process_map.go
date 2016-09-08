@@ -13,6 +13,8 @@ type ExternalHandlerExternalHandlerProcessMap struct {
 
 	Description string `json:"description,omitempty" yaml:"description,omitempty"`
 
+	EventName string `json:"eventName,omitempty" yaml:"event_name,omitempty"`
+
 	ExternalHandlerId string `json:"externalHandlerId,omitempty" yaml:"external_handler_id,omitempty"`
 
 	ExternalHandlerProcessId string `json:"externalHandlerProcessId,omitempty" yaml:"external_handler_process_id,omitempty"`

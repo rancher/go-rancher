@@ -9,14 +9,13 @@ type RancherClient struct {
 	AddRemoveLoadBalancerServiceLinkInput    AddRemoveLoadBalancerServiceLinkInputOperations
 	AddRemoveServiceLinkInput                AddRemoveServiceLinkInputOperations
 	Agent                                    AgentOperations
-	Amazonec2Config                          Amazonec2ConfigOperations
 	ApiKey                                   ApiKeyOperations
 	AuditLog                                 AuditLogOperations
-	AzureConfig                              AzureConfigOperations
 	Azureadconfig                            AzureadconfigOperations
 	Backup                                   BackupOperations
 	BackupTarget                             BackupTargetOperations
 	BaseMachineConfig                        BaseMachineConfigOperations
+	Binding                                  BindingOperations
 	BlkioDeviceOption                        BlkioDeviceOptionOperations
 	Certificate                              CertificateOperations
 	ChangeSecretInput                        ChangeSecretInputOperations
@@ -34,12 +33,9 @@ type RancherClient struct {
 	Credential                               CredentialOperations
 	Databasechangelog                        DatabasechangelogOperations
 	Databasechangeloglock                    DatabasechangeloglockOperations
-	DigitaloceanConfig                       DigitaloceanConfigOperations
 	DnsService                               DnsServiceOperations
 	DockerBuild                              DockerBuildOperations
 	DynamicSchema                            DynamicSchemaOperations
-	Environment                              EnvironmentOperations
-	EnvironmentUpgrade                       EnvironmentUpgradeOperations
 	ExtensionImplementation                  ExtensionImplementationOperations
 	ExtensionPoint                           ExtensionPointOperations
 	ExternalDnsEvent                         ExternalDnsEventOperations
@@ -92,7 +88,6 @@ type RancherClient struct {
 	Network                                  NetworkOperations
 	NfsConfig                                NfsConfigOperations
 	Openldapconfig                           OpenldapconfigOperations
-	PacketConfig                             PacketConfigOperations
 	Password                                 PasswordOperations
 	PhysicalHost                             PhysicalHostOperations
 	Port                                     PortOperations
@@ -117,10 +112,12 @@ type RancherClient struct {
 	ScalePolicy                              ScalePolicyOperations
 	SecondaryLaunchConfig                    SecondaryLaunchConfigOperations
 	Service                                  ServiceOperations
+	ServiceBinding                           ServiceBindingOperations
 	ServiceConsumeMap                        ServiceConsumeMapOperations
 	ServiceEvent                             ServiceEventOperations
 	ServiceExposeMap                         ServiceExposeMapOperations
 	ServiceLink                              ServiceLinkOperations
+	ServiceLog                               ServiceLogOperations
 	ServiceProxy                             ServiceProxyOperations
 	ServiceRestart                           ServiceRestartOperations
 	ServiceUpgrade                           ServiceUpgradeOperations
@@ -133,6 +130,8 @@ type RancherClient struct {
 	Setting                                  SettingOperations
 	Snapshot                                 SnapshotOperations
 	SnapshotBackupInput                      SnapshotBackupInputOperations
+	Stack                                    StackOperations
+	StackUpgrade                             StackUpgradeOperations
 	StateTransition                          StateTransitionOperations
 	StatsAccess                              StatsAccessOperations
 	StoragePool                              StoragePoolOperations
@@ -160,14 +159,13 @@ func constructClient() *RancherClient {
 	client.AddRemoveLoadBalancerServiceLinkInput = newAddRemoveLoadBalancerServiceLinkInputClient(client)
 	client.AddRemoveServiceLinkInput = newAddRemoveServiceLinkInputClient(client)
 	client.Agent = newAgentClient(client)
-	client.Amazonec2Config = newAmazonec2ConfigClient(client)
 	client.ApiKey = newApiKeyClient(client)
 	client.AuditLog = newAuditLogClient(client)
-	client.AzureConfig = newAzureConfigClient(client)
 	client.Azureadconfig = newAzureadconfigClient(client)
 	client.Backup = newBackupClient(client)
 	client.BackupTarget = newBackupTargetClient(client)
 	client.BaseMachineConfig = newBaseMachineConfigClient(client)
+	client.Binding = newBindingClient(client)
 	client.BlkioDeviceOption = newBlkioDeviceOptionClient(client)
 	client.Certificate = newCertificateClient(client)
 	client.ChangeSecretInput = newChangeSecretInputClient(client)
@@ -185,12 +183,9 @@ func constructClient() *RancherClient {
 	client.Credential = newCredentialClient(client)
 	client.Databasechangelog = newDatabasechangelogClient(client)
 	client.Databasechangeloglock = newDatabasechangeloglockClient(client)
-	client.DigitaloceanConfig = newDigitaloceanConfigClient(client)
 	client.DnsService = newDnsServiceClient(client)
 	client.DockerBuild = newDockerBuildClient(client)
 	client.DynamicSchema = newDynamicSchemaClient(client)
-	client.Environment = newEnvironmentClient(client)
-	client.EnvironmentUpgrade = newEnvironmentUpgradeClient(client)
 	client.ExtensionImplementation = newExtensionImplementationClient(client)
 	client.ExtensionPoint = newExtensionPointClient(client)
 	client.ExternalDnsEvent = newExternalDnsEventClient(client)
@@ -243,7 +238,6 @@ func constructClient() *RancherClient {
 	client.Network = newNetworkClient(client)
 	client.NfsConfig = newNfsConfigClient(client)
 	client.Openldapconfig = newOpenldapconfigClient(client)
-	client.PacketConfig = newPacketConfigClient(client)
 	client.Password = newPasswordClient(client)
 	client.PhysicalHost = newPhysicalHostClient(client)
 	client.Port = newPortClient(client)
@@ -268,10 +262,12 @@ func constructClient() *RancherClient {
 	client.ScalePolicy = newScalePolicyClient(client)
 	client.SecondaryLaunchConfig = newSecondaryLaunchConfigClient(client)
 	client.Service = newServiceClient(client)
+	client.ServiceBinding = newServiceBindingClient(client)
 	client.ServiceConsumeMap = newServiceConsumeMapClient(client)
 	client.ServiceEvent = newServiceEventClient(client)
 	client.ServiceExposeMap = newServiceExposeMapClient(client)
 	client.ServiceLink = newServiceLinkClient(client)
+	client.ServiceLog = newServiceLogClient(client)
 	client.ServiceProxy = newServiceProxyClient(client)
 	client.ServiceRestart = newServiceRestartClient(client)
 	client.ServiceUpgrade = newServiceUpgradeClient(client)
@@ -284,6 +280,8 @@ func constructClient() *RancherClient {
 	client.Setting = newSettingClient(client)
 	client.Snapshot = newSnapshotClient(client)
 	client.SnapshotBackupInput = newSnapshotBackupInputClient(client)
+	client.Stack = newStackClient(client)
+	client.StackUpgrade = newStackUpgradeClient(client)
 	client.StateTransition = newStateTransitionClient(client)
 	client.StatsAccess = newStatsAccessClient(client)
 	client.StoragePool = newStoragePoolClient(client)

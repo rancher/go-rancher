@@ -9,6 +9,8 @@ type ComposeProject struct {
 
 	AccountId string `json:"accountId,omitempty" yaml:"account_id,omitempty"`
 
+	Binding *Binding `json:"binding,omitempty" yaml:"binding,omitempty"`
+
 	Created string `json:"created,omitempty" yaml:"created,omitempty"`
 
 	Data map[string]interface{} `json:"data,omitempty" yaml:"data,omitempty"`
@@ -62,19 +64,17 @@ type ComposeProjectOperations interface {
 	ById(id string) (*ComposeProject, error)
 	Delete(container *ComposeProject) error
 
-	ActionCancelrollback(*ComposeProject) (*Environment, error)
+	ActionCancelupgrade(*ComposeProject) (*Stack, error)
 
-	ActionCancelupgrade(*ComposeProject) (*Environment, error)
+	ActionCreate(*ComposeProject) (*Stack, error)
 
-	ActionCreate(*ComposeProject) (*Environment, error)
+	ActionError(*ComposeProject) (*Stack, error)
 
-	ActionError(*ComposeProject) (*Environment, error)
+	ActionFinishupgrade(*ComposeProject) (*Stack, error)
 
-	ActionFinishupgrade(*ComposeProject) (*Environment, error)
+	ActionRemove(*ComposeProject) (*Stack, error)
 
-	ActionRemove(*ComposeProject) (*Environment, error)
-
-	ActionRollback(*ComposeProject) (*Environment, error)
+	ActionRollback(*ComposeProject) (*Stack, error)
 }
 
 func newComposeProjectClient(rancherClient *RancherClient) *ComposeProjectClient {
@@ -116,63 +116,54 @@ func (c *ComposeProjectClient) Delete(container *ComposeProject) error {
 	return c.rancherClient.doResourceDelete(COMPOSE_PROJECT_TYPE, &container.Resource)
 }
 
-func (c *ComposeProjectClient) ActionCancelrollback(resource *ComposeProject) (*Environment, error) {
+func (c *ComposeProjectClient) ActionCancelupgrade(resource *ComposeProject) (*Stack, error) {
 
-	resp := &Environment{}
-
-	err := c.rancherClient.doAction(COMPOSE_PROJECT_TYPE, "cancelrollback", &resource.Resource, nil, resp)
-
-	return resp, err
-}
-
-func (c *ComposeProjectClient) ActionCancelupgrade(resource *ComposeProject) (*Environment, error) {
-
-	resp := &Environment{}
+	resp := &Stack{}
 
 	err := c.rancherClient.doAction(COMPOSE_PROJECT_TYPE, "cancelupgrade", &resource.Resource, nil, resp)
 
 	return resp, err
 }
 
-func (c *ComposeProjectClient) ActionCreate(resource *ComposeProject) (*Environment, error) {
+func (c *ComposeProjectClient) ActionCreate(resource *ComposeProject) (*Stack, error) {
 
-	resp := &Environment{}
+	resp := &Stack{}
 
 	err := c.rancherClient.doAction(COMPOSE_PROJECT_TYPE, "create", &resource.Resource, nil, resp)
 
 	return resp, err
 }
 
-func (c *ComposeProjectClient) ActionError(resource *ComposeProject) (*Environment, error) {
+func (c *ComposeProjectClient) ActionError(resource *ComposeProject) (*Stack, error) {
 
-	resp := &Environment{}
+	resp := &Stack{}
 
 	err := c.rancherClient.doAction(COMPOSE_PROJECT_TYPE, "error", &resource.Resource, nil, resp)
 
 	return resp, err
 }
 
-func (c *ComposeProjectClient) ActionFinishupgrade(resource *ComposeProject) (*Environment, error) {
+func (c *ComposeProjectClient) ActionFinishupgrade(resource *ComposeProject) (*Stack, error) {
 
-	resp := &Environment{}
+	resp := &Stack{}
 
 	err := c.rancherClient.doAction(COMPOSE_PROJECT_TYPE, "finishupgrade", &resource.Resource, nil, resp)
 
 	return resp, err
 }
 
-func (c *ComposeProjectClient) ActionRemove(resource *ComposeProject) (*Environment, error) {
+func (c *ComposeProjectClient) ActionRemove(resource *ComposeProject) (*Stack, error) {
 
-	resp := &Environment{}
+	resp := &Stack{}
 
 	err := c.rancherClient.doAction(COMPOSE_PROJECT_TYPE, "remove", &resource.Resource, nil, resp)
 
 	return resp, err
 }
 
-func (c *ComposeProjectClient) ActionRollback(resource *ComposeProject) (*Environment, error) {
+func (c *ComposeProjectClient) ActionRollback(resource *ComposeProject) (*Stack, error) {
 
-	resp := &Environment{}
+	resp := &Stack{}
 
 	err := c.rancherClient.doAction(COMPOSE_PROJECT_TYPE, "rollback", &resource.Resource, nil, resp)
 
