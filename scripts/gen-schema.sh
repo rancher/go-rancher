@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+set -e -x
 
 cd $(dirname $0)/../generator
 
@@ -16,14 +16,33 @@ while ! curl -fs ${URL_BASE}/ping; do
 done
 echo
 
-curl -s "${URL_BASE}/v1/schemas?_role=service" | jq . > schemas.json
-echo Saved schemas.json
+gen() {
+    BASE=$1
 
-echo -n Generating go code...
-go run generator.go
-echo " Done"
+    curl -s "${URL_BASE}/$BASE/schemas?_role=service" | jq . > schemas.json
+    echo Saved schemas.json
 
-gofmt -w ../client/generated_*
-echo Formatted code
+    echo -n Generating go code...
+    rm -rf ../client/generated_* || true
+    go run generator.go
+    echo " Done"
+
+    gofmt -w ../client/generated_*
+    echo Formatted code
+
+    if [ -n "$2" ]; then
+        rm -rf ../$2
+        mv ../client ../$2
+        if [ -n "$3" ]; then
+            sed -i 's/package client/package '$2'/g' ../$2/*.go
+        fi
+        git checkout ../client
+    fi
+    rm schemas.json
+}
+
+gen v1-catalog catalog rename
+gen v2-beta v2
+gen v1
 
 echo Success
