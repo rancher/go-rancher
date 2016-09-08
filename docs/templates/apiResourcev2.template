@@ -20,16 +20,37 @@ Please read more about the [common resource fields]({{"{{"}}site.baseurl{{"}}"}}
 {{if .operationMap }}
 ### Operations
 {::options parse_block_html="true" /}{{end}}
-{{range $key, $value := .operationMap}}{{if eq $key "Create"}}<a id="create"></a>{{end}}{{if eq $key "Update"}}<a id="update"></a>{{end}}{{if eq $key "Delete"}}<a id="delete"></a>{{end}}
+{{range $key, $value := .operationMap}}{{if eq $key "Create"}}<a id="create"></a>
 <div class="action"><span class="header">{{$key}}<span class="headerright">{{$value.Method}}:  <code>{{$value.ActionURL}}</code></span></span>
 <div class="action-contents">
 {% highlight json %}
 {{$value.Input.InputJSON}}
 {% endhighlight %}
 </div>
-</div>{{end}}
-{{if $.actionMap}}
-### Actions{{range $actionName, $action := .actionMap}}
+</div>{{end}}{{end}}
+{{range $key, $value := .operationMap}}
+{{if eq $key "Update"}}<a id="update"></a>
+<div class="action">
+<span class="header">{{$key}}
+<span class="headerright">{{$value.Method}}:  <code>{{"${"}}{{$value.ActionURL}}{{"}"}}</code></span></span>
+<div class="action-contents">
+{% highlight json %}
+{{$value.Input.InputJSON}}
+{% endhighlight %}
+</div>
+</div>{{end}}{{end}}
+{{range $key, $value := .operationMap}}
+{{if eq $key "Delete"}}<a id="delete"></a>
+<div class="action">
+<span class="header">{{$key}}
+<span class="headerright">{{$value.Method}}:  <code>{{"${"}}{{$value.ActionURL}}{{"}"}}</code></span></span>
+<div class="action-contents">
+{% highlight json %}
+{{$value.Input.InputJSON}}
+{% endhighlight %}
+</div>
+</div>{{end}}{{end}}
+{{if $.actionMap}}### Actions{{range $actionName, $action := .actionMap}}
 <div class="action">
 <span class="header">
 {{$actionName}}

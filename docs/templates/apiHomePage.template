@@ -7,11 +7,10 @@ lang: {{.language}}
 
 ## Resource Types
 
-{{if $.schemaMap}}{{range $key, $value := .schemaMap}}{{range $link, $val := $value.Resource.Links}}{{if eq $link "collection"}}
-
+{{if $.schemaMap}}{{range $resourceId, $resourceData := .schemaMap}}{{range $link, $val := $resourceData.Resource.Links}}{{if eq $link "showResource"}}
 <br>
 
-[{{$key}}]({{"{{"}}site.baseurl{{"}}"}}/rancher/{{"{{"}}page.version{{"}}"}}/{{"{{"}}page.lang{{"}}"}}/api/api-resources/{{$key}}/)|
+[{{$resourceId | capitalize}}]({{"{{"}}site.baseurl{{"}}"}}/rancher/{{"{{"}}page.version{{"}}"}}/{{"{{"}}page.lang{{"}}"}}/api/api-resources/{{$resourceId}}/)|
 ---|
-{{$key | getResourceDescription }} |
+{{$resourceId | getResourceDescription }} |
 {{end}}{{end}}{{end}}{{end}}

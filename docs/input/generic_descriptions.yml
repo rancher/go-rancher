@@ -1,5 +1,5 @@
 id: The unique identifier for the <resource>
-created: The date of when the <resource> was created. 
+created: The date of when the <resource> was created.
 state: The current state of the <resource>. The options are <list of options>.
 transitioning: Whether or not the <resource> is in a transitioning state
 transitioningMessage: The message to show while in a transitioning state
@@ -17,3 +17,4 @@ publicValue: The public value of the <resource>
 secretValue: The secret value of the <resource>
 sshUser: The ssh username to use to ssh into the host
 sshPort: The port to ssh into the host
+labels:	A map of key value pairs to be used as labels for the <resource>
