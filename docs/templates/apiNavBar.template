@@ -32,14 +32,20 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="navbar-collapse collapse">
         <ul class="nav navbar-nav" id="mainmenu">
+          <li><a href="{{"{{"}}site.baseurl{{"}}"}}/rancher/{{"{{"}}page.version{{"}}"}}/{{"{{"}}page.lang{{"}}"}}/"  data-toggle="refresh">Rancher Documentation</a></li>
+          <li><a href="{{"{{"}}site.baseurl{{"}}"}}/rancher/{{"{{"}}page.version{{"}}"}}/{{"{{"}}page.lang{{"}}"}}/api/">How to use the API</a></li>
+          <li><a href="{{"{{"}}site.baseurl{{"}}"}}/rancher/{{"{{"}}page.version{{"}}"}}/{{"{{"}}page.lang{{"}}"}}/api/access-control/">Setting up Access Control using the API</a></li>
+          <li><a href="{{"{{"}}site.baseurl{{"}}"}}/rancher/{{"{{"}}page.version{{"}}"}}/{{"{{"}}page.lang{{"}}"}}/api/api-keys/">What are API keys</a></li>
+          <li><a href="{{"{{"}}site.baseurl{{"}}"}}/rancher/{{"{{"}}page.version{{"}}"}}/{{"{{"}}page.lang{{"}}"}}/api/api-resources/">API Resources</a></li>
+            <li><a href="{{"{{"}}site.baseurl{{"}}"}}/rancher/{{"{{"}}page.version{{"}}"}}/{{"{{"}}page.lang{{"}}"}}/api/common/">Common Resource Fields</a></li>
         {{if $.schemaMap}}{{range $resourceId, $resourceData := .schemaMap}}{{range $link, $val := $resourceData.Resource.Links}}{{if eq $link "showResource"}}<li class="panel">
             <a href="#{{$resourceId}}"  data-toggle="collapse" class="collapsed" data-parent="#mainmenu">{{$resourceId | capitalize}} <i class="pull-right fa fa-angle-down"></i><i class="pull-right fa fa-angle-up"></i></a>
             <ul class="collapse list-group-submenu" id="{{$resourceId}}">
-              <li><a href="{{"{{"}}site.baseurl{{"}}"}}/rancher/{{"{{"}}page.version{{"}}"}}/{{"{{"}}page.lang{{"}}"}}/api/api-resources/{{$resourceId}}/">{{$resourceId | capitalize}}</a></li>
-              {{range $collectionMethodsKey, $collectionMethodsValue := $resourceData.CollectionMethods}}{{if eq $collectionMethodsValue "POST"}}<li><a href="{{"{{"}}site.baseurl{{"}}"}}/rancher/{{"{{"}}page.version{{"}}"}}/{{"{{"}}page.lang{{"}}"}}/api/api-resources/{{$resourceId}}/#create">Create</a></li>{{end}}{{end}}
-              {{range $resourceMethodsKey, $resourceMethodsValue := $resourceData.ResourceMethods}}{{if eq $resourceMethodsValue "PUT"}}<li><a href="{{"{{"}}site.baseurl{{"}}"}}/rancher/{{"{{"}}page.version{{"}}"}}/{{"{{"}}page.lang{{"}}"}}/api/api-resources/{{$resourceId}}/#update">Update</a></li>{{end}}
-              {{if eq $resourceMethodsValue "DELETE"}}<li><a href="{{"{{"}}site.baseurl{{"}}"}}/rancher/{{"{{"}}page.version{{"}}"}}/{{"{{"}}page.lang{{"}}"}}/api/api-resources/{{$resourceId}}/#delete">Delete</a></li>{{end}}{{end}}
-              {{range $action, $val := $resourceData.ResourceActions}}<li><a href="{{"{{"}}site.baseurl{{"}}"}}/rancher/{{"{{"}}page.version{{"}}"}}/{{"{{"}}page.lang{{"}}"}}/api/api-resources/{{$resourceId}}/#{{$action}}">{{$action | capitalize}}</a></li>
+              <li><a href="{{"{{"}}site.baseurl{{"}}"}}/rancher/{{"{{"}}page.version{{"}}"}}/{{"{{"}}page.lang{{"}}"}}/api/api-resources/{{$resourceId}}/" data-toggle="refresh">{{$resourceId | capitalize}}</a></li>
+              {{range $collectionMethodsKey, $collectionMethodsValue := $resourceData.CollectionMethods}}{{if eq $collectionMethodsValue "POST"}}<li><a href="{{"{{"}}site.baseurl{{"}}"}}/rancher/{{"{{"}}page.version{{"}}"}}/{{"{{"}}page.lang{{"}}"}}/api/api-resources/{{$resourceId}}/#create" data-toggle="refresh">Create</a></li>{{end}}{{end}}
+              {{range $resourceMethodsKey, $resourceMethodsValue := $resourceData.ResourceMethods}}{{if eq $resourceMethodsValue "PUT"}}<li><a href="{{"{{"}}site.baseurl{{"}}"}}/rancher/{{"{{"}}page.version{{"}}"}}/{{"{{"}}page.lang{{"}}"}}/api/api-resources/{{$resourceId}}/#update" data-toggle="refresh">Update</a></li>{{end}}
+              {{if eq $resourceMethodsValue "DELETE"}}<li><a href="{{"{{"}}site.baseurl{{"}}"}}/rancher/{{"{{"}}page.version{{"}}"}}/{{"{{"}}page.lang{{"}}"}}/api/api-resources/{{$resourceId}}/#delete" data-toggle="refresh">Delete</a></li>{{end}}{{end}}
+              {{range $action, $val := $resourceData.ResourceActions}}<li><a href="{{"{{"}}site.baseurl{{"}}"}}/rancher/{{"{{"}}page.version{{"}}"}}/{{"{{"}}page.lang{{"}}"}}/api/api-resources/{{$resourceId}}/#{{$action}}" data-toggle="refresh">{{$action | capitalize}}</a></li>
               {{end}}
             </ul>
           </li>
