@@ -6,24 +6,25 @@ type RancherClient struct {
     {{.Id}} {{.Id}}Operations{{end}}
 }
 
-func constructClient() *RancherClient {
+func constructClient(rancherBaseClient *RancherBaseClientImpl) *RancherClient {
 	client := &RancherClient{
-		RancherBaseClient: RancherBaseClient{
-			Types: map[string]Schema{},
-		},
-	}
+        RancherBaseClient: rancherBaseClient,
+    }
 
     {{range .schemas}}
-    client.{{.Id}} = new{{.Id}}Client(client){{end}} 
+    client.{{.Id}} = new{{.Id}}Client(client){{end}}
 
 
 	return client
 }
 
 func NewRancherClient(opts *ClientOpts) (*RancherClient, error) {
-    client := constructClient()
-        
-    err := setupRancherBaseClient(&client.RancherBaseClient, opts)
+    rancherBaseClient := &RancherBaseClientImpl {
+        Types: map[string]Schema{},
+    }
+    client := constructClient(rancherBaseClient)
+
+    err := setupRancherBaseClient(rancherBaseClient, opts)
     if err != nil {
         return nil, err
     }
