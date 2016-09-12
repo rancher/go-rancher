@@ -19,7 +19,7 @@ type Project struct {
 
 	Kubernetes bool `json:"kubernetes,omitempty" yaml:"kubernetes,omitempty"`
 
-	Members []interface{} `json:"members,omitempty" yaml:"members,omitempty"`
+	Members []ProjectMember `json:"members,omitempty" yaml:"members,omitempty"`
 
 	Mesos bool `json:"mesos,omitempty" yaml:"mesos,omitempty"`
 
