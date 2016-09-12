@@ -19,7 +19,7 @@ type ExternalHandler struct {
 
 	Priority int64 `json:"priority,omitempty" yaml:"priority,omitempty"`
 
-	ProcessConfigs []interface{} `json:"processConfigs,omitempty" yaml:"process_configs,omitempty"`
+	ProcessConfigs []ExternalHandlerProcessConfig `json:"processConfigs,omitempty" yaml:"process_configs,omitempty"`
 
 	RemoveTime string `json:"removeTime,omitempty" yaml:"remove_time,omitempty"`
 

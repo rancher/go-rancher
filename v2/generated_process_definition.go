@@ -19,7 +19,7 @@ type ProcessDefinition struct {
 
 	ResourceType string `json:"resourceType,omitempty" yaml:"resource_type,omitempty"`
 
-	StateTransitions []interface{} `json:"stateTransitions,omitempty" yaml:"state_transitions,omitempty"`
+	StateTransitions []StateTransition `json:"stateTransitions,omitempty" yaml:"state_transitions,omitempty"`
 }
 
 type ProcessDefinitionCollection struct {

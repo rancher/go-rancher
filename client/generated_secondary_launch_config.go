@@ -49,7 +49,7 @@ type SecondaryLaunchConfig struct {
 
 	Devices []string `json:"devices,omitempty" yaml:"devices,omitempty"`
 
-	Disks []interface{} `json:"disks,omitempty" yaml:"disks,omitempty"`
+	Disks []VirtualMachineDisk `json:"disks,omitempty" yaml:"disks,omitempty"`
 
 	Dns []string `json:"dns,omitempty" yaml:"dns,omitempty"`
 

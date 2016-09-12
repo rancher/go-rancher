@@ -7,7 +7,7 @@ const (
 type SetServiceLinksInput struct {
 	Resource
 
-	ServiceLinks []interface{} `json:"serviceLinks,omitempty" yaml:"service_links,omitempty"`
+	ServiceLinks []ServiceLink `json:"serviceLinks,omitempty" yaml:"service_links,omitempty"`
 }
 
 type SetServiceLinksInputCollection struct {
