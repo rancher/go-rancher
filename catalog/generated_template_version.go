@@ -9,6 +9,8 @@ type TemplateVersion struct {
 
 	Actions map[string]interface{} `json:"actions,omitempty" yaml:"actions,omitempty"`
 
+	Bindings map[string]interface{} `json:"bindings,omitempty" yaml:"bindings,omitempty"`
+
 	CatalogId string `json:"catalogId,omitempty" yaml:"catalog_id,omitempty"`
 
 	Category string `json:"category,omitempty" yaml:"category,omitempty"`
