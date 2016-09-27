@@ -9,8 +9,6 @@ type TemplateVersion struct {
 
 	Actions map[string]interface{} `json:"actions,omitempty" yaml:"actions,omitempty"`
 
-	Bindings map[string]interface{} `json:"bindings,omitempty" yaml:"bindings,omitempty"`
-
 	CatalogId string `json:"catalogId,omitempty" yaml:"catalog_id,omitempty"`
 
 	Category string `json:"category,omitempty" yaml:"category,omitempty"`
@@ -62,7 +60,8 @@ type TemplateVersion struct {
 
 type TemplateVersionCollection struct {
 	Collection
-	Data []TemplateVersion `json:"data,omitempty"`
+	Data   []TemplateVersion `json:"data,omitempty"`
+	client *TemplateVersionClient
 }
 
 type TemplateVersionClient struct {
@@ -98,7 +97,18 @@ func (c *TemplateVersionClient) Update(existing *TemplateVersion, updates interf
 func (c *TemplateVersionClient) List(opts *ListOpts) (*TemplateVersionCollection, error) {
 	resp := &TemplateVersionCollection{}
 	err := c.rancherClient.doList(TEMPLATE_VERSION_TYPE, opts, resp)
+	resp.client = c
 	return resp, err
+}
+
+func (cc *TemplateVersionCollection) Next() (*TemplateVersionCollection, error) {
+	if cc != nil && cc.Pagination != nil && cc.Pagination.Next != "" {
+		resp := &TemplateVersionCollection{}
+		err := cc.client.rancherClient.doNext(cc.Pagination.Next, resp)
+		resp.client = cc.client
+		return resp, err
+	}
+	return nil, nil
 }
 
 func (c *TemplateVersionClient) ById(id string) (*TemplateVersion, error) {

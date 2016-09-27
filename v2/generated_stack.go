@@ -56,7 +56,8 @@ type Stack struct {
 
 type StackCollection struct {
 	Collection
-	Data []Stack `json:"data,omitempty"`
+	Data   []Stack `json:"data,omitempty"`
+	client *StackClient
 }
 
 type StackClient struct {
@@ -116,7 +117,18 @@ func (c *StackClient) Update(existing *Stack, updates interface{}) (*Stack, erro
 func (c *StackClient) List(opts *ListOpts) (*StackCollection, error) {
 	resp := &StackCollection{}
 	err := c.rancherClient.doList(STACK_TYPE, opts, resp)
+	resp.client = c
 	return resp, err
+}
+
+func (cc *StackCollection) Next() (*StackCollection, error) {
+	if cc != nil && cc.Pagination != nil && cc.Pagination.Next != "" {
+		resp := &StackCollection{}
+		err := cc.client.rancherClient.doNext(cc.Pagination.Next, resp)
+		resp.client = cc.client
+		return resp, err
+	}
+	return nil, nil
 }
 
 func (c *StackClient) ById(id string) (*Stack, error) {

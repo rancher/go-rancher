@@ -26,6 +26,7 @@ type RancherBaseClient interface {
 
 	doGet(string, *ListOpts, interface{}) error
 	doList(string, *ListOpts, interface{}) error
+	doNext(string, interface{}) error
 	doModify(string, string, interface{}, interface{}) error
 	doCreate(string, interface{}, interface{}) error
 	doUpdate(string, *Resource, interface{}, interface{}) error
