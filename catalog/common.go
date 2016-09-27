@@ -311,6 +311,10 @@ func (rancherClient *RancherBaseClientImpl) doList(schemaType string, opts *List
 	return rancherClient.doGet(collectionUrl, opts, respObject)
 }
 
+func (rancherClient *RancherBaseClientImpl) doNext(nextUrl string, respObject interface{}) error {
+	return rancherClient.doGet(nextUrl, nil, respObject)
+}
+
 func (rancherClient *RancherBaseClientImpl) Post(url string, createObj interface{}, respObject interface{}) error {
 	return rancherClient.doModify("POST", url, createObj, respObject)
 }
