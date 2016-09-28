@@ -10,6 +10,7 @@ import (
 	"net/url"
 	"os"
 	"regexp"
+	"strings"
 	"time"
 
 	"github.com/gorilla/websocket"
@@ -151,9 +152,14 @@ func setupRancherBaseClient(rancherClient *RancherBaseClientImpl, opts *ClientOp
 		return newApiError(resp, opts.Url)
 	}
 
-	schemasUrls := resp.Header.Get("X-API-Schemas")
-	if len(schemasUrls) == 0 {
-		return errors.New("Failed to find schema at [" + opts.Url + "]")
+	var schemasUrls string
+	if strings.HasSuffix(opts.Url, "/schemas") {
+		schemasUrls = opts.Url
+	} else {
+		schemasUrls = resp.Header.Get("X-API-Schemas")
+		if len(schemasUrls) == 0 {
+			return errors.New("Failed to find schema at [" + opts.Url + "]")
+		}
 	}
 
 	if schemasUrls != opts.Url {
