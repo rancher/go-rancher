@@ -7,7 +7,7 @@ const (
 type SetProjectMembersInput struct {
 	Resource
 
-	Members []interface{} `json:"members,omitempty" yaml:"members,omitempty"`
+	Members []ProjectMember `json:"members,omitempty" yaml:"members,omitempty"`
 }
 
 type SetProjectMembersInputCollection struct {

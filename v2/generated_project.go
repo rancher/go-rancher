@@ -15,17 +15,15 @@ type Project struct {
 
 	Description string `json:"description,omitempty" yaml:"description,omitempty"`
 
+	HealthState string `json:"healthState,omitempty" yaml:"health_state,omitempty"`
+
 	Kind string `json:"kind,omitempty" yaml:"kind,omitempty"`
 
-	Kubernetes bool `json:"kubernetes,omitempty" yaml:"kubernetes,omitempty"`
-
-	Members []interface{} `json:"members,omitempty" yaml:"members,omitempty"`
-
-	Mesos bool `json:"mesos,omitempty" yaml:"mesos,omitempty"`
+	Members []ProjectMember `json:"members,omitempty" yaml:"members,omitempty"`
 
 	Name string `json:"name,omitempty" yaml:"name,omitempty"`
 
-	PublicDns bool `json:"publicDns,omitempty" yaml:"public_dns,omitempty"`
+	Orchestration string `json:"orchestration,omitempty" yaml:"orchestration,omitempty"`
 
 	RemoveTime string `json:"removeTime,omitempty" yaml:"remove_time,omitempty"`
 
@@ -34,8 +32,6 @@ type Project struct {
 	ServicesPortRange *ServicesPortRange `json:"servicesPortRange,omitempty" yaml:"services_port_range,omitempty"`
 
 	State string `json:"state,omitempty" yaml:"state,omitempty"`
-
-	Swarm bool `json:"swarm,omitempty" yaml:"swarm,omitempty"`
 
 	Transitioning string `json:"transitioning,omitempty" yaml:"transitioning,omitempty"`
 

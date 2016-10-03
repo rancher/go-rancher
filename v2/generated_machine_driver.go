@@ -31,6 +31,8 @@ type MachineDriver struct {
 
 	Removed string `json:"removed,omitempty" yaml:"removed,omitempty"`
 
+	SchemaVersion string `json:"schemaVersion,omitempty" yaml:"schema_version,omitempty"`
+
 	State string `json:"state,omitempty" yaml:"state,omitempty"`
 
 	Transitioning string `json:"transitioning,omitempty" yaml:"transitioning,omitempty"`

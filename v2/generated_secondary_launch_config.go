@@ -49,7 +49,7 @@ type SecondaryLaunchConfig struct {
 
 	Devices []string `json:"devices,omitempty" yaml:"devices,omitempty"`
 
-	Disks []interface{} `json:"disks,omitempty" yaml:"disks,omitempty"`
+	Disks []VirtualMachineDisk `json:"disks,omitempty" yaml:"disks,omitempty"`
 
 	Dns []string `json:"dns,omitempty" yaml:"dns,omitempty"`
 
@@ -131,6 +131,8 @@ type SecondaryLaunchConfig struct {
 
 	SecurityOpt []string `json:"securityOpt,omitempty" yaml:"security_opt,omitempty"`
 
+	ServiceIds []string `json:"serviceIds,omitempty" yaml:"service_ids,omitempty"`
+
 	StartCount int64 `json:"startCount,omitempty" yaml:"start_count,omitempty"`
 
 	StartOnCreate bool `json:"startOnCreate,omitempty" yaml:"start_on_create,omitempty"`
@@ -138,6 +140,8 @@ type SecondaryLaunchConfig struct {
 	State string `json:"state,omitempty" yaml:"state,omitempty"`
 
 	StdinOpen bool `json:"stdinOpen,omitempty" yaml:"stdin_open,omitempty"`
+
+	System bool `json:"system,omitempty" yaml:"system,omitempty"`
 
 	SystemContainer string `json:"systemContainer,omitempty" yaml:"system_container,omitempty"`
 
@@ -206,8 +210,6 @@ type SecondaryLaunchConfigOperations interface {
 	ActionRestart(*SecondaryLaunchConfig) (*Instance, error)
 
 	ActionRestore(*SecondaryLaunchConfig) (*Instance, error)
-
-	ActionSetlabels(*SecondaryLaunchConfig, *SetLabelsInput) (*Container, error)
 
 	ActionStart(*SecondaryLaunchConfig) (*Instance, error)
 
@@ -376,15 +378,6 @@ func (c *SecondaryLaunchConfigClient) ActionRestore(resource *SecondaryLaunchCon
 	resp := &Instance{}
 
 	err := c.rancherClient.doAction(SECONDARY_LAUNCH_CONFIG_TYPE, "restore", &resource.Resource, nil, resp)
-
-	return resp, err
-}
-
-func (c *SecondaryLaunchConfigClient) ActionSetlabels(resource *SecondaryLaunchConfig, input *SetLabelsInput) (*Container, error) {
-
-	resp := &Container{}
-
-	err := c.rancherClient.doAction(SECONDARY_LAUNCH_CONFIG_TYPE, "setlabels", &resource.Resource, input, resp)
 
 	return resp, err
 }

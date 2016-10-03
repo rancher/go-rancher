@@ -9,7 +9,7 @@ type ExtensionPoint struct {
 
 	ExcludeSetting string `json:"excludeSetting,omitempty" yaml:"exclude_setting,omitempty"`
 
-	Implementations []interface{} `json:"implementations,omitempty" yaml:"implementations,omitempty"`
+	Implementations []ExtensionImplementation `json:"implementations,omitempty" yaml:"implementations,omitempty"`
 
 	IncludeSetting string `json:"includeSetting,omitempty" yaml:"include_setting,omitempty"`
 

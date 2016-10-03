@@ -7,47 +7,27 @@ const (
 type AzureConfig struct {
 	Resource
 
-	AvailabilitySet string `json:"availabilitySet,omitempty" yaml:"availability_set,omitempty"`
-
-	ClientId string `json:"clientId,omitempty" yaml:"client_id,omitempty"`
-
-	ClientSecret string `json:"clientSecret,omitempty" yaml:"client_secret,omitempty"`
-
-	CustomData string `json:"customData,omitempty" yaml:"custom_data,omitempty"`
-
 	DockerPort string `json:"dockerPort,omitempty" yaml:"docker_port,omitempty"`
 
-	Environment string `json:"environment,omitempty" yaml:"environment,omitempty"`
+	DockerSwarmMasterPort string `json:"dockerSwarmMasterPort,omitempty" yaml:"docker_swarm_master_port,omitempty"`
 
 	Image string `json:"image,omitempty" yaml:"image,omitempty"`
 
 	Location string `json:"location,omitempty" yaml:"location,omitempty"`
 
-	NoPublicIp bool `json:"noPublicIp,omitempty" yaml:"no_public_ip,omitempty"`
+	Password string `json:"password,omitempty" yaml:"password,omitempty"`
 
-	OpenPort []string `json:"openPort,omitempty" yaml:"open_port,omitempty"`
-
-	PrivateIpAddress string `json:"privateIpAddress,omitempty" yaml:"private_ip_address,omitempty"`
-
-	ResourceGroup string `json:"resourceGroup,omitempty" yaml:"resource_group,omitempty"`
+	PublishSettingsFile string `json:"publishSettingsFile,omitempty" yaml:"publish_settings_file,omitempty"`
 
 	Size string `json:"size,omitempty" yaml:"size,omitempty"`
 
-	SshUser string `json:"sshUser,omitempty" yaml:"ssh_user,omitempty"`
+	SshPort string `json:"sshPort,omitempty" yaml:"ssh_port,omitempty"`
 
-	StaticPublicIp bool `json:"staticPublicIp,omitempty" yaml:"static_public_ip,omitempty"`
-
-	StorageType string `json:"storageType,omitempty" yaml:"storage_type,omitempty"`
-
-	Subnet string `json:"subnet,omitempty" yaml:"subnet,omitempty"`
-
-	SubnetPrefix string `json:"subnetPrefix,omitempty" yaml:"subnet_prefix,omitempty"`
+	SubscriptionCert string `json:"subscriptionCert,omitempty" yaml:"subscription_cert,omitempty"`
 
 	SubscriptionId string `json:"subscriptionId,omitempty" yaml:"subscription_id,omitempty"`
 
-	UsePrivateIp bool `json:"usePrivateIp,omitempty" yaml:"use_private_ip,omitempty"`
-
-	Vnet string `json:"vnet,omitempty" yaml:"vnet,omitempty"`
+	Username string `json:"username,omitempty" yaml:"username,omitempty"`
 }
 
 type AzureConfigCollection struct {
