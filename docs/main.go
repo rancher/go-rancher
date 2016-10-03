@@ -23,7 +23,7 @@ func main() {
 		switch *command {
 		case "generate-collection-description":
 			log.Info("Generating the api collections descriptions file...")
-			err := generateDescriptionFile(false, true)
+			err := generateDescriptionFile(false, true, true, false, false)
 			if err != nil {
 				log.Fatal(err)
 				os.Exit(1)
@@ -31,7 +31,7 @@ func main() {
 			log.Info("Done...")
 		case "generate-description":
 			log.Info("Generating the api descriptions file...")
-			err := generateDescriptionFile(false, false)
+			err := generateDescriptionFile(false, false, true, true, true)
 			if err != nil {
 				log.Fatal(err)
 				os.Exit(1)
@@ -47,7 +47,15 @@ func main() {
 			log.Info("Done...")
 		case "generate-empty-description":
 			log.Info("Generating the api descriptions file with empty descriptions...")
-			err := generateDescriptionFile(true, false)
+			err := generateDescriptionFile(true, false, true, true, true)
+			if err != nil {
+				log.Fatal(err)
+				os.Exit(1)
+			}
+			log.Info("Done...")
+		case "generate-only-resource-fields":
+			log.Info("Generating only the resource fields for json input...")
+			err := generateDescriptionFile(true, false, false, false, true)
 			if err != nil {
 				log.Fatal(err)
 				os.Exit(1)

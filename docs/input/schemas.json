@@ -2,7 +2,7 @@
   "type": "collection",
   "resourceType": "schema",
   "links": {
-    "self": "http://130.211.204.217:8080/v1/schemas"
+    "self": "http://104.197.191.104:8080/v1/schemas"
   },
   "createTypes": {},
   "actions": {},
@@ -11,8 +11,8 @@
       "id": "account",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/account",
-        "collection": "http://130.211.204.217:8080/v1/accounts"
+        "self": "http://104.197.191.104:8080/v1/schemas/account",
+        "collection": "http://104.197.191.104:8080/v1/accounts"
       },
       "actions": {},
       "pluralName": "accounts",
@@ -328,7 +328,7 @@
       "id": "activeSetting",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/activesetting"
+        "self": "http://104.197.191.104:8080/v1/schemas/activesetting"
       },
       "actions": {},
       "pluralName": "activeSettings",
@@ -377,8 +377,7 @@
       "id": "addOutputsInput",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/addoutputsinput",
-        "collection": "http://130.211.204.217:8080/v1/addoutputsinputs"
+        "self": "http://104.197.191.104:8080/v1/schemas/addoutputsinput"
       },
       "actions": {},
       "pluralName": "addOutputsInputs",
@@ -400,15 +399,13 @@
       "resourceMethods": [
         "GET"
       ],
-      "collectionMethods": [
-        "GET"
-      ]
+      "collectionMethods": []
     },
     {
       "id": "addRemoveLoadBalancerServiceLinkInput",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/addremoveloadbalancerservicelinkinput"
+        "self": "http://104.197.191.104:8080/v1/schemas/addremoveloadbalancerservicelinkinput"
       },
       "actions": {},
       "pluralName": "addRemoveLoadBalancerServiceLinkInputs",
@@ -436,7 +433,7 @@
       "id": "addRemoveServiceLinkInput",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/addremoveservicelinkinput"
+        "self": "http://104.197.191.104:8080/v1/schemas/addremoveservicelinkinput"
       },
       "actions": {},
       "pluralName": "addRemoveServiceLinkInputs",
@@ -466,8 +463,7 @@
       "id": "amazonec2Config",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/amazonec2config",
-        "collection": "http://130.211.204.217:8080/v1/amazonec2configs"
+        "self": "http://104.197.191.104:8080/v1/schemas/amazonec2config"
       },
       "actions": {},
       "pluralName": "amazonec2Configs",
@@ -661,7 +657,6 @@
         "GET"
       ],
       "collectionMethods": [
-        "GET",
         "POST"
       ]
     },
@@ -669,8 +664,8 @@
       "id": "apiKey",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/apikey",
-        "collection": "http://130.211.204.217:8080/v1/apikeys"
+        "self": "http://104.197.191.104:8080/v1/schemas/apikey",
+        "collection": "http://104.197.191.104:8080/v1/apikeys"
       },
       "actions": {},
       "pluralName": "apiKeys",
@@ -1002,8 +997,8 @@
       "id": "auditLog",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/auditlog",
-        "collection": "http://130.211.204.217:8080/v1/auditlogs"
+        "self": "http://104.197.191.104:8080/v1/schemas/auditlog",
+        "collection": "http://104.197.191.104:8080/v1/auditlogs"
       },
       "actions": {},
       "pluralName": "auditLogs",
@@ -1306,8 +1301,7 @@
       "id": "azureConfig",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/azureconfig",
-        "collection": "http://130.211.204.217:8080/v1/azureconfigs"
+        "self": "http://104.197.191.104:8080/v1/schemas/azureconfig"
       },
       "actions": {},
       "pluralName": "azureConfigs",
@@ -1410,7 +1404,6 @@
         "GET"
       ],
       "collectionMethods": [
-        "GET",
         "POST"
       ]
     },
@@ -1418,8 +1411,8 @@
       "id": "backup",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/backup",
-        "collection": "http://130.211.204.217:8080/v1/backups"
+        "self": "http://104.197.191.104:8080/v1/schemas/backup",
+        "collection": "http://104.197.191.104:8080/v1/backups"
       },
       "actions": {},
       "pluralName": "backups",
@@ -1750,8 +1743,8 @@
       "id": "backupTarget",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/backuptarget",
-        "collection": "http://130.211.204.217:8080/v1/backuptargets"
+        "self": "http://104.197.191.104:8080/v1/schemas/backuptarget",
+        "collection": "http://104.197.191.104:8080/v1/backuptargets"
       },
       "actions": {},
       "pluralName": "backupTargets",
@@ -2020,7 +2013,7 @@
       "id": "baseMachineConfig",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/basemachineconfig"
+        "self": "http://104.197.191.104:8080/v1/schemas/basemachineconfig"
       },
       "actions": {},
       "pluralName": "baseMachineConfigs",
@@ -2039,7 +2032,7 @@
       "id": "blkioDeviceOption",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/blkiodeviceoption"
+        "self": "http://104.197.191.104:8080/v1/schemas/blkiodeviceoption"
       },
       "actions": {},
       "pluralName": "blkioDeviceOptions",
@@ -2101,8 +2094,8 @@
       "id": "certificate",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/certificate",
-        "collection": "http://130.211.204.217:8080/v1/certificates"
+        "self": "http://104.197.191.104:8080/v1/schemas/certificate",
+        "collection": "http://104.197.191.104:8080/v1/certificates"
       },
       "actions": {},
       "pluralName": "certificates",
@@ -2498,7 +2491,7 @@
       "id": "changeSecretInput",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/changesecretinput"
+        "self": "http://104.197.191.104:8080/v1/schemas/changesecretinput"
       },
       "actions": {},
       "pluralName": "changeSecretInputs",
@@ -2536,7 +2529,7 @@
       "id": "composeConfig",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/composeconfig"
+        "self": "http://104.197.191.104:8080/v1/schemas/composeconfig"
       },
       "actions": {},
       "pluralName": "composeConfigs",
@@ -2570,7 +2563,7 @@
       "id": "composeConfigInput",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/composeconfiginput"
+        "self": "http://104.197.191.104:8080/v1/schemas/composeconfiginput"
       },
       "actions": {},
       "pluralName": "composeConfigInputs",
@@ -2600,8 +2593,8 @@
       "id": "composeProject",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/composeproject",
-        "collection": "http://130.211.204.217:8080/v1/composeprojects"
+        "self": "http://104.197.191.104:8080/v1/schemas/composeproject",
+        "collection": "http://104.197.191.104:8080/v1/composeprojects"
       },
       "actions": {},
       "pluralName": "composeProjects",
@@ -2965,8 +2958,8 @@
       "id": "composeService",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/composeservice",
-        "collection": "http://130.211.204.217:8080/v1/composeservices"
+        "self": "http://104.197.191.104:8080/v1/schemas/composeservice",
+        "collection": "http://104.197.191.104:8080/v1/composeservices"
       },
       "actions": {},
       "pluralName": "composeServices",
@@ -3450,8 +3443,8 @@
       "id": "container",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/container",
-        "collection": "http://130.211.204.217:8080/v1/containers"
+        "self": "http://104.197.191.104:8080/v1/schemas/container",
+        "collection": "http://104.197.191.104:8080/v1/containers"
       },
       "actions": {},
       "pluralName": "containers",
@@ -4657,8 +4650,8 @@
       "id": "containerEvent",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/containerevent",
-        "collection": "http://130.211.204.217:8080/v1/containerevents"
+        "self": "http://104.197.191.104:8080/v1/schemas/containerevent",
+        "collection": "http://104.197.191.104:8080/v1/containerevents"
       },
       "actions": {},
       "pluralName": "containerEvents",
@@ -4947,8 +4940,7 @@
       "id": "containerExec",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/containerexec",
-        "collection": "http://130.211.204.217:8080/v1/containerexecs"
+        "self": "http://104.197.191.104:8080/v1/schemas/containerexec"
       },
       "actions": {},
       "pluralName": "containerExecs",
@@ -4999,7 +4991,6 @@
         "GET"
       ],
       "collectionMethods": [
-        "GET",
         "POST"
       ]
     },
@@ -5007,7 +4998,7 @@
       "id": "containerLogs",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/containerlogs"
+        "self": "http://104.197.191.104:8080/v1/schemas/containerlogs"
       },
       "actions": {},
       "pluralName": "containerLogses",
@@ -5049,7 +5040,7 @@
       "id": "containerProxy",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/containerproxy"
+        "self": "http://104.197.191.104:8080/v1/schemas/containerproxy"
       },
       "actions": {},
       "pluralName": "containerProxys",
@@ -5095,8 +5086,8 @@
       "id": "credential",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/credential",
-        "collection": "http://130.211.204.217:8080/v1/credentials"
+        "self": "http://104.197.191.104:8080/v1/schemas/credential",
+        "collection": "http://104.197.191.104:8080/v1/credentials"
       },
       "actions": {},
       "pluralName": "credentials",
@@ -5425,8 +5416,7 @@
       "id": "digitaloceanConfig",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/digitaloceanconfig",
-        "collection": "http://130.211.204.217:8080/v1/digitaloceanconfigs"
+        "self": "http://104.197.191.104:8080/v1/schemas/digitaloceanconfig"
       },
       "actions": {},
       "pluralName": "digitaloceanConfigs",
@@ -5518,7 +5508,6 @@
         "GET"
       ],
       "collectionMethods": [
-        "GET",
         "POST"
       ]
     },
@@ -5526,8 +5515,8 @@
       "id": "dnsService",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/dnsservice",
-        "collection": "http://130.211.204.217:8080/v1/dnsservices"
+        "self": "http://104.197.191.104:8080/v1/schemas/dnsservice",
+        "collection": "http://104.197.191.104:8080/v1/dnsservices"
       },
       "actions": {},
       "pluralName": "dnsServices",
@@ -6024,8 +6013,7 @@
       "id": "dockerBuild",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/dockerbuild",
-        "collection": "http://130.211.204.217:8080/v1/dockerbuilds"
+        "self": "http://104.197.191.104:8080/v1/schemas/dockerbuild"
       },
       "actions": {},
       "pluralName": "dockerBuilds",
@@ -6088,7 +6076,6 @@
         "GET"
       ],
       "collectionMethods": [
-        "GET",
         "POST"
       ]
     },
@@ -6096,8 +6083,8 @@
       "id": "environment",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/environment",
-        "collection": "http://130.211.204.217:8080/v1/environments"
+        "self": "http://104.197.191.104:8080/v1/schemas/environment",
+        "collection": "http://104.197.191.104:8080/v1/environments"
       },
       "actions": {},
       "pluralName": "environments",
@@ -6507,8 +6494,7 @@
       "id": "environmentUpgrade",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/environmentupgrade",
-        "collection": "http://130.211.204.217:8080/v1/environmentupgrades"
+        "self": "http://104.197.191.104:8080/v1/schemas/environmentupgrade"
       },
       "actions": {},
       "pluralName": "environmentUpgrades",
@@ -6551,7 +6537,6 @@
         "GET"
       ],
       "collectionMethods": [
-        "GET",
         "POST"
       ]
     },
@@ -6559,8 +6544,8 @@
       "id": "externalDnsEvent",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/externaldnsevent",
-        "collection": "http://130.211.204.217:8080/v1/externaldnsevents"
+        "self": "http://104.197.191.104:8080/v1/schemas/externaldnsevent",
+        "collection": "http://104.197.191.104:8080/v1/externaldnsevents"
       },
       "actions": {},
       "pluralName": "externalDnsEvents",
@@ -6822,8 +6807,8 @@
       "id": "externalEvent",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/externalevent",
-        "collection": "http://130.211.204.217:8080/v1/externalevents"
+        "self": "http://104.197.191.104:8080/v1/schemas/externalevent",
+        "collection": "http://104.197.191.104:8080/v1/externalevents"
       },
       "actions": {},
       "pluralName": "externalEvents",
@@ -7064,8 +7049,8 @@
       "id": "externalHostEvent",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/externalhostevent",
-        "collection": "http://130.211.204.217:8080/v1/externalhostevents"
+        "self": "http://104.197.191.104:8080/v1/schemas/externalhostevent",
+        "collection": "http://104.197.191.104:8080/v1/externalhostevents"
       },
       "actions": {},
       "pluralName": "externalHostEvents",
@@ -7331,8 +7316,8 @@
       "id": "externalService",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/externalservice",
-        "collection": "http://130.211.204.217:8080/v1/externalservices"
+        "self": "http://104.197.191.104:8080/v1/schemas/externalservice",
+        "collection": "http://104.197.191.104:8080/v1/externalservices"
       },
       "actions": {},
       "pluralName": "externalServices",
@@ -7816,8 +7801,8 @@
       "id": "externalServiceEvent",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/externalserviceevent",
-        "collection": "http://130.211.204.217:8080/v1/externalserviceevents"
+        "self": "http://104.197.191.104:8080/v1/schemas/externalserviceevent",
+        "collection": "http://104.197.191.104:8080/v1/externalserviceevents"
       },
       "actions": {},
       "pluralName": "externalServiceEvents",
@@ -8073,8 +8058,8 @@
       "id": "externalStoragePoolEvent",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/externalstoragepoolevent",
-        "collection": "http://130.211.204.217:8080/v1/externalstoragepoolevents"
+        "self": "http://104.197.191.104:8080/v1/schemas/externalstoragepoolevent",
+        "collection": "http://104.197.191.104:8080/v1/externalstoragepoolevents"
       },
       "actions": {},
       "pluralName": "externalStoragePoolEvents",
@@ -8330,8 +8315,8 @@
       "id": "externalVolumeEvent",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/externalvolumeevent",
-        "collection": "http://130.211.204.217:8080/v1/externalvolumeevents"
+        "self": "http://104.197.191.104:8080/v1/schemas/externalvolumeevent",
+        "collection": "http://104.197.191.104:8080/v1/externalvolumeevents"
       },
       "actions": {},
       "pluralName": "externalVolumeEvents",
@@ -8580,7 +8565,7 @@
       "id": "fieldDocumentation",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/fielddocumentation"
+        "self": "http://104.197.191.104:8080/v1/schemas/fielddocumentation"
       },
       "actions": {},
       "pluralName": "fieldDocumentations",
@@ -8607,7 +8592,7 @@
       "id": "haproxyConfig",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/haproxyconfig"
+        "self": "http://104.197.191.104:8080/v1/schemas/haproxyconfig"
       },
       "actions": {},
       "pluralName": "haproxyConfigs",
@@ -8648,8 +8633,8 @@
       "id": "healthcheckInstanceHostMap",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/healthcheckinstancehostmap",
-        "collection": "http://130.211.204.217:8080/v1/healthcheckinstancehostmaps"
+        "self": "http://104.197.191.104:8080/v1/schemas/healthcheckinstancehostmap",
+        "collection": "http://104.197.191.104:8080/v1/healthcheckinstancehostmaps"
       },
       "actions": {},
       "pluralName": "healthcheckInstanceHostMaps",
@@ -8981,8 +8966,8 @@
       "id": "host",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/host",
-        "collection": "http://130.211.204.217:8080/v1/hosts"
+        "self": "http://104.197.191.104:8080/v1/schemas/host",
+        "collection": "http://104.197.191.104:8080/v1/hosts"
       },
       "actions": {},
       "pluralName": "hosts",
@@ -9401,8 +9386,7 @@
       "id": "hostAccess",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/hostaccess",
-        "collection": "http://130.211.204.217:8080/v1/hostaccesses"
+        "self": "http://104.197.191.104:8080/v1/schemas/hostaccess"
       },
       "actions": {},
       "pluralName": "hostAccesses",
@@ -9430,16 +9414,14 @@
       "resourceMethods": [
         "GET"
       ],
-      "collectionMethods": [
-        "GET"
-      ]
+      "collectionMethods": []
     },
     {
       "id": "identity",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/identity",
-        "collection": "http://130.211.204.217:8080/v1/identities"
+        "self": "http://104.197.191.104:8080/v1/schemas/identity",
+        "collection": "http://104.197.191.104:8080/v1/identities"
       },
       "actions": {},
       "pluralName": "identities",
@@ -9562,8 +9544,8 @@
       "id": "image",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/image",
-        "collection": "http://130.211.204.217:8080/v1/images"
+        "self": "http://104.197.191.104:8080/v1/schemas/image",
+        "collection": "http://104.197.191.104:8080/v1/images"
       },
       "actions": {},
       "pluralName": "images",
@@ -9934,7 +9916,7 @@
       "id": "inServiceUpgradeStrategy",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/inserviceupgradestrategy"
+        "self": "http://104.197.191.104:8080/v1/schemas/inserviceupgradestrategy"
       },
       "actions": {},
       "pluralName": "inServiceUpgradeStrategys",
@@ -10017,8 +9999,8 @@
       "id": "instance",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/instance",
-        "collection": "http://130.211.204.217:8080/v1/instances"
+        "self": "http://104.197.191.104:8080/v1/schemas/instance",
+        "collection": "http://104.197.191.104:8080/v1/instances"
       },
       "actions": {},
       "pluralName": "instances",
@@ -10651,7 +10633,7 @@
       "id": "instanceConsole",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/instanceconsole"
+        "self": "http://104.197.191.104:8080/v1/schemas/instanceconsole"
       },
       "actions": {},
       "pluralName": "instanceConsoles",
@@ -10692,7 +10674,7 @@
       "id": "instanceConsoleInput",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/instanceconsoleinput"
+        "self": "http://104.197.191.104:8080/v1/schemas/instanceconsoleinput"
       },
       "actions": {},
       "pluralName": "instanceConsoleInputs",
@@ -10711,7 +10693,7 @@
       "id": "instanceHealthCheck",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/instancehealthcheck"
+        "self": "http://104.197.191.104:8080/v1/schemas/instancehealthcheck"
       },
       "actions": {},
       "pluralName": "instanceHealthChecks",
@@ -10835,8 +10817,8 @@
       "id": "instanceLink",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/instancelink",
-        "collection": "http://130.211.204.217:8080/v1/instancelinks"
+        "self": "http://104.197.191.104:8080/v1/schemas/instancelink",
+        "collection": "http://104.197.191.104:8080/v1/instancelinks"
       },
       "actions": {},
       "pluralName": "instanceLinks",
@@ -11185,7 +11167,7 @@
       "id": "instanceStop",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/instancestop"
+        "self": "http://104.197.191.104:8080/v1/schemas/instancestop"
       },
       "actions": {},
       "pluralName": "instanceStops",
@@ -11221,8 +11203,8 @@
       "id": "ipAddress",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/ipaddress",
-        "collection": "http://130.211.204.217:8080/v1/ipaddresses"
+        "self": "http://104.197.191.104:8080/v1/schemas/ipaddress",
+        "collection": "http://104.197.191.104:8080/v1/ipaddresses"
       },
       "actions": {},
       "pluralName": "ipAddresses",
@@ -11604,7 +11586,7 @@
       "id": "ipAddressAssociateInput",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/ipaddressassociateinput"
+        "self": "http://104.197.191.104:8080/v1/schemas/ipaddressassociateinput"
       },
       "actions": {},
       "pluralName": "ipAddressAssociateInputs",
@@ -11633,8 +11615,8 @@
       "id": "kubernetesService",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/kubernetesservice",
-        "collection": "http://130.211.204.217:8080/v1/kubernetesservices"
+        "self": "http://104.197.191.104:8080/v1/schemas/kubernetesservice",
+        "collection": "http://104.197.191.104:8080/v1/kubernetesservices"
       },
       "actions": {},
       "pluralName": "kubernetesServices",
@@ -12087,8 +12069,8 @@
       "id": "kubernetesStack",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/kubernetesstack",
-        "collection": "http://130.211.204.217:8080/v1/kubernetesstacks"
+        "self": "http://104.197.191.104:8080/v1/schemas/kubernetesstack",
+        "collection": "http://104.197.191.104:8080/v1/kubernetesstacks"
       },
       "actions": {},
       "pluralName": "kubernetesStacks",
@@ -12464,8 +12446,8 @@
       "id": "kubernetesStackUpgrade",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/kubernetesstackupgrade",
-        "collection": "http://130.211.204.217:8080/v1/kubernetesstackupgrades"
+        "self": "http://104.197.191.104:8080/v1/schemas/kubernetesstackupgrade",
+        "collection": "http://104.197.191.104:8080/v1/kubernetesstackupgrades"
       },
       "actions": {},
       "pluralName": "kubernetesStackUpgrades",
@@ -12509,8 +12491,8 @@
       "id": "label",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/label",
-        "collection": "http://130.211.204.217:8080/v1/labels"
+        "self": "http://104.197.191.104:8080/v1/schemas/label",
+        "collection": "http://104.197.191.104:8080/v1/labels"
       },
       "actions": {},
       "pluralName": "labels",
@@ -12819,7 +12801,7 @@
       "id": "launchConfig",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/launchconfig"
+        "self": "http://104.197.191.104:8080/v1/schemas/launchconfig"
       },
       "actions": {},
       "pluralName": "launchConfigs",
@@ -14066,7 +14048,7 @@
       "id": "loadBalancerAppCookieStickinessPolicy",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/loadbalancerappcookiestickinesspolicy"
+        "self": "http://104.197.191.104:8080/v1/schemas/loadbalancerappcookiestickinesspolicy"
       },
       "actions": {},
       "pluralName": "loadBalancerAppCookieStickinessPolicys",
@@ -14149,8 +14131,7 @@
       "id": "loadBalancerConfig",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/loadbalancerconfig",
-        "collection": "http://130.211.204.217:8080/v1/loadbalancerconfigs"
+        "self": "http://104.197.191.104:8080/v1/schemas/loadbalancerconfig"
       },
       "actions": {},
       "pluralName": "loadBalancerConfigs",
@@ -14183,7 +14164,6 @@
         "DELETE"
       ],
       "collectionMethods": [
-        "GET",
         "POST"
       ]
     },
@@ -14191,7 +14171,7 @@
       "id": "loadBalancerCookieStickinessPolicy",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/loadbalancercookiestickinesspolicy"
+        "self": "http://104.197.191.104:8080/v1/schemas/loadbalancercookiestickinesspolicy"
       },
       "actions": {},
       "pluralName": "loadBalancerCookieStickinessPolicys",
@@ -14271,8 +14251,8 @@
       "id": "loadBalancerService",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/loadbalancerservice",
-        "collection": "http://130.211.204.217:8080/v1/loadbalancerservices"
+        "self": "http://104.197.191.104:8080/v1/schemas/loadbalancerservice",
+        "collection": "http://104.197.191.104:8080/v1/loadbalancerservices"
       },
       "actions": {},
       "pluralName": "loadBalancerServices",
@@ -14833,7 +14813,7 @@
       "id": "loadBalancerServiceLink",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/loadbalancerservicelink"
+        "self": "http://104.197.191.104:8080/v1/schemas/loadbalancerservicelink"
       },
       "actions": {},
       "pluralName": "loadBalancerServiceLinks",
@@ -14878,7 +14858,7 @@
       "id": "logConfig",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/logconfig"
+        "self": "http://104.197.191.104:8080/v1/schemas/logconfig"
       },
       "actions": {},
       "pluralName": "logConfigs",
@@ -14918,8 +14898,8 @@
       "id": "machine",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/machine",
-        "collection": "http://130.211.204.217:8080/v1/machines"
+        "self": "http://104.197.191.104:8080/v1/schemas/machine",
+        "collection": "http://104.197.191.104:8080/v1/machines"
       },
       "actions": {},
       "pluralName": "machines",
@@ -15361,8 +15341,8 @@
       "id": "machineDriver",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/machinedriver",
-        "collection": "http://130.211.204.217:8080/v1/machinedrivers"
+        "self": "http://104.197.191.104:8080/v1/schemas/machinedriver",
+        "collection": "http://104.197.191.104:8080/v1/machinedrivers"
       },
       "actions": {},
       "pluralName": "machineDrivers",
@@ -15491,7 +15471,7 @@
           "type": "string",
           "description": null,
           "create": true,
-          "update": false,
+          "update": true,
           "readOnCreateOnly": false
         },
         "builtin": {
@@ -15700,8 +15680,8 @@
       "id": "mount",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/mount",
-        "collection": "http://130.211.204.217:8080/v1/mounts"
+        "self": "http://104.197.191.104:8080/v1/schemas/mount",
+        "collection": "http://104.197.191.104:8080/v1/mounts"
       },
       "actions": {},
       "pluralName": "mounts",
@@ -16039,8 +16019,8 @@
       "id": "network",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/network",
-        "collection": "http://130.211.204.217:8080/v1/networks"
+        "self": "http://104.197.191.104:8080/v1/schemas/network",
+        "collection": "http://104.197.191.104:8080/v1/networks"
       },
       "actions": {},
       "pluralName": "networks",
@@ -16344,7 +16324,7 @@
       "id": "nfsConfig",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/nfsconfig"
+        "self": "http://104.197.191.104:8080/v1/schemas/nfsconfig"
       },
       "actions": {},
       "pluralName": "nfsConfigs",
@@ -16388,8 +16368,7 @@
       "id": "packetConfig",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/packetconfig",
-        "collection": "http://130.211.204.217:8080/v1/packetconfigs"
+        "self": "http://104.197.191.104:8080/v1/schemas/packetconfig"
       },
       "actions": {},
       "pluralName": "packetConfigs",
@@ -16452,7 +16431,6 @@
         "GET"
       ],
       "collectionMethods": [
-        "GET",
         "POST"
       ]
     },
@@ -16460,8 +16438,8 @@
       "id": "password",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/password",
-        "collection": "http://130.211.204.217:8080/v1/passwords"
+        "self": "http://104.197.191.104:8080/v1/schemas/password",
+        "collection": "http://104.197.191.104:8080/v1/passwords"
       },
       "actions": {},
       "pluralName": "passwords",
@@ -16798,8 +16776,8 @@
       "id": "physicalHost",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/physicalhost",
-        "collection": "http://130.211.204.217:8080/v1/physicalhosts"
+        "self": "http://104.197.191.104:8080/v1/schemas/physicalhost",
+        "collection": "http://104.197.191.104:8080/v1/physicalhosts"
       },
       "actions": {},
       "pluralName": "physicalHosts",
@@ -17121,8 +17099,8 @@
       "id": "port",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/port",
-        "collection": "http://130.211.204.217:8080/v1/ports"
+        "self": "http://104.197.191.104:8080/v1/schemas/port",
+        "collection": "http://104.197.191.104:8080/v1/ports"
       },
       "actions": {},
       "pluralName": "ports",
@@ -17531,8 +17509,8 @@
       "id": "project",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/project",
-        "collection": "http://130.211.204.217:8080/v1/projects"
+        "self": "http://104.197.191.104:8080/v1/schemas/project",
+        "collection": "http://104.197.191.104:8080/v1/projects"
       },
       "actions": {},
       "pluralName": "projects",
@@ -17912,8 +17890,8 @@
       "id": "projectMember",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/projectmember",
-        "collection": "http://130.211.204.217:8080/v1/projectmembers"
+        "self": "http://104.197.191.104:8080/v1/schemas/projectmember",
+        "collection": "http://104.197.191.104:8080/v1/projectmembers"
       },
       "actions": {},
       "pluralName": "projectMembers",
@@ -18284,7 +18262,7 @@
       "id": "publicEndpoint",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/publicendpoint"
+        "self": "http://104.197.191.104:8080/v1/schemas/publicendpoint"
       },
       "actions": {},
       "pluralName": "publicEndpoints",
@@ -18343,8 +18321,8 @@
       "id": "pullTask",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/pulltask",
-        "collection": "http://130.211.204.217:8080/v1/pulltasks"
+        "self": "http://104.197.191.104:8080/v1/schemas/pulltask",
+        "collection": "http://104.197.191.104:8080/v1/pulltasks"
       },
       "actions": {},
       "pluralName": "pullTasks",
@@ -18675,7 +18653,7 @@
       "id": "recreateOnQuorumStrategyConfig",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/recreateonquorumstrategyconfig"
+        "self": "http://104.197.191.104:8080/v1/schemas/recreateonquorumstrategyconfig"
       },
       "actions": {},
       "pluralName": "recreateOnQuorumStrategyConfigs",
@@ -18707,8 +18685,8 @@
       "id": "register",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/register",
-        "collection": "http://130.211.204.217:8080/v1/register"
+        "self": "http://104.197.191.104:8080/v1/schemas/register",
+        "collection": "http://104.197.191.104:8080/v1/register"
       },
       "actions": {},
       "pluralName": "register",
@@ -19037,8 +19015,8 @@
       "id": "registrationToken",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/registrationtoken",
-        "collection": "http://130.211.204.217:8080/v1/registrationtokens"
+        "self": "http://104.197.191.104:8080/v1/schemas/registrationtoken",
+        "collection": "http://104.197.191.104:8080/v1/registrationtokens"
       },
       "actions": {},
       "pluralName": "registrationTokens",
@@ -19378,8 +19356,8 @@
       "id": "registry",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/registry",
-        "collection": "http://130.211.204.217:8080/v1/registries"
+        "self": "http://104.197.191.104:8080/v1/schemas/registry",
+        "collection": "http://104.197.191.104:8080/v1/registries"
       },
       "actions": {},
       "pluralName": "registries",
@@ -19803,8 +19781,8 @@
       "id": "registryCredential",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/registrycredential",
-        "collection": "http://130.211.204.217:8080/v1/registrycredentials"
+        "self": "http://104.197.191.104:8080/v1/schemas/registrycredential",
+        "collection": "http://104.197.191.104:8080/v1/registrycredentials"
       },
       "actions": {},
       "pluralName": "registryCredentials",
@@ -20155,7 +20133,7 @@
       "id": "restartPolicy",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/restartpolicy"
+        "self": "http://104.197.191.104:8080/v1/schemas/restartpolicy"
       },
       "actions": {},
       "pluralName": "restartPolicys",
@@ -20191,7 +20169,7 @@
       "id": "restoreFromBackupInput",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/restorefrombackupinput"
+        "self": "http://104.197.191.104:8080/v1/schemas/restorefrombackupinput"
       },
       "actions": {},
       "pluralName": "restoreFromBackupInputs",
@@ -20219,7 +20197,7 @@
       "id": "revertToSnapshotInput",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/reverttosnapshotinput"
+        "self": "http://104.197.191.104:8080/v1/schemas/reverttosnapshotinput"
       },
       "actions": {},
       "pluralName": "revertToSnapshotInputs",
@@ -20247,7 +20225,7 @@
       "id": "rollingRestartStrategy",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/rollingrestartstrategy"
+        "self": "http://104.197.191.104:8080/v1/schemas/rollingrestartstrategy"
       },
       "actions": {},
       "pluralName": "rollingRestartStrategys",
@@ -20291,8 +20269,7 @@
       "id": "scalePolicy",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/scalepolicy",
-        "collection": "http://130.211.204.217:8080/v1/scalepolicys"
+        "self": "http://104.197.191.104:8080/v1/schemas/scalepolicy"
       },
       "actions": {},
       "pluralName": "scalePolicys",
@@ -20340,16 +20317,14 @@
       "resourceMethods": [
         "GET"
       ],
-      "collectionMethods": [
-        "GET"
-      ]
+      "collectionMethods": []
     },
     {
       "id": "schema",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/schema",
-        "collection": "http://130.211.204.217:8080/v1/schemas"
+        "self": "http://104.197.191.104:8080/v1/schemas/schema",
+        "collection": "http://104.197.191.104:8080/v1/schemas"
       },
       "actions": {},
       "pluralName": "schemas",
@@ -20434,7 +20409,7 @@
       "id": "secondaryLaunchConfig",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/secondarylaunchconfig"
+        "self": "http://104.197.191.104:8080/v1/schemas/secondarylaunchconfig"
       },
       "actions": {},
       "pluralName": "secondaryLaunchConfigs",
@@ -21692,8 +21667,8 @@
       "id": "service",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/service",
-        "collection": "http://130.211.204.217:8080/v1/services"
+        "self": "http://104.197.191.104:8080/v1/schemas/service",
+        "collection": "http://104.197.191.104:8080/v1/services"
       },
       "actions": {},
       "pluralName": "services",
@@ -22255,8 +22230,8 @@
       "id": "serviceConsumeMap",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/serviceconsumemap",
-        "collection": "http://130.211.204.217:8080/v1/serviceconsumemaps"
+        "self": "http://104.197.191.104:8080/v1/schemas/serviceconsumemap",
+        "collection": "http://104.197.191.104:8080/v1/serviceconsumemaps"
       },
       "actions": {},
       "pluralName": "serviceConsumeMaps",
@@ -22563,8 +22538,8 @@
       "id": "serviceEvent",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/serviceevent",
-        "collection": "http://130.211.204.217:8080/v1/serviceevents"
+        "self": "http://104.197.191.104:8080/v1/schemas/serviceevent",
+        "collection": "http://104.197.191.104:8080/v1/serviceevents"
       },
       "actions": {},
       "pluralName": "serviceEvents",
@@ -22925,8 +22900,8 @@
       "id": "serviceExposeMap",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/serviceexposemap",
-        "collection": "http://130.211.204.217:8080/v1/serviceexposemaps"
+        "self": "http://104.197.191.104:8080/v1/schemas/serviceexposemap",
+        "collection": "http://104.197.191.104:8080/v1/serviceexposemaps"
       },
       "actions": {},
       "pluralName": "serviceExposeMaps",
@@ -23284,7 +23259,7 @@
       "id": "serviceLink",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/servicelink"
+        "self": "http://104.197.191.104:8080/v1/schemas/servicelink"
       },
       "actions": {},
       "pluralName": "serviceLinks",
@@ -23330,8 +23305,8 @@
       "id": "serviceProxy",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/serviceproxy",
-        "collection": "http://130.211.204.217:8080/v1/serviceproxies"
+        "self": "http://104.197.191.104:8080/v1/schemas/serviceproxy",
+        "collection": "http://104.197.191.104:8080/v1/serviceproxies"
       },
       "actions": {},
       "pluralName": "serviceProxies",
@@ -23402,7 +23377,7 @@
       "id": "serviceRestart",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/servicerestart"
+        "self": "http://104.197.191.104:8080/v1/schemas/servicerestart"
       },
       "actions": {},
       "pluralName": "serviceRestarts",
@@ -23433,7 +23408,7 @@
       "id": "serviceUpgrade",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/serviceupgrade"
+        "self": "http://104.197.191.104:8080/v1/schemas/serviceupgrade"
       },
       "actions": {},
       "pluralName": "serviceUpgrades",
@@ -23473,7 +23448,7 @@
       "id": "serviceUpgradeStrategy",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/serviceupgradestrategy"
+        "self": "http://104.197.191.104:8080/v1/schemas/serviceupgradestrategy"
       },
       "actions": {},
       "pluralName": "serviceUpgradeStrategys",
@@ -23515,7 +23490,7 @@
       "id": "servicesPortRange",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/servicesportrange"
+        "self": "http://104.197.191.104:8080/v1/schemas/servicesportrange"
       },
       "actions": {},
       "pluralName": "servicesPortRanges",
@@ -23562,7 +23537,7 @@
       "id": "setLabelsInput",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/setlabelsinput"
+        "self": "http://104.197.191.104:8080/v1/schemas/setlabelsinput"
       },
       "actions": {},
       "pluralName": "setLabelsInputs",
@@ -23591,7 +23566,7 @@
       "id": "setLoadBalancerServiceLinksInput",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/setloadbalancerservicelinksinput"
+        "self": "http://104.197.191.104:8080/v1/schemas/setloadbalancerservicelinksinput"
       },
       "actions": {},
       "pluralName": "setLoadBalancerServiceLinksInputs",
@@ -23619,7 +23594,7 @@
       "id": "setProjectMembersInput",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/setprojectmembersinput"
+        "self": "http://104.197.191.104:8080/v1/schemas/setprojectmembersinput"
       },
       "actions": {},
       "pluralName": "setProjectMembersInputs",
@@ -23650,7 +23625,7 @@
       "id": "setServiceLinksInput",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/setservicelinksinput"
+        "self": "http://104.197.191.104:8080/v1/schemas/setservicelinksinput"
       },
       "actions": {},
       "pluralName": "setServiceLinksInputs",
@@ -23680,8 +23655,8 @@
       "id": "setting",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/setting",
-        "collection": "http://130.211.204.217:8080/v1/settings"
+        "self": "http://104.197.191.104:8080/v1/schemas/setting",
+        "collection": "http://104.197.191.104:8080/v1/settings"
       },
       "actions": {},
       "pluralName": "settings",
@@ -23771,8 +23746,8 @@
       "id": "snapshot",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/snapshot",
-        "collection": "http://130.211.204.217:8080/v1/snapshots"
+        "self": "http://104.197.191.104:8080/v1/schemas/snapshot",
+        "collection": "http://104.197.191.104:8080/v1/snapshots"
       },
       "actions": {},
       "pluralName": "snapshots",
@@ -24052,8 +24027,7 @@
       "id": "snapshotBackupInput",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/snapshotbackupinput",
-        "collection": "http://130.211.204.217:8080/v1/snapshotbackupinputs"
+        "self": "http://104.197.191.104:8080/v1/schemas/snapshotbackupinput"
       },
       "actions": {},
       "pluralName": "snapshotBackupInputs",
@@ -24231,16 +24205,13 @@
       "resourceMethods": [
         "GET"
       ],
-      "collectionMethods": [
-        "GET"
-      ]
+      "collectionMethods": []
     },
     {
       "id": "statsAccess",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/statsaccess",
-        "collection": "http://130.211.204.217:8080/v1/statsaccesses"
+        "self": "http://104.197.191.104:8080/v1/schemas/statsaccess"
       },
       "actions": {},
       "pluralName": "statsAccesses",
@@ -24268,16 +24239,14 @@
       "resourceMethods": [
         "GET"
       ],
-      "collectionMethods": [
-        "GET"
-      ]
+      "collectionMethods": []
     },
     {
       "id": "storagePool",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/storagepool",
-        "collection": "http://130.211.204.217:8080/v1/storagepools"
+        "self": "http://104.197.191.104:8080/v1/schemas/storagepool",
+        "collection": "http://104.197.191.104:8080/v1/storagepools"
       },
       "actions": {},
       "pluralName": "storagePools",
@@ -24689,8 +24658,8 @@
       "id": "subscribe",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/subscribe",
-        "collection": "http://130.211.204.217:8080/v1/subscribe"
+        "self": "http://104.197.191.104:8080/v1/schemas/subscribe",
+        "collection": "http://104.197.191.104:8080/v1/subscribe"
       },
       "actions": {},
       "pluralName": "subscribe",
@@ -24729,7 +24698,7 @@
       "id": "toServiceUpgradeStrategy",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/toserviceupgradestrategy"
+        "self": "http://104.197.191.104:8080/v1/schemas/toserviceupgradestrategy"
       },
       "actions": {},
       "pluralName": "toServiceUpgradeStrategys",
@@ -24799,8 +24768,8 @@
       "id": "typeDocumentation",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/typedocumentation",
-        "collection": "http://130.211.204.217:8080/v1/typedocumentations"
+        "self": "http://104.197.191.104:8080/v1/schemas/typedocumentation",
+        "collection": "http://104.197.191.104:8080/v1/typedocumentations"
       },
       "actions": {},
       "pluralName": "typeDocumentations",
@@ -24843,8 +24812,8 @@
       "id": "virtualMachine",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/virtualmachine",
-        "collection": "http://130.211.204.217:8080/v1/virtualmachines"
+        "self": "http://104.197.191.104:8080/v1/schemas/virtualmachine",
+        "collection": "http://104.197.191.104:8080/v1/virtualmachines"
       },
       "actions": {},
       "pluralName": "virtualMachines",
@@ -25848,7 +25817,7 @@
       "id": "virtualMachineDisk",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/virtualmachinedisk"
+        "self": "http://104.197.191.104:8080/v1/schemas/virtualmachinedisk"
       },
       "actions": {},
       "pluralName": "virtualMachineDisks",
@@ -25927,8 +25896,8 @@
       "id": "volume",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/volume",
-        "collection": "http://130.211.204.217:8080/v1/volumes"
+        "self": "http://104.197.191.104:8080/v1/schemas/volume",
+        "collection": "http://104.197.191.104:8080/v1/volumes"
       },
       "actions": {},
       "pluralName": "volumes",
@@ -26453,7 +26422,7 @@
       "id": "volumeSnapshotInput",
       "type": "schema",
       "links": {
-        "self": "http://130.211.204.217:8080/v1/schemas/volumesnapshotinput"
+        "self": "http://104.197.191.104:8080/v1/schemas/volumesnapshotinput"
       },
       "actions": {},
       "pluralName": "volumeSnapshotInputs",

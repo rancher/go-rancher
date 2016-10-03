@@ -13,7 +13,8 @@ var (
 	optionsRegexp *regexp.Regexp = regexp.MustCompile(`<list of options>`)
 )
 
-func generateDescriptionFile(emptyDesc bool, collectionOnly bool) error {
+func generateDescriptionFile(emptyDesc bool, collectionOnly bool, showDesc bool, showActions bool, showResourceFields bool) error {
+	//func generateDescriptionFile(emptyDesc bool, collectionOnly bool) error {
 	schemas, err := readCattleSchema()
 
 	if err != nil {
@@ -35,15 +36,64 @@ func generateDescriptionFile(emptyDesc bool, collectionOnly bool) error {
 		if blacklistTypes[resourceSchema.Id] {
 			continue
 		}
+		/*
+			//Only print out collection links for the collection yml
+			if collectionOnly {
+				// If it's not a collection or it's a blacklist Collection, skip
+				if _, isCollection := resourceSchema.Links["collection"]; !isCollection || isBlacklistCollection(resourceSchema.Id) {
+					continue
+				}
+			} else {
+				//Only add in actions and fields for non-collection only files
+				for actionName := range resourceSchema.ResourceActions {
+					if !isBlacklistAction(resourceSchema.Id, actionName) {
+						if emptyDesc {
+							resourceDescriptionsMap[resourceSchema.Id+"-resourceActions-"+actionName] = ""
+							//resourceDescriptionsMap[resourceSchema.Id+"-"+actionName] = ""
+						} else {
+							resourceDescriptionsMap[resourceSchema.Id+"-resourceActions-"+actionName] = "To " + actionName + " the " + resourceSchema.Id
+						}
+					}
+				}
 
-		//Only print out collection links for the collection yml
-		if collectionOnly {
-			// If it's not a collection or it's a blacklist Collection, skip
-			if _, isCollection := resourceSchema.Links["collection"]; !isCollection || isBlacklistCollection(resourceSchema.Id) {
-				continue
+				for fieldName, field := range resourceSchema.ResourceFields {
+					if emptyDesc {
+						resourceDescriptionsMap[resourceSchema.Id+"-resourceFields-"+fieldName] = ""
+						//resourceDescriptionsMap[resourceSchema.Id+"-"+fieldName] = ""
+					} else {
+						//check if a generic desc exists
+						var description string
+						if genericDesc, ok := genericDescMap[fieldName]; ok {
+							description = descRegexp.ReplaceAllString(genericDesc, resourceSchema.Id)
+							description = optionsRegexp.ReplaceAllString(description, "["+strings.Join(field.Options, ", ")+"]")
+						}
+						//else {
+							//description = "The " + fieldName + " for the " + schema.Id
+						//}
+						resourceDescriptionsMap[resourceSchema.Id+"-resourceFields-"+fieldName] = description
+					}
+				}
 			}
-		} else {
-			//Only add in actions and fields for non-collection only files
+			resourceDescriptionsMap[resourceSchema.Id+"-description"] = ""
+		*/
+
+		visibleCollection := false
+
+		// If it's a collection or not a blacklist Collection, set  true
+		if _, isCollection := resourceSchema.Links["collection"]; isCollection && !isBlacklistCollection(resourceSchema.Id) {
+			visibleCollection = true
+		}
+
+		//Only print out collection links
+		if collectionOnly && !visibleCollection {
+			continue
+		}
+
+		if showDesc {
+			resourceDescriptionsMap[resourceSchema.Id+"-description"] = ""
+		}
+
+		if showActions {
 			for actionName := range resourceSchema.ResourceActions {
 				if !isBlacklistAction(resourceSchema.Id, actionName) {
 					if emptyDesc {
@@ -54,7 +104,9 @@ func generateDescriptionFile(emptyDesc bool, collectionOnly bool) error {
 					}
 				}
 			}
+		}
 
+		if showResourceFields {
 			for fieldName, field := range resourceSchema.ResourceFields {
 				if emptyDesc {
 					resourceDescriptionsMap[resourceSchema.Id+"-resourceFields-"+fieldName] = ""
@@ -72,7 +124,6 @@ func generateDescriptionFile(emptyDesc bool, collectionOnly bool) error {
 				}
 			}
 		}
-		resourceDescriptionsMap[resourceSchema.Id+"-description"] = ""
 	}
 
 	if err = setupDirectory(apiOutputDir); err != nil {
@@ -83,7 +134,11 @@ func generateDescriptionFile(emptyDesc bool, collectionOnly bool) error {
 	if collectionOnly {
 		filePrefix = "blank_collection_"
 	} else if emptyDesc {
-		filePrefix = "blank_"
+		if showResourceFields && !showDesc && !showActions {
+			filePrefix = "valid_example_"
+		} else {
+			filePrefix = "blank_"
+		}
 	}
 
 	output, err := os.Create(path.Join(apiInputDir, "/schema-check/"+filePrefix+"api_description.yml"))

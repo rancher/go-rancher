@@ -1,11 +1,11 @@
 ---
-title: API
+title: API Resources
 layout: {{.layout}}
 version: {{.version}}
 lang: {{.language}}
 ---
 
-## Resource Types
+## API Resources
 
 {{if $.schemaMap}}{{range $resourceId, $resourceData := .schemaMap}}{{range $link, $val := $resourceData.Resource.Links}}{{if eq $link "showResource"}}
 <br>
