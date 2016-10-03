@@ -578,6 +578,18 @@ func (rancherClient *RancherBaseClientImpl) doAction(schemaType string, action s
 	return json.Unmarshal(byteContent, respObject)
 }
 
+func (rancherClient *RancherBaseClientImpl) GetOpts() *ClientOpts {
+	return rancherClient.Opts
+}
+
+func (rancherClient *RancherBaseClientImpl) GetSchemas() *Schemas {
+	return rancherClient.Schemas
+}
+
+func (rancherClient *RancherBaseClientImpl) GetTypes() map[string]Schema {
+	return rancherClient.Types
+}
+
 func init() {
 	debug = os.Getenv("RANCHER_CLIENT_DEBUG") == "true"
 	if debug {
