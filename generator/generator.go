@@ -14,7 +14,7 @@ import (
 )
 
 const (
-	CLIENT_OUTPUT_DIR = "../client"
+	CLIENT_OUTPUT_DIR = "../v2"
 )
 
 var (
