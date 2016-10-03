@@ -10,6 +10,7 @@ import (
 	"net/url"
 	"os"
 	"regexp"
+	"strings"
 	"time"
 
 	"github.com/gorilla/websocket"
@@ -129,6 +130,16 @@ func appendFilters(urlString string, filters map[string]interface{}) (string, er
 }
 
 func setupRancherBaseClient(rancherClient *RancherBaseClientImpl, opts *ClientOpts) error {
+	u, err := url.Parse(opts.Url)
+	if err != nil {
+		return err
+	}
+
+	if u.Path == "/v1" || strings.HasPrefix(u.Path, "/v1/") {
+		u.Path = strings.Replace(u.Path, "/v1", "/v2-beta", 1)
+	}
+	opts.Url = u.String()
+
 	if opts.Timeout == 0 {
 		opts.Timeout = time.Second * 10
 	}
