@@ -10,8 +10,6 @@ type ServiceBinding struct {
 	Labels map[string]interface{} `json:"labels,omitempty" yaml:"labels,omitempty"`
 
 	Ports []string `json:"ports,omitempty" yaml:"ports,omitempty"`
-
-	Scale string `json:"scale,omitempty" yaml:"scale,omitempty"`
 }
 
 type ServiceBindingCollection struct {

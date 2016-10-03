@@ -31,6 +31,8 @@ type StoragePool struct {
 
 	State string `json:"state,omitempty" yaml:"state,omitempty"`
 
+	StorageDriverId string `json:"storageDriverId,omitempty" yaml:"storage_driver_id,omitempty"`
+
 	Transitioning string `json:"transitioning,omitempty" yaml:"transitioning,omitempty"`
 
 	TransitioningMessage string `json:"transitioningMessage,omitempty" yaml:"transitioning_message,omitempty"`

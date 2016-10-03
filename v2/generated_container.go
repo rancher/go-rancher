@@ -123,6 +123,8 @@ type Container struct {
 
 	SecurityOpt []string `json:"securityOpt,omitempty" yaml:"security_opt,omitempty"`
 
+	ServiceIds []string `json:"serviceIds,omitempty" yaml:"service_ids,omitempty"`
+
 	StartCount int64 `json:"startCount,omitempty" yaml:"start_count,omitempty"`
 
 	StartOnCreate bool `json:"startOnCreate,omitempty" yaml:"start_on_create,omitempty"`
@@ -130,6 +132,8 @@ type Container struct {
 	State string `json:"state,omitempty" yaml:"state,omitempty"`
 
 	StdinOpen bool `json:"stdinOpen,omitempty" yaml:"stdin_open,omitempty"`
+
+	System bool `json:"system,omitempty" yaml:"system,omitempty"`
 
 	SystemContainer string `json:"systemContainer,omitempty" yaml:"system_container,omitempty"`
 
@@ -196,8 +200,6 @@ type ContainerOperations interface {
 	ActionRestart(*Container) (*Instance, error)
 
 	ActionRestore(*Container) (*Instance, error)
-
-	ActionSetlabels(*Container, *SetLabelsInput) (*Container, error)
 
 	ActionStart(*Container) (*Instance, error)
 
@@ -375,15 +377,6 @@ func (c *ContainerClient) ActionRestore(resource *Container) (*Instance, error) 
 	resp := &Instance{}
 
 	err := c.rancherClient.doAction(CONTAINER_TYPE, "restore", &resource.Resource, nil, resp)
-
-	return resp, err
-}
-
-func (c *ContainerClient) ActionSetlabels(resource *Container, input *SetLabelsInput) (*Container, error) {
-
-	resp := &Container{}
-
-	err := c.rancherClient.doAction(CONTAINER_TYPE, "setlabels", &resource.Resource, input, resp)
 
 	return resp, err
 }

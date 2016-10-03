@@ -21,6 +21,8 @@ type ComposeProject struct {
 
 	ExternalId string `json:"externalId,omitempty" yaml:"external_id,omitempty"`
 
+	Group string `json:"group,omitempty" yaml:"group,omitempty"`
+
 	HealthState string `json:"healthState,omitempty" yaml:"health_state,omitempty"`
 
 	Kind string `json:"kind,omitempty" yaml:"kind,omitempty"`
@@ -35,7 +37,11 @@ type ComposeProject struct {
 
 	Removed string `json:"removed,omitempty" yaml:"removed,omitempty"`
 
+	ServiceIds []string `json:"serviceIds,omitempty" yaml:"service_ids,omitempty"`
+
 	State string `json:"state,omitempty" yaml:"state,omitempty"`
+
+	System bool `json:"system,omitempty" yaml:"system,omitempty"`
 
 	Templates map[string]interface{} `json:"templates,omitempty" yaml:"templates,omitempty"`
 

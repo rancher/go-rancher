@@ -23,6 +23,8 @@ type Volume struct {
 
 	ExternalId string `json:"externalId,omitempty" yaml:"external_id,omitempty"`
 
+	HostId string `json:"hostId,omitempty" yaml:"host_id,omitempty"`
+
 	ImageId string `json:"imageId,omitempty" yaml:"image_id,omitempty"`
 
 	InstanceId string `json:"instanceId,omitempty" yaml:"instance_id,omitempty"`
@@ -37,7 +39,11 @@ type Volume struct {
 
 	Removed string `json:"removed,omitempty" yaml:"removed,omitempty"`
 
+	StackId string `json:"stackId,omitempty" yaml:"stack_id,omitempty"`
+
 	State string `json:"state,omitempty" yaml:"state,omitempty"`
+
+	StorageDriverId string `json:"storageDriverId,omitempty" yaml:"storage_driver_id,omitempty"`
 
 	Transitioning string `json:"transitioning,omitempty" yaml:"transitioning,omitempty"`
 
@@ -48,6 +54,8 @@ type Volume struct {
 	Uri string `json:"uri,omitempty" yaml:"uri,omitempty"`
 
 	Uuid string `json:"uuid,omitempty" yaml:"uuid,omitempty"`
+
+	VolumeTemplateId string `json:"volumeTemplateId,omitempty" yaml:"volume_template_id,omitempty"`
 }
 
 type VolumeCollection struct {
@@ -66,8 +74,6 @@ type VolumeOperations interface {
 	Update(existing *Volume, updates interface{}) (*Volume, error)
 	ById(id string) (*Volume, error)
 	Delete(container *Volume) error
-
-	ActionActivate(*Volume) (*Volume, error)
 
 	ActionAllocate(*Volume) (*Volume, error)
 
@@ -138,15 +144,6 @@ func (c *VolumeClient) ById(id string) (*Volume, error) {
 
 func (c *VolumeClient) Delete(container *Volume) error {
 	return c.rancherClient.doResourceDelete(VOLUME_TYPE, &container.Resource)
-}
-
-func (c *VolumeClient) ActionActivate(resource *Volume) (*Volume, error) {
-
-	resp := &Volume{}
-
-	err := c.rancherClient.doAction(VOLUME_TYPE, "activate", &resource.Resource, nil, resp)
-
-	return resp, err
 }
 
 func (c *VolumeClient) ActionAllocate(resource *Volume) (*Volume, error) {
