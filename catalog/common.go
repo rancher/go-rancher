@@ -135,7 +135,9 @@ func setupRancherBaseClient(rancherClient *RancherBaseClientImpl, opts *ClientOp
 		return err
 	}
 
-	if u.Path == "/v1" || strings.HasPrefix(u.Path, "/v1/") {
+	if u.Path == "" || u.Path == "/" {
+		u.Path = "v2-beta"
+	} else if u.Path == "/v1" || strings.HasPrefix(u.Path, "/v1/") {
 		u.Path = strings.Replace(u.Path, "/v1", "/v2-beta", 1)
 	}
 	opts.Url = u.String()
@@ -575,6 +577,18 @@ func (rancherClient *RancherBaseClientImpl) doAction(schemaType string, action s
 	}
 
 	return json.Unmarshal(byteContent, respObject)
+}
+
+func (rancherClient *RancherBaseClientImpl) GetOpts() *ClientOpts {
+	return rancherClient.Opts
+}
+
+func (rancherClient *RancherBaseClientImpl) GetSchemas() *Schemas {
+	return rancherClient.Schemas
+}
+
+func (rancherClient *RancherBaseClientImpl) GetTypes() map[string]Schema {
+	return rancherClient.Types
 }
 
 func init() {
