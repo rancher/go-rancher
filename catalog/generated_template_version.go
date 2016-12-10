@@ -39,6 +39,8 @@ type TemplateVersion struct {
 
 	Name string `json:"name,omitempty" yaml:"name,omitempty"`
 
+	Output Model.Output `json:"output,omitempty" yaml:"output,omitempty"`
+
 	Path string `json:"path,omitempty" yaml:"path,omitempty"`
 
 	ProjectURL string `json:"projectURL,omitempty" yaml:"project_url,omitempty"`
