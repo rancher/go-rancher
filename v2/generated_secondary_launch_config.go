@@ -23,8 +23,6 @@ type SecondaryLaunchConfig struct {
 
 	CapDrop []string `json:"capDrop,omitempty" yaml:"cap_drop,omitempty"`
 
-	Cgroup string `json:"cgroup,omitempty" yaml:"cgroup,omitempty"`
-
 	CgroupParent string `json:"cgroupParent,omitempty" yaml:"cgroup_parent,omitempty"`
 
 	Command []string `json:"command,omitempty" yaml:"command,omitempty"`
@@ -147,6 +145,8 @@ type SecondaryLaunchConfig struct {
 
 	MilliCpuReservation int64 `json:"milliCpuReservation,omitempty" yaml:"milli_cpu_reservation,omitempty"`
 
+	Mounts []MountEntry `json:"mounts,omitempty" yaml:"mounts,omitempty"`
+
 	Name string `json:"name,omitempty" yaml:"name,omitempty"`
 
 	NativeContainer bool `json:"nativeContainer,omitempty" yaml:"native_container,omitempty"`
@@ -172,6 +172,8 @@ type SecondaryLaunchConfig struct {
 	Ports []string `json:"ports,omitempty" yaml:"ports,omitempty"`
 
 	PrimaryIpAddress string `json:"primaryIpAddress,omitempty" yaml:"primary_ip_address,omitempty"`
+
+	PrimaryNetworkId string `json:"primaryNetworkId,omitempty" yaml:"primary_network_id,omitempty"`
 
 	Privileged bool `json:"privileged,omitempty" yaml:"privileged,omitempty"`
 
