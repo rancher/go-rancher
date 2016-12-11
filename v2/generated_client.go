@@ -54,6 +54,7 @@ type RancherClient struct {
 	ExternalStoragePoolEvent                 ExternalStoragePoolEventOperations
 	ExternalVolumeEvent                      ExternalVolumeEventOperations
 	FieldDocumentation                       FieldDocumentationOperations
+	GenericObject                            GenericObjectOperations
 	HaConfig                                 HaConfigOperations
 	HaConfigInput                            HaConfigInputOperations
 	HealthcheckInstanceHostMap               HealthcheckInstanceHostMapOperations
@@ -70,7 +71,6 @@ type RancherClient struct {
 	InstanceLink                             InstanceLinkOperations
 	InstanceStop                             InstanceStopOperations
 	IpAddress                                IpAddressOperations
-	IpAddressAssociateInput                  IpAddressAssociateInputOperations
 	KubernetesService                        KubernetesServiceOperations
 	KubernetesStack                          KubernetesStackOperations
 	KubernetesStackUpgrade                   KubernetesStackUpgradeOperations
@@ -86,6 +86,7 @@ type RancherClient struct {
 	Machine                                  MachineOperations
 	MachineDriver                            MachineDriverOperations
 	Mount                                    MountOperations
+	MountEntry                               MountEntryOperations
 	Network                                  NetworkOperations
 	NetworkDriver                            NetworkDriverOperations
 	NetworkDriverService                     NetworkDriverServiceOperations
@@ -213,6 +214,7 @@ func constructClient(rancherBaseClient *RancherBaseClientImpl) *RancherClient {
 	client.ExternalStoragePoolEvent = newExternalStoragePoolEventClient(client)
 	client.ExternalVolumeEvent = newExternalVolumeEventClient(client)
 	client.FieldDocumentation = newFieldDocumentationClient(client)
+	client.GenericObject = newGenericObjectClient(client)
 	client.HaConfig = newHaConfigClient(client)
 	client.HaConfigInput = newHaConfigInputClient(client)
 	client.HealthcheckInstanceHostMap = newHealthcheckInstanceHostMapClient(client)
@@ -229,7 +231,6 @@ func constructClient(rancherBaseClient *RancherBaseClientImpl) *RancherClient {
 	client.InstanceLink = newInstanceLinkClient(client)
 	client.InstanceStop = newInstanceStopClient(client)
 	client.IpAddress = newIpAddressClient(client)
-	client.IpAddressAssociateInput = newIpAddressAssociateInputClient(client)
 	client.KubernetesService = newKubernetesServiceClient(client)
 	client.KubernetesStack = newKubernetesStackClient(client)
 	client.KubernetesStackUpgrade = newKubernetesStackUpgradeClient(client)
@@ -245,6 +246,7 @@ func constructClient(rancherBaseClient *RancherBaseClientImpl) *RancherClient {
 	client.Machine = newMachineClient(client)
 	client.MachineDriver = newMachineDriverClient(client)
 	client.Mount = newMountClient(client)
+	client.MountEntry = newMountEntryClient(client)
 	client.Network = newNetworkClient(client)
 	client.NetworkDriver = newNetworkDriverClient(client)
 	client.NetworkDriverService = newNetworkDriverServiceClient(client)
