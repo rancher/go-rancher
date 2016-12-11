@@ -5,6 +5,7 @@ type RancherClient struct {
 
 	ApiVersion      ApiVersionOperations
 	Question        QuestionOperations
+	Output          OutputOperations
 	Template        TemplateOperations
 	TemplateVersion TemplateVersionOperations
 	Catalog         CatalogOperations
@@ -18,6 +19,7 @@ func constructClient(rancherBaseClient *RancherBaseClientImpl) *RancherClient {
 
 	client.ApiVersion = newApiVersionClient(client)
 	client.Question = newQuestionClient(client)
+	client.Output = newOutputClient(client)
 	client.Template = newTemplateClient(client)
 	client.TemplateVersion = newTemplateVersionClient(client)
 	client.Catalog = newCatalogClient(client)

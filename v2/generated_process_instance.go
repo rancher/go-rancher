@@ -11,6 +11,8 @@ type ProcessInstance struct {
 
 	EndTime string `json:"endTime,omitempty" yaml:"end_time,omitempty"`
 
+	ExecutionCount int64 `json:"executionCount,omitempty" yaml:"execution_count,omitempty"`
+
 	ExitReason string `json:"exitReason,omitempty" yaml:"exit_reason,omitempty"`
 
 	Phase string `json:"phase,omitempty" yaml:"phase,omitempty"`
@@ -24,6 +26,8 @@ type ProcessInstance struct {
 	ResourceType string `json:"resourceType,omitempty" yaml:"resource_type,omitempty"`
 
 	Result string `json:"result,omitempty" yaml:"result,omitempty"`
+
+	RunAfter string `json:"runAfter,omitempty" yaml:"run_after,omitempty"`
 
 	RunningProcessServerId string `json:"runningProcessServerId,omitempty" yaml:"running_process_server_id,omitempty"`
 

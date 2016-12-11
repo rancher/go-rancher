@@ -37,6 +37,8 @@ type Template struct {
 
 	Name string `json:"name,omitempty" yaml:"name,omitempty"`
 
+	Output Output `json:"output,omitempty" yaml:"output,omitempty"`
+
 	Path string `json:"path,omitempty" yaml:"path,omitempty"`
 
 	TemplateBase string `json:"templateBase,omitempty" yaml:"template_base,omitempty"`
