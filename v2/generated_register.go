@@ -57,10 +57,6 @@ type RegisterOperations interface {
 	ById(id string) (*Register, error)
 	Delete(container *Register) error
 
-	ActionCreate(*Register) (*GenericObject, error)
-
-	ActionRemove(*Register) (*GenericObject, error)
-
 	ActionStop(*Register, *InstanceStop) (*Instance, error)
 }
 
@@ -112,24 +108,6 @@ func (c *RegisterClient) ById(id string) (*Register, error) {
 
 func (c *RegisterClient) Delete(container *Register) error {
 	return c.rancherClient.doResourceDelete(REGISTER_TYPE, &container.Resource)
-}
-
-func (c *RegisterClient) ActionCreate(resource *Register) (*GenericObject, error) {
-
-	resp := &GenericObject{}
-
-	err := c.rancherClient.doAction(REGISTER_TYPE, "create", &resource.Resource, nil, resp)
-
-	return resp, err
-}
-
-func (c *RegisterClient) ActionRemove(resource *Register) (*GenericObject, error) {
-
-	resp := &GenericObject{}
-
-	err := c.rancherClient.doAction(REGISTER_TYPE, "remove", &resource.Resource, nil, resp)
-
-	return resp, err
 }
 
 func (c *RegisterClient) ActionStop(resource *Register, input *InstanceStop) (*Instance, error) {

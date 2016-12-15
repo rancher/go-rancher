@@ -21,6 +21,7 @@ type RancherClient struct {
 	CatalogTemplate                          CatalogTemplateOperations
 	Certificate                              CertificateOperations
 	ChangeSecretInput                        ChangeSecretInputOperations
+	ClusterMembership                        ClusterMembershipOperations
 	ComposeConfig                            ComposeConfigOperations
 	ComposeConfigInput                       ComposeConfigInputOperations
 	ComposeProject                           ComposeProjectOperations
@@ -54,7 +55,6 @@ type RancherClient struct {
 	ExternalStoragePoolEvent                 ExternalStoragePoolEventOperations
 	ExternalVolumeEvent                      ExternalVolumeEventOperations
 	FieldDocumentation                       FieldDocumentationOperations
-	GenericObject                            GenericObjectOperations
 	HaConfig                                 HaConfigOperations
 	HaConfigInput                            HaConfigInputOperations
 	HealthcheckInstanceHostMap               HealthcheckInstanceHostMapOperations
@@ -156,6 +156,7 @@ type RancherClient struct {
 	VolumeActivateInput                      VolumeActivateInputOperations
 	VolumeSnapshotInput                      VolumeSnapshotInputOperations
 	VolumeTemplate                           VolumeTemplateOperations
+	Webhook                                  WebhookOperations
 }
 
 func constructClient(rancherBaseClient *RancherBaseClientImpl) *RancherClient {
@@ -181,6 +182,7 @@ func constructClient(rancherBaseClient *RancherBaseClientImpl) *RancherClient {
 	client.CatalogTemplate = newCatalogTemplateClient(client)
 	client.Certificate = newCertificateClient(client)
 	client.ChangeSecretInput = newChangeSecretInputClient(client)
+	client.ClusterMembership = newClusterMembershipClient(client)
 	client.ComposeConfig = newComposeConfigClient(client)
 	client.ComposeConfigInput = newComposeConfigInputClient(client)
 	client.ComposeProject = newComposeProjectClient(client)
@@ -214,7 +216,6 @@ func constructClient(rancherBaseClient *RancherBaseClientImpl) *RancherClient {
 	client.ExternalStoragePoolEvent = newExternalStoragePoolEventClient(client)
 	client.ExternalVolumeEvent = newExternalVolumeEventClient(client)
 	client.FieldDocumentation = newFieldDocumentationClient(client)
-	client.GenericObject = newGenericObjectClient(client)
 	client.HaConfig = newHaConfigClient(client)
 	client.HaConfigInput = newHaConfigInputClient(client)
 	client.HealthcheckInstanceHostMap = newHealthcheckInstanceHostMapClient(client)
@@ -316,6 +317,7 @@ func constructClient(rancherBaseClient *RancherBaseClientImpl) *RancherClient {
 	client.VolumeActivateInput = newVolumeActivateInputClient(client)
 	client.VolumeSnapshotInput = newVolumeSnapshotInputClient(client)
 	client.VolumeTemplate = newVolumeTemplateClient(client)
+	client.Webhook = newWebhookClient(client)
 
 	return client
 }
