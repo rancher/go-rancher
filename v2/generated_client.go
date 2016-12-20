@@ -55,6 +55,7 @@ type RancherClient struct {
 	ExternalStoragePoolEvent                 ExternalStoragePoolEventOperations
 	ExternalVolumeEvent                      ExternalVolumeEventOperations
 	FieldDocumentation                       FieldDocumentationOperations
+	GenericObject                            GenericObjectOperations
 	HaConfig                                 HaConfigOperations
 	HaConfigInput                            HaConfigInputOperations
 	HealthcheckInstanceHostMap               HealthcheckInstanceHostMapOperations
@@ -156,7 +157,6 @@ type RancherClient struct {
 	VolumeActivateInput                      VolumeActivateInputOperations
 	VolumeSnapshotInput                      VolumeSnapshotInputOperations
 	VolumeTemplate                           VolumeTemplateOperations
-	Webhook                                  WebhookOperations
 }
 
 func constructClient(rancherBaseClient *RancherBaseClientImpl) *RancherClient {
@@ -216,6 +216,7 @@ func constructClient(rancherBaseClient *RancherBaseClientImpl) *RancherClient {
 	client.ExternalStoragePoolEvent = newExternalStoragePoolEventClient(client)
 	client.ExternalVolumeEvent = newExternalVolumeEventClient(client)
 	client.FieldDocumentation = newFieldDocumentationClient(client)
+	client.GenericObject = newGenericObjectClient(client)
 	client.HaConfig = newHaConfigClient(client)
 	client.HaConfigInput = newHaConfigInputClient(client)
 	client.HealthcheckInstanceHostMap = newHealthcheckInstanceHostMapClient(client)
@@ -317,7 +318,6 @@ func constructClient(rancherBaseClient *RancherBaseClientImpl) *RancherClient {
 	client.VolumeActivateInput = newVolumeActivateInputClient(client)
 	client.VolumeSnapshotInput = newVolumeSnapshotInputClient(client)
 	client.VolumeTemplate = newVolumeTemplateClient(client)
-	client.Webhook = newWebhookClient(client)
 
 	return client
 }
