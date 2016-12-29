@@ -7,7 +7,7 @@ account-resourceFields-id: The unique identifier for the account
 account-resourceFields-kind: 
 account-resourceFields-name: 
 account-resourceFields-removed: The date of when the account was removed
-account-resourceFields-state: The current state of the account. The options are [activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, restoring, updating-active, updating-inactive].
+account-resourceFields-state: The current state of the account. The options are `activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, restoring, updating-active, updating-inactive`.
 account-resourceFields-transitioning: Whether or not the account is in a transitioning state
 account-resourceFields-transitioningMessage: The message to show while in a transitioning state
 account-resourceFields-transitioningProgress: The percentage remaining in the transitioning process of the account
@@ -59,14 +59,14 @@ apiKey-resourceFields-name:
 apiKey-resourceFields-publicValue: The public value of the apiKey
 apiKey-resourceFields-removed: The date of when the apiKey was removed
 apiKey-resourceFields-secretValue: The secret value of the apiKey
-apiKey-resourceFields-state: The current state of the apiKey. The options are [activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, updating-active, updating-inactive].
+apiKey-resourceFields-state: The current state of the apiKey. The options are `activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, updating-active, updating-inactive`.
 apiKey-resourceFields-transitioning: Whether or not the apiKey is in a transitioning state
 apiKey-resourceFields-transitioningMessage: The message to show while in a transitioning state
 apiKey-resourceFields-transitioningProgress: The percentage remaining in the transitioning process of the apiKey
 apiKey-resourceFields-uuid: The universally unique identifier for the apiKey. This will always be unique across Rancher installations.
 auditLog-description: 
 auditLog-resourceFields-accountId: The unique identifier for the associated account
-auditLog-resourceFields-authType: 
+auditLog-resourceFields-authType: The options are AdminAuth, BasicAuth, RegistrationToken, TokenAccount, TokenAuth.
 auditLog-resourceFields-authenticatedAsAccountId: 
 auditLog-resourceFields-authenticatedAsIdentityId: 
 auditLog-resourceFields-clientIp: 
@@ -102,7 +102,7 @@ backup-resourceFields-kind:
 backup-resourceFields-name: 
 backup-resourceFields-removed: The date of when the backup was removed
 backup-resourceFields-snapshotId: 
-backup-resourceFields-state: The current state of the backup. The options are [created, creating, removed, removing, requested].
+backup-resourceFields-state: The current state of the backup. The options are `created, creating, removed, removing, requested`.
 backup-resourceFields-transitioning: Whether or not the backup is in a transitioning state
 backup-resourceFields-transitioningMessage: The message to show while in a transitioning state
 backup-resourceFields-transitioningProgress: The percentage remaining in the transitioning process of the backup
@@ -118,7 +118,7 @@ backupTarget-resourceFields-kind:
 backupTarget-resourceFields-name: 
 backupTarget-resourceFields-nfsConfig: 
 backupTarget-resourceFields-removed: The date of when the backupTarget was removed
-backupTarget-resourceFields-state: The current state of the backupTarget. The options are [created, creating, removed, removing, requested].
+backupTarget-resourceFields-state: The current state of the backupTarget. The options are `created, creating, removed, removing, requested`.
 backupTarget-resourceFields-transitioning: Whether or not the backupTarget is in a transitioning state
 backupTarget-resourceFields-transitioningMessage: The message to show while in a transitioning state
 backupTarget-resourceFields-transitioningProgress: The percentage remaining in the transitioning process of the backupTarget
@@ -149,7 +149,7 @@ certificate-resourceFields-kind:
 certificate-resourceFields-name: 
 certificate-resourceFields-removed: The date of when the certificate was removed
 certificate-resourceFields-serialNumber: 
-certificate-resourceFields-state: The current state of the certificate. The options are [activating, active, removed, removing, requested, updating-active].
+certificate-resourceFields-state: The current state of the certificate. The options are `activating, active, removed, removing, requested, updating-active`.
 certificate-resourceFields-subjectAlternativeNames: 
 certificate-resourceFields-transitioning: Whether or not the certificate is in a transitioning state
 certificate-resourceFields-transitioningMessage: The message to show while in a transitioning state
@@ -182,7 +182,7 @@ composeProject-resourceFields-name:
 composeProject-resourceFields-previousEnvironment: 
 composeProject-resourceFields-previousExternalId: 
 composeProject-resourceFields-removed: The date of when the composeProject was removed
-composeProject-resourceFields-state: The current state of the composeProject. The options are [activating, active, canceled-upgrade, canceling-rollback, canceling-upgrade, error, erroring, finishing-upgrade, removed, removing, requested, rolling-back, updating-active, upgraded, upgrading].
+composeProject-resourceFields-state: The current state of the composeProject. The options are `activating, active, canceled-upgrade, canceling-rollback, canceling-upgrade, error, erroring, finishing-upgrade, removed, removing, requested, rolling-back, updating-active, upgraded, upgrading`.
 composeProject-resourceFields-templates: 
 composeProject-resourceFields-transitioning: Whether or not the composeProject is in a transitioning state
 composeProject-resourceFields-transitioningMessage: The message to show while in a transitioning state
@@ -213,7 +213,7 @@ composeService-resourceFields-scalePolicy:
 composeService-resourceFields-selectorContainer: 
 composeService-resourceFields-selectorLink: 
 composeService-resourceFields-startOnCreate: 
-composeService-resourceFields-state: The current state of the composeService. The options are [activating, active, canceled-rollback, canceled-upgrade, canceling-rollback, canceling-upgrade, deactivating, finishing-upgrade, inactive, registering, removed, removing, requested, restarting, rolling-back, updating-active, updating-inactive, upgraded, upgrading].
+composeService-resourceFields-state: The current state of the composeService. The options are `activating, active, canceled-rollback, canceled-upgrade, canceling-rollback, canceling-upgrade, deactivating, finishing-upgrade, inactive, registering, removed, removing, requested, restarting, rolling-back, updating-active, updating-inactive, upgraded, upgrading`.
 composeService-resourceFields-transitioning: Whether or not the composeService is in a transitioning state
 composeService-resourceFields-transitioningMessage: The message to show while in a transitioning state
 composeService-resourceFields-transitioningProgress: The percentage remaining in the transitioning process of the composeService
@@ -254,7 +254,7 @@ container-resourceFields-externalId:
 container-resourceFields-extraHosts: 
 container-resourceFields-firstRunning: 
 container-resourceFields-healthCheck: 
-container-resourceFields-healthState: 
+container-resourceFields-healthState: The options are healthy, unhealthy, updating-healthy, updating-unhealthy, initializing.
 container-resourceFields-hostId: The unique identifier for the associated host
 container-resourceFields-hostname: 
 container-resourceFields-id: The unique identifier for the container
@@ -270,8 +270,8 @@ container-resourceFields-name:
 container-resourceFields-nativeContainer: 
 container-resourceFields-networkContainerId: 
 container-resourceFields-networkIds: 
-container-resourceFields-networkMode: 
-container-resourceFields-pidMode: 
+container-resourceFields-networkMode: The options are none, bridge, host, managed, container.
+container-resourceFields-pidMode: The options are host.
 container-resourceFields-ports: 
 container-resourceFields-primaryIpAddress: 
 container-resourceFields-privileged: 
@@ -284,9 +284,9 @@ container-resourceFields-restartPolicy:
 container-resourceFields-securityOpt: 
 container-resourceFields-startCount: 
 container-resourceFields-startOnCreate: 
-container-resourceFields-state: The current state of the container. The options are [creating, error, erroring, migrating, purged, purging, removed, removing, requested, restarting, restoring, running, starting, stopped, stopping, updating-running, updating-stopped].
+container-resourceFields-state: The current state of the container. The options are `creating, error, erroring, migrating, purged, purging, removed, removing, requested, restarting, restoring, running, starting, stopped, stopping, updating-running, updating-stopped`.
 container-resourceFields-stdinOpen: 
-container-resourceFields-systemContainer: 
+container-resourceFields-systemContainer: The options are NetworkAgent, LoadBalancerAgent.
 container-resourceFields-transitioning: Whether or not the container is in a transitioning state
 container-resourceFields-transitioningMessage: The message to show while in a transitioning state
 container-resourceFields-transitioningProgress: The percentage remaining in the transitioning process of the container
@@ -308,7 +308,7 @@ containerEvent-resourceFields-hostId: The unique identifier for the associated h
 containerEvent-resourceFields-id: The unique identifier for the containerEvent
 containerEvent-resourceFields-kind: 
 containerEvent-resourceFields-reportedHostUuid: 
-containerEvent-resourceFields-state: The current state of the containerEvent. The options are [created, creating, removed, removing, requested].
+containerEvent-resourceFields-state: The current state of the containerEvent. The options are `created, creating, removed, removing, requested`.
 containerEvent-resourceFields-transitioning: Whether or not the containerEvent is in a transitioning state
 containerEvent-resourceFields-transitioningMessage: The message to show while in a transitioning state
 containerEvent-resourceFields-transitioningProgress: The percentage remaining in the transitioning process of the containerEvent
@@ -322,7 +322,7 @@ containerLogs-resourceFields-follow:
 containerLogs-resourceFields-lines: 
 containerProxy-description: 
 containerProxy-resourceFields-port: 
-containerProxy-resourceFields-scheme: 
+containerProxy-resourceFields-scheme: The options are http, https.
 credential-description: 
 credential-resourceActions-activate: To activate the credential
 credential-resourceActions-deactivate: To deactivate the credential
@@ -335,7 +335,7 @@ credential-resourceFields-name:
 credential-resourceFields-publicValue: The public value of the credential
 credential-resourceFields-removed: The date of when the credential was removed
 credential-resourceFields-secretValue: The secret value of the credential
-credential-resourceFields-state: The current state of the credential. The options are [activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, updating-active, updating-inactive].
+credential-resourceFields-state: The current state of the credential. The options are `activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, updating-active, updating-inactive`.
 credential-resourceFields-transitioning: Whether or not the credential is in a transitioning state
 credential-resourceFields-transitioningMessage: The message to show while in a transitioning state
 credential-resourceFields-transitioningProgress: The percentage remaining in the transitioning process of the credential
@@ -375,7 +375,7 @@ dnsService-resourceFields-removed: The date of when the dnsService was removed
 dnsService-resourceFields-retainIp: 
 dnsService-resourceFields-selectorLink: 
 dnsService-resourceFields-startOnCreate: 
-dnsService-resourceFields-state: The current state of the dnsService. The options are [activating, active, canceled-rollback, canceled-upgrade, canceling-rollback, canceling-upgrade, deactivating, finishing-upgrade, inactive, registering, removed, removing, requested, restarting, rolling-back, updating-active, updating-inactive, upgraded, upgrading].
+dnsService-resourceFields-state: The current state of the dnsService. The options are `activating, active, canceled-rollback, canceled-upgrade, canceling-rollback, canceling-upgrade, deactivating, finishing-upgrade, inactive, registering, removed, removing, requested, restarting, rolling-back, updating-active, updating-inactive, upgraded, upgrading`.
 dnsService-resourceFields-transitioning: Whether or not the dnsService is in a transitioning state
 dnsService-resourceFields-transitioningMessage: The message to show while in a transitioning state
 dnsService-resourceFields-transitioningProgress: The percentage remaining in the transitioning process of the dnsService
@@ -412,7 +412,7 @@ environment-resourceFields-previousExternalId:
 environment-resourceFields-rancherCompose: 
 environment-resourceFields-removed: The date of when the environment was removed
 environment-resourceFields-startOnCreate: 
-environment-resourceFields-state: The current state of the environment. The options are [activating, active, canceled-upgrade, canceling-rollback, canceling-upgrade, error, erroring, finishing-upgrade, removed, removing, requested, rolling-back, updating-active, upgraded, upgrading].
+environment-resourceFields-state: The current state of the environment. The options are `activating, active, canceled-upgrade, canceling-rollback, canceling-upgrade, error, erroring, finishing-upgrade, removed, removing, requested, rolling-back, updating-active, upgraded, upgrading`.
 environment-resourceFields-transitioning: Whether or not the environment is in a transitioning state
 environment-resourceFields-transitioningMessage: The message to show while in a transitioning state
 environment-resourceFields-transitioningProgress: The percentage remaining in the transitioning process of the environment
@@ -433,7 +433,7 @@ externalDnsEvent-resourceFields-kind:
 externalDnsEvent-resourceFields-reportedAccountId: 
 externalDnsEvent-resourceFields-serviceName: 
 externalDnsEvent-resourceFields-stackName: 
-externalDnsEvent-resourceFields-state: The current state of the externalDnsEvent. The options are [created, creating, removed, removing, requested].
+externalDnsEvent-resourceFields-state: The current state of the externalDnsEvent. The options are `created, creating, removed, removing, requested`.
 externalDnsEvent-resourceFields-transitioning: Whether or not the externalDnsEvent is in a transitioning state
 externalDnsEvent-resourceFields-transitioningMessage: The message to show while in a transitioning state
 externalDnsEvent-resourceFields-transitioningProgress: The percentage remaining in the transitioning process of the externalDnsEvent
@@ -446,7 +446,7 @@ externalEvent-resourceFields-externalId:
 externalEvent-resourceFields-id: The unique identifier for the externalEvent
 externalEvent-resourceFields-kind: 
 externalEvent-resourceFields-reportedAccountId: 
-externalEvent-resourceFields-state: The current state of the externalEvent. The options are [created, creating, removed, removing, requested].
+externalEvent-resourceFields-state: The current state of the externalEvent. The options are `created, creating, removed, removing, requested`.
 externalEvent-resourceFields-transitioning: Whether or not the externalEvent is in a transitioning state
 externalEvent-resourceFields-transitioningMessage: The message to show while in a transitioning state
 externalEvent-resourceFields-transitioningProgress: The percentage remaining in the transitioning process of the externalEvent
@@ -462,7 +462,7 @@ externalHostEvent-resourceFields-hostLabel:
 externalHostEvent-resourceFields-id: The unique identifier for the externalHostEvent
 externalHostEvent-resourceFields-kind: 
 externalHostEvent-resourceFields-reportedAccountId: 
-externalHostEvent-resourceFields-state: The current state of the externalHostEvent. The options are [created, creating, removed, removing, requested].
+externalHostEvent-resourceFields-state: The current state of the externalHostEvent. The options are `created, creating, removed, removing, requested`.
 externalHostEvent-resourceFields-transitioning: Whether or not the externalHostEvent is in a transitioning state
 externalHostEvent-resourceFields-transitioningMessage: The message to show while in a transitioning state
 externalHostEvent-resourceFields-transitioningProgress: The percentage remaining in the transitioning process of the externalHostEvent
@@ -492,7 +492,7 @@ externalService-resourceFields-metadata:
 externalService-resourceFields-name: 
 externalService-resourceFields-removed: The date of when the externalService was removed
 externalService-resourceFields-startOnCreate: 
-externalService-resourceFields-state: The current state of the externalService. The options are [activating, active, canceled-rollback, canceled-upgrade, canceling-rollback, canceling-upgrade, deactivating, finishing-upgrade, inactive, registering, removed, removing, requested, restarting, rolling-back, updating-active, updating-inactive, upgraded, upgrading].
+externalService-resourceFields-state: The current state of the externalService. The options are `activating, active, canceled-rollback, canceled-upgrade, canceling-rollback, canceling-upgrade, deactivating, finishing-upgrade, inactive, registering, removed, removing, requested, restarting, rolling-back, updating-active, updating-inactive, upgraded, upgrading`.
 externalService-resourceFields-transitioning: Whether or not the externalService is in a transitioning state
 externalService-resourceFields-transitioningMessage: The message to show while in a transitioning state
 externalService-resourceFields-transitioningProgress: The percentage remaining in the transitioning process of the externalService
@@ -508,7 +508,7 @@ externalServiceEvent-resourceFields-id: The unique identifier for the externalSe
 externalServiceEvent-resourceFields-kind: 
 externalServiceEvent-resourceFields-reportedAccountId: 
 externalServiceEvent-resourceFields-service: 
-externalServiceEvent-resourceFields-state: The current state of the externalServiceEvent. The options are [created, creating, removed, removing, requested].
+externalServiceEvent-resourceFields-state: The current state of the externalServiceEvent. The options are `created, creating, removed, removing, requested`.
 externalServiceEvent-resourceFields-transitioning: Whether or not the externalServiceEvent is in a transitioning state
 externalServiceEvent-resourceFields-transitioningMessage: The message to show while in a transitioning state
 externalServiceEvent-resourceFields-transitioningProgress: The percentage remaining in the transitioning process of the externalServiceEvent
@@ -522,7 +522,7 @@ externalStoragePoolEvent-resourceFields-hostUuids:
 externalStoragePoolEvent-resourceFields-id: The unique identifier for the externalStoragePoolEvent
 externalStoragePoolEvent-resourceFields-kind: 
 externalStoragePoolEvent-resourceFields-reportedAccountId: 
-externalStoragePoolEvent-resourceFields-state: The current state of the externalStoragePoolEvent. The options are [created, creating, removed, removing, requested].
+externalStoragePoolEvent-resourceFields-state: The current state of the externalStoragePoolEvent. The options are `created, creating, removed, removing, requested`.
 externalStoragePoolEvent-resourceFields-storagePool: 
 externalStoragePoolEvent-resourceFields-transitioning: Whether or not the externalStoragePoolEvent is in a transitioning state
 externalStoragePoolEvent-resourceFields-transitioningMessage: The message to show while in a transitioning state
@@ -536,7 +536,7 @@ externalVolumeEvent-resourceFields-externalId:
 externalVolumeEvent-resourceFields-id: The unique identifier for the externalVolumeEvent
 externalVolumeEvent-resourceFields-kind: 
 externalVolumeEvent-resourceFields-reportedAccountId: 
-externalVolumeEvent-resourceFields-state: The current state of the externalVolumeEvent. The options are [created, creating, removed, removing, requested].
+externalVolumeEvent-resourceFields-state: The current state of the externalVolumeEvent. The options are `created, creating, removed, removing, requested`.
 externalVolumeEvent-resourceFields-transitioning: Whether or not the externalVolumeEvent is in a transitioning state
 externalVolumeEvent-resourceFields-transitioningMessage: The message to show while in a transitioning state
 externalVolumeEvent-resourceFields-transitioningProgress: The percentage remaining in the transitioning process of the externalVolumeEvent
@@ -558,7 +558,7 @@ healthcheckInstanceHostMap-resourceFields-instanceId: The unique identifier for 
 healthcheckInstanceHostMap-resourceFields-kind: 
 healthcheckInstanceHostMap-resourceFields-name: 
 healthcheckInstanceHostMap-resourceFields-removed: The date of when the healthcheckInstanceHostMap was removed
-healthcheckInstanceHostMap-resourceFields-state: The current state of the healthcheckInstanceHostMap. The options are [activating, active, removed, removing, requested].
+healthcheckInstanceHostMap-resourceFields-state: The current state of the healthcheckInstanceHostMap. The options are `activating, active, removed, removing, requested`.
 healthcheckInstanceHostMap-resourceFields-transitioning: Whether or not the healthcheckInstanceHostMap is in a transitioning state
 healthcheckInstanceHostMap-resourceFields-transitioningMessage: The message to show while in a transitioning state
 healthcheckInstanceHostMap-resourceFields-transitioningProgress: The percentage remaining in the transitioning process of the healthcheckInstanceHostMap
@@ -581,7 +581,7 @@ host-resourceFields-name:
 host-resourceFields-physicalHostId: 
 host-resourceFields-publicEndpoints: 
 host-resourceFields-removed: The date of when the host was removed
-host-resourceFields-state: The current state of the host. The options are [activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, restoring, updating-active, updating-inactive].
+host-resourceFields-state: The current state of the host. The options are `activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, restoring, updating-active, updating-inactive`.
 host-resourceFields-transitioning: Whether or not the host is in a transitioning state
 host-resourceFields-transitioningMessage: The message to show while in a transitioning state
 host-resourceFields-transitioningProgress: The percentage remaining in the transitioning process of the host
@@ -601,8 +601,6 @@ identity-resourceFields-profileUrl:
 identity-resourceFields-projectId: 
 identity-resourceFields-role: 
 image-description: 
-image-resourceActions-activate: To activate the image
-image-resourceActions-deactivate: To deactivate the image
 image-resourceFields-accountId: The unique identifier for the associated account
 image-resourceFields-created: The date of when the image was created.
 image-resourceFields-description: 
@@ -610,7 +608,7 @@ image-resourceFields-id: The unique identifier for the image
 image-resourceFields-kind: 
 image-resourceFields-name: 
 image-resourceFields-removed: The date of when the image was removed
-image-resourceFields-state: The current state of the image. The options are [activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, restoring, updating-active, updating-inactive].
+image-resourceFields-state: The current state of the image. The options are `activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, restoring, updating-active, updating-inactive`.
 image-resourceFields-transitioning: Whether or not the image is in a transitioning state
 image-resourceFields-transitioningMessage: The message to show while in a transitioning state
 image-resourceFields-transitioningProgress: The percentage remaining in the transitioning process of the image
@@ -637,7 +635,7 @@ instance-resourceFields-id: The unique identifier for the instance
 instance-resourceFields-kind: 
 instance-resourceFields-name: 
 instance-resourceFields-removed: The date of when the instance was removed
-instance-resourceFields-state: The current state of the instance. The options are [creating, error, erroring, migrating, purged, purging, removed, removing, requested, restarting, restoring, running, starting, stopped, stopping, updating-running, updating-stopped].
+instance-resourceFields-state: The current state of the instance. The options are `creating, error, erroring, migrating, purged, purging, removed, removing, requested, restarting, restoring, running, starting, stopped, stopping, updating-running, updating-stopped`.
 instance-resourceFields-transitioning: Whether or not the instance is in a transitioning state
 instance-resourceFields-transitioningMessage: The message to show while in a transitioning state
 instance-resourceFields-transitioningProgress: The percentage remaining in the transitioning process of the instance
@@ -657,11 +655,9 @@ instanceHealthCheck-resourceFields-recreateOnQuorumStrategyConfig:
 instanceHealthCheck-resourceFields-reinitializingTimeout: 
 instanceHealthCheck-resourceFields-requestLine: 
 instanceHealthCheck-resourceFields-responseTimeout: 
-instanceHealthCheck-resourceFields-strategy: 
+instanceHealthCheck-resourceFields-strategy: The options are none, recreate, recreateOnQuorum.
 instanceHealthCheck-resourceFields-unhealthyThreshold: 
 instanceLink-description: 
-instanceLink-resourceActions-activate: To activate the instanceLink
-instanceLink-resourceActions-deactivate: To deactivate the instanceLink
 instanceLink-resourceFields-accountId: The unique identifier for the associated account
 instanceLink-resourceFields-created: The date of when the instanceLink was created.
 instanceLink-resourceFields-description: 
@@ -671,7 +667,7 @@ instanceLink-resourceFields-kind:
 instanceLink-resourceFields-linkName: 
 instanceLink-resourceFields-name: 
 instanceLink-resourceFields-removed: The date of when the instanceLink was removed
-instanceLink-resourceFields-state: The current state of the instanceLink. The options are [activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, restoring, updating-active, updating-inactive].
+instanceLink-resourceFields-state: The current state of the instanceLink. The options are `activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, restoring, updating-active, updating-inactive`.
 instanceLink-resourceFields-targetInstanceId: 
 instanceLink-resourceFields-transitioning: Whether or not the instanceLink is in a transitioning state
 instanceLink-resourceFields-transitioningMessage: The message to show while in a transitioning state
@@ -690,7 +686,7 @@ ipAddress-resourceFields-kind:
 ipAddress-resourceFields-name: 
 ipAddress-resourceFields-networkId: 
 ipAddress-resourceFields-removed: The date of when the ipAddress was removed
-ipAddress-resourceFields-state: The current state of the ipAddress. The options are [activating, active, associated, associating, deactivating, disassociating, inactive, purged, purging, registering, removed, removing, requested, restoring, updating-active, updating-inactive].
+ipAddress-resourceFields-state: The current state of the ipAddress. The options are `activating, active, associated, associating, deactivating, disassociating, inactive, purged, purging, registering, removed, removing, requested, restoring, updating-active, updating-inactive`.
 ipAddress-resourceFields-transitioning: Whether or not the ipAddress is in a transitioning state
 ipAddress-resourceFields-transitioningMessage: The message to show while in a transitioning state
 ipAddress-resourceFields-transitioningProgress: The percentage remaining in the transitioning process of the ipAddress
@@ -698,17 +694,7 @@ ipAddress-resourceFields-uuid: The universally unique identifier for the ipAddre
 ipAddressAssociateInput-description: 
 ipAddressAssociateInput-resourceFields-ipAddressId: 
 kubernetesService-description: 
-kubernetesService-resourceActions-activate: To activate the kubernetesService
-kubernetesService-resourceActions-addservicelink: To addservicelink the kubernetesService
 kubernetesService-resourceActions-cancelrollback: To cancelrollback the kubernetesService
-kubernetesService-resourceActions-cancelupgrade: To cancelupgrade the kubernetesService
-kubernetesService-resourceActions-deactivate: To deactivate the kubernetesService
-kubernetesService-resourceActions-finishupgrade: To finishupgrade the kubernetesService
-kubernetesService-resourceActions-removeservicelink: To removeservicelink the kubernetesService
-kubernetesService-resourceActions-restart: To restart the kubernetesService
-kubernetesService-resourceActions-rollback: To rollback the kubernetesService
-kubernetesService-resourceActions-setservicelinks: To setservicelinks the kubernetesService
-kubernetesService-resourceActions-upgrade: To upgrade the kubernetesService
 kubernetesService-resourceFields-accountId: The unique identifier for the associated account
 kubernetesService-resourceFields-created: The date of when the kubernetesService was created.
 kubernetesService-resourceFields-description: 
@@ -720,43 +706,13 @@ kubernetesService-resourceFields-kind:
 kubernetesService-resourceFields-name: 
 kubernetesService-resourceFields-removed: The date of when the kubernetesService was removed
 kubernetesService-resourceFields-selectorContainer: 
-kubernetesService-resourceFields-state: The current state of the kubernetesService. The options are [activating, active, canceled-rollback, canceled-upgrade, canceling-rollback, canceling-upgrade, deactivating, finishing-upgrade, inactive, registering, removed, removing, requested, restarting, rolling-back, updating-active, updating-inactive, upgraded, upgrading].
+kubernetesService-resourceFields-state: The current state of the kubernetesService. The options are `activating, active, canceled-rollback, canceled-upgrade, canceling-rollback, canceling-upgrade, deactivating, finishing-upgrade, inactive, registering, removed, removing, requested, restarting, rolling-back, updating-active, updating-inactive, upgraded, upgrading`.
 kubernetesService-resourceFields-template: 
 kubernetesService-resourceFields-transitioning: Whether or not the kubernetesService is in a transitioning state
 kubernetesService-resourceFields-transitioningMessage: The message to show while in a transitioning state
 kubernetesService-resourceFields-transitioningProgress: The percentage remaining in the transitioning process of the kubernetesService
 kubernetesService-resourceFields-uuid: The universally unique identifier for the kubernetesService. This will always be unique across Rancher installations.
 kubernetesService-resourceFields-vip: 
-kubernetesStack-description: 
-kubernetesStack-resourceActions-cancelrollback: To cancelrollback the kubernetesStack
-kubernetesStack-resourceActions-cancelupgrade: To cancelupgrade the kubernetesStack
-kubernetesStack-resourceActions-error: To error the kubernetesStack
-kubernetesStack-resourceActions-finishupgrade: To finishupgrade the kubernetesStack
-kubernetesStack-resourceActions-rollback: To rollback the kubernetesStack
-kubernetesStack-resourceActions-upgrade: To upgrade the kubernetesStack
-kubernetesStack-resourceFields-accountId: The unique identifier for the associated account
-kubernetesStack-resourceFields-created: The date of when the kubernetesStack was created.
-kubernetesStack-resourceFields-description: 
-kubernetesStack-resourceFields-environment: 
-kubernetesStack-resourceFields-externalId: 
-kubernetesStack-resourceFields-healthState: 
-kubernetesStack-resourceFields-id: The unique identifier for the kubernetesStack
-kubernetesStack-resourceFields-kind: 
-kubernetesStack-resourceFields-name: 
-kubernetesStack-resourceFields-namespace: 
-kubernetesStack-resourceFields-previousEnvironment: 
-kubernetesStack-resourceFields-previousExternalId: 
-kubernetesStack-resourceFields-removed: The date of when the kubernetesStack was removed
-kubernetesStack-resourceFields-state: The current state of the kubernetesStack. The options are [activating, active, canceled-upgrade, canceling-rollback, canceling-upgrade, error, erroring, finishing-upgrade, removed, removing, requested, rolling-back, updating-active, upgraded, upgrading].
-kubernetesStack-resourceFields-templates: 
-kubernetesStack-resourceFields-transitioning: Whether or not the kubernetesStack is in a transitioning state
-kubernetesStack-resourceFields-transitioningMessage: The message to show while in a transitioning state
-kubernetesStack-resourceFields-transitioningProgress: The percentage remaining in the transitioning process of the kubernetesStack
-kubernetesStack-resourceFields-uuid: The universally unique identifier for the kubernetesStack. This will always be unique across Rancher installations.
-kubernetesStackUpgrade-description: 
-kubernetesStackUpgrade-resourceFields-environment: 
-kubernetesStackUpgrade-resourceFields-externalId: 
-kubernetesStackUpgrade-resourceFields-templates: 
 label-description: 
 label-resourceFields-accountId: The unique identifier for the associated account
 label-resourceFields-created: The date of when the label was created.
@@ -766,7 +722,7 @@ label-resourceFields-key:
 label-resourceFields-kind: 
 label-resourceFields-name: 
 label-resourceFields-removed: The date of when the label was removed
-label-resourceFields-state: The current state of the label. The options are [created, creating, removed, removing, requested].
+label-resourceFields-state: The current state of the label. The options are `created, creating, removed, removing, requested`.
 label-resourceFields-transitioning: Whether or not the label is in a transitioning state
 label-resourceFields-transitioningMessage: The message to show while in a transitioning state
 label-resourceFields-transitioningProgress: The percentage remaining in the transitioning process of the label
@@ -802,13 +758,13 @@ launchConfig-resourceFields-externalId:
 launchConfig-resourceFields-extraHosts: 
 launchConfig-resourceFields-firstRunning: 
 launchConfig-resourceFields-healthCheck: 
-launchConfig-resourceFields-healthState: 
+launchConfig-resourceFields-healthState: The options are healthy, unhealthy, updating-healthy, updating-unhealthy, initializing.
 launchConfig-resourceFields-hostId: The unique identifier for the associated host
 launchConfig-resourceFields-hostname: 
 launchConfig-resourceFields-id: The unique identifier for the launchConfig
 launchConfig-resourceFields-imageUuid: 
 launchConfig-resourceFields-instanceLinks: 
-launchConfig-resourceFields-kind: 
+launchConfig-resourceFields-kind: The options are container, virtualMachine.
 launchConfig-resourceFields-labels: A map of key value pairs to be used as labels for the launchConfig
 launchConfig-resourceFields-logConfig: 
 launchConfig-resourceFields-lxcConf: 
@@ -819,8 +775,8 @@ launchConfig-resourceFields-nativeContainer:
 launchConfig-resourceFields-networkContainerId: 
 launchConfig-resourceFields-networkIds: 
 launchConfig-resourceFields-networkLaunchConfig: 
-launchConfig-resourceFields-networkMode: 
-launchConfig-resourceFields-pidMode: 
+launchConfig-resourceFields-networkMode: The options are none, bridge, host, managed, container.
+launchConfig-resourceFields-pidMode: The options are host.
 launchConfig-resourceFields-ports: 
 launchConfig-resourceFields-primaryIpAddress: 
 launchConfig-resourceFields-privileged: 
@@ -833,9 +789,9 @@ launchConfig-resourceFields-requestedIpAddress:
 launchConfig-resourceFields-securityOpt: 
 launchConfig-resourceFields-startCount: 
 launchConfig-resourceFields-startOnCreate: 
-launchConfig-resourceFields-state: The current state of the launchConfig. The options are [creating, error, erroring, migrating, purged, purging, removed, removing, requested, restarting, restoring, running, starting, stopped, stopping, updating-running, updating-stopped].
+launchConfig-resourceFields-state: The current state of the launchConfig. The options are `creating, error, erroring, migrating, purged, purging, removed, removing, requested, restarting, restoring, running, starting, stopped, stopping, updating-running, updating-stopped`.
 launchConfig-resourceFields-stdinOpen: 
-launchConfig-resourceFields-systemContainer: 
+launchConfig-resourceFields-systemContainer: The options are NetworkAgent, LoadBalancerAgent.
 launchConfig-resourceFields-transitioning: Whether or not the launchConfig is in a transitioning state
 launchConfig-resourceFields-transitioningMessage: The message to show while in a transitioning state
 launchConfig-resourceFields-transitioningProgress: The percentage remaining in the transitioning process of the launchConfig
@@ -850,7 +806,7 @@ launchConfig-resourceFields-workingDir:
 loadBalancerAppCookieStickinessPolicy-description: 
 loadBalancerAppCookieStickinessPolicy-resourceFields-cookie: 
 loadBalancerAppCookieStickinessPolicy-resourceFields-maxLength: 
-loadBalancerAppCookieStickinessPolicy-resourceFields-mode: 
+loadBalancerAppCookieStickinessPolicy-resourceFields-mode: The options are path_parameters, query_string.
 loadBalancerAppCookieStickinessPolicy-resourceFields-name: 
 loadBalancerAppCookieStickinessPolicy-resourceFields-prefix: 
 loadBalancerAppCookieStickinessPolicy-resourceFields-requestLearn: 
@@ -862,7 +818,7 @@ loadBalancerCookieStickinessPolicy-description:
 loadBalancerCookieStickinessPolicy-resourceFields-cookie: 
 loadBalancerCookieStickinessPolicy-resourceFields-domain: 
 loadBalancerCookieStickinessPolicy-resourceFields-indirect: 
-loadBalancerCookieStickinessPolicy-resourceFields-mode: 
+loadBalancerCookieStickinessPolicy-resourceFields-mode: The options are rewrite, insert, prefix.
 loadBalancerCookieStickinessPolicy-resourceFields-name: 
 loadBalancerCookieStickinessPolicy-resourceFields-nocache: 
 loadBalancerCookieStickinessPolicy-resourceFields-postonly: 
@@ -901,7 +857,7 @@ loadBalancerService-resourceFields-scale:
 loadBalancerService-resourceFields-scalePolicy: 
 loadBalancerService-resourceFields-selectorLink: 
 loadBalancerService-resourceFields-startOnCreate: 
-loadBalancerService-resourceFields-state: The current state of the loadBalancerService. The options are [activating, active, canceled-rollback, canceled-upgrade, canceling-rollback, canceling-upgrade, deactivating, finishing-upgrade, inactive, registering, removed, removing, requested, restarting, rolling-back, updating-active, updating-inactive, upgraded, upgrading].
+loadBalancerService-resourceFields-state: The current state of the loadBalancerService. The options are `activating, active, canceled-rollback, canceled-upgrade, canceling-rollback, canceling-upgrade, deactivating, finishing-upgrade, inactive, registering, removed, removing, requested, restarting, rolling-back, updating-active, updating-inactive, upgraded, upgrading`.
 loadBalancerService-resourceFields-transitioning: Whether or not the loadBalancerService is in a transitioning state
 loadBalancerService-resourceFields-transitioningMessage: The message to show while in a transitioning state
 loadBalancerService-resourceFields-transitioningProgress: The percentage remaining in the transitioning process of the loadBalancerService
@@ -940,7 +896,7 @@ machine-resourceFields-labels: A map of key value pairs to be used as labels for
 machine-resourceFields-name: 
 machine-resourceFields-packetConfig: 
 machine-resourceFields-removed: The date of when the machine was removed
-machine-resourceFields-state: The current state of the machine. The options are [active, bootstrapping, created, creating, error, erroring, removed, removing, requested, updating].
+machine-resourceFields-state: The current state of the machine. The options are `active, bootstrapping, created, creating, error, erroring, removed, removing, requested, updating`.
 machine-resourceFields-transitioning: Whether or not the machine is in a transitioning state
 machine-resourceFields-transitioningMessage: The message to show while in a transitioning state
 machine-resourceFields-transitioningProgress: The percentage remaining in the transitioning process of the machine
@@ -960,7 +916,7 @@ machineDriver-resourceFields-id: The unique identifier for the machineDriver
 machineDriver-resourceFields-kind: 
 machineDriver-resourceFields-name: 
 machineDriver-resourceFields-removed: The date of when the machineDriver was removed
-machineDriver-resourceFields-state: The current state of the machineDriver. The options are [activating, active, deactivating, error, erroring, inactive, registering, removed, removing, requested, updating-active, updating-inactive].
+machineDriver-resourceFields-state: The current state of the machineDriver. The options are `activating, active, deactivating, error, erroring, inactive, registering, removed, removing, requested, updating-active, updating-inactive`.
 machineDriver-resourceFields-transitioning: Whether or not the machineDriver is in a transitioning state
 machineDriver-resourceFields-transitioningMessage: The message to show while in a transitioning state
 machineDriver-resourceFields-transitioningProgress: The percentage remaining in the transitioning process of the machineDriver
@@ -968,7 +924,6 @@ machineDriver-resourceFields-uiUrl:
 machineDriver-resourceFields-url: 
 machineDriver-resourceFields-uuid: The universally unique identifier for the machineDriver. This will always be unique across Rancher installations.
 mount-description: 
-mount-resourceActions-deactivate: To deactivate the mount
 mount-resourceFields-accountId: The unique identifier for the associated account
 mount-resourceFields-created: The date of when the mount was created.
 mount-resourceFields-description: 
@@ -979,15 +934,13 @@ mount-resourceFields-name:
 mount-resourceFields-path: 
 mount-resourceFields-permissions: 
 mount-resourceFields-removed: The date of when the mount was removed
-mount-resourceFields-state: The current state of the mount. The options are [activating, active, deactivating, inactive, removed, removing, requested].
+mount-resourceFields-state: The current state of the mount. The options are `activating, active, deactivating, inactive, removed, removing, requested`.
 mount-resourceFields-transitioning: Whether or not the mount is in a transitioning state
 mount-resourceFields-transitioningMessage: The message to show while in a transitioning state
 mount-resourceFields-transitioningProgress: The percentage remaining in the transitioning process of the mount
 mount-resourceFields-uuid: The universally unique identifier for the mount. This will always be unique across Rancher installations.
 mount-resourceFields-volumeId: 
 network-description: 
-network-resourceActions-activate: To activate the network
-network-resourceActions-deactivate: To deactivate the network
 network-resourceFields-accountId: The unique identifier for the associated account
 network-resourceFields-created: The date of when the network was created.
 network-resourceFields-description: 
@@ -995,7 +948,7 @@ network-resourceFields-id: The unique identifier for the network
 network-resourceFields-kind: 
 network-resourceFields-name: 
 network-resourceFields-removed: The date of when the network was removed
-network-resourceFields-state: The current state of the network. The options are [activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, restoring, updating-active, updating-inactive].
+network-resourceFields-state: The current state of the network. The options are `activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, restoring, updating-active, updating-inactive`.
 network-resourceFields-transitioning: Whether or not the network is in a transitioning state
 network-resourceFields-transitioningMessage: The message to show while in a transitioning state
 network-resourceFields-transitioningProgress: The percentage remaining in the transitioning process of the network
@@ -1024,14 +977,12 @@ password-resourceFields-name:
 password-resourceFields-publicValue: The public value of the password
 password-resourceFields-removed: The date of when the password was removed
 password-resourceFields-secretValue: The secret value of the password
-password-resourceFields-state: The current state of the password. The options are [activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, updating-active, updating-inactive].
+password-resourceFields-state: The current state of the password. The options are `activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, updating-active, updating-inactive`.
 password-resourceFields-transitioning: Whether or not the password is in a transitioning state
 password-resourceFields-transitioningMessage: The message to show while in a transitioning state
 password-resourceFields-transitioningProgress: The percentage remaining in the transitioning process of the password
 password-resourceFields-uuid: The universally unique identifier for the password. This will always be unique across Rancher installations.
 physicalHost-description: 
-physicalHost-resourceActions-bootstrap: To bootstrap the physicalHost
-physicalHost-resourceActions-error: To error the physicalHost
 physicalHost-resourceFields-accountId: The unique identifier for the associated account
 physicalHost-resourceFields-created: The date of when the physicalHost was created.
 physicalHost-resourceFields-description: 
@@ -1041,14 +992,12 @@ physicalHost-resourceFields-id: The unique identifier for the physicalHost
 physicalHost-resourceFields-kind: 
 physicalHost-resourceFields-name: 
 physicalHost-resourceFields-removed: The date of when the physicalHost was removed
-physicalHost-resourceFields-state: The current state of the physicalHost. The options are [active, bootstrapping, created, creating, error, erroring, removed, removing, requested, updating].
+physicalHost-resourceFields-state: The current state of the physicalHost. The options are `active, bootstrapping, created, creating, error, erroring, removed, removing, requested, updating`.
 physicalHost-resourceFields-transitioning: Whether or not the physicalHost is in a transitioning state
 physicalHost-resourceFields-transitioningMessage: The message to show while in a transitioning state
 physicalHost-resourceFields-transitioningProgress: The percentage remaining in the transitioning process of the physicalHost
 physicalHost-resourceFields-uuid: The universally unique identifier for the physicalHost. This will always be unique across Rancher installations.
 port-description: 
-port-resourceActions-activate: To activate the port
-port-resourceActions-deactivate: To deactivate the port
 port-resourceFields-accountId: The unique identifier for the associated account
 port-resourceFields-bindAddress: 
 port-resourceFields-created: The date of when the port was created.
@@ -1063,7 +1012,7 @@ port-resourceFields-protocol:
 port-resourceFields-publicIpAddressId: 
 port-resourceFields-publicPort: 
 port-resourceFields-removed: The date of when the port was removed
-port-resourceFields-state: The current state of the port. The options are [activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, restoring, updating-active, updating-inactive].
+port-resourceFields-state: The current state of the port. The options are `activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, restoring, updating-active, updating-inactive`.
 port-resourceFields-transitioning: Whether or not the port is in a transitioning state
 port-resourceFields-transitioningMessage: The message to show while in a transitioning state
 port-resourceFields-transitioningProgress: The percentage remaining in the transitioning process of the port
@@ -1083,7 +1032,7 @@ project-resourceFields-name:
 project-resourceFields-publicDns: 
 project-resourceFields-removed: The date of when the project was removed
 project-resourceFields-servicesPortRange: 
-project-resourceFields-state: The current state of the project. The options are [activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, restoring, updating-active, updating-inactive].
+project-resourceFields-state: The current state of the project. The options are `activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, restoring, updating-active, updating-inactive`.
 project-resourceFields-swarm: 
 project-resourceFields-transitioning: Whether or not the project is in a transitioning state
 project-resourceFields-transitioningMessage: The message to show while in a transitioning state
@@ -1096,14 +1045,14 @@ projectMember-resourceActions-deactivate: To deactivate the projectMember
 projectMember-resourceFields-created: The date of when the projectMember was created.
 projectMember-resourceFields-description: 
 projectMember-resourceFields-externalId: 
-projectMember-resourceFields-externalIdType: 
+projectMember-resourceFields-externalIdType: The options are github_user, github_org, github_team, rancher_id, ldap_user, ldap_group, openldap_user, openldap_group, azuread_user, azuread_group.
 projectMember-resourceFields-id: The unique identifier for the projectMember
 projectMember-resourceFields-kind: 
 projectMember-resourceFields-name: 
 projectMember-resourceFields-projectId: 
 projectMember-resourceFields-removed: The date of when the projectMember was removed
-projectMember-resourceFields-role: 
-projectMember-resourceFields-state: The current state of the projectMember. The options are [activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, restoring, updating-active, updating-inactive].
+projectMember-resourceFields-role: The options are member, owner, readonly, restricted.
+projectMember-resourceFields-state: The current state of the projectMember. The options are `activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, restoring, updating-active, updating-inactive`.
 projectMember-resourceFields-transitioning: Whether or not the projectMember is in a transitioning state
 projectMember-resourceFields-transitioningMessage: The message to show while in a transitioning state
 projectMember-resourceFields-transitioningProgress: The percentage remaining in the transitioning process of the projectMember
@@ -1122,10 +1071,10 @@ pullTask-resourceFields-id: The unique identifier for the pullTask
 pullTask-resourceFields-image: 
 pullTask-resourceFields-kind: 
 pullTask-resourceFields-labels: A map of key value pairs to be used as labels for the pullTask
-pullTask-resourceFields-mode: 
+pullTask-resourceFields-mode: The options are all, cached.
 pullTask-resourceFields-name: 
 pullTask-resourceFields-removed: The date of when the pullTask was removed
-pullTask-resourceFields-state: The current state of the pullTask. The options are [activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, restoring, updating-active, updating-inactive].
+pullTask-resourceFields-state: The current state of the pullTask. The options are `activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, restoring, updating-active, updating-inactive`.
 pullTask-resourceFields-status: 
 pullTask-resourceFields-transitioning: Whether or not the pullTask is in a transitioning state
 pullTask-resourceFields-transitioningMessage: The message to show while in a transitioning state
@@ -1147,7 +1096,7 @@ register-resourceFields-kind:
 register-resourceFields-name: 
 register-resourceFields-removed: The date of when the register was removed
 register-resourceFields-secretKey: 
-register-resourceFields-state: The current state of the register. The options are [activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, restoring, updating-active, updating-inactive].
+register-resourceFields-state: The current state of the register. The options are `activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, restoring, updating-active, updating-inactive`.
 register-resourceFields-transitioning: Whether or not the register is in a transitioning state
 register-resourceFields-transitioningMessage: The message to show while in a transitioning state
 register-resourceFields-transitioningProgress: The percentage remaining in the transitioning process of the register
@@ -1163,7 +1112,7 @@ registrationToken-resourceFields-kind:
 registrationToken-resourceFields-name: 
 registrationToken-resourceFields-registrationUrl: 
 registrationToken-resourceFields-removed: The date of when the registrationToken was removed
-registrationToken-resourceFields-state: The current state of the registrationToken. The options are [activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, updating-active, updating-inactive].
+registrationToken-resourceFields-state: The current state of the registrationToken. The options are `activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, updating-active, updating-inactive`.
 registrationToken-resourceFields-token: 
 registrationToken-resourceFields-transitioning: Whether or not the registrationToken is in a transitioning state
 registrationToken-resourceFields-transitioningMessage: The message to show while in a transitioning state
@@ -1183,7 +1132,7 @@ registry-resourceFields-kind:
 registry-resourceFields-name: 
 registry-resourceFields-removed: The date of when the registry was removed
 registry-resourceFields-serverAddress: 
-registry-resourceFields-state: The current state of the registry. The options are [activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, restoring, updating-active, updating-inactive].
+registry-resourceFields-state: The current state of the registry. The options are `activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, restoring, updating-active, updating-inactive`.
 registry-resourceFields-transitioning: Whether or not the registry is in a transitioning state
 registry-resourceFields-transitioningMessage: The message to show while in a transitioning state
 registry-resourceFields-transitioningProgress: The percentage remaining in the transitioning process of the registry
@@ -1204,7 +1153,7 @@ registryCredential-resourceFields-publicValue: The public value of the registryC
 registryCredential-resourceFields-registryId: 
 registryCredential-resourceFields-removed: The date of when the registryCredential was removed
 registryCredential-resourceFields-secretValue: The secret value of the registryCredential
-registryCredential-resourceFields-state: The current state of the registryCredential. The options are [activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, updating-active, updating-inactive].
+registryCredential-resourceFields-state: The current state of the registryCredential. The options are `activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, updating-active, updating-inactive`.
 registryCredential-resourceFields-transitioning: Whether or not the registryCredential is in a transitioning state
 registryCredential-resourceFields-transitioningMessage: The message to show while in a transitioning state
 registryCredential-resourceFields-transitioningProgress: The percentage remaining in the transitioning process of the registryCredential
@@ -1253,13 +1202,13 @@ secondaryLaunchConfig-resourceFields-externalId:
 secondaryLaunchConfig-resourceFields-extraHosts: 
 secondaryLaunchConfig-resourceFields-firstRunning: 
 secondaryLaunchConfig-resourceFields-healthCheck: 
-secondaryLaunchConfig-resourceFields-healthState: 
+secondaryLaunchConfig-resourceFields-healthState: The options are healthy, unhealthy, updating-healthy, updating-unhealthy, initializing.
 secondaryLaunchConfig-resourceFields-hostId: The unique identifier for the associated host
 secondaryLaunchConfig-resourceFields-hostname: 
 secondaryLaunchConfig-resourceFields-id: The unique identifier for the secondaryLaunchConfig
 secondaryLaunchConfig-resourceFields-imageUuid: 
 secondaryLaunchConfig-resourceFields-instanceLinks: 
-secondaryLaunchConfig-resourceFields-kind: 
+secondaryLaunchConfig-resourceFields-kind: The options are container, virtualMachine.
 secondaryLaunchConfig-resourceFields-labels: A map of key value pairs to be used as labels for the secondaryLaunchConfig
 secondaryLaunchConfig-resourceFields-logConfig: 
 secondaryLaunchConfig-resourceFields-lxcConf: 
@@ -1271,8 +1220,8 @@ secondaryLaunchConfig-resourceFields-nativeContainer:
 secondaryLaunchConfig-resourceFields-networkContainerId: 
 secondaryLaunchConfig-resourceFields-networkIds: 
 secondaryLaunchConfig-resourceFields-networkLaunchConfig: 
-secondaryLaunchConfig-resourceFields-networkMode: 
-secondaryLaunchConfig-resourceFields-pidMode: 
+secondaryLaunchConfig-resourceFields-networkMode: The options are none, bridge, host, managed, container.
+secondaryLaunchConfig-resourceFields-pidMode: The options are host.
 secondaryLaunchConfig-resourceFields-ports: 
 secondaryLaunchConfig-resourceFields-primaryIpAddress: 
 secondaryLaunchConfig-resourceFields-privileged: 
@@ -1285,9 +1234,9 @@ secondaryLaunchConfig-resourceFields-requestedIpAddress:
 secondaryLaunchConfig-resourceFields-securityOpt: 
 secondaryLaunchConfig-resourceFields-startCount: 
 secondaryLaunchConfig-resourceFields-startOnCreate: 
-secondaryLaunchConfig-resourceFields-state: The current state of the secondaryLaunchConfig. The options are [creating, error, erroring, migrating, purged, purging, removed, removing, requested, restarting, restoring, running, starting, stopped, stopping, updating-running, updating-stopped].
+secondaryLaunchConfig-resourceFields-state: The current state of the secondaryLaunchConfig. The options are `creating, error, erroring, migrating, purged, purging, removed, removing, requested, restarting, restoring, running, starting, stopped, stopping, updating-running, updating-stopped`.
 secondaryLaunchConfig-resourceFields-stdinOpen: 
-secondaryLaunchConfig-resourceFields-systemContainer: 
+secondaryLaunchConfig-resourceFields-systemContainer: The options are NetworkAgent, LoadBalancerAgent.
 secondaryLaunchConfig-resourceFields-transitioning: Whether or not the secondaryLaunchConfig is in a transitioning state
 secondaryLaunchConfig-resourceFields-transitioningMessage: The message to show while in a transitioning state
 secondaryLaunchConfig-resourceFields-transitioningProgress: The percentage remaining in the transitioning process of the secondaryLaunchConfig
@@ -1334,7 +1283,7 @@ service-resourceFields-secondaryLaunchConfigs:
 service-resourceFields-selectorContainer: 
 service-resourceFields-selectorLink: 
 service-resourceFields-startOnCreate: 
-service-resourceFields-state: The current state of the service. The options are [activating, active, canceled-rollback, canceled-upgrade, canceling-rollback, canceling-upgrade, deactivating, finishing-upgrade, inactive, registering, removed, removing, requested, restarting, rolling-back, updating-active, updating-inactive, upgraded, upgrading].
+service-resourceFields-state: The current state of the service. The options are `activating, active, canceled-rollback, canceled-upgrade, canceling-rollback, canceling-upgrade, deactivating, finishing-upgrade, inactive, registering, removed, removing, requested, restarting, rolling-back, updating-active, updating-inactive, upgraded, upgrading`.
 service-resourceFields-transitioning: Whether or not the service is in a transitioning state
 service-resourceFields-transitioningMessage: The message to show while in a transitioning state
 service-resourceFields-transitioningProgress: The percentage remaining in the transitioning process of the service
@@ -1352,7 +1301,7 @@ serviceConsumeMap-resourceFields-name:
 serviceConsumeMap-resourceFields-ports: 
 serviceConsumeMap-resourceFields-removed: The date of when the serviceConsumeMap was removed
 serviceConsumeMap-resourceFields-serviceId: The unique identifier of the associated service
-serviceConsumeMap-resourceFields-state: The current state of the serviceConsumeMap. The options are [activating, active, removed, removing, requested, updating-active].
+serviceConsumeMap-resourceFields-state: The current state of the serviceConsumeMap. The options are `activating, active, removed, removing, requested, updating-active`.
 serviceConsumeMap-resourceFields-transitioning: Whether or not the serviceConsumeMap is in a transitioning state
 serviceConsumeMap-resourceFields-transitioningMessage: The message to show while in a transitioning state
 serviceConsumeMap-resourceFields-transitioningProgress: The percentage remaining in the transitioning process of the serviceConsumeMap
@@ -1370,7 +1319,7 @@ serviceEvent-resourceFields-kind:
 serviceEvent-resourceFields-name: 
 serviceEvent-resourceFields-removed: The date of when the serviceEvent was removed
 serviceEvent-resourceFields-reportedHealth: 
-serviceEvent-resourceFields-state: The current state of the serviceEvent. The options are [created, creating, removed, removing, requested].
+serviceEvent-resourceFields-state: The current state of the serviceEvent. The options are `created, creating, removed, removing, requested`.
 serviceEvent-resourceFields-transitioning: Whether or not the serviceEvent is in a transitioning state
 serviceEvent-resourceFields-transitioningMessage: The message to show while in a transitioning state
 serviceEvent-resourceFields-transitioningProgress: The percentage remaining in the transitioning process of the serviceEvent
@@ -1387,7 +1336,7 @@ serviceExposeMap-resourceFields-managed:
 serviceExposeMap-resourceFields-name: 
 serviceExposeMap-resourceFields-removed: The date of when the serviceExposeMap was removed
 serviceExposeMap-resourceFields-serviceId: The unique identifier of the associated service
-serviceExposeMap-resourceFields-state: The current state of the serviceExposeMap. The options are [activating, active, removed, removing, requested].
+serviceExposeMap-resourceFields-state: The current state of the serviceExposeMap. The options are `activating, active, removed, removing, requested`.
 serviceExposeMap-resourceFields-transitioning: Whether or not the serviceExposeMap is in a transitioning state
 serviceExposeMap-resourceFields-transitioningMessage: The message to show while in a transitioning state
 serviceExposeMap-resourceFields-transitioningProgress: The percentage remaining in the transitioning process of the serviceExposeMap
@@ -1398,7 +1347,7 @@ serviceLink-resourceFields-serviceId: The unique identifier of the associated se
 serviceLink-resourceFields-uuid: The universally unique identifier for the serviceLink. This will always be unique across Rancher installations.
 serviceProxy-description: 
 serviceProxy-resourceFields-port: 
-serviceProxy-resourceFields-scheme: 
+serviceProxy-resourceFields-scheme: The options are http, https.
 serviceProxy-resourceFields-service: 
 serviceProxy-resourceFields-token: 
 serviceProxy-resourceFields-url: 
@@ -1435,7 +1384,7 @@ snapshot-resourceFields-id: The unique identifier for the snapshot
 snapshot-resourceFields-kind: 
 snapshot-resourceFields-name: 
 snapshot-resourceFields-removed: The date of when the snapshot was removed
-snapshot-resourceFields-state: The current state of the snapshot. The options are [created, creating, removed, removing, requested].
+snapshot-resourceFields-state: The current state of the snapshot. The options are `created, creating, removed, removing, requested`.
 snapshot-resourceFields-transitioning: Whether or not the snapshot is in a transitioning state
 snapshot-resourceFields-transitioningMessage: The message to show while in a transitioning state
 snapshot-resourceFields-transitioningProgress: The percentage remaining in the transitioning process of the snapshot
@@ -1448,8 +1397,6 @@ statsAccess-description:
 statsAccess-resourceFields-token: 
 statsAccess-resourceFields-url: 
 storagePool-description: 
-storagePool-resourceActions-activate: To activate the storagePool
-storagePool-resourceActions-deactivate: To deactivate the storagePool
 storagePool-resourceFields-accountId: The unique identifier for the associated account
 storagePool-resourceFields-blockDevicePath: 
 storagePool-resourceFields-created: The date of when the storagePool was created.
@@ -1460,7 +1407,7 @@ storagePool-resourceFields-id: The unique identifier for the storagePool
 storagePool-resourceFields-kind: 
 storagePool-resourceFields-name: 
 storagePool-resourceFields-removed: The date of when the storagePool was removed
-storagePool-resourceFields-state: The current state of the storagePool. The options are [activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, restoring, updating-active, updating-inactive].
+storagePool-resourceFields-state: The current state of the storagePool. The options are `activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, restoring, updating-active, updating-inactive`.
 storagePool-resourceFields-transitioning: Whether or not the storagePool is in a transitioning state
 storagePool-resourceFields-transitioningMessage: The message to show while in a transitioning state
 storagePool-resourceFields-transitioningProgress: The percentage remaining in the transitioning process of the storagePool
@@ -1480,7 +1427,6 @@ typeDocumentation-resourceFields-description:
 typeDocumentation-resourceFields-id: The unique identifier for the typeDocumentation
 typeDocumentation-resourceFields-resourceFields: 
 virtualMachine-description: 
-virtualMachine-resourceActions-allocate: To allocate the virtualMachine
 virtualMachine-resourceActions-console: To console the virtualMachine
 virtualMachine-resourceActions-deallocate: To deallocate the virtualMachine
 virtualMachine-resourceActions-error: To error the virtualMachine
@@ -1514,7 +1460,7 @@ virtualMachine-resourceFields-externalId:
 virtualMachine-resourceFields-extraHosts: 
 virtualMachine-resourceFields-firstRunning: 
 virtualMachine-resourceFields-healthCheck: 
-virtualMachine-resourceFields-healthState: 
+virtualMachine-resourceFields-healthState: The options are healthy, unhealthy, updating-healthy, updating-unhealthy, initializing.
 virtualMachine-resourceFields-hostId: The unique identifier for the associated host
 virtualMachine-resourceFields-hostname: 
 virtualMachine-resourceFields-id: The unique identifier for the virtualMachine
@@ -1529,7 +1475,7 @@ virtualMachine-resourceFields-memorySwap:
 virtualMachine-resourceFields-name: 
 virtualMachine-resourceFields-nativeContainer: 
 virtualMachine-resourceFields-networkIds: 
-virtualMachine-resourceFields-networkMode: 
+virtualMachine-resourceFields-networkMode: The options are none, bridge, host, managed, container.
 virtualMachine-resourceFields-ports: 
 virtualMachine-resourceFields-primaryIpAddress: 
 virtualMachine-resourceFields-registryCredentialId: 
@@ -1539,8 +1485,8 @@ virtualMachine-resourceFields-restartPolicy:
 virtualMachine-resourceFields-securityOpt: 
 virtualMachine-resourceFields-startCount: 
 virtualMachine-resourceFields-startOnCreate: 
-virtualMachine-resourceFields-state: The current state of the virtualMachine. The options are [creating, error, erroring, migrating, purged, purging, removed, removing, requested, restarting, restoring, running, starting, stopped, stopping, updating-running, updating-stopped].
-virtualMachine-resourceFields-systemContainer: 
+virtualMachine-resourceFields-state: The current state of the virtualMachine. The options are `creating, error, erroring, migrating, purged, purging, removed, removing, requested, restarting, restoring, running, starting, stopped, stopping, updating-running, updating-stopped`.
+virtualMachine-resourceFields-systemContainer: The options are NetworkAgent, LoadBalancerAgent.
 virtualMachine-resourceFields-transitioning: Whether or not the virtualMachine is in a transitioning state
 virtualMachine-resourceFields-transitioningMessage: The message to show while in a transitioning state
 virtualMachine-resourceFields-transitioningProgress: The percentage remaining in the transitioning process of the virtualMachine
@@ -1575,7 +1521,7 @@ volume-resourceFields-isHostPath:
 volume-resourceFields-kind: 
 volume-resourceFields-name: 
 volume-resourceFields-removed: The date of when the volume was removed
-volume-resourceFields-state: The current state of the volume. The options are [activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, restoring, restoring-active, restoring-inactive, reverting-active, reverting-inactive, updating-active, updating-inactive].
+volume-resourceFields-state: The current state of the volume. The options are `activating, active, deactivating, inactive, purged, purging, registering, removed, removing, requested, restoring, restoring-active, restoring-inactive, reverting-active, reverting-inactive, updating-active, updating-inactive`.
 volume-resourceFields-transitioning: Whether or not the volume is in a transitioning state
 volume-resourceFields-transitioningMessage: The message to show while in a transitioning state
 volume-resourceFields-transitioningProgress: The percentage remaining in the transitioning process of the volume

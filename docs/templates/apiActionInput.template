@@ -3,6 +3,7 @@ title: API
 layout: {{.layout}}
 version: {{.version}}
 lang: {{.language}}
+apiVersion: {{.apiVersion}}
 ---
 
 ## {{.schemaId}}
