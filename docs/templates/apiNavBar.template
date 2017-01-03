@@ -7,8 +7,8 @@
     <li><a href="{{"{{"}}site.baseurl{{"}}"}}/rancher/{{"{{"}}page.version{{"}}"}}/{{"{{"}}page.lang{{"}}"}}/api/{{"{{"}}page.apiVersion{{"}}"}}/common/">Common Resource Fields</a></li>
     {{if $.schemaMap}}{{range $resourceId, $resourceData := .schemaMap}}{{range $link, $val := $resourceData.Resource.Links}}{{if eq $link "showResource"}}
     <li>
-        <a href="#{{$resourceId}}">{{$resourceId | capitalize}} <i class="pull-right fa fa-angle-down"></i></a>
-        <ul id="{{$resourceId}}">
+        <a href="#">{{$resourceId | capitalize}} <i class="pull-right fa fa-angle-down"></i></a>
+        <ul>
           <li><a href="{{"{{"}}site.baseurl{{"}}"}}/rancher/{{"{{"}}page.version{{"}}"}}/{{"{{"}}page.lang{{"}}"}}/api/{{"{{"}}page.apiVersion{{"}}"}}/api-resources/{{$resourceId}}/">{{$resourceId | capitalize}}</a></li>
               {{range $collectionMethodsKey, $collectionMethodsValue := $resourceData.CollectionMethods}}{{if eq $collectionMethodsValue "POST"}}<li><a href="{{"{{"}}site.baseurl{{"}}"}}/rancher/{{"{{"}}page.version{{"}}"}}/{{"{{"}}page.lang{{"}}"}}/api/{{"{{"}}page.apiVersion{{"}}"}}/api-resources/{{$resourceId}}/#create">Create</a></li>{{end}}{{end}}
               {{range $resourceMethodsKey, $resourceMethodsValue := $resourceData.ResourceMethods}}{{if eq $resourceMethodsValue "PUT"}}<li><a href="{{"{{"}}site.baseurl{{"}}"}}/rancher/{{"{{"}}page.version{{"}}"}}/{{"{{"}}page.lang{{"}}"}}/api/{{"{{"}}page.apiVersion{{"}}"}}/api-resources/{{$resourceId}}/#update">Update</a></li>{{end}}
