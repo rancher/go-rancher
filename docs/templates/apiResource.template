@@ -4,6 +4,8 @@ layout: {{.layout}}
 version: {{.version}}
 lang: {{.language}}
 apiVersion: {{.apiVersion}}
+redirect_from:
+  - /rancher/{{.version}}/zh/api/{{.apiVersion}}/api-resources/{{.schemaId}}/
 ---
 
 ## {{.schemaId | capitalize}}
@@ -58,7 +60,8 @@ curl -u "${{"{"}}RANCHER_ACCESS_KEY{{"}"}}:${{"{"}}RANCHER_SECRET_KEY{{"}"}}" \
 {{if $action.Input.FieldMap}}
 Field | Type | Required | Default | Notes
 ---|---|---|---|---
-{{range $key, $value := $action.Input.FieldMap}}{{$key}} | {{$value.TypeURL}} | {{if $value.Required}}Yes{{else}}No{{end}} | {{$value.Default}} | {{$value.Description}}{{end}}<br>{{end}}{{else}}This action has no inputs</span>{{end}}
+{{range $key, $value := $action.Input.FieldMap}}{{$key}} | {{$value.TypeURL}} | {{if $value.Required}}Yes{{else}}No{{end}} | {{$value.Default}} | {{$value.Description}}
+{{end}}{{end}}{{else}}This action has no inputs</span>{{end}}
 
 <br>
 {% highlight json %}

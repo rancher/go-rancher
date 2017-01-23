@@ -67,7 +67,7 @@ func generateFiles() error {
 		return err
 	}
 
-	if err = setupDirectory(apiOutputDir + "/api-resources/"); err != nil {
+	if err = setupDirectory(apiOutputDir + "/" + *apiVersion + "/api-resources/"); err != nil {
 		return err
 	}
 
@@ -203,7 +203,7 @@ func generateCollectionResourcePages() error {
 	}
 
 	//Create main page of collection resources
-	output, err := os.Create(path.Join(apiOutputDir, "api-resources", "index.md"))
+	output, err := os.Create(path.Join(apiOutputDir, *apiVersion, "api-resources", "index.md"))
 
 	if err != nil {
 		return err
@@ -242,7 +242,7 @@ func generateCollectionResourcePages() error {
 	}
 
 	//Create operation-check file to look at what collection resources have create/update/delete
-	output, err = os.Create(path.Join(apiOutputDir, "operations.yml"))
+	output, err = os.Create(path.Join(apiOutputDir, *apiVersion, "operations.yml"))
 
 	if err != nil {
 		return err
@@ -258,11 +258,11 @@ func generateCollectionResourcePages() error {
 }
 
 func generateIndividualDocs(schema client.Schema, showActions bool) error {
-	if err := setupDirectory(apiOutputDir + "/api-resources/" + schema.Id); err != nil {
+	if err := setupDirectory(apiOutputDir + "/" + *apiVersion + "/api-resources/" + schema.Id); err != nil {
 		return err
 	}
 
-	output, err := os.Create(path.Join(apiOutputDir, "api-resources", schema.Id, "index.md"))
+	output, err := os.Create(path.Join(apiOutputDir, *apiVersion, "api-resources", schema.Id, "index.md"))
 
 	if err != nil {
 		return err
@@ -422,7 +422,7 @@ func getActionMap(schema client.Schema, operationsActions bool) map[string]APIAc
 				apiAction.ResourceName = schema.Id
 				apiAction.Description = getActionDescription(schema.Id, "create")
 				apiAction.Method = postAPI
-				apiAction.ActionURL = "/" + *apiVersion + "/" + schema.PluralName
+				apiAction.ActionURL = "/" + *apiVersion + "/projects/${PROJECT_ID}/" + schema.PluralName
 				resourceFields := make(map[string]client.Field)
 
 				for fieldName, field := range schema.ResourceFields {
@@ -444,7 +444,7 @@ func getActionMap(schema client.Schema, operationsActions bool) map[string]APIAc
 				apiAction.ResourceName = schema.Id
 				apiAction.Description = getActionDescription(schema.Id, "update")
 				apiAction.Method = "PUT"
-				apiAction.ActionURL = "/" + *apiVersion + "/" + schema.PluralName + "/${ID}"
+				apiAction.ActionURL = "/" + *apiVersion + "/projects/${PROJECT_ID}/" + schema.PluralName + "/${ID}"
 				resourceFields := make(map[string]client.Field)
 
 				for fieldName, field := range schema.ResourceFields {
@@ -462,7 +462,7 @@ func getActionMap(schema client.Schema, operationsActions bool) map[string]APIAc
 				apiAction.ResourceName = schema.Id
 				apiAction.Description = getActionDescription(schema.Id, "delete")
 				apiAction.Method = "DELETE"
-				apiAction.ActionURL = "/" + *apiVersion + "/" + schema.PluralName + "/${ID}"
+				apiAction.ActionURL = "/" + *apiVersion + "/projects/${PROJECT_ID}/" + schema.PluralName + "/${ID}"
 				actionMap["Delete"] = apiAction
 			}
 		}
@@ -481,7 +481,7 @@ func getActionMap(schema client.Schema, operationsActions bool) map[string]APIAc
 			apiAction.Input = getActionInput(schema.Id, action.Input, true)
 			apiAction.Output = action.Output
 			apiAction.Method = postAPI
-			apiAction.ActionURL = "/" + *apiVersion + "/" + schema.PluralName + "/${ID}?action=" + actionName
+			apiAction.ActionURL = "/" + *apiVersion + "/projects/${PROJECT_ID}/" + schema.PluralName + "/${ID}?action=" + actionName
 
 			actionMap[actionName] = apiAction
 		}
