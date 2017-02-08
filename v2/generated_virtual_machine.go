@@ -189,6 +189,8 @@ type VirtualMachine struct {
 
 	Ulimits []Ulimit `json:"ulimits,omitempty" yaml:"ulimits,omitempty"`
 
+	UserPorts []string `json:"userPorts,omitempty" yaml:"user_ports,omitempty"`
+
 	Userdata string `json:"userdata,omitempty" yaml:"userdata,omitempty"`
 
 	UsernsMode string `json:"usernsMode,omitempty" yaml:"userns_mode,omitempty"`

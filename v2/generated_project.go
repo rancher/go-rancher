@@ -27,6 +27,8 @@ type Project struct {
 
 	Orchestration string `json:"orchestration,omitempty" yaml:"orchestration,omitempty"`
 
+	ProjectLinks []string `json:"projectLinks,omitempty" yaml:"project_links,omitempty"`
+
 	ProjectTemplateId string `json:"projectTemplateId,omitempty" yaml:"project_template_id,omitempty"`
 
 	RemoveTime string `json:"removeTime,omitempty" yaml:"remove_time,omitempty"`
