@@ -197,7 +197,7 @@ type Container struct {
 
 	StartCount int64 `json:"startCount,omitempty" yaml:"start_count,omitempty"`
 
-	StartOnCreate bool `json:"startOnCreate,omitempty" yaml:"start_on_create,omitempty"`
+	StartOnCreate bool `json:"startOnCreate" yaml:"start_on_create"`
 
 	State string `json:"state,omitempty" yaml:"state,omitempty"`
 
