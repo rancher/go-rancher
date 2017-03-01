@@ -91,6 +91,10 @@ type RancherClient struct {
 	Network                                  NetworkOperations
 	NetworkDriver                            NetworkDriverOperations
 	NetworkDriverService                     NetworkDriverServiceOperations
+	NetworkPolicyRule                        NetworkPolicyRuleOperations
+	NetworkPolicyRuleBetween                 NetworkPolicyRuleBetweenOperations
+	NetworkPolicyRuleMember                  NetworkPolicyRuleMemberOperations
+	NetworkPolicyRuleWithin                  NetworkPolicyRuleWithinOperations
 	NfsConfig                                NfsConfigOperations
 	Openldapconfig                           OpenldapconfigOperations
 	PacketConfig                             PacketConfigOperations
@@ -101,6 +105,8 @@ type RancherClient struct {
 	ProcessDefinition                        ProcessDefinitionOperations
 	ProcessExecution                         ProcessExecutionOperations
 	ProcessInstance                          ProcessInstanceOperations
+	ProcessPool                              ProcessPoolOperations
+	ProcessSummary                           ProcessSummaryOperations
 	Project                                  ProjectOperations
 	ProjectMember                            ProjectMemberOperations
 	ProjectTemplate                          ProjectTemplateOperations
@@ -118,7 +124,10 @@ type RancherClient struct {
 	RevertToSnapshotInput                    RevertToSnapshotInputOperations
 	RollingRestartStrategy                   RollingRestartStrategyOperations
 	ScalePolicy                              ScalePolicyOperations
+	ScheduledUpgrade                         ScheduledUpgradeOperations
 	SecondaryLaunchConfig                    SecondaryLaunchConfigOperations
+	Secret                                   SecretOperations
+	SecretReference                          SecretReferenceOperations
 	Service                                  ServiceOperations
 	ServiceBinding                           ServiceBindingOperations
 	ServiceConsumeMap                        ServiceConsumeMapOperations
@@ -252,6 +261,10 @@ func constructClient(rancherBaseClient *RancherBaseClientImpl) *RancherClient {
 	client.Network = newNetworkClient(client)
 	client.NetworkDriver = newNetworkDriverClient(client)
 	client.NetworkDriverService = newNetworkDriverServiceClient(client)
+	client.NetworkPolicyRule = newNetworkPolicyRuleClient(client)
+	client.NetworkPolicyRuleBetween = newNetworkPolicyRuleBetweenClient(client)
+	client.NetworkPolicyRuleMember = newNetworkPolicyRuleMemberClient(client)
+	client.NetworkPolicyRuleWithin = newNetworkPolicyRuleWithinClient(client)
 	client.NfsConfig = newNfsConfigClient(client)
 	client.Openldapconfig = newOpenldapconfigClient(client)
 	client.PacketConfig = newPacketConfigClient(client)
@@ -262,6 +275,8 @@ func constructClient(rancherBaseClient *RancherBaseClientImpl) *RancherClient {
 	client.ProcessDefinition = newProcessDefinitionClient(client)
 	client.ProcessExecution = newProcessExecutionClient(client)
 	client.ProcessInstance = newProcessInstanceClient(client)
+	client.ProcessPool = newProcessPoolClient(client)
+	client.ProcessSummary = newProcessSummaryClient(client)
 	client.Project = newProjectClient(client)
 	client.ProjectMember = newProjectMemberClient(client)
 	client.ProjectTemplate = newProjectTemplateClient(client)
@@ -279,7 +294,10 @@ func constructClient(rancherBaseClient *RancherBaseClientImpl) *RancherClient {
 	client.RevertToSnapshotInput = newRevertToSnapshotInputClient(client)
 	client.RollingRestartStrategy = newRollingRestartStrategyClient(client)
 	client.ScalePolicy = newScalePolicyClient(client)
+	client.ScheduledUpgrade = newScheduledUpgradeClient(client)
 	client.SecondaryLaunchConfig = newSecondaryLaunchConfigClient(client)
+	client.Secret = newSecretClient(client)
+	client.SecretReference = newSecretReferenceClient(client)
 	client.Service = newServiceClient(client)
 	client.ServiceBinding = newServiceBindingClient(client)
 	client.ServiceConsumeMap = newServiceConsumeMapClient(client)
