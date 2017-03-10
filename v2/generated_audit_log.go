@@ -27,11 +27,11 @@ type AuditLog struct {
 
 	RequestObject string `json:"requestObject,omitempty" yaml:"request_object,omitempty"`
 
-	ResourceId int64 `json:"resourceId,omitempty" yaml:"resource_id,omitempty"`
+	ResourceId string `json:"resourceId,omitempty" yaml:"resource_id,omitempty"`
 
 	ResourceType string `json:"resourceType,omitempty" yaml:"resource_type,omitempty"`
 
-	ResponseCode string `json:"responseCode,omitempty" yaml:"response_code,omitempty"`
+	ResponseCode int64 `json:"responseCode,omitempty" yaml:"response_code,omitempty"`
 
 	ResponseObject string `json:"responseObject,omitempty" yaml:"response_object,omitempty"`
 }
