@@ -2,7 +2,6 @@ package client
 
 import (
 	"reflect"
-	"regexp"
 	"strings"
 )
 
@@ -43,7 +42,6 @@ func (s *Schemas) Schema(name string) Schema {
 
 func typeToFields(t reflect.Type) map[string]Field {
 	result := map[string]Field{}
-	re := regexp.MustCompile("^[[:lower:]]")
 
 	for i := 0; i < t.NumField(); i++ {
 		schemaField := Field{}
@@ -58,7 +56,7 @@ func typeToFields(t reflect.Type) map[string]Field {
 			continue
 		} else if typeField.Anonymous {
 			continue
-		} else if re.FindStringIndex(typeField.Name) != nil {
+		} else if privateFieldRegex.FindStringIndex(typeField.Name) != nil {
 			continue
 		}
 
