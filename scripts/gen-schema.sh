@@ -27,6 +27,8 @@ gen() {
     go run generator.go
     echo " Done"
 
+    find ../v2 -type f -exec sed -i -e 's/StartOnCreate bool/StartOnCreate *bool/g' {} \;
+
     gofmt -w ../v2/generated_*
     echo Formatted code
 
