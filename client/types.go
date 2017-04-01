@@ -93,3 +93,11 @@ type Filter struct {
 type ListOpts struct {
 	Filters map[string]interface{}
 }
+
+type ServerApiError struct {
+	Resource
+	Status  int    `json:"status"`
+	Code    string `json:"code"`
+	Message string `json:"message"`
+	Detail  string `json:"detail"`
+}
