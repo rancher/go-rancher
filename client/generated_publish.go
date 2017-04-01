@@ -13,6 +13,8 @@ type Publish struct {
 
 	PreviousIds []string `json:"previousIds,omitempty" yaml:"previous_ids,omitempty"`
 
+	PreviousNames []string `json:"previousNames,omitempty" yaml:"previousNames,omitempty"`
+
 	Publisher string `json:"publisher,omitempty" yaml:"publisher,omitempty"`
 
 	ResourceId string `json:"resourceId,omitempty" yaml:"resource_id,omitempty"`
