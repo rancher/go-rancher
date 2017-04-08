@@ -21,7 +21,7 @@ type VmwarevsphereConfig struct {
 
 	MemorySize string `json:"memorySize,omitempty" yaml:"memory_size,omitempty"`
 
-	Network string `json:"Network,omitempty" yaml:"network,omitempty"`
+	Network string `json:"network,omitempty" yaml:"network,omitempty"`
 
 	Password string `json:"password,omitempty" yaml:"password,omitempty"`
 
