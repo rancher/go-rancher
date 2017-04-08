@@ -9,13 +9,13 @@ type VmwarevsphereConfig struct {
 
 	Boot2DockerURL string `json:"boot2dockerUrl,omitempty" yaml:"boot2dockerurl,omitempty"`
 
-	CpuCount bool `json:"cpuCount,omitempty" yaml:"cpu_count,omitempty"`
+	CpuCount string `json:"cpuCount,omitempty" yaml:"cpu_count,omitempty"`
 
 	Datacenter string `json:"datacenter,omitempty" yaml:"datacenter,omitempty"`
 
-	Datastore bool `json:"datastore,omitempty" yaml:"datastore,omitempty"`
+	Datastore string `json:"datastore,omitempty" yaml:"datastore,omitempty"`
 
-	DiskSize bool `json:"diskSize,omitempty" yaml:"disk_size,omitempty"`
+	DiskSize string `json:"diskSize,omitempty" yaml:"disk_size,omitempty"`
 
 	Hostsystem string `json:"hostsystem,omitempty" yaml:"region,omitempty"`
 
