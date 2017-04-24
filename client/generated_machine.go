@@ -68,6 +68,8 @@ type Machine struct {
 	TransitioningProgress int64 `json:"transitioningProgress,omitempty" yaml:"transitioning_progress,omitempty"`
 
 	Uuid string `json:"uuid,omitempty" yaml:"uuid,omitempty"`
+
+	VmwarevsphereConfig *VmwarevsphereConfig `json:"vmwarevsphereConfig,omitempty" yaml:"vmwarevsphereConfig_config,omitempty"`
 }
 
 type MachineCollection struct {
