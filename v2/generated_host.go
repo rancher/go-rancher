@@ -97,7 +97,7 @@ type Host struct {
 
 	Uuid string `json:"uuid,omitempty" yaml:"uuid,omitempty"`
 
-	VmwarevsphereConfig *VmwarevsphereConfig `json:"vmwarevsphereConfig,omitempty" yaml:"vmwarevsphereConfig_config,omitempty"`
+	VmwarevsphereConfig *VmwarevsphereConfig `json:"vmwarevsphereConfig,omitempty" yaml:"vmwarevsphereconfig_config,omitempty"`
 }
 
 type HostCollection struct {
