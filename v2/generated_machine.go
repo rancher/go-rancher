@@ -45,15 +45,11 @@ type Machine struct {
 
 	ExternalId string `json:"externalId,omitempty" yaml:"external_id,omitempty"`
 
-	ExtractedConfig string `json:"extractedConfig,omitempty" yaml:"extracted_config,omitempty"`
-
 	Kind string `json:"kind,omitempty" yaml:"kind,omitempty"`
 
 	Labels map[string]interface{} `json:"labels,omitempty" yaml:"labels,omitempty"`
 
 	Name string `json:"name,omitempty" yaml:"name,omitempty"`
-
-	PacketConfig *PacketConfig `json:"packetConfig,omitempty" yaml:"packet_config,omitempty"`
 
 	RemoveTime string `json:"removeTime,omitempty" yaml:"remove_time,omitempty"`
 

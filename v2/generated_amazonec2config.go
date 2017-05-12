@@ -11,23 +11,13 @@ type Amazonec2Config struct {
 
 	Ami string `json:"ami,omitempty" yaml:"ami,omitempty"`
 
-	BlockDurationMinutes string `json:"blockDurationMinutes,omitempty" yaml:"block_duration_minutes,omitempty"`
-
 	DeviceName string `json:"deviceName,omitempty" yaml:"device_name,omitempty"`
-
-	Endpoint string `json:"endpoint,omitempty" yaml:"endpoint,omitempty"`
 
 	IamInstanceProfile string `json:"iamInstanceProfile,omitempty" yaml:"iam_instance_profile,omitempty"`
 
-	InsecureTransport bool `json:"insecureTransport,omitempty" yaml:"insecure_transport,omitempty"`
-
 	InstanceType string `json:"instanceType,omitempty" yaml:"instance_type,omitempty"`
 
-	KeypairName string `json:"keypairName,omitempty" yaml:"keypair_name,omitempty"`
-
 	Monitoring bool `json:"monitoring,omitempty" yaml:"monitoring,omitempty"`
-
-	OpenPort []string `json:"openPort,omitempty" yaml:"open_port,omitempty"`
 
 	PrivateAddressOnly bool `json:"privateAddressOnly,omitempty" yaml:"private_address_only,omitempty"`
 
@@ -58,8 +48,6 @@ type Amazonec2Config struct {
 	UseEbsOptimizedInstance bool `json:"useEbsOptimizedInstance,omitempty" yaml:"use_ebs_optimized_instance,omitempty"`
 
 	UsePrivateAddress bool `json:"usePrivateAddress,omitempty" yaml:"use_private_address,omitempty"`
-
-	Userdata string `json:"userdata,omitempty" yaml:"userdata,omitempty"`
 
 	VolumeType string `json:"volumeType,omitempty" yaml:"volume_type,omitempty"`
 

@@ -53,8 +53,6 @@ type Host struct {
 
 	EngineStorageDriver string `json:"engineStorageDriver,omitempty" yaml:"engine_storage_driver,omitempty"`
 
-	ExtractedConfig string `json:"extractedConfig,omitempty" yaml:"extracted_config,omitempty"`
-
 	HostTemplateId string `json:"hostTemplateId,omitempty" yaml:"host_template_id,omitempty"`
 
 	Hostname string `json:"hostname,omitempty" yaml:"hostname,omitempty"`
@@ -74,8 +72,6 @@ type Host struct {
 	MilliCpu int64 `json:"milliCpu,omitempty" yaml:"milli_cpu,omitempty"`
 
 	Name string `json:"name,omitempty" yaml:"name,omitempty"`
-
-	PacketConfig *PacketConfig `json:"packetConfig,omitempty" yaml:"packet_config,omitempty"`
 
 	PhysicalHostId string `json:"physicalHostId,omitempty" yaml:"physical_host_id,omitempty"`
 
@@ -132,8 +128,6 @@ type HostOperations interface {
 	ActionPurge(*Host) (*Host, error)
 
 	ActionRemove(*Host) (*Host, error)
-
-	ActionRestore(*Host) (*Host, error)
 
 	ActionUpdate(*Host) (*Host, error)
 }
@@ -265,15 +259,6 @@ func (c *HostClient) ActionRemove(resource *Host) (*Host, error) {
 	resp := &Host{}
 
 	err := c.rancherClient.doAction(HOST_TYPE, "remove", &resource.Resource, nil, resp)
-
-	return resp, err
-}
-
-func (c *HostClient) ActionRestore(resource *Host) (*Host, error) {
-
-	resp := &Host{}
-
-	err := c.rancherClient.doAction(HOST_TYPE, "restore", &resource.Resource, nil, resp)
 
 	return resp, err
 }
