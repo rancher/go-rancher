@@ -53,8 +53,6 @@ type Host struct {
 
 	EngineStorageDriver string `json:"engineStorageDriver,omitempty" yaml:"engine_storage_driver,omitempty"`
 
-	ExtractedConfig string `json:"extractedConfig,omitempty" yaml:"extracted_config,omitempty"`
-
 	HostTemplateId string `json:"hostTemplateId,omitempty" yaml:"host_template_id,omitempty"`
 
 	Hostname string `json:"hostname,omitempty" yaml:"hostname,omitempty"`
