@@ -133,8 +133,6 @@ type HostOperations interface {
 
 	ActionRemove(*Host) (*Host, error)
 
-	ActionRestore(*Host) (*Host, error)
-
 	ActionUpdate(*Host) (*Host, error)
 }
 
@@ -265,15 +263,6 @@ func (c *HostClient) ActionRemove(resource *Host) (*Host, error) {
 	resp := &Host{}
 
 	err := c.rancherClient.doAction(HOST_TYPE, "remove", &resource.Resource, nil, resp)
-
-	return resp, err
-}
-
-func (c *HostClient) ActionRestore(resource *Host) (*Host, error) {
-
-	resp := &Host{}
-
-	err := c.rancherClient.doAction(HOST_TYPE, "restore", &resource.Resource, nil, resp)
 
 	return resp, err
 }

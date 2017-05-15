@@ -67,6 +67,8 @@ type MachineDriverOperations interface {
 
 	ActionActivate(*MachineDriver) (*MachineDriver, error)
 
+	ActionCreate(*MachineDriver) (*MachineDriver, error)
+
 	ActionDeactivate(*MachineDriver) (*MachineDriver, error)
 
 	ActionError(*MachineDriver) (*MachineDriver, error)
