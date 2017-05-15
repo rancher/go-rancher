@@ -9,14 +9,6 @@ type AzureConfig struct {
 
 	AvailabilitySet string `json:"availabilitySet,omitempty" yaml:"availability_set,omitempty"`
 
-	ClientId string `json:"clientId,omitempty" yaml:"client_id,omitempty"`
-
-	ClientSecret string `json:"clientSecret,omitempty" yaml:"client_secret,omitempty"`
-
-	CustomData string `json:"customData,omitempty" yaml:"custom_data,omitempty"`
-
-	Dns string `json:"dns,omitempty" yaml:"dns,omitempty"`
-
 	DockerPort string `json:"dockerPort,omitempty" yaml:"docker_port,omitempty"`
 
 	Environment string `json:"environment,omitempty" yaml:"environment,omitempty"`
@@ -38,8 +30,6 @@ type AzureConfig struct {
 	SshUser string `json:"sshUser,omitempty" yaml:"ssh_user,omitempty"`
 
 	StaticPublicIp bool `json:"staticPublicIp,omitempty" yaml:"static_public_ip,omitempty"`
-
-	StorageType string `json:"storageType,omitempty" yaml:"storage_type,omitempty"`
 
 	Subnet string `json:"subnet,omitempty" yaml:"subnet,omitempty"`
 
