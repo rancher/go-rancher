@@ -43,12 +43,15 @@ func getEmbedded(obj interface{}, checkType reflect.Type) interface{} {
 	return nil
 }
 
-func getCollection(obj interface{}) *client.Collection {
+func getCollection(obj interface{}) interface{} {
 	val := getEmbedded(obj, reflect.TypeOf(client.Collection{}))
 	if val == nil {
-		return nil
+		val = getEmbedded(obj, reflect.TypeOf(v2client.Collection{}))
+		if val == nil {
+			return nil
+		}
 	}
-	return val.(*client.Collection)
+	return val
 }
 
 func getResource(obj interface{}) (*client.Resource, *v2client.Resource) {
