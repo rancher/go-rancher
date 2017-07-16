@@ -11,8 +11,6 @@ type Container struct {
 
 	AgentId string `json:"agentId,omitempty" yaml:"agent_id,omitempty"`
 
-	AllocationState string `json:"allocationState,omitempty" yaml:"allocation_state,omitempty"`
-
 	BlkioDeviceOptions map[string]interface{} `json:"blkioDeviceOptions,omitempty" yaml:"blkio_device_options,omitempty"`
 
 	BlkioWeight int64 `json:"blkioWeight,omitempty" yaml:"blkio_weight,omitempty"`
@@ -55,9 +53,15 @@ type Container struct {
 
 	DataVolumesFrom []string `json:"dataVolumesFrom,omitempty" yaml:"data_volumes_from,omitempty"`
 
+	DependsOn []DependsOn `json:"dependsOn,omitempty" yaml:"depends_on,omitempty"`
+
+	DeploymentUnitId string `json:"deploymentUnitId,omitempty" yaml:"deployment_unit_id,omitempty"`
+
 	DeploymentUnitUuid string `json:"deploymentUnitUuid,omitempty" yaml:"deployment_unit_uuid,omitempty"`
 
 	Description string `json:"description,omitempty" yaml:"description,omitempty"`
+
+	Desired bool `json:"desired,omitempty" yaml:"desired,omitempty"`
 
 	Devices []string `json:"devices,omitempty" yaml:"devices,omitempty"`
 
@@ -74,6 +78,8 @@ type Container struct {
 	EntryPoint []string `json:"entryPoint,omitempty" yaml:"entry_point,omitempty"`
 
 	Environment map[string]interface{} `json:"environment,omitempty" yaml:"environment,omitempty"`
+
+	ExitCode int64 `json:"exitCode,omitempty" yaml:"exit_code,omitempty"`
 
 	Expose []string `json:"expose,omitempty" yaml:"expose,omitempty"`
 
@@ -100,6 +106,8 @@ type Container struct {
 	HostId string `json:"hostId,omitempty" yaml:"host_id,omitempty"`
 
 	Hostname string `json:"hostname,omitempty" yaml:"hostname,omitempty"`
+
+	Image string `json:"image,omitempty" yaml:"image,omitempty"`
 
 	ImageUuid string `json:"imageUuid,omitempty" yaml:"image_uuid,omitempty"`
 
@@ -137,6 +145,8 @@ type Container struct {
 
 	MemorySwappiness int64 `json:"memorySwappiness,omitempty" yaml:"memory_swappiness,omitempty"`
 
+	Metadata map[string]interface{} `json:"metadata,omitempty" yaml:"metadata,omitempty"`
+
 	MilliCpuReservation int64 `json:"milliCpuReservation,omitempty" yaml:"milli_cpu_reservation,omitempty"`
 
 	Mounts []MountEntry `json:"mounts,omitempty" yaml:"mounts,omitempty"`
@@ -163,6 +173,8 @@ type Container struct {
 
 	Ports []string `json:"ports,omitempty" yaml:"ports,omitempty"`
 
+	PrePullOnUpgrade string `json:"prePullOnUpgrade,omitempty" yaml:"pre_pull_on_upgrade,omitempty"`
+
 	PrimaryIpAddress string `json:"primaryIpAddress,omitempty" yaml:"primary_ip_address,omitempty"`
 
 	PrimaryNetworkId string `json:"primaryNetworkId,omitempty" yaml:"primary_network_id,omitempty"`
@@ -181,7 +193,13 @@ type Container struct {
 
 	RequestedHostId string `json:"requestedHostId,omitempty" yaml:"requested_host_id,omitempty"`
 
+	RequestedIpAddress string `json:"requestedIpAddress,omitempty" yaml:"requested_ip_address,omitempty"`
+
 	RestartPolicy *RestartPolicy `json:"restartPolicy,omitempty" yaml:"restart_policy,omitempty"`
+
+	RetainIp bool `json:"retainIp,omitempty" yaml:"retain_ip,omitempty"`
+
+	RevisionId string `json:"revisionId,omitempty" yaml:"revision_id,omitempty"`
 
 	Secrets []SecretReference `json:"secrets,omitempty" yaml:"secrets,omitempty"`
 
@@ -192,6 +210,8 @@ type Container struct {
 	ServiceIds []string `json:"serviceIds,omitempty" yaml:"service_ids,omitempty"`
 
 	ShmSize int64 `json:"shmSize,omitempty" yaml:"shm_size,omitempty"`
+
+	SidekickTo string `json:"sidekickTo,omitempty" yaml:"sidekick_to,omitempty"`
 
 	StackId string `json:"stackId,omitempty" yaml:"stack_id,omitempty"`
 
@@ -218,8 +238,6 @@ type Container struct {
 	Transitioning string `json:"transitioning,omitempty" yaml:"transitioning,omitempty"`
 
 	TransitioningMessage string `json:"transitioningMessage,omitempty" yaml:"transitioning_message,omitempty"`
-
-	TransitioningProgress int64 `json:"transitioningProgress,omitempty" yaml:"transitioning_progress,omitempty"`
 
 	Tty bool `json:"tty,omitempty" yaml:"tty,omitempty"`
 
@@ -259,13 +277,11 @@ type ContainerOperations interface {
 	ById(id string) (*Container, error)
 	Delete(container *Container) error
 
-	ActionAllocate(*Container) (*Instance, error)
-
 	ActionConsole(*Container, *InstanceConsoleInput) (*InstanceConsole, error)
 
-	ActionCreate(*Container) (*Instance, error)
+	ActionConverttoservice(*Container) (*Service, error)
 
-	ActionDeallocate(*Container) (*Instance, error)
+	ActionCreate(*Container) (*Instance, error)
 
 	ActionError(*Container) (*Instance, error)
 
@@ -273,13 +289,9 @@ type ContainerOperations interface {
 
 	ActionLogs(*Container, *ContainerLogs) (*HostAccess, error)
 
-	ActionMigrate(*Container) (*Instance, error)
-
 	ActionProxy(*Container, *ContainerProxy) (*HostAccess, error)
 
-	ActionPurge(*Container) (*Instance, error)
-
-	ActionRemove(*Container) (*Instance, error)
+	ActionRemove(*Container, *InstanceRemove) (*Instance, error)
 
 	ActionRestart(*Container) (*Instance, error)
 
@@ -289,11 +301,7 @@ type ContainerOperations interface {
 
 	ActionUpdate(*Container) (*Instance, error)
 
-	ActionUpdatehealthy(*Container) (*Instance, error)
-
-	ActionUpdatereinitializing(*Container) (*Instance, error)
-
-	ActionUpdateunhealthy(*Container) (*Instance, error)
+	ActionUpgrade(*Container, *ContainerUpgrade) (*Revision, error)
 }
 
 func newContainerClient(rancherClient *RancherClient) *ContainerClient {
@@ -346,15 +354,6 @@ func (c *ContainerClient) Delete(container *Container) error {
 	return c.rancherClient.doResourceDelete(CONTAINER_TYPE, &container.Resource)
 }
 
-func (c *ContainerClient) ActionAllocate(resource *Container) (*Instance, error) {
-
-	resp := &Instance{}
-
-	err := c.rancherClient.doAction(CONTAINER_TYPE, "allocate", &resource.Resource, nil, resp)
-
-	return resp, err
-}
-
 func (c *ContainerClient) ActionConsole(resource *Container, input *InstanceConsoleInput) (*InstanceConsole, error) {
 
 	resp := &InstanceConsole{}
@@ -364,20 +363,20 @@ func (c *ContainerClient) ActionConsole(resource *Container, input *InstanceCons
 	return resp, err
 }
 
+func (c *ContainerClient) ActionConverttoservice(resource *Container) (*Service, error) {
+
+	resp := &Service{}
+
+	err := c.rancherClient.doAction(CONTAINER_TYPE, "converttoservice", &resource.Resource, nil, resp)
+
+	return resp, err
+}
+
 func (c *ContainerClient) ActionCreate(resource *Container) (*Instance, error) {
 
 	resp := &Instance{}
 
 	err := c.rancherClient.doAction(CONTAINER_TYPE, "create", &resource.Resource, nil, resp)
-
-	return resp, err
-}
-
-func (c *ContainerClient) ActionDeallocate(resource *Container) (*Instance, error) {
-
-	resp := &Instance{}
-
-	err := c.rancherClient.doAction(CONTAINER_TYPE, "deallocate", &resource.Resource, nil, resp)
 
 	return resp, err
 }
@@ -409,15 +408,6 @@ func (c *ContainerClient) ActionLogs(resource *Container, input *ContainerLogs) 
 	return resp, err
 }
 
-func (c *ContainerClient) ActionMigrate(resource *Container) (*Instance, error) {
-
-	resp := &Instance{}
-
-	err := c.rancherClient.doAction(CONTAINER_TYPE, "migrate", &resource.Resource, nil, resp)
-
-	return resp, err
-}
-
 func (c *ContainerClient) ActionProxy(resource *Container, input *ContainerProxy) (*HostAccess, error) {
 
 	resp := &HostAccess{}
@@ -427,20 +417,11 @@ func (c *ContainerClient) ActionProxy(resource *Container, input *ContainerProxy
 	return resp, err
 }
 
-func (c *ContainerClient) ActionPurge(resource *Container) (*Instance, error) {
+func (c *ContainerClient) ActionRemove(resource *Container, input *InstanceRemove) (*Instance, error) {
 
 	resp := &Instance{}
 
-	err := c.rancherClient.doAction(CONTAINER_TYPE, "purge", &resource.Resource, nil, resp)
-
-	return resp, err
-}
-
-func (c *ContainerClient) ActionRemove(resource *Container) (*Instance, error) {
-
-	resp := &Instance{}
-
-	err := c.rancherClient.doAction(CONTAINER_TYPE, "remove", &resource.Resource, nil, resp)
+	err := c.rancherClient.doAction(CONTAINER_TYPE, "remove", &resource.Resource, input, resp)
 
 	return resp, err
 }
@@ -481,29 +462,11 @@ func (c *ContainerClient) ActionUpdate(resource *Container) (*Instance, error) {
 	return resp, err
 }
 
-func (c *ContainerClient) ActionUpdatehealthy(resource *Container) (*Instance, error) {
+func (c *ContainerClient) ActionUpgrade(resource *Container, input *ContainerUpgrade) (*Revision, error) {
 
-	resp := &Instance{}
+	resp := &Revision{}
 
-	err := c.rancherClient.doAction(CONTAINER_TYPE, "updatehealthy", &resource.Resource, nil, resp)
-
-	return resp, err
-}
-
-func (c *ContainerClient) ActionUpdatereinitializing(resource *Container) (*Instance, error) {
-
-	resp := &Instance{}
-
-	err := c.rancherClient.doAction(CONTAINER_TYPE, "updatereinitializing", &resource.Resource, nil, resp)
-
-	return resp, err
-}
-
-func (c *ContainerClient) ActionUpdateunhealthy(resource *Container) (*Instance, error) {
-
-	resp := &Instance{}
-
-	err := c.rancherClient.doAction(CONTAINER_TYPE, "updateunhealthy", &resource.Resource, nil, resp)
+	err := c.rancherClient.doAction(CONTAINER_TYPE, "upgrade", &resource.Resource, input, resp)
 
 	return resp, err
 }

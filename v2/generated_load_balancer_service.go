@@ -11,6 +11,10 @@ type LoadBalancerService struct {
 
 	AssignServiceIpAddress bool `json:"assignServiceIpAddress,omitempty" yaml:"assign_service_ip_address,omitempty"`
 
+	BatchSize int64 `json:"batchSize,omitempty" yaml:"batch_size,omitempty"`
+
+	CompleteUpdate bool `json:"completeUpdate,omitempty" yaml:"complete_update,omitempty"`
+
 	Created string `json:"created,omitempty" yaml:"created,omitempty"`
 
 	CurrentScale int64 `json:"currentScale,omitempty" yaml:"current_scale,omitempty"`
@@ -27,17 +31,19 @@ type LoadBalancerService struct {
 
 	InstanceIds []string `json:"instanceIds,omitempty" yaml:"instance_ids,omitempty"`
 
+	IntervalMillis int64 `json:"intervalMillis,omitempty" yaml:"interval_millis,omitempty"`
+
 	Kind string `json:"kind,omitempty" yaml:"kind,omitempty"`
 
 	LaunchConfig *LaunchConfig `json:"launchConfig,omitempty" yaml:"launch_config,omitempty"`
 
 	LbConfig *LbConfig `json:"lbConfig,omitempty" yaml:"lb_config,omitempty"`
 
-	LinkedServices map[string]interface{} `json:"linkedServices,omitempty" yaml:"linked_services,omitempty"`
-
 	Metadata map[string]interface{} `json:"metadata,omitempty" yaml:"metadata,omitempty"`
 
 	Name string `json:"name,omitempty" yaml:"name,omitempty"`
+
+	PreviousRevisionId string `json:"previousRevisionId,omitempty" yaml:"previous_revision_id,omitempty"`
 
 	PublicEndpoints []PublicEndpoint `json:"publicEndpoints,omitempty" yaml:"public_endpoints,omitempty"`
 
@@ -45,15 +51,19 @@ type LoadBalancerService struct {
 
 	Removed string `json:"removed,omitempty" yaml:"removed,omitempty"`
 
-	RetainIp bool `json:"retainIp,omitempty" yaml:"retain_ip,omitempty"`
+	RevisionId string `json:"revisionId,omitempty" yaml:"revision_id,omitempty"`
 
 	Scale int64 `json:"scale,omitempty" yaml:"scale,omitempty"`
 
-	ScalePolicy *ScalePolicy `json:"scalePolicy,omitempty" yaml:"scale_policy,omitempty"`
+	ScaleIncrement int64 `json:"scaleIncrement,omitempty" yaml:"scale_increment,omitempty"`
 
-	SelectorLink string `json:"selectorLink,omitempty" yaml:"selector_link,omitempty"`
+	ScaleMax int64 `json:"scaleMax,omitempty" yaml:"scale_max,omitempty"`
+
+	ScaleMin int64 `json:"scaleMin,omitempty" yaml:"scale_min,omitempty"`
 
 	StackId string `json:"stackId,omitempty" yaml:"stack_id,omitempty"`
+
+	StartFirst bool `json:"startFirst,omitempty" yaml:"start_first,omitempty"`
 
 	StartOnCreate bool `json:"startOnCreate,omitempty" yaml:"start_on_create,omitempty"`
 
@@ -64,8 +74,6 @@ type LoadBalancerService struct {
 	Transitioning string `json:"transitioning,omitempty" yaml:"transitioning,omitempty"`
 
 	TransitioningMessage string `json:"transitioningMessage,omitempty" yaml:"transitioning_message,omitempty"`
-
-	TransitioningProgress int64 `json:"transitioningProgress,omitempty" yaml:"transitioning_progress,omitempty"`
 
 	Upgrade *ServiceUpgrade `json:"upgrade,omitempty" yaml:"upgrade,omitempty"`
 
@@ -93,27 +101,25 @@ type LoadBalancerServiceOperations interface {
 
 	ActionActivate(*LoadBalancerService) (*Service, error)
 
-	ActionAddservicelink(*LoadBalancerService, *AddRemoveServiceLinkInput) (*Service, error)
-
 	ActionCancelupgrade(*LoadBalancerService) (*Service, error)
-
-	ActionContinueupgrade(*LoadBalancerService) (*Service, error)
 
 	ActionCreate(*LoadBalancerService) (*Service, error)
 
 	ActionDeactivate(*LoadBalancerService) (*Service, error)
 
+	ActionError(*LoadBalancerService) (*Service, error)
+
 	ActionFinishupgrade(*LoadBalancerService) (*Service, error)
+
+	ActionGarbagecollect(*LoadBalancerService) (*Service, error)
+
+	ActionPause(*LoadBalancerService) (*Service, error)
 
 	ActionRemove(*LoadBalancerService) (*Service, error)
 
-	ActionRemoveservicelink(*LoadBalancerService, *AddRemoveServiceLinkInput) (*Service, error)
+	ActionRestart(*LoadBalancerService) (*Service, error)
 
-	ActionRestart(*LoadBalancerService, *ServiceRestart) (*Service, error)
-
-	ActionRollback(*LoadBalancerService) (*Service, error)
-
-	ActionSetservicelinks(*LoadBalancerService, *SetServiceLinksInput) (*Service, error)
+	ActionRollback(*LoadBalancerService, *ServiceRollback) (*Service, error)
 
 	ActionUpdate(*LoadBalancerService) (*Service, error)
 
@@ -179,29 +185,11 @@ func (c *LoadBalancerServiceClient) ActionActivate(resource *LoadBalancerService
 	return resp, err
 }
 
-func (c *LoadBalancerServiceClient) ActionAddservicelink(resource *LoadBalancerService, input *AddRemoveServiceLinkInput) (*Service, error) {
-
-	resp := &Service{}
-
-	err := c.rancherClient.doAction(LOAD_BALANCER_SERVICE_TYPE, "addservicelink", &resource.Resource, input, resp)
-
-	return resp, err
-}
-
 func (c *LoadBalancerServiceClient) ActionCancelupgrade(resource *LoadBalancerService) (*Service, error) {
 
 	resp := &Service{}
 
 	err := c.rancherClient.doAction(LOAD_BALANCER_SERVICE_TYPE, "cancelupgrade", &resource.Resource, nil, resp)
-
-	return resp, err
-}
-
-func (c *LoadBalancerServiceClient) ActionContinueupgrade(resource *LoadBalancerService) (*Service, error) {
-
-	resp := &Service{}
-
-	err := c.rancherClient.doAction(LOAD_BALANCER_SERVICE_TYPE, "continueupgrade", &resource.Resource, nil, resp)
 
 	return resp, err
 }
@@ -224,11 +212,38 @@ func (c *LoadBalancerServiceClient) ActionDeactivate(resource *LoadBalancerServi
 	return resp, err
 }
 
+func (c *LoadBalancerServiceClient) ActionError(resource *LoadBalancerService) (*Service, error) {
+
+	resp := &Service{}
+
+	err := c.rancherClient.doAction(LOAD_BALANCER_SERVICE_TYPE, "error", &resource.Resource, nil, resp)
+
+	return resp, err
+}
+
 func (c *LoadBalancerServiceClient) ActionFinishupgrade(resource *LoadBalancerService) (*Service, error) {
 
 	resp := &Service{}
 
 	err := c.rancherClient.doAction(LOAD_BALANCER_SERVICE_TYPE, "finishupgrade", &resource.Resource, nil, resp)
+
+	return resp, err
+}
+
+func (c *LoadBalancerServiceClient) ActionGarbagecollect(resource *LoadBalancerService) (*Service, error) {
+
+	resp := &Service{}
+
+	err := c.rancherClient.doAction(LOAD_BALANCER_SERVICE_TYPE, "garbagecollect", &resource.Resource, nil, resp)
+
+	return resp, err
+}
+
+func (c *LoadBalancerServiceClient) ActionPause(resource *LoadBalancerService) (*Service, error) {
+
+	resp := &Service{}
+
+	err := c.rancherClient.doAction(LOAD_BALANCER_SERVICE_TYPE, "pause", &resource.Resource, nil, resp)
 
 	return resp, err
 }
@@ -242,38 +257,20 @@ func (c *LoadBalancerServiceClient) ActionRemove(resource *LoadBalancerService) 
 	return resp, err
 }
 
-func (c *LoadBalancerServiceClient) ActionRemoveservicelink(resource *LoadBalancerService, input *AddRemoveServiceLinkInput) (*Service, error) {
+func (c *LoadBalancerServiceClient) ActionRestart(resource *LoadBalancerService) (*Service, error) {
 
 	resp := &Service{}
 
-	err := c.rancherClient.doAction(LOAD_BALANCER_SERVICE_TYPE, "removeservicelink", &resource.Resource, input, resp)
+	err := c.rancherClient.doAction(LOAD_BALANCER_SERVICE_TYPE, "restart", &resource.Resource, nil, resp)
 
 	return resp, err
 }
 
-func (c *LoadBalancerServiceClient) ActionRestart(resource *LoadBalancerService, input *ServiceRestart) (*Service, error) {
+func (c *LoadBalancerServiceClient) ActionRollback(resource *LoadBalancerService, input *ServiceRollback) (*Service, error) {
 
 	resp := &Service{}
 
-	err := c.rancherClient.doAction(LOAD_BALANCER_SERVICE_TYPE, "restart", &resource.Resource, input, resp)
-
-	return resp, err
-}
-
-func (c *LoadBalancerServiceClient) ActionRollback(resource *LoadBalancerService) (*Service, error) {
-
-	resp := &Service{}
-
-	err := c.rancherClient.doAction(LOAD_BALANCER_SERVICE_TYPE, "rollback", &resource.Resource, nil, resp)
-
-	return resp, err
-}
-
-func (c *LoadBalancerServiceClient) ActionSetservicelinks(resource *LoadBalancerService, input *SetServiceLinksInput) (*Service, error) {
-
-	resp := &Service{}
-
-	err := c.rancherClient.doAction(LOAD_BALANCER_SERVICE_TYPE, "setservicelinks", &resource.Resource, input, resp)
+	err := c.rancherClient.doAction(LOAD_BALANCER_SERVICE_TYPE, "rollback", &resource.Resource, input, resp)
 
 	return resp, err
 }

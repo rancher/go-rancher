@@ -33,8 +33,6 @@ type Password struct {
 
 	TransitioningMessage string `json:"transitioningMessage,omitempty" yaml:"transitioning_message,omitempty"`
 
-	TransitioningProgress int64 `json:"transitioningProgress,omitempty" yaml:"transitioning_progress,omitempty"`
-
 	Uuid string `json:"uuid,omitempty" yaml:"uuid,omitempty"`
 }
 
@@ -62,8 +60,6 @@ type PasswordOperations interface {
 	ActionCreate(*Password) (*Credential, error)
 
 	ActionDeactivate(*Password) (*Credential, error)
-
-	ActionPurge(*Password) (*Credential, error)
 
 	ActionRemove(*Password) (*Credential, error)
 
@@ -152,15 +148,6 @@ func (c *PasswordClient) ActionDeactivate(resource *Password) (*Credential, erro
 	resp := &Credential{}
 
 	err := c.rancherClient.doAction(PASSWORD_TYPE, "deactivate", &resource.Resource, nil, resp)
-
-	return resp, err
-}
-
-func (c *PasswordClient) ActionPurge(resource *Password) (*Credential, error) {
-
-	resp := &Credential{}
-
-	err := c.rancherClient.doAction(PASSWORD_TYPE, "purge", &resource.Resource, nil, resp)
 
 	return resp, err
 }

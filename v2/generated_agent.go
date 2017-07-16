@@ -31,8 +31,6 @@ type Agent struct {
 
 	TransitioningMessage string `json:"transitioningMessage,omitempty" yaml:"transitioning_message,omitempty"`
 
-	TransitioningProgress int64 `json:"transitioningProgress,omitempty" yaml:"transitioning_progress,omitempty"`
-
 	Uri string `json:"uri,omitempty" yaml:"uri,omitempty"`
 
 	Uuid string `json:"uuid,omitempty" yaml:"uuid,omitempty"`
@@ -62,10 +60,6 @@ type AgentOperations interface {
 	ActionDeactivate(*Agent) (*Agent, error)
 
 	ActionDisconnect(*Agent) (*Agent, error)
-
-	ActionFinishreconnect(*Agent) (*Agent, error)
-
-	ActionPurge(*Agent) (*Agent, error)
 
 	ActionReconnect(*Agent) (*Agent, error)
 
@@ -156,24 +150,6 @@ func (c *AgentClient) ActionDisconnect(resource *Agent) (*Agent, error) {
 	resp := &Agent{}
 
 	err := c.rancherClient.doAction(AGENT_TYPE, "disconnect", &resource.Resource, nil, resp)
-
-	return resp, err
-}
-
-func (c *AgentClient) ActionFinishreconnect(resource *Agent) (*Agent, error) {
-
-	resp := &Agent{}
-
-	err := c.rancherClient.doAction(AGENT_TYPE, "finishreconnect", &resource.Resource, nil, resp)
-
-	return resp, err
-}
-
-func (c *AgentClient) ActionPurge(resource *Agent) (*Agent, error) {
-
-	resp := &Agent{}
-
-	err := c.rancherClient.doAction(AGENT_TYPE, "purge", &resource.Resource, nil, resp)
 
 	return resp, err
 }

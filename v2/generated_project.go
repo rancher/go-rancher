@@ -25,6 +25,8 @@ type Project struct {
 
 	Members []ProjectMember `json:"members,omitempty" yaml:"members,omitempty"`
 
+	Metadata map[string]interface{} `json:"metadata,omitempty" yaml:"metadata,omitempty"`
+
 	Name string `json:"name,omitempty" yaml:"name,omitempty"`
 
 	Orchestration string `json:"orchestration,omitempty" yaml:"orchestration,omitempty"`
@@ -44,8 +46,6 @@ type Project struct {
 	Transitioning string `json:"transitioning,omitempty" yaml:"transitioning,omitempty"`
 
 	TransitioningMessage string `json:"transitioningMessage,omitempty" yaml:"transitioning_message,omitempty"`
-
-	TransitioningProgress int64 `json:"transitioningProgress,omitempty" yaml:"transitioning_progress,omitempty"`
 
 	Uuid string `json:"uuid,omitempty" yaml:"uuid,omitempty"`
 

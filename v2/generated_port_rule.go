@@ -11,6 +11,8 @@ type PortRule struct {
 
 	Hostname string `json:"hostname,omitempty" yaml:"hostname,omitempty"`
 
+	InstanceId string `json:"instanceId,omitempty" yaml:"instance_id,omitempty"`
+
 	Path string `json:"path,omitempty" yaml:"path,omitempty"`
 
 	Priority int64 `json:"priority,omitempty" yaml:"priority,omitempty"`

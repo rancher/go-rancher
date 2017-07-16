@@ -8,8 +8,6 @@ type ServiceUpgrade struct {
 	Resource
 
 	InServiceStrategy *InServiceUpgradeStrategy `json:"inServiceStrategy,omitempty" yaml:"in_service_strategy,omitempty"`
-
-	ToServiceStrategy *ToServiceUpgradeStrategy `json:"toServiceStrategy,omitempty" yaml:"to_service_strategy,omitempty"`
 }
 
 type ServiceUpgradeCollection struct {

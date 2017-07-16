@@ -7,6 +7,8 @@ const (
 type StatsAccess struct {
 	Resource
 
+	AuthToken string `json:"authToken,omitempty" yaml:"auth_token,omitempty"`
+
 	Token string `json:"token,omitempty" yaml:"token,omitempty"`
 
 	Url string `json:"url,omitempty" yaml:"url,omitempty"`

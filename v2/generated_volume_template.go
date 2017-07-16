@@ -39,8 +39,6 @@ type VolumeTemplate struct {
 
 	TransitioningMessage string `json:"transitioningMessage,omitempty" yaml:"transitioning_message,omitempty"`
 
-	TransitioningProgress int64 `json:"transitioningProgress,omitempty" yaml:"transitioning_progress,omitempty"`
-
 	Uuid string `json:"uuid,omitempty" yaml:"uuid,omitempty"`
 }
 
@@ -66,8 +64,6 @@ type VolumeTemplateOperations interface {
 	ActionCreate(*VolumeTemplate) (*VolumeTemplate, error)
 
 	ActionDeactivate(*VolumeTemplate) (*VolumeTemplate, error)
-
-	ActionPurge(*VolumeTemplate) (*VolumeTemplate, error)
 
 	ActionRemove(*VolumeTemplate) (*VolumeTemplate, error)
 
@@ -147,15 +143,6 @@ func (c *VolumeTemplateClient) ActionDeactivate(resource *VolumeTemplate) (*Volu
 	resp := &VolumeTemplate{}
 
 	err := c.rancherClient.doAction(VOLUME_TEMPLATE_TYPE, "deactivate", &resource.Resource, nil, resp)
-
-	return resp, err
-}
-
-func (c *VolumeTemplateClient) ActionPurge(resource *VolumeTemplate) (*VolumeTemplate, error) {
-
-	resp := &VolumeTemplate{}
-
-	err := c.rancherClient.doAction(VOLUME_TEMPLATE_TYPE, "purge", &resource.Resource, nil, resp)
 
 	return resp, err
 }

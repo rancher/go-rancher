@@ -1,10 +1,10 @@
 package client
 
 const (
-	VIRTUAL_MACHINE_TYPE = "virtualMachine"
+	CONTAINER_CONFIG_TYPE = "containerConfig"
 )
 
-type VirtualMachine struct {
+type ContainerConfig struct {
 	Resource
 
 	AccountId string `json:"accountId,omitempty" yaml:"account_id,omitempty"`
@@ -14,6 +14,12 @@ type VirtualMachine struct {
 	BlkioDeviceOptions map[string]interface{} `json:"blkioDeviceOptions,omitempty" yaml:"blkio_device_options,omitempty"`
 
 	BlkioWeight int64 `json:"blkioWeight,omitempty" yaml:"blkio_weight,omitempty"`
+
+	Build *DockerBuild `json:"build,omitempty" yaml:"build,omitempty"`
+
+	CapAdd []string `json:"capAdd,omitempty" yaml:"cap_add,omitempty"`
+
+	CapDrop []string `json:"capDrop,omitempty" yaml:"cap_drop,omitempty"`
 
 	CgroupParent string `json:"cgroupParent,omitempty" yaml:"cgroup_parent,omitempty"`
 
@@ -41,6 +47,12 @@ type VirtualMachine struct {
 
 	Data map[string]interface{} `json:"data,omitempty" yaml:"data,omitempty"`
 
+	DataVolumeMounts map[string]interface{} `json:"dataVolumeMounts,omitempty" yaml:"data_volume_mounts,omitempty"`
+
+	DataVolumes []string `json:"dataVolumes,omitempty" yaml:"data_volumes,omitempty"`
+
+	DataVolumesFrom []string `json:"dataVolumesFrom,omitempty" yaml:"data_volumes_from,omitempty"`
+
 	DependsOn []DependsOn `json:"dependsOn,omitempty" yaml:"depends_on,omitempty"`
 
 	DeploymentUnitId string `json:"deploymentUnitId,omitempty" yaml:"deployment_unit_id,omitempty"`
@@ -51,9 +63,9 @@ type VirtualMachine struct {
 
 	Desired bool `json:"desired,omitempty" yaml:"desired,omitempty"`
 
-	DiskQuota int64 `json:"diskQuota,omitempty" yaml:"disk_quota,omitempty"`
+	Devices []string `json:"devices,omitempty" yaml:"devices,omitempty"`
 
-	Disks []VirtualMachineDisk `json:"disks,omitempty" yaml:"disks,omitempty"`
+	DiskQuota int64 `json:"diskQuota,omitempty" yaml:"disk_quota,omitempty"`
 
 	Dns []string `json:"dns,omitempty" yaml:"dns,omitempty"`
 
@@ -62,6 +74,10 @@ type VirtualMachine struct {
 	DnsSearch []string `json:"dnsSearch,omitempty" yaml:"dns_search,omitempty"`
 
 	DomainName string `json:"domainName,omitempty" yaml:"domain_name,omitempty"`
+
+	EntryPoint []string `json:"entryPoint,omitempty" yaml:"entry_point,omitempty"`
+
+	Environment map[string]interface{} `json:"environment,omitempty" yaml:"environment,omitempty"`
 
 	ExitCode int64 `json:"exitCode,omitempty" yaml:"exit_code,omitempty"`
 
@@ -119,9 +135,9 @@ type VirtualMachine struct {
 
 	LogConfig *LogConfig `json:"logConfig,omitempty" yaml:"log_config,omitempty"`
 
-	Memory int64 `json:"memory,omitempty" yaml:"memory,omitempty"`
+	LxcConf map[string]interface{} `json:"lxcConf,omitempty" yaml:"lxc_conf,omitempty"`
 
-	MemoryMb int64 `json:"memoryMb,omitempty" yaml:"memory_mb,omitempty"`
+	Memory int64 `json:"memory,omitempty" yaml:"memory,omitempty"`
 
 	MemoryReservation int64 `json:"memoryReservation,omitempty" yaml:"memory_reservation,omitempty"`
 
@@ -141,6 +157,8 @@ type VirtualMachine struct {
 
 	NetAlias []string `json:"netAlias,omitempty" yaml:"net_alias,omitempty"`
 
+	NetworkContainerId string `json:"networkContainerId,omitempty" yaml:"network_container_id,omitempty"`
+
 	NetworkIds []string `json:"networkIds,omitempty" yaml:"network_ids,omitempty"`
 
 	NetworkMode string `json:"networkMode,omitempty" yaml:"network_mode,omitempty"`
@@ -149,13 +167,23 @@ type VirtualMachine struct {
 
 	OomScoreAdj int64 `json:"oomScoreAdj,omitempty" yaml:"oom_score_adj,omitempty"`
 
+	PidMode string `json:"pidMode,omitempty" yaml:"pid_mode,omitempty"`
+
 	PidsLimit int64 `json:"pidsLimit,omitempty" yaml:"pids_limit,omitempty"`
 
 	Ports []string `json:"ports,omitempty" yaml:"ports,omitempty"`
 
+	PrePullOnUpgrade string `json:"prePullOnUpgrade,omitempty" yaml:"pre_pull_on_upgrade,omitempty"`
+
 	PrimaryIpAddress string `json:"primaryIpAddress,omitempty" yaml:"primary_ip_address,omitempty"`
 
 	PrimaryNetworkId string `json:"primaryNetworkId,omitempty" yaml:"primary_network_id,omitempty"`
+
+	Privileged bool `json:"privileged,omitempty" yaml:"privileged,omitempty"`
+
+	PublishAllPorts bool `json:"publishAllPorts,omitempty" yaml:"publish_all_ports,omitempty"`
+
+	ReadOnly bool `json:"readOnly,omitempty" yaml:"read_only,omitempty"`
 
 	RegistryCredentialId string `json:"registryCredentialId,omitempty" yaml:"registry_credential_id,omitempty"`
 
@@ -170,6 +198,10 @@ type VirtualMachine struct {
 	RestartPolicy *RestartPolicy `json:"restartPolicy,omitempty" yaml:"restart_policy,omitempty"`
 
 	RetainIp bool `json:"retainIp,omitempty" yaml:"retain_ip,omitempty"`
+
+	RevisionId string `json:"revisionId,omitempty" yaml:"revision_id,omitempty"`
+
+	Secrets []SecretReference `json:"secrets,omitempty" yaml:"secrets,omitempty"`
 
 	SecurityOpt []string `json:"securityOpt,omitempty" yaml:"security_opt,omitempty"`
 
@@ -189,6 +221,8 @@ type VirtualMachine struct {
 
 	State string `json:"state,omitempty" yaml:"state,omitempty"`
 
+	StdinOpen bool `json:"stdinOpen,omitempty" yaml:"stdin_open,omitempty"`
+
 	StopSignal string `json:"stopSignal,omitempty" yaml:"stop_signal,omitempty"`
 
 	StorageOpt map[string]interface{} `json:"storageOpt,omitempty" yaml:"storage_opt,omitempty"`
@@ -205,11 +239,13 @@ type VirtualMachine struct {
 
 	TransitioningMessage string `json:"transitioningMessage,omitempty" yaml:"transitioning_message,omitempty"`
 
+	Tty bool `json:"tty,omitempty" yaml:"tty,omitempty"`
+
 	Ulimits []Ulimit `json:"ulimits,omitempty" yaml:"ulimits,omitempty"`
 
-	UserPorts []string `json:"userPorts,omitempty" yaml:"user_ports,omitempty"`
+	User string `json:"user,omitempty" yaml:"user,omitempty"`
 
-	Userdata string `json:"userdata,omitempty" yaml:"userdata,omitempty"`
+	UserPorts []string `json:"userPorts,omitempty" yaml:"user_ports,omitempty"`
 
 	UsernsMode string `json:"usernsMode,omitempty" yaml:"userns_mode,omitempty"`
 
@@ -217,85 +253,83 @@ type VirtualMachine struct {
 
 	Uuid string `json:"uuid,omitempty" yaml:"uuid,omitempty"`
 
-	Vcpu int64 `json:"vcpu,omitempty" yaml:"vcpu,omitempty"`
-
 	Version string `json:"version,omitempty" yaml:"version,omitempty"`
 
 	VolumeDriver string `json:"volumeDriver,omitempty" yaml:"volume_driver,omitempty"`
+
+	WorkingDir string `json:"workingDir,omitempty" yaml:"working_dir,omitempty"`
 }
 
-type VirtualMachineCollection struct {
+type ContainerConfigCollection struct {
 	Collection
-	Data   []VirtualMachine `json:"data,omitempty"`
-	client *VirtualMachineClient
+	Data   []ContainerConfig `json:"data,omitempty"`
+	client *ContainerConfigClient
 }
 
-type VirtualMachineClient struct {
+type ContainerConfigClient struct {
 	rancherClient *RancherClient
 }
 
-type VirtualMachineOperations interface {
-	List(opts *ListOpts) (*VirtualMachineCollection, error)
-	Create(opts *VirtualMachine) (*VirtualMachine, error)
-	Update(existing *VirtualMachine, updates interface{}) (*VirtualMachine, error)
-	ById(id string) (*VirtualMachine, error)
-	Delete(container *VirtualMachine) error
+type ContainerConfigOperations interface {
+	List(opts *ListOpts) (*ContainerConfigCollection, error)
+	Create(opts *ContainerConfig) (*ContainerConfig, error)
+	Update(existing *ContainerConfig, updates interface{}) (*ContainerConfig, error)
+	ById(id string) (*ContainerConfig, error)
+	Delete(container *ContainerConfig) error
 
-	ActionConsole(*VirtualMachine, *InstanceConsoleInput) (*InstanceConsole, error)
+	ActionConsole(*ContainerConfig, *InstanceConsoleInput) (*InstanceConsole, error)
 
-	ActionConverttoservice(*VirtualMachine) (*Service, error)
+	ActionConverttoservice(*ContainerConfig) (*Service, error)
 
-	ActionCreate(*VirtualMachine) (*Instance, error)
+	ActionCreate(*ContainerConfig) (*Instance, error)
 
-	ActionError(*VirtualMachine) (*Instance, error)
+	ActionError(*ContainerConfig) (*Instance, error)
 
-	ActionExecute(*VirtualMachine, *ContainerExec) (*HostAccess, error)
+	ActionExecute(*ContainerConfig, *ContainerExec) (*HostAccess, error)
 
-	ActionLogs(*VirtualMachine, *ContainerLogs) (*HostAccess, error)
+	ActionProxy(*ContainerConfig, *ContainerProxy) (*HostAccess, error)
 
-	ActionProxy(*VirtualMachine, *ContainerProxy) (*HostAccess, error)
+	ActionRemove(*ContainerConfig, *InstanceRemove) (*Instance, error)
 
-	ActionRemove(*VirtualMachine, *InstanceRemove) (*Instance, error)
+	ActionRestart(*ContainerConfig) (*Instance, error)
 
-	ActionRestart(*VirtualMachine) (*Instance, error)
+	ActionStart(*ContainerConfig) (*Instance, error)
 
-	ActionStart(*VirtualMachine) (*Instance, error)
+	ActionStop(*ContainerConfig, *InstanceStop) (*Instance, error)
 
-	ActionStop(*VirtualMachine, *InstanceStop) (*Instance, error)
+	ActionUpdate(*ContainerConfig) (*Instance, error)
 
-	ActionUpdate(*VirtualMachine) (*Instance, error)
-
-	ActionUpgrade(*VirtualMachine, *ContainerUpgrade) (*Revision, error)
+	ActionUpgrade(*ContainerConfig, *ContainerUpgrade) (*Revision, error)
 }
 
-func newVirtualMachineClient(rancherClient *RancherClient) *VirtualMachineClient {
-	return &VirtualMachineClient{
+func newContainerConfigClient(rancherClient *RancherClient) *ContainerConfigClient {
+	return &ContainerConfigClient{
 		rancherClient: rancherClient,
 	}
 }
 
-func (c *VirtualMachineClient) Create(container *VirtualMachine) (*VirtualMachine, error) {
-	resp := &VirtualMachine{}
-	err := c.rancherClient.doCreate(VIRTUAL_MACHINE_TYPE, container, resp)
+func (c *ContainerConfigClient) Create(container *ContainerConfig) (*ContainerConfig, error) {
+	resp := &ContainerConfig{}
+	err := c.rancherClient.doCreate(CONTAINER_CONFIG_TYPE, container, resp)
 	return resp, err
 }
 
-func (c *VirtualMachineClient) Update(existing *VirtualMachine, updates interface{}) (*VirtualMachine, error) {
-	resp := &VirtualMachine{}
-	err := c.rancherClient.doUpdate(VIRTUAL_MACHINE_TYPE, &existing.Resource, updates, resp)
+func (c *ContainerConfigClient) Update(existing *ContainerConfig, updates interface{}) (*ContainerConfig, error) {
+	resp := &ContainerConfig{}
+	err := c.rancherClient.doUpdate(CONTAINER_CONFIG_TYPE, &existing.Resource, updates, resp)
 	return resp, err
 }
 
-func (c *VirtualMachineClient) List(opts *ListOpts) (*VirtualMachineCollection, error) {
-	resp := &VirtualMachineCollection{}
-	err := c.rancherClient.doList(VIRTUAL_MACHINE_TYPE, opts, resp)
+func (c *ContainerConfigClient) List(opts *ListOpts) (*ContainerConfigCollection, error) {
+	resp := &ContainerConfigCollection{}
+	err := c.rancherClient.doList(CONTAINER_CONFIG_TYPE, opts, resp)
 	resp.client = c
 	return resp, err
 }
 
-func (cc *VirtualMachineCollection) Next() (*VirtualMachineCollection, error) {
+func (cc *ContainerConfigCollection) Next() (*ContainerConfigCollection, error) {
 	if cc != nil && cc.Pagination != nil && cc.Pagination.Next != "" {
-		resp := &VirtualMachineCollection{}
+		resp := &ContainerConfigCollection{}
 		err := cc.client.rancherClient.doNext(cc.Pagination.Next, resp)
 		resp.client = cc.client
 		return resp, err
@@ -303,9 +337,9 @@ func (cc *VirtualMachineCollection) Next() (*VirtualMachineCollection, error) {
 	return nil, nil
 }
 
-func (c *VirtualMachineClient) ById(id string) (*VirtualMachine, error) {
-	resp := &VirtualMachine{}
-	err := c.rancherClient.doById(VIRTUAL_MACHINE_TYPE, id, resp)
+func (c *ContainerConfigClient) ById(id string) (*ContainerConfig, error) {
+	resp := &ContainerConfig{}
+	err := c.rancherClient.doById(CONTAINER_CONFIG_TYPE, id, resp)
 	if apiError, ok := err.(*ApiError); ok {
 		if apiError.StatusCode == 404 {
 			return nil, nil
@@ -314,123 +348,114 @@ func (c *VirtualMachineClient) ById(id string) (*VirtualMachine, error) {
 	return resp, err
 }
 
-func (c *VirtualMachineClient) Delete(container *VirtualMachine) error {
-	return c.rancherClient.doResourceDelete(VIRTUAL_MACHINE_TYPE, &container.Resource)
+func (c *ContainerConfigClient) Delete(container *ContainerConfig) error {
+	return c.rancherClient.doResourceDelete(CONTAINER_CONFIG_TYPE, &container.Resource)
 }
 
-func (c *VirtualMachineClient) ActionConsole(resource *VirtualMachine, input *InstanceConsoleInput) (*InstanceConsole, error) {
+func (c *ContainerConfigClient) ActionConsole(resource *ContainerConfig, input *InstanceConsoleInput) (*InstanceConsole, error) {
 
 	resp := &InstanceConsole{}
 
-	err := c.rancherClient.doAction(VIRTUAL_MACHINE_TYPE, "console", &resource.Resource, input, resp)
+	err := c.rancherClient.doAction(CONTAINER_CONFIG_TYPE, "console", &resource.Resource, input, resp)
 
 	return resp, err
 }
 
-func (c *VirtualMachineClient) ActionConverttoservice(resource *VirtualMachine) (*Service, error) {
+func (c *ContainerConfigClient) ActionConverttoservice(resource *ContainerConfig) (*Service, error) {
 
 	resp := &Service{}
 
-	err := c.rancherClient.doAction(VIRTUAL_MACHINE_TYPE, "converttoservice", &resource.Resource, nil, resp)
+	err := c.rancherClient.doAction(CONTAINER_CONFIG_TYPE, "converttoservice", &resource.Resource, nil, resp)
 
 	return resp, err
 }
 
-func (c *VirtualMachineClient) ActionCreate(resource *VirtualMachine) (*Instance, error) {
+func (c *ContainerConfigClient) ActionCreate(resource *ContainerConfig) (*Instance, error) {
 
 	resp := &Instance{}
 
-	err := c.rancherClient.doAction(VIRTUAL_MACHINE_TYPE, "create", &resource.Resource, nil, resp)
+	err := c.rancherClient.doAction(CONTAINER_CONFIG_TYPE, "create", &resource.Resource, nil, resp)
 
 	return resp, err
 }
 
-func (c *VirtualMachineClient) ActionError(resource *VirtualMachine) (*Instance, error) {
+func (c *ContainerConfigClient) ActionError(resource *ContainerConfig) (*Instance, error) {
 
 	resp := &Instance{}
 
-	err := c.rancherClient.doAction(VIRTUAL_MACHINE_TYPE, "error", &resource.Resource, nil, resp)
+	err := c.rancherClient.doAction(CONTAINER_CONFIG_TYPE, "error", &resource.Resource, nil, resp)
 
 	return resp, err
 }
 
-func (c *VirtualMachineClient) ActionExecute(resource *VirtualMachine, input *ContainerExec) (*HostAccess, error) {
+func (c *ContainerConfigClient) ActionExecute(resource *ContainerConfig, input *ContainerExec) (*HostAccess, error) {
 
 	resp := &HostAccess{}
 
-	err := c.rancherClient.doAction(VIRTUAL_MACHINE_TYPE, "execute", &resource.Resource, input, resp)
+	err := c.rancherClient.doAction(CONTAINER_CONFIG_TYPE, "execute", &resource.Resource, input, resp)
 
 	return resp, err
 }
 
-func (c *VirtualMachineClient) ActionLogs(resource *VirtualMachine, input *ContainerLogs) (*HostAccess, error) {
+func (c *ContainerConfigClient) ActionProxy(resource *ContainerConfig, input *ContainerProxy) (*HostAccess, error) {
 
 	resp := &HostAccess{}
 
-	err := c.rancherClient.doAction(VIRTUAL_MACHINE_TYPE, "logs", &resource.Resource, input, resp)
+	err := c.rancherClient.doAction(CONTAINER_CONFIG_TYPE, "proxy", &resource.Resource, input, resp)
 
 	return resp, err
 }
 
-func (c *VirtualMachineClient) ActionProxy(resource *VirtualMachine, input *ContainerProxy) (*HostAccess, error) {
-
-	resp := &HostAccess{}
-
-	err := c.rancherClient.doAction(VIRTUAL_MACHINE_TYPE, "proxy", &resource.Resource, input, resp)
-
-	return resp, err
-}
-
-func (c *VirtualMachineClient) ActionRemove(resource *VirtualMachine, input *InstanceRemove) (*Instance, error) {
+func (c *ContainerConfigClient) ActionRemove(resource *ContainerConfig, input *InstanceRemove) (*Instance, error) {
 
 	resp := &Instance{}
 
-	err := c.rancherClient.doAction(VIRTUAL_MACHINE_TYPE, "remove", &resource.Resource, input, resp)
+	err := c.rancherClient.doAction(CONTAINER_CONFIG_TYPE, "remove", &resource.Resource, input, resp)
 
 	return resp, err
 }
 
-func (c *VirtualMachineClient) ActionRestart(resource *VirtualMachine) (*Instance, error) {
+func (c *ContainerConfigClient) ActionRestart(resource *ContainerConfig) (*Instance, error) {
 
 	resp := &Instance{}
 
-	err := c.rancherClient.doAction(VIRTUAL_MACHINE_TYPE, "restart", &resource.Resource, nil, resp)
+	err := c.rancherClient.doAction(CONTAINER_CONFIG_TYPE, "restart", &resource.Resource, nil, resp)
 
 	return resp, err
 }
 
-func (c *VirtualMachineClient) ActionStart(resource *VirtualMachine) (*Instance, error) {
+func (c *ContainerConfigClient) ActionStart(resource *ContainerConfig) (*Instance, error) {
 
 	resp := &Instance{}
 
-	err := c.rancherClient.doAction(VIRTUAL_MACHINE_TYPE, "start", &resource.Resource, nil, resp)
+	err := c.rancherClient.doAction(CONTAINER_CONFIG_TYPE, "start", &resource.Resource, nil, resp)
 
 	return resp, err
 }
 
-func (c *VirtualMachineClient) ActionStop(resource *VirtualMachine, input *InstanceStop) (*Instance, error) {
+func (c *ContainerConfigClient) ActionStop(resource *ContainerConfig, input *InstanceStop) (*Instance, error) {
 
 	resp := &Instance{}
 
-	err := c.rancherClient.doAction(VIRTUAL_MACHINE_TYPE, "stop", &resource.Resource, input, resp)
+	err := c.rancherClient.doAction(CONTAINER_CONFIG_TYPE, "stop", &resource.Resource, input, resp)
 
 	return resp, err
 }
 
-func (c *VirtualMachineClient) ActionUpdate(resource *VirtualMachine) (*Instance, error) {
+func (c *ContainerConfigClient) ActionUpdate(resource *ContainerConfig) (*Instance, error) {
 
 	resp := &Instance{}
 
-	err := c.rancherClient.doAction(VIRTUAL_MACHINE_TYPE, "update", &resource.Resource, nil, resp)
+	err := c.rancherClient.doAction(CONTAINER_CONFIG_TYPE, "update", &resource.Resource, nil, resp)
 
 	return resp, err
 }
 
-func (c *VirtualMachineClient) ActionUpgrade(resource *VirtualMachine, input *ContainerUpgrade) (*Revision, error) {
+func (c *ContainerConfigClient) ActionUpgrade(resource *ContainerConfig, input *ContainerUpgrade) (*Revision, error) {
 
 	resp := &Revision{}
 
-	err := c.rancherClient.doAction(VIRTUAL_MACHINE_TYPE, "upgrade", &resource.Resource, input, resp)
+	err := c.rancherClient.doAction(CONTAINER_CONFIG_TYPE, "upgrade", &resource.Resource, input, resp)
 
 	return resp, err
 }

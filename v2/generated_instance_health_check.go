@@ -13,13 +13,7 @@ type InstanceHealthCheck struct {
 
 	Interval int64 `json:"interval,omitempty" yaml:"interval,omitempty"`
 
-	Name string `json:"name,omitempty" yaml:"name,omitempty"`
-
 	Port int64 `json:"port,omitempty" yaml:"port,omitempty"`
-
-	RecreateOnQuorumStrategyConfig *RecreateOnQuorumStrategyConfig `json:"recreateOnQuorumStrategyConfig,omitempty" yaml:"recreate_on_quorum_strategy_config,omitempty"`
-
-	ReinitializingTimeout int64 `json:"reinitializingTimeout,omitempty" yaml:"reinitializing_timeout,omitempty"`
 
 	RequestLine string `json:"requestLine,omitempty" yaml:"request_line,omitempty"`
 
