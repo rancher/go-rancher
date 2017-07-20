@@ -87,7 +87,7 @@ type VirtualMachine struct {
 
 	ImageUuid string `json:"imageUuid,omitempty" yaml:"image_uuid,omitempty"`
 
-	Init bool `json:"init,omitempty" yaml:"init,omitempty"`
+	RunInit bool `json:"runInit,omitempty" yaml:"runInit,omitempty"`
 
 	InstanceLinks map[string]interface{} `json:"instanceLinks,omitempty" yaml:"instance_links,omitempty"`
 
