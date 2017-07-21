@@ -9,8 +9,6 @@ type CatalogTemplate struct {
 
 	Answers map[string]interface{} `json:"answers,omitempty" yaml:"answers,omitempty"`
 
-	Binding Binding `json:"binding,omitempty" yaml:"binding,omitempty"`
-
 	Description string `json:"description,omitempty" yaml:"description,omitempty"`
 
 	DockerCompose string `json:"dockerCompose,omitempty" yaml:"docker_compose,omitempty"`

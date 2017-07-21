@@ -11,8 +11,6 @@ type SecondaryLaunchConfig struct {
 
 	AgentId string `json:"agentId,omitempty" yaml:"agent_id,omitempty"`
 
-	AllocationState string `json:"allocationState,omitempty" yaml:"allocation_state,omitempty"`
-
 	BlkioDeviceOptions map[string]interface{} `json:"blkioDeviceOptions,omitempty" yaml:"blkio_device_options,omitempty"`
 
 	BlkioWeight int64 `json:"blkioWeight,omitempty" yaml:"blkio_weight,omitempty"`
@@ -26,6 +24,8 @@ type SecondaryLaunchConfig struct {
 	CgroupParent string `json:"cgroupParent,omitempty" yaml:"cgroup_parent,omitempty"`
 
 	Command []string `json:"command,omitempty" yaml:"command,omitempty"`
+
+	CompleteUpdate bool `json:"completeUpdate,omitempty" yaml:"complete_update,omitempty"`
 
 	Count int64 `json:"count,omitempty" yaml:"count,omitempty"`
 
@@ -57,9 +57,15 @@ type SecondaryLaunchConfig struct {
 
 	DataVolumesFromLaunchConfigs []string `json:"dataVolumesFromLaunchConfigs,omitempty" yaml:"data_volumes_from_launch_configs,omitempty"`
 
+	DependsOn []DependsOn `json:"dependsOn,omitempty" yaml:"depends_on,omitempty"`
+
+	DeploymentUnitId string `json:"deploymentUnitId,omitempty" yaml:"deployment_unit_id,omitempty"`
+
 	DeploymentUnitUuid string `json:"deploymentUnitUuid,omitempty" yaml:"deployment_unit_uuid,omitempty"`
 
 	Description string `json:"description,omitempty" yaml:"description,omitempty"`
+
+	Desired bool `json:"desired,omitempty" yaml:"desired,omitempty"`
 
 	Devices []string `json:"devices,omitempty" yaml:"devices,omitempty"`
 
@@ -78,6 +84,8 @@ type SecondaryLaunchConfig struct {
 	EntryPoint []string `json:"entryPoint,omitempty" yaml:"entry_point,omitempty"`
 
 	Environment map[string]interface{} `json:"environment,omitempty" yaml:"environment,omitempty"`
+
+	ExitCode int64 `json:"exitCode,omitempty" yaml:"exit_code,omitempty"`
 
 	Expose []string `json:"expose,omitempty" yaml:"expose,omitempty"`
 
@@ -104,6 +112,8 @@ type SecondaryLaunchConfig struct {
 	HostId string `json:"hostId,omitempty" yaml:"host_id,omitempty"`
 
 	Hostname string `json:"hostname,omitempty" yaml:"hostname,omitempty"`
+
+	Image string `json:"image,omitempty" yaml:"image,omitempty"`
 
 	ImageUuid string `json:"imageUuid,omitempty" yaml:"image_uuid,omitempty"`
 
@@ -145,6 +155,8 @@ type SecondaryLaunchConfig struct {
 
 	MemorySwappiness int64 `json:"memorySwappiness,omitempty" yaml:"memory_swappiness,omitempty"`
 
+	Metadata map[string]interface{} `json:"metadata,omitempty" yaml:"metadata,omitempty"`
+
 	MilliCpuReservation int64 `json:"milliCpuReservation,omitempty" yaml:"milli_cpu_reservation,omitempty"`
 
 	Mounts []MountEntry `json:"mounts,omitempty" yaml:"mounts,omitempty"`
@@ -173,6 +185,8 @@ type SecondaryLaunchConfig struct {
 
 	Ports []string `json:"ports,omitempty" yaml:"ports,omitempty"`
 
+	PrePullOnUpgrade string `json:"prePullOnUpgrade,omitempty" yaml:"pre_pull_on_upgrade,omitempty"`
+
 	PrimaryIpAddress string `json:"primaryIpAddress,omitempty" yaml:"primary_ip_address,omitempty"`
 
 	PrimaryNetworkId string `json:"primaryNetworkId,omitempty" yaml:"primary_network_id,omitempty"`
@@ -193,6 +207,12 @@ type SecondaryLaunchConfig struct {
 
 	RequestedIpAddress string `json:"requestedIpAddress,omitempty" yaml:"requested_ip_address,omitempty"`
 
+	RestartPolicy *RestartPolicy `json:"restartPolicy,omitempty" yaml:"restart_policy,omitempty"`
+
+	RetainIp bool `json:"retainIp,omitempty" yaml:"retain_ip,omitempty"`
+
+	RevisionId string `json:"revisionId,omitempty" yaml:"revision_id,omitempty"`
+
 	Secrets []SecretReference `json:"secrets,omitempty" yaml:"secrets,omitempty"`
 
 	SecurityOpt []string `json:"securityOpt,omitempty" yaml:"security_opt,omitempty"`
@@ -202,6 +222,8 @@ type SecondaryLaunchConfig struct {
 	ServiceIds []string `json:"serviceIds,omitempty" yaml:"service_ids,omitempty"`
 
 	ShmSize int64 `json:"shmSize,omitempty" yaml:"shm_size,omitempty"`
+
+	SidekickTo string `json:"sidekickTo,omitempty" yaml:"sidekick_to,omitempty"`
 
 	StackId string `json:"stackId,omitempty" yaml:"stack_id,omitempty"`
 
@@ -228,8 +250,6 @@ type SecondaryLaunchConfig struct {
 	Transitioning string `json:"transitioning,omitempty" yaml:"transitioning,omitempty"`
 
 	TransitioningMessage string `json:"transitioningMessage,omitempty" yaml:"transitioning_message,omitempty"`
-
-	TransitioningProgress int64 `json:"transitioningProgress,omitempty" yaml:"transitioning_progress,omitempty"`
 
 	Tty bool `json:"tty,omitempty" yaml:"tty,omitempty"`
 
@@ -273,25 +293,19 @@ type SecondaryLaunchConfigOperations interface {
 	ById(id string) (*SecondaryLaunchConfig, error)
 	Delete(container *SecondaryLaunchConfig) error
 
-	ActionAllocate(*SecondaryLaunchConfig) (*Instance, error)
-
 	ActionConsole(*SecondaryLaunchConfig, *InstanceConsoleInput) (*InstanceConsole, error)
 
-	ActionCreate(*SecondaryLaunchConfig) (*Instance, error)
+	ActionConverttoservice(*SecondaryLaunchConfig) (*Service, error)
 
-	ActionDeallocate(*SecondaryLaunchConfig) (*Instance, error)
+	ActionCreate(*SecondaryLaunchConfig) (*Instance, error)
 
 	ActionError(*SecondaryLaunchConfig) (*Instance, error)
 
 	ActionExecute(*SecondaryLaunchConfig, *ContainerExec) (*HostAccess, error)
 
-	ActionMigrate(*SecondaryLaunchConfig) (*Instance, error)
-
 	ActionProxy(*SecondaryLaunchConfig, *ContainerProxy) (*HostAccess, error)
 
-	ActionPurge(*SecondaryLaunchConfig) (*Instance, error)
-
-	ActionRemove(*SecondaryLaunchConfig) (*Instance, error)
+	ActionRemove(*SecondaryLaunchConfig, *InstanceRemove) (*Instance, error)
 
 	ActionRestart(*SecondaryLaunchConfig) (*Instance, error)
 
@@ -301,11 +315,7 @@ type SecondaryLaunchConfigOperations interface {
 
 	ActionUpdate(*SecondaryLaunchConfig) (*Instance, error)
 
-	ActionUpdatehealthy(*SecondaryLaunchConfig) (*Instance, error)
-
-	ActionUpdatereinitializing(*SecondaryLaunchConfig) (*Instance, error)
-
-	ActionUpdateunhealthy(*SecondaryLaunchConfig) (*Instance, error)
+	ActionUpgrade(*SecondaryLaunchConfig, *ContainerUpgrade) (*Revision, error)
 }
 
 func newSecondaryLaunchConfigClient(rancherClient *RancherClient) *SecondaryLaunchConfigClient {
@@ -358,15 +368,6 @@ func (c *SecondaryLaunchConfigClient) Delete(container *SecondaryLaunchConfig) e
 	return c.rancherClient.doResourceDelete(SECONDARY_LAUNCH_CONFIG_TYPE, &container.Resource)
 }
 
-func (c *SecondaryLaunchConfigClient) ActionAllocate(resource *SecondaryLaunchConfig) (*Instance, error) {
-
-	resp := &Instance{}
-
-	err := c.rancherClient.doAction(SECONDARY_LAUNCH_CONFIG_TYPE, "allocate", &resource.Resource, nil, resp)
-
-	return resp, err
-}
-
 func (c *SecondaryLaunchConfigClient) ActionConsole(resource *SecondaryLaunchConfig, input *InstanceConsoleInput) (*InstanceConsole, error) {
 
 	resp := &InstanceConsole{}
@@ -376,20 +377,20 @@ func (c *SecondaryLaunchConfigClient) ActionConsole(resource *SecondaryLaunchCon
 	return resp, err
 }
 
+func (c *SecondaryLaunchConfigClient) ActionConverttoservice(resource *SecondaryLaunchConfig) (*Service, error) {
+
+	resp := &Service{}
+
+	err := c.rancherClient.doAction(SECONDARY_LAUNCH_CONFIG_TYPE, "converttoservice", &resource.Resource, nil, resp)
+
+	return resp, err
+}
+
 func (c *SecondaryLaunchConfigClient) ActionCreate(resource *SecondaryLaunchConfig) (*Instance, error) {
 
 	resp := &Instance{}
 
 	err := c.rancherClient.doAction(SECONDARY_LAUNCH_CONFIG_TYPE, "create", &resource.Resource, nil, resp)
-
-	return resp, err
-}
-
-func (c *SecondaryLaunchConfigClient) ActionDeallocate(resource *SecondaryLaunchConfig) (*Instance, error) {
-
-	resp := &Instance{}
-
-	err := c.rancherClient.doAction(SECONDARY_LAUNCH_CONFIG_TYPE, "deallocate", &resource.Resource, nil, resp)
 
 	return resp, err
 }
@@ -412,15 +413,6 @@ func (c *SecondaryLaunchConfigClient) ActionExecute(resource *SecondaryLaunchCon
 	return resp, err
 }
 
-func (c *SecondaryLaunchConfigClient) ActionMigrate(resource *SecondaryLaunchConfig) (*Instance, error) {
-
-	resp := &Instance{}
-
-	err := c.rancherClient.doAction(SECONDARY_LAUNCH_CONFIG_TYPE, "migrate", &resource.Resource, nil, resp)
-
-	return resp, err
-}
-
 func (c *SecondaryLaunchConfigClient) ActionProxy(resource *SecondaryLaunchConfig, input *ContainerProxy) (*HostAccess, error) {
 
 	resp := &HostAccess{}
@@ -430,20 +422,11 @@ func (c *SecondaryLaunchConfigClient) ActionProxy(resource *SecondaryLaunchConfi
 	return resp, err
 }
 
-func (c *SecondaryLaunchConfigClient) ActionPurge(resource *SecondaryLaunchConfig) (*Instance, error) {
+func (c *SecondaryLaunchConfigClient) ActionRemove(resource *SecondaryLaunchConfig, input *InstanceRemove) (*Instance, error) {
 
 	resp := &Instance{}
 
-	err := c.rancherClient.doAction(SECONDARY_LAUNCH_CONFIG_TYPE, "purge", &resource.Resource, nil, resp)
-
-	return resp, err
-}
-
-func (c *SecondaryLaunchConfigClient) ActionRemove(resource *SecondaryLaunchConfig) (*Instance, error) {
-
-	resp := &Instance{}
-
-	err := c.rancherClient.doAction(SECONDARY_LAUNCH_CONFIG_TYPE, "remove", &resource.Resource, nil, resp)
+	err := c.rancherClient.doAction(SECONDARY_LAUNCH_CONFIG_TYPE, "remove", &resource.Resource, input, resp)
 
 	return resp, err
 }
@@ -484,29 +467,11 @@ func (c *SecondaryLaunchConfigClient) ActionUpdate(resource *SecondaryLaunchConf
 	return resp, err
 }
 
-func (c *SecondaryLaunchConfigClient) ActionUpdatehealthy(resource *SecondaryLaunchConfig) (*Instance, error) {
+func (c *SecondaryLaunchConfigClient) ActionUpgrade(resource *SecondaryLaunchConfig, input *ContainerUpgrade) (*Revision, error) {
 
-	resp := &Instance{}
+	resp := &Revision{}
 
-	err := c.rancherClient.doAction(SECONDARY_LAUNCH_CONFIG_TYPE, "updatehealthy", &resource.Resource, nil, resp)
-
-	return resp, err
-}
-
-func (c *SecondaryLaunchConfigClient) ActionUpdatereinitializing(resource *SecondaryLaunchConfig) (*Instance, error) {
-
-	resp := &Instance{}
-
-	err := c.rancherClient.doAction(SECONDARY_LAUNCH_CONFIG_TYPE, "updatereinitializing", &resource.Resource, nil, resp)
-
-	return resp, err
-}
-
-func (c *SecondaryLaunchConfigClient) ActionUpdateunhealthy(resource *SecondaryLaunchConfig) (*Instance, error) {
-
-	resp := &Instance{}
-
-	err := c.rancherClient.doAction(SECONDARY_LAUNCH_CONFIG_TYPE, "updateunhealthy", &resource.Resource, nil, resp)
+	err := c.rancherClient.doAction(SECONDARY_LAUNCH_CONFIG_TYPE, "upgrade", &resource.Resource, input, resp)
 
 	return resp, err
 }

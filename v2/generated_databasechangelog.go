@@ -11,13 +11,19 @@ type Databasechangelog struct {
 
 	Comments string `json:"comments,omitempty" yaml:"comments,omitempty"`
 
+	Contexts string `json:"contexts,omitempty" yaml:"contexts,omitempty"`
+
 	Dateexecuted string `json:"dateexecuted,omitempty" yaml:"dateexecuted,omitempty"`
+
+	DeploymentId string `json:"deploymentId,omitempty" yaml:"deployment_id,omitempty"`
 
 	Description string `json:"description,omitempty" yaml:"description,omitempty"`
 
 	Exectype string `json:"exectype,omitempty" yaml:"exectype,omitempty"`
 
 	Filename string `json:"filename,omitempty" yaml:"filename,omitempty"`
+
+	Labels string `json:"labels,omitempty" yaml:"labels,omitempty"`
 
 	Liquibase string `json:"liquibase,omitempty" yaml:"liquibase,omitempty"`
 

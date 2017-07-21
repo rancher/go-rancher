@@ -13,8 +13,6 @@ type Publish struct {
 
 	PreviousIds []string `json:"previousIds,omitempty" yaml:"previous_ids,omitempty"`
 
-	Publisher string `json:"publisher,omitempty" yaml:"publisher,omitempty"`
-
 	ResourceId string `json:"resourceId,omitempty" yaml:"resource_id,omitempty"`
 
 	ResourceType string `json:"resourceType,omitempty" yaml:"resource_type,omitempty"`
@@ -23,11 +21,7 @@ type Publish struct {
 
 	Transitioning string `json:"transitioning,omitempty" yaml:"transitioning,omitempty"`
 
-	TransitioningInternalMessage string `json:"transitioningInternalMessage,omitempty" yaml:"transitioning_internal_message,omitempty"`
-
 	TransitioningMessage string `json:"transitioningMessage,omitempty" yaml:"transitioning_message,omitempty"`
-
-	TransitioningProgress int64 `json:"transitioningProgress,omitempty" yaml:"transitioning_progress,omitempty"`
 }
 
 type PublishCollection struct {

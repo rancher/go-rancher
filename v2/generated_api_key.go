@@ -33,8 +33,6 @@ type ApiKey struct {
 
 	TransitioningMessage string `json:"transitioningMessage,omitempty" yaml:"transitioning_message,omitempty"`
 
-	TransitioningProgress int64 `json:"transitioningProgress,omitempty" yaml:"transitioning_progress,omitempty"`
-
 	Uuid string `json:"uuid,omitempty" yaml:"uuid,omitempty"`
 }
 
@@ -60,8 +58,6 @@ type ApiKeyOperations interface {
 	ActionCreate(*ApiKey) (*Credential, error)
 
 	ActionDeactivate(*ApiKey) (*Credential, error)
-
-	ActionPurge(*ApiKey) (*Credential, error)
 
 	ActionRemove(*ApiKey) (*Credential, error)
 
@@ -141,15 +137,6 @@ func (c *ApiKeyClient) ActionDeactivate(resource *ApiKey) (*Credential, error) {
 	resp := &Credential{}
 
 	err := c.rancherClient.doAction(API_KEY_TYPE, "deactivate", &resource.Resource, nil, resp)
-
-	return resp, err
-}
-
-func (c *ApiKeyClient) ActionPurge(resource *ApiKey) (*Credential, error) {
-
-	resp := &Credential{}
-
-	err := c.rancherClient.doAction(API_KEY_TYPE, "purge", &resource.Resource, nil, resp)
 
 	return resp, err
 }

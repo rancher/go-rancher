@@ -33,8 +33,6 @@ type Credential struct {
 
 	TransitioningMessage string `json:"transitioningMessage,omitempty" yaml:"transitioning_message,omitempty"`
 
-	TransitioningProgress int64 `json:"transitioningProgress,omitempty" yaml:"transitioning_progress,omitempty"`
-
 	Uuid string `json:"uuid,omitempty" yaml:"uuid,omitempty"`
 }
 
@@ -60,8 +58,6 @@ type CredentialOperations interface {
 	ActionCreate(*Credential) (*Credential, error)
 
 	ActionDeactivate(*Credential) (*Credential, error)
-
-	ActionPurge(*Credential) (*Credential, error)
 
 	ActionRemove(*Credential) (*Credential, error)
 
@@ -141,15 +137,6 @@ func (c *CredentialClient) ActionDeactivate(resource *Credential) (*Credential, 
 	resp := &Credential{}
 
 	err := c.rancherClient.doAction(CREDENTIAL_TYPE, "deactivate", &resource.Resource, nil, resp)
-
-	return resp, err
-}
-
-func (c *CredentialClient) ActionPurge(resource *Credential) (*Credential, error) {
-
-	resp := &Credential{}
-
-	err := c.rancherClient.doAction(CREDENTIAL_TYPE, "purge", &resource.Resource, nil, resp)
 
 	return resp, err
 }

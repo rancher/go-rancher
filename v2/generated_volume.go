@@ -25,10 +25,6 @@ type Volume struct {
 
 	HostId string `json:"hostId,omitempty" yaml:"host_id,omitempty"`
 
-	ImageId string `json:"imageId,omitempty" yaml:"image_id,omitempty"`
-
-	InstanceId string `json:"instanceId,omitempty" yaml:"instance_id,omitempty"`
-
 	IsHostPath bool `json:"isHostPath,omitempty" yaml:"is_host_path,omitempty"`
 
 	Kind string `json:"kind,omitempty" yaml:"kind,omitempty"`
@@ -52,8 +48,6 @@ type Volume struct {
 	Transitioning string `json:"transitioning,omitempty" yaml:"transitioning,omitempty"`
 
 	TransitioningMessage string `json:"transitioningMessage,omitempty" yaml:"transitioning_message,omitempty"`
-
-	TransitioningProgress int64 `json:"transitioningProgress,omitempty" yaml:"transitioning_progress,omitempty"`
 
 	Uri string `json:"uri,omitempty" yaml:"uri,omitempty"`
 
@@ -79,21 +73,13 @@ type VolumeOperations interface {
 	ById(id string) (*Volume, error)
 	Delete(container *Volume) error
 
-	ActionAllocate(*Volume) (*Volume, error)
-
 	ActionCreate(*Volume) (*Volume, error)
-
-	ActionDeallocate(*Volume) (*Volume, error)
-
-	ActionPurge(*Volume) (*Volume, error)
 
 	ActionRemove(*Volume) (*Volume, error)
 
 	ActionRestorefrombackup(*Volume, *RestoreFromBackupInput) (*Volume, error)
 
 	ActionReverttosnapshot(*Volume, *RevertToSnapshotInput) (*Volume, error)
-
-	ActionSnapshot(*Volume, *VolumeSnapshotInput) (*Snapshot, error)
 
 	ActionUpdate(*Volume) (*Volume, error)
 }
@@ -148,38 +134,11 @@ func (c *VolumeClient) Delete(container *Volume) error {
 	return c.rancherClient.doResourceDelete(VOLUME_TYPE, &container.Resource)
 }
 
-func (c *VolumeClient) ActionAllocate(resource *Volume) (*Volume, error) {
-
-	resp := &Volume{}
-
-	err := c.rancherClient.doAction(VOLUME_TYPE, "allocate", &resource.Resource, nil, resp)
-
-	return resp, err
-}
-
 func (c *VolumeClient) ActionCreate(resource *Volume) (*Volume, error) {
 
 	resp := &Volume{}
 
 	err := c.rancherClient.doAction(VOLUME_TYPE, "create", &resource.Resource, nil, resp)
-
-	return resp, err
-}
-
-func (c *VolumeClient) ActionDeallocate(resource *Volume) (*Volume, error) {
-
-	resp := &Volume{}
-
-	err := c.rancherClient.doAction(VOLUME_TYPE, "deallocate", &resource.Resource, nil, resp)
-
-	return resp, err
-}
-
-func (c *VolumeClient) ActionPurge(resource *Volume) (*Volume, error) {
-
-	resp := &Volume{}
-
-	err := c.rancherClient.doAction(VOLUME_TYPE, "purge", &resource.Resource, nil, resp)
 
 	return resp, err
 }
@@ -207,15 +166,6 @@ func (c *VolumeClient) ActionReverttosnapshot(resource *Volume, input *RevertToS
 	resp := &Volume{}
 
 	err := c.rancherClient.doAction(VOLUME_TYPE, "reverttosnapshot", &resource.Resource, input, resp)
-
-	return resp, err
-}
-
-func (c *VolumeClient) ActionSnapshot(resource *Volume, input *VolumeSnapshotInput) (*Snapshot, error) {
-
-	resp := &Snapshot{}
-
-	err := c.rancherClient.doAction(VOLUME_TYPE, "snapshot", &resource.Resource, input, resp)
 
 	return resp, err
 }

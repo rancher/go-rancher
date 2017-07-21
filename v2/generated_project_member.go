@@ -35,8 +35,6 @@ type ProjectMember struct {
 
 	TransitioningMessage string `json:"transitioningMessage,omitempty" yaml:"transitioning_message,omitempty"`
 
-	TransitioningProgress int64 `json:"transitioningProgress,omitempty" yaml:"transitioning_progress,omitempty"`
-
 	Uuid string `json:"uuid,omitempty" yaml:"uuid,omitempty"`
 }
 
@@ -62,8 +60,6 @@ type ProjectMemberOperations interface {
 	ActionCreate(*ProjectMember) (*ProjectMember, error)
 
 	ActionDeactivate(*ProjectMember) (*ProjectMember, error)
-
-	ActionPurge(*ProjectMember) (*ProjectMember, error)
 
 	ActionRemove(*ProjectMember) (*ProjectMember, error)
 
@@ -143,15 +139,6 @@ func (c *ProjectMemberClient) ActionDeactivate(resource *ProjectMember) (*Projec
 	resp := &ProjectMember{}
 
 	err := c.rancherClient.doAction(PROJECT_MEMBER_TYPE, "deactivate", &resource.Resource, nil, resp)
-
-	return resp, err
-}
-
-func (c *ProjectMemberClient) ActionPurge(resource *ProjectMember) (*ProjectMember, error) {
-
-	resp := &ProjectMember{}
-
-	err := c.rancherClient.doAction(PROJECT_MEMBER_TYPE, "purge", &resource.Resource, nil, resp)
 
 	return resp, err
 }

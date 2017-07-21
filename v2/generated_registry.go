@@ -37,8 +37,6 @@ type Registry struct {
 
 	TransitioningMessage string `json:"transitioningMessage,omitempty" yaml:"transitioning_message,omitempty"`
 
-	TransitioningProgress int64 `json:"transitioningProgress,omitempty" yaml:"transitioning_progress,omitempty"`
-
 	Uuid string `json:"uuid,omitempty" yaml:"uuid,omitempty"`
 
 	VolumeAccessMode string `json:"volumeAccessMode,omitempty" yaml:"volume_access_mode,omitempty"`
@@ -68,8 +66,6 @@ type RegistryOperations interface {
 	ActionCreate(*Registry) (*StoragePool, error)
 
 	ActionDeactivate(*Registry) (*StoragePool, error)
-
-	ActionPurge(*Registry) (*StoragePool, error)
 
 	ActionRemove(*Registry) (*StoragePool, error)
 
@@ -149,15 +145,6 @@ func (c *RegistryClient) ActionDeactivate(resource *Registry) (*StoragePool, err
 	resp := &StoragePool{}
 
 	err := c.rancherClient.doAction(REGISTRY_TYPE, "deactivate", &resource.Resource, nil, resp)
-
-	return resp, err
-}
-
-func (c *RegistryClient) ActionPurge(resource *Registry) (*StoragePool, error) {
-
-	resp := &StoragePool{}
-
-	err := c.rancherClient.doAction(REGISTRY_TYPE, "purge", &resource.Resource, nil, resp)
 
 	return resp, err
 }

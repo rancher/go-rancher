@@ -13,8 +13,6 @@ type PublicEndpoint struct {
 
 	IpAddress string `json:"ipAddress,omitempty" yaml:"ip_address,omitempty"`
 
-	Port int64 `json:"port,omitempty" yaml:"port,omitempty"`
-
 	ServiceId string `json:"serviceId,omitempty" yaml:"service_id,omitempty"`
 }
 

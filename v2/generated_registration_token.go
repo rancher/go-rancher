@@ -37,8 +37,6 @@ type RegistrationToken struct {
 
 	TransitioningMessage string `json:"transitioningMessage,omitempty" yaml:"transitioning_message,omitempty"`
 
-	TransitioningProgress int64 `json:"transitioningProgress,omitempty" yaml:"transitioning_progress,omitempty"`
-
 	Uuid string `json:"uuid,omitempty" yaml:"uuid,omitempty"`
 }
 
@@ -64,8 +62,6 @@ type RegistrationTokenOperations interface {
 	ActionCreate(*RegistrationToken) (*Credential, error)
 
 	ActionDeactivate(*RegistrationToken) (*Credential, error)
-
-	ActionPurge(*RegistrationToken) (*Credential, error)
 
 	ActionRemove(*RegistrationToken) (*Credential, error)
 
@@ -145,15 +141,6 @@ func (c *RegistrationTokenClient) ActionDeactivate(resource *RegistrationToken) 
 	resp := &Credential{}
 
 	err := c.rancherClient.doAction(REGISTRATION_TOKEN_TYPE, "deactivate", &resource.Resource, nil, resp)
-
-	return resp, err
-}
-
-func (c *RegistrationTokenClient) ActionPurge(resource *RegistrationToken) (*Credential, error) {
-
-	resp := &Credential{}
-
-	err := c.rancherClient.doAction(REGISTRATION_TOKEN_TYPE, "purge", &resource.Resource, nil, resp)
 
 	return resp, err
 }

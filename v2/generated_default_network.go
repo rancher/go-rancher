@@ -43,8 +43,6 @@ type DefaultNetwork struct {
 
 	TransitioningMessage string `json:"transitioningMessage,omitempty" yaml:"transitioning_message,omitempty"`
 
-	TransitioningProgress int64 `json:"transitioningProgress,omitempty" yaml:"transitioning_progress,omitempty"`
-
 	Uuid string `json:"uuid,omitempty" yaml:"uuid,omitempty"`
 }
 
@@ -70,8 +68,6 @@ type DefaultNetworkOperations interface {
 	ActionCreate(*DefaultNetwork) (*Network, error)
 
 	ActionDeactivate(*DefaultNetwork) (*Network, error)
-
-	ActionPurge(*DefaultNetwork) (*Network, error)
 
 	ActionRemove(*DefaultNetwork) (*Network, error)
 
@@ -151,15 +147,6 @@ func (c *DefaultNetworkClient) ActionDeactivate(resource *DefaultNetwork) (*Netw
 	resp := &Network{}
 
 	err := c.rancherClient.doAction(DEFAULT_NETWORK_TYPE, "deactivate", &resource.Resource, nil, resp)
-
-	return resp, err
-}
-
-func (c *DefaultNetworkClient) ActionPurge(resource *DefaultNetwork) (*Network, error) {
-
-	resp := &Network{}
-
-	err := c.rancherClient.doAction(DEFAULT_NETWORK_TYPE, "purge", &resource.Resource, nil, resp)
 
 	return resp, err
 }

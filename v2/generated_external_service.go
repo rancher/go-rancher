@@ -9,6 +9,8 @@ type ExternalService struct {
 
 	AccountId string `json:"accountId,omitempty" yaml:"account_id,omitempty"`
 
+	CompleteUpdate bool `json:"completeUpdate,omitempty" yaml:"complete_update,omitempty"`
+
 	Created string `json:"created,omitempty" yaml:"created,omitempty"`
 
 	Data map[string]interface{} `json:"data,omitempty" yaml:"data,omitempty"`
@@ -33,15 +35,17 @@ type ExternalService struct {
 
 	LaunchConfig *LaunchConfig `json:"launchConfig,omitempty" yaml:"launch_config,omitempty"`
 
-	LinkedServices map[string]interface{} `json:"linkedServices,omitempty" yaml:"linked_services,omitempty"`
-
 	Metadata map[string]interface{} `json:"metadata,omitempty" yaml:"metadata,omitempty"`
 
 	Name string `json:"name,omitempty" yaml:"name,omitempty"`
 
+	PreviousRevisionId string `json:"previousRevisionId,omitempty" yaml:"previous_revision_id,omitempty"`
+
 	RemoveTime string `json:"removeTime,omitempty" yaml:"remove_time,omitempty"`
 
 	Removed string `json:"removed,omitempty" yaml:"removed,omitempty"`
+
+	RevisionId string `json:"revisionId,omitempty" yaml:"revision_id,omitempty"`
 
 	StackId string `json:"stackId,omitempty" yaml:"stack_id,omitempty"`
 
@@ -54,8 +58,6 @@ type ExternalService struct {
 	Transitioning string `json:"transitioning,omitempty" yaml:"transitioning,omitempty"`
 
 	TransitioningMessage string `json:"transitioningMessage,omitempty" yaml:"transitioning_message,omitempty"`
-
-	TransitioningProgress int64 `json:"transitioningProgress,omitempty" yaml:"transitioning_progress,omitempty"`
 
 	Upgrade *ServiceUpgrade `json:"upgrade,omitempty" yaml:"upgrade,omitempty"`
 
@@ -83,19 +85,23 @@ type ExternalServiceOperations interface {
 
 	ActionCancelupgrade(*ExternalService) (*Service, error)
 
-	ActionContinueupgrade(*ExternalService) (*Service, error)
-
 	ActionCreate(*ExternalService) (*Service, error)
 
 	ActionDeactivate(*ExternalService) (*Service, error)
 
+	ActionError(*ExternalService) (*Service, error)
+
 	ActionFinishupgrade(*ExternalService) (*Service, error)
+
+	ActionGarbagecollect(*ExternalService) (*Service, error)
+
+	ActionPause(*ExternalService) (*Service, error)
 
 	ActionRemove(*ExternalService) (*Service, error)
 
-	ActionRestart(*ExternalService, *ServiceRestart) (*Service, error)
+	ActionRestart(*ExternalService) (*Service, error)
 
-	ActionRollback(*ExternalService) (*Service, error)
+	ActionRollback(*ExternalService, *ServiceRollback) (*Service, error)
 
 	ActionUpdate(*ExternalService) (*Service, error)
 
@@ -170,15 +176,6 @@ func (c *ExternalServiceClient) ActionCancelupgrade(resource *ExternalService) (
 	return resp, err
 }
 
-func (c *ExternalServiceClient) ActionContinueupgrade(resource *ExternalService) (*Service, error) {
-
-	resp := &Service{}
-
-	err := c.rancherClient.doAction(EXTERNAL_SERVICE_TYPE, "continueupgrade", &resource.Resource, nil, resp)
-
-	return resp, err
-}
-
 func (c *ExternalServiceClient) ActionCreate(resource *ExternalService) (*Service, error) {
 
 	resp := &Service{}
@@ -197,11 +194,38 @@ func (c *ExternalServiceClient) ActionDeactivate(resource *ExternalService) (*Se
 	return resp, err
 }
 
+func (c *ExternalServiceClient) ActionError(resource *ExternalService) (*Service, error) {
+
+	resp := &Service{}
+
+	err := c.rancherClient.doAction(EXTERNAL_SERVICE_TYPE, "error", &resource.Resource, nil, resp)
+
+	return resp, err
+}
+
 func (c *ExternalServiceClient) ActionFinishupgrade(resource *ExternalService) (*Service, error) {
 
 	resp := &Service{}
 
 	err := c.rancherClient.doAction(EXTERNAL_SERVICE_TYPE, "finishupgrade", &resource.Resource, nil, resp)
+
+	return resp, err
+}
+
+func (c *ExternalServiceClient) ActionGarbagecollect(resource *ExternalService) (*Service, error) {
+
+	resp := &Service{}
+
+	err := c.rancherClient.doAction(EXTERNAL_SERVICE_TYPE, "garbagecollect", &resource.Resource, nil, resp)
+
+	return resp, err
+}
+
+func (c *ExternalServiceClient) ActionPause(resource *ExternalService) (*Service, error) {
+
+	resp := &Service{}
+
+	err := c.rancherClient.doAction(EXTERNAL_SERVICE_TYPE, "pause", &resource.Resource, nil, resp)
 
 	return resp, err
 }
@@ -215,20 +239,20 @@ func (c *ExternalServiceClient) ActionRemove(resource *ExternalService) (*Servic
 	return resp, err
 }
 
-func (c *ExternalServiceClient) ActionRestart(resource *ExternalService, input *ServiceRestart) (*Service, error) {
+func (c *ExternalServiceClient) ActionRestart(resource *ExternalService) (*Service, error) {
 
 	resp := &Service{}
 
-	err := c.rancherClient.doAction(EXTERNAL_SERVICE_TYPE, "restart", &resource.Resource, input, resp)
+	err := c.rancherClient.doAction(EXTERNAL_SERVICE_TYPE, "restart", &resource.Resource, nil, resp)
 
 	return resp, err
 }
 
-func (c *ExternalServiceClient) ActionRollback(resource *ExternalService) (*Service, error) {
+func (c *ExternalServiceClient) ActionRollback(resource *ExternalService, input *ServiceRollback) (*Service, error) {
 
 	resp := &Service{}
 
-	err := c.rancherClient.doAction(EXTERNAL_SERVICE_TYPE, "rollback", &resource.Resource, nil, resp)
+	err := c.rancherClient.doAction(EXTERNAL_SERVICE_TYPE, "rollback", &resource.Resource, input, resp)
 
 	return resp, err
 }
