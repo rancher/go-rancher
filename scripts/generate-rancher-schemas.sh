@@ -18,7 +18,7 @@ echo
 
 source $(dirname "$0")/../scripts/common_functions
 
-gen ${URL_BASE}/v1-catalog catalog rename
-gen ${URL_BASE}/v2-beta
+#gen ${URL_BASE}/v1-catalog catalog rename
+gen ${URL_BASE}/v3
 
 echo Success
