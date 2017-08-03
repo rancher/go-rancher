@@ -17,13 +17,37 @@ type Host struct {
 
 	ApiProxy string `json:"apiProxy,omitempty" yaml:"api_proxy,omitempty"`
 
+	AuthCertificateAuthority string `json:"authCertificateAuthority,omitempty" yaml:"auth_certificate_authority,omitempty"`
+
+	AuthKey string `json:"authKey,omitempty" yaml:"auth_key,omitempty"`
+
 	Created string `json:"created,omitempty" yaml:"created,omitempty"`
 
 	Data map[string]interface{} `json:"data,omitempty" yaml:"data,omitempty"`
 
 	Description string `json:"description,omitempty" yaml:"description,omitempty"`
 
+	DockerVersion string `json:"dockerVersion,omitempty" yaml:"docker_version,omitempty"`
+
+	Driver string `json:"driver,omitempty" yaml:"driver,omitempty"`
+
+	EngineEnv map[string]interface{} `json:"engineEnv,omitempty" yaml:"engine_env,omitempty"`
+
+	EngineInsecureRegistry []string `json:"engineInsecureRegistry,omitempty" yaml:"engine_insecure_registry,omitempty"`
+
+	EngineInstallUrl string `json:"engineInstallUrl,omitempty" yaml:"engine_install_url,omitempty"`
+
+	EngineLabel map[string]interface{} `json:"engineLabel,omitempty" yaml:"engine_label,omitempty"`
+
+	EngineOpt map[string]interface{} `json:"engineOpt,omitempty" yaml:"engine_opt,omitempty"`
+
+	EngineRegistryMirror []string `json:"engineRegistryMirror,omitempty" yaml:"engine_registry_mirror,omitempty"`
+
+	EngineStorageDriver string `json:"engineStorageDriver,omitempty" yaml:"engine_storage_driver,omitempty"`
+
 	ExternalId string `json:"externalId,omitempty" yaml:"external_id,omitempty"`
+
+	ExtractedConfig string `json:"extractedConfig,omitempty" yaml:"extracted_config,omitempty"`
 
 	HostTemplateId string `json:"hostTemplateId,omitempty" yaml:"host_template_id,omitempty"`
 

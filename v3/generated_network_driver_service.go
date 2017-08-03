@@ -73,6 +73,8 @@ type NetworkDriverService struct {
 
 	ScaleMin int64 `json:"scaleMin,omitempty" yaml:"scale_min,omitempty"`
 
+	SecondaryLaunchConfigs []LaunchConfig `json:"secondaryLaunchConfigs,omitempty" yaml:"secondary_launch_configs,omitempty"`
+
 	Selector string `json:"selector,omitempty" yaml:"selector,omitempty"`
 
 	StackId string `json:"stackId,omitempty" yaml:"stack_id,omitempty"`

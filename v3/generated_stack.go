@@ -17,8 +17,6 @@ type Stack struct {
 
 	Description string `json:"description,omitempty" yaml:"description,omitempty"`
 
-	Environment map[string]interface{} `json:"environment,omitempty" yaml:"environment,omitempty"`
-
 	ExternalId string `json:"externalId,omitempty" yaml:"external_id,omitempty"`
 
 	Group string `json:"group,omitempty" yaml:"group,omitempty"`
@@ -27,13 +25,13 @@ type Stack struct {
 
 	Kind string `json:"kind,omitempty" yaml:"kind,omitempty"`
 
+	Labels map[string]interface{} `json:"labels,omitempty" yaml:"labels,omitempty"`
+
 	Name string `json:"name,omitempty" yaml:"name,omitempty"`
 
 	Outputs map[string]interface{} `json:"outputs,omitempty" yaml:"outputs,omitempty"`
 
-	PreviousEnvironment map[string]interface{} `json:"previousEnvironment,omitempty" yaml:"previous_environment,omitempty"`
-
-	PreviousExternalId string `json:"previousExternalId,omitempty" yaml:"previous_external_id,omitempty"`
+	ParentStackId string `json:"parentStackId,omitempty" yaml:"parent_stack_id,omitempty"`
 
 	RemoveTime string `json:"removeTime,omitempty" yaml:"remove_time,omitempty"`
 
@@ -54,6 +52,8 @@ type Stack struct {
 	TransitioningMessage string `json:"transitioningMessage,omitempty" yaml:"transitioning_message,omitempty"`
 
 	Uuid string `json:"uuid,omitempty" yaml:"uuid,omitempty"`
+
+	WorkingConfiguration StackConfiguration `json:"workingConfiguration,omitempty" yaml:"working_configuration,omitempty"`
 }
 
 type StackCollection struct {
@@ -90,8 +90,6 @@ type StackOperations interface {
 	ActionRollback(*Stack) (*Stack, error)
 
 	ActionUpdate(*Stack) (*Stack, error)
-
-	ActionUpgrade(*Stack, *StackUpgrade) (*Stack, error)
 }
 
 func newStackClient(rancherClient *RancherClient) *StackClient {
@@ -221,15 +219,6 @@ func (c *StackClient) ActionUpdate(resource *Stack) (*Stack, error) {
 	resp := &Stack{}
 
 	err := c.rancherClient.doAction(STACK_TYPE, "update", &resource.Resource, nil, resp)
-
-	return resp, err
-}
-
-func (c *StackClient) ActionUpgrade(resource *Stack, input *StackUpgrade) (*Stack, error) {
-
-	resp := &Stack{}
-
-	err := c.rancherClient.doAction(STACK_TYPE, "upgrade", &resource.Resource, input, resp)
 
 	return resp, err
 }

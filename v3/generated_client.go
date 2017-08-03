@@ -12,7 +12,6 @@ type RancherClient struct {
 	Azureadconfig                      AzureadconfigOperations
 	BaseMachineConfig                  BaseMachineConfigOperations
 	BlkioDeviceOption                  BlkioDeviceOptionOperations
-	CatalogTemplate                    CatalogTemplateOperations
 	Certificate                        CertificateOperations
 	ChangeSecretInput                  ChangeSecretInputOperations
 	ClusterMembership                  ClusterMembershipOperations
@@ -55,9 +54,6 @@ type RancherClient struct {
 	InstanceRemove                     InstanceRemoveOperations
 	InstanceStatus                     InstanceStatusOperations
 	InstanceStop                       InstanceStopOperations
-	KubernetesService                  KubernetesServiceOperations
-	KubernetesStack                    KubernetesStackOperations
-	KubernetesStackUpgrade             KubernetesStackUpgradeOperations
 	LaunchConfig                       LaunchConfigOperations
 	LbConfig                           LbConfigOperations
 	LbTargetConfig                     LbTargetConfigOperations
@@ -86,7 +82,6 @@ type RancherClient struct {
 	ProcessSummary                     ProcessSummaryOperations
 	Project                            ProjectOperations
 	ProjectMember                      ProjectMemberOperations
-	ProjectTemplate                    ProjectTemplateOperations
 	PublicEndpoint                     PublicEndpointOperations
 	Publish                            PublishOperations
 	PullTask                           PullTaskOperations
@@ -112,6 +107,7 @@ type RancherClient struct {
 	SetProjectMembersInput             SetProjectMembersInputOperations
 	Setting                            SettingOperations
 	Stack                              StackOperations
+	StackConfiguration                 StackConfigurationOperations
 	StackUpgrade                       StackUpgradeOperations
 	StatsAccess                        StatsAccessOperations
 	StorageDriver                      StorageDriverOperations
@@ -143,7 +139,6 @@ func constructClient(rancherBaseClient *RancherBaseClientImpl) *RancherClient {
 	client.Azureadconfig = newAzureadconfigClient(client)
 	client.BaseMachineConfig = newBaseMachineConfigClient(client)
 	client.BlkioDeviceOption = newBlkioDeviceOptionClient(client)
-	client.CatalogTemplate = newCatalogTemplateClient(client)
 	client.Certificate = newCertificateClient(client)
 	client.ChangeSecretInput = newChangeSecretInputClient(client)
 	client.ClusterMembership = newClusterMembershipClient(client)
@@ -186,9 +181,6 @@ func constructClient(rancherBaseClient *RancherBaseClientImpl) *RancherClient {
 	client.InstanceRemove = newInstanceRemoveClient(client)
 	client.InstanceStatus = newInstanceStatusClient(client)
 	client.InstanceStop = newInstanceStopClient(client)
-	client.KubernetesService = newKubernetesServiceClient(client)
-	client.KubernetesStack = newKubernetesStackClient(client)
-	client.KubernetesStackUpgrade = newKubernetesStackUpgradeClient(client)
 	client.LaunchConfig = newLaunchConfigClient(client)
 	client.LbConfig = newLbConfigClient(client)
 	client.LbTargetConfig = newLbTargetConfigClient(client)
@@ -217,7 +209,6 @@ func constructClient(rancherBaseClient *RancherBaseClientImpl) *RancherClient {
 	client.ProcessSummary = newProcessSummaryClient(client)
 	client.Project = newProjectClient(client)
 	client.ProjectMember = newProjectMemberClient(client)
-	client.ProjectTemplate = newProjectTemplateClient(client)
 	client.PublicEndpoint = newPublicEndpointClient(client)
 	client.Publish = newPublishClient(client)
 	client.PullTask = newPullTaskClient(client)
@@ -243,6 +234,7 @@ func constructClient(rancherBaseClient *RancherBaseClientImpl) *RancherClient {
 	client.SetProjectMembersInput = newSetProjectMembersInputClient(client)
 	client.Setting = newSettingClient(client)
 	client.Stack = newStackClient(client)
+	client.StackConfiguration = newStackConfigurationClient(client)
 	client.StackUpgrade = newStackUpgradeClient(client)
 	client.StatsAccess = newStatsAccessClient(client)
 	client.StorageDriver = newStorageDriverClient(client)

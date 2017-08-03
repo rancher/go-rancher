@@ -6,18 +6,6 @@ const (
 
 type StackUpgrade struct {
 	Resource
-
-	Answers map[string]interface{} `json:"answers,omitempty" yaml:"answers,omitempty"`
-
-	DockerCompose string `json:"dockerCompose,omitempty" yaml:"docker_compose,omitempty"`
-
-	Environment map[string]interface{} `json:"environment,omitempty" yaml:"environment,omitempty"`
-
-	ExternalId string `json:"externalId,omitempty" yaml:"external_id,omitempty"`
-
-	RancherCompose string `json:"rancherCompose,omitempty" yaml:"rancher_compose,omitempty"`
-
-	Templates map[string]interface{} `json:"templates,omitempty" yaml:"templates,omitempty"`
 }
 
 type StackUpgradeCollection struct {
