@@ -9,6 +9,8 @@ type Project struct {
 
 	AllowSystemRole bool `json:"allowSystemRole,omitempty" yaml:"allow_system_role,omitempty"`
 
+	ComputeFlavor string `json:"computeFlavor,omitempty" yaml:"compute_flavor,omitempty"`
+
 	Created string `json:"created,omitempty" yaml:"created,omitempty"`
 
 	Data map[string]interface{} `json:"data,omitempty" yaml:"data,omitempty"`
@@ -74,10 +76,6 @@ type ProjectOperations interface {
 	ActionRemove(*Project) (*Account, error)
 
 	ActionSetmembers(*Project, *SetProjectMembersInput) (*SetProjectMembersInput, error)
-
-	ActionUpdate(*Project) (*Account, error)
-
-	ActionUpgrade(*Project) (*Account, error)
 }
 
 func newProjectClient(rancherClient *RancherClient) *ProjectClient {
@@ -180,24 +178,6 @@ func (c *ProjectClient) ActionSetmembers(resource *Project, input *SetProjectMem
 	resp := &SetProjectMembersInput{}
 
 	err := c.rancherClient.doAction(PROJECT_TYPE, "setmembers", &resource.Resource, input, resp)
-
-	return resp, err
-}
-
-func (c *ProjectClient) ActionUpdate(resource *Project) (*Account, error) {
-
-	resp := &Account{}
-
-	err := c.rancherClient.doAction(PROJECT_TYPE, "update", &resource.Resource, nil, resp)
-
-	return resp, err
-}
-
-func (c *ProjectClient) ActionUpgrade(resource *Project) (*Account, error) {
-
-	resp := &Account{}
-
-	err := c.rancherClient.doAction(PROJECT_TYPE, "upgrade", &resource.Resource, nil, resp)
 
 	return resp, err
 }

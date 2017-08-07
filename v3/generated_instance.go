@@ -74,8 +74,6 @@ type InstanceOperations interface {
 	ActionStart(*Instance) (*Instance, error)
 
 	ActionStop(*Instance, *InstanceStop) (*Instance, error)
-
-	ActionUpdate(*Instance) (*Instance, error)
 }
 
 func newInstanceClient(rancherClient *RancherClient) *InstanceClient {
@@ -187,15 +185,6 @@ func (c *InstanceClient) ActionStop(resource *Instance, input *InstanceStop) (*I
 	resp := &Instance{}
 
 	err := c.rancherClient.doAction(INSTANCE_TYPE, "stop", &resource.Resource, input, resp)
-
-	return resp, err
-}
-
-func (c *InstanceClient) ActionUpdate(resource *Instance) (*Instance, error) {
-
-	resp := &Instance{}
-
-	err := c.rancherClient.doAction(INSTANCE_TYPE, "update", &resource.Resource, nil, resp)
 
 	return resp, err
 }

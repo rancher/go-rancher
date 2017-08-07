@@ -61,15 +61,9 @@ type SubnetOperations interface {
 	ById(id string) (*Subnet, error)
 	Delete(container *Subnet) error
 
-	ActionActivate(*Subnet) (*Subnet, error)
-
 	ActionCreate(*Subnet) (*Subnet, error)
 
-	ActionDeactivate(*Subnet) (*Subnet, error)
-
 	ActionRemove(*Subnet) (*Subnet, error)
-
-	ActionUpdate(*Subnet) (*Subnet, error)
 }
 
 func newSubnetClient(rancherClient *RancherClient) *SubnetClient {
@@ -122,15 +116,6 @@ func (c *SubnetClient) Delete(container *Subnet) error {
 	return c.rancherClient.doResourceDelete(SUBNET_TYPE, &container.Resource)
 }
 
-func (c *SubnetClient) ActionActivate(resource *Subnet) (*Subnet, error) {
-
-	resp := &Subnet{}
-
-	err := c.rancherClient.doAction(SUBNET_TYPE, "activate", &resource.Resource, nil, resp)
-
-	return resp, err
-}
-
 func (c *SubnetClient) ActionCreate(resource *Subnet) (*Subnet, error) {
 
 	resp := &Subnet{}
@@ -140,29 +125,11 @@ func (c *SubnetClient) ActionCreate(resource *Subnet) (*Subnet, error) {
 	return resp, err
 }
 
-func (c *SubnetClient) ActionDeactivate(resource *Subnet) (*Subnet, error) {
-
-	resp := &Subnet{}
-
-	err := c.rancherClient.doAction(SUBNET_TYPE, "deactivate", &resource.Resource, nil, resp)
-
-	return resp, err
-}
-
 func (c *SubnetClient) ActionRemove(resource *Subnet) (*Subnet, error) {
 
 	resp := &Subnet{}
 
 	err := c.rancherClient.doAction(SUBNET_TYPE, "remove", &resource.Resource, nil, resp)
-
-	return resp, err
-}
-
-func (c *SubnetClient) ActionUpdate(resource *Subnet) (*Subnet, error) {
-
-	resp := &Subnet{}
-
-	err := c.rancherClient.doAction(SUBNET_TYPE, "update", &resource.Resource, nil, resp)
 
 	return resp, err
 }

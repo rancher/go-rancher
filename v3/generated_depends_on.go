@@ -9,6 +9,8 @@ type DependsOn struct {
 
 	Condition string `json:"condition,omitempty" yaml:"condition,omitempty"`
 
+	Container string `json:"container,omitempty" yaml:"container,omitempty"`
+
 	Service string `json:"service,omitempty" yaml:"service,omitempty"`
 }
 

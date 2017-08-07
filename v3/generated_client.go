@@ -4,11 +4,12 @@ type RancherClient struct {
 	RancherBaseClient
 
 	Account                            AccountOperations
-	ActiveSetting                      ActiveSettingOperations
 	AddOutputsInput                    AddOutputsInputOperations
 	Agent                              AgentOperations
+	Amazonec2Config                    Amazonec2ConfigOperations
 	ApiKey                             ApiKeyOperations
 	AuditLog                           AuditLogOperations
+	AzureConfig                        AzureConfigOperations
 	Azureadconfig                      AzureadconfigOperations
 	BaseMachineConfig                  BaseMachineConfigOperations
 	BlkioDeviceOption                  BlkioDeviceOptionOperations
@@ -31,6 +32,7 @@ type RancherClient struct {
 	DeploymentSyncRequest              DeploymentSyncRequestOperations
 	DeploymentSyncResponse             DeploymentSyncResponseOperations
 	DeploymentUnit                     DeploymentUnitOperations
+	DigitaloceanConfig                 DigitaloceanConfigOperations
 	DnsService                         DnsServiceOperations
 	DynamicSchema                      DynamicSchemaOperations
 	ExternalDnsEvent                   ExternalDnsEventOperations
@@ -104,6 +106,7 @@ type RancherClient struct {
 	ServiceUpgrade                     ServiceUpgradeOperations
 	ServiceUpgradeStrategy             ServiceUpgradeStrategyOperations
 	ServicesPortRange                  ServicesPortRangeOperations
+	SetComputeFlavorInput              SetComputeFlavorInputOperations
 	SetProjectMembersInput             SetProjectMembersInputOperations
 	Setting                            SettingOperations
 	Stack                              StackOperations
@@ -131,11 +134,12 @@ func constructClient(rancherBaseClient *RancherBaseClientImpl) *RancherClient {
 	}
 
 	client.Account = newAccountClient(client)
-	client.ActiveSetting = newActiveSettingClient(client)
 	client.AddOutputsInput = newAddOutputsInputClient(client)
 	client.Agent = newAgentClient(client)
+	client.Amazonec2Config = newAmazonec2ConfigClient(client)
 	client.ApiKey = newApiKeyClient(client)
 	client.AuditLog = newAuditLogClient(client)
+	client.AzureConfig = newAzureConfigClient(client)
 	client.Azureadconfig = newAzureadconfigClient(client)
 	client.BaseMachineConfig = newBaseMachineConfigClient(client)
 	client.BlkioDeviceOption = newBlkioDeviceOptionClient(client)
@@ -158,6 +162,7 @@ func constructClient(rancherBaseClient *RancherBaseClientImpl) *RancherClient {
 	client.DeploymentSyncRequest = newDeploymentSyncRequestClient(client)
 	client.DeploymentSyncResponse = newDeploymentSyncResponseClient(client)
 	client.DeploymentUnit = newDeploymentUnitClient(client)
+	client.DigitaloceanConfig = newDigitaloceanConfigClient(client)
 	client.DnsService = newDnsServiceClient(client)
 	client.DynamicSchema = newDynamicSchemaClient(client)
 	client.ExternalDnsEvent = newExternalDnsEventClient(client)
@@ -231,6 +236,7 @@ func constructClient(rancherBaseClient *RancherBaseClientImpl) *RancherClient {
 	client.ServiceUpgrade = newServiceUpgradeClient(client)
 	client.ServiceUpgradeStrategy = newServiceUpgradeStrategyClient(client)
 	client.ServicesPortRange = newServicesPortRangeClient(client)
+	client.SetComputeFlavorInput = newSetComputeFlavorInputClient(client)
 	client.SetProjectMembersInput = newSetProjectMembersInputClient(client)
 	client.Setting = newSettingClient(client)
 	client.Stack = newStackClient(client)

@@ -60,8 +60,6 @@ type CredentialOperations interface {
 	ActionDeactivate(*Credential) (*Credential, error)
 
 	ActionRemove(*Credential) (*Credential, error)
-
-	ActionUpdate(*Credential) (*Credential, error)
 }
 
 func newCredentialClient(rancherClient *RancherClient) *CredentialClient {
@@ -146,15 +144,6 @@ func (c *CredentialClient) ActionRemove(resource *Credential) (*Credential, erro
 	resp := &Credential{}
 
 	err := c.rancherClient.doAction(CREDENTIAL_TYPE, "remove", &resource.Resource, nil, resp)
-
-	return resp, err
-}
-
-func (c *CredentialClient) ActionUpdate(resource *Credential) (*Credential, error) {
-
-	resp := &Credential{}
-
-	err := c.rancherClient.doAction(CREDENTIAL_TYPE, "update", &resource.Resource, nil, resp)
 
 	return resp, err
 }

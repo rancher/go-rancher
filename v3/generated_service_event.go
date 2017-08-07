@@ -35,10 +35,6 @@ type ServiceEvent struct {
 
 	State string `json:"state,omitempty" yaml:"state,omitempty"`
 
-	Transitioning string `json:"transitioning,omitempty" yaml:"transitioning,omitempty"`
-
-	TransitioningMessage string `json:"transitioningMessage,omitempty" yaml:"transitioning_message,omitempty"`
-
 	Uuid string `json:"uuid,omitempty" yaml:"uuid,omitempty"`
 }
 
@@ -58,10 +54,6 @@ type ServiceEventOperations interface {
 	Update(existing *ServiceEvent, updates interface{}) (*ServiceEvent, error)
 	ById(id string) (*ServiceEvent, error)
 	Delete(container *ServiceEvent) error
-
-	ActionCreate(*ServiceEvent) (*ServiceEvent, error)
-
-	ActionRemove(*ServiceEvent) (*ServiceEvent, error)
 }
 
 func newServiceEventClient(rancherClient *RancherClient) *ServiceEventClient {
@@ -112,22 +104,4 @@ func (c *ServiceEventClient) ById(id string) (*ServiceEvent, error) {
 
 func (c *ServiceEventClient) Delete(container *ServiceEvent) error {
 	return c.rancherClient.doResourceDelete(SERVICE_EVENT_TYPE, &container.Resource)
-}
-
-func (c *ServiceEventClient) ActionCreate(resource *ServiceEvent) (*ServiceEvent, error) {
-
-	resp := &ServiceEvent{}
-
-	err := c.rancherClient.doAction(SERVICE_EVENT_TYPE, "create", &resource.Resource, nil, resp)
-
-	return resp, err
-}
-
-func (c *ServiceEventClient) ActionRemove(resource *ServiceEvent) (*ServiceEvent, error) {
-
-	resp := &ServiceEvent{}
-
-	err := c.rancherClient.doAction(SERVICE_EVENT_TYPE, "remove", &resource.Resource, nil, resp)
-
-	return resp, err
 }

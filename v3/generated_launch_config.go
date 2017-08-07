@@ -307,8 +307,6 @@ type LaunchConfigOperations interface {
 
 	ActionStop(*LaunchConfig, *InstanceStop) (*Instance, error)
 
-	ActionUpdate(*LaunchConfig) (*Instance, error)
-
 	ActionUpgrade(*LaunchConfig, *ContainerUpgrade) (*Revision, error)
 }
 
@@ -448,15 +446,6 @@ func (c *LaunchConfigClient) ActionStop(resource *LaunchConfig, input *InstanceS
 	resp := &Instance{}
 
 	err := c.rancherClient.doAction(LAUNCH_CONFIG_TYPE, "stop", &resource.Resource, input, resp)
-
-	return resp, err
-}
-
-func (c *LaunchConfigClient) ActionUpdate(resource *LaunchConfig) (*Instance, error) {
-
-	resp := &Instance{}
-
-	err := c.rancherClient.doAction(LAUNCH_CONFIG_TYPE, "update", &resource.Resource, nil, resp)
 
 	return resp, err
 }

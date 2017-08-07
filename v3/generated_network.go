@@ -65,15 +65,9 @@ type NetworkOperations interface {
 	ById(id string) (*Network, error)
 	Delete(container *Network) error
 
-	ActionActivate(*Network) (*Network, error)
-
 	ActionCreate(*Network) (*Network, error)
 
-	ActionDeactivate(*Network) (*Network, error)
-
 	ActionRemove(*Network) (*Network, error)
-
-	ActionUpdate(*Network) (*Network, error)
 }
 
 func newNetworkClient(rancherClient *RancherClient) *NetworkClient {
@@ -126,15 +120,6 @@ func (c *NetworkClient) Delete(container *Network) error {
 	return c.rancherClient.doResourceDelete(NETWORK_TYPE, &container.Resource)
 }
 
-func (c *NetworkClient) ActionActivate(resource *Network) (*Network, error) {
-
-	resp := &Network{}
-
-	err := c.rancherClient.doAction(NETWORK_TYPE, "activate", &resource.Resource, nil, resp)
-
-	return resp, err
-}
-
 func (c *NetworkClient) ActionCreate(resource *Network) (*Network, error) {
 
 	resp := &Network{}
@@ -144,29 +129,11 @@ func (c *NetworkClient) ActionCreate(resource *Network) (*Network, error) {
 	return resp, err
 }
 
-func (c *NetworkClient) ActionDeactivate(resource *Network) (*Network, error) {
-
-	resp := &Network{}
-
-	err := c.rancherClient.doAction(NETWORK_TYPE, "deactivate", &resource.Resource, nil, resp)
-
-	return resp, err
-}
-
 func (c *NetworkClient) ActionRemove(resource *Network) (*Network, error) {
 
 	resp := &Network{}
 
 	err := c.rancherClient.doAction(NETWORK_TYPE, "remove", &resource.Resource, nil, resp)
-
-	return resp, err
-}
-
-func (c *NetworkClient) ActionUpdate(resource *Network) (*Network, error) {
-
-	resp := &Network{}
-
-	err := c.rancherClient.doAction(NETWORK_TYPE, "update", &resource.Resource, nil, resp)
 
 	return resp, err
 }

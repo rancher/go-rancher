@@ -29,10 +29,6 @@ type ExternalHostEvent struct {
 
 	State string `json:"state,omitempty" yaml:"state,omitempty"`
 
-	Transitioning string `json:"transitioning,omitempty" yaml:"transitioning,omitempty"`
-
-	TransitioningMessage string `json:"transitioningMessage,omitempty" yaml:"transitioning_message,omitempty"`
-
 	Uuid string `json:"uuid,omitempty" yaml:"uuid,omitempty"`
 }
 
@@ -52,10 +48,6 @@ type ExternalHostEventOperations interface {
 	Update(existing *ExternalHostEvent, updates interface{}) (*ExternalHostEvent, error)
 	ById(id string) (*ExternalHostEvent, error)
 	Delete(container *ExternalHostEvent) error
-
-	ActionCreate(*ExternalHostEvent) (*ExternalEvent, error)
-
-	ActionRemove(*ExternalHostEvent) (*ExternalEvent, error)
 }
 
 func newExternalHostEventClient(rancherClient *RancherClient) *ExternalHostEventClient {
@@ -106,22 +98,4 @@ func (c *ExternalHostEventClient) ById(id string) (*ExternalHostEvent, error) {
 
 func (c *ExternalHostEventClient) Delete(container *ExternalHostEvent) error {
 	return c.rancherClient.doResourceDelete(EXTERNAL_HOST_EVENT_TYPE, &container.Resource)
-}
-
-func (c *ExternalHostEventClient) ActionCreate(resource *ExternalHostEvent) (*ExternalEvent, error) {
-
-	resp := &ExternalEvent{}
-
-	err := c.rancherClient.doAction(EXTERNAL_HOST_EVENT_TYPE, "create", &resource.Resource, nil, resp)
-
-	return resp, err
-}
-
-func (c *ExternalHostEventClient) ActionRemove(resource *ExternalHostEvent) (*ExternalEvent, error) {
-
-	resp := &ExternalEvent{}
-
-	err := c.rancherClient.doAction(EXTERNAL_HOST_EVENT_TYPE, "remove", &resource.Resource, nil, resp)
-
-	return resp, err
 }

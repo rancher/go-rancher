@@ -15,17 +15,23 @@ type Host struct {
 
 	AgentState string `json:"agentState,omitempty" yaml:"agent_state,omitempty"`
 
+	Amazonec2Config *Amazonec2Config `json:"amazonec2Config,omitempty" yaml:"amazonec2config,omitempty"`
+
 	ApiProxy string `json:"apiProxy,omitempty" yaml:"api_proxy,omitempty"`
 
 	AuthCertificateAuthority string `json:"authCertificateAuthority,omitempty" yaml:"auth_certificate_authority,omitempty"`
 
 	AuthKey string `json:"authKey,omitempty" yaml:"auth_key,omitempty"`
 
+	AzureConfig *AzureConfig `json:"azureConfig,omitempty" yaml:"azure_config,omitempty"`
+
 	Created string `json:"created,omitempty" yaml:"created,omitempty"`
 
 	Data map[string]interface{} `json:"data,omitempty" yaml:"data,omitempty"`
 
 	Description string `json:"description,omitempty" yaml:"description,omitempty"`
+
+	DigitaloceanConfig *DigitaloceanConfig `json:"digitaloceanConfig,omitempty" yaml:"digitalocean_config,omitempty"`
 
 	DockerVersion string `json:"dockerVersion,omitempty" yaml:"docker_version,omitempty"`
 
@@ -109,6 +115,8 @@ type HostOperations interface {
 
 	ActionDeactivate(*Host) (*Host, error)
 
+	ActionDockersocket(*Host) (*HostAccess, error)
+
 	ActionError(*Host) (*Host, error)
 
 	ActionEvacuate(*Host) (*Host, error)
@@ -116,8 +124,6 @@ type HostOperations interface {
 	ActionProvision(*Host) (*Host, error)
 
 	ActionRemove(*Host) (*Host, error)
-
-	ActionUpdate(*Host) (*Host, error)
 }
 
 func newHostClient(rancherClient *RancherClient) *HostClient {
@@ -197,6 +203,15 @@ func (c *HostClient) ActionDeactivate(resource *Host) (*Host, error) {
 	return resp, err
 }
 
+func (c *HostClient) ActionDockersocket(resource *Host) (*HostAccess, error) {
+
+	resp := &HostAccess{}
+
+	err := c.rancherClient.doAction(HOST_TYPE, "dockersocket", &resource.Resource, nil, resp)
+
+	return resp, err
+}
+
 func (c *HostClient) ActionError(resource *Host) (*Host, error) {
 
 	resp := &Host{}
@@ -229,15 +244,6 @@ func (c *HostClient) ActionRemove(resource *Host) (*Host, error) {
 	resp := &Host{}
 
 	err := c.rancherClient.doAction(HOST_TYPE, "remove", &resource.Resource, nil, resp)
-
-	return resp, err
-}
-
-func (c *HostClient) ActionUpdate(resource *Host) (*Host, error) {
-
-	resp := &Host{}
-
-	err := c.rancherClient.doAction(HOST_TYPE, "update", &resource.Resource, nil, resp)
 
 	return resp, err
 }

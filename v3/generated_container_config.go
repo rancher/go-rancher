@@ -111,6 +111,8 @@ type ContainerConfig struct {
 
 	ImageUuid string `json:"imageUuid,omitempty" yaml:"image_uuid,omitempty"`
 
+	InstanceLinks []Link `json:"instanceLinks,omitempty" yaml:"instance_links,omitempty"`
+
 	InstanceTriggeredStop string `json:"instanceTriggeredStop,omitempty" yaml:"instance_triggered_stop,omitempty"`
 
 	IoMaximumBandwidth int64 `json:"ioMaximumBandwidth,omitempty" yaml:"io_maximum_bandwidth,omitempty"`
@@ -301,8 +303,6 @@ type ContainerConfigOperations interface {
 
 	ActionStop(*ContainerConfig, *InstanceStop) (*Instance, error)
 
-	ActionUpdate(*ContainerConfig) (*Instance, error)
-
 	ActionUpgrade(*ContainerConfig, *ContainerUpgrade) (*Revision, error)
 }
 
@@ -442,15 +442,6 @@ func (c *ContainerConfigClient) ActionStop(resource *ContainerConfig, input *Ins
 	resp := &Instance{}
 
 	err := c.rancherClient.doAction(CONTAINER_CONFIG_TYPE, "stop", &resource.Resource, input, resp)
-
-	return resp, err
-}
-
-func (c *ContainerConfigClient) ActionUpdate(resource *ContainerConfig) (*Instance, error) {
-
-	resp := &Instance{}
-
-	err := c.rancherClient.doAction(CONTAINER_CONFIG_TYPE, "update", &resource.Resource, nil, resp)
 
 	return resp, err
 }

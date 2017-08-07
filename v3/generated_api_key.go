@@ -60,8 +60,6 @@ type ApiKeyOperations interface {
 	ActionDeactivate(*ApiKey) (*Credential, error)
 
 	ActionRemove(*ApiKey) (*Credential, error)
-
-	ActionUpdate(*ApiKey) (*Credential, error)
 }
 
 func newApiKeyClient(rancherClient *RancherClient) *ApiKeyClient {
@@ -146,15 +144,6 @@ func (c *ApiKeyClient) ActionRemove(resource *ApiKey) (*Credential, error) {
 	resp := &Credential{}
 
 	err := c.rancherClient.doAction(API_KEY_TYPE, "remove", &resource.Resource, nil, resp)
-
-	return resp, err
-}
-
-func (c *ApiKeyClient) ActionUpdate(resource *ApiKey) (*Credential, error) {
-
-	resp := &Credential{}
-
-	err := c.rancherClient.doAction(API_KEY_TYPE, "update", &resource.Resource, nil, resp)
 
 	return resp, err
 }

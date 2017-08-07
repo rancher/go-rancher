@@ -66,10 +66,6 @@ type AccountOperations interface {
 	ActionPurge(*Account) (*Account, error)
 
 	ActionRemove(*Account) (*Account, error)
-
-	ActionUpdate(*Account) (*Account, error)
-
-	ActionUpgrade(*Account) (*Account, error)
 }
 
 func newAccountClient(rancherClient *RancherClient) *AccountClient {
@@ -163,24 +159,6 @@ func (c *AccountClient) ActionRemove(resource *Account) (*Account, error) {
 	resp := &Account{}
 
 	err := c.rancherClient.doAction(ACCOUNT_TYPE, "remove", &resource.Resource, nil, resp)
-
-	return resp, err
-}
-
-func (c *AccountClient) ActionUpdate(resource *Account) (*Account, error) {
-
-	resp := &Account{}
-
-	err := c.rancherClient.doAction(ACCOUNT_TYPE, "update", &resource.Resource, nil, resp)
-
-	return resp, err
-}
-
-func (c *AccountClient) ActionUpgrade(resource *Account) (*Account, error) {
-
-	resp := &Account{}
-
-	err := c.rancherClient.doAction(ACCOUNT_TYPE, "upgrade", &resource.Resource, nil, resp)
 
 	return resp, err
 }

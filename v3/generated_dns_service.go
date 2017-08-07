@@ -45,6 +45,8 @@ type DnsService struct {
 
 	RevisionId string `json:"revisionId,omitempty" yaml:"revision_id,omitempty"`
 
+	ServiceLinks []Link `json:"serviceLinks,omitempty" yaml:"service_links,omitempty"`
+
 	StackId string `json:"stackId,omitempty" yaml:"stack_id,omitempty"`
 
 	StartOnCreate bool `json:"startOnCreate,omitempty" yaml:"start_on_create,omitempty"`

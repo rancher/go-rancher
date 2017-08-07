@@ -63,6 +63,8 @@ type LoadBalancerService struct {
 
 	ScaleMin int64 `json:"scaleMin,omitempty" yaml:"scale_min,omitempty"`
 
+	ServiceLinks []Link `json:"serviceLinks,omitempty" yaml:"service_links,omitempty"`
+
 	StackId string `json:"stackId,omitempty" yaml:"stack_id,omitempty"`
 
 	StartFirst bool `json:"startFirst,omitempty" yaml:"start_first,omitempty"`

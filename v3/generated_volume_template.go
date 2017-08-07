@@ -59,15 +59,9 @@ type VolumeTemplateOperations interface {
 	ById(id string) (*VolumeTemplate, error)
 	Delete(container *VolumeTemplate) error
 
-	ActionActivate(*VolumeTemplate) (*VolumeTemplate, error)
-
 	ActionCreate(*VolumeTemplate) (*VolumeTemplate, error)
 
-	ActionDeactivate(*VolumeTemplate) (*VolumeTemplate, error)
-
 	ActionRemove(*VolumeTemplate) (*VolumeTemplate, error)
-
-	ActionUpdate(*VolumeTemplate) (*VolumeTemplate, error)
 }
 
 func newVolumeTemplateClient(rancherClient *RancherClient) *VolumeTemplateClient {
@@ -120,15 +114,6 @@ func (c *VolumeTemplateClient) Delete(container *VolumeTemplate) error {
 	return c.rancherClient.doResourceDelete(VOLUME_TEMPLATE_TYPE, &container.Resource)
 }
 
-func (c *VolumeTemplateClient) ActionActivate(resource *VolumeTemplate) (*VolumeTemplate, error) {
-
-	resp := &VolumeTemplate{}
-
-	err := c.rancherClient.doAction(VOLUME_TEMPLATE_TYPE, "activate", &resource.Resource, nil, resp)
-
-	return resp, err
-}
-
 func (c *VolumeTemplateClient) ActionCreate(resource *VolumeTemplate) (*VolumeTemplate, error) {
 
 	resp := &VolumeTemplate{}
@@ -138,29 +123,11 @@ func (c *VolumeTemplateClient) ActionCreate(resource *VolumeTemplate) (*VolumeTe
 	return resp, err
 }
 
-func (c *VolumeTemplateClient) ActionDeactivate(resource *VolumeTemplate) (*VolumeTemplate, error) {
-
-	resp := &VolumeTemplate{}
-
-	err := c.rancherClient.doAction(VOLUME_TEMPLATE_TYPE, "deactivate", &resource.Resource, nil, resp)
-
-	return resp, err
-}
-
 func (c *VolumeTemplateClient) ActionRemove(resource *VolumeTemplate) (*VolumeTemplate, error) {
 
 	resp := &VolumeTemplate{}
 
 	err := c.rancherClient.doAction(VOLUME_TEMPLATE_TYPE, "remove", &resource.Resource, nil, resp)
-
-	return resp, err
-}
-
-func (c *VolumeTemplateClient) ActionUpdate(resource *VolumeTemplate) (*VolumeTemplate, error) {
-
-	resp := &VolumeTemplate{}
-
-	err := c.rancherClient.doAction(VOLUME_TEMPLATE_TYPE, "update", &resource.Resource, nil, resp)
 
 	return resp, err
 }

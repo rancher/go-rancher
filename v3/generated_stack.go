@@ -85,6 +85,8 @@ type StackOperations interface {
 
 	ActionExportconfig(*Stack, *ComposeConfigInput) (*ComposeConfig, error)
 
+	ActionPause(*Stack) (*Stack, error)
+
 	ActionRemove(*Stack) (*Stack, error)
 
 	ActionRollback(*Stack) (*Stack, error)
@@ -192,6 +194,15 @@ func (c *StackClient) ActionExportconfig(resource *Stack, input *ComposeConfigIn
 	resp := &ComposeConfig{}
 
 	err := c.rancherClient.doAction(STACK_TYPE, "exportconfig", &resource.Resource, input, resp)
+
+	return resp, err
+}
+
+func (c *StackClient) ActionPause(resource *Stack) (*Stack, error) {
+
+	resp := &Stack{}
+
+	err := c.rancherClient.doAction(STACK_TYPE, "pause", &resource.Resource, nil, resp)
 
 	return resp, err
 }

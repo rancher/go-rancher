@@ -62,8 +62,6 @@ type PasswordOperations interface {
 	ActionDeactivate(*Password) (*Credential, error)
 
 	ActionRemove(*Password) (*Credential, error)
-
-	ActionUpdate(*Password) (*Credential, error)
 }
 
 func newPasswordClient(rancherClient *RancherClient) *PasswordClient {
@@ -157,15 +155,6 @@ func (c *PasswordClient) ActionRemove(resource *Password) (*Credential, error) {
 	resp := &Credential{}
 
 	err := c.rancherClient.doAction(PASSWORD_TYPE, "remove", &resource.Resource, nil, resp)
-
-	return resp, err
-}
-
-func (c *PasswordClient) ActionUpdate(resource *Password) (*Credential, error) {
-
-	resp := &Credential{}
-
-	err := c.rancherClient.doAction(PASSWORD_TYPE, "update", &resource.Resource, nil, resp)
 
 	return resp, err
 }

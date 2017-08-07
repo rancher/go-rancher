@@ -69,6 +69,8 @@ type ScalingGroup struct {
 
 	Selector string `json:"selector,omitempty" yaml:"selector,omitempty"`
 
+	ServiceLinks []Link `json:"serviceLinks,omitempty" yaml:"service_links,omitempty"`
+
 	StackId string `json:"stackId,omitempty" yaml:"stack_id,omitempty"`
 
 	StartFirst bool `json:"startFirst,omitempty" yaml:"start_first,omitempty"`

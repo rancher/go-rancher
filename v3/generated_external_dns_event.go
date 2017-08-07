@@ -29,10 +29,6 @@ type ExternalDnsEvent struct {
 
 	State string `json:"state,omitempty" yaml:"state,omitempty"`
 
-	Transitioning string `json:"transitioning,omitempty" yaml:"transitioning,omitempty"`
-
-	TransitioningMessage string `json:"transitioningMessage,omitempty" yaml:"transitioning_message,omitempty"`
-
 	Uuid string `json:"uuid,omitempty" yaml:"uuid,omitempty"`
 }
 
@@ -52,10 +48,6 @@ type ExternalDnsEventOperations interface {
 	Update(existing *ExternalDnsEvent, updates interface{}) (*ExternalDnsEvent, error)
 	ById(id string) (*ExternalDnsEvent, error)
 	Delete(container *ExternalDnsEvent) error
-
-	ActionCreate(*ExternalDnsEvent) (*ExternalEvent, error)
-
-	ActionRemove(*ExternalDnsEvent) (*ExternalEvent, error)
 }
 
 func newExternalDnsEventClient(rancherClient *RancherClient) *ExternalDnsEventClient {
@@ -106,22 +98,4 @@ func (c *ExternalDnsEventClient) ById(id string) (*ExternalDnsEvent, error) {
 
 func (c *ExternalDnsEventClient) Delete(container *ExternalDnsEvent) error {
 	return c.rancherClient.doResourceDelete(EXTERNAL_DNS_EVENT_TYPE, &container.Resource)
-}
-
-func (c *ExternalDnsEventClient) ActionCreate(resource *ExternalDnsEvent) (*ExternalEvent, error) {
-
-	resp := &ExternalEvent{}
-
-	err := c.rancherClient.doAction(EXTERNAL_DNS_EVENT_TYPE, "create", &resource.Resource, nil, resp)
-
-	return resp, err
-}
-
-func (c *ExternalDnsEventClient) ActionRemove(resource *ExternalDnsEvent) (*ExternalEvent, error) {
-
-	resp := &ExternalEvent{}
-
-	err := c.rancherClient.doAction(EXTERNAL_DNS_EVENT_TYPE, "remove", &resource.Resource, nil, resp)
-
-	return resp, err
 }

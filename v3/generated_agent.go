@@ -61,6 +61,8 @@ type AgentOperations interface {
 
 	ActionDisconnect(*Agent) (*Agent, error)
 
+	ActionError(*Agent) (*Agent, error)
+
 	ActionReconnect(*Agent) (*Agent, error)
 
 	ActionRemove(*Agent) (*Agent, error)
@@ -148,6 +150,15 @@ func (c *AgentClient) ActionDisconnect(resource *Agent) (*Agent, error) {
 	resp := &Agent{}
 
 	err := c.rancherClient.doAction(AGENT_TYPE, "disconnect", &resource.Resource, nil, resp)
+
+	return resp, err
+}
+
+func (c *AgentClient) ActionError(resource *Agent) (*Agent, error) {
+
+	resp := &Agent{}
+
+	err := c.rancherClient.doAction(AGENT_TYPE, "error", &resource.Resource, nil, resp)
 
 	return resp, err
 }

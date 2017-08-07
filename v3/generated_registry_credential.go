@@ -62,8 +62,6 @@ type RegistryCredentialOperations interface {
 	ActionDeactivate(*RegistryCredential) (*Credential, error)
 
 	ActionRemove(*RegistryCredential) (*Credential, error)
-
-	ActionUpdate(*RegistryCredential) (*Credential, error)
 }
 
 func newRegistryCredentialClient(rancherClient *RancherClient) *RegistryCredentialClient {
@@ -148,15 +146,6 @@ func (c *RegistryCredentialClient) ActionRemove(resource *RegistryCredential) (*
 	resp := &Credential{}
 
 	err := c.rancherClient.doAction(REGISTRY_CREDENTIAL_TYPE, "remove", &resource.Resource, nil, resp)
-
-	return resp, err
-}
-
-func (c *RegistryCredentialClient) ActionUpdate(resource *RegistryCredential) (*Credential, error) {
-
-	resp := &Credential{}
-
-	err := c.rancherClient.doAction(REGISTRY_CREDENTIAL_TYPE, "update", &resource.Resource, nil, resp)
 
 	return resp, err
 }

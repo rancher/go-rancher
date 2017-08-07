@@ -97,6 +97,8 @@ type VirtualMachine struct {
 
 	ImageUuid string `json:"imageUuid,omitempty" yaml:"image_uuid,omitempty"`
 
+	InstanceLinks []Link `json:"instanceLinks,omitempty" yaml:"instance_links,omitempty"`
+
 	InstanceTriggeredStop string `json:"instanceTriggeredStop,omitempty" yaml:"instance_triggered_stop,omitempty"`
 
 	IoMaximumBandwidth int64 `json:"ioMaximumBandwidth,omitempty" yaml:"io_maximum_bandwidth,omitempty"`
@@ -269,8 +271,6 @@ type VirtualMachineOperations interface {
 
 	ActionStop(*VirtualMachine, *InstanceStop) (*Instance, error)
 
-	ActionUpdate(*VirtualMachine) (*Instance, error)
-
 	ActionUpgrade(*VirtualMachine, *ContainerUpgrade) (*Revision, error)
 }
 
@@ -419,15 +419,6 @@ func (c *VirtualMachineClient) ActionStop(resource *VirtualMachine, input *Insta
 	resp := &Instance{}
 
 	err := c.rancherClient.doAction(VIRTUAL_MACHINE_TYPE, "stop", &resource.Resource, input, resp)
-
-	return resp, err
-}
-
-func (c *VirtualMachineClient) ActionUpdate(resource *VirtualMachine) (*Instance, error) {
-
-	resp := &Instance{}
-
-	err := c.rancherClient.doAction(VIRTUAL_MACHINE_TYPE, "update", &resource.Resource, nil, resp)
 
 	return resp, err
 }
