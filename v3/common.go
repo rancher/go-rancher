@@ -27,6 +27,7 @@ var (
 	debug             = false
 	dialer            = &websocket.Dialer{}
 	privateFieldRegex = regexp.MustCompile("^[[:lower:]]")
+	oldVersions       = []string{"v1", "v2-beta", "v2"}
 )
 
 type ClientOpts struct {
@@ -138,9 +139,13 @@ func NormalizeUrl(existingUrl string) (string, error) {
 	}
 
 	if u.Path == "" || u.Path == "/" {
-		u.Path = "v2-beta"
-	} else if u.Path == "/v1" || strings.HasPrefix(u.Path, "/v1/") {
-		u.Path = strings.Replace(u.Path, "/v1", "/v2-beta", 1)
+		u.Path = "v3"
+	} else {
+		for _, ver := range oldVersions {
+			if u.Path == "/"+ver || strings.HasPrefix(u.Path, "/"+ver+"/") {
+				u.Path = strings.Replace(u.Path, "/"+ver, "/v3", 1)
+			}
+		}
 	}
 
 	return u.String(), nil
