@@ -8,10 +8,11 @@ docker run -p 8080:8080 -d rancher/server:master
 
 Once Rancher is running, you can run the gen-schema.sh script:
 ```sh
-./scripts/gen-schema.sh http://<docker host ip>:8080
+cd ./scripts
+./generate-rancher-schemas.sh v3 http://<docker host ip>:8080
 
 # The default url is http://localhost:8080, so if rancher/server is listening on localhost, you can omit the url:
-./scripts/gen-schema.sh
+./generate-rancher-schemas.sh v3. To generate v2 schema, use ./generate-rancher-schemas.sh v2
 ```
 
 This will add, remove, and modify go files appropriately. Submit a PR that includes *all* these changes.
@@ -23,13 +24,13 @@ This will add, remove, and modify go files appropriately. Submit a PR that inclu
 # Building
 
 ```sh
-godep go build ./client
+make build
 ```
 
 # Tests
 
 ```sh
-godep go test ./client
+make test
 ```
 # Contact
 For bugs, questions, comments, corrections, suggestions, etc., open an issue in
@@ -39,7 +40,7 @@ Or just [click here](//github.com/rancher/rancher/issues/new?title=%5Bgo-rancher
 
 
 # License
-Copyright (c) 2014-2015 [Rancher Labs, Inc.](http://rancher.com)
+Copyright (c) 2014-2017 [Rancher Labs, Inc.](http://rancher.com)
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
