@@ -137,6 +137,8 @@ type VirtualMachine struct {
 
 	MilliCpuReservation int64 `json:"milliCpuReservation,omitempty" yaml:"milli_cpu_reservation,omitempty"`
 
+	MountPoint []MountPoint `json:"mountPoint,omitempty" yaml:"mount_point,omitempty"`
+
 	Mounts []MountEntry `json:"mounts,omitempty" yaml:"mounts,omitempty"`
 
 	Name string `json:"name,omitempty" yaml:"name,omitempty"`
