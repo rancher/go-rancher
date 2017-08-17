@@ -7,9 +7,9 @@ const (
 type Subnet struct {
 	Resource
 
-	AccountId string `json:"accountId,omitempty" yaml:"account_id,omitempty"`
-
 	CidrSize int64 `json:"cidrSize,omitempty" yaml:"cidr_size,omitempty"`
+
+	ClusterId string `json:"clusterId,omitempty" yaml:"cluster_id,omitempty"`
 
 	Created string `json:"created,omitempty" yaml:"created,omitempty"`
 

@@ -21,6 +21,8 @@ type LaunchConfig struct {
 
 	CgroupParent string `json:"cgroupParent,omitempty" yaml:"cgroup_parent,omitempty"`
 
+	ClusterId string `json:"clusterId,omitempty" yaml:"cluster_id,omitempty"`
+
 	Command []string `json:"command,omitempty" yaml:"command,omitempty"`
 
 	CompleteUpdate bool `json:"completeUpdate,omitempty" yaml:"complete_update,omitempty"`

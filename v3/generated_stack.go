@@ -11,6 +11,8 @@ type Stack struct {
 
 	Answers map[string]interface{} `json:"answers,omitempty" yaml:"answers,omitempty"`
 
+	ClusterId string `json:"clusterId,omitempty" yaml:"cluster_id,omitempty"`
+
 	Created string `json:"created,omitempty" yaml:"created,omitempty"`
 
 	Data map[string]interface{} `json:"data,omitempty" yaml:"data,omitempty"`

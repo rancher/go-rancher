@@ -7,9 +7,9 @@ const (
 type Registry struct {
 	Resource
 
-	AccountId string `json:"accountId,omitempty" yaml:"account_id,omitempty"`
-
 	BlockDevicePath string `json:"blockDevicePath,omitempty" yaml:"block_device_path,omitempty"`
+
+	ClusterId string `json:"clusterId,omitempty" yaml:"cluster_id,omitempty"`
 
 	Created string `json:"created,omitempty" yaml:"created,omitempty"`
 

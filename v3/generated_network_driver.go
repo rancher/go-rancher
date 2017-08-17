@@ -7,7 +7,7 @@ const (
 type NetworkDriver struct {
 	Resource
 
-	AccountId string `json:"accountId,omitempty" yaml:"account_id,omitempty"`
+	ClusterId string `json:"clusterId,omitempty" yaml:"cluster_id,omitempty"`
 
 	CniConfig map[string]interface{} `json:"cniConfig,omitempty" yaml:"cni_config,omitempty"`
 

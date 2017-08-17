@@ -11,6 +11,8 @@ type DnsService struct {
 
 	AssignServiceIpAddress bool `json:"assignServiceIpAddress,omitempty" yaml:"assign_service_ip_address,omitempty"`
 
+	ClusterId string `json:"clusterId,omitempty" yaml:"cluster_id,omitempty"`
+
 	CompleteUpdate bool `json:"completeUpdate,omitempty" yaml:"complete_update,omitempty"`
 
 	Created string `json:"created,omitempty" yaml:"created,omitempty"`

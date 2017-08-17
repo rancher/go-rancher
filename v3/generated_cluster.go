@@ -7,8 +7,6 @@ const (
 type Cluster struct {
 	Resource
 
-	AccountId string `json:"accountId,omitempty" yaml:"account_id,omitempty"`
-
 	Created string `json:"created,omitempty" yaml:"created,omitempty"`
 
 	Data map[string]interface{} `json:"data,omitempty" yaml:"data,omitempty"`
@@ -17,7 +15,13 @@ type Cluster struct {
 
 	Embedded bool `json:"embedded,omitempty" yaml:"embedded,omitempty"`
 
+	HostRemoveDelaySeconds int64 `json:"hostRemoveDelaySeconds,omitempty" yaml:"host_remove_delay_seconds,omitempty"`
+
 	Identity ClusterIdentity `json:"identity,omitempty" yaml:"identity,omitempty"`
+
+	K8sClientConfig *K8sClientConfig `json:"k8sClientConfig,omitempty" yaml:"k8s_client_config,omitempty"`
+
+	K8sServerConfig *K8sServerConfig `json:"k8sServerConfig,omitempty" yaml:"k8s_server_config,omitempty"`
 
 	Kind string `json:"kind,omitempty" yaml:"kind,omitempty"`
 
@@ -54,6 +58,8 @@ type ClusterOperations interface {
 	Delete(container *Cluster) error
 
 	ActionCreate(*Cluster) (*Cluster, error)
+
+	ActionError(*Cluster) (*Cluster, error)
 
 	ActionRemove(*Cluster) (*Cluster, error)
 }
@@ -113,6 +119,15 @@ func (c *ClusterClient) ActionCreate(resource *Cluster) (*Cluster, error) {
 	resp := &Cluster{}
 
 	err := c.rancherClient.doAction(CLUSTER_TYPE, "create", &resource.Resource, nil, resp)
+
+	return resp, err
+}
+
+func (c *ClusterClient) ActionError(resource *Cluster) (*Cluster, error) {
+
+	resp := &Cluster{}
+
+	err := c.rancherClient.doAction(CLUSTER_TYPE, "error", &resource.Resource, nil, resp)
 
 	return resp, err
 }
