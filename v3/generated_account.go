@@ -7,6 +7,10 @@ const (
 type Account struct {
 	Resource
 
+	ClusterId string `json:"clusterId,omitempty" yaml:"cluster_id,omitempty"`
+
+	ClusterOwner bool `json:"clusterOwner,omitempty" yaml:"cluster_owner,omitempty"`
+
 	Created string `json:"created,omitempty" yaml:"created,omitempty"`
 
 	Data map[string]interface{} `json:"data,omitempty" yaml:"data,omitempty"`
@@ -66,6 +70,8 @@ type AccountOperations interface {
 	ActionPurge(*Account) (*Account, error)
 
 	ActionRemove(*Account) (*Account, error)
+
+	ActionUpdate(*Account) (*Account, error)
 }
 
 func newAccountClient(rancherClient *RancherClient) *AccountClient {
@@ -159,6 +165,15 @@ func (c *AccountClient) ActionRemove(resource *Account) (*Account, error) {
 	resp := &Account{}
 
 	err := c.rancherClient.doAction(ACCOUNT_TYPE, "remove", &resource.Resource, nil, resp)
+
+	return resp, err
+}
+
+func (c *AccountClient) ActionUpdate(resource *Account) (*Account, error) {
+
+	resp := &Account{}
+
+	err := c.rancherClient.doAction(ACCOUNT_TYPE, "update", &resource.Resource, nil, resp)
 
 	return resp, err
 }

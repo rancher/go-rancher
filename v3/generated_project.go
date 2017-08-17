@@ -7,9 +7,9 @@ const (
 type Project struct {
 	Resource
 
-	AllowSystemRole bool `json:"allowSystemRole,omitempty" yaml:"allow_system_role,omitempty"`
+	ClusterId string `json:"clusterId,omitempty" yaml:"cluster_id,omitempty"`
 
-	ComputeFlavor string `json:"computeFlavor,omitempty" yaml:"compute_flavor,omitempty"`
+	ClusterOwner bool `json:"clusterOwner,omitempty" yaml:"cluster_owner,omitempty"`
 
 	Created string `json:"created,omitempty" yaml:"created,omitempty"`
 
@@ -18,8 +18,6 @@ type Project struct {
 	DefaultNetworkId string `json:"defaultNetworkId,omitempty" yaml:"default_network_id,omitempty"`
 
 	Description string `json:"description,omitempty" yaml:"description,omitempty"`
-
-	HostRemoveDelaySeconds int64 `json:"hostRemoveDelaySeconds,omitempty" yaml:"host_remove_delay_seconds,omitempty"`
 
 	Kind string `json:"kind,omitempty" yaml:"kind,omitempty"`
 
@@ -76,6 +74,8 @@ type ProjectOperations interface {
 	ActionRemove(*Project) (*Account, error)
 
 	ActionSetmembers(*Project, *SetProjectMembersInput) (*SetProjectMembersInput, error)
+
+	ActionUpdate(*Project) (*Account, error)
 }
 
 func newProjectClient(rancherClient *RancherClient) *ProjectClient {
@@ -178,6 +178,15 @@ func (c *ProjectClient) ActionSetmembers(resource *Project, input *SetProjectMem
 	resp := &SetProjectMembersInput{}
 
 	err := c.rancherClient.doAction(PROJECT_TYPE, "setmembers", &resource.Resource, input, resp)
+
+	return resp, err
+}
+
+func (c *ProjectClient) ActionUpdate(resource *Project) (*Account, error) {
+
+	resp := &Account{}
+
+	err := c.rancherClient.doAction(PROJECT_TYPE, "update", &resource.Resource, nil, resp)
 
 	return resp, err
 }

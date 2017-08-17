@@ -17,7 +17,6 @@ type RancherClient struct {
 	ChangeSecretInput                  ChangeSecretInputOperations
 	Cluster                            ClusterOperations
 	ClusterIdentity                    ClusterIdentityOperations
-	ClusterMembership                  ClusterMembershipOperations
 	ComposeConfig                      ComposeConfigOperations
 	ComposeConfigInput                 ComposeConfigInputOperations
 	Container                          ContainerOperations
@@ -45,6 +44,7 @@ type RancherClient struct {
 	ExternalServiceEvent               ExternalServiceEventOperations
 	FieldDocumentation                 FieldDocumentationOperations
 	GenericObject                      GenericObjectOperations
+	HaMembership                       HaMembershipOperations
 	HealthcheckState                   HealthcheckStateOperations
 	Host                               HostOperations
 	HostAccess                         HostAccessOperations
@@ -59,6 +59,8 @@ type RancherClient struct {
 	InstanceRemove                     InstanceRemoveOperations
 	InstanceStatus                     InstanceStatusOperations
 	InstanceStop                       InstanceStopOperations
+	K8sClientConfig                    K8sClientConfigOperations
+	K8sServerConfig                    K8sServerConfigOperations
 	LaunchConfig                       LaunchConfigOperations
 	LbConfig                           LbConfigOperations
 	LbTargetConfig                     LbTargetConfigOperations
@@ -110,7 +112,6 @@ type RancherClient struct {
 	ServiceUpgrade                     ServiceUpgradeOperations
 	ServiceUpgradeStrategy             ServiceUpgradeStrategyOperations
 	ServicesPortRange                  ServicesPortRangeOperations
-	SetComputeFlavorInput              SetComputeFlavorInputOperations
 	SetProjectMembersInput             SetProjectMembersInputOperations
 	Setting                            SettingOperations
 	Stack                              StackOperations
@@ -151,7 +152,6 @@ func constructClient(rancherBaseClient *RancherBaseClientImpl) *RancherClient {
 	client.ChangeSecretInput = newChangeSecretInputClient(client)
 	client.Cluster = newClusterClient(client)
 	client.ClusterIdentity = newClusterIdentityClient(client)
-	client.ClusterMembership = newClusterMembershipClient(client)
 	client.ComposeConfig = newComposeConfigClient(client)
 	client.ComposeConfigInput = newComposeConfigInputClient(client)
 	client.Container = newContainerClient(client)
@@ -179,6 +179,7 @@ func constructClient(rancherBaseClient *RancherBaseClientImpl) *RancherClient {
 	client.ExternalServiceEvent = newExternalServiceEventClient(client)
 	client.FieldDocumentation = newFieldDocumentationClient(client)
 	client.GenericObject = newGenericObjectClient(client)
+	client.HaMembership = newHaMembershipClient(client)
 	client.HealthcheckState = newHealthcheckStateClient(client)
 	client.Host = newHostClient(client)
 	client.HostAccess = newHostAccessClient(client)
@@ -193,6 +194,8 @@ func constructClient(rancherBaseClient *RancherBaseClientImpl) *RancherClient {
 	client.InstanceRemove = newInstanceRemoveClient(client)
 	client.InstanceStatus = newInstanceStatusClient(client)
 	client.InstanceStop = newInstanceStopClient(client)
+	client.K8sClientConfig = newK8sClientConfigClient(client)
+	client.K8sServerConfig = newK8sServerConfigClient(client)
 	client.LaunchConfig = newLaunchConfigClient(client)
 	client.LbConfig = newLbConfigClient(client)
 	client.LbTargetConfig = newLbTargetConfigClient(client)
@@ -244,7 +247,6 @@ func constructClient(rancherBaseClient *RancherBaseClientImpl) *RancherClient {
 	client.ServiceUpgrade = newServiceUpgradeClient(client)
 	client.ServiceUpgradeStrategy = newServiceUpgradeStrategyClient(client)
 	client.ServicesPortRange = newServicesPortRangeClient(client)
-	client.SetComputeFlavorInput = newSetComputeFlavorInputClient(client)
 	client.SetProjectMembersInput = newSetProjectMembersInputClient(client)
 	client.Setting = newSettingClient(client)
 	client.Stack = newStackClient(client)

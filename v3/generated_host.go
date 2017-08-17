@@ -7,8 +7,6 @@ const (
 type Host struct {
 	Resource
 
-	AccountId string `json:"accountId,omitempty" yaml:"account_id,omitempty"`
-
 	AgentId string `json:"agentId,omitempty" yaml:"agent_id,omitempty"`
 
 	AgentIpAddress string `json:"agentIpAddress,omitempty" yaml:"agent_ip_address,omitempty"`
@@ -22,6 +20,8 @@ type Host struct {
 	AuthKey string `json:"authKey,omitempty" yaml:"auth_key,omitempty"`
 
 	AzureConfig *AzureConfig `json:"azureConfig,omitempty" yaml:"azure_config,omitempty"`
+
+	ClusterId string `json:"clusterId,omitempty" yaml:"cluster_id,omitempty"`
 
 	Created string `json:"created,omitempty" yaml:"created,omitempty"`
 

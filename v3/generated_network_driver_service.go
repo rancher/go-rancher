@@ -13,6 +13,8 @@ type NetworkDriverService struct {
 
 	BatchSize int64 `json:"batchSize,omitempty" yaml:"batch_size,omitempty"`
 
+	ClusterId string `json:"clusterId,omitempty" yaml:"cluster_id,omitempty"`
+
 	CompleteUpdate bool `json:"completeUpdate,omitempty" yaml:"complete_update,omitempty"`
 
 	CreateIndex int64 `json:"createIndex,omitempty" yaml:"create_index,omitempty"`

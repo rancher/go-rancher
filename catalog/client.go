@@ -7,9 +7,9 @@ import (
 )
 
 type RancherBaseClientImpl struct {
-	Opts    *ClientOpts
-	Schemas *Schemas
-	Types   map[string]Schema
+	Opts          *ClientOpts
+	Schemas       *Schemas
+	Types         map[string]Schema
 	customHeaders map[string]string
 }
 
