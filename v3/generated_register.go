@@ -21,6 +21,8 @@ type Register struct {
 
 	Description string `json:"description,omitempty" yaml:"description,omitempty"`
 
+	K8sClientConfig *K8sClientConfig `json:"k8sClientConfig,omitempty" yaml:"k8s_client_config,omitempty"`
+
 	Key string `json:"key,omitempty" yaml:"key,omitempty"`
 
 	Kind string `json:"kind,omitempty" yaml:"kind,omitempty"`

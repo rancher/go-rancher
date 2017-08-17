@@ -201,6 +201,8 @@ type VirtualMachine struct {
 
 	StopSignal string `json:"stopSignal,omitempty" yaml:"stop_signal,omitempty"`
 
+	StopTimeout int64 `json:"stopTimeout,omitempty" yaml:"stop_timeout,omitempty"`
+
 	StorageOpt map[string]interface{} `json:"storageOpt,omitempty" yaml:"storage_opt,omitempty"`
 
 	Sysctls map[string]interface{} `json:"sysctls,omitempty" yaml:"sysctls,omitempty"`
