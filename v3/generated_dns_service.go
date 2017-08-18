@@ -55,8 +55,6 @@ type DnsService struct {
 
 	State string `json:"state,omitempty" yaml:"state,omitempty"`
 
-	System bool `json:"system,omitempty" yaml:"system,omitempty"`
-
 	Transitioning string `json:"transitioning,omitempty" yaml:"transitioning,omitempty"`
 
 	TransitioningMessage string `json:"transitioningMessage,omitempty" yaml:"transitioning_message,omitempty"`

@@ -45,8 +45,6 @@ type Stack struct {
 
 	State string `json:"state,omitempty" yaml:"state,omitempty"`
 
-	System bool `json:"system,omitempty" yaml:"system,omitempty"`
-
 	Templates map[string]interface{} `json:"templates,omitempty" yaml:"templates,omitempty"`
 
 	Transitioning string `json:"transitioning,omitempty" yaml:"transitioning,omitempty"`

@@ -207,8 +207,6 @@ type VirtualMachine struct {
 
 	Sysctls map[string]interface{} `json:"sysctls,omitempty" yaml:"sysctls,omitempty"`
 
-	System bool `json:"system,omitempty" yaml:"system,omitempty"`
-
 	Tmpfs map[string]interface{} `json:"tmpfs,omitempty" yaml:"tmpfs,omitempty"`
 
 	Token string `json:"token,omitempty" yaml:"token,omitempty"`

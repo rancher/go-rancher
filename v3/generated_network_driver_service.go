@@ -91,8 +91,6 @@ type NetworkDriverService struct {
 
 	StorageDriver *StorageDriver `json:"storageDriver,omitempty" yaml:"storage_driver,omitempty"`
 
-	System bool `json:"system,omitempty" yaml:"system,omitempty"`
-
 	Transitioning string `json:"transitioning,omitempty" yaml:"transitioning,omitempty"`
 
 	TransitioningMessage string `json:"transitioningMessage,omitempty" yaml:"transitioning_message,omitempty"`

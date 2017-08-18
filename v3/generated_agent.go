@@ -19,8 +19,6 @@ type Agent struct {
 
 	Kind string `json:"kind,omitempty" yaml:"kind,omitempty"`
 
-	ManagedConfig bool `json:"managedConfig,omitempty" yaml:"managed_config,omitempty"`
-
 	Name string `json:"name,omitempty" yaml:"name,omitempty"`
 
 	RemoveTime string `json:"removeTime,omitempty" yaml:"remove_time,omitempty"`
