@@ -11,8 +11,6 @@ type Register struct {
 
 	K8sClientConfig K8sClientConfig `json:"k8sClientConfig,omitempty" yaml:"k8s_client_config,omitempty"`
 
-	K8sClientConfig *K8sClientConfig `json:"k8sClientConfig,omitempty" yaml:"k8s_client_config,omitempty"`
-
 	Key string `json:"key,omitempty" yaml:"key,omitempty"`
 
 	SecretKey string `json:"secretKey,omitempty" yaml:"secret_key,omitempty"`
