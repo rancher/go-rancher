@@ -13,8 +13,6 @@ type Host struct {
 
 	AgentState string `json:"agentState,omitempty" yaml:"agent_state,omitempty"`
 
-	Amazonec2Config *Amazonec2Config `json:"amazonec2Config,omitempty" yaml:"amazonec2config,omitempty"`
-
 	AuthCertificateAuthority string `json:"authCertificateAuthority,omitempty" yaml:"auth_certificate_authority,omitempty"`
 
 	AuthKey string `json:"authKey,omitempty" yaml:"auth_key,omitempty"`

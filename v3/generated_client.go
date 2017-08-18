@@ -6,7 +6,6 @@ type RancherClient struct {
 	Account                            AccountOperations
 	AddOutputsInput                    AddOutputsInputOperations
 	Agent                              AgentOperations
-	Amazonec2Config                    Amazonec2ConfigOperations
 	ApiKey                             ApiKeyOperations
 	AuditLog                           AuditLogOperations
 	AzureConfig                        AzureConfigOperations
@@ -141,7 +140,6 @@ func constructClient(rancherBaseClient *RancherBaseClientImpl) *RancherClient {
 	client.Account = newAccountClient(client)
 	client.AddOutputsInput = newAddOutputsInputClient(client)
 	client.Agent = newAgentClient(client)
-	client.Amazonec2Config = newAmazonec2ConfigClient(client)
 	client.ApiKey = newApiKeyClient(client)
 	client.AuditLog = newAuditLogClient(client)
 	client.AzureConfig = newAzureConfigClient(client)

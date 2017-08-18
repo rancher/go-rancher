@@ -237,11 +237,11 @@ type LaunchConfig struct {
 
 	StopSignal string `json:"stopSignal,omitempty" yaml:"stop_signal,omitempty"`
 
+	StopTimeout int64 `json:"stopTimeout,omitempty" yaml:"stop_timeout,omitempty"`
+
 	StorageOpt map[string]interface{} `json:"storageOpt,omitempty" yaml:"storage_opt,omitempty"`
 
 	Sysctls map[string]interface{} `json:"sysctls,omitempty" yaml:"sysctls,omitempty"`
-
-	System bool `json:"system,omitempty" yaml:"system,omitempty"`
 
 	Tmpfs map[string]interface{} `json:"tmpfs,omitempty" yaml:"tmpfs,omitempty"`
 
