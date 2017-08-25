@@ -13,8 +13,6 @@ type Instance struct {
 
 	Created string `json:"created,omitempty" yaml:"created,omitempty"`
 
-	Data map[string]interface{} `json:"data,omitempty" yaml:"data,omitempty"`
-
 	DependsOn []DependsOn `json:"dependsOn,omitempty" yaml:"depends_on,omitempty"`
 
 	Description string `json:"description,omitempty" yaml:"description,omitempty"`

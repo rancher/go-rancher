@@ -15,9 +15,9 @@ type DnsService struct {
 
 	CompleteUpdate bool `json:"completeUpdate,omitempty" yaml:"complete_update,omitempty"`
 
-	Created string `json:"created,omitempty" yaml:"created,omitempty"`
+	CreateOnly bool `json:"createOnly,omitempty" yaml:"create_only,omitempty"`
 
-	Data map[string]interface{} `json:"data,omitempty" yaml:"data,omitempty"`
+	Created string `json:"created,omitempty" yaml:"created,omitempty"`
 
 	Description string `json:"description,omitempty" yaml:"description,omitempty"`
 
@@ -50,8 +50,6 @@ type DnsService struct {
 	ServiceLinks []Link `json:"serviceLinks,omitempty" yaml:"service_links,omitempty"`
 
 	StackId string `json:"stackId,omitempty" yaml:"stack_id,omitempty"`
-
-	StartOnCreate bool `json:"startOnCreate,omitempty" yaml:"start_on_create,omitempty"`
 
 	State string `json:"state,omitempty" yaml:"state,omitempty"`
 

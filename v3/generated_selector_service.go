@@ -19,11 +19,11 @@ type SelectorService struct {
 
 	CreateIndex int64 `json:"createIndex,omitempty" yaml:"create_index,omitempty"`
 
+	CreateOnly bool `json:"createOnly,omitempty" yaml:"create_only,omitempty"`
+
 	Created string `json:"created,omitempty" yaml:"created,omitempty"`
 
 	CurrentScale int64 `json:"currentScale,omitempty" yaml:"current_scale,omitempty"`
-
-	Data map[string]interface{} `json:"data,omitempty" yaml:"data,omitempty"`
 
 	Description string `json:"description,omitempty" yaml:"description,omitempty"`
 
@@ -76,8 +76,6 @@ type SelectorService struct {
 	StackId string `json:"stackId,omitempty" yaml:"stack_id,omitempty"`
 
 	StartFirst bool `json:"startFirst,omitempty" yaml:"start_first,omitempty"`
-
-	StartOnCreate bool `json:"startOnCreate,omitempty" yaml:"start_on_create,omitempty"`
 
 	State string `json:"state,omitempty" yaml:"state,omitempty"`
 

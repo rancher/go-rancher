@@ -21,8 +21,6 @@ type Certificate struct {
 
 	Created string `json:"created,omitempty" yaml:"created,omitempty"`
 
-	Data map[string]interface{} `json:"data,omitempty" yaml:"data,omitempty"`
-
 	Description string `json:"description,omitempty" yaml:"description,omitempty"`
 
 	ExpiresAt string `json:"expiresAt,omitempty" yaml:"expires_at,omitempty"`

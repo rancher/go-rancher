@@ -13,8 +13,6 @@ type DeploymentUnit struct {
 
 	Created string `json:"created,omitempty" yaml:"created,omitempty"`
 
-	Data map[string]interface{} `json:"data,omitempty" yaml:"data,omitempty"`
-
 	Description string `json:"description,omitempty" yaml:"description,omitempty"`
 
 	HostId string `json:"hostId,omitempty" yaml:"host_id,omitempty"`

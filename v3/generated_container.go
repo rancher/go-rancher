@@ -35,7 +35,7 @@ type Container struct {
 
 	CpuQuota int64 `json:"cpuQuota,omitempty" yaml:"cpu_quota,omitempty"`
 
-	CpuSet string `json:"cpuSet,omitempty" yaml:"cpu_set,omitempty"`
+	CpuSetCpu string `json:"cpuSetCpu,omitempty" yaml:"cpu_set_cpu,omitempty"`
 
 	CpuSetMems string `json:"cpuSetMems,omitempty" yaml:"cpu_set_mems,omitempty"`
 
@@ -43,9 +43,9 @@ type Container struct {
 
 	CreateIndex int64 `json:"createIndex,omitempty" yaml:"create_index,omitempty"`
 
-	Created string `json:"created,omitempty" yaml:"created,omitempty"`
+	CreateOnly bool `json:"createOnly,omitempty" yaml:"create_only,omitempty"`
 
-	Data map[string]interface{} `json:"data,omitempty" yaml:"data,omitempty"`
+	Created string `json:"created,omitempty" yaml:"created,omitempty"`
 
 	DataVolumeMounts map[string]interface{} `json:"dataVolumeMounts,omitempty" yaml:"data_volume_mounts,omitempty"`
 
@@ -219,13 +219,13 @@ type Container struct {
 
 	ShmSize int64 `json:"shmSize,omitempty" yaml:"shm_size,omitempty"`
 
+	ShouldRestart bool `json:"shouldRestart,omitempty" yaml:"should_restart,omitempty"`
+
 	SidekickTo string `json:"sidekickTo,omitempty" yaml:"sidekick_to,omitempty"`
 
 	StackId string `json:"stackId,omitempty" yaml:"stack_id,omitempty"`
 
 	StartCount int64 `json:"startCount,omitempty" yaml:"start_count,omitempty"`
-
-	StartOnCreate bool `json:"startOnCreate,omitempty" yaml:"start_on_create,omitempty"`
 
 	State string `json:"state,omitempty" yaml:"state,omitempty"`
 

@@ -15,8 +15,6 @@ type MachineDriver struct {
 
 	Created string `json:"created,omitempty" yaml:"created,omitempty"`
 
-	Data map[string]interface{} `json:"data,omitempty" yaml:"data,omitempty"`
-
 	DefaultActive bool `json:"defaultActive,omitempty" yaml:"default_active,omitempty"`
 
 	Description string `json:"description,omitempty" yaml:"description,omitempty"`

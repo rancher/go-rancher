@@ -13,8 +13,6 @@ type PullTask struct {
 
 	Created string `json:"created,omitempty" yaml:"created,omitempty"`
 
-	Data map[string]interface{} `json:"data,omitempty" yaml:"data,omitempty"`
-
 	Description string `json:"description,omitempty" yaml:"description,omitempty"`
 
 	Image string `json:"image,omitempty" yaml:"image,omitempty"`

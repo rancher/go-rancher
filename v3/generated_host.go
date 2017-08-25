@@ -13,6 +13,8 @@ type Host struct {
 
 	AgentState string `json:"agentState,omitempty" yaml:"agent_state,omitempty"`
 
+	Amazonec2Config *Amazonec2Config `json:"amazonec2Config,omitempty" yaml:"amazonec2config,omitempty"`
+
 	AuthCertificateAuthority string `json:"authCertificateAuthority,omitempty" yaml:"auth_certificate_authority,omitempty"`
 
 	AuthKey string `json:"authKey,omitempty" yaml:"auth_key,omitempty"`
@@ -22,8 +24,6 @@ type Host struct {
 	ClusterId string `json:"clusterId,omitempty" yaml:"cluster_id,omitempty"`
 
 	Created string `json:"created,omitempty" yaml:"created,omitempty"`
-
-	Data map[string]interface{} `json:"data,omitempty" yaml:"data,omitempty"`
 
 	Description string `json:"description,omitempty" yaml:"description,omitempty"`
 
