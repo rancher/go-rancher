@@ -13,8 +13,6 @@ type NetworkDriver struct {
 
 	Created string `json:"created,omitempty" yaml:"created,omitempty"`
 
-	Data map[string]interface{} `json:"data,omitempty" yaml:"data,omitempty"`
-
 	DefaultNetwork DefaultNetwork `json:"defaultNetwork,omitempty" yaml:"default_network,omitempty"`
 
 	Description string `json:"description,omitempty" yaml:"description,omitempty"`

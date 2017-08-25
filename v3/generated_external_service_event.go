@@ -13,8 +13,6 @@ type ExternalServiceEvent struct {
 
 	Created string `json:"created,omitempty" yaml:"created,omitempty"`
 
-	Data map[string]interface{} `json:"data,omitempty" yaml:"data,omitempty"`
-
 	Environment interface{} `json:"environment,omitempty" yaml:"environment,omitempty"`
 
 	EventType string `json:"eventType,omitempty" yaml:"event_type,omitempty"`

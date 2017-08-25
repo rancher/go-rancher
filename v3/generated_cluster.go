@@ -9,8 +9,6 @@ type Cluster struct {
 
 	Created string `json:"created,omitempty" yaml:"created,omitempty"`
 
-	Data map[string]interface{} `json:"data,omitempty" yaml:"data,omitempty"`
-
 	Description string `json:"description,omitempty" yaml:"description,omitempty"`
 
 	Embedded bool `json:"embedded,omitempty" yaml:"embedded,omitempty"`
@@ -34,6 +32,8 @@ type Cluster struct {
 	Removed string `json:"removed,omitempty" yaml:"removed,omitempty"`
 
 	State string `json:"state,omitempty" yaml:"state,omitempty"`
+
+	SystemStacks []Stack `json:"systemStacks,omitempty" yaml:"system_stacks,omitempty"`
 
 	Transitioning string `json:"transitioning,omitempty" yaml:"transitioning,omitempty"`
 

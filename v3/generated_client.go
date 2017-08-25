@@ -6,6 +6,7 @@ type RancherClient struct {
 	Account                            AccountOperations
 	AddOutputsInput                    AddOutputsInputOperations
 	Agent                              AgentOperations
+	Amazonec2Config                    Amazonec2ConfigOperations
 	ApiKey                             ApiKeyOperations
 	AuditLog                           AuditLogOperations
 	AzureConfig                        AzureConfigOperations
@@ -35,6 +36,7 @@ type RancherClient struct {
 	DigitaloceanConfig                 DigitaloceanConfigOperations
 	DnsService                         DnsServiceOperations
 	DynamicSchema                      DynamicSchemaOperations
+	EnvironmentInfo                    EnvironmentInfoOperations
 	Error                              ErrorOperations
 	ExternalDnsEvent                   ExternalDnsEventOperations
 	ExternalEvent                      ExternalEventOperations
@@ -44,10 +46,12 @@ type RancherClient struct {
 	FieldDocumentation                 FieldDocumentationOperations
 	GenericObject                      GenericObjectOperations
 	HaMembership                       HaMembershipOperations
+	HealthcheckInfo                    HealthcheckInfoOperations
 	HealthcheckState                   HealthcheckStateOperations
 	Host                               HostOperations
 	HostAccess                         HostAccessOperations
 	HostApiProxyToken                  HostApiProxyTokenOperations
+	HostInfo                           HostInfoOperations
 	HostTemplate                       HostTemplateOperations
 	Identity                           IdentityOperations
 	InServiceUpgradeStrategy           InServiceUpgradeStrategyOperations
@@ -55,6 +59,7 @@ type RancherClient struct {
 	InstanceConsole                    InstanceConsoleOperations
 	InstanceConsoleInput               InstanceConsoleInputOperations
 	InstanceHealthCheck                InstanceHealthCheckOperations
+	InstanceInfo                       InstanceInfoOperations
 	InstanceRemove                     InstanceRemoveOperations
 	InstanceStatus                     InstanceStatusOperations
 	InstanceStop                       InstanceStopOperations
@@ -70,11 +75,14 @@ type RancherClient struct {
 	LocalAuthConfig                    LocalAuthConfigOperations
 	LogConfig                          LogConfigOperations
 	MachineDriver                      MachineDriverOperations
+	MetadataObject                     MetadataObjectOperations
+	MetadataSyncRequest                MetadataSyncRequestOperations
 	Mount                              MountOperations
 	MountEntry                         MountEntryOperations
 	Network                            NetworkOperations
 	NetworkDriver                      NetworkDriverOperations
 	NetworkDriverService               NetworkDriverServiceOperations
+	NetworkInfo                        NetworkInfoOperations
 	NetworkPolicyRule                  NetworkPolicyRuleOperations
 	NetworkPolicyRuleBetween           NetworkPolicyRuleBetweenOperations
 	NetworkPolicyRuleMember            NetworkPolicyRuleMemberOperations
@@ -105,6 +113,7 @@ type RancherClient struct {
 	SelectorService                    SelectorServiceOperations
 	Service                            ServiceOperations
 	ServiceEvent                       ServiceEventOperations
+	ServiceInfo                        ServiceInfoOperations
 	ServiceLog                         ServiceLogOperations
 	ServiceProxy                       ServiceProxyOperations
 	ServiceRollback                    ServiceRollbackOperations
@@ -115,6 +124,7 @@ type RancherClient struct {
 	Setting                            SettingOperations
 	Stack                              StackOperations
 	StackConfiguration                 StackConfigurationOperations
+	StackInfo                          StackInfoOperations
 	StackUpgrade                       StackUpgradeOperations
 	StatsAccess                        StatsAccessOperations
 	StorageDriver                      StorageDriverOperations
@@ -140,6 +150,7 @@ func constructClient(rancherBaseClient *RancherBaseClientImpl) *RancherClient {
 	client.Account = newAccountClient(client)
 	client.AddOutputsInput = newAddOutputsInputClient(client)
 	client.Agent = newAgentClient(client)
+	client.Amazonec2Config = newAmazonec2ConfigClient(client)
 	client.ApiKey = newApiKeyClient(client)
 	client.AuditLog = newAuditLogClient(client)
 	client.AzureConfig = newAzureConfigClient(client)
@@ -169,6 +180,7 @@ func constructClient(rancherBaseClient *RancherBaseClientImpl) *RancherClient {
 	client.DigitaloceanConfig = newDigitaloceanConfigClient(client)
 	client.DnsService = newDnsServiceClient(client)
 	client.DynamicSchema = newDynamicSchemaClient(client)
+	client.EnvironmentInfo = newEnvironmentInfoClient(client)
 	client.Error = newErrorClient(client)
 	client.ExternalDnsEvent = newExternalDnsEventClient(client)
 	client.ExternalEvent = newExternalEventClient(client)
@@ -178,10 +190,12 @@ func constructClient(rancherBaseClient *RancherBaseClientImpl) *RancherClient {
 	client.FieldDocumentation = newFieldDocumentationClient(client)
 	client.GenericObject = newGenericObjectClient(client)
 	client.HaMembership = newHaMembershipClient(client)
+	client.HealthcheckInfo = newHealthcheckInfoClient(client)
 	client.HealthcheckState = newHealthcheckStateClient(client)
 	client.Host = newHostClient(client)
 	client.HostAccess = newHostAccessClient(client)
 	client.HostApiProxyToken = newHostApiProxyTokenClient(client)
+	client.HostInfo = newHostInfoClient(client)
 	client.HostTemplate = newHostTemplateClient(client)
 	client.Identity = newIdentityClient(client)
 	client.InServiceUpgradeStrategy = newInServiceUpgradeStrategyClient(client)
@@ -189,6 +203,7 @@ func constructClient(rancherBaseClient *RancherBaseClientImpl) *RancherClient {
 	client.InstanceConsole = newInstanceConsoleClient(client)
 	client.InstanceConsoleInput = newInstanceConsoleInputClient(client)
 	client.InstanceHealthCheck = newInstanceHealthCheckClient(client)
+	client.InstanceInfo = newInstanceInfoClient(client)
 	client.InstanceRemove = newInstanceRemoveClient(client)
 	client.InstanceStatus = newInstanceStatusClient(client)
 	client.InstanceStop = newInstanceStopClient(client)
@@ -204,11 +219,14 @@ func constructClient(rancherBaseClient *RancherBaseClientImpl) *RancherClient {
 	client.LocalAuthConfig = newLocalAuthConfigClient(client)
 	client.LogConfig = newLogConfigClient(client)
 	client.MachineDriver = newMachineDriverClient(client)
+	client.MetadataObject = newMetadataObjectClient(client)
+	client.MetadataSyncRequest = newMetadataSyncRequestClient(client)
 	client.Mount = newMountClient(client)
 	client.MountEntry = newMountEntryClient(client)
 	client.Network = newNetworkClient(client)
 	client.NetworkDriver = newNetworkDriverClient(client)
 	client.NetworkDriverService = newNetworkDriverServiceClient(client)
+	client.NetworkInfo = newNetworkInfoClient(client)
 	client.NetworkPolicyRule = newNetworkPolicyRuleClient(client)
 	client.NetworkPolicyRuleBetween = newNetworkPolicyRuleBetweenClient(client)
 	client.NetworkPolicyRuleMember = newNetworkPolicyRuleMemberClient(client)
@@ -239,6 +257,7 @@ func constructClient(rancherBaseClient *RancherBaseClientImpl) *RancherClient {
 	client.SelectorService = newSelectorServiceClient(client)
 	client.Service = newServiceClient(client)
 	client.ServiceEvent = newServiceEventClient(client)
+	client.ServiceInfo = newServiceInfoClient(client)
 	client.ServiceLog = newServiceLogClient(client)
 	client.ServiceProxy = newServiceProxyClient(client)
 	client.ServiceRollback = newServiceRollbackClient(client)
@@ -249,6 +268,7 @@ func constructClient(rancherBaseClient *RancherBaseClientImpl) *RancherClient {
 	client.Setting = newSettingClient(client)
 	client.Stack = newStackClient(client)
 	client.StackConfiguration = newStackConfigurationClient(client)
+	client.StackInfo = newStackInfoClient(client)
 	client.StackUpgrade = newStackUpgradeClient(client)
 	client.StatsAccess = newStatsAccessClient(client)
 	client.StorageDriver = newStorageDriverClient(client)

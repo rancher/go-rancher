@@ -11,8 +11,6 @@ type ProcessInstance struct {
 
 	ClusterId string `json:"clusterId,omitempty" yaml:"cluster_id,omitempty"`
 
-	Data map[string]interface{} `json:"data,omitempty" yaml:"data,omitempty"`
-
 	EndTime string `json:"endTime,omitempty" yaml:"end_time,omitempty"`
 
 	ExecutionCount int64 `json:"executionCount,omitempty" yaml:"execution_count,omitempty"`

@@ -11,8 +11,6 @@ type DefaultNetwork struct {
 
 	Created string `json:"created,omitempty" yaml:"created,omitempty"`
 
-	Data map[string]interface{} `json:"data,omitempty" yaml:"data,omitempty"`
-
 	DefaultPolicyAction string `json:"defaultPolicyAction,omitempty" yaml:"default_policy_action,omitempty"`
 
 	Description string `json:"description,omitempty" yaml:"description,omitempty"`

@@ -9,9 +9,13 @@ type PublicEndpoint struct {
 
 	AgentIpAddress string `json:"agentIpAddress,omitempty" yaml:"agent_ip_address,omitempty"`
 
+	BindAll bool `json:"bindAll,omitempty" yaml:"bind_all,omitempty"`
+
 	BindIpAddress string `json:"bindIpAddress,omitempty" yaml:"bind_ip_address,omitempty"`
 
 	Fqdn string `json:"fqdn,omitempty" yaml:"fqdn,omitempty"`
+
+	HostId string `json:"hostId,omitempty" yaml:"host_id,omitempty"`
 
 	InstanceId string `json:"instanceId,omitempty" yaml:"instance_id,omitempty"`
 
