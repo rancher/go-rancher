@@ -2,6 +2,7 @@ package client
 
 import (
 	"bytes"
+	"crypto/tls"
 	"encoding/json"
 	"fmt"
 	"io"
@@ -13,6 +14,7 @@ import (
 	"time"
 
 	"github.com/gorilla/websocket"
+	"github.com/hashicorp/go-rootcerts"
 	"github.com/pkg/errors"
 )
 
@@ -133,7 +135,25 @@ func setupRancherBaseClient(rancherClient *RancherBaseClientImpl, opts *ClientOp
 	if opts.Timeout == 0 {
 		opts.Timeout = time.Second * 10
 	}
-	client := &http.Client{Timeout: opts.Timeout}
+
+	systemCAsPool, err := rootcerts.LoadSystemCAs()
+	if err != nil {
+		return err
+	}
+
+	tlsConfig := &tls.Config{
+		RootCAs: systemCAsPool,
+	}
+
+	tlsConfig.BuildNameToCertificate()
+	transport := &http.Transport{
+		TLSClientConfig: tlsConfig,
+	}
+
+	client := &http.Client{
+		Transport: transport,
+		Timeout:   opts.Timeout,
+	}
 	req, err := http.NewRequest("GET", opts.Url, nil)
 	if err != nil {
 		return err
