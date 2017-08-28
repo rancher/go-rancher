@@ -15,19 +15,25 @@ type ServiceInfo struct {
 
 	Global bool `json:"global,omitempty" yaml:"global,omitempty"`
 
+	HealthCheck HealthcheckInfo `json:"healthCheck,omitempty" yaml:"health_check,omitempty"`
+
 	HealthState string `json:"healthState,omitempty" yaml:"health_state,omitempty"`
 
 	Hostname string `json:"hostname,omitempty" yaml:"hostname,omitempty"`
 
 	InfoType string `json:"infoType,omitempty" yaml:"info_type,omitempty"`
 
-	Instances []int64 `json:"instances,omitempty" yaml:"instances,omitempty"`
+	InfoTypeId string `json:"infoTypeId,omitempty" yaml:"info_type_id,omitempty"`
+
+	InstanceIds []string `json:"instanceIds,omitempty" yaml:"instance_ids,omitempty"`
 
 	Kind string `json:"kind,omitempty" yaml:"kind,omitempty"`
 
 	Labels map[string]interface{} `json:"labels,omitempty" yaml:"labels,omitempty"`
 
-	Links map[string]interface{} `json:"links,omitempty" yaml:"links,omitempty"`
+	LbConfig interface{} `json:"lbConfig,omitempty" yaml:"lb_config,omitempty"`
+
+	Links []Link `json:"links,omitempty" yaml:"links,omitempty"`
 
 	Metadata map[string]interface{} `json:"metadata,omitempty" yaml:"metadata,omitempty"`
 

@@ -15,6 +15,10 @@ type EnvironmentInfo struct {
 
 	InfoType string `json:"infoType,omitempty" yaml:"info_type,omitempty"`
 
+	InfoTypeId string `json:"infoTypeId,omitempty" yaml:"info_type_id,omitempty"`
+
+	Name string `json:"name,omitempty" yaml:"name,omitempty"`
+
 	System bool `json:"system,omitempty" yaml:"system,omitempty"`
 
 	Uuid string `json:"uuid,omitempty" yaml:"uuid,omitempty"`

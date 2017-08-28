@@ -21,6 +21,8 @@ type HostInfo struct {
 
 	InfoType string `json:"infoType,omitempty" yaml:"info_type,omitempty"`
 
+	InfoTypeId string `json:"infoTypeId,omitempty" yaml:"info_type_id,omitempty"`
+
 	Labels map[string]interface{} `json:"labels,omitempty" yaml:"labels,omitempty"`
 
 	Memory int64 `json:"memory,omitempty" yaml:"memory,omitempty"`

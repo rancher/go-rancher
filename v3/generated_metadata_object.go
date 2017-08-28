@@ -11,6 +11,8 @@ type MetadataObject struct {
 
 	InfoType string `json:"infoType,omitempty" yaml:"info_type,omitempty"`
 
+	InfoTypeId int64 `json:"infoTypeId,omitempty" yaml:"info_type_id,omitempty"`
+
 	Uuid string `json:"uuid,omitempty" yaml:"uuid,omitempty"`
 }
 
