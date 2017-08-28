@@ -25,6 +25,8 @@ type Host struct {
 
 	Created string `json:"created,omitempty" yaml:"created,omitempty"`
 
+	Data map[string]interface{} `json:"data,omitempty" yaml:"data,omitempty"`
+
 	Description string `json:"description,omitempty" yaml:"description,omitempty"`
 
 	DigitaloceanConfig *DigitaloceanConfig `json:"digitaloceanConfig,omitempty" yaml:"digitalocean_config,omitempty"`
