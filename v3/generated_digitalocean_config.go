@@ -29,6 +29,8 @@ type DigitaloceanConfig struct {
 
 	SshUser string `json:"sshUser,omitempty" yaml:"ssh_user,omitempty"`
 
+	Tags string `json:"tags,omitempty" yaml:"tags,omitempty"`
+
 	Userdata string `json:"userdata,omitempty" yaml:"userdata,omitempty"`
 }
 

@@ -25,6 +25,8 @@ type Cluster struct {
 
 	Name string `json:"name,omitempty" yaml:"name,omitempty"`
 
+	Orchestration string `json:"orchestration,omitempty" yaml:"orchestration,omitempty"`
+
 	RegistrationToken *RegistrationToken `json:"registrationToken,omitempty" yaml:"registration_token,omitempty"`
 
 	RemoveTime string `json:"removeTime,omitempty" yaml:"remove_time,omitempty"`

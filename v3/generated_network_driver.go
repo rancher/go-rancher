@@ -55,15 +55,9 @@ type NetworkDriverOperations interface {
 	ById(id string) (*NetworkDriver, error)
 	Delete(container *NetworkDriver) error
 
-	ActionActivate(*NetworkDriver) (*NetworkDriver, error)
-
 	ActionCreate(*NetworkDriver) (*NetworkDriver, error)
 
-	ActionDeactivate(*NetworkDriver) (*NetworkDriver, error)
-
 	ActionRemove(*NetworkDriver) (*NetworkDriver, error)
-
-	ActionUpdate(*NetworkDriver) (*NetworkDriver, error)
 }
 
 func newNetworkDriverClient(rancherClient *RancherClient) *NetworkDriverClient {
@@ -116,15 +110,6 @@ func (c *NetworkDriverClient) Delete(container *NetworkDriver) error {
 	return c.rancherClient.doResourceDelete(NETWORK_DRIVER_TYPE, &container.Resource)
 }
 
-func (c *NetworkDriverClient) ActionActivate(resource *NetworkDriver) (*NetworkDriver, error) {
-
-	resp := &NetworkDriver{}
-
-	err := c.rancherClient.doAction(NETWORK_DRIVER_TYPE, "activate", &resource.Resource, nil, resp)
-
-	return resp, err
-}
-
 func (c *NetworkDriverClient) ActionCreate(resource *NetworkDriver) (*NetworkDriver, error) {
 
 	resp := &NetworkDriver{}
@@ -134,29 +119,11 @@ func (c *NetworkDriverClient) ActionCreate(resource *NetworkDriver) (*NetworkDri
 	return resp, err
 }
 
-func (c *NetworkDriverClient) ActionDeactivate(resource *NetworkDriver) (*NetworkDriver, error) {
-
-	resp := &NetworkDriver{}
-
-	err := c.rancherClient.doAction(NETWORK_DRIVER_TYPE, "deactivate", &resource.Resource, nil, resp)
-
-	return resp, err
-}
-
 func (c *NetworkDriverClient) ActionRemove(resource *NetworkDriver) (*NetworkDriver, error) {
 
 	resp := &NetworkDriver{}
 
 	err := c.rancherClient.doAction(NETWORK_DRIVER_TYPE, "remove", &resource.Resource, nil, resp)
-
-	return resp, err
-}
-
-func (c *NetworkDriverClient) ActionUpdate(resource *NetworkDriver) (*NetworkDriver, error) {
-
-	resp := &NetworkDriver{}
-
-	err := c.rancherClient.doAction(NETWORK_DRIVER_TYPE, "update", &resource.Resource, nil, resp)
 
 	return resp, err
 }

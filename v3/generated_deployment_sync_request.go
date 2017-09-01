@@ -7,11 +7,19 @@ const (
 type DeploymentSyncRequest struct {
 	Resource
 
+	ClusterId string `json:"clusterId,omitempty" yaml:"cluster_id,omitempty"`
+
 	Containers []Container `json:"containers,omitempty" yaml:"containers,omitempty"`
 
 	DeploymentUnitUuid string `json:"deploymentUnitUuid,omitempty" yaml:"deployment_unit_uuid,omitempty"`
 
+	ExternalId string `json:"externalId,omitempty" yaml:"external_id,omitempty"`
+
+	Namespace string `json:"namespace,omitempty" yaml:"namespace,omitempty"`
+
 	Networks []Network `json:"networks,omitempty" yaml:"networks,omitempty"`
+
+	NodeName string `json:"nodeName,omitempty" yaml:"node_name,omitempty"`
 
 	RegistryCredentials []Credential `json:"registryCredentials,omitempty" yaml:"registry_credentials,omitempty"`
 

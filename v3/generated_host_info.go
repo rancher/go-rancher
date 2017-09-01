@@ -31,6 +31,8 @@ type HostInfo struct {
 
 	Name string `json:"name,omitempty" yaml:"name,omitempty"`
 
+	NodeName string `json:"nodeName,omitempty" yaml:"node_name,omitempty"`
+
 	Ports []PublicEndpoint `json:"ports,omitempty" yaml:"ports,omitempty"`
 
 	State string `json:"state,omitempty" yaml:"state,omitempty"`
