@@ -11,13 +11,9 @@ type InstanceStatus struct {
 
 	ExternalId string `json:"externalId,omitempty" yaml:"external_id,omitempty"`
 
-	HostUuid string `json:"hostUuid,omitempty" yaml:"host_uuid,omitempty"`
-
 	InstanceUuid string `json:"instanceUuid,omitempty" yaml:"instance_uuid,omitempty"`
 
 	PrimaryIpAddress string `json:"primaryIpAddress,omitempty" yaml:"primary_ip_address,omitempty"`
-
-	State string `json:"state,omitempty" yaml:"state,omitempty"`
 }
 
 type InstanceStatusCollection struct {

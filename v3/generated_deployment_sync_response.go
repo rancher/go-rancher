@@ -7,7 +7,11 @@ const (
 type DeploymentSyncResponse struct {
 	Resource
 
+	ExternalId string `json:"externalId,omitempty" yaml:"external_id,omitempty"`
+
 	InstanceStatus []InstanceStatus `json:"instanceStatus,omitempty" yaml:"instance_status,omitempty"`
+
+	NodeName string `json:"nodeName,omitempty" yaml:"node_name,omitempty"`
 }
 
 type DeploymentSyncResponseCollection struct {
