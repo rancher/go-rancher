@@ -15,6 +15,10 @@ type NetworkInfo struct {
 
 	InfoType string `json:"infoType,omitempty" yaml:"info_type,omitempty"`
 
+	InfoTypeId string `json:"infoTypeId,omitempty" yaml:"info_type_id,omitempty"`
+
+	Kind string `json:"kind,omitempty" yaml:"kind,omitempty"`
+
 	Metadata map[string]interface{} `json:"metadata,omitempty" yaml:"metadata,omitempty"`
 
 	Name string `json:"name,omitempty" yaml:"name,omitempty"`

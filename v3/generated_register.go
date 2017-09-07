@@ -13,6 +13,8 @@ type Register struct {
 
 	Key string `json:"key,omitempty" yaml:"key,omitempty"`
 
+	Orchestration string `json:"orchestration,omitempty" yaml:"orchestration,omitempty"`
+
 	SecretKey string `json:"secretKey,omitempty" yaml:"secret_key,omitempty"`
 
 	State string `json:"state,omitempty" yaml:"state,omitempty"`

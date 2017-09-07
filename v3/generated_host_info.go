@@ -21,6 +21,8 @@ type HostInfo struct {
 
 	InfoType string `json:"infoType,omitempty" yaml:"info_type,omitempty"`
 
+	InfoTypeId string `json:"infoTypeId,omitempty" yaml:"info_type_id,omitempty"`
+
 	Labels map[string]interface{} `json:"labels,omitempty" yaml:"labels,omitempty"`
 
 	Memory int64 `json:"memory,omitempty" yaml:"memory,omitempty"`
@@ -28,6 +30,8 @@ type HostInfo struct {
 	MilliCpu int64 `json:"milliCpu,omitempty" yaml:"milli_cpu,omitempty"`
 
 	Name string `json:"name,omitempty" yaml:"name,omitempty"`
+
+	NodeName string `json:"nodeName,omitempty" yaml:"node_name,omitempty"`
 
 	Ports []PublicEndpoint `json:"ports,omitempty" yaml:"ports,omitempty"`
 

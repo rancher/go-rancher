@@ -11,6 +11,8 @@ type InstanceInfo struct {
 
 	AgentId string `json:"agentId,omitempty" yaml:"agent_id,omitempty"`
 
+	CreateIndex int64 `json:"createIndex,omitempty" yaml:"create_index,omitempty"`
+
 	Dns []string `json:"dns,omitempty" yaml:"dns,omitempty"`
 
 	DnsSearch []string `json:"dnsSearch,omitempty" yaml:"dns_search,omitempty"`
@@ -32,6 +34,8 @@ type InstanceInfo struct {
 	Hostname string `json:"hostname,omitempty" yaml:"hostname,omitempty"`
 
 	InfoType string `json:"infoType,omitempty" yaml:"info_type,omitempty"`
+
+	InfoTypeId string `json:"infoTypeId,omitempty" yaml:"info_type_id,omitempty"`
 
 	Labels map[string]interface{} `json:"labels,omitempty" yaml:"labels,omitempty"`
 
