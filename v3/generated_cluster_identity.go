@@ -7,7 +7,7 @@ const (
 type ClusterIdentity struct {
 	Resource
 
-	Attributes map[string]interface{} `json:"attributes,omitempty" yaml:"attributes,omitempty"`
+	Attributes map[string]string `json:"attributes,omitempty" yaml:"attributes,omitempty"`
 
 	Groups []string `json:"groups,omitempty" yaml:"groups,omitempty"`
 

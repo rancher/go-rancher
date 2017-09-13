@@ -18,6 +18,8 @@ type PacketConfig struct {
 	Plan string `json:"plan,omitempty" yaml:"plan,omitempty"`
 
 	ProjectId string `json:"projectId,omitempty" yaml:"project_id,omitempty"`
+
+	Userdata string `json:"userdata,omitempty" yaml:"userdata,omitempty"`
 }
 
 type PacketConfigCollection struct {

@@ -17,7 +17,7 @@ type VolumeTemplate struct {
 
 	Driver string `json:"driver,omitempty" yaml:"driver,omitempty"`
 
-	DriverOpts map[string]interface{} `json:"driverOpts,omitempty" yaml:"driver_opts,omitempty"`
+	DriverOpts map[string]string `json:"driverOpts,omitempty" yaml:"driver_opts,omitempty"`
 
 	External bool `json:"external,omitempty" yaml:"external,omitempty"`
 
