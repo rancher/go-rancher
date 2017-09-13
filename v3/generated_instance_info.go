@@ -37,7 +37,7 @@ type InstanceInfo struct {
 
 	InfoTypeId string `json:"infoTypeId,omitempty" yaml:"info_type_id,omitempty"`
 
-	Labels map[string]interface{} `json:"labels,omitempty" yaml:"labels,omitempty"`
+	Labels map[string]string `json:"labels,omitempty" yaml:"labels,omitempty"`
 
 	Links []Link `json:"links,omitempty" yaml:"links,omitempty"`
 

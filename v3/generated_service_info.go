@@ -29,9 +29,9 @@ type ServiceInfo struct {
 
 	Kind string `json:"kind,omitempty" yaml:"kind,omitempty"`
 
-	Labels map[string]interface{} `json:"labels,omitempty" yaml:"labels,omitempty"`
+	Labels map[string]string `json:"labels,omitempty" yaml:"labels,omitempty"`
 
-	LbConfig interface{} `json:"lbConfig,omitempty" yaml:"lb_config,omitempty"`
+	LbConfig *LbConfig `json:"lbConfig,omitempty" yaml:"lb_config,omitempty"`
 
 	Links []Link `json:"links,omitempty" yaml:"links,omitempty"`
 

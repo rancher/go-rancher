@@ -11,7 +11,7 @@ type StackConfiguration struct {
 
 	ExternalId string `json:"externalId,omitempty" yaml:"external_id,omitempty"`
 
-	Templates map[string]interface{} `json:"templates,omitempty" yaml:"templates,omitempty"`
+	Templates map[string]string `json:"templates,omitempty" yaml:"templates,omitempty"`
 }
 
 type StackConfigurationCollection struct {
