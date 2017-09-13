@@ -78,6 +78,8 @@ func getTypeMap(schema client.Schema) map[string]string {
 				s = strings.TrimRight(s, "]")
 				result[fieldName] = "[]" + capitalize(s)
 			}
+		} else if strings.HasPrefix(field.Type, "map[string]") {
+			result[fieldName] = "map[string]string"
 		} else if strings.HasPrefix(field.Type, "map") {
 			result[fieldName] = "map[string]interface{}"
 		} else if strings.HasPrefix(field.Type, "json") {
