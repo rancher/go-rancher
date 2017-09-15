@@ -21,6 +21,7 @@ type RancherClient struct {
 	ComposeConfigInput                 ComposeConfigInputOperations
 	Container                          ContainerOperations
 	ContainerConfig                    ContainerConfigOperations
+	ContainerEvent                     ContainerEventOperations
 	ContainerExec                      ContainerExecOperations
 	ContainerLogs                      ContainerLogsOperations
 	ContainerProxy                     ContainerProxyOperations
@@ -165,6 +166,7 @@ func constructClient(rancherBaseClient *RancherBaseClientImpl) *RancherClient {
 	client.ComposeConfigInput = newComposeConfigInputClient(client)
 	client.Container = newContainerClient(client)
 	client.ContainerConfig = newContainerConfigClient(client)
+	client.ContainerEvent = newContainerEventClient(client)
 	client.ContainerExec = newContainerExecClient(client)
 	client.ContainerLogs = newContainerLogsClient(client)
 	client.ContainerProxy = newContainerProxyClient(client)

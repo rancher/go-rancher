@@ -15,6 +15,8 @@ type PullTask struct {
 
 	Description string `json:"description,omitempty" yaml:"description,omitempty"`
 
+	HostIds []string `json:"hostIds,omitempty" yaml:"host_ids,omitempty"`
+
 	Image string `json:"image,omitempty" yaml:"image,omitempty"`
 
 	Kind string `json:"kind,omitempty" yaml:"kind,omitempty"`
