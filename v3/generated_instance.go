@@ -35,6 +35,10 @@ type Instance struct {
 
 	RevisionId string `json:"revisionId,omitempty" yaml:"revision_id,omitempty"`
 
+	ServiceId string `json:"serviceId,omitempty" yaml:"service_id,omitempty"`
+
+	ServiceIds []string `json:"serviceIds,omitempty" yaml:"service_ids,omitempty"`
+
 	State string `json:"state,omitempty" yaml:"state,omitempty"`
 
 	Transitioning string `json:"transitioning,omitempty" yaml:"transitioning,omitempty"`

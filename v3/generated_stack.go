@@ -33,6 +33,8 @@ type Stack struct {
 
 	ParentStackId string `json:"parentStackId,omitempty" yaml:"parent_stack_id,omitempty"`
 
+	Prune bool `json:"prune,omitempty" yaml:"prune,omitempty"`
+
 	RemoveTime string `json:"removeTime,omitempty" yaml:"remove_time,omitempty"`
 
 	Removed string `json:"removed,omitempty" yaml:"removed,omitempty"`
