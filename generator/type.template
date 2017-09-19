@@ -5,7 +5,7 @@ const (
 )
 
 type {{.typeCapitalized}} struct {
-	Resource
+	Resource `yaml:"-"`
     {{range $key, $value := .structFields}}
     {{$key}} {{$value}} `json:"{{$key | toLowerCamelCase }},omitempty" yaml:"{{$key | toLowerUnderscore }},omitempty"`
     {{end}}
