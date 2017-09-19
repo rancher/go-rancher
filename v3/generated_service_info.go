@@ -5,7 +5,7 @@ const (
 )
 
 type ServiceInfo struct {
-	Resource
+	Resource `yaml:"-"`
 
 	EnvironmentUuid string `json:"environmentUuid,omitempty" yaml:"environment_uuid,omitempty"`
 
@@ -40,6 +40,8 @@ type ServiceInfo struct {
 	Name string `json:"name,omitempty" yaml:"name,omitempty"`
 
 	Ports []PublicEndpoint `json:"ports,omitempty" yaml:"ports,omitempty"`
+
+	RevisionId int64 `json:"revisionId,omitempty" yaml:"revision_id,omitempty"`
 
 	Scale int64 `json:"scale,omitempty" yaml:"scale,omitempty"`
 

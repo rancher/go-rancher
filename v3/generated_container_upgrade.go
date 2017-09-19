@@ -5,7 +5,7 @@ const (
 )
 
 type ContainerUpgrade struct {
-	Resource
+	Resource `yaml:"-"`
 
 	Config ContainerConfig `json:"config,omitempty" yaml:"config,omitempty"`
 }

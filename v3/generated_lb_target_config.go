@@ -5,7 +5,7 @@ const (
 )
 
 type LbTargetConfig struct {
-	Resource
+	Resource `yaml:"-"`
 
 	PortRules []TargetPortRule `json:"portRules,omitempty" yaml:"port_rules,omitempty"`
 }

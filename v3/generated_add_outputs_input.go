@@ -5,7 +5,7 @@ const (
 )
 
 type AddOutputsInput struct {
-	Resource
+	Resource `yaml:"-"`
 
 	Outputs map[string]string `json:"outputs,omitempty" yaml:"outputs,omitempty"`
 }

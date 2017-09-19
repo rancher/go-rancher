@@ -5,7 +5,7 @@ const (
 )
 
 type ServicesPortRange struct {
-	Resource
+	Resource `yaml:"-"`
 
 	EndPort int64 `json:"endPort,omitempty" yaml:"end_port,omitempty"`
 

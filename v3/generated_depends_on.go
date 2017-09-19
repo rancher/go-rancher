@@ -5,7 +5,7 @@ const (
 )
 
 type DependsOn struct {
-	Resource
+	Resource `yaml:"-"`
 
 	Condition string `json:"condition,omitempty" yaml:"condition,omitempty"`
 

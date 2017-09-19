@@ -5,7 +5,7 @@ const (
 )
 
 type ChangeSecretInput struct {
-	Resource
+	Resource `yaml:"-"`
 
 	NewSecret string `json:"newSecret,omitempty" yaml:"new_secret,omitempty"`
 

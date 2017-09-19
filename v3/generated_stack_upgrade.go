@@ -5,7 +5,7 @@ const (
 )
 
 type StackUpgrade struct {
-	Resource
+	Resource `yaml:"-"`
 }
 
 type StackUpgradeCollection struct {

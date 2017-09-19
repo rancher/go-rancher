@@ -5,7 +5,7 @@ const (
 )
 
 type SetProjectMembersInput struct {
-	Resource
+	Resource `yaml:"-"`
 
 	Members []ProjectMember `json:"members,omitempty" yaml:"members,omitempty"`
 }

@@ -5,7 +5,7 @@ const (
 )
 
 type VirtualMachineDisk struct {
-	Resource
+	Resource `yaml:"-"`
 
 	Driver string `json:"driver,omitempty" yaml:"driver,omitempty"`
 

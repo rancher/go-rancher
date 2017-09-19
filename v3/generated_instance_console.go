@@ -5,7 +5,7 @@ const (
 )
 
 type InstanceConsole struct {
-	Resource
+	Resource `yaml:"-"`
 
 	Kind string `json:"kind,omitempty" yaml:"kind,omitempty"`
 

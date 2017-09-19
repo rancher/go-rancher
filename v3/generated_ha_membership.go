@@ -5,7 +5,7 @@ const (
 )
 
 type HaMembership struct {
-	Resource
+	Resource `yaml:"-"`
 
 	Clustered bool `json:"clustered,omitempty" yaml:"clustered,omitempty"`
 

@@ -5,7 +5,7 @@ const (
 )
 
 type Identity struct {
-	Resource
+	Resource `yaml:"-"`
 
 	All string `json:"all,omitempty" yaml:"all,omitempty"`
 

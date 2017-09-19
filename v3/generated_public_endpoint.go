@@ -5,7 +5,7 @@ const (
 )
 
 type PublicEndpoint struct {
-	Resource
+	Resource `yaml:"-"`
 
 	AgentIpAddress string `json:"agentIpAddress,omitempty" yaml:"agent_ip_address,omitempty"`
 

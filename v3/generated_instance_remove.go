@@ -5,7 +5,7 @@ const (
 )
 
 type InstanceRemove struct {
-	Resource
+	Resource `yaml:"-"`
 
 	RemoveSource string `json:"removeSource,omitempty" yaml:"remove_source,omitempty"`
 }

@@ -5,7 +5,7 @@ const (
 )
 
 type ServiceProxy struct {
-	Resource
+	Resource `yaml:"-"`
 
 	Port int64 `json:"port,omitempty" yaml:"port,omitempty"`
 

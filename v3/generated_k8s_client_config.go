@@ -5,7 +5,7 @@ const (
 )
 
 type K8sClientConfig struct {
-	Resource
+	Resource `yaml:"-"`
 
 	Address string `json:"address,omitempty" yaml:"address,omitempty"`
 

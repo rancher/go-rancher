@@ -5,7 +5,7 @@ const (
 )
 
 type K8sServerConfig struct {
-	Resource
+	Resource `yaml:"-"`
 
 	AdmissionControllers []string `json:"admissionControllers,omitempty" yaml:"admission_controllers,omitempty"`
 

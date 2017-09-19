@@ -5,7 +5,7 @@ const (
 )
 
 type Ulimit struct {
-	Resource
+	Resource `yaml:"-"`
 
 	Hard int64 `json:"hard,omitempty" yaml:"hard,omitempty"`
 

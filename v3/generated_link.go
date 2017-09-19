@@ -5,7 +5,7 @@ const (
 )
 
 type Link struct {
-	Resource
+	Resource `yaml:"-"`
 
 	Alias string `json:"alias,omitempty" yaml:"alias,omitempty"`
 

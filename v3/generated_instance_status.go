@@ -5,7 +5,7 @@ const (
 )
 
 type InstanceStatus struct {
-	Resource
+	Resource `yaml:"-"`
 
 	DockerInspect map[string]interface{} `json:"dockerInspect,omitempty" yaml:"docker_inspect,omitempty"`
 

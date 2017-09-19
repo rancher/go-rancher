@@ -5,7 +5,7 @@ const (
 )
 
 type ServiceRollback struct {
-	Resource
+	Resource `yaml:"-"`
 
 	RevisionId string `json:"revisionId,omitempty" yaml:"revision_id,omitempty"`
 }

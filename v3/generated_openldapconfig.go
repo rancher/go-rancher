@@ -5,7 +5,7 @@ const (
 )
 
 type Openldapconfig struct {
-	Resource
+	Resource `yaml:"-"`
 
 	AccessMode string `json:"accessMode,omitempty" yaml:"access_mode,omitempty"`
 

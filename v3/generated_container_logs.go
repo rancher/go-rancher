@@ -5,7 +5,7 @@ const (
 )
 
 type ContainerLogs struct {
-	Resource
+	Resource `yaml:"-"`
 
 	Follow bool `json:"follow,omitempty" yaml:"follow,omitempty"`
 

@@ -5,7 +5,7 @@ const (
 )
 
 type ServiceUpgrade struct {
-	Resource
+	Resource `yaml:"-"`
 
 	InServiceStrategy *InServiceUpgradeStrategy `json:"inServiceStrategy,omitempty" yaml:"in_service_strategy,omitempty"`
 }

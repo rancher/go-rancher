@@ -5,7 +5,7 @@ const (
 )
 
 type ClusterIdentity struct {
-	Resource
+	Resource `yaml:"-"`
 
 	Attributes map[string]string `json:"attributes,omitempty" yaml:"attributes,omitempty"`
 

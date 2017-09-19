@@ -5,7 +5,7 @@ const (
 )
 
 type DigitaloceanConfig struct {
-	Resource
+	Resource `yaml:"-"`
 
 	AccessToken string `json:"accessToken,omitempty" yaml:"access_token,omitempty"`
 

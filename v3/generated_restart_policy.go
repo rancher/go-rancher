@@ -5,7 +5,7 @@ const (
 )
 
 type RestartPolicy struct {
-	Resource
+	Resource `yaml:"-"`
 
 	MaximumRetryCount int64 `json:"maximumRetryCount,omitempty" yaml:"maximum_retry_count,omitempty"`
 

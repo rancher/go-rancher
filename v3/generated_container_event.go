@@ -5,7 +5,7 @@ const (
 )
 
 type ContainerEvent struct {
-	Resource
+	Resource `yaml:"-"`
 
 	ClusterId int64 `json:"clusterId,omitempty" yaml:"cluster_id,omitempty"`
 

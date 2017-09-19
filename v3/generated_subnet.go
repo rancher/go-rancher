@@ -5,7 +5,7 @@ const (
 )
 
 type Subnet struct {
-	Resource
+	Resource `yaml:"-"`
 
 	CidrSize int64 `json:"cidrSize,omitempty" yaml:"cidr_size,omitempty"`
 
