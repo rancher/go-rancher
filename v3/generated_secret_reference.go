@@ -5,7 +5,7 @@ const (
 )
 
 type SecretReference struct {
-	Resource
+	Resource `yaml:"-"`
 
 	Gid string `json:"gid,omitempty" yaml:"gid,omitempty"`
 

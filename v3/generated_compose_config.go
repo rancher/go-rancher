@@ -5,7 +5,7 @@ const (
 )
 
 type ComposeConfig struct {
-	Resource
+	Resource `yaml:"-"`
 
 	Templates map[string]string `json:"templates,omitempty" yaml:"templates,omitempty"`
 }

@@ -5,7 +5,7 @@ const (
 )
 
 type Error struct {
-	Resource
+	Resource `yaml:"-"`
 
 	Code string `json:"code,omitempty" yaml:"code,omitempty"`
 

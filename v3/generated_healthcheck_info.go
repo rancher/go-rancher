@@ -5,7 +5,7 @@ const (
 )
 
 type HealthcheckInfo struct {
-	Resource
+	Resource `yaml:"-"`
 
 	HealthyThreshold int64 `json:"healthyThreshold,omitempty" yaml:"healthy_threshold,omitempty"`
 

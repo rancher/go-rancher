@@ -5,7 +5,7 @@ const (
 )
 
 type BlkioDeviceOption struct {
-	Resource
+	Resource `yaml:"-"`
 
 	ReadBps int64 `json:"readBps,omitempty" yaml:"read_bps,omitempty"`
 

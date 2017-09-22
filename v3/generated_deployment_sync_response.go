@@ -5,7 +5,7 @@ const (
 )
 
 type DeploymentSyncResponse struct {
-	Resource
+	Resource `yaml:"-"`
 
 	ExternalId string `json:"externalId,omitempty" yaml:"external_id,omitempty"`
 

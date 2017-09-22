@@ -5,7 +5,7 @@ const (
 )
 
 type NetworkInfo struct {
-	Resource
+	Resource `yaml:"-"`
 
 	Default bool `json:"default,omitempty" yaml:"default,omitempty"`
 

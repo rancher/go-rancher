@@ -5,7 +5,7 @@ const (
 )
 
 type HealthcheckState struct {
-	Resource
+	Resource `yaml:"-"`
 
 	HealthState string `json:"healthState,omitempty" yaml:"health_state,omitempty"`
 

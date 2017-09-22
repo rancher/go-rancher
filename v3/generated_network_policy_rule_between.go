@@ -5,7 +5,7 @@ const (
 )
 
 type NetworkPolicyRuleBetween struct {
-	Resource
+	Resource `yaml:"-"`
 
 	GroupBy string `json:"groupBy,omitempty" yaml:"group_by,omitempty"`
 

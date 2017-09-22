@@ -5,7 +5,7 @@ const (
 )
 
 type RegistrationToken struct {
-	Resource
+	Resource `yaml:"-"`
 
 	ClusterCommand string `json:"clusterCommand,omitempty" yaml:"cluster_command,omitempty"`
 

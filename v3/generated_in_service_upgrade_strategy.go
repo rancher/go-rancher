@@ -5,7 +5,7 @@ const (
 )
 
 type InServiceUpgradeStrategy struct {
-	Resource
+	Resource `yaml:"-"`
 
 	BatchSize int64 `json:"batchSize,omitempty" yaml:"batch_size,omitempty"`
 

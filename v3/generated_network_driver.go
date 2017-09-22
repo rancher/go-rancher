@@ -5,7 +5,7 @@ const (
 )
 
 type NetworkDriver struct {
-	Resource
+	Resource `yaml:"-"`
 
 	ClusterId string `json:"clusterId,omitempty" yaml:"cluster_id,omitempty"`
 

@@ -5,7 +5,7 @@ const (
 )
 
 type InstanceStop struct {
-	Resource
+	Resource `yaml:"-"`
 
 	Remove bool `json:"remove,omitempty" yaml:"remove,omitempty"`
 

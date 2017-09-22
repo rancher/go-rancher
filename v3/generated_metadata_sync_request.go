@@ -5,7 +5,7 @@ const (
 )
 
 type MetadataSyncRequest struct {
-	Resource
+	Resource `yaml:"-"`
 
 	Full bool `json:"full,omitempty" yaml:"full,omitempty"`
 

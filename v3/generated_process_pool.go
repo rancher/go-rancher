@@ -5,7 +5,7 @@ const (
 )
 
 type ProcessPool struct {
-	Resource
+	Resource `yaml:"-"`
 
 	ActiveTasks int64 `json:"activeTasks,omitempty" yaml:"active_tasks,omitempty"`
 

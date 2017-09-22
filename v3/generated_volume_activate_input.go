@@ -5,7 +5,7 @@ const (
 )
 
 type VolumeActivateInput struct {
-	Resource
+	Resource `yaml:"-"`
 
 	HostId string `json:"hostId,omitempty" yaml:"host_id,omitempty"`
 }

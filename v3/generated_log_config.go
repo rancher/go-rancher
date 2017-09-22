@@ -5,7 +5,7 @@ const (
 )
 
 type LogConfig struct {
-	Resource
+	Resource `yaml:"-"`
 
 	Config map[string]string `json:"config,omitempty" yaml:"config,omitempty"`
 

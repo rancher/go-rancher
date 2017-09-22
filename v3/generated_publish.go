@@ -5,7 +5,7 @@ const (
 )
 
 type Publish struct {
-	Resource
+	Resource `yaml:"-"`
 
 	Data map[string]interface{} `json:"data,omitempty" yaml:"data,omitempty"`
 

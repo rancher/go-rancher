@@ -5,7 +5,7 @@ const (
 )
 
 type StoragePool struct {
-	Resource
+	Resource `yaml:"-"`
 
 	BlockDevicePath string `json:"blockDevicePath,omitempty" yaml:"block_device_path,omitempty"`
 

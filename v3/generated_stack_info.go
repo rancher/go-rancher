@@ -5,7 +5,7 @@ const (
 )
 
 type StackInfo struct {
-	Resource
+	Resource `yaml:"-"`
 
 	EnvironmentUuid string `json:"environmentUuid,omitempty" yaml:"environment_uuid,omitempty"`
 

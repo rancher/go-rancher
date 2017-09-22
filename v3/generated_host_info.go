@@ -5,7 +5,7 @@ const (
 )
 
 type HostInfo struct {
-	Resource
+	Resource `yaml:"-"`
 
 	AgentId string `json:"agentId,omitempty" yaml:"agent_id,omitempty"`
 

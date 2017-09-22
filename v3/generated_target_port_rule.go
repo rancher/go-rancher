@@ -5,7 +5,7 @@ const (
 )
 
 type TargetPortRule struct {
-	Resource
+	Resource `yaml:"-"`
 
 	BackendName string `json:"backendName,omitempty" yaml:"backend_name,omitempty"`
 

@@ -5,7 +5,7 @@ const (
 )
 
 type ProcessSummary struct {
-	Resource
+	Resource `yaml:"-"`
 
 	Delay int64 `json:"delay,omitempty" yaml:"delay,omitempty"`
 

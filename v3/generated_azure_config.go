@@ -5,7 +5,7 @@ const (
 )
 
 type AzureConfig struct {
-	Resource
+	Resource `yaml:"-"`
 
 	AvailabilitySet string `json:"availabilitySet,omitempty" yaml:"availability_set,omitempty"`
 

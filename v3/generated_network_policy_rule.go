@@ -5,7 +5,7 @@ const (
 )
 
 type NetworkPolicyRule struct {
-	Resource
+	Resource `yaml:"-"`
 
 	Action string `json:"action,omitempty" yaml:"action,omitempty"`
 
