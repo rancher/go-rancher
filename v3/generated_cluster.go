@@ -35,7 +35,7 @@ type Cluster struct {
 
 	State string `json:"state,omitempty" yaml:"state,omitempty"`
 
-	SystemStacks []Stack `json:"systemStacks,omitempty" yaml:"system_stacks,omitempty"`
+	SystemStacks []StackConfiguration `json:"systemStacks,omitempty" yaml:"system_stacks,omitempty"`
 
 	Transitioning string `json:"transitioning,omitempty" yaml:"transitioning,omitempty"`
 

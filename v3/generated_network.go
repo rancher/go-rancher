@@ -21,6 +21,8 @@ type Network struct {
 
 	HostPorts bool `json:"hostPorts,omitempty" yaml:"host_ports,omitempty"`
 
+	IsDefault bool `json:"isDefault,omitempty" yaml:"is_default,omitempty"`
+
 	Kind string `json:"kind,omitempty" yaml:"kind,omitempty"`
 
 	Metadata map[string]interface{} `json:"metadata,omitempty" yaml:"metadata,omitempty"`

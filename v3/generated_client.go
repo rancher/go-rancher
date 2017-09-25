@@ -34,6 +34,7 @@ type RancherClient struct {
 	DeploymentSyncRequest              DeploymentSyncRequestOperations
 	DeploymentSyncResponse             DeploymentSyncResponseOperations
 	DeploymentUnit                     DeploymentUnitOperations
+	Dial                               DialOperations
 	DigitaloceanConfig                 DigitaloceanConfigOperations
 	DnsService                         DnsServiceOperations
 	DynamicSchema                      DynamicSchemaOperations
@@ -109,6 +110,7 @@ type RancherClient struct {
 	Revision                           RevisionOperations
 	ScalingGroup                       ScalingGroupOperations
 	ScheduledUpgrade                   ScheduledUpgradeOperations
+	SecondaryLaunchConfig              SecondaryLaunchConfigOperations
 	Secret                             SecretOperations
 	SecretReference                    SecretReferenceOperations
 	SelectorService                    SelectorServiceOperations
@@ -179,6 +181,7 @@ func constructClient(rancherBaseClient *RancherBaseClientImpl) *RancherClient {
 	client.DeploymentSyncRequest = newDeploymentSyncRequestClient(client)
 	client.DeploymentSyncResponse = newDeploymentSyncResponseClient(client)
 	client.DeploymentUnit = newDeploymentUnitClient(client)
+	client.Dial = newDialClient(client)
 	client.DigitaloceanConfig = newDigitaloceanConfigClient(client)
 	client.DnsService = newDnsServiceClient(client)
 	client.DynamicSchema = newDynamicSchemaClient(client)
@@ -254,6 +257,7 @@ func constructClient(rancherBaseClient *RancherBaseClientImpl) *RancherClient {
 	client.Revision = newRevisionClient(client)
 	client.ScalingGroup = newScalingGroupClient(client)
 	client.ScheduledUpgrade = newScheduledUpgradeClient(client)
+	client.SecondaryLaunchConfig = newSecondaryLaunchConfigClient(client)
 	client.Secret = newSecretClient(client)
 	client.SecretReference = newSecretReferenceClient(client)
 	client.SelectorService = newSelectorServiceClient(client)

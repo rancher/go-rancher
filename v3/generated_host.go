@@ -57,6 +57,8 @@ type Host struct {
 
 	Hostname string `json:"hostname,omitempty" yaml:"hostname,omitempty"`
 
+	Imported bool `json:"imported,omitempty" yaml:"imported,omitempty"`
+
 	Info interface{} `json:"info,omitempty" yaml:"info,omitempty"`
 
 	InstanceIds []string `json:"instanceIds,omitempty" yaml:"instance_ids,omitempty"`

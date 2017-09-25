@@ -13,8 +13,6 @@ type Project struct {
 
 	Created string `json:"created,omitempty" yaml:"created,omitempty"`
 
-	DefaultNetworkId string `json:"defaultNetworkId,omitempty" yaml:"default_network_id,omitempty"`
-
 	Description string `json:"description,omitempty" yaml:"description,omitempty"`
 
 	ExternalId string `json:"externalId,omitempty" yaml:"external_id,omitempty"`
