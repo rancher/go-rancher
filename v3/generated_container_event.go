@@ -9,8 +9,6 @@ type ContainerEvent struct {
 
 	ClusterId int64 `json:"clusterId,omitempty" yaml:"cluster_id,omitempty"`
 
-	ContainerUuid string `json:"containerUuid,omitempty" yaml:"container_uuid,omitempty"`
-
 	DockerInspect interface{} `json:"dockerInspect,omitempty" yaml:"docker_inspect,omitempty"`
 
 	ExternalId string `json:"externalId,omitempty" yaml:"external_id,omitempty"`

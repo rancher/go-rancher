@@ -11,6 +11,10 @@ type StackConfiguration struct {
 
 	ExternalId string `json:"externalId,omitempty" yaml:"external_id,omitempty"`
 
+	Name string `json:"name,omitempty" yaml:"name,omitempty"`
+
+	Project string `json:"project,omitempty" yaml:"project,omitempty"`
+
 	Templates map[string]string `json:"templates,omitempty" yaml:"templates,omitempty"`
 }
 

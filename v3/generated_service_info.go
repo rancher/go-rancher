@@ -41,8 +41,6 @@ type ServiceInfo struct {
 
 	Ports []PublicEndpoint `json:"ports,omitempty" yaml:"ports,omitempty"`
 
-	RevisionId int64 `json:"revisionId,omitempty" yaml:"revision_id,omitempty"`
-
 	Scale int64 `json:"scale,omitempty" yaml:"scale,omitempty"`
 
 	Selector string `json:"selector,omitempty" yaml:"selector,omitempty"`

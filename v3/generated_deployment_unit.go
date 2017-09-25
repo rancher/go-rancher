@@ -15,6 +15,8 @@ type DeploymentUnit struct {
 
 	Description string `json:"description,omitempty" yaml:"description,omitempty"`
 
+	ExternalId string `json:"externalId,omitempty" yaml:"external_id,omitempty"`
+
 	HostId string `json:"hostId,omitempty" yaml:"host_id,omitempty"`
 
 	Kind string `json:"kind,omitempty" yaml:"kind,omitempty"`

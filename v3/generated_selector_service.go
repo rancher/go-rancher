@@ -67,7 +67,7 @@ type SelectorService struct {
 
 	ScaleMin int64 `json:"scaleMin,omitempty" yaml:"scale_min,omitempty"`
 
-	SecondaryLaunchConfigs []LaunchConfig `json:"secondaryLaunchConfigs,omitempty" yaml:"secondary_launch_configs,omitempty"`
+	SecondaryLaunchConfigs []SecondaryLaunchConfig `json:"secondaryLaunchConfigs,omitempty" yaml:"secondary_launch_configs,omitempty"`
 
 	Selector string `json:"selector,omitempty" yaml:"selector,omitempty"`
 
