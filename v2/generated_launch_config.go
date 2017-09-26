@@ -79,6 +79,8 @@ type LaunchConfig struct {
 
 	DomainName string `json:"domainName,omitempty" yaml:"domain_name,omitempty"`
 
+	DrainTimeoutMs int64 `json:"drainTimeoutMs,omitempty" yaml:"drain_timeout_ms,omitempty"`
+
 	EntryPoint []string `json:"entryPoint,omitempty" yaml:"entry_point,omitempty"`
 
 	Environment map[string]interface{} `json:"environment,omitempty" yaml:"environment,omitempty"`
