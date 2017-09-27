@@ -67,6 +67,7 @@ type RancherClient struct {
 	InstanceStop                       InstanceStopOperations
 	K8sClientConfig                    K8sClientConfigOperations
 	K8sServerConfig                    K8sServerConfigOperations
+	KubernetesService                  KubernetesServiceOperations
 	LaunchConfig                       LaunchConfigOperations
 	LbConfig                           LbConfigOperations
 	LbTargetConfig                     LbTargetConfigOperations
@@ -90,7 +91,6 @@ type RancherClient struct {
 	NetworkPolicyRuleMember            NetworkPolicyRuleMemberOperations
 	NetworkPolicyRuleWithin            NetworkPolicyRuleWithinOperations
 	Openldapconfig                     OpenldapconfigOperations
-	PacketConfig                       PacketConfigOperations
 	Password                           PasswordOperations
 	PortRule                           PortRuleOperations
 	ProcessExecution                   ProcessExecutionOperations
@@ -214,6 +214,7 @@ func constructClient(rancherBaseClient *RancherBaseClientImpl) *RancherClient {
 	client.InstanceStop = newInstanceStopClient(client)
 	client.K8sClientConfig = newK8sClientConfigClient(client)
 	client.K8sServerConfig = newK8sServerConfigClient(client)
+	client.KubernetesService = newKubernetesServiceClient(client)
 	client.LaunchConfig = newLaunchConfigClient(client)
 	client.LbConfig = newLbConfigClient(client)
 	client.LbTargetConfig = newLbTargetConfigClient(client)
@@ -237,7 +238,6 @@ func constructClient(rancherBaseClient *RancherBaseClientImpl) *RancherClient {
 	client.NetworkPolicyRuleMember = newNetworkPolicyRuleMemberClient(client)
 	client.NetworkPolicyRuleWithin = newNetworkPolicyRuleWithinClient(client)
 	client.Openldapconfig = newOpenldapconfigClient(client)
-	client.PacketConfig = newPacketConfigClient(client)
 	client.Password = newPasswordClient(client)
 	client.PortRule = newPortRuleClient(client)
 	client.ProcessExecution = newProcessExecutionClient(client)
