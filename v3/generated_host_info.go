@@ -25,6 +25,8 @@ type HostInfo struct {
 
 	Labels map[string]string `json:"labels,omitempty" yaml:"labels,omitempty"`
 
+	LocalStorageMb int64 `json:"localStorageMb,omitempty" yaml:"local_storage_mb,omitempty"`
+
 	Memory int64 `json:"memory,omitempty" yaml:"memory,omitempty"`
 
 	MilliCpu int64 `json:"milliCpu,omitempty" yaml:"milli_cpu,omitempty"`
