@@ -1,10 +1,10 @@
-package hostaccess
+package hostaccess_v3
 
 import (
 	"fmt"
 
 	"github.com/gorilla/websocket"
-	"github.com/rancher/go-rancher/v2"
+	"github.com/rancher/go-rancher/v3"
 )
 
 type RancherWebsocketClient client.RancherClient
