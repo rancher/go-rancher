@@ -15,6 +15,8 @@ type DeploymentSyncRequest struct {
 
 	ExternalId string `json:"externalId,omitempty" yaml:"external_id,omitempty"`
 
+	InspectIp bool `json:"inspectIp,omitempty" yaml:"inspect_ip,omitempty"`
+
 	Namespace string `json:"namespace,omitempty" yaml:"namespace,omitempty"`
 
 	Networks []Network `json:"networks,omitempty" yaml:"networks,omitempty"`

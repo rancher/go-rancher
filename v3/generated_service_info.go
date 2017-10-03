@@ -9,6 +9,8 @@ type ServiceInfo struct {
 
 	EnvironmentUuid string `json:"environmentUuid,omitempty" yaml:"environment_uuid,omitempty"`
 
+	Expose []string `json:"expose,omitempty" yaml:"expose,omitempty"`
+
 	ExternalIps []string `json:"externalIps,omitempty" yaml:"external_ips,omitempty"`
 
 	Fqdn string `json:"fqdn,omitempty" yaml:"fqdn,omitempty"`
