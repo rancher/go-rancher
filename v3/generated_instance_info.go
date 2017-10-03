@@ -25,6 +25,8 @@ type InstanceInfo struct {
 
 	ExitCode int64 `json:"exitCode,omitempty" yaml:"exit_code,omitempty"`
 
+	Expose []string `json:"expose,omitempty" yaml:"expose,omitempty"`
+
 	ExternalId string `json:"externalId,omitempty" yaml:"external_id,omitempty"`
 
 	HealthCheck HealthcheckInfo `json:"healthCheck,omitempty" yaml:"health_check,omitempty"`
