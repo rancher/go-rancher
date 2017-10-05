@@ -1,4 +1,4 @@
-package api
+package v3
 
 import (
 	"net/http"
@@ -6,7 +6,7 @@ import (
 	"github.com/Sirupsen/logrus"
 	"github.com/gorilla/context"
 	"github.com/gorilla/mux"
-	"github.com/rancher/go-rancher/client"
+	"github.com/rancher/go-rancher/v3"
 )
 
 func ApiHandler(schemas *client.Schemas, f http.Handler) http.Handler {

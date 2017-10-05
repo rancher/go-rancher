@@ -1,4 +1,4 @@
-package api
+package v3
 
 import (
 	"bytes"
@@ -7,7 +7,7 @@ import (
 	"net/url"
 	"strings"
 
-	"github.com/rancher/go-rancher/client"
+	"github.com/rancher/go-rancher/v3"
 )
 
 const (
