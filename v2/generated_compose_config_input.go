@@ -5,7 +5,7 @@ const (
 )
 
 type ComposeConfigInput struct {
-	Resource
+	Resource `yaml:"-"`
 
 	ServiceIds []string `json:"serviceIds,omitempty" yaml:"service_ids,omitempty"`
 }

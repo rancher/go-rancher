@@ -5,7 +5,7 @@ const (
 )
 
 type ProjectMember struct {
-	Resource
+	Resource `yaml:"-"`
 
 	Created string `json:"created,omitempty" yaml:"created,omitempty"`
 

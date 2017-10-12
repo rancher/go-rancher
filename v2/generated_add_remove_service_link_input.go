@@ -5,7 +5,7 @@ const (
 )
 
 type AddRemoveServiceLinkInput struct {
-	Resource
+	Resource `yaml:"-"`
 
 	ServiceLink ServiceLink `json:"serviceLink,omitempty" yaml:"service_link,omitempty"`
 }

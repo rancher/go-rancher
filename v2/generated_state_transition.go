@@ -5,7 +5,7 @@ const (
 )
 
 type StateTransition struct {
-	Resource
+	Resource `yaml:"-"`
 }
 
 type StateTransitionCollection struct {

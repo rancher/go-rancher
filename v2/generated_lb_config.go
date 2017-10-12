@@ -5,7 +5,7 @@ const (
 )
 
 type LbConfig struct {
-	Resource
+	Resource `yaml:"-"`
 
 	CertificateIds []string `json:"certificateIds,omitempty" yaml:"certificate_ids,omitempty"`
 

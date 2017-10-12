@@ -5,7 +5,7 @@ const (
 )
 
 type ConfigItem struct {
-	Resource
+	Resource `yaml:"-"`
 
 	Name string `json:"name,omitempty" yaml:"name,omitempty"`
 

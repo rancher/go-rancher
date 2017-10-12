@@ -5,9 +5,9 @@ const (
 )
 
 type AddOutputsInput struct {
-	Resource
+	Resource `yaml:"-"`
 
-	Outputs map[string]interface{} `json:"outputs,omitempty" yaml:"outputs,omitempty"`
+	Outputs map[string]string `json:"outputs,omitempty" yaml:"outputs,omitempty"`
 }
 
 type AddOutputsInputCollection struct {

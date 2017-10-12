@@ -5,7 +5,7 @@ const (
 )
 
 type ContainerExec struct {
-	Resource
+	Resource `yaml:"-"`
 
 	AttachStdin bool `json:"attachStdin,omitempty" yaml:"attach_stdin,omitempty"`
 

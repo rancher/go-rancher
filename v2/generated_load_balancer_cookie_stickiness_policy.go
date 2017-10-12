@@ -5,7 +5,7 @@ const (
 )
 
 type LoadBalancerCookieStickinessPolicy struct {
-	Resource
+	Resource `yaml:"-"`
 
 	Cookie string `json:"cookie,omitempty" yaml:"cookie,omitempty"`
 

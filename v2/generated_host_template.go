@@ -5,7 +5,7 @@ const (
 )
 
 type HostTemplate struct {
-	Resource
+	Resource `yaml:"-"`
 
 	AccountId string `json:"accountId,omitempty" yaml:"account_id,omitempty"`
 

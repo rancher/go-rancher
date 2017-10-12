@@ -5,7 +5,7 @@ const (
 )
 
 type IpAddress struct {
-	Resource
+	Resource `yaml:"-"`
 
 	AccountId string `json:"accountId,omitempty" yaml:"account_id,omitempty"`
 

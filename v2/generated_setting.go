@@ -5,7 +5,7 @@ const (
 )
 
 type Setting struct {
-	Resource
+	Resource `yaml:"-"`
 
 	ActiveValue string `json:"activeValue,omitempty" yaml:"active_value,omitempty"`
 

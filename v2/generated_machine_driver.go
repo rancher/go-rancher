@@ -5,7 +5,7 @@ const (
 )
 
 type MachineDriver struct {
-	Resource
+	Resource `yaml:"-"`
 
 	ActivateOnCreate bool `json:"activateOnCreate,omitempty" yaml:"activate_on_create,omitempty"`
 

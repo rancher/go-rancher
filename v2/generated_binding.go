@@ -5,7 +5,7 @@ const (
 )
 
 type Binding struct {
-	Resource
+	Resource `yaml:"-"`
 
 	Services map[string]interface{} `json:"services,omitempty" yaml:"services,omitempty"`
 }

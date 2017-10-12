@@ -5,7 +5,7 @@ const (
 )
 
 type DockerBuild struct {
-	Resource
+	Resource `yaml:"-"`
 
 	Context string `json:"context,omitempty" yaml:"context,omitempty"`
 

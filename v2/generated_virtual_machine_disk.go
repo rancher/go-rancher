@@ -5,13 +5,13 @@ const (
 )
 
 type VirtualMachineDisk struct {
-	Resource
+	Resource `yaml:"-"`
 
 	Driver string `json:"driver,omitempty" yaml:"driver,omitempty"`
 
 	Name string `json:"name,omitempty" yaml:"name,omitempty"`
 
-	Opts map[string]interface{} `json:"opts,omitempty" yaml:"opts,omitempty"`
+	Opts map[string]string `json:"opts,omitempty" yaml:"opts,omitempty"`
 
 	ReadIops int64 `json:"readIops,omitempty" yaml:"read_iops,omitempty"`
 

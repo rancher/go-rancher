@@ -5,7 +5,7 @@ const (
 )
 
 type CatalogTemplate struct {
-	Resource
+	Resource `yaml:"-"`
 
 	Answers map[string]interface{} `json:"answers,omitempty" yaml:"answers,omitempty"`
 

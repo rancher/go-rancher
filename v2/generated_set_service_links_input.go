@@ -5,7 +5,7 @@ const (
 )
 
 type SetServiceLinksInput struct {
-	Resource
+	Resource `yaml:"-"`
 
 	ServiceLinks []ServiceLink `json:"serviceLinks,omitempty" yaml:"service_links,omitempty"`
 }

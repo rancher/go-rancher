@@ -5,7 +5,7 @@ const (
 )
 
 type Stack struct {
-	Resource
+	Resource `yaml:"-"`
 
 	AccountId string `json:"accountId,omitempty" yaml:"account_id,omitempty"`
 
@@ -21,7 +21,7 @@ type Stack struct {
 
 	DockerCompose string `json:"dockerCompose,omitempty" yaml:"docker_compose,omitempty"`
 
-	Environment map[string]interface{} `json:"environment,omitempty" yaml:"environment,omitempty"`
+	Environment map[string]string `json:"environment,omitempty" yaml:"environment,omitempty"`
 
 	ExternalId string `json:"externalId,omitempty" yaml:"external_id,omitempty"`
 
@@ -33,9 +33,9 @@ type Stack struct {
 
 	Name string `json:"name,omitempty" yaml:"name,omitempty"`
 
-	Outputs map[string]interface{} `json:"outputs,omitempty" yaml:"outputs,omitempty"`
+	Outputs map[string]string `json:"outputs,omitempty" yaml:"outputs,omitempty"`
 
-	PreviousEnvironment map[string]interface{} `json:"previousEnvironment,omitempty" yaml:"previous_environment,omitempty"`
+	PreviousEnvironment map[string]string `json:"previousEnvironment,omitempty" yaml:"previous_environment,omitempty"`
 
 	PreviousExternalId string `json:"previousExternalId,omitempty" yaml:"previous_external_id,omitempty"`
 
@@ -53,7 +53,7 @@ type Stack struct {
 
 	System bool `json:"system,omitempty" yaml:"system,omitempty"`
 
-	Templates map[string]interface{} `json:"templates,omitempty" yaml:"templates,omitempty"`
+	Templates map[string]string `json:"templates,omitempty" yaml:"templates,omitempty"`
 
 	Transitioning string `json:"transitioning,omitempty" yaml:"transitioning,omitempty"`
 

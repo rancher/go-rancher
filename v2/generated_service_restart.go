@@ -5,7 +5,7 @@ const (
 )
 
 type ServiceRestart struct {
-	Resource
+	Resource `yaml:"-"`
 
 	RollingRestartStrategy RollingRestartStrategy `json:"rollingRestartStrategy,omitempty" yaml:"rolling_restart_strategy,omitempty"`
 }

@@ -5,7 +5,7 @@ const (
 )
 
 type ExtensionPoint struct {
-	Resource
+	Resource `yaml:"-"`
 
 	ExcludeSetting string `json:"excludeSetting,omitempty" yaml:"exclude_setting,omitempty"`
 

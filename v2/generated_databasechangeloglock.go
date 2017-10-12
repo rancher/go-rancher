@@ -5,7 +5,7 @@ const (
 )
 
 type Databasechangeloglock struct {
-	Resource
+	Resource `yaml:"-"`
 
 	Locked bool `json:"locked,omitempty" yaml:"locked,omitempty"`
 

@@ -5,7 +5,7 @@ const (
 )
 
 type NetworkPolicyRuleWithin struct {
-	Resource
+	Resource `yaml:"-"`
 }
 
 type NetworkPolicyRuleWithinCollection struct {

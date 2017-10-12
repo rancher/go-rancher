@@ -5,7 +5,7 @@ const (
 )
 
 type TaskInstance struct {
-	Resource
+	Resource `yaml:"-"`
 
 	EndTime string `json:"endTime,omitempty" yaml:"end_time,omitempty"`
 

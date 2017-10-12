@@ -5,7 +5,7 @@ const (
 )
 
 type PacketConfig struct {
-	Resource
+	Resource `yaml:"-"`
 
 	ApiKey string `json:"apiKey,omitempty" yaml:"api_key,omitempty"`
 

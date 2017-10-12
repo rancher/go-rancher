@@ -5,7 +5,7 @@ const (
 )
 
 type BaseMachineConfig struct {
-	Resource
+	Resource `yaml:"-"`
 }
 
 type BaseMachineConfigCollection struct {

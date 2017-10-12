@@ -5,7 +5,7 @@ const (
 )
 
 type ProcessExecution struct {
-	Resource
+	Resource `yaml:"-"`
 
 	Created string `json:"created,omitempty" yaml:"created,omitempty"`
 

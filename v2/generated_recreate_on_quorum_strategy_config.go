@@ -5,7 +5,7 @@ const (
 )
 
 type RecreateOnQuorumStrategyConfig struct {
-	Resource
+	Resource `yaml:"-"`
 
 	Quorum int64 `json:"quorum,omitempty" yaml:"quorum,omitempty"`
 }

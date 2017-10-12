@@ -5,7 +5,7 @@ const (
 )
 
 type HaConfig struct {
-	Resource
+	Resource `yaml:"-"`
 
 	ClusterSize int64 `json:"clusterSize,omitempty" yaml:"cluster_size,omitempty"`
 

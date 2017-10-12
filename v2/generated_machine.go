@@ -5,7 +5,7 @@ const (
 )
 
 type Machine struct {
-	Resource
+	Resource `yaml:"-"`
 
 	AccountId string `json:"accountId,omitempty" yaml:"account_id,omitempty"`
 
@@ -29,15 +29,15 @@ type Machine struct {
 
 	Driver string `json:"driver,omitempty" yaml:"driver,omitempty"`
 
-	EngineEnv map[string]interface{} `json:"engineEnv,omitempty" yaml:"engine_env,omitempty"`
+	EngineEnv map[string]string `json:"engineEnv,omitempty" yaml:"engine_env,omitempty"`
 
 	EngineInsecureRegistry []string `json:"engineInsecureRegistry,omitempty" yaml:"engine_insecure_registry,omitempty"`
 
 	EngineInstallUrl string `json:"engineInstallUrl,omitempty" yaml:"engine_install_url,omitempty"`
 
-	EngineLabel map[string]interface{} `json:"engineLabel,omitempty" yaml:"engine_label,omitempty"`
+	EngineLabel map[string]string `json:"engineLabel,omitempty" yaml:"engine_label,omitempty"`
 
-	EngineOpt map[string]interface{} `json:"engineOpt,omitempty" yaml:"engine_opt,omitempty"`
+	EngineOpt map[string]string `json:"engineOpt,omitempty" yaml:"engine_opt,omitempty"`
 
 	EngineRegistryMirror []string `json:"engineRegistryMirror,omitempty" yaml:"engine_registry_mirror,omitempty"`
 
@@ -49,7 +49,7 @@ type Machine struct {
 
 	Kind string `json:"kind,omitempty" yaml:"kind,omitempty"`
 
-	Labels map[string]interface{} `json:"labels,omitempty" yaml:"labels,omitempty"`
+	Labels map[string]string `json:"labels,omitempty" yaml:"labels,omitempty"`
 
 	Name string `json:"name,omitempty" yaml:"name,omitempty"`
 

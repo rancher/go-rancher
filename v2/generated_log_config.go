@@ -5,9 +5,9 @@ const (
 )
 
 type LogConfig struct {
-	Resource
+	Resource `yaml:"-"`
 
-	Config map[string]interface{} `json:"config,omitempty" yaml:"config,omitempty"`
+	Config map[string]string `json:"config,omitempty" yaml:"config,omitempty"`
 
 	Driver string `json:"driver,omitempty" yaml:"driver,omitempty"`
 }

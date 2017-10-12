@@ -5,7 +5,7 @@ const (
 )
 
 type DigitaloceanConfig struct {
-	Resource
+	Resource `yaml:"-"`
 
 	AccessToken string `json:"accessToken,omitempty" yaml:"access_token,omitempty"`
 
@@ -28,6 +28,8 @@ type DigitaloceanConfig struct {
 	SshPort string `json:"sshPort,omitempty" yaml:"ssh_port,omitempty"`
 
 	SshUser string `json:"sshUser,omitempty" yaml:"ssh_user,omitempty"`
+
+	Tags string `json:"tags,omitempty" yaml:"tags,omitempty"`
 
 	Userdata string `json:"userdata,omitempty" yaml:"userdata,omitempty"`
 }

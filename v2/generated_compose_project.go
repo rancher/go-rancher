@@ -5,7 +5,7 @@ const (
 )
 
 type ComposeProject struct {
-	Resource
+	Resource `yaml:"-"`
 
 	AccountId string `json:"accountId,omitempty" yaml:"account_id,omitempty"`
 
@@ -19,7 +19,7 @@ type ComposeProject struct {
 
 	Description string `json:"description,omitempty" yaml:"description,omitempty"`
 
-	Environment map[string]interface{} `json:"environment,omitempty" yaml:"environment,omitempty"`
+	Environment map[string]string `json:"environment,omitempty" yaml:"environment,omitempty"`
 
 	ExternalId string `json:"externalId,omitempty" yaml:"external_id,omitempty"`
 
@@ -31,7 +31,7 @@ type ComposeProject struct {
 
 	Name string `json:"name,omitempty" yaml:"name,omitempty"`
 
-	PreviousEnvironment map[string]interface{} `json:"previousEnvironment,omitempty" yaml:"previous_environment,omitempty"`
+	PreviousEnvironment map[string]string `json:"previousEnvironment,omitempty" yaml:"previous_environment,omitempty"`
 
 	PreviousExternalId string `json:"previousExternalId,omitempty" yaml:"previous_external_id,omitempty"`
 
@@ -45,7 +45,7 @@ type ComposeProject struct {
 
 	System bool `json:"system,omitempty" yaml:"system,omitempty"`
 
-	Templates map[string]interface{} `json:"templates,omitempty" yaml:"templates,omitempty"`
+	Templates map[string]string `json:"templates,omitempty" yaml:"templates,omitempty"`
 
 	Transitioning string `json:"transitioning,omitempty" yaml:"transitioning,omitempty"`
 

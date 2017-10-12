@@ -5,7 +5,7 @@ const (
 )
 
 type HostAccess struct {
-	Resource
+	Resource `yaml:"-"`
 
 	Token string `json:"token,omitempty" yaml:"token,omitempty"`
 

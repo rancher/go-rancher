@@ -5,7 +5,7 @@ const (
 )
 
 type InstanceConsoleInput struct {
-	Resource
+	Resource `yaml:"-"`
 }
 
 type InstanceConsoleInputCollection struct {

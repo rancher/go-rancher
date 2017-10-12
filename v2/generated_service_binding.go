@@ -5,9 +5,9 @@ const (
 )
 
 type ServiceBinding struct {
-	Resource
+	Resource `yaml:"-"`
 
-	Labels map[string]interface{} `json:"labels,omitempty" yaml:"labels,omitempty"`
+	Labels map[string]string `json:"labels,omitempty" yaml:"labels,omitempty"`
 
 	Ports []string `json:"ports,omitempty" yaml:"ports,omitempty"`
 }

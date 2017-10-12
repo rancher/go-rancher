@@ -5,7 +5,7 @@ const (
 )
 
 type HostApiProxyToken struct {
-	Resource
+	Resource `yaml:"-"`
 
 	ReportedUuid string `json:"reportedUuid,omitempty" yaml:"reported_uuid,omitempty"`
 

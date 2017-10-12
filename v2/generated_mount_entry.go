@@ -5,7 +5,7 @@ const (
 )
 
 type MountEntry struct {
-	Resource
+	Resource `yaml:"-"`
 
 	InstanceId string `json:"instanceId,omitempty" yaml:"instance_id,omitempty"`
 

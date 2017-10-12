@@ -5,7 +5,7 @@ const (
 )
 
 type Databasechangelog struct {
-	Resource
+	Resource `yaml:"-"`
 
 	Author string `json:"author,omitempty" yaml:"author,omitempty"`
 

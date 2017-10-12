@@ -5,7 +5,7 @@ const (
 )
 
 type Project struct {
-	Resource
+	Resource `yaml:"-"`
 
 	AllowSystemRole bool `json:"allowSystemRole,omitempty" yaml:"allow_system_role,omitempty"`
 

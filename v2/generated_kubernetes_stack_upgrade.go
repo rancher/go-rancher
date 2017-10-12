@@ -5,15 +5,15 @@ const (
 )
 
 type KubernetesStackUpgrade struct {
-	Resource
+	Resource `yaml:"-"`
 
 	Answers map[string]interface{} `json:"answers,omitempty" yaml:"answers,omitempty"`
 
-	Environment map[string]interface{} `json:"environment,omitempty" yaml:"environment,omitempty"`
+	Environment map[string]string `json:"environment,omitempty" yaml:"environment,omitempty"`
 
 	ExternalId string `json:"externalId,omitempty" yaml:"external_id,omitempty"`
 
-	Templates map[string]interface{} `json:"templates,omitempty" yaml:"templates,omitempty"`
+	Templates map[string]string `json:"templates,omitempty" yaml:"templates,omitempty"`
 }
 
 type KubernetesStackUpgradeCollection struct {

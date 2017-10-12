@@ -5,7 +5,7 @@ const (
 )
 
 type Amazonec2Config struct {
-	Resource
+	Resource `yaml:"-"`
 
 	AccessKey string `json:"accessKey,omitempty" yaml:"access_key,omitempty"`
 

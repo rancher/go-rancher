@@ -5,7 +5,7 @@ const (
 )
 
 type SnapshotBackupInput struct {
-	Resource
+	Resource `yaml:"-"`
 
 	BackupTargetId string `json:"backupTargetId,omitempty" yaml:"backup_target_id,omitempty"`
 

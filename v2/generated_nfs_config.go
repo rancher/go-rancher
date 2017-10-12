@@ -5,7 +5,7 @@ const (
 )
 
 type NfsConfig struct {
-	Resource
+	Resource `yaml:"-"`
 
 	MountOptions string `json:"mountOptions,omitempty" yaml:"mount_options,omitempty"`
 

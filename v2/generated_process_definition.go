@@ -5,7 +5,7 @@ const (
 )
 
 type ProcessDefinition struct {
-	Resource
+	Resource `yaml:"-"`
 
 	ExtensionBased bool `json:"extensionBased,omitempty" yaml:"extension_based,omitempty"`
 

@@ -5,7 +5,7 @@ const (
 )
 
 type HaConfigInput struct {
-	Resource
+	Resource `yaml:"-"`
 
 	Cert string `json:"cert,omitempty" yaml:"cert,omitempty"`
 

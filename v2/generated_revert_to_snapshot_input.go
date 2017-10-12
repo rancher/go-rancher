@@ -5,7 +5,7 @@ const (
 )
 
 type RevertToSnapshotInput struct {
-	Resource
+	Resource `yaml:"-"`
 
 	SnapshotId string `json:"snapshotId,omitempty" yaml:"snapshot_id,omitempty"`
 }

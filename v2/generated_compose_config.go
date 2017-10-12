@@ -5,7 +5,7 @@ const (
 )
 
 type ComposeConfig struct {
-	Resource
+	Resource `yaml:"-"`
 
 	DockerComposeConfig string `json:"dockerComposeConfig,omitempty" yaml:"docker_compose_config,omitempty"`
 

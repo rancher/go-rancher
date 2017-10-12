@@ -5,7 +5,7 @@ const (
 )
 
 type ScalePolicy struct {
-	Resource
+	Resource `yaml:"-"`
 
 	Increment int64 `json:"increment,omitempty" yaml:"increment,omitempty"`
 

@@ -5,7 +5,7 @@ const (
 )
 
 type Container struct {
-	Resource
+	Resource `yaml:"-"`
 
 	AccountId string `json:"accountId,omitempty" yaml:"account_id,omitempty"`
 
@@ -77,7 +77,7 @@ type Container struct {
 
 	EntryPoint []string `json:"entryPoint,omitempty" yaml:"entry_point,omitempty"`
 
-	Environment map[string]interface{} `json:"environment,omitempty" yaml:"environment,omitempty"`
+	Environment map[string]string `json:"environment,omitempty" yaml:"environment,omitempty"`
 
 	Expose []string `json:"expose,omitempty" yaml:"expose,omitempty"`
 
@@ -127,11 +127,11 @@ type Container struct {
 
 	Kind string `json:"kind,omitempty" yaml:"kind,omitempty"`
 
-	Labels map[string]interface{} `json:"labels,omitempty" yaml:"labels,omitempty"`
+	Labels map[string]string `json:"labels,omitempty" yaml:"labels,omitempty"`
 
 	LogConfig *LogConfig `json:"logConfig,omitempty" yaml:"log_config,omitempty"`
 
-	LxcConf map[string]interface{} `json:"lxcConf,omitempty" yaml:"lxc_conf,omitempty"`
+	LxcConf map[string]string `json:"lxcConf,omitempty" yaml:"lxc_conf,omitempty"`
 
 	Memory int64 `json:"memory,omitempty" yaml:"memory,omitempty"`
 
@@ -213,13 +213,13 @@ type Container struct {
 
 	StopTimeout int64 `json:"stopTimeout,omitempty" yaml:"stop_timeout,omitempty"`
 
-	StorageOpt map[string]interface{} `json:"storageOpt,omitempty" yaml:"storage_opt,omitempty"`
+	StorageOpt map[string]string `json:"storageOpt,omitempty" yaml:"storage_opt,omitempty"`
 
-	Sysctls map[string]interface{} `json:"sysctls,omitempty" yaml:"sysctls,omitempty"`
+	Sysctls map[string]string `json:"sysctls,omitempty" yaml:"sysctls,omitempty"`
 
 	System bool `json:"system,omitempty" yaml:"system,omitempty"`
 
-	Tmpfs map[string]interface{} `json:"tmpfs,omitempty" yaml:"tmpfs,omitempty"`
+	Tmpfs map[string]string `json:"tmpfs,omitempty" yaml:"tmpfs,omitempty"`
 
 	Token string `json:"token,omitempty" yaml:"token,omitempty"`
 

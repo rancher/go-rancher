@@ -5,7 +5,7 @@ const (
 )
 
 type TypeDocumentation struct {
-	Resource
+	Resource `yaml:"-"`
 
 	Description string `json:"description,omitempty" yaml:"description,omitempty"`
 

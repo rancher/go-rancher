@@ -5,7 +5,7 @@ const (
 )
 
 type RestoreFromBackupInput struct {
-	Resource
+	Resource `yaml:"-"`
 
 	BackupId string `json:"backupId,omitempty" yaml:"backup_id,omitempty"`
 }
