@@ -29,8 +29,6 @@ type Stack struct {
 
 	Name string `json:"name,omitempty" yaml:"name,omitempty"`
 
-	Outputs map[string]string `json:"outputs,omitempty" yaml:"outputs,omitempty"`
-
 	ParentStackId string `json:"parentStackId,omitempty" yaml:"parent_stack_id,omitempty"`
 
 	Prune bool `json:"prune,omitempty" yaml:"prune,omitempty"`
@@ -71,19 +69,13 @@ type StackOperations interface {
 	ById(id string) (*Stack, error)
 	Delete(container *Stack) error
 
-	ActionActivateservices(*Stack) (*Stack, error)
-
-	ActionAddoutputs(*Stack, *AddOutputsInput) (*Stack, error)
-
 	ActionCreate(*Stack) (*Stack, error)
-
-	ActionDeactivateservices(*Stack) (*Stack, error)
 
 	ActionError(*Stack) (*Stack, error)
 
 	ActionExportconfig(*Stack, *ComposeConfigInput) (*ComposeConfig, error)
 
-	ActionPause(*Stack) (*Stack, error)
+	ActionPauseall(*Stack) (*Stack, error)
 
 	ActionRemove(*Stack) (*Stack, error)
 
@@ -146,38 +138,11 @@ func (c *StackClient) Delete(container *Stack) error {
 	return c.rancherClient.doResourceDelete(STACK_TYPE, &container.Resource)
 }
 
-func (c *StackClient) ActionActivateservices(resource *Stack) (*Stack, error) {
-
-	resp := &Stack{}
-
-	err := c.rancherClient.doAction(STACK_TYPE, "activateservices", &resource.Resource, nil, resp)
-
-	return resp, err
-}
-
-func (c *StackClient) ActionAddoutputs(resource *Stack, input *AddOutputsInput) (*Stack, error) {
-
-	resp := &Stack{}
-
-	err := c.rancherClient.doAction(STACK_TYPE, "addoutputs", &resource.Resource, input, resp)
-
-	return resp, err
-}
-
 func (c *StackClient) ActionCreate(resource *Stack) (*Stack, error) {
 
 	resp := &Stack{}
 
 	err := c.rancherClient.doAction(STACK_TYPE, "create", &resource.Resource, nil, resp)
-
-	return resp, err
-}
-
-func (c *StackClient) ActionDeactivateservices(resource *Stack) (*Stack, error) {
-
-	resp := &Stack{}
-
-	err := c.rancherClient.doAction(STACK_TYPE, "deactivateservices", &resource.Resource, nil, resp)
 
 	return resp, err
 }
@@ -200,11 +165,11 @@ func (c *StackClient) ActionExportconfig(resource *Stack, input *ComposeConfigIn
 	return resp, err
 }
 
-func (c *StackClient) ActionPause(resource *Stack) (*Stack, error) {
+func (c *StackClient) ActionPauseall(resource *Stack) (*Stack, error) {
 
 	resp := &Stack{}
 
-	err := c.rancherClient.doAction(STACK_TYPE, "pause", &resource.Resource, nil, resp)
+	err := c.rancherClient.doAction(STACK_TYPE, "pauseall", &resource.Resource, nil, resp)
 
 	return resp, err
 }
