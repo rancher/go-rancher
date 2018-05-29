@@ -25,6 +25,8 @@ type ExternalDnsEvent struct {
 
 	ServiceName string `json:"serviceName,omitempty" yaml:"service_name,omitempty"`
 
+	ContainerName string `json:"containerName,omitempty" yaml:"container_name,omitempty"`
+
 	StackName string `json:"stackName,omitempty" yaml:"stack_name,omitempty"`
 
 	State string `json:"state,omitempty" yaml:"state,omitempty"`
