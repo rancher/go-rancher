@@ -21,6 +21,8 @@ type Subnet struct {
 
 	Gateway string `json:"gateway,omitempty" yaml:"gateway,omitempty"`
 
+	Idc string `json:"idc,omitempty" yaml:"idc,omitempty"`
+
 	Kind string `json:"kind,omitempty" yaml:"kind,omitempty"`
 
 	Name string `json:"name,omitempty" yaml:"name,omitempty"`
