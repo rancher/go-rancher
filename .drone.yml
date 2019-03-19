@@ -13,10 +13,10 @@ steps:
   commands:
   - dapper ci
   volumes:
-  - name: 2f7661722f72756e2f646f636b65722e736f636b
+  - name: socket
     path: /var/run/docker.sock
 
 volumes:
-- name: 2f7661722f72756e2f646f636b65722e736f636b
+- name: socket
   host:
     path: /var/run/docker.sock
