@@ -1,7 +1,22 @@
-pipeline:
-  build:
-    image: rancher/dapper:1.10.3
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-    commands:
-      - dapper ci
+---
+kind: pipeline
+name: default
+
+platform:
+  os: linux
+  arch: amd64
+
+steps:
+- name: build
+  pull: default
+  image: rancher/dapper:1.10.3
+  commands:
+  - dapper ci
+  volumes:
+  - name: 2f7661722f72756e2f646f636b65722e736f636b
+    path: /var/run/docker.sock
+
+volumes:
+- name: 2f7661722f72756e2f646f636b65722e736f636b
+  host:
+    path: /var/run/docker.sock
