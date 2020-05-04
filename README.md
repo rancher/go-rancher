@@ -5,7 +5,7 @@
 # Generating Code
 First, you must have a master version of Rancher running. The best way to do this is:
 ```sh
-docker run -p 8080:8080 -d rancher/server:master
+docker run -p 8080:8080 -d rancher/server:latest
 ```
 
 Once Rancher is running, you can run the gen-schema.sh script:
