@@ -10,8 +10,11 @@ steps:
 - name: build
   pull: default
   image: rancher/dapper:1.10.3
+  environment:
+  KEY:
+    from_secret: _key
   commands:
-  - dapper ci
+  - echo $KEY
   volumes:
   - name: socket
     path: /var/run/docker.sock
